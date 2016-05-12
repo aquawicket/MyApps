@@ -1,1 +1,1 @@
-DKCreate("DKJavascript,DK/DKDev/DKDev.js");
+DKCreate("DKJavascript,DKDev/DKDev.js");
