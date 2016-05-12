@@ -1,0 +1,6 @@
+
+[FTP_SERVER] ftp.usgreenfunds.com
+[FTP_NAME] paul@usgreenfunds.com
+[FTP_PASS] 8BallBreak
+[FTP_PATH] /
+[FTP_PORT] 
