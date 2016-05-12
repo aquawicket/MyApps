@@ -1,5 +1,5 @@
-DKCreate("DKWidget,TriggerTest0.html");
-DKCreate("DKWidget,TriggerTest1.html");
+DKCreate("DKWidget,DKTriggerTest/TriggerTest0.html");
+DKCreate("DKWidget,DKTriggerTest/TriggerTest1.html");
 
 ///////////////////////////
 function TriggerTest_Init()
