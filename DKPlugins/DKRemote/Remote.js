@@ -1,5 +1,5 @@
 Remote_server = false;
-DKCreate("DKWidget,DK/DKRemote/Remote.html");
+DKCreate("DKWidget,DKRemote/Remote.html");
 
 //////////////////////
 function Remote_Init()
@@ -9,6 +9,7 @@ function Remote_Init()
 	//attempt to connect
 	if(Remote_server){
 		DKCreate("DKServer");
+		DKCreate("DKServerJS");
 		var IP = DK_GetLocalIP();
 		DKWidget_SetInnerHtml("IPAddress", IP);
 		DKWidget_Hide("Wifi");
@@ -16,6 +17,7 @@ function Remote_Init()
 	}
 	else{
 		DKCreate("DKClient");
+		DKCreate("DKClientJS");
 		var datapath = DKAssets_GetDataPath();
 		var address = DKFile_GetSetting(datapath+"remote.txt", "[SERVER]");
 		if(address){
@@ -93,14 +95,14 @@ function Remote_OnEvent(event)
 		if(DKWidget_GetValue(event) == "connected"){
 			DKWidget_Hide("address");
 			var datapath = DKAssets_GetDataPath();
-			DKWidget_SetAttribute("Wifi", "src", datapath+"DK/DKRemote/wifiGreen.png");
+			DKWidget_SetAttribute("Wifi", "src", datapath+"DKRemote/wifiGreen.png");
 			//DK_CallFunc("DKOSGRocket::DirtyRefresh","");
 			var address = DKWidget_GetValue("address");
 			DKFile_SetSetting(datapath+"remote.txt", "[SERVER]", address); //provide full path in case file does not exist
 		}
 		if(DKWidget_GetValue(event) == "disconnected"){
 			DKWidget_Show("address");
-			DKWidget_SetAttribute("Wifi", "src", datapath+"DK/DKRemote/wifiRed.png");
+			DKWidget_SetAttribute("Wifi", "src", datapath+"DKRemote/wifiRed.png");
 		}
 	}
 }

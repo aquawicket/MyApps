@@ -1,5 +1,5 @@
 DKCreate("DKMySqlJS");
-DKCreate("DKJavascript,DK/DKMySql/DKMySql.js");
+DKCreate("DKJavascript,DKMySql/DKMySql.js");
 DKCreate("DKWidget,Panel0.html");
 
 var FACEBOOK_ID;
