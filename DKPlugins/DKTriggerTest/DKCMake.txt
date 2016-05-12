@@ -1,1 +1,2 @@
-DKASSETS(DKTriggers)
+DKDEPEND(DKTriggers)
+DKASSETS(DKTriggerTest)
