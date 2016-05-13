@@ -3,6 +3,7 @@ function Tray_Init()
 {
 	DKCreate("DKTrayJS");
 	DKCreate("DKFileJS");
+	DKCreate("DKAssetsJS");
 	DKRegisterEvent("DKTray", "click", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Restore", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Minimize", Tray_OnEvent);
@@ -37,6 +38,7 @@ function Tray_ToggleIcon()
 function Tray_On()
 {
 	DKLog("ON \n");
+	var datapath = DKAssets_GetDataPath();
 	DKTray_SetIcon("icon2.ico");
 }
 
