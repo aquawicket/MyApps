@@ -6,7 +6,7 @@ function TriggerTest_Init()
 {
 	DKCreate("DKHookJS");
 	DKCreate("DKJavascript,DKTriggers/DKTriggers.js");
-	DKTrigger_LoadTriggers("Triggers.txt");
+	DKTrigger_LoadTriggers("DKTriggerTest/Triggers.txt");
 }
 
 ///////////////////////////////////
