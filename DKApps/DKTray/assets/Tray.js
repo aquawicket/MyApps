@@ -39,12 +39,13 @@ function Tray_On()
 {
 	DKLog("ON \n");
 	var datapath = DKAssets_GetDataPath();
-	DKTray_SetIcon("icon2.ico");
+	DKTray_SetIcon(datapath+"icon.ico");
 }
 
 ///////////////////
 function Tray_Off()
 {
 	DKLog("OFF \n");
-	DKTray_SetIcon("icon.ico");
+	var datapath = DKAssets_GetDataPath();
+	DKTray_SetIcon(datapath+"icon2.ico");
 }
