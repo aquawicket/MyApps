@@ -8,6 +8,7 @@ function Tray_Init()
 	DKRegisterEvent("DKTray", "Restore", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Minimize", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Exit", Tray_OnEvent);
+	DKTray_SetIcon(datapath+"touchON.ico");
 }
 
 ////////////////////////////
@@ -26,7 +27,7 @@ function Tray_ToggleIcon()
 	var file = DKFile_GetFilename(icon);
 	//DKLog(file+"\n");
 	
-	if(file == "icon.ico"){
+	if(file == "touchON.ico"){
 		Tray_Off();
 	}
 	else{
@@ -39,7 +40,7 @@ function Tray_On()
 {
 	DKLog("ON \n");
 	var datapath = DKAssets_GetDataPath();
-	DKTray_SetIcon(datapath+"icon.ico");
+	DKTray_SetIcon(datapath+"touchON.ico");
 }
 
 ///////////////////
@@ -47,5 +48,5 @@ function Tray_Off()
 {
 	DKLog("OFF \n");
 	var datapath = DKAssets_GetDataPath();
-	DKTray_SetIcon(datapath+"icon2.ico");
+	DKTray_SetIcon(datapath+"touchOFF.ico");
 }
