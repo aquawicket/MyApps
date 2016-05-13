@@ -1,6 +1,7 @@
 /////////////////////
 function Tray_Init()
 {
+	DKCreate("DKTray");
 	DKCreate("DKTrayJS");
 	DKCreate("DKFileJS");
 	DKCreate("DKAssetsJS");
@@ -8,7 +9,7 @@ function Tray_Init()
 	DKRegisterEvent("DKTray", "Restore", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Minimize", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Exit", Tray_OnEvent);
-	DKTray_SetIcon(datapath+"touchON.ico");
+	Tray_On();
 }
 
 ////////////////////////////
