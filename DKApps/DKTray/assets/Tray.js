@@ -9,14 +9,40 @@ function Tray_Init()
 	DKRegisterEvent("DKTray", "Exit", Tray_OnEvent);
 }
 
-/////////////////////////////
+////////////////////////////
 function Tray_OnEvent(event)
 {
-	DKLog("DKTray_OnEvent("+event+") \n");
+	//DKLog("DKTray_OnEvent("+event+") \n");
 	if(DK_Type(event, "click")){
-		var icon = DKTray_GetIcon();
-		DKLog(icon+"\n");
-		var file = DKFile_GetFilename(icon);
-		DKLog(file+"\n");
+		Tray_ToggleIcon();
 	}
+}
+
+//////////////////////////
+function Tray_ToggleIcon()
+{
+	var icon = DKTray_GetIcon();
+	var file = DKFile_GetFilename(icon);
+	//DKLog(file+"\n");
+	
+	if(file == "icon.ico"){
+		Tray_Off();
+	}
+	else{
+		Tray_On();
+	}
+}
+
+//////////////////
+function Tray_On()
+{
+	DKLog("ON \n");
+	DKTray_SetIcon("icon2.ico");
+}
+
+///////////////////
+function Tray_Off()
+{
+	DKLog("OFF \n");
+	DKTray_SetIcon("icon.ico");
 }
