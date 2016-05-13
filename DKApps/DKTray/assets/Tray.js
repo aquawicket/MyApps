@@ -42,6 +42,7 @@ function Tray_On()
 	DKLog("ON \n");
 	var datapath = DKAssets_GetDataPath();
 	DKTray_SetIcon(datapath+"touchON.ico");
+	DK_Run(datapath+"DevManView.exe /enable \"HID-compliant touch screen\"");
 }
 
 ///////////////////
@@ -50,4 +51,5 @@ function Tray_Off()
 	DKLog("OFF \n");
 	var datapath = DKAssets_GetDataPath();
 	DKTray_SetIcon(datapath+"touchOFF.ico");
+	DK_Run(datapath+"DevManView.exe /disable \"HID-compliant touch screen\"");
 }
