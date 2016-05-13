@@ -1,21 +1,22 @@
 /////////////////////
 function Tray_Init()
 {
-	DKRegisterEvent("Tray", "click", Tray_OnEvent);
-	DKRegisterEvent("Tray", "Restore", Tray_OnEvent);
-	DKRegisterEvent("Tray", "Minimize", Tray_OnEvent);
-	DKRegisterEvent("Tray", "Exit", Tray_OnEvent);
+	DKCreate("DKTrayJS");
+	DKCreate("DKFileJS");
+	DKRegisterEvent("DKTray", "click", Tray_OnEvent);
+	DKRegisterEvent("DKTray", "Restore", Tray_OnEvent);
+	DKRegisterEvent("DKTray", "Minimize", Tray_OnEvent);
+	DKRegisterEvent("DKTray", "Exit", Tray_OnEvent);
 }
 
-//////////////////////////////
+/////////////////////////////
 function Tray_OnEvent(event)
 {
 	DKLog("DKTray_OnEvent("+event+") \n");
-	if(DK_Type(event, "Tray")){
-		var arry = DKWidget_GetValue(event).split(",");
-		//DKTrigger_ProcessGui(arry[0], arry[1]);
-	}
-	if(DK_Type(event, "Restore")){
-		DKLog("Tray Restore \n");
+	if(DK_Type(event, "click")){
+		var icon = DKTray_GetIcon();
+		DKLog(icon+"\n");
+		var file = DKFile_GetFilename(icon);
+		DKLog(file+"\n");
 	}
 }
