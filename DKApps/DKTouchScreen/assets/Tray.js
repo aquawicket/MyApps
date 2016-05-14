@@ -9,7 +9,7 @@ function Tray_Init()
 	DKRegisterEvent("DKTray", "Restore", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Minimize", Tray_OnEvent);
 	DKRegisterEvent("DKTray", "Exit", Tray_OnEvent);
-	Tray_On();
+	Tray_Off();
 }
 
 ////////////////////////////
