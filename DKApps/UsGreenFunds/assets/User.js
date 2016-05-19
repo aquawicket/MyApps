@@ -1,4 +1,3 @@
-//DKCreate("DKJavascript,DKDev/DKDev.js");
+DKCreate("DKJavascript,DKDev/DKDev.js");
 DKCreate("DKWidget,Home.html");
-DKCreate("DKWidget,DKDev/DKMenuRightEdit.html");
-//DKCreate("DKJavascript,DKTriggers/DKTriggers.js");
+DKCreate("DKJavascript,DKTriggers/DKTriggers.js");

@@ -1,1 +1,1 @@
-DKCreate("DKWidget,scrolltest1.html");
+DKCreate("DKWidget,scrolltest.html");
