@@ -1,0 +1,22 @@
+#include "windows.h"
+#include "resource.h"
+
+ASSETS_ZIP                RCDATA                  "assets.zip"
+IDI_ICON                  ICON    DISCARDABLE     "icons\\windows\\icon.ico"
+IDI_TASKBARDEMO           ICON    DISCARDABLE     "icons\\windows\\icon.ico"
+
+
+IDR_POPUP_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "POPUP"
+    BEGIN
+        MENUITEM "Exit",                        	IDM_EXIT
+    END
+END
+
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_APP_TITLE           "TaskbarDemo"
+    IDC_TASKBARDEMO         "TASKBARDEMO"
+END
