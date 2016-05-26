@@ -10,7 +10,7 @@ function Admin_Init()
 	
 	var htmlassets = serverpath;
 	DKLog(htmlassets+"\n");
-	var htmldocs = DKFile_DirectoryContents("/bin");
+	var htmldocs = DKFile_DirectoryContents("/home/keithnam/www/Documents");
 	DKLog("FILE DOCS: "+htmldocs+"\n");
 }
 
