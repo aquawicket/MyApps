@@ -3,6 +3,8 @@ DKCreate("DKWidget,Admin.html");
 ////////////////////
 function Admin_Init()
 {
+	DKRegisterEvent("upload", "click", Admin_OnEvent);
+	
 	var assets = DKAssets_GetDataPath();
 	var docs = DKFile_DirectoryContents(assets+"Documents");
 	var htmldocs = DKFile_DirectoryContents("/home/keithnam/www/Documents");
@@ -24,5 +26,9 @@ function Admin_Init()
 ////////////////////////////
 function Admin_OnEvent(event)
 {
-
+	//http://www.w3schools.com/php/php_file_upload.asp
+	if(DK_Id(event, "upload")){
+		DKLog("clicked upload \n");
+		
+	}
 }
