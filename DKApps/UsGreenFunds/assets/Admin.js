@@ -16,8 +16,8 @@ function Admin_Init()
 		//var div = DKWidget_CreateElement("documents_div", "div", "fileID");
 		var href = DKWidget_CreateElement("documents_div", "a", "fileID");
 		var br = DKWidget_CreateElement("documents_div", "br", "");
-		DKWidget_SetAttribute(href, "href", "test"); //<a href="url">link text</a>
-		DKWidget_SetInnerHtml(href, "link");
+		DKWidget_SetAttribute(href, "href", "http://usgreenfunds.com/Documents/"+files[i]); //<a href="url">link text</a>
+		DKWidget_SetInnerHtml(href, files[i]);
 		//DKWidget_SetOuterHtml(href, "<br>");
 	}
 }
