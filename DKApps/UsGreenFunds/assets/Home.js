@@ -9,5 +9,11 @@ function Home_Init()
 ////////////////////////////
 function Home_OnEvent(event)
 {
-	DKLog("event");
+	var password = DKWidget_GetValue("password");
+	if(password == "million"){
+		DKLog("Yup \n");
+	}
+	else{
+		DKLog("Nope \n");
+	}
 }
