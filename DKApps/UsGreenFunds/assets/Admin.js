@@ -6,7 +6,7 @@ function Admin_Init()
 	var assets = DKAssets_GetDataPath();
 	//DKLog(assets+"Documents"+"\n");
 	var docs = DKFile_DirectoryContents(assets+"Documents");
-	DKLog("FILE DOCS: "+docs+"\n");
+	//DKLog("FILE DOCS: "+docs+"\n");
 	var files = docs.split(",");
 	for(i=0; i<files.length; i++){
 		if(files[i] == "."){ continue; }
