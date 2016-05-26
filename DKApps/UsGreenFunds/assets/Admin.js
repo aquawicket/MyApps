@@ -13,12 +13,11 @@ function Admin_Init()
 	for(i=0; i<files.length; i++){
 		if(files[i] == "."){ continue; }
 		if(files[i] == ".."){ continue; } 
-		//var div = DKWidget_CreateElement("documents_div", "div", "fileID");
 		var href = DKWidget_CreateElement("documents_div", "a", "fileID");
 		var br = DKWidget_CreateElement("documents_div", "br", "");
 		DKWidget_SetAttribute(href, "href", "http://usgreenfunds.com/Documents/"+files[i]); //<a href="url">link text</a>
+		DKWidget_SetAttribute(href, "target", "_blank");
 		DKWidget_SetInnerHtml(href, files[i]);
-		//DKWidget_SetOuterHtml(href, "<br>");
 	}
 }
 
