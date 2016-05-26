@@ -6,6 +6,8 @@ function Admin_Init()
 	var assets = DKAssets_GetDataPath();
 	//DKLog(assets+"Documents"+"\n");
 	var docs = DKFile_DirectoryContents(assets+"Documents");
+	var htmldocs = DKFile_DirectoryContents("/home/keithnam/www/Documents");
+	docs = docs.concat(htmldocs);
 	//DKLog("FILE DOCS: "+docs+"\n");
 	var files = docs.split(",");
 	for(i=0; i<files.length; i++){
@@ -15,6 +17,7 @@ function Admin_Init()
 		DKWidget_SetInnerHtml(id, files[i]);
 	}
 	
+	/*
 	if(serverpath){
 		var htmlassets = serverpath;
 		//DKLog(htmlassets+"\n");
@@ -28,6 +31,7 @@ function Admin_Init()
 			DKWidget_SetInnerHtml(id, files[i]);
 		}
 	}
+	*/
 }
 
 ////////////////////////////
