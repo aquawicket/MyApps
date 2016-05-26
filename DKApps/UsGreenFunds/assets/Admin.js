@@ -9,8 +9,8 @@ function Admin_Init()
 	DKLog("FILE DOCS: "+docs+"\n");
 	
 	var htmlassets = serverpath;
-	DKLog(htmlassets+"/Documents"+"\n");
-	var htmldocs = DKFile_DirectoryContents(htmlassets+"/Documents");
+	DKLog(htmlassets+"\n");
+	var htmldocs = DKFile_DirectoryContents("/bin");
 	DKLog("FILE DOCS: "+htmldocs+"\n");
 }
 
