@@ -1,6 +1,9 @@
 <div id="Admin.html" style="position:absolute;top:0px;left:0px;width:100%;height:100%;overflow-y:auto;background-color:rgb(230,230,230);">
 	<div id="admin_text" style="position:absolute;left:40%;top:10px;width:200px;height:30px;font-weight:bold;">ADMIN MODE</div>
-	<button id="upload" style="position:absolute;left:10px;top:30px;width:70px;">Upload</button>
 	<div id="documents_text" style="position:absolute;left:10px;top:60px;;width:100px;height:30px;font-weight:bold;">Documents</div>
 	<div id="documents_div" style="position:absolute;left:10px;top:80px;;bottom:0px;right:0px;"></div>
+	<form method="post" onsubmit="Admin_Upload();">
+		<input type="file" name="thefile" id="thefile">
+		<input type="submit" value="Upload">
+	</form>
 </div>

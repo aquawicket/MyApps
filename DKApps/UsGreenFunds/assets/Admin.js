@@ -32,3 +32,9 @@ function Admin_OnEvent(event)
 		
 	}
 }
+
+///////////////////////
+function Admin_Upload()
+{
+	alert("test");
+}
