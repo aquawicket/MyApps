@@ -36,5 +36,6 @@ function Admin_OnEvent(event)
 ///////////////////////
 function Admin_Upload()
 {
-	alert("test");
+	var val = DKWidget_GetValue("uploadfile");
+	alert(val);
 }

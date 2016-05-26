@@ -3,7 +3,7 @@
 	<div id="documents_text" style="position:absolute;left:10px;top:60px;;width:100px;height:30px;font-weight:bold;">Documents</div>
 	<div id="documents_div" style="position:absolute;left:10px;top:80px;;bottom:0px;right:0px;"></div>
 	<form method="post" onsubmit="Admin_Upload();">
-		<input type="file" name="thefile" id="thefile">
-		<input type="submit" value="Upload">
+		<input action="DKFile/DKFile.php?Upload=1" type="file" name="uploadfile" id="uploadfile"></input>
+		<input type="submit" value="Upload"></input>
 	</form>
 </div>
