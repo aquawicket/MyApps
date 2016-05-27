@@ -37,6 +37,9 @@ function Home_Login()
 	if(password == "million"){
 		Home_OpenAdmin();
 	}
+	else{
+		DKWidget_SetProperty("password_text","color","rgb(255,0,0)");
+	}
 }
 
 /////////////////////////
