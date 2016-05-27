@@ -72,10 +72,16 @@ function Admin_Update()
 ///////////////////////////
 function Admin_Delete(file)
 {
-    if(confirm("Delete this file?") == true){
-		var result = DKFile_Delete("/home/keithnam/www/Documents/"+file);
-		DKLog(result+"\n");
-		window.location.href = "http://usgreenfunds.com";
+ 	if(DK_GetBrowser() != "DigitalKnob" && realpath){
+		if(confirm("Delete this file?") == true){
+			var result = DKFile_Delete(realpath+file);
+			DKLog(result+"\n");
+			window.location.href = "http://usgreenfunds.com";
+		}
+	}
+	else{
+		var path = DKAssets_GetDataPath();
+		var result = DKFile_Delete(path+"Documents/"+file);
 	}
 }
 
