@@ -1,5 +1,5 @@
 DKCreate("DKWidget,Links.html");
-var links_text = "";
+var stored_links = "";
 
 /////////////////////
 function Links_Init()
@@ -26,12 +26,12 @@ function Links_Update()
 {
 	DKWidget_SetInnerHtml("links_div", "");
 	var assets = DKAssets_GetDataPath();
-	links_text = DKFile_FileToString("links.txt");
-	if(!links_text){
+	stored_links = DKFile_FileToString("links.txt");
+	if(!stored_links){
 		DKLog("cannot get links.txt");
 	}
 	
-	var links = links_text.split(",");
+	var links = stored_links.split(",");
 	for(i=0; i<links.length; i++){
 		if(links[i] == ""){ continue; }
 		var div = DKWidget_CreateElement("links_div", "div", "div");
@@ -61,9 +61,9 @@ function Links_AddLink(link)
 		return;
 	}
 	//DKLog("link exists");
-	links_text = links_text+link+",";
-	//DKLog(links_text+"\n");
-	DKFile_SaveFile("links.txt", links_text);
+	stored_links = stored_links+link+",";
+	//DKLog(stored_links+"\n");
+	DKFile_SaveFile("links.txt", stored_links);
 	Links_Update();
 }
 
@@ -74,13 +74,13 @@ function Links_Delete(url)
 
 	if(DK_GetBrowser() != "DigitalKnob"){
 		if(confirm("Delete this link?") == true){
-			links_text = links_text.replace(url+",", "");
-			DKFile_SaveFile("links.txt", links_text);
+			stored_links = stored_links.replace(url+",", "");
+			DKFile_SaveFile("links.txt", stored_links);
 		}
 	}
 	else{
-		links_text = links_text.replace(url+",", "");
-		DKFile_StringToFile(links_text, "links.txt")
+		stored_links = stored_links.replace(url+",", "");
+		DKFile_StringToFile(stored_links, "links.txt")
 	}
 	Links_Update();
 }

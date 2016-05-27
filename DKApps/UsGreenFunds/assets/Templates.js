@@ -1,10 +1,10 @@
 DKCreate("DKWidget,Templates.html");
-var templates_text = "";
+var stored_templates = "";
 
 /////////////////////
 function Templates_Init()
 {
-	DKRegisterEvent("add_link", "click", Templates_OnEvent);
+	DKRegisterEvent("add_template_link", "click", Templates_OnEvent);
 	Templates_Update();
 }
 
@@ -12,8 +12,8 @@ function Templates_Init()
 function Templates_OnEvent(event)
 {
 	//DKLog(DK_GetId(event)+"\n");
-	if(DK_Id(event, "add_link")){
-		Templates_AddLink(DKWidget_GetValue("link_text"));
+	if(DK_Id(event, "add_template_link")){
+		Templates_AddLink(DKWidget_GetValue("template_text"));
 	}
 	if(DK_GetId(event).indexOf("delete_") > -1){
 		var url = DK_GetId(event).replace("delete_", "");
@@ -26,12 +26,12 @@ function Templates_Update()
 {
 	DKWidget_SetInnerHtml("templates_div", "");
 	var assets = DKAssets_GetDataPath();
-	templates_text = DKFile_FileToString("templates.txt");
-	if(!templates_text){
+	stored_templates = DKFile_FileToString("templates.txt");
+	if(!stored_templates){
 		DKLog("cannot get templates.txt");
 	}
 	
-	var templates = templates_text.split(",");
+	var templates = stored_templates.split(",");
 	for(i=0; i<templates.length; i++){
 		if(templates[i] == ""){ continue; }
 		var div = DKWidget_CreateElement("templates_div", "div", "div");
@@ -61,9 +61,9 @@ function Templates_AddLink(link)
 		return;
 	}
 	//DKLog("link exists");
-	templates_text = templates_text+link+",";
-	//DKLog(templates_text+"\n");
-	DKFile_SaveFile("templates.txt", templates_text);
+	stored_templates = stored_templates+link+",";
+	//DKLog(stored_templates+"\n");
+	DKFile_SaveFile("templates.txt", stored_templates);
 	Templates_Update();
 }
 
@@ -74,13 +74,13 @@ function Templates_Delete(url)
 
 	if(DK_GetBrowser() != "DigitalKnob"){
 		if(confirm("Delete this link?") == true){
-			templates_text = templates_text.replace(url+",", "");
-			DKFile_SaveFile("templates.txt", templates_text);
+			stored_templates = stored_templates.replace(url+",", "");
+			DKFile_SaveFile("templates.txt", stored_templates);
 		}
 	}
 	else{
-		templates_text = templates_text.replace(url+",", "");
-		DKFile_StringToFile(templates_text, "templates.txt")
+		stored_templates = stored_templates.replace(url+",", "");
+		DKFile_StringToFile(stored_templates, "templates.txt")
 	}
 	Templates_Update();
 }
