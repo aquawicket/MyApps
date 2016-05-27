@@ -26,7 +26,7 @@ function Links_Update()
 {
 	DKWidget_SetInnerHtml("links_div", "");
 	var assets = DKAssets_GetDataPath();
-	links_text = DKFile_FileToString(assets+"links.txt");
+	links_text = DKFile_FileToString("links.txt");
 	if(!links_text){
 		DKLog("cannot get links.txt");
 	}
@@ -72,12 +72,12 @@ function Links_Delete(url)
 	if(DK_GetBrowser() != "DigitalKnob" && realpath){
 		if(confirm("Delete this link?") == true){
 			links_text = links_text.replace(url+",", "");
-			DKFile_SaveFile(realpath+"links.txt", links_text);
+			DKFile_SaveFile("links.txt", links_text);
 		}
 	}
 	else{
 		links_text = links_text.replace(url+",", "");
-		DKFile_SaveFile(realpath+"links.txt", links_text);
+		DKFile_SaveFile("links.txt", links_text);
 	}
 	Links_Update();
 }

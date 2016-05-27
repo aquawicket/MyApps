@@ -17,7 +17,6 @@ function Documents_OnEvent(event)
 	}
 	if(DK_GetId(event).indexOf("edit_") > -1){
 		var file = DK_GetId(event).replace("edit_", "");
-		DKLog("Documents_OnEvent"+file+"\n");
 		Documents_Edit(file);
 	}
 }
@@ -84,8 +83,8 @@ function Documents_Delete(file)
 /////////////////////////////
 function Documents_Edit(file)
 {
-    DKLog("Edit: "+file+"\n");
+    //DKLog("Edit: "+file+"\n");
 	DKWidget_Show("DKNotepad.html");
 	var assets = DKAssets_GetDataPath();
-	DKNotepad_LoadFile(assets+"Documents/"+file);
+	DKNotepad_LoadFile("Documents/"+file);
 }
