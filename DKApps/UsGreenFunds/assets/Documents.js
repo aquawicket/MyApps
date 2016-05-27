@@ -84,6 +84,7 @@ function Documents_Delete(file)
 function Documents_Edit(file)
 {
     //DKLog("Edit: "+file+"\n");
+	DKCreate("DKJavascript, DKNotepad/DKNotepad.js");
 	DKWidget_Show("DKNotepad.html");
 	var assets = DKAssets_GetDataPath();
 	DKNotepad_LoadFile("Documents/"+file);

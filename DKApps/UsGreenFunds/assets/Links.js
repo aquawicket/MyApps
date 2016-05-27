@@ -69,15 +69,18 @@ function Links_AddLink(link)
 function Links_Delete(url)
 {
 	DKLog("Delete: "+url);
-	if(DK_GetBrowser() != "DigitalKnob" && realpath){
+	/*
+	if(DK_GetBrowser() != "DigitalKnob"){
 		if(confirm("Delete this link?") == true){
 			links_text = links_text.replace(url+",", "");
 			DKFile_SaveFile("links.txt", links_text);
 		}
 	}
 	else{
+		*/
 		links_text = links_text.replace(url+",", "");
-		DKFile_SaveFile("links.txt", links_text);
-	}
+		//DKFile_SaveFile("links.txt", links_text);
+		DKFile_StringToFile(links_text, "links.txt")
+	//}
 	Links_Update();
 }
