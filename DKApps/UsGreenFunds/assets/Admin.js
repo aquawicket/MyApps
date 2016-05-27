@@ -17,8 +17,7 @@ function Admin_OnEvent(event)
 	
 	if(DK_Id(event, "logout")){
 		DKFile_SetSetting("", "loggedin", "false");
-		//DKRocket_Reload();
-		window.location.href = "http://usgreenfunds.com";
+		DK_Reload();
 	}
 	if(DK_Id(event, "documents")){
 		//DKLog("documents clicked \n");
