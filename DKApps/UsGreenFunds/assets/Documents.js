@@ -10,8 +10,7 @@ function Documents_Init()
 /////////////////////////////////
 function Documents_OnEvent(event)
 {
-	//DKLog(DK_GetId(event)+"\n");
-	
+	//DKLog(DK_GetId(event)+"\n");	
 	if(DK_GetId(event).indexOf("delete_") > -1){
 		var file = DK_GetId(event).replace("delete_", "");
 		Documents_Delete(file);
@@ -73,13 +72,13 @@ function Documents_Delete(file)
 		if(confirm("Delete this file?") == true){
 			var result = DKFile_Delete(realpath+"Documents/"+file);
 			DKLog(result+"\n");
-			window.location.href = "http://usgreenfunds.com";
 		}
 	}
 	else{
 		var path = DKAssets_GetDataPath();
 		var result = DKFile_Delete(path+"Documents/"+file);
 	}
+	Documents_Update();
 }
 
 /////////////////////////////
