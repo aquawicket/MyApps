@@ -85,5 +85,6 @@ function Admin_Edit(file)
     DKLog("Edit: "+file+"\n");
 	DKCreate("DKJavascript, DKNotepad/DKNotepad.js");
 	DKWidget_Show("DKNotepad.html");
-	//DKNotepad_LoadFile(file);
+	var path = DKAssets_GetDataPath();
+	DKNotepad_LoadFile(path+"Documents/"+file);
 }
