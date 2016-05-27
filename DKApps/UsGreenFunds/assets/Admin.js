@@ -44,9 +44,19 @@ function Admin_Update()
 		DKWidget_SetProperty(del,"display","inline-block");
 		DKRegisterEvent(del, "click", Admin_OnEvent);
 		
+		if(files[i].indexOf(".txt") > -1){
+			var edit = DKWidget_CreateElement(div, "img", "edit_"+files[i]);
+			DKWidget_SetAttribute(edit, "src", "edit.png");
+			DKWidget_SetProperty(edit,"display","inline-block");
+			DKRegisterEvent(edit, "click", Admin_OnEvent);
+		}
+		
 		var href = DKWidget_CreateElement(div, "a", "fileID");
 		DKWidget_SetProperty(href,"display","inline-block");
-		DKWidget_SetProperty(href,"padding-left","20px");
+		DKWidget_SetProperty(href,"padding-left","28px");
+		if(files[i].indexOf(".txt") > -1){
+			DKWidget_SetProperty(href,"padding-left","8px");
+		}
 		
 		DKWidget_SetAttribute(href, "href", "http://usgreenfunds.com/Documents/"+files[i]); //<a href="url">link text</a>
 		DKWidget_SetAttribute(href, "target", "_blank");
