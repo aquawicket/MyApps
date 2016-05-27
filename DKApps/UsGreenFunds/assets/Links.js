@@ -35,6 +35,8 @@ function Links_Update()
 	for(i=0; i<links.length; i++){
 		if(links[i] == ""){ continue; }
 		var div = DKWidget_CreateElement("links_div", "div", "div");
+		DKWidget_SetProperty(div,"width","1px");
+		DKWidget_SetProperty(div,"white-space","nowrap");
 		
 		var del = DKWidget_CreateElement(div, "img", "delete_"+links[i]);
 		DKWidget_SetAttribute(del, "src", "delete.png");
