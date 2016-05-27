@@ -28,8 +28,10 @@ function Documents_Update()
 	DKWidget_SetInnerHtml("documents_div", "");
 	var assets = DKAssets_GetDataPath();
 	var docs = DKFile_DirectoryContents(assets+"Documents");
-	var htmldocs = DKFile_DirectoryContents("/home/keithnam/www/Documents");
-	docs = docs.concat(htmldocs);
+	if(DK_GetBrowser() != "DigitalKnob"){
+		var htmldocs = DKFile_DirectoryContents(realpath);
+		docs = docs.concat(htmldocs);
+	}
 	//DKLog("FILE DOCS: "+docs+"\n");
 	
 	var files = docs.split(",");
