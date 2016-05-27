@@ -3,8 +3,23 @@ DKCreate("DKWidget,Admin.html");
 ////////////////////
 function Admin_Init()
 {
-	DKRegisterEvent("upload", "click", Admin_OnEvent);
-	
+	DKRegisterEvent("logout", "click", Admin_OnEvent);
+	Admin_Update();
+}
+
+////////////////////////////
+function Admin_OnEvent(event)
+{
+	if(DK_Id(event, "logout")){
+		DKFile_SetSetting("", "loggedin", "false");
+		window.location.href = "http://usgreenfunds.com";
+	}
+}
+
+//////////////////////
+function Admin_Update()
+{
+	DKWidget_SetInnerHtml("documents_div", "");
 	var assets = DKAssets_GetDataPath();
 	var docs = DKFile_DirectoryContents(assets+"Documents");
 	var htmldocs = DKFile_DirectoryContents("/home/keithnam/www/Documents");
@@ -21,21 +36,4 @@ function Admin_Init()
 		DKWidget_SetAttribute(href, "target", "_blank");
 		DKWidget_SetInnerHtml(href, files[i]);
 	}
-}
-
-////////////////////////////
-function Admin_OnEvent(event)
-{
-	//http://www.w3schools.com/php/php_file_upload.asp
-	if(DK_Id(event, "upload")){
-		DKLog("clicked upload \n");
-		
-	}
-}
-
-///////////////////////
-function Admin_Upload()
-{
-	var val = DKWidget_GetValue("uploadfile");
-	alert(val);
 }
