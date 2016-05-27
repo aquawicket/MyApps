@@ -22,11 +22,15 @@ function Admin_OnEvent(event)
 	if(DK_Id(event, "documents")){
 		//DKLog("documents clicked \n");
 		DKWidget_Hide("Links.html");
+		DKWidget_SetProperty("links", "background-color", "rgb(130,130,130)");
 		DKWidget_Show("Documents.html");
+		DKWidget_SetProperty("documents", "background-color", "rgb(100,100,100)");
 	}
 	if(DK_Id(event, "links")){
 		//DKLog("documents links \n");
 		DKWidget_Hide("Documents.html");
+		DKWidget_SetProperty("documents", "background-color", "rgb(130,130,130)");
 		DKWidget_Show("Links.html");
+		DKWidget_SetProperty("links", "background-color", "rgb(100,100,100)");
 	}
 }
