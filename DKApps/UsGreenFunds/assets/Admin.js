@@ -57,5 +57,7 @@ function Admin_Update()
 ///////////////////////////
 function Admin_Delete(file)
 {
-	DKFile_Delete(file);
+	var result = DKFile_Delete("/home/keithnam/www/Documents/"+file);
+	DKLog(result+"\n");
+	window.location.href = "http://usgreenfunds.com";
 }
