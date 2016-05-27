@@ -11,6 +11,9 @@ function Home_Init()
 	if(DKFile_GetSetting("", "loggedin") == "true"){
 		Home_OpenAdmin();
 	}
+	if(document.location.protocol == "file:"){
+		Home_OpenAdmin();
+	}
 }
 
 ////////////////////////////
