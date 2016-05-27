@@ -38,7 +38,7 @@ function Documents_Update()
 		if(files[i] == "."){ continue; }
 		if(files[i] == ".."){ continue; }
 		var div = DKWidget_CreateElement("documents_div", "div", "div");
-		DKWidget_SetProperty(div,"width","1px");
+		DKWidget_SetProperty(div,"width","80%");
 		DKWidget_SetProperty(div,"white-space","nowrap");
 	
 		var del = DKWidget_CreateElement(div, "img", "delete_"+files[i]);
