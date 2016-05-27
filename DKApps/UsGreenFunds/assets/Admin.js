@@ -17,9 +17,12 @@ function Admin_OnEvent(event)
 		window.location.href = "http://usgreenfunds.com";
 	}
 	if(DK_GetId(event).indexOf("delete_") > -1){
-		//DKLog(DK_GetId(event)+"\n");
 		var file = DK_GetId(event).replace("delete_", "");
 		Admin_Delete(file);
+	}
+	if(DK_GetId(event).indexOf("edit_") > -1){
+		var file = DK_GetId(event).replace("edit_", "");
+		Admin_Edit(file);
 	}
 }
 
@@ -72,4 +75,10 @@ function Admin_Delete(file)
 		DKLog(result+"\n");
 		window.location.href = "http://usgreenfunds.com";
 	}
+}
+
+/////////////////////////
+function Admin_Edit(file)
+{
+    DKLog("Edit: "+file+"\n");
 }
