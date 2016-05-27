@@ -58,10 +58,10 @@ function Links_AddLink(link)
 		DKLog("link does not exists");
 		return;
 	}
-	DKLog("link exists");
+	//DKLog("link exists");
 	links_text = links_text+link+",";
-	DKLog(links_text+"\n");
-	DKFile_SaveFile(realpath+"links.txt", links_text);
+	//DKLog(links_text+"\n");
+	DKFile_SaveFile("links.txt", links_text);
 	Links_Update();
 }
 
