@@ -3,6 +3,7 @@ DKCreate("DKWidget,Home.html");
 ////////////////////
 function Home_Init()
 {
+	realpath = "/home/keithnam/www/Documents/";
 	DKRegisterEvent("login", "click", Home_OnEvent);
 	DKRegisterEvent("GLOBAL", "keydown", Home_OnEvent);
 	if(DKFile_GetSetting("", "loggedin") == "true"){

@@ -10,6 +10,7 @@
 [LOG_INFO] ON
 [LOG_FILE] OFF
 [SEVERPATH] http://usgreenfunds.com
+[REALPATH] /home/keithnam/www/Documents/
 [SVN] https://github.com/aquawicket/DigitalKnob/trunk/
 [MYSVN]
 [DKPATH] C:/digitalknob
