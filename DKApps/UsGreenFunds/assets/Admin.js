@@ -3,6 +3,8 @@ DKCreate("DKWidget,Admin.html");
 ////////////////////
 function Admin_Init()
 {
+	//DKCreate("DKJavascript, DKNotepad/DKNotepad.js");
+	//DKWidget_Hide("DKNotepad.html");
 	DKRegisterEvent("logout", "click", Admin_OnEvent);
 	Admin_Update();
 }
@@ -81,4 +83,7 @@ function Admin_Delete(file)
 function Admin_Edit(file)
 {
     DKLog("Edit: "+file+"\n");
+	DKCreate("DKJavascript, DKNotepad/DKNotepad.js");
+	DKWidget_Show("DKNotepad.html");
+	//DKNotepad_LoadFile(file);
 }
