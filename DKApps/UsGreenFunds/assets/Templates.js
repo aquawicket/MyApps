@@ -35,7 +35,7 @@ function Templates_Update()
 	for(i=0; i<templates.length; i++){
 		if(templates[i] == ""){ continue; }
 		var div = DKWidget_CreateElement("templates_div", "div", "div");
-		DKWidget_SetProperty(div,"width","1px");
+		DKWidget_SetProperty(div,"width","80%");
 		DKWidget_SetProperty(div,"white-space","nowrap");
 		
 		var del = DKWidget_CreateElement(div, "img", "delete_"+templates[i]);
