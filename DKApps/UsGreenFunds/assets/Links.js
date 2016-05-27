@@ -1,4 +1,5 @@
 DKCreate("DKWidget,Links.html");
+var links_text = "";
 
 /////////////////////
 function Links_Init()
@@ -21,12 +22,12 @@ function Links_Update()
 {
 	DKWidget_SetInnerHtml("links_div", "");
 	var assets = DKAssets_GetDataPath();
-	var val = DKFile_FileToString(assets+"links.txt");
-	if(!val){
+	links_text = DKFile_FileToString(assets+"links.txt");
+	if(!links_text){
 		DKLog("cannot get links.txt");
 	}
 	
-	var links = val.split(",");
+	var links = links_text.split(",");
 	for(i=0; i<links.length; i++){
 		var div = DKWidget_CreateElement("links_div", "div", "div");
 		var href = DKWidget_CreateElement(div, "a", "link_");
@@ -47,4 +48,8 @@ function Links_AddLink(link)
 		return;
 	}
 	DKLog("link exists");
+	links_text = links_text+link+",";
+	DKLog(links_text+"\n");
+	DKFile_SaveFile(realpath+"links.txt", links_text);
+	Links_Update();
 }

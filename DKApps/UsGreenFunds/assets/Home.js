@@ -4,7 +4,7 @@ DKCreate("DKWidget,Home.html");
 function Home_Init()
 {
 	if(DK_GetBrowser() != "DigitalKnob"){
-		realpath = "/home/keithnam/www/Documents/";
+		realpath = "/home/keithnam/www/";
 	}
 	DKRegisterEvent("login", "click", Home_OnEvent);
 	DKRegisterEvent("GLOBAL", "keydown", Home_OnEvent);

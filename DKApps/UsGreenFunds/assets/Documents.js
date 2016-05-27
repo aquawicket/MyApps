@@ -29,7 +29,7 @@ function Documents_Update()
 	var assets = DKAssets_GetDataPath();
 	var docs = DKFile_DirectoryContents(assets+"Documents");
 	if(DK_GetBrowser() != "DigitalKnob"){
-		var htmldocs = DKFile_DirectoryContents(realpath);
+		var htmldocs = DKFile_DirectoryContents(realpath+"Documents/");
 		docs = docs.concat(htmldocs);
 	}
 	//DKLog("FILE DOCS: "+docs+"\n");
@@ -86,6 +86,6 @@ function Documents_Edit(file)
 {
     DKLog("Edit: "+file+"\n");
 	DKWidget_Show("DKNotepad.html");
-	var path = DKAssets_GetDataPath();
-	DKNotepad_LoadFile(path+"Documents/"+file);
+	//var path = DKAssets_GetDataPath();
+	DKNotepad_LoadFile(realpath+"Documents/"+file);
 }
