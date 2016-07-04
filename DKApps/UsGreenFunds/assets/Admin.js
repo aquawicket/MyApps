@@ -6,10 +6,10 @@ DKCreate("DKJavascript,Templates.js");
 ////////////////////
 function Admin_Init()
 {
-	DKRegisterEvent("logout", "click", Admin_OnEvent);
-	DKRegisterEvent("documents", "click", Admin_OnEvent);
-	DKRegisterEvent("links", "click", Admin_OnEvent);
-	DKRegisterEvent("templates", "click", Admin_OnEvent);
+	DKAddEvent("logout", "click", Admin_OnEvent);
+	DKAddEvent("documents", "click", Admin_OnEvent);
+	DKAddEvent("links", "click", Admin_OnEvent);
+	DKAddEvent("templates", "click", Admin_OnEvent);
 }
 
 ////////////////////////////

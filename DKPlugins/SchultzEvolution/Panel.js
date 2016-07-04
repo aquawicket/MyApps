@@ -3,8 +3,8 @@ DKCreate("DKWidget,SchultzEvolution/Panel.html");
 /////////////////////
 function Panel_Init()
 {
-	DKRegisterEvent("login_Button", "click", Panel_OnEvent);
-	DKRegisterEvent("FileNum_Button", "click", Panel_OnEvent);
+	DKAddEvent("login_Button", "click", Panel_OnEvent);
+	DKAddEvent("FileNum_Button", "click", Panel_OnEvent);
 }
 
 /////////////////////////////

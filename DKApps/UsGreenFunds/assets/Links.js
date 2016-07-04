@@ -4,7 +4,7 @@ var stored_links = "";
 /////////////////////
 function Links_Init()
 {
-	DKRegisterEvent("add_link", "click", Links_OnEvent);
+	DKAddEvent("add_link", "click", Links_OnEvent);
 	Links_Update();
 }
 
@@ -41,7 +41,7 @@ function Links_Update()
 		var del = DKWidget_CreateElement(div, "img", "delete_"+links[i]);
 		DKWidget_SetAttribute(del, "src", "delete.png");
 		DKWidget_SetProperty(del,"display","inline-block");
-		DKRegisterEvent(del, "click", Links_OnEvent);
+		DKAddEvent(del, "click", Links_OnEvent);
 		
 		var href = DKWidget_CreateElement(div, "a", "link_");
 		DKWidget_SetProperty(href,"display","inline-block");

@@ -44,13 +44,13 @@ function Documents_Update()
 		var del = DKWidget_CreateElement(div, "img", "delete_"+files[i]);
 		DKWidget_SetAttribute(del, "src", "delete.png");
 		DKWidget_SetProperty(del,"display","inline-block");
-		DKRegisterEvent(del, "click", Documents_OnEvent);
+		DKAddEvent(del, "click", Documents_OnEvent);
 		
 		if(files[i].indexOf(".txt") > -1){
 			var edit = DKWidget_CreateElement(div, "img", "edit_"+files[i]);
 			DKWidget_SetAttribute(edit, "src", "edit.png");
 			DKWidget_SetProperty(edit,"display","inline-block");
-			DKRegisterEvent(edit, "click", Documents_OnEvent);
+			DKAddEvent(edit, "click", Documents_OnEvent);
 		}
 		
 		var href = DKWidget_CreateElement(div, "a", "fileID");

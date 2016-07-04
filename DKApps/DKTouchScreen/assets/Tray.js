@@ -5,10 +5,10 @@ function Tray_Init()
 	DKCreate("DKTrayJS");
 	DKCreate("DKFileJS");
 	DKCreate("DKAssetsJS");
-	DKRegisterEvent("DKTray", "click", Tray_OnEvent);
-	DKRegisterEvent("DKTray", "Restore", Tray_OnEvent);
-	DKRegisterEvent("DKTray", "Minimize", Tray_OnEvent);
-	DKRegisterEvent("DKTray", "Exit", Tray_OnEvent);
+	DKAddEvent("DKTray", "click", Tray_OnEvent);
+	DKAddEvent("DKTray", "Restore", Tray_OnEvent);
+	DKAddEvent("DKTray", "Minimize", Tray_OnEvent);
+	DKAddEvent("DKTray", "Exit", Tray_OnEvent);
 	Tray_Off();
 }
 

@@ -12,16 +12,16 @@ function Panel0_Init()
 	DKMySql_Connect("mysql.schultzevolution.com", "aquawicket", "8BallBreak", "");
 	DKMySql_Database("schultzevolution");
 	
-	DKRegisterEvent("Sync_Button", "click", Panel0_OnEvent);
-	DKRegisterEvent("Mechanical_Button", "click", Panel0_OnEvent);
+	DKAddEvent("Sync_Button", "click", Panel0_OnEvent);
+	DKAddEvent("Mechanical_Button", "click", Panel0_OnEvent);
 	
-	DKRegisterEvent("DB_Prev", "click", Panel0_OnEvent);
-	DKRegisterEvent("DB_Next", "click", Panel0_OnEvent);
-	DKRegisterEvent("DB_NewButton", "click", Panel0_OnEvent);
-	DKRegisterEvent("DB_Save", "click", Panel0_OnEvent);
-	DKRegisterEvent("DB_Cancel", "click", Panel0_OnEvent);
-	DKRegisterEvent("DB_Delete", "click", Panel0_OnEvent);
-	DKRegisterEvent("DB_Search", "click", Panel0_OnEvent);
+	DKAddEvent("DB_Prev", "click", Panel0_OnEvent);
+	DKAddEvent("DB_Next", "click", Panel0_OnEvent);
+	DKAddEvent("DB_NewButton", "click", Panel0_OnEvent);
+	DKAddEvent("DB_Save", "click", Panel0_OnEvent);
+	DKAddEvent("DB_Cancel", "click", Panel0_OnEvent);
+	DKAddEvent("DB_Delete", "click", Panel0_OnEvent);
+	DKAddEvent("DB_Search", "click", Panel0_OnEvent);
 }
 
 //////////////////////////////

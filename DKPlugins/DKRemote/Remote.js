@@ -26,13 +26,13 @@ function Remote_Init()
 		}
 	}
 	
-	DKRegisterEvent("GLOBAL", "server", Remote_OnEvent);
-	DKRegisterEvent("GLOBAL", "client", Remote_OnEvent);
-	DKRegisterEvent("Power", "click", Remote_OnEvent);
-	DKRegisterEvent("VolumeUp_Button", "click", Remote_OnEvent);
-	DKRegisterEvent("VolumeDown_Button", "click", Remote_OnEvent);
-	DKRegisterEvent("Wifi", "click", Remote_OnEvent);
-	DKRegisterEvent("address", "change", Remote_OnEvent);
+	DKAddEvent("GLOBAL", "server", Remote_OnEvent);
+	DKAddEvent("GLOBAL", "client", Remote_OnEvent);
+	DKAddEvent("Power", "click", Remote_OnEvent);
+	DKAddEvent("VolumeUp_Button", "click", Remote_OnEvent);
+	DKAddEvent("VolumeDown_Button", "click", Remote_OnEvent);
+	DKAddEvent("Wifi", "click", Remote_OnEvent);
+	DKAddEvent("address", "change", Remote_OnEvent);
 }
 
 ////////////////////////////////

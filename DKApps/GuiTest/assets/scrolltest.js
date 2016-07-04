@@ -7,7 +7,7 @@ DKCreate("DKJavascript,DKMessage/DKMessage.js");
 //////////////////////////
 function scrolltest_Init()
 {
-	DKRegisterEvent("bottomdiv", "mousedown", scrolltest_OnEvent);
+	DKAddEvent("bottomdiv", "mousedown", scrolltest_OnEvent);
 }
 
 //////////////////////////////////

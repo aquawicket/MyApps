@@ -4,7 +4,7 @@ var stored_templates = "";
 /////////////////////
 function Templates_Init()
 {
-	DKRegisterEvent("add_template_link", "click", Templates_OnEvent);
+	DKAddEvent("add_template_link", "click", Templates_OnEvent);
 	Templates_Update();
 }
 
@@ -41,7 +41,7 @@ function Templates_Update()
 		var del = DKWidget_CreateElement(div, "img", "delete_"+templates[i]);
 		DKWidget_SetAttribute(del, "src", "delete.png");
 		DKWidget_SetProperty(del,"display","inline-block");
-		DKRegisterEvent(del, "click", Templates_OnEvent);
+		DKAddEvent(del, "click", Templates_OnEvent);
 		
 		var href = DKWidget_CreateElement(div, "a", "link_");
 		DKWidget_SetProperty(href,"display","inline-block");

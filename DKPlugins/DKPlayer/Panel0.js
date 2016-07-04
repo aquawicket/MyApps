@@ -11,19 +11,19 @@ var SHUFFLE;
 function Panel0_Init()
 {
 	//Hide("DKConsole.html");
-	DKRegisterEvent("GoButton", "click", Panel0_OnEvent);
-	DKRegisterEvent("AddButton", "click", Panel0_OnEvent);
-	DKRegisterEvent("PlaylistButton", "click", Panel0_OnEvent);
-	DKRegisterEvent("PrevButton", "click", Panel0_OnEvent);
-	DKRegisterEvent("NextButton", "click", Panel0_OnEvent);
-	DKRegisterEvent("PlaylistDrop", "change", Panel0_OnEvent);
-	DKRegisterEvent("Playlist", "change", Panel0_OnEvent);
-	DKRegisterEvent("Playlist", "click", Panel0_OnEvent);
-	DKRegisterEvent("LoginText", "click", Panel0_OnEvent);
-	DKRegisterEvent("Text0", "click", Panel0_OnEvent);
-	DKRegisterEvent("FullWindow", "click", Panel0_OnEvent);
-	DKRegisterEvent("AddPlaylist", "click", Panel0_OnEvent);
-	DKRegisterEvent("ShuffleButton", "click", Panel0_OnEvent);
+	DKAddEvent("GoButton", "click", Panel0_OnEvent);
+	DKAddEvent("AddButton", "click", Panel0_OnEvent);
+	DKAddEvent("PlaylistButton", "click", Panel0_OnEvent);
+	DKAddEvent("PrevButton", "click", Panel0_OnEvent);
+	DKAddEvent("NextButton", "click", Panel0_OnEvent);
+	DKAddEvent("PlaylistDrop", "change", Panel0_OnEvent);
+	DKAddEvent("Playlist", "change", Panel0_OnEvent);
+	DKAddEvent("Playlist", "click", Panel0_OnEvent);
+	DKAddEvent("LoginText", "click", Panel0_OnEvent);
+	DKAddEvent("Text0", "click", Panel0_OnEvent);
+	DKAddEvent("FullWindow", "click", Panel0_OnEvent);
+	DKAddEvent("AddPlaylist", "click", Panel0_OnEvent);
+	DKAddEvent("ShuffleButton", "click", Panel0_OnEvent);
 
 	Panel0_AddUrl("https://www.youtube.com/watch?v=WFe8C8-iz_M");
 	//Panel0_AddUrl("https://www.youtube.com/watch?v=U_tHEjiH7UA");
