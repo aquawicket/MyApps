@@ -9,7 +9,6 @@ function Remote_Init()
 	//attempt to connect
 	if(Remote_server){
 		DKCreate("DKServer");
-		DKCreate("DKServerJS");
 		var IP = DK_GetLocalIP();
 		DKWidget_SetInnerHtml("IPAddress", IP);
 		DKWidget_Hide("Wifi");
@@ -17,7 +16,6 @@ function Remote_Init()
 	}
 	else{
 		DKCreate("DKClient");
-		DKCreate("DKClientJS");
 		var datapath = DKAssets_GetDataPath();
 		var address = DKFile_GetSetting(datapath+"remote.txt", "[SERVER]");
 		if(address){

@@ -1,4 +1,3 @@
-DKCreate("DKWidgetJS");
 DKCreate("scrolltest.html");
 DKCreate("scrolltest1.html");
 DKCreate("scrolltest2.html");
