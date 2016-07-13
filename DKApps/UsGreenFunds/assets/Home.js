@@ -1,4 +1,4 @@
-DKCreate("DKWidget,Home.html");
+DKCreate("Home.html");
 
 ////////////////////
 function Home_Init()

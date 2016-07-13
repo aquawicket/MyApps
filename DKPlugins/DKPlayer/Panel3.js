@@ -1,4 +1,4 @@
-DKCreate("DKWidget,Panel3.html,Panel0.html");
+DKCreate("Panel3.html,Panel0.html");
 
 //////////////////////
 function Panel3_Init()

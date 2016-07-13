@@ -1,4 +1,4 @@
-DKCreate("DKWidget,Links.html");
+DKCreate("Links.html");
 var stored_links = "";
 
 /////////////////////

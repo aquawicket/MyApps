@@ -1,4 +1,4 @@
-DKCreate("DKWidget,Documents.html");
+DKCreate("Documents.html");
 DKCreate("DKJavascript, DKNotepad/DKNotepad.js");
 
 ////////////////////////

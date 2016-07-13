@@ -1,4 +1,4 @@
-DKCreate("DKWidget,Admin.html");
+DKCreate("Admin.html");
 DKCreate("DKJavascript,Documents.js");
 DKCreate("DKJavascript,Links.js");
 DKCreate("DKJavascript,Templates.js");

@@ -1,4 +1,4 @@
-DKCreate("DKWidget,Templates.html");
+DKCreate("Templates.html");
 var stored_templates = "";
 
 /////////////////////

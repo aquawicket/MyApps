@@ -1,7 +1,7 @@
 DKCreate("DKWidgetJS");
-DKCreate("DKWidget,scrolltest.html");
-DKCreate("DKWidget,scrolltest1.html");
-DKCreate("DKWidget,scrolltest2.html");
+DKCreate("scrolltest.html");
+DKCreate("scrolltest1.html");
+DKCreate("scrolltest2.html");
 DKCreate("DKJavascript,DKMessage/DKMessage.js");
 
 //////////////////////////
