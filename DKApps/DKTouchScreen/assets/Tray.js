@@ -2,7 +2,6 @@
 function Tray_Init()
 {
 	DKCreate("DKTray");
-	DKCreate("DKTrayJS");
 	DKCreate("DKFileJS");
 	DKCreate("DKAssetsJS");
 	DKAddEvent("DKTray", "click", Tray_OnEvent);
