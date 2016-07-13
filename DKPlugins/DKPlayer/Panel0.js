@@ -1,7 +1,3 @@
-DKCreate("DKMySqlJS");
-DKCreate("DKMySql/DKMySql.js");
-DKCreate("Panel0.html");
-
 var FACEBOOK_ID;
 var USER_ID;
 var PLAYLIST_ID;
@@ -10,6 +6,8 @@ var SHUFFLE;
 //////////////////////
 function Panel0_Init()
 {
+	DKCreate("DKMySql/DKMySql.js");
+DKCreate("Panel0.html");
 	//Hide("DKConsole.html");
 	DKAddEvent("GoButton", "click", Panel0_OnEvent);
 	DKAddEvent("AddButton", "click", Panel0_OnEvent);
