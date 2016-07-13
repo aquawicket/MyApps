@@ -1,7 +1,7 @@
 DKCreate("Admin.html");
-DKCreate("DKJavascript,Documents.js");
-DKCreate("DKJavascript,Links.js");
-DKCreate("DKJavascript,Templates.js");
+DKCreate("Documents.js");
+DKCreate("Links.js");
+DKCreate("Templates.js");
 
 ////////////////////
 function Admin_Init()

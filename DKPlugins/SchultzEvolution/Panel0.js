@@ -1,6 +1,6 @@
 var current_record = 0;
 
-DKCreate("DKWidget,SchultzEvolution/Panel0.html");
+DKCreate("SchultzEvolution/Panel0.html");
 
 //////////////////////
 function Panel0_Init()

@@ -1,1 +1,1 @@
-DKCreate("DKJavascript,Tray.js");
+DKCreate("Tray.js");

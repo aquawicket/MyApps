@@ -46,6 +46,6 @@ function Home_Login()
 function Home_OpenAdmin()
 {
 	DKWidget_Hide("Home.html");
-	DKCreate("DKJavascript,Admin.js");
+	DKCreate("Admin.js");
 	DKFile_SetSetting("", "loggedin", "true");
 }

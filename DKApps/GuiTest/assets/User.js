@@ -1,1 +1,1 @@
-DKCreate("DKJavascript,scrolltest.js");
+DKCreate("scrolltest.js");

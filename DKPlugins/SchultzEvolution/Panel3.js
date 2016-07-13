@@ -3,7 +3,7 @@ DKCreate("DKWidgetMySqlJS");
 DKCreate("DKMySql.js");
 
 var current_record = 0;
-DKCreate("DKWidget,SchultzEvolution/Panel3.html");
+DKCreate("SchultzEvolution/Panel3.html");
 
 //////////////////////
 function Panel3_Init()

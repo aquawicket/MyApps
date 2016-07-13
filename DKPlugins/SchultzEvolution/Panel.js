@@ -1,4 +1,4 @@
-DKCreate("DKWidget,SchultzEvolution/Panel.html");
+DKCreate("SchultzEvolution/Panel.html");
 
 /////////////////////
 function Panel_Init()

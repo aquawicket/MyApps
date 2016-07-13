@@ -1,5 +1,5 @@
 Remote_server = false;
-DKCreate("DKWidget,DKRemote/Remote.html");
+DKCreate("DKRemote/Remote.html");
 
 //////////////////////
 function Remote_Init()
