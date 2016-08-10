@@ -1,4 +1,4 @@
-package digitalknob.facebooklite;
+package digitalknob.dkapp;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this, WebviewActivity.class);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
