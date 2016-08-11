@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class WebviewActivity extends Activity {
 
-    String homepage = "https://m.facebook.com/home.php";
+    String homepage = "https://m.youtube.com/";
     private WebView mWebView;
 
     @Override
@@ -64,7 +64,8 @@ public class WebviewActivity extends Activity {
         }
         String webUrl = mWebView.getUrl();
         //Toast.makeText(this, webUrl, Toast.LENGTH_SHORT).show();
-        if (mWebView.canGoBack() && !webUrl.contains(homepage)){
+        //if (mWebView.canGoBack() && !webUrl.contains(homepage)){
+		if (mWebView.canGoBack() && webUrl != homepage){
             mWebView.goBack();
         }else {
             mWebView.scrollTo(0,0);
