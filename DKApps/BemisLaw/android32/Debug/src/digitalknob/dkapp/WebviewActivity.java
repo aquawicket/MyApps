@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class WebviewActivity extends Activity {
 
-    String homepage = "https://m.facebook.com/home.php";
+    String homepage = "http://bemislawoffices.com";
     private WebView mWebView;
 
     @Override
