@@ -1,3 +1,3 @@
 DKCreate("DKWindow");
 DKCreate("DKRocket");
-DKCreate("DKDatabase/DKDatabase");
+DKCreate("DKDatabase/DKDatabase.js");
