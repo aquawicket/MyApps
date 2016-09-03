@@ -1,1 +1,3 @@
-DKCreate("scrolltest.js");
+DKCreate("DKWindow");
+DKCreate("DKRocket");
+DKCreate("scrolltest.js", function(){});
