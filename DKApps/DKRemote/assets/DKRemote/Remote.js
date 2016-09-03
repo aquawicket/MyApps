@@ -6,22 +6,12 @@ function Remote_Init()
 {
 	DKWidget_Hide("Go");
 	
-	//attempt to connect
-	if(Remote_server){
-		DKCreate("DKServer");
-		var IP = DK_GetLocalIP();
-		DKWidget_SetInnerHtml("IPAddress", IP);
-		DKWidget_Hide("Wifi");
-		DKWidget_Hide("address");
-	}
-	else{
-		DKCreate("DKClient");
-		var assets = DKAssets_LocalAssets();
-		var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");
-		if(address){
-			DKWidget_SetValue("address", address);
-			//Remote_Connect();  FIXME: crashes android 
-		}
+	DKCreate("DKClient");
+	var assets = DKAssets_LocalAssets();
+	var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");
+	if(address){
+		DKWidget_SetValue("address", address);
+		//Remote_Connect();  FIXME: crashes android 
 	}
 	
 	DKAddEvent("GLOBAL", "server", Remote_OnEvent);
@@ -42,23 +32,11 @@ function Remote_OnEvent(event)
 	}
 	if(DK_Id(event, "VolumeUp_Button")){
 		DKLog("Button: VolumeUp \n", DKDEBUG);
-		if(Remote_server){
-			var volume = DK_GetVolume();
-			DK_ChangeVolume(volume+0.1);
-		}
-		else{
-			DKClient_Send("VolumeUp");
-		}
+		DKClient_Send("VolumeUp");
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
 		DKLog("Button: Volume Down\n", DKDEBUG);
-		if(Remote_server){
-			var volume = DK_GetVolume();
-			DK_ChangeVolume(volume-0.1);
-		}
-		else{
-			DKClient_Send("VolumeDown");
-		}	
+		DKClient_Send("VolumeDown");
 	}
 
 	if(DK_Id(event, "Wifi")){
@@ -92,15 +70,15 @@ function Remote_OnEvent(event)
 		DKLog("client: "+DKWidget_GetValue(event)+"\n", DKDEBUG);
 		if(DKWidget_GetValue(event) == "connected"){
 			DKWidget_Hide("address");
-			var datapath = DKAssets_GetDataPath();
-			DKWidget_SetAttribute("Wifi", "src", datapath+"DKRemote/wifiGreen.png");
+			var assets = DKAssets_LocalAssets();
+			DKWidget_SetAttribute("Wifi", "src", assets+"DKRemote/wifiGreen.png");
 			//DK_CallFunc("DKOSGRocket::DirtyRefresh","");
 			var address = DKWidget_GetValue("address");
-			DKFile_SetSetting(datapath+"remote.txt", "[SERVER]", address); //provide full path in case file does not exist
+			DKFile_SetSetting(assets+"remote.txt", "[SERVER]", address); //provide full path in case file does not exist
 		}
 		if(DKWidget_GetValue(event) == "disconnected"){
 			DKWidget_Show("address");
-			DKWidget_SetAttribute("Wifi", "src", datapath+"DKRemote/wifiRed.png");
+			DKWidget_SetAttribute("Wifi", "src", assets+"DKRemote/wifiRed.png");
 		}
 	}
 }
