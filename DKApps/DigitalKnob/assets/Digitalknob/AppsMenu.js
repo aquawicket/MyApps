@@ -10,7 +10,7 @@ function AppsMenu_Init()
 ///////////////////////////
 function AppsMenu_GetApps()
 {
-	var AppList = ["DKDatabase", "DKFacebook", "DKSDLOS", "DKYoutube"];
+	var AppList = ["DKDatabase", "DKFacebook", "DKReceiver", "DKRemote", "DKSDLOS", "DKYoutube"];
 	for(var i=0; i<AppList.length; i++){
 		AppsMenu_AddApp(AppList[i]);
 	}
@@ -31,6 +31,14 @@ function AppsMenu_GetDescription(name)
 * No location sharing <br /> \
 * No running processes <br /> \
 * Small, Fast, simple and free <br /><br />";
+	}
+	
+	if(name == "DKReceiver"){
+		return "Experimental Remote control Reciever for windows";
+	}
+	
+	if(name == "DKRemote"){
+		return "Experimental Remote control";
 	}
 	
 	if(name == "DKSDLOS"){
