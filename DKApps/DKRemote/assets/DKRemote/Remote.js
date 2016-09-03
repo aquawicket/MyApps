@@ -1,11 +1,7 @@
-Remote_server = false;
-DKCreate("DKRemote/Remote.html");
-
 //////////////////////
 function Remote_Init()
 {
-	DKWidget_Hide("Go");
-	
+	DKCreate("DKRemote/Remote.html");
 	DKCreate("DKClient");
 	var assets = DKAssets_LocalAssets();
 	var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");
@@ -14,9 +10,7 @@ function Remote_Init()
 		//Remote_Connect();  FIXME: crashes android 
 	}
 	
-	DKAddEvent("GLOBAL", "server", Remote_OnEvent);
 	DKAddEvent("GLOBAL", "client", Remote_OnEvent);
-	DKAddEvent("Power", "click", Remote_OnEvent);
 	DKAddEvent("VolumeUp_Button", "click", Remote_OnEvent);
 	DKAddEvent("VolumeDown_Button", "click", Remote_OnEvent);
 	DKAddEvent("Wifi", "click", Remote_OnEvent);
@@ -50,22 +44,6 @@ function Remote_OnEvent(event)
 		DKClient_Address(DKWidget_GetValue("address"));
 	}
 	
-	if(DK_Type(event, "server")){
-		DKLog("server: "+DKWidget_GetValue(event)+"\n", DKDEBUG);
-		if(DKWidget_GetValue(event) == "Power"){
-			DKLog("Client: Power\n", DKDEBUG);
-		}
-		if(DKWidget_GetValue(event) == "VolumeUp"){
-			var volume = DK_GetVolume();
-			DK_ChangeVolume(volume+0.1);
-			DKLog("Client: VolumeUp\n", DKDEBUG);
-		}
-		if(DKWidget_GetValue(event) == "VolumeDown"){
-			var volume = DK_GetVolume();
-			DK_ChangeVolume(volume-0.1);
-			DKLog("Client: VolumeDown\n", DKDEBUG);
-		}
-	}
 	if(DK_Type(event, "client")){
 		DKLog("client: "+DKWidget_GetValue(event)+"\n", DKDEBUG);
 		if(DKWidget_GetValue(event) == "connected"){
@@ -78,6 +56,7 @@ function Remote_OnEvent(event)
 		}
 		if(DKWidget_GetValue(event) == "disconnected"){
 			DKWidget_Show("address");
+			var assets = DKAssets_LocalAssets();
 			DKWidget_SetAttribute("Wifi", "src", assets+"DKRemote/wifiRed.png");
 		}
 	}
