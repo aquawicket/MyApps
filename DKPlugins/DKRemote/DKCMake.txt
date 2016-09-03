@@ -1,4 +1,0 @@
-DKDEPEND(DKDuktape)
-DKDEPEND(DKClient)
-DKDEPEND(DKServer)
-DKASSETS(DKRemote)
