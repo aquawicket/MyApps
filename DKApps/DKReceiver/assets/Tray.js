@@ -13,10 +13,10 @@ function Tray_OnEvent(event)
 	//DKLog("DKTray_OnEvent("+event+") \n");
 	if(DK_Type(event, "Restore")){
 		DKCreate("DKWindowJS");
-		DKWindow_Restore();
+		DKWindow_Show();
 	}
 	if(DK_Type(event, "Minimize")){
 		DKCreate("DKWindowJS");
-		DKWindow_Minimize();
+		DKWindow_Hide();
 	}
 }
