@@ -2,49 +2,21 @@
 function Tray_Init()
 {
 	DKCreate("DKTray");
-	DKAddEvent("DKTray", "click", Tray_OnEvent);
 	DKAddEvent("DKTray", "Restore", Tray_OnEvent);
 	DKAddEvent("DKTray", "Minimize", Tray_OnEvent);
-	DKAddEvent("DKTray", "Exit", Tray_OnEvent);
-	Tray_Off();
+	//DKAddEvent("DKTray", "Exit", Tray_OnEvent);
 }
 
 ////////////////////////////
 function Tray_OnEvent(event)
 {
 	//DKLog("DKTray_OnEvent("+event+") \n");
-	if(DK_Type(event, "click")){
-		Tray_ToggleIcon();
+	if(DK_Type(event, "Restore")){
+		//TODO
 	}
-}
-
-//////////////////////////
-function Tray_ToggleIcon()
-{
-	var icon = DKTray_GetIcon();
-	var file = DKFile_GetFilename(icon);
-	//DKLog(file+"\n");
-	
-	if(file == "touchON.ico"){
-		Tray_Off();
+	if(DK_Type(event, "Minimize")){
+		//TODO
+		DKCreate("DKWindowJS");
+		DKWindow_Minimize();
 	}
-	else{
-		Tray_On();
-	}
-}
-
-//////////////////
-function Tray_On()
-{
-	DKLog("ON \n");
-	var datapath = DKAssets_GetDataPath();
-	DKTray_SetIcon(datapath+"touchON.ico");
-}
-
-///////////////////
-function Tray_Off()
-{
-	DKLog("OFF \n");
-	var datapath = DKAssets_GetDataPath();
-	DKTray_SetIcon(datapath+"touchOFF.ico");
 }
