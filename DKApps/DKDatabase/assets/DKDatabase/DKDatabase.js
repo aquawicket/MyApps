@@ -29,6 +29,7 @@ function DKDatabase_Init()
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 			var width = DKWindow_GetWidth();
 			var id = DKGoogleAd_CreateAd("DKDatabase.html", "100%", "100rem");
+			DKWidget_RemoveProperty(id, "top");
 			DKWidget_SetProperty(id, "bottom", "0rem");
 		});
 	});
