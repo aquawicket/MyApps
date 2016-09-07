@@ -71,11 +71,26 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		//TODO - use px_values
 		
 		DKWidget_SetProperty(id, "width", String(px_width)+":rem");
+		//DKWidget_SetProperty(id, "width", "100%");
 		DKWidget_SetProperty(id, "height", String(px_height)+":rem");
 		
+		/*
 		var iframe = "<iframe id=\"DKBrowser_cef\" style=\"position:absolute;width:"+String(px_width)+":rem;"+String(px_height)+":rem;\" width=\""+String(px_width)+"\" height=\""+String(px_height)+"\" src=\"http://digitalknob.com/Digitalknob/AdTest.html\"></iframe>";
 		
 		DKWidget_SetInnerHtml(id, iframe);
+		*/
+		var url = "http://digitalknob.com/Digitalknob/AdTest.html";
+		var iframe = DKWidget_CreateElement(id, "iframe", "DKBrowser_cef");
+		DKWidget_SetAttribute(iframe, "src", url);
+		//DKWidget_SetAttribute(iframe, "width", String(px_width));
+		DKWidget_SetAttribute(iframe, "width", "100%");
+		//DKWidget_SetAttribute(iframe, "height", String(px_height));
+		DKWidget_SetAttribute(iframe, "height", "100%");
+		DKWidget_SetProperty(iframe, "position", "absolute");
+		//DKWidget_SetProperty(iframe, "width", String(px_width)+"rem");
+		//DKWidget_SetProperty(iframe, "height", String(px_width)+"rem");
+		var currentBrowser = DKCef_GetCurrentBrowser(iframe);
+		DKCef_SetUrl(iframe, url, currentBrowser);
 		return id;
 	}
 }
