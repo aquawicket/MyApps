@@ -80,7 +80,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		DKWidget_SetInnerHtml(id, iframe);
 		*/
 		var url = "http://digitalknob.com/Digitalknob/AdTest.html";
-		var iframe = DKWidget_CreateElement(id, "iframe", "DKBrowser_cef");
+		var iframe = DKWidget_CreateElement(id, "iframe", "DKAdd_cef");
 		DKWidget_SetAttribute(iframe, "src", url);
 		//DKWidget_SetAttribute(iframe, "width", String(px_width));
 		DKWidget_SetAttribute(iframe, "width", "100%");
