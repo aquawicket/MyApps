@@ -2,4 +2,4 @@
 [WINY] 100
 [WIDTH] 1000
 [HEIGHT] 700
-[HOMEPAGE] http://google.com
+[HOMEPAGE] http://digitalknob.com

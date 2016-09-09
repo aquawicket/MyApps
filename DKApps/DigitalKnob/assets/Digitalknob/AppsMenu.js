@@ -10,7 +10,7 @@ function AppsMenu_Init()
 ///////////////////////////
 function AppsMenu_GetApps()
 {
-	var AppList = ["DKDatabase", "DKFacebook", "DKReceiver", "DKRemote", "DKSDLOS", "DKYoutube"];
+	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKReceiver", "DKRemote", "DKSDLOS", "DKYoutube"];
 	for(var i=0; i<AppList.length; i++){
 		AppsMenu_AddApp(AppList[i]);
 	}
@@ -21,6 +21,10 @@ function AppsMenu_GetDescription(name)
 {
 	if(name == "DKDatabase"){
 		return "A simple MySql database client. <br />";
+	}
+	
+	if(name == "DKBrowser"){
+		return "A simple altenative browser. <br />";
 	}
 	
 	if(name == "DKFacebook"){
