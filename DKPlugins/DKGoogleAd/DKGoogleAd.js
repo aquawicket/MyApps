@@ -54,7 +54,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 	
 		return id;
 	}
-	else{
+	else if(DK_GetOS() != "Android"){
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);
