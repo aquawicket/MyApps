@@ -233,5 +233,9 @@ function TaskbarMenu_Run(command)
 		DKFrame_Iframe(command,command,800,600);
 		return;
 	}
+	if(command.indexOf("file://") > -1){
+		DKFrame_Iframe(command,command,800,600);
+		return;
+	}
 	DK_RunJavascript(command);
 }
