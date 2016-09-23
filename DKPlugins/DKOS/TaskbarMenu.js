@@ -206,18 +206,18 @@ function TaskbarMenu_PushDKFiles()
 		DKPlugins2 = DKFile_GetAbsolutePath(DKPlugins2);
 	}
 	
-	var temp = DKFile_DirectoryContents(dkpath);
+	var temp = DKFile_DirectoryContents(assets);
 	var folders = temp.split(",");
 	
 	for(i=0; i<folders.length; i++){
 		//DKLog(folders[i]+"\n");
 		if(DKFile_Exists(DKPlugins+"/"+folders[i])){
 			DKLog("Pushing to: "+DKPlugins+"/"+folders[i]+"\n");
-			DKFile_CopyFolder(dkpath+"/"+folders[i], DKPlugins+"/"+folders[i], true, true);
+			DKFile_CopyFolder(assets+"/"+folders[i], DKPlugins+"/"+folders[i], true, true);
 		}
 		if(DKFile_Exists(DKPlugins2+"/"+folders[i])){
 			DKLog("Pushing to: "+DKPlugins2+"/"+folders[i]+"\n");
-			DKFile_CopyFolder(dkpath+"/"+folders[i], DKPlugins2+"/"+folders[i], true, true);
+			DKFile_CopyFolder(assets+"/"+folders[i], DKPlugins2+"/"+folders[i], true, true);
 		}
 	}
 }

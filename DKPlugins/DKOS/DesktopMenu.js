@@ -23,8 +23,9 @@ function DesktopMenu_End()
 function DesktopMenu_OnEvent(event)
 {
 	if(DK_Id(event, "OpenBackgtoundMenu")){
-		DKCreate("DKOS/BackgroundMenu.js");
-		DKFrame_Widget("BackgroundMenu.html");
+		DKCreate("DKOS/BackgroundMenu.js", function(){
+			DKFrame_Widget("BackgroundMenu.html");
+		});
 	}
 	if(DK_Id(event, "ToggleFullscreen")){
 		Desktop_ToggleFullscreen();
