@@ -17,10 +17,12 @@ function DKDatabase_Init()
 		DKAddEvent("SaveButton", "click", DKDatabase_OnEvent);
 	
 		var assets = DKAssets_LocalAssets();
-		var server = DKFile_GetSetting(assets+"USER/database.txt", "[SERVER]");
-		var name = DKFile_GetSetting(assets+"USER/database.txt", "[USERNAME]");
-		var pass = DKFile_GetSetting(assets+"USER/database.txt", "[PASSWORD]");
-		var port = DKFile_GetSetting(assets+"USER/database.txt", "[PORT]");
+		var file = assets+"USER/database.txt";
+		if(protocol == "file:"){ file = 0;}
+		var server = DKFile_GetSetting(file, "[SERVER]");
+		var name = DKFile_GetSetting(file, "[USERNAME]");
+		var pass = DKFile_GetSetting(file, "[PASSWORD]");
+		var port = DKFile_GetSetting(file, "[PORT]");
 		DKWidget_SetValue("ServerBox", server);
 		DKWidget_SetValue("NameBox", name);
 		DKWidget_SetValue("PassBox", pass);
@@ -140,10 +142,12 @@ function DKDatabase_Connect()
 
 	DKWidget_Show("Success");
 	var assets = DKAssets_LocalAssets();
-	DKFile_SetSetting(assets+"USER/database.txt", "[SERVER]", server);
-	DKFile_SetSetting(assets+"USER/database.txt", "[USERNAME]", username);
-	DKFile_SetSetting(assets+"USER/database.txt", "[PASSWORD]", password);
-	DKFile_SetSetting(assets+"USER/database.txt", "[PORT]", port);
+	var file = assets+"USER/database.txt";
+	if(protocol == "file:"){ file = 0;}
+	DKFile_SetSetting(file, "[SERVER]", server);
+	DKFile_SetSetting(file, "[USERNAME]", username);
+	DKFile_SetSetting(file, "[PASSWORD]", password);
+	DKFile_SetSetting(file, "[PORT]", port);
 	return true;
 }
 
