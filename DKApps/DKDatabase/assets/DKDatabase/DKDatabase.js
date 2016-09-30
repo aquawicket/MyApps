@@ -298,7 +298,7 @@ function DKDatabase_UpdateRecords(table)
 ////////////////////////////
 function DKDatabase_Cancel()
 {
-	UpdateRecords(DKWidget_GetValue("TableDrop"));
+	DKDatabase_UpdateRecords(DKWidget_GetValue("TableDrop"));
 	return true;
 }
 
