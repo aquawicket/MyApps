@@ -7,7 +7,7 @@ function DKDatabase_Init()
 		DKAddEvent("DKDatabase.html", "AddDatabase", DKDatabase_OnEvent);
 		DKAddEvent("DKDatabase.html", "AddTable", DKDatabase_OnEvent);
 		DKAddEvent("DKDatabase.html", "AddColumn", DKDatabase_OnEvent);
-		//DKAddEvent("DatabaseDrop", "change",DKDatabase_OnEvent);
+		DKAddEvent("DatabaseDrop", "change",DKDatabase_OnEvent);
 		DKAddEvent("TableDrop", "change", DKDatabase_OnEvent);
 		DKAddEvent("DatabaseConnect", "click", DKDatabase_OnEvent);
 		DKAddEvent("AddDatabase", "click", DKDatabase_OnEvent);
