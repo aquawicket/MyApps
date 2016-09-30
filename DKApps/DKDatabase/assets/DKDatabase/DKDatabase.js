@@ -18,6 +18,7 @@ function DKDatabase_Init()
 	
 		var assets = DKAssets_LocalAssets();
 		var file = assets+"USER/database.txt";
+		var protocol = DKAssets_Protocol();
 		if(protocol == "file:"){ file = 0;}
 		var server = DKFile_GetSetting(file, "[SERVER]");
 		var name = DKFile_GetSetting(file, "[USERNAME]");
@@ -143,6 +144,7 @@ function DKDatabase_Connect()
 	DKWidget_Show("Success");
 	var assets = DKAssets_LocalAssets();
 	var file = assets+"USER/database.txt";
+	var protocol = DKAssets_Protocol();
 	if(protocol == "file:"){ file = 0;}
 	DKFile_SetSetting(file, "[SERVER]", server);
 	DKFile_SetSetting(file, "[USERNAME]", username);
