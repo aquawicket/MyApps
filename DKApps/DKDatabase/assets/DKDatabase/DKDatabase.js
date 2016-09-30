@@ -322,7 +322,7 @@ function DKDatabase_Save()
 	//compair dbrecords to records
 	for(var r=0; r < records.length; r++){
 		DKLog("\n\nrecords["+String(r)+"]:"+records[r]+"\n");
-		DKLog("Value:"+GetValue(records[r])+"\n");
+		DKLog("Value:"+DKWidget_GetValue(records[r])+"\n");
 		DKLog("dbrecords["+String(r+1)+"]:"+dbrecords[r+1]+"\n\n");
 		//DKDebug(dbrecords[r+1]+"\n");
 		if(DKWidget_GetValue(records[r]) != dbrecords[r+1]){
