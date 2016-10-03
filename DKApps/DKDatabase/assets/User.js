@@ -31,7 +31,6 @@ else{
 				DKWidget_SetProperty(id, "bottom", "0rem");
 			});
 		}
-	
 	});
 }
 
