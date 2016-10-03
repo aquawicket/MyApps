@@ -3,6 +3,7 @@ DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
 
+
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var url = "file:///C:/digitalknob/USER/DKApps/DKDatabase/assets/index.html";
 	//var url = "http://digitalknob.com/DKDatabase";
@@ -34,5 +35,6 @@ else{
 	});
 }
 
-DKLog("****************DKUserAgent = "+navigator.userAgent+"\n");
-
+DKLog("****************has focus = "+document.hasFocus()+"\n");
+var body = document.body;
+DKLog("Body id = "+body.id+"\n");
