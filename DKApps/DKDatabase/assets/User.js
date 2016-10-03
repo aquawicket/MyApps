@@ -29,7 +29,7 @@ else{
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKDatabase/DKDatabase.js", function(){
 	
-		if(!USE_CEF){
+		if(DK_GetBrowser() != "CEF"){
 			DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 				var width = DKWindow_GetWidth();
 				var id = DKGoogleAd_CreateAd("DKDatabase.html", "100%", "100rem");
