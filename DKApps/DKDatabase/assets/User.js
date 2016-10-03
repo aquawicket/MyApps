@@ -1,8 +1,9 @@
 var USE_CEF = true;
 DKCreate("DKWindow");
 DKCreate("DKRocket");
+DKCreate("DKWidget");
+
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
-	DKCreate("DKWidget");
 	var url = "file:///C:/digitalknob/USER/DKApps/DKDatabase/assets/index.html";
 	//var url = "http://digitalknob.com/DKDatabase";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
@@ -14,8 +15,8 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	DKWidget_SetProperty(iframe, "left", "0rem");
 	DKWidget_SetProperty(iframe, "width", "100%");
 	DKWidget_SetProperty(iframe, "height", "100%");
-	var currentBrowser = DKCef_GetCurrentBrowser(iframe);
-	DKCef_SetUrl(iframe, url, currentBrowser);
+	//var currentBrowser = DKCef_GetCurrentBrowser(iframe);
+	//DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
 	
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
