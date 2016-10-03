@@ -17,16 +17,27 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var currentBrowser = DKCef_GetCurrentBrowser(iframe);
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
+	
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var width = DKWindow_GetWidth();
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		DKWidget_RemoveProperty(id, "top");
+		DKWidget_SetProperty(id, "bottom", "0rem");
+	});
 }
 else{
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKDatabase/DKDatabase.js", function(){
-		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-			var width = DKWindow_GetWidth();
-			var id = DKGoogleAd_CreateAd("DKDatabase.html", "100%", "100rem");
-			DKWidget_RemoveProperty(id, "top");
-			DKWidget_SetProperty(id, "bottom", "0rem");
-		});
+	
+		if(!USE_CEF){
+			DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+				var width = DKWindow_GetWidth();
+				var id = DKGoogleAd_CreateAd("DKDatabase.html", "100%", "100rem");
+				DKWidget_RemoveProperty(id, "top");
+				DKWidget_SetProperty(id, "bottom", "0rem");
+			});
+		}
+	
 	});
 }
 
