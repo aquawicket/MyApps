@@ -34,3 +34,5 @@ else{
 	});
 }
 
+DKLog("****************DKUserAgent = "+navigator.userAgent+"\n");
+
