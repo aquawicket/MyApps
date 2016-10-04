@@ -2,6 +2,7 @@ var USE_CEF = true;
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
+DKCreate("DKWidgetJS");
 
 
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
@@ -32,9 +33,13 @@ else{
 				DKWidget_SetProperty(id, "bottom", "0rem");
 			});
 		}
+		
+		DKLog("****************has focus = "+document.hasFocus()+"\n");
+		//var element = document.getElementById("DKDatabase.html");
+		//DKLog("Parent id = "+element.parentNode.id+"\n");
+		//DKLog("Parent id = "+document.getElementById("DKDatabase.html").id+"\n");
+		//DKLog("Parent id = "+DKWidget_GetParent("Text1")+"\n");
 	});
 }
 
-DKLog("****************has focus = "+document.hasFocus()+"\n");
-var body = document.body;
-DKLog("Body id = "+body.id+"\n");
+
