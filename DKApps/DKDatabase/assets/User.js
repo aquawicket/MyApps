@@ -3,8 +3,11 @@ DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
 
-if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
+if(DK_GetBrowser() == "DigitalKnob"){
 	DKCreate("DKDebug/DKDebug.js", function(){});
+}
+
+if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var url = "file:///C:/digitalknob/USER/DKApps/DKDatabase/assets/index.html";
 	//var url = "http://digitalknob.com/DKDatabase";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
