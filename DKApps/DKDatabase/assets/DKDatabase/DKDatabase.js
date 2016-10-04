@@ -28,9 +28,6 @@ function DKDatabase_Init()
 		DKWidget_SetValue("NameBox", name);
 		DKWidget_SetValue("PassBox", pass);
 		DKWidget_SetValue("PortBox", port);
-		
-		var element = document.getElementById("DKDatabase.html");
-		DKLog("*****************element id = "+element.id+"\n");
 	});
 }
 
