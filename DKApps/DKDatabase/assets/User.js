@@ -1,4 +1,4 @@
-var USE_CEF = true;
+var USE_CEF = false;
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
@@ -35,10 +35,8 @@ else{
 		}
 		
 		DKLog("****************has focus = "+document.hasFocus()+"\n");
-		//var element = document.getElementById("DKDatabase.html");
-		//DKLog("Parent id = "+element.parentNode.id+"\n");
-		//DKLog("Parent id = "+document.getElementById("DKDatabase.html").id+"\n");
-		//DKLog("Parent id = "+DKWidget_GetParent("Text1")+"\n");
+		var element = document.getElementById("body");
+		DKLog("element id = "+element.id+"\n");
 	});
 }
 
