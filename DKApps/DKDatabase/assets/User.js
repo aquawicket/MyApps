@@ -1,12 +1,11 @@
-var USE_CEF = true;
+var USE_CEF = false;
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
 DKCreate("DKWidgetJS");
-DKCreate("DKDebug/DKDebug.js");
-
 
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
+	DKCreate("DKDebug/DKDebug.js", function(){});
 	var url = "file:///C:/digitalknob/USER/DKApps/DKDatabase/assets/index.html";
 	//var url = "http://digitalknob.com/DKDatabase";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
@@ -34,10 +33,6 @@ else{
 				DKWidget_SetProperty(id, "bottom", "0rem");
 			});
 		}
-		
-		DKLog("****************has focus = "+document.hasFocus()+"\n");
-		var element = document.getElementById("body");
-		DKLog("element id = "+element.id+"\n");
 	});
 }
 
