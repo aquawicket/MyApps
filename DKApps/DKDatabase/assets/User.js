@@ -3,6 +3,7 @@ DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
 DKCreate("DKWidgetJS");
+DKCreate("DKDebug/DKDebug.js");
 
 
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
