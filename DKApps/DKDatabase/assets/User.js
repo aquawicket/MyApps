@@ -1,4 +1,4 @@
-var USE_CEF = false;
+var USE_CEF = true;
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
