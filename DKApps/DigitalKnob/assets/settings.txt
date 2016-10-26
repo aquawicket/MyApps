@@ -4,4 +4,4 @@
 [LOG_WARNINGS] ON
 [LOG_ERRORS] ON
 [LOG_FILE] ON
-[ONLINE_ASSETS] http://digitalknob.com/digitalknob
+[ONLINE_ASSETS] http://digitalknob.com/digitalknob/

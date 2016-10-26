@@ -1,2 +1,7 @@
 [CONSOLE] ON
+[LOG_DEBUG] ON
+[LOG_INFO] ON
+[LOG_WARNINGS] ON
+[LOG_ERRORS] ON
+[LOG_FILE] ON
 [ONLINE_ASSETS] http://digitalknob.com/DKDatabase/

@@ -1,16 +1,12 @@
-var USE_CEF = false;
+var USE_CEF = true;
 
 DKLog("Browser = "+DK_GetBrowser()+"\n");
 DKLog("USE_CEF = "+USE_CEF+"\n");
 
-
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
-
-//if(DK_GetBrowser() == "DigitalKnob"){
-	DKCreate("DKDebug/DKDebug.js", function(){});
-//}
+DKCreate("DKDebug/DKDebug.js", function(){});
 
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var url = "file:///C:/digitalknob/USER/DKApps/DKDatabase/assets/index.html";
