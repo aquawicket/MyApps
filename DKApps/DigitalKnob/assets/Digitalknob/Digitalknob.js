@@ -8,6 +8,7 @@ function Digitalknob_Init()
 	
 	DKAddEvent("Image", "click", Digitalknob_OnEvent);
 	DKAddEvent("AppsMenu", "click", Digitalknob_OnEvent);
+	DKAddEvent("Blog", "click", Digitalknob_OnEvent);
 	DKAddEvent("Digitalknob_login", "click", Digitalknob_OnEvent);
 	
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
@@ -35,6 +36,10 @@ function Digitalknob_OnEvent(event)
 	}
 	if(DK_Id(event, "AppsMenu")){
 		DKCreate("Digitalknob/AppsMenu.js", function(){});
+	}
+	if(DK_Id(event, "Blog")){
+		DKLog("clicked Blog\n");
+		//DKCreate("Digitalknob/Blog.js", function(){});
 	}
 	if(DK_Id(event, "Digitalknob_login")){
 		DKCreate("DKLogin/DKLogin.js", function(){
