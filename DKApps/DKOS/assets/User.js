@@ -2,8 +2,8 @@ var USE_CEF = false;
 DKLog("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
+DKCreate("DKWidget");
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
-	DKCreate("DKWidget");
 	var url = "file:///C:/digitalknob/USER/DKApps/DKOS/assets/index.html";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
 	DKWidget_SetAttribute(iframe, "src", url);
