@@ -4,6 +4,7 @@ DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
 DKCreate("DKDebug/DKDebug.js", function(){});
+
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var url = "file:///C:/digitalknob/USER/DKApps/DigitalKnob/assets/index.html";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
