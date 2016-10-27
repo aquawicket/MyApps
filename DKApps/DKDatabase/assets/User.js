@@ -1,4 +1,4 @@
-var USE_CEF = true;
+var USE_CEF = false;
 DKLog("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
@@ -30,13 +30,13 @@ else{
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKDatabase/DKDatabase.js", function(){});
 	
-	//if(!USE_CEF){ 
+	if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
 			DKWidget_RemoveProperty(id, "top");
 			DKWidget_SetProperty(id, "bottom", "0rem");
 		});
-	//}
+	}
 }
 
 
