@@ -10,13 +10,6 @@ function Digitalknob_Init()
 	DKAddEvent("AppsMenu", "click", Digitalknob_OnEvent);
 	DKAddEvent("Blog", "click", Digitalknob_OnEvent);
 	DKAddEvent("Digitalknob_login", "click", Digitalknob_OnEvent);
-	
-	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-		var width = DKWindow_GetWidth();
-		var id = DKGoogleAd_CreateAd("Digitalknob.html", "100%", "100rem");
-		DKWidget_RemoveProperty(id, "top");
-		DKWidget_SetProperty(id, "bottom", "0rem");
-	});
 }
 
 //////////////////////////
