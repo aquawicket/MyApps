@@ -17,6 +17,10 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var currentBrowser = DKCef_GetCurrentBrowser(iframe);
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
+	
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+	});
 }
 else{
 	DKCreate("DKScale/DKScale.js", function(){});
