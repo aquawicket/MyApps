@@ -3,6 +3,8 @@ DKLog("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
+DKCreate("DKDebug/DKDebug.js", function(){});
+
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var url = "file:///C:/digitalknob/USER/DKApps/DKOS/assets/index.html";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
@@ -25,5 +27,9 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 else{
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKOS/DKOS.js", function(){});
+	
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+	});
 }
 //DKCreate("DKUpdate");
