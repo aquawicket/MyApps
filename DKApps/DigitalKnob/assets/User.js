@@ -21,21 +21,23 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
 	
+	/*
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
 		DKWidget_RemoveProperty(id, "top");
 		DKWidget_SetProperty(id, "bottom", "0rem");
 	});
+	*/
 }
 else{
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("Digitalknob/Digitalknob.js", function(){});
 	
-	if(DK_GetBrowser() != "CEF"){ 
+	//if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+			var id = DKGoogleAd_CreateAd("Digitalknob.html", "100%", "100rem");
 			DKWidget_RemoveProperty(id, "top");
 			DKWidget_SetProperty(id, "bottom", "0rem");
 		});
-	}
+	//}
 }
