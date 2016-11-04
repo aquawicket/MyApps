@@ -22,7 +22,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+") \n");
 	DKLog("Browser = "+DK_GetBrowser()+"\n");
 	
-	if(DK_GetBrowser() != "DigitalKnob"){
+	//if(DK_GetBrowser() != "DigitalKnob"){
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);
@@ -53,6 +53,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		document.body.appendChild(script);
 	
 		return id;
+	/*
 	}
 	else if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
@@ -74,11 +75,10 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		//DKWidget_SetProperty(id, "width", "100%");
 		DKWidget_SetProperty(id, "height", String(px_height)+":rem");
 		
-		/*
-		var iframe = "<iframe id=\"DKBrowser_cef\" style=\"position:absolute;width:"+String(px_width)+":rem;"+String(px_height)+":rem;\" width=\""+String(px_width)+"\" height=\""+String(px_height)+"\" src=\"http://digitalknob.com/Digitalknob/AdTest.html\"></iframe>";
+		//var iframe = "<iframe id=\"DKBrowser_cef\" style=\"position:absolute;width:"+String(px_width)+":rem;"+String(px_height)+":rem;\" width=\""+String(px_width)+"\" height=\""+String(px_height)+"\" src=\"http://digitalknob.com/Digitalknob/AdTest.html\"></iframe>";
 		
-		DKWidget_SetInnerHtml(id, iframe);
-		*/
+		//DKWidget_SetInnerHtml(id, iframe);
+
 		var url = "http://digitalknob.com/Digitalknob/AdTest.html";
 		var iframe = DKWidget_CreateElement(id, "iframe", "DKAdd_cef");
 		DKWidget_SetAttribute(iframe, "src", url);
@@ -93,4 +93,5 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		DKCef_SetUrl(iframe, url, currentBrowser);
 		return id;
 	}
+	*/
 }
