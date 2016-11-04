@@ -188,15 +188,23 @@ function DKApp_UpdateDescription(string)
 //////////////////////////////////
 function DKApp_UpdateScreenshots()
 {
-	var assets = DKAssets_LocalAssets();
-	for(var i=1; i<6; i++){
-		//DKFile_Exists("Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
-			//if(rval){
-				var id = DKWidget_CreateElement("DKApp_screenshots","img","screenshot");
-				DKWidget_SetAttribute(id, "src", "Digitalknob/"+app+"_screenshot0"+i+".png");
-				DKWidget_SetProperty(id, "height", "300rem");
-				DKWidget_SetProperty(id, "padding-right", "5rem");
-			//}
-		//});
+	for(var i=0; i<6 || function(){}(); i++){
+		DKApp_AddImage(i);
 	}
+}
+
+/////////////////////////
+function DKApp_AddImage(i)
+{
+	DKLog("DKApp_AddImage("+i+")\n");
+	DKLog("i = "+i+"\n");
+	DKFile_Exists("http://digitalknob.com/Digitalknob/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
+		DKLog("rval = "+rval+"\n");
+		if(rval){
+			var id = DKWidget_CreateElement("DKApp_screenshots","img","screenshot");
+			DKWidget_SetAttribute(id, "src", "Digitalknob/"+app+"_screenshot0"+i+".png");
+			DKWidget_SetProperty(id, "height", "300rem");
+			DKWidget_SetProperty(id, "padding-right", "5rem");
+		}
+	});
 }
