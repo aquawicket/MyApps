@@ -197,8 +197,9 @@ function DKApp_UpdateScreenshots()
 function DKApp_AddImage(i)
 {
 	//DKLog("DKApp_AddImage("+i+")\n");
-	DKFile_Exists("http://digitalknob.com/Digitalknob/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){	
+	//DKFile_Exists("Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
 	//DKFile_Exists("file:///C:/digitalknob/USER/DKApps/DigitalKnob/assets/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
+	DKFile_Exists("http://digitalknob.com/Digitalknob/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){	
 		if(rval){
 			var id = DKWidget_CreateElement("DKApp_screenshots","img","screenshot");
 			DKWidget_SetAttribute(id, "src", "Digitalknob/"+app+"_screenshot0"+i+".png");
