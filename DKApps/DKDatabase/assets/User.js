@@ -7,7 +7,8 @@ DKCreate("DKDebug/DKDebug.js", function(){});
 
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	var assets = DKAssets_LocalAssets();
-	var url = "file:///"+assets+"/index.html";
+	//var url = "file:///"+assets+"/index.html";
+	var url = "http://digitalknob.com/DKDatabase/index.html";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
 	DKWidget_SetAttribute(iframe, "src", url);
 	DKWidget_SetAttribute(iframe, "width", "100%");
@@ -21,23 +22,25 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
 	
+	/*
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
 		DKWidget_RemoveProperty(id, "top");
 		DKWidget_SetProperty(id, "bottom", "0rem");
 	});
+	*/
 }
 else{
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKDatabase/DKDatabase.js", function(){});
 	
-	if(DK_GetBrowser() != "CEF"){ 
+	//if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
 			DKWidget_RemoveProperty(id, "top");
 			DKWidget_SetProperty(id, "bottom", "0rem");
 		});
-	}
+	//}
 }
 
 
