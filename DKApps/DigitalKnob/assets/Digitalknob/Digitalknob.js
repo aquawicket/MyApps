@@ -11,7 +11,7 @@ function Digitalknob_Init()
 	DKAddEvent("Blog", "click", Digitalknob_OnEvent);
 	DKAddEvent("Digitalknob_login", "click", Digitalknob_OnEvent);
 	
-	DKLog("################ myfunc = "+myfunc());
+	DKLog("################ myfunc = "+myfunc("input"));
 }
 
 //////////////////////////
