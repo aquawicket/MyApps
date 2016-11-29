@@ -4,6 +4,7 @@
 [LOG_WARNINGS] ON
 [LOG_ERRORS] ON
 [LOG_FILE] ON
+[LOG_FILTER_ALL] ON
 [LOG_FILTER_0] DKEvent::AddEvent
 [LOG_FILTER_1] DKEvent::RemoveEvent
 [LOG_FILTER_2] //DKEvent::SendEvent
