@@ -10,6 +10,7 @@ function Digitalknob_Init()
 	DKAddEvent("AppsMenu", "click", Digitalknob_OnEvent);
 	DKAddEvent("Blog", "click", Digitalknob_OnEvent);
 	DKAddEvent("Digitalknob_login", "click", Digitalknob_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Digitalknob_OnEvent);
 	
 	DKLog("################ myfunc = "+myfunc("input"));
 }
@@ -40,5 +41,8 @@ function Digitalknob_OnEvent(event)
 		DKCreate("DKLogin/DKLogin.js", function(){
 			DKFrame_Widget("DKLogin.html");
 		});
+	}
+	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
+		DKLog("DKCef_OnQueueNewBrowser");
 	}
 }
