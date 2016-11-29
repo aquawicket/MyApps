@@ -18,6 +18,7 @@ function Digitalknob_Init()
 //////////////////////////
 function Digitalknob_End()
 {
+	DKRemoveEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Digitalknob_OnEvent);
 	DKClose("Digitalknob/Digitalknob.html");
 }
 
