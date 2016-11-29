@@ -6,11 +6,11 @@ function Digitalknob_Init()
 	DKCreate("Digitalknob/Home.js", function(){});
 	DKCreate("Digitalknob/OsInfo.js", function(){});
 	
+	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Digitalknob_OnEvent);  //FIXME
 	DKAddEvent("Image", "click", Digitalknob_OnEvent);
 	DKAddEvent("AppsMenu", "click", Digitalknob_OnEvent);
 	DKAddEvent("Blog", "click", Digitalknob_OnEvent);
 	DKAddEvent("Digitalknob_login", "click", Digitalknob_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Digitalknob_OnEvent);
 	
 	DKLog("################ myfunc = "+myfunc("input"));
 }
@@ -24,7 +24,12 @@ function Digitalknob_End()
 ///////////////////////////////////
 function Digitalknob_OnEvent(event)
 {
-	//DKLog("Digitalknob_OnEvent("+event+") \n", DKDEBUG);
+	DKLog("Digitalknob_OnEvent("+event+") \n", DKDEBUG);
+	
+	//if(DK_Id(event, "GLOBAL")){
+	//	DKLog("Digitalknob_OnEvent(GLOBAL)\n");
+	//}
+	
 	if(DK_Id(event, "Image")){
 		DKWidget_SetInnerHtml("Digitalknob_content","");
 		DKClose("Digitalknob/Home.js");
@@ -42,7 +47,7 @@ function Digitalknob_OnEvent(event)
 			DKFrame_Widget("DKLogin.html");
 		});
 	}
-	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
+	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){  //FIXME
 		DKLog("DKCef_OnQueueNewBrowser");
 	}
 }
