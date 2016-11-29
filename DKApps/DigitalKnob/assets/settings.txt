@@ -4,7 +4,7 @@
 [LOG_WARNINGS] ON
 [LOG_ERRORS] ON
 [LOG_FILE] ON
-[LOG_FILTER_0] WORD
-[LOG_FILTER_1] WORD2
-[LOG_FILTER_2] WORD3
+[LOG_FILTER_0] DKEvent::AddEvent
+[LOG_FILTER_1] DKEvent::RemoveEvent
+[LOG_FILTER_2] DKEvent::SendEvent
 [ONLINE_ASSETS] http://digitalknob.com/digitalknob/
