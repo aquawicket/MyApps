@@ -1,11 +1,20 @@
 var USE_CEF = true;
-DKLog("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
+//DKLog("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
 DKCreate("DKDebug/DKDebug.js", function(){});
 
-if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
+////////////////////////////
+function User_OnEvent(event)  //Duktape
+{
+	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
+		var currentBrowser = DKCef_GetCurrentBrowser("DKCef_frame");
+		DKCef_SetUrl("DKCef_frame", DKWidget_GetValue(event), currentBrowser);
+	}
+}
+
+if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){ //Duktape
 	var assets = DKAssets_LocalAssets();
 	var url = "file:///"+assets+"/index.html";
 	//var url = "http://digitalknob.com/Digitalknob/index.html";
@@ -22,6 +31,7 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
 
+	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", User_OnEvent);
 	/*
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
@@ -30,7 +40,7 @@ if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){
 	});
 	*/
 }
-else{
+else{  //V8
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("Digitalknob/Digitalknob.js", function(){});
 	

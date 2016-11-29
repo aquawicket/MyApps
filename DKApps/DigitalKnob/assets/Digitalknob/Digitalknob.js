@@ -6,7 +6,6 @@ function Digitalknob_Init()
 	DKCreate("Digitalknob/Home.js", function(){});
 	DKCreate("Digitalknob/OsInfo.js", function(){});
 	
-	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Digitalknob_OnEvent);  //FIXME
 	DKAddEvent("Image", "click", Digitalknob_OnEvent);
 	DKAddEvent("AppsMenu", "click", Digitalknob_OnEvent);
 	DKAddEvent("Blog", "click", Digitalknob_OnEvent);
@@ -47,8 +46,5 @@ function Digitalknob_OnEvent(event)
 		DKCreate("DKLogin/DKLogin.js", function(){
 			DKFrame_Widget("DKLogin.html");
 		});
-	}
-	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){  //FIXME
-		DKLog("DKCef_OnQueueNewBrowser");
 	}
 }
