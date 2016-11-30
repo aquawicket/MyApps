@@ -6,7 +6,7 @@ function Home_Init()
 	DKAddEvent("login", "click", Home_OnEvent);
 	DKAddEvent("GLOBAL", "keydown", Home_OnEvent);
 	
-	if(DK_GetBrowser() != "DigitalKnob"){
+	if(DK_GetBrowser() != "Rocket"){
 		realpath = "/home/keithnam/www/";
 		if(document.location.protocol == "file:"){
 			Home_OpenAdmin();

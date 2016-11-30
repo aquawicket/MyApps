@@ -72,7 +72,7 @@ function Templates_Delete(url)
 {
 	DKLog("Delete: "+url);
 
-	if(DK_GetBrowser() != "DigitalKnob"){
+	if(DK_GetBrowser() != "Rocket"){
 		if(confirm("Delete this link?") == true){
 			stored_templates = stored_templates.replace(url+",", "");
 			DKFile_SaveFile("templates.txt", stored_templates);

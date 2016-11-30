@@ -27,7 +27,7 @@ function Documents_Update()
 	DKWidget_SetInnerHtml("documents_div", "");
 	var assets = DKAssets_GetDataPath();
 	var docs = DKFile_DirectoryContents(assets+"Documents");
-	if(DK_GetBrowser() != "DigitalKnob"){
+	if(DK_GetBrowser() != "Rocket"){
 		var htmldocs = DKFile_DirectoryContents(realpath+"Documents/");
 		docs = docs.concat(htmldocs);
 	}
@@ -69,7 +69,7 @@ function Documents_Update()
 ///////////////////////////////
 function Documents_Delete(file)
 {
- 	if(DK_GetBrowser() != "DigitalKnob" && realpath){
+ 	if(DK_GetBrowser() != "Rocket" && realpath){
 		if(confirm("Delete this file?") == true){
 			var result = DKFile_Delete(realpath+"Documents/"+file);
 			DKLog(result+"\n");

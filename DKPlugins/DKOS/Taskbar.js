@@ -6,7 +6,7 @@ function Taskbar_Init()
 	DKCreate("DKOS/Taskbar.html");
 	DKCreate("DKOS/scale.js", function(){});
 	DKCreate("DKOS/Clock.js", function(){});
-	if(DK_GetBrowser() == "DigitalKnob"){
+	if(DK_GetBrowser() == "Rocket"){
 		DKCreate("DKDebug/BugReport.js", function(){});
 		DKWidget_AppendChild("Taskbar.html","BugReport.html"); //reparent
 	}

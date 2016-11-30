@@ -1,4 +1,4 @@
-var USE_CEF = true;
+var USE_CEF = false;
 //DKLog("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
@@ -14,7 +14,7 @@ function User_OnEvent(event)  //Duktape
 	}
 }
 
-if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){ //Duktape
+if(DK_GetBrowser() == "Rocket" && USE_CEF){ //Duktape
 	var assets = DKAssets_LocalAssets();
 	//var url = "file:///"+assets+"/index.html";
 	var url = "http://digitalknob.com/Digitalknob/index.html";

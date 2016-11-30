@@ -72,7 +72,7 @@ function Links_Delete(url)
 {
 	DKLog("Delete: "+url);
 
-	if(DK_GetBrowser() != "DigitalKnob"){
+	if(DK_GetBrowser() != "Rocket"){
 		if(confirm("Delete this link?") == true){
 			stored_links = stored_links.replace(url+",", "");
 			DKFile_SaveFile("links.txt", stored_links);

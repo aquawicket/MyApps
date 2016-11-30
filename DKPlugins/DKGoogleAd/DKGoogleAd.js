@@ -22,7 +22,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+") \n");
 	DKLog("Browser = "+DK_GetBrowser()+"\n");
 	
-	//if(DK_GetBrowser() != "DigitalKnob"){
+	//if(DK_GetBrowser() != "Rocket"){
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);

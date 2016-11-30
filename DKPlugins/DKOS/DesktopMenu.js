@@ -44,7 +44,7 @@ function Desktop_ToggleFullscreen()
 {
 	//TODO: move this function into DKWindow.js
 	//http://stackoverflow.com/questions/3900701/onclick-go-full-screen
-	if(DK_GetBrowser() != "DigitalKnob"){
+	if(DK_GetBrowser() != "Rocket"){
 		if((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)){
 			if(document.documentElement.requestFullScreen){  
 				document.documentElement.requestFullScreen();  
