@@ -16,8 +16,8 @@ function User_OnEvent(event)  //Duktape
 
 if(DK_GetBrowser() == "DigitalKnob" && USE_CEF){ //Duktape
 	var assets = DKAssets_LocalAssets();
-	var url = "file:///"+assets+"/index.html";
-	//var url = "http://digitalknob.com/Digitalknob/index.html";
+	//var url = "file:///"+assets+"/index.html";
+	var url = "http://digitalknob.com/Digitalknob/index.html";
 	var iframe = DKWidget_CreateElement("body", "iframe", "DKCef_frame");
 	DKWidget_SetAttribute(iframe, "src", url);
 	DKWidget_SetAttribute(iframe, "width", "100%");
