@@ -10,8 +10,6 @@ function Digitalknob_Init()
 	DKAddEvent("AppsMenu", "click", Digitalknob_OnEvent);
 	DKAddEvent("Blog", "click", Digitalknob_OnEvent);
 	DKAddEvent("Digitalknob_login", "click", Digitalknob_OnEvent);
-	
-	DKLog("################ myfunc = "+myfunc("input"));
 }
 
 //////////////////////////
@@ -27,7 +25,7 @@ function Digitalknob_OnEvent(event)
 	DKLog("Digitalknob_OnEvent("+event+") \n", DKDEBUG);
 	
 	//if(DK_Id(event, "GLOBAL")){
-	//	DKLog("Digitalknob_OnEvent(GLOBAL)\n");
+	//	DKLog("Digitalknob_OnEvent(GLOBAL)\n", DKDEBUG);
 	//}
 	
 	if(DK_Id(event, "Image")){
@@ -39,7 +37,7 @@ function Digitalknob_OnEvent(event)
 		DKCreate("Digitalknob/AppsMenu.js", function(){});
 	}
 	if(DK_Id(event, "Blog")){
-		DKLog("clicked Blog\n");
+		DKLog("clicked Blog\n", DKDEBUG);
 		//DKCreate("Digitalknob/Blog.js", function(){});
 	}
 	if(DK_Id(event, "Digitalknob_login")){

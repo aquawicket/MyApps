@@ -19,8 +19,8 @@ function DKGoogleAd_OnEvent(event)
 ///////////////////////////////////////////////////
 function DKGoogleAd_CreateAd(parent, width, height)
 {
-	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+") \n");
-	DKLog("Browser = "+DK_GetBrowser()+"\n");
+	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+") \n", DKDEBUG);
+	DKLog("Browser = "+DK_GetBrowser()+"\n", DKDEBUG);
 	
 	//if(DK_GetBrowser() != "Rocket"){
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
@@ -67,8 +67,8 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		var px_height = DKWidget_GetClientHeight(id);
 		px_width = Math.min(parseInt(px_width), 1200);
 		px_height = Math.min(parseInt(px_height), 1200);
-		DKLog("px_width = "+String(px_width)+"\n");
-		DKLog("px_height = "+String(px_height)+"\n");
+		DKLog("px_width = "+String(px_width)+"\n", DKDEBUG);
+		DKLog("px_height = "+String(px_height)+"\n", DKDEBUG);
 		//TODO - use px_values
 		
 		DKWidget_SetProperty(id, "width", String(px_width)+":rem");
