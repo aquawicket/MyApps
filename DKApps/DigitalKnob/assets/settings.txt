@@ -4,4 +4,5 @@
 [LOG_WARNINGS] ON
 [LOG_ERRORS] ON
 [LOG_FILE] ON
+[LOG_SHOW] DKCefApp::OnContextCreated
 [ONLINE_ASSETS] http://digitalknob.com/digitalknob/
