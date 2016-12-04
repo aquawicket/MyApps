@@ -45,16 +45,18 @@ function DKApp_OnEvent(event)
 	}
 }
 
+//if(DK_GetBrowser() == "CEF"){
 ////////////////////////////////
 function DKFile_Exists(path, fn)
 {
 	DKLog("DKFile_Exists("+path+") \n", DKDEBUG);
 	if(!path){ return false; }
-	
 	UrlExists(path, function(rval){
 		fn && fn(rval);
 	});
 }
+//}
+
 	
 //////////////////////////////
 function DKApp_UpdateApp(name)
