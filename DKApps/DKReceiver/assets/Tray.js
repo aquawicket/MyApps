@@ -4,7 +4,7 @@ function Tray_Init()
 	DKCreate("DKTray");
 	DKAddEvent("DKTray", "Restore", Tray_OnEvent);
 	DKAddEvent("DKTray", "Minimize", Tray_OnEvent);
-	//DKAddEvent("DKTray", "Exit", Tray_OnEvent);
+	DKAddEvent("DKTray", "Exit", Tray_OnEvent);
 }
 
 ////////////////////////////
@@ -18,5 +18,8 @@ function Tray_OnEvent(event)
 	if(DK_Type(event, "Minimize")){
 		DKCreate("DKWindowJS");
 		DKWindow_Hide();
+	}
+	if(DK_Type(event, "Exit")){
+		DK_Exit();
 	}
 }
