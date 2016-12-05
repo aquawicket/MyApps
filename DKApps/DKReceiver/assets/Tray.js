@@ -5,6 +5,9 @@ function Tray_Init()
 	DKAddEvent("DKTray", "Restore", Tray_OnEvent);
 	DKAddEvent("DKTray", "Minimize", Tray_OnEvent);
 	DKAddEvent("DKTray", "Exit", Tray_OnEvent);
+	
+	//Test
+	DKTray_AddItem("Test");
 }
 
 ////////////////////////////
