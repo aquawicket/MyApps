@@ -16,7 +16,7 @@ function Tray_Init()
 	
 	Tray_On();
 	
-	DKTray_ShowBalloon("test string");
+	DKTray_ShowBalloon("DKTray");
 }
 
 ////////////////////////////
@@ -27,10 +27,12 @@ function Tray_OnEvent(event)
 	if(DK_Type(event, "1000") || DK_Type(event, "doubleclick")){
 		DKCreate("DKWindowJS");
 		DKWindow_Show();
+		DKTray_ShowBalloon("DKTray restored");
 	}
 	if(DK_Type(event, "1001")){
 		DKCreate("DKWindowJS");
 		DKWindow_Hide();
+		DKTray_ShowBalloon("DKTray minimized");
 	}
 	if(DK_Type(event, "1002")){
 		DK_Exit();
@@ -38,6 +40,7 @@ function Tray_OnEvent(event)
 	
 	if(DK_Type(event, "click")){
 		Tray_ToggleIcon();
+		DKTray_ShowBalloon("DKTray clicked");
 	}
 }
 
