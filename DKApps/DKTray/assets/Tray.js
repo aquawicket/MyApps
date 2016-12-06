@@ -3,9 +3,6 @@ function Tray_Init()
 {
 	DKCreate("DKTray");
 	DKAddEvent("DKTray", "click", Tray_OnEvent);
-	DKAddEvent("DKTray", "Restore", Tray_OnEvent);
-	DKAddEvent("DKTray", "Minimize", Tray_OnEvent);
-	DKAddEvent("DKTray", "Exit", Tray_OnEvent);
 	Tray_On();
 }
 
@@ -23,7 +20,7 @@ function Tray_ToggleIcon()
 {
 	var icon = DKTray_GetIcon();
 	var file = DKFile_GetFilename(icon);
-	//DKLog(file+"\n");
+	//DKLog(file+"\n", DKINFO);
 	
 	if(file == "touchON.ico"){
 		Tray_Off();
@@ -36,17 +33,13 @@ function Tray_ToggleIcon()
 //////////////////
 function Tray_On()
 {
-	DKLog("ON \n");
-	var datapath = DKAssets_GetDataPath();
+	DKLog("Tray_On()\n", DKINFO);
 	DKTray_SetIcon(datapath+"touchON.ico");
-	DK_Execute(datapath+"DevManView.exe /enable \"HID-compliant touch screen\"");
 }
 
 ///////////////////
 function Tray_Off()
 {
-	DKLog("OFF \n");
-	var datapath = DKAssets_GetDataPath();
+	DKLog("Tray_Off()\n", DKINFO);
 	DKTray_SetIcon(datapath+"touchOFF.ico");
-	DK_Execute(datapath+"DevManView.exe /disable \"HID-compliant touch screen\"");
 }
