@@ -6,9 +6,9 @@ function Tray_Init()
 	DKAddEvent("DKTray", "1001", Tray_OnEvent);
 	DKAddEvent("DKTray", "1002", Tray_OnEvent);
 	
-	DKTray_AddItem("Test_Exit", 1002);
-	DKTray_AddItem("Test_Minimize", 1001);
-	DKTray_AddItem("Test_Restore", 1000);
+	DKTray_AddItem("Exit", 1002);
+	DKTray_AddItem("Minimize", 1001);
+	DKTray_AddItem("Restore", 1000);
 	
 	DKTray_SetTooltip("DKReceiver");
 }
