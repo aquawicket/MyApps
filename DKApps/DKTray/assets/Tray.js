@@ -20,7 +20,7 @@ function Tray_ToggleIcon()
 {
 	var icon = DKTray_GetIcon();
 	var file = DKFile_GetFilename(icon);
-	//DKLog(file+"\n", DKINFO);
+	DKLog("current icon = "+file+"\n", DKINFO);
 	
 	if(file == "touchON.ico"){
 		Tray_Off();
@@ -34,12 +34,14 @@ function Tray_ToggleIcon()
 function Tray_On()
 {
 	DKLog("Tray_On()\n", DKINFO);
-	DKTray_SetIcon(datapath+"touchON.ico");
+	var assets = DKAssets_LocalAssets();
+	DKTray_SetIcon(assets+"touchON.ico");
 }
 
 ///////////////////
 function Tray_Off()
 {
 	DKLog("Tray_Off()\n", DKINFO);
-	DKTray_SetIcon(datapath+"touchOFF.ico");
+	var assets = DKAssets_LocalAssets();
+	DKTray_SetIcon(assets+"touchOFF.ico");
 }
