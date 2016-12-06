@@ -7,7 +7,7 @@ function Tray_Init()
 	DKAddEvent("DKTray", "Exit", Tray_OnEvent);
 	
 	//Test
-	DKTray_AddItem("Test");
+	DKTray_AddItem("Test", 1005); //Not Working
 	DKTray_SetTooltip("DKReceiver");
 }
 
