@@ -36,11 +36,13 @@ function Receiver_OnEvent(event)
 			var volume = DK_GetVolume();
 			DK_ChangeVolume(volume+0.1);
 			DKLog("Client: VolumeUp\n", DKDEBUG);
+			DKTray_ShowBalloon("Volume Up");
 		}
 		if(DKWidget_GetValue(event) == "VolumeDown"){
 			var volume = DK_GetVolume();
 			DK_ChangeVolume(volume-0.1);
 			DKLog("Client: VolumeDown\n", DKDEBUG);
+			DKTray_ShowBalloon("Volume Down");
 		}
 	}
 }
