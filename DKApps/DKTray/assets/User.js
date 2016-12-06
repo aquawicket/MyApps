@@ -1,2 +1,2 @@
-DKCreate("DKTray/DKTray.js");
+//DKCreate("DKTray/DKTray.js");
 DKCreate("Tray.js");
