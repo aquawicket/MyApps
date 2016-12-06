@@ -15,6 +15,8 @@ function Tray_Init()
 	DKTray_SetTooltip("DKTray example");
 	
 	Tray_On();
+	
+	DKTray_ShowBalloon("test string");
 }
 
 ////////////////////////////
