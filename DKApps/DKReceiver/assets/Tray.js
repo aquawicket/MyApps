@@ -8,6 +8,7 @@ function Tray_Init()
 	
 	//Test
 	DKTray_AddItem("Test");
+	DKTray_SetTooltip("DKReceiver");
 }
 
 ////////////////////////////
