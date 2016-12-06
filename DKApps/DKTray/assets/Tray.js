@@ -1,7 +1,7 @@
 /////////////////////
 function Tray_Init()
 {
-	DKCreate("DKTray");
+	//Attempt to extend DKTray
 	DKAddEvent("DKTray", "click", Tray_OnEvent);
 	Tray_On();
 }
@@ -9,7 +9,7 @@ function Tray_Init()
 ////////////////////////////
 function Tray_OnEvent(event)
 {
-	//DKLog("DKTray_OnEvent("+event+") \n");
+	DKLog("Tray_OnEvent("+event+")\n");
 	if(DK_Type(event, "click")){
 		Tray_ToggleIcon();
 	}
