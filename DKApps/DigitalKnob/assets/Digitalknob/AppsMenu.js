@@ -58,6 +58,10 @@ Don't you just hate how youtube music stops playing when you turn off your scree
 * Turn off your screen, and the music keeps playing <br /> \
 * Small, Fast, simple and free <br /><br />";
 	}
+	
+	if(name == "DKBuilder"){
+		return "The most important app. Whit this app, you can build eveything.";
+	}
 }
 
 ///////////////////////
