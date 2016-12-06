@@ -10,7 +10,7 @@ function AppsMenu_Init()
 ///////////////////////////
 function AppsMenu_GetApps()
 {
-	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKOS", "DKReceiver", "DKRemote", "DKYoutube"];
+	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKOS", "DKReceiver", "DKRemote", "DKYoutube", "DKBuilder", "DKIDE"];
 	for(var i=0; i<AppList.length; i++){
 		AppsMenu_AddApp(AppList[i]);
 	}
