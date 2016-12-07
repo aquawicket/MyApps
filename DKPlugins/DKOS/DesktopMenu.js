@@ -70,11 +70,11 @@ function Desktop_ToggleFullscreen()
 	}
 	
 	if(DKWindow_IsFullscreen()){
-		DKLog("EXIT Fullscreen \n");
+		DKLog("EXIT Fullscreen \n", DKINFO);
 		DKWindow_Windowed();
 	}
 	else{
-		DKLog("ENTER Fullscreen \n");
+		DKLog("ENTER Fullscreen \n", DKINFO);
 		DKWindow_Fullscreen();
 	}
 }

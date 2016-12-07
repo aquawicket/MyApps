@@ -3,7 +3,7 @@ DKCreate("DKRocket/DKBrowser.css");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 var OS = DK_GetOS();
-DKLog("OS="+OS+"\n");
+DKLog("OS="+OS+"\n", DKINFO);
 if(OS != "iOS" && OS != "Android"){
 	var screenwidth = DK_GetScreenWidth();
 	var screenheight = DK_GetScreenHeight();

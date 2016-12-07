@@ -127,7 +127,7 @@ function TaskbarMenu_OnEvent(event)
 		DKVideo_Play("test.avi");
 	}
 	if(DK_Id(event, "OpenSource")){
-		DKLog("OpenSource \n");
+		DKLog("OpenSource\n", DKINFO);
 		DKCreate("DKWidgetJS");
 		var source = DKWidget_GetOuterHtml("body");
 		var assets = DKAssets_LocalAssets();
@@ -135,7 +135,7 @@ function TaskbarMenu_OnEvent(event)
 		DKCreate("DKNotepad/DKNotepad.js", function(){
 			DKFrame_Widget("DKNotepad.html");
 			DKNotepad_Open(assets+"source.html");
-			//DKLog(source);
+			//DKLog(source+"\n", DKINFO);
 		});
 	}
 	if(DK_Id(event, "OpenDebug")){
@@ -148,20 +148,20 @@ function TaskbarMenu_OnEvent(event)
 		DK_System("cls");
 	}
 	if(DK_Id(event, "Info")){
-		DKLog("\n**** DKOBJECTS ****\n");
+		DKLog("\n**** DKOBJECTS ****\n", DKINFO);
 		var objects = DK_GetObjects();
 		var arry = objects.split(",");
 		for(var i=0; i<arry.length; i++){
 			if(!arry[i]){ continue; }
-			DKLog(arry[i]+"\n");
+			DKLog(arry[i]+"\n", DKINFO);
 		}
 		
-		DKLog("**** DKEVENTS ****\n");
+		DKLog("**** DKEVENTS ****\n", DKINFO);
 		var events = DK_GetEvents();
 		var arry = events.split(",");
 		for(var i=0; i<arry.length; i++){
 			if(!arry[i]){ continue; }
-			DKLog(arry[i]+"\n");
+			DKLog(arry[i]+"\n", DKINFO);
 		}
 	}
 	if(DK_Id(event, "Reload")){
@@ -175,7 +175,7 @@ function TaskbarMenu_OnEvent(event)
 	}
 	if(DK_Id(event, "TaskbarMenu_Run")){
 		var key = DKWidget_GetValue(event);
-		DKLog("TaskbarMenu_Run: key="+key+"\n");
+		DKLog("TaskbarMenu_Run: key="+key+"\n", DKINFO);
 		if(key != 72){ return; }
 		TaskbarMenu_Run(DKWidget_GetValue("TaskbarMenu_Run"))
 	}
@@ -193,7 +193,7 @@ function TaskbarMenu_PushDKFiles()
 {
 	//Here, we push any altered DKPulgin files to the appropriate DKPlugin folder.
 	
-	//DKLog("DKMenuRightApp_PushDKFiles() \n");
+	//DKLog("DKMenuRightApp_PushDKFiles()\n", DKINFO);
 	var assets = DKAssets_LocalAssets();
 	
 	var DKPlugins = assets+"/../../../DKPlugins";
@@ -210,13 +210,13 @@ function TaskbarMenu_PushDKFiles()
 	var folders = temp.split(",");
 	
 	for(i=0; i<folders.length; i++){
-		//DKLog(folders[i]+"\n");
+		//DKLog(folders[i]+"\n", DKINFO);
 		if(DKFile_Exists(DKPlugins+"/"+folders[i])){
-			DKLog("Pushing to: "+DKPlugins+"/"+folders[i]+"\n");
+			DKLog("Pushing to: "+DKPlugins+"/"+folders[i]+"\n", DKINFO);
 			DKFile_CopyFolder(assets+"/"+folders[i], DKPlugins+"/"+folders[i], true, true);
 		}
 		if(DKFile_Exists(DKPlugins2+"/"+folders[i])){
-			DKLog("Pushing to: "+DKPlugins2+"/"+folders[i]+"\n");
+			DKLog("Pushing to: "+DKPlugins2+"/"+folders[i]+"\n", DKINFO);
 			DKFile_CopyFolder(assets+"/"+folders[i], DKPlugins2+"/"+folders[i], true, true);
 		}
 	}
