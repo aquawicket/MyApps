@@ -60,7 +60,11 @@ Don't you just hate how youtube music stops playing when you turn off your scree
 	}
 	
 	if(name == "DKBuilder"){
-		return "The most important app. Whit this app, you can build eveything.";
+		return "The most important app. With this app, you can build eveything from scratch.";
+	}
+	
+	if(name == "DKIDE"){
+		return "Integrated development environment.";
 	}
 }
 
