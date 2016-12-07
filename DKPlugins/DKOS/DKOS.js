@@ -1,4 +1,3 @@
-DKCreate("DKTray/DKTray.js", function(){});
 DKCreate("DKRocket/DKBrowser.css");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
