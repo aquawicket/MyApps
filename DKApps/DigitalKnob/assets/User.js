@@ -10,6 +10,8 @@ DKCreate("DKDebug/DKDebug.js", function(){});
 ////////////////////////////
 function User_OnEvent(event)  //Duktape
 {
+	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
 		var currentBrowser = DKCef_GetCurrentBrowser("DKCef_frame");
 		DKCef_SetUrl("DKCef_frame", DKWidget_GetValue(event), currentBrowser);

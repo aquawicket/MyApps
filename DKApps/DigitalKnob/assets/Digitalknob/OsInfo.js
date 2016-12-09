@@ -16,7 +16,8 @@ function OsInfo_End()
 //////////////////////////////
 function OsInfo_OnEvent(event)
 {
-	//DKLog("OsInfo_OnEvent("+event+") \n", DKDEBUG);
+	DKLog("OsInfo_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Type(event, "resize")){
 		OsInfo_Resize();
 	}

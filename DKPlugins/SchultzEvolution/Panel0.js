@@ -27,6 +27,8 @@ function Panel0_Init()
 //////////////////////////////
 function Panel0_OnEvent(event)
 {
+	DKLog("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Id(event, "Sync_Button")){
 		DKWidget_Hide("Panel2.html");
 		DKWidget_Show("Panel1.html");

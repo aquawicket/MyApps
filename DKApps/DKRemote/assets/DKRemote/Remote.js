@@ -20,6 +20,8 @@ function Remote_Init()
 ////////////////////////////////
 function Remote_OnEvent(event)
 {
+	DKLog("Remote_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Id(event, "Power")){
 		DKClient_Send("Power");
 		DKLog("Server: Power\n", DKDEBUG);

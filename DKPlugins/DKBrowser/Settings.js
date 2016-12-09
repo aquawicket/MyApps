@@ -13,5 +13,5 @@ function Settings_End()
 ///////////////////////////////
 function Settings_OnEvent(event)
 {
-
+	DKLog("Settings_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 }

@@ -15,7 +15,7 @@ function Admin_Init()
 ////////////////////////////
 function Admin_OnEvent(event)
 {
-	//DKLog(DK_GetId(event)+"\n");
+	DKLog("Admin_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "logout")){
 		DKFile_SetSetting("", "loggedin", "false");

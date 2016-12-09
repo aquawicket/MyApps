@@ -55,7 +55,7 @@ function DKTetris_End()
 ///////////////////////////////
 function DKTetris_OnEvent(event)
 {
-	DKLog("DKTetris_OnEvent("+event+") \n");
+	DKLog("DKTetris_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Type(event, "keydown")){
 		KeyDown(DKWidget_GetValue(evemt));

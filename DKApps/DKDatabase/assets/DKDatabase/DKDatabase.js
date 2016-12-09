@@ -39,7 +39,9 @@ function DKDatabase_End()
 
 //////////////////////////////////
 function DKDatabase_OnEvent(event)
-{	
+
+{	DKLog("DKDatabase_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+
 	if(DK_Id(event, "DatabaseConnect")){
 		DKDatabase_Connect();
 		DKDatabase_UpdateDatabases();

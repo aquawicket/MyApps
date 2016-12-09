@@ -17,5 +17,5 @@ function Panel3_Init()
 //////////////////////////////
 function Panel3_OnEvent(event)
 {
-	
+	DKLog("Panel3_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 }

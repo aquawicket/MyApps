@@ -11,7 +11,8 @@ function Links_Init()
 /////////////////////////////
 function Links_OnEvent(event)
 {
-	//DKLog(DK_GetId(event)+"\n");
+	DKLog("Links_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Id(event, "add_link")){
 		Links_AddLink(DKWidget_GetValue("link_text"));
 	}

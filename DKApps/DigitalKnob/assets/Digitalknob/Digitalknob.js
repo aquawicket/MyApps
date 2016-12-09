@@ -22,7 +22,7 @@ function Digitalknob_End()
 ///////////////////////////////////
 function Digitalknob_OnEvent(event)
 {
-	DKLog("Digitalknob_OnEvent("+event+") \n", DKDEBUG);
+	DKLog("Digitalknob_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 	
 	//if(DK_Id(event, "GLOBAL")){
 	//	DKLog("Digitalknob_OnEvent(GLOBAL)\n", DKDEBUG);

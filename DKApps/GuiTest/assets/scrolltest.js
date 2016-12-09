@@ -12,6 +12,7 @@ function scrolltest_Init()
 //////////////////////////////////
 function scrolltest_OnEvent(event)
 {
-	//DKLog("scrolltest_OnEvent\n");
+	DKLog("scrolltest_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	DKMessageBox(0, "ShowMessage", "bottomdiv clicked");
 }

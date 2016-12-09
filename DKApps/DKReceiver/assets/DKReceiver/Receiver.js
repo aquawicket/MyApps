@@ -16,6 +16,8 @@ function Receiver_Init()
 ////////////////////////////////
 function Receiver_OnEvent(event)
 {
+	DKLog("Receiver_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Id(event, "VolumeUp_Button")){
 		DKLog("Button: VolumeUp \n", DKDEBUG);
 		var volume = DK_GetVolume();

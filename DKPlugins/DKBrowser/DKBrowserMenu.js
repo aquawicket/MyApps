@@ -22,6 +22,8 @@ function DKBrowserMenu_End()
 /////////////////////////////////////
 function DKBrowserMenu_OnEvent(event)
 {
+	DKLog("DKBrowserMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Id(event,"DKBrowserMenu_Cut")){
 		DKBrowserMenu_Cut();
 	}

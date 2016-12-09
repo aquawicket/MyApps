@@ -16,5 +16,5 @@ function BackgroundMenu_End()
 //////////////////////////////////////
 function BackgroundMenu_OnEvent(event)
 {
-	//DKLog("BackgroundMenu_OnEvent("+event+") \n", DKDEBUG);
+	DKLog("BackgroundMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 }

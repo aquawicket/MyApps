@@ -20,7 +20,7 @@ function Clock_End()
 /////////////////////////////
 function Clock_OnEvent(event)
 {
-	//DKLog("Clock_OnEvent("+event+") \n", DKDEBUG);
+	DKLog("Clock_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Type(event, "second")){
 		Clock_Update();

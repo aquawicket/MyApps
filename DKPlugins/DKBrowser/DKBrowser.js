@@ -62,7 +62,8 @@ function DKBrowser_End()
 /////////////////////////////////
 function DKBrowser_OnEvent(event)
 {
-	//DKLog("DKBrowser_OnEvent("+event+")", DKDEBUG);	
+	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Type(event, "keydown")){
 		DKBrowser_ProcessKey(DKWidget_GetValue(event));
 	}

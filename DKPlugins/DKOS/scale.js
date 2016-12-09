@@ -15,6 +15,8 @@ function scale_End()
 /////////////////////////////
 function scale_OnEvent(event)
 {
+	DKLog("scale_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	
 	if(DK_Id(event,"scale_minus")){
 		scale_minus();
 	}
