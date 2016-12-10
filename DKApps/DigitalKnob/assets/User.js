@@ -1,7 +1,7 @@
 if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
-	var USE_CEF = true;
+	var USE_CEF = false;
 }
-//DKLog("DK_GetBrowser() = "+DK_GetBrowser()+"\n", DKDEBUG);
+
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
