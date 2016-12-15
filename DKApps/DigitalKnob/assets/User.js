@@ -1,6 +1,9 @@
 if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
 	var USE_CEF = true;
 }
+if(DK_GetOS() == "Android"){
+	var USE_Webview = true;
+}
 
 DKCreate("DKWindow");
 DKCreate("DKRocket");
@@ -43,6 +46,10 @@ if(DK_GetBrowser() == "Rocket" && USE_CEF){ //Duktape
 		DKWidget_SetProperty(id, "bottom", "0rem");
 	});
 	*/
+}
+else if{DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
+	var assets = DKAssets_LocalAssets();
+	var url = "file:///"+assets+"/index.html";
 }
 else{  //V8
 	DKCreate("DKScale/DKScale.js", function(){});
