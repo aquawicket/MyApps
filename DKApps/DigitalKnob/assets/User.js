@@ -19,6 +19,11 @@ function User_OnEvent(event)  //Duktape
 		var currentBrowser = DKCef_GetCurrentBrowser("DKCef_frame");
 		DKCef_SetUrl("DKCef_frame", DKWidget_GetValue(event), currentBrowser);
 	}
+	if(DK_Type(event, "keydown")){
+		if(DKWidget_GetValue(event) == "4"){ //Exit for ANDROID
+		    DK_Exit();
+		}
+	}
 }
 
 if(DK_GetBrowser() == "Rocket" && USE_CEF){ //Duktape
@@ -47,9 +52,10 @@ if(DK_GetBrowser() == "Rocket" && USE_CEF){ //Duktape
 	});
 	*/
 }
-else if{DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
+else if(DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
 	var assets = DKAssets_LocalAssets();
 	var url = "file:///"+assets+"/index.html";
+	DKAddEvent("GLOBAL", "keydown", User_OnEvent);
 }
 else{  //V8
 	DKCreate("DKScale/DKScale.js", function(){});
