@@ -20,5 +20,5 @@ function User_OnEvent(event)  //Duktape
 }
 //////////////////////////
 
-//DKCreate("DKWebview");
+DKCreate("DKWebview");
 //DKCreate("youtube.html");
