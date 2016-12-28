@@ -57,9 +57,10 @@ else if(DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
 	var url = "file:///"+assets+"/index.html";
 	DKAddEvent("GLOBAL", "keydown", User_OnEvent);
 }
-else{  //V8
+else{  //Duktape or V8 or Webview
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("Digitalknob/Digitalknob.js", function(){});
+	//DKCreate("rem2.js", function(){});
 	
 	//if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
