@@ -41,6 +41,6 @@ function OsInfo_Resize()
 		}
 	}
 	else{
-		DKWidget_SetInnerHtml("OsInfo_scale", "scale: 1px");
+		DKWidget_SetInnerHtml("OsInfo_scale", "scale: 10px");
 	}
 }

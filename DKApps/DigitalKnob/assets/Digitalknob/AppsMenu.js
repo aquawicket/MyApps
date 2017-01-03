@@ -81,8 +81,8 @@ function AppsMenu_AddApp(name)
 {
 	var id = DKWidget_CreateElement("AppsMenu.html", "div", name)
 	DKWidget_SetAttribute(id, "class", "option");
-	DKWidget_SetProperty(id, "height", "40rem");
-	DKWidget_SetProperty(id, "font-size", "30rem");
+	DKWidget_SetProperty(id, "height", "4.0rem");
+	DKWidget_SetProperty(id, "font-size", "3.0rem");
 	DKWidget_SetInnerHtml(id, name);
 	DKAddEvent(name, "click", AppsMenu_OnEvent);
 }

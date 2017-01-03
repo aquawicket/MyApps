@@ -1,5 +1,5 @@
 if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
-	var USE_CEF = true;
+	var USE_CEF = 1;
 }
 if(DK_GetOS() == "Android"){
 	var USE_Webview = true;
@@ -64,7 +64,7 @@ else{  //Duktape or V8 or Webview
 	
 	//if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+			var id = DKGoogleAd_CreateAd("body", "100%", "10.0rem");
 			DKWidget_RemoveProperty(id, "top");
 			DKWidget_SetProperty(id, "bottom", "0rem");
 		});
