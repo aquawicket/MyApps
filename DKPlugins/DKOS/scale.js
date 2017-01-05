@@ -42,7 +42,7 @@ function scale_plus()
 	//DKLog("scale_plus()\n", DKINFO);
 	var scale = DKWidget_GetScale();
 	scale = scale + 0.1;
-	if(scale > 20.0){ scale = 20.0; }
+	if(scale > 100.0){ scale = 100.0; }
 	//DKLog("DKWidget_SetScale("+scale+")\n", DKDEBUG);
 	DKWidget_SetScale(scale);
 }
