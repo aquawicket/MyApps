@@ -21,10 +21,10 @@ function DKApp_Init()
 	
 	var id = DKWidget_CreateElement("Digitalknob_content","div","loading");
 	DKWidget_SetProperty(id, "position", "absolute");
-	DKWidget_SetProperty(id, "top", "2.5rem");
+	DKWidget_SetProperty(id, "top", "25rem");
 	DKWidget_SetProperty(id, "width", "100%");
 	DKWidget_SetProperty(id, "text-align", "center");
-	DKWidget_SetProperty(id, "font-size", "2.0rem");
+	DKWidget_SetProperty(id, "font-size", "20rem");
 	DKWidget_SetInnerHtml(id, "Loading...");
 }
 
@@ -186,11 +186,11 @@ function DKApp_SetDownload(name)
 		//DKWidget_RemoveElement("DKApp_download");
 		var id = DKWidget_CreateElement("DKApp.html","div","notavailable");
 		DKWidget_SetProperty(id, "position", "absolute");
-		DKWidget_SetProperty(id, "top", "12.0rem");
-		DKWidget_SetProperty(id, "left", "17.0rem");
-		DKWidget_SetProperty(id, "width", "25.0rem");
+		DKWidget_SetProperty(id, "top", "120rem");
+		DKWidget_SetProperty(id, "left", "170rem");
+		DKWidget_SetProperty(id, "width", "250rem");
 		DKWidget_SetProperty(id, "color", "red");
-		DKWidget_SetProperty(id, "font-size", "2.0rem");
+		DKWidget_SetProperty(id, "font-size", "20rem");
 		DKWidget_SetInnerHtml(id, "Not available for "+os);
 	}
 }
@@ -220,8 +220,8 @@ function DKApp_AddImage(i)
 		if(rval){
 			var id = DKWidget_CreateElement("DKApp_screenshots","img","screenshot");
 			DKWidget_SetAttribute(id, "src", "Digitalknob/"+app+"_screenshot0"+i+".png");
-			DKWidget_SetProperty(id, "height", "30.0rem");
-			DKWidget_SetProperty(id, "padding-right", ".5rem");
+			DKWidget_SetProperty(id, "height", "300rem");
+			DKWidget_SetProperty(id, "padding-right", "5rem");
 		}
 	});
 }
