@@ -64,7 +64,7 @@ else{  //Duktape or V8 or Webview
 	
 	//if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-			var id = DKGoogleAd_CreateAd("body", "100%", "10.0rem");
+			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
 			DKWidget_RemoveProperty(id, "top");
 			DKWidget_SetProperty(id, "bottom", "0rem");
 		});
