@@ -2,12 +2,14 @@ if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
 	var USE_CEF = 1;
 }
 if(DK_GetOS() == "Android"){
-	var USE_Webview = true;
+	var USE_Webview = 1;
 }
 
-DKCreate("DKWindow");
-DKCreate("DKRocket");
-DKCreate("DKWidget");
+if(DK_GetBrowser() == "Rocket"){
+	DKCreate("DKWindow");
+	DKCreate("DKRocket");
+	DKCreate("DKWidget");
+}
 DKCreate("DKDebug/DKDebug.js", function(){});
 
 ////////////////////////////
