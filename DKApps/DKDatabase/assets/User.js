@@ -1,5 +1,5 @@
-if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
-	var USE_CEF = true;
+if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"  || DK_GetOS() == "Mac" || DK_GetOS() == "Linux"){
+	var USE_CEF = 1;
 }
 
 DKCreate("DKWindow");
