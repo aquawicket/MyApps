@@ -47,7 +47,7 @@ if(DK_GetBrowser() == "Rocket" && USE_CEF){
 }
 else{
 	DKCreate("DKScale/DKScale.js", function(){});
-	DKCreate("DKInputTest/DKInputTest.js", function(){});
+	DKCreate("DKInputTest/DKInput.js", function(){});
 	
 	/*
 	//if(DK_GetBrowser() != "CEF"){ 
