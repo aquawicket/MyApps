@@ -10,7 +10,7 @@ function AppsMenu_Init()
 ///////////////////////////
 function AppsMenu_GetApps()
 {
-	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKOS", "DKReceiver", "DKRemote", "DKYoutube", "DKBuilder", "DKIDE"];
+	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKInputTest", "DKOS", "DKReceiver", "DKRemote", "DKYoutube", "DKBuilder", "DKIDE"];
 	for(var i=0; i<AppList.length; i++){
 		AppsMenu_AddApp(AppList[i]);
 	}
@@ -35,6 +35,10 @@ function AppsMenu_GetDescription(name)
 * No location sharing <br /> \
 * No running processes <br /> \
 * Small, Fast, simple and free <br /><br />";
+	}
+	
+	if(name == "DKInputTest"){
+		return "Test Keyboard and Mouse input.";
 	}
 	
 	if(name == "DKOS"){
