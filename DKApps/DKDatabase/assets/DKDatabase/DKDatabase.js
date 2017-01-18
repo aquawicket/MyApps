@@ -83,7 +83,7 @@ function DKDatabase_OnEvent(event)
 	if(DK_IdLike(event, "DeleteRecord")){
 		//TODO - need confirmation 
 		var id = DKWidget_GetAttribute(DK_GetId(event), "row");
-		DKLog("Delete Record "+id+"\n");
+		DKLog("Delete Record "+id+"\n", DKINFO);
 		var query = "DELETE FROM "+DKWidget_GetValue("TableDrop")+" WHERE ID="+id
 		DKMySql_Query(query);
 		DKDatabase_UpdateRecords(DKWidget_GetValue("TableDrop"));
@@ -95,7 +95,7 @@ function DKDatabase_OnEvent(event)
 		DKDatabase_Save();
 	}
 	if(DK_Id(event, "DatabaseDrop")){
-		//DKLog("DatabaseDrop \n");
+		//DKLog("DatabaseDrop \n", DKINFO);
 		DKMySql_Database(DKWidget_GetValue(event));
 		DKDatabase_UpdateTables();
 		DKDatabase_UpdateRecords("");
@@ -131,7 +131,7 @@ function DKDatabase_Connect()
 	var password = DKWidget_GetValue("PassBox");
 	
 	var result = DKMySql_Query("Info");
-	DKLog(result);
+	DKLog("DKDatabase_Connect(): result = "+result+"\n", DKINFO);
 	//FIXME
 	if(!DKMySql_Connect(server, username, password, "")){ return false; }
 	//DKMySql_Database("DKData");
@@ -156,7 +156,7 @@ function DKDatabase_UpdateDatabases()
 
 	var query = "SHOW DATABASES";
 	var result = DKMySql_Query(query);
-	DKLog(result);
+	DKLog("DKDatabase_UpdateDatabases(): result = "+result+"\n", DKINFO);
 	var records = result.split(',');
 
 	var blank = DKWidget_CreateElement("DatabaseDrop", "option", "Database00");
@@ -172,13 +172,13 @@ function DKDatabase_UpdateDatabases()
 //////////////////////////////////
 function DKDatabase_UpdateTables()
 {
-	DKLog("Update Tables");
+	//DKLog("DKDatabase_UpdateTables() \n", DKDEBUG);
 	DKWidget_SetValue("TableDrop", "");
 	DKWidget_SetInnerHtml("TableDrop", ""); //clear
 
 	var query = "SHOW TABLES";
 	var result = DKMySql_Query(query);
-	DKLog(result);
+	DKLog("DKDatabase_UpdateTables(): result = "+result+"\n", DKINFO);
 	var records = result.split(',');
 
 	var blank = DKWidget_CreateElement("TableDrop", "option", "Table00");
@@ -199,7 +199,7 @@ function DKDatabase_UpdateHeader(table)
 
 	var query = "SHOW COLUMNS FROM "+ table;
 	var result = DKMySql_Query(query);
-	DKLog(result);
+	DKLog("DKDatabase_UpdateHeader("+table+"): result = "+result+"\n", DKINFO);
 	var records = result.split(',');
 	
 	var step = Number(records[0]);
@@ -240,7 +240,7 @@ function DKDatabase_UpdateRecords(table)
 
 	var query = "SHOW COLUMNS FROM "+ table;
 	var result = DKMySql_Query(query);
-	DKLog(result);
+	DKLog("DKDatabase_UpdateRecords("+table+"): result = "+result+"\n", DKINFO);
 	var columns = result.split(',');
 	
 	var columnnames = [];
@@ -250,7 +250,7 @@ function DKDatabase_UpdateRecords(table)
 	
 	query = "SELECT * FROM "+ table;
 	result = DKMySql_Query(query);
-	DKLog(result);
+	DKLog("DKDatabase_UpdateRecords("+table+"): result = "+result+"\n", DKINFO);
 	var records = result.split(',');
 	
 	for(var r = 1; r < records.length-1; r += Number(records[0])){
@@ -322,9 +322,9 @@ function DKDatabase_Save()
 	
 	//compair dbrecords to records
 	for(var r=0; r < records.length; r++){
-		DKLog("\n\nrecords["+String(r)+"]:"+records[r]+"\n");
-		DKLog("Value:"+DKWidget_GetValue(records[r])+"\n");
-		DKLog("dbrecords["+String(r+1)+"]:"+dbrecords[r+1]+"\n\n");
+		DKLog("\n\nrecords["+String(r)+"]:"+records[r]+"\n", DKINFO);
+		DKLog("Value:"+DKWidget_GetValue(records[r])+"\n", DKINFO);
+		DKLog("dbrecords["+String(r+1)+"]:"+dbrecords[r+1]+"\n\n", DKINFO);
 		//DKDebug(dbrecords[r+1]+"\n");
 		if(DKWidget_GetValue(records[r]) != dbrecords[r+1]){
 			var table = DKWidget_GetValue("TableDrop");
@@ -333,7 +333,7 @@ function DKDatabase_Save()
 			var value = DKWidget_GetValue(records[r]);
 
 			var query = "UPDATE "+table+" SET "+column+"='"+value+"' WHERE ID="+row;
-			DKLog("Saveing record "+row+"\n");
+			DKLog("Saveing record "+row+"\n", DKINFO);
 			DKMySql_Query(query);
 		}
 	}
