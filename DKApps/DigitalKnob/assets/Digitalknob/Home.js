@@ -8,7 +8,7 @@ function Home_Init()
 function Home_End()
 {
 	DKRemoveEvent("GLOBAL", "mousedown", Home_OnEvent);
-	DKClose("Digitalknob/Home.html");
+	DKClose("Home.html");
 }
 
 ////////////////////////////

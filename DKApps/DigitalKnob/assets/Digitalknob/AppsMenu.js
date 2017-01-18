@@ -77,7 +77,7 @@ function AppsMenu_End()
 {
 	//DKLog("AppsMenu_End():\n", DKDEBUG);
 	DKRemoveEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
-	DKClose("Digitalknob/AppsMenu.html");
+	DKClose("AppsMenu.html");
 }
 
 //////////////////////////////
@@ -100,7 +100,7 @@ function AppsMenu_OnEvent(event)
 	
 	if(DK_Type(event, "click")){
 		var id = DK_GetId(event);
-		DKClose("Digitalknob/DKApp.js");
+		DKClose("DKApp.js");
 		DKCreate("Digitalknob/DKApp.js", function(){
 			DKApp_UpdateApp(id);
 			DKApp_UpdateDescription(AppsMenu_GetDescription(id));
@@ -112,5 +112,5 @@ function AppsMenu_OnEvent(event)
 			return;
 		}
 	}
-	DKClose("Digitalknob/AppsMenu.js");
+	DKClose("AppsMenu.js");
 }

@@ -16,7 +16,7 @@ function Digitalknob_Init()
 function Digitalknob_End()
 {
 	DKRemoveEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Digitalknob_OnEvent);
-	DKClose("Digitalknob/Digitalknob.html");
+	DKClose("Digitalknob.html");
 }
 
 ///////////////////////////////////
@@ -30,7 +30,7 @@ function Digitalknob_OnEvent(event)
 	
 	if(DK_Id(event, "Image")){
 		DKWidget_SetInnerHtml("Digitalknob_content","");
-		DKClose("Digitalknob/Home.js");
+		DKClose("Home.js");
 		DKCreate("Digitalknob/Home.js", function(){});
 	}
 	if(DK_Id(event, "AppsMenu")){
