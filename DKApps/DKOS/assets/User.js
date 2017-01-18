@@ -26,18 +26,22 @@ if(DK_GetBrowser() == "Rocket" && USE_CEF){
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
 	
+	/*
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
 	});
+	*/
 }
 else{
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKOS/DKOS.js", function(){});
 	
+	/*
 	if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
 		});
 	}
+	*/
 }
 //DKCreate("DKUpdate");
