@@ -56,7 +56,7 @@ function DKBrowser_End()
 	DKRemoveEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
 	DKRemoveEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
 	DKRemoveEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
-	DKClose("DKBrowser/DKBrowser.html");
+	DKClose("DKBrowser.html");
 }
 
 /////////////////////////////////
@@ -182,8 +182,9 @@ function DKBrowser_OnEvent(event)
 		}
 	}
 	if(DK_Id(event,"Settings")){
-		DKCreate("DKBrowser/Settings.js");
-		DKFrame_Widget("Settings.html");
+		DKCreate("DKBrowser/Settings.js", function(){
+			DKFrame_Widget("Settings.html");
+		});
 	}
 }
 
@@ -270,8 +271,8 @@ function DKBrowser_CloseTab(num)
 {
 	if(DKCef_GetBrowsers("DKBrowser_cef") == 1){
 		DKFrame_Close("DKBrowser.html");
-		DKClose("DKBrowser/DKBrowser.html");
-		DKClose("DKBrowser/DKBrowser.js");
+		DKClose("DKBrowser.html");
+		DKClose("DKBrowser.js");
 		//DK_Exit(); 
 		return;
 	}
