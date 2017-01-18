@@ -50,7 +50,7 @@ function TaskbarMenu_End()
 	DKRemoveEvent("TestSound", "click", TaskbarMenu_OnEvent);
 	DKRemoveEvent("TestVideo", "click", TaskbarMenu_OnEvent);
 	DKRemoveEvent("TaskbarMenu_Run", "keydown", TaskbarMenu_OnEvent);
-	DKClose("DKOS/TaskbarMenu.html");
+	DKClose("TaskbarMenu.html");
 }
 
 ///////////////////////////////////
@@ -168,7 +168,7 @@ function TaskbarMenu_OnEvent(event)
 		DK_Reload();
 	}
 	if(DK_Id(event, "CloseDKOS")){
-		DKClose("DKOS/TaskbarMenu.js")
+		DKClose("TaskbarMenu.js")
 		DK_Exit();
 		return;
 	}
@@ -184,7 +184,7 @@ function TaskbarMenu_OnEvent(event)
 			return;
 		}
 	}
-	DKClose("DKOS/TaskbarMenu.js");
+	DKClose("TaskbarMenu.js");
 }
 
 //////////////////////////////////

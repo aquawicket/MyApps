@@ -14,7 +14,7 @@ function Clock_Init()
 function Clock_End()
 {
 	DKRemoveEvent("GLOBAL", "frame", Clock_OnEvent);
-	DKClose("DKOS/Clock.html");
+	DKClose("Clock.html");
 }
 
 /////////////////////////////

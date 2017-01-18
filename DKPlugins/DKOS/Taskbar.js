@@ -17,10 +17,10 @@ function Taskbar_Init()
 //////////////////////
 function Taskbar_End()
 {
-	DKClose("DKOS/Taskbar.html");
-	DKClose("DKOS/scale.js");
-	DKClose("DKOS/Clock.js");
-	DKClose("DKDebug/BugReport.js");
+	DKClose("Taskbar.html");
+	DKClose("scale.js");
+	DKClose("Clock.js");
+	DKClose("BugReport.js");
 }
 
 ///////////////////////////////

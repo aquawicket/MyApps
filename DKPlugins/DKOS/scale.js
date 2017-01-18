@@ -9,7 +9,7 @@ function scale_Init()
 ////////////////////
 function scale_End()
 {
-	DKClose("DKOS/scale.html");
+	DKClose("scale.html");
 }
 
 /////////////////////////////
