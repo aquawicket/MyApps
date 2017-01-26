@@ -3,15 +3,17 @@ DKCreate("DKRocket");
 DKCreate("DKWidget");
 DKCreate("DKFrame/DKFrame.js");
 DKCreate("DKDebug/DKDebug.js");
-DKCreate("DKNotepad/DKNotepad.js");
-DKWidget_SetProperty("DKNotepad.html", "width", "100%");
-DKWidget_SetProperty("DKNotepad.html", "height", "100%");
+DKCreate("DKWebview/DKWebviewTest.js");
+DKWidget_SetProperty("DKWebviewTest.html", "width", "100%");
+DKWidget_SetProperty("DKWebviewTest.html", "height", "100%");
 
-/////////////////////////
-//ANDROID back key = exit
+///////////////////////////////////////////////
+DKAddEvent("GLOBAL", "mousedown", User_OnEvent);
 DKAddEvent("GLOBAL", "keydown", User_OnEvent);
 function User_OnEvent(event)  //Duktape
 {
+	DKLog("User_OnEvent("+event+")", DKINFO);
+	
 	if(DK_Type(event, "keydown")){
 		if(DKWidget_GetValue(event) == "4"){ //Exit for ANDROID
 		    DK_Exit();
