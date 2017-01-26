@@ -24,7 +24,4 @@ function User_OnEvent(event)  //Duktape
 
 DKCreate("DKWebview");
 
-//FIXME: these are not available, DKWebView::OnCreate has not been called yet. 
-DKLog("DK_SendValue() = "+DK_SendValue()+"\n", DKINFO);
-DK_ReceiveValue();
-DK_PrintFunctions();
+
