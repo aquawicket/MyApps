@@ -21,4 +21,7 @@ function User_OnEvent(event)  //Duktape
 //////////////////////////
 
 DKCreate("DKWebview");
+DKLog("DK_SendValue() = "+DK_SendValue()+"\n", DKINFO);
+DK_ReceiveValue();
+DK_PrintFunctions();
 //DKCreate("youtube.html");
