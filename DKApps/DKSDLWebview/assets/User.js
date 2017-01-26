@@ -1,11 +1,12 @@
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKCreate("DKWidget");
+DKCreate("DKScale/DKScale.js");
 DKCreate("DKFrame/DKFrame.js");
 DKCreate("DKDebug/DKDebug.js");
 DKCreate("DKWebview/DKWebviewTest.js");
-DKWidget_SetProperty("DKWebviewTest.html", "width", "100%");
-DKWidget_SetProperty("DKWebviewTest.html", "height", "100%");
+//DKWidget_SetProperty("DKWebviewTest.html", "width", "100%");
+//DKWidget_SetProperty("DKWebviewTest.html", "height", "100%");
 
 ///////////////////////////////////////////////
 DKAddEvent("GLOBAL", "keydown", User_OnEvent);
