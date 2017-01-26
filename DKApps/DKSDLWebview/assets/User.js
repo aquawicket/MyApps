@@ -8,7 +8,6 @@ DKWidget_SetProperty("DKWebviewTest.html", "width", "100%");
 DKWidget_SetProperty("DKWebviewTest.html", "height", "100%");
 
 ///////////////////////////////////////////////
-DKAddEvent("GLOBAL", "mousedown", User_OnEvent);
 DKAddEvent("GLOBAL", "keydown", User_OnEvent);
 function User_OnEvent(event)  //Duktape
 {
@@ -23,5 +22,3 @@ function User_OnEvent(event)  //Duktape
 //////////////////////////
 
 DKCreate("DKWebview");
-
-
