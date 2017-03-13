@@ -1,2 +1,2 @@
-# User 
-User apps and plugins
+# MyApps
+MyApps apps and plugins
