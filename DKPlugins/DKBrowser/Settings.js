@@ -25,4 +25,5 @@ function Settings_OnEvent(event)
 function Settings_Update()
 {
 	DKLog("Settings_Update()\n", DKINFO);
+	DKCreate("DKUpdate");
 }
