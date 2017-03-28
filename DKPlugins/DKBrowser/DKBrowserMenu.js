@@ -16,7 +16,7 @@ function DKBrowserMenu_Init()
 function DKBrowserMenu_End()
 {
 	DKRemoveEvent("GLOBAL", "mousedown", DKBrowserMenu_OnEvent);
-	DKClose("DKBrowserMenu.html");
+	DKClose("DKBrowser/DKBrowserMenu.html");
 }
 
 /////////////////////////////////////
@@ -45,7 +45,7 @@ function DKBrowserMenu_OnEvent(event)
 			return;
 		}
 	}
-	DKClose("DKBrowserMenu.js");
+	DKClose("DKBrowser/DKBrowserMenu.js");
 }
 
 ////////////////////////////
