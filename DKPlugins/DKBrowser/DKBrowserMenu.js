@@ -51,8 +51,8 @@ function DKBrowserMenu_OnEvent(event)
 ////////////////////////////
 function DKBrowserMenu_Cut()
 {
-	DKLog("DKBrowserMenu_Cut() \n");
-	if(DKCef_Focused()){
+	DKLog("DKBrowserMenu_Cut()\n", DKDEBUG);
+	if(DKCef_Focused("DKBrowser_cef")){
 		if(selection){
 			DK_SetClipboard(selection);
 		}
@@ -65,9 +65,8 @@ function DKBrowserMenu_Cut()
 /////////////////////////////
 function DKBrowserMenu_Copy()
 {
-	DKLog("DKBrowserMenu_Copy() \n");
-	DKLog("DKBrowserMenu_Cut() \n");
-	if(DKCef_Focused()){
+	DKLog("DKBrowserMenu_Copy()\n", DKDEBUG);
+	if(DKCef_Focused("DKBrowser_cef")){
 		if(selection){
 			DK_SetClipboard(selection);
 		}
@@ -80,9 +79,9 @@ function DKBrowserMenu_Copy()
 //////////////////////////////
 function DKBrowserMenu_Paste()
 {
-	DKLog("DKBrowserMenu_Paste() \n");
-	if(DKCef_Focused()){
-		DKCef_Paste();
+	DKLog("DKBrowserMenu_Paste()\n", DKDEBUG);
+	if(DKCef_Focused("DKBrowser_cef")){
+		DKCef_Paste("DKBrowser_cef");
 	}
 	else{
 		DKWidget_Paste("Textbox");
@@ -92,7 +91,7 @@ function DKBrowserMenu_Paste()
 //////////////////////////////////
 function DKBrowserMenu_SaveImage()
 {
-	DKLog("DKBrowserMenu_SaveImage() \n");
+	DKLog("DKBrowserMenu_SaveImage()\n", DKDEBUG);
 	if(source_url){
 		DKCef_DownloadUrl(source_url);
 	}
@@ -101,7 +100,7 @@ function DKBrowserMenu_SaveImage()
 /////////////////////////////////
 function DKBrowserMenu_CopyLink()
 {
-	DKLog("DKBrowserMenu_CopyLink() \n");
+	DKLog("DKBrowserMenu_CopyLink()\n", DKDEBUG);
 	if(link_url){
 		DK_SetClipboard(link_url);
 	}
