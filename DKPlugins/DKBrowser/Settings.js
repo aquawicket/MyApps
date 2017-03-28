@@ -26,5 +26,6 @@ function Settings_Update()
 {
 	DKLog("Settings_Update()\n", DKINFO);
 	DKCreate("DKUpdate");
+	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
 }
