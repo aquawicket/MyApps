@@ -1,0 +1,7 @@
+[CONSOLE] OFF
+[LOG_DEBUG] OFF
+[LOG_INFO] ON
+[LOG_WARNINGS] ON
+[LOG_ERRORS] ON
+[LOG_FILE] ON
+[ONLINE_ASSETS] http://digitalknob.com/DKSearch/
