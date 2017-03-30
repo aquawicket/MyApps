@@ -202,6 +202,10 @@ function DKBrowser_OnLoadError(error)
 //////////////////////////////////
 function DKBrowser_ProcessKey(key)
 {
+	DKLog("DKBrowser_ProcessKey("+key+")\n", DKINFO);
+	if(DK_KeyIsDown(17)){
+		DKLog("CTRL key is down\n", DKINFO);
+	}
 	var focused = DKWidget_GetFocusElement();
 	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(key == 13 && (focused == "Textbox")){
