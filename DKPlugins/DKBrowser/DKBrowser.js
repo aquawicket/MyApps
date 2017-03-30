@@ -125,7 +125,7 @@ function DKBrowser_OnEvent(event)
 		DKCef_Reload("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Id(event, "HomeButton")){
-		DKCef_SetUrl("DKBrowser_cef", "http://www.google.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", "http://digitalknob.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Id(event, "Textbox")){
 		DKCef_RemoveFocus("DKBrowser_cef");
@@ -202,10 +202,28 @@ function DKBrowser_OnLoadError(error)
 //////////////////////////////////
 function DKBrowser_ProcessKey(key)
 {
-	DKLog("DKBrowser_ProcessKey("+key+")\n", DKINFO);
-	if(DK_KeyIsDown(17)){
-		DKLog("CTRL key is down\n", DKINFO);
+	//DKLog("DKBrowser_ProcessKey("+key+")\n", DKINFO);
+	
+	if(key == 78 && DK_KeyIsDown(17)){
+		//DKLog("New Window\n", DKINFO);
+		var app = DKFile_GetFullExeName();
+		DK_Run(app);
 	}
+	if(key == 84 && DK_KeyIsDown(17)){
+		//DKLog("New Tab\n", DKINFO);
+		DKBrowser_NewTab();
+	}
+	if(key == 9 && DK_KeyIsDown(17) && !DK_KeyIsDown(16)){
+		DKLog("Next Tab\n", DKINFO);
+	}
+	if(key == 9 && DK_KeyIsDown(17) && DK_KeyIsDown(16)){
+		DKLog("Prev Tab\n", DKINFO);
+	}
+	if(key == 36 && DK_KeyIsDown(18)){
+		//DKLog("Homepage\n", DKINFO);
+		DKCef_SetUrl("DKBrowser_cef", "http://digitalknob.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+	}
+	
 	var focused = DKWidget_GetFocusElement();
 	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(key == 13 && (focused == "Textbox")){
