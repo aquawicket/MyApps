@@ -140,7 +140,12 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Type(event, "DKCef_OnLoadingStateChange")){
 		var num = parseInt(DKWidget_GetValue(event));
-		DKBrowser_SetUrlBar(DKCef_GetUrl("DKBrowser_cef", num), num); 
+		//DKLog("DKCef_OnLoadingStateChange, "+num+"\n", DKINFO);
+		//DKLog(DKCef_GetUrl("DKBrowser_cef", num)+"\n", DKINFO);
+		var url = DKCef_GetUrl("DKBrowser_cef", num);
+		if(url){
+			DKBrowser_SetUrlBar(url, num); 
+		}
 		return;
 	}
 	if(DK_Type(event, "DKCef_OnLoadError")){
@@ -150,6 +155,7 @@ function DKBrowser_OnEvent(event)
 		DKLog("DKCef_OnQueueNewBrowser \n");
 		DKBrowser_NewTab();
 		DKCef_SetUrl("DKBrowser_cef", DKWidget_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKBrowser_SetUrlBar(DKWidget_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"))
 		return;
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
@@ -272,10 +278,11 @@ function DKBrowser_UpdateTabs()
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
+	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKINFO);
 	DKWidget_SetInnerHtml("Tab"+num+"Text", url);
 	if(DKCef_GetCurrentBrowser("DKBrowser_cef") != num){ return; }
 	var focused = DKWidget_GetFocusElement();
-	DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
+	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(focused != "Textbox"){
 		DKWidget_SetValue("Textbox", url);
 	}
