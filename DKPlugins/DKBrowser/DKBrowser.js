@@ -278,7 +278,7 @@ function DKBrowser_UpdateTabs()
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
-	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKINFO);
+	//DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKINFO);
 	DKWidget_SetInnerHtml("Tab"+num+"Text", url);
 	if(DKCef_GetCurrentBrowser("DKBrowser_cef") != num){ return; }
 	var focused = DKWidget_GetFocusElement();
