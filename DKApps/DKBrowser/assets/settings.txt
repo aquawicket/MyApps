@@ -9,3 +9,4 @@
 [LOG_ERRORS] ON
 [LOG_FILE] ON
 [HOMEPAGE] http://digitalknob.com
+[CEF_MULTIPROCESS] OFF
