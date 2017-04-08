@@ -6,3 +6,4 @@
 [LOG_FILE] ON
 [LOG_SHOW] 
 [ONLINE_ASSETS] http://digitalknob.com/digitalknob/
+[CEF_MULTIPROCESS] OFF
