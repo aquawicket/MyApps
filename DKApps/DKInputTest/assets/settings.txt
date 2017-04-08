@@ -5,3 +5,4 @@
 [LOG_ERRORS] ON
 [LOG_FILE] ON
 [ONLINE_ASSETS] http://digitalknob.com/DKInputTest
+[CEF_MULTIPROCESS] OFF
