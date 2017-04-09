@@ -7,7 +7,7 @@ function DKSearch_Init()
 ///////////////////////
 function DKSearch_End()
 {
-	DKClose("DKSearch/DKSearch.html");
+	DKClose("DKSearch.html");
 }
 
 ////////////////////////////////
