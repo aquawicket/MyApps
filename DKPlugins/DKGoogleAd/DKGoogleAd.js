@@ -59,16 +59,16 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);
 		DKWidget_SetProperty(id, "height", height);
-		DKWidget_SetProperty(id, "text-align", "center");
+		DKWidget_SetProperty(id, "bottom", "0px");
+		//DKWidget_SetProperty(id, "text-align", "center");
 		
-		//TODO - don't let size go over 1200px
+		//Don't let size go over 1200px
 		var px_width = DKWidget_GetClientWidth(id);
 		var px_height = DKWidget_GetClientHeight(id);
 		px_width = Math.min(parseInt(px_width), 1200);
 		px_height = Math.min(parseInt(px_height), 1200);
-		DKLog("px_width = "+String(px_width)+"\n", DKDEBUG);
-		DKLog("px_height = "+String(px_height)+"\n", DKDEBUG);
-		//TODO - use px_values
+		DKLog("px_width = "+String(px_width)+"\n", DKINFO);
+		DKLog("px_height = "+String(px_height)+"\n", DKINFO);
 		
 		DKWidget_SetProperty(id, "width", String(px_width)+":rem");
 		//DKWidget_SetProperty(id, "width", "100%");
