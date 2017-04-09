@@ -1,13 +1,13 @@
 ////////////////////////
 function DKSearch_Init()
 {
-	DKCreate("DKSearch.html");
+	DKCreate("DKSearch/DKSearch.html");
 }
 
 ///////////////////////
 function DKSearch_End()
 {
-	DKClose("DKSearch.html");
+	DKClose("DKSearch/DKSearch.html");
 }
 
 ////////////////////////////////

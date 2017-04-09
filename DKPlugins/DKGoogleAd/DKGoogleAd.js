@@ -89,6 +89,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		//DKWidget_SetAttribute(iframe, "height", String(px_height));
 		DKWidget_SetAttribute(iframe, "height", "100%");
 		DKWidget_SetProperty(iframe, "position", "absolute");
+		DKWidget_SetProperty(iframe, "border", "0");
 		//DKWidget_SetProperty(iframe, "width", String(px_width)+"rem");
 		//DKWidget_SetProperty(iframe, "height", String(px_width)+"rem");
 		var currentBrowser = DKCef_GetCurrentBrowser(iframe);
