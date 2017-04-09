@@ -45,16 +45,26 @@ function Receiver_OnEvent(event)
 			DKLog("Client: Power\n", DKDEBUG);
 		}
 		if(DKWidget_GetValue(event) == "VolumeUp"){
-			var volume = DK_GetVolume();
-			DK_ChangeVolume(volume+0.1);
 			DKLog("Client: VolumeUp\n", DKDEBUG);
-			DKTray_ShowBalloon("Volume Up");
+			var volume = DK_GetVolume();
+			if(DK_GetOS() != "Linux"){
+				DK_ChangeVolume(volume+0.1);
+				DKTray_ShowBalloon("Volume Up");
+			}
+			else{
+				DK_ChangeVolume(volume+5000);
+			}
 		}
 		if(DKWidget_GetValue(event) == "VolumeDown"){
-			var volume = DK_GetVolume();
-			DK_ChangeVolume(volume-0.1);
 			DKLog("Client: VolumeDown\n", DKDEBUG);
-			DKTray_ShowBalloon("Volume Down");
+			var volume = DK_GetVolume();
+			if(DK_GetOS() != "Linux"){
+				DK_ChangeVolume(volume-0.1);
+				DKTray_ShowBalloon("Volume Down");
+			}
+			else{
+				DK_ChangeVolume(volume-5000);
+			}
 		}
 	}
 }
