@@ -21,12 +21,22 @@ function Receiver_OnEvent(event)
 	if(DK_Id(event, "VolumeUp_Button")){
 		DKLog("Button: VolumeUp \n", DKDEBUG);
 		var volume = DK_GetVolume();
-		DK_ChangeVolume(volume+0.1);
+		if(DK_GetOS() == "Linux"){
+			DK_ChangeVolume(volume+5000);
+		}
+		else{
+			DK_ChangeVolume(volume+0.1);
+		}
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
 		DKLog("Button: Volume Down\n", DKDEBUG);
 		var volume = DK_GetVolume();
-		DK_ChangeVolume(volume-0.1);
+		if(DK_GetOS() == "Linux"){
+			DK_ChangeVolume(volume-5000);
+		}
+		else{
+			DK_ChangeVolume(volume-0.1);
+		}
 	}
 	
 	if(DK_Type(event, "server")){
