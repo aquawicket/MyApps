@@ -27,7 +27,7 @@ DKCreate("DKDebug/DKDebug.js", function(){});
 ////////////////////////////
 function User_OnEvent(event)  //Duktape events
 {
-	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	//DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Type(event, "keydown")){
 		if(DKWidget_GetValue(event) == "4"){ //Exit for ANDROID
 		    DK_Exit();
@@ -58,7 +58,6 @@ if(DK_GetJavascript() == "Duktape" && USE_ROCKET && USE_CEF){  //Create Cef fram
 	DKCef_SetFocus(iframe);
 }
 else if(DK_GetJavascript() == "Duktape" && USE_CEF){ //Create Cef frame in SDL
-	//DKCreate("DKWidget/DKWidget.js");
 	var width = DKWindow_GetWidth();
 	var height = DKWindow_GetHeight();
 	DKCreate("DKCef,CefSDL,0,0,"+width+","+height+","+DKApp_url);
