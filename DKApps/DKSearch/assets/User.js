@@ -5,13 +5,13 @@ var DKApp_url = "file:///"+DKAssets_LocalAssets()+"/index.html";
 //var DKApp_url = "http://digitalknob.com/DKSearch/index.html";
 
 
-
 if(DK_GetOS() == "Android" || DK_GetOS() == "iOS"){
 	USE_CEF = 0; //not available for mobile devices
 }
 else{
 	USE_Webview = 0; //not available for Desktop devices
 }
+
 
 if(DK_GetJavascript() == "Duktape"){
 	DKCreate("DKWindow");
