@@ -5,7 +5,7 @@ if(DK_GetOS() == "Android"){
 	var USE_Webview = 1;
 }
 
-if(DK_GetBrowser() == "Rocket"){
+if(DK_GetJavascript() == "Duktape"){
 	DKCreate("DKWindow");
 	DKCreate("DKRocket");
 	DKCreate("DKWidget");
@@ -17,7 +17,7 @@ DKCreate("DKDebug/DKDebug.js", function(){});
 
 
 ////////////////////////////
-function User_OnEvent(event)  //Duktape
+function User_OnEvent(event)  //Duktape events
 {
 	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Type(event, "keydown")){
@@ -27,7 +27,7 @@ function User_OnEvent(event)  //Duktape
 	}
 }
 
-if(DK_GetBrowser() == "Rocket" && USE_CEF){
+if(DK_GetJavascript() == "Duktape" && USE_CEF){
 	var assets = DKAssets_LocalAssets();
 	var url = "file:///"+assets+"/index.html";
 	//var url = "http://digitalknob.com/DKSearch/index.html";
@@ -44,7 +44,7 @@ if(DK_GetBrowser() == "Rocket" && USE_CEF){
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
 }
-else if(DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
+else if(DK_GetJavascript() == "Duktape" && USE_Webview){ //Duktape
 	var assets = DKAssets_LocalAssets();
 	var url = "file:///"+assets+"/index.html";
 	DKAddEvent("GLOBAL", "keydown", User_OnEvent);  //Exit for ANDROID
