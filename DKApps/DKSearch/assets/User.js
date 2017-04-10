@@ -13,17 +13,14 @@ if(DK_GetBrowser() == "Rocket"){
 		DKCreate("DKTray/DKTray.js", function(){});
 	}
 }
-
 DKCreate("DKDebug/DKDebug.js", function(){});
 
 
-DKAddEvent("GLOBAL", "keydown", User_OnEvent);
 ////////////////////////////
 function User_OnEvent(event)  //Duktape
 {
 	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Type(event, "keydown")){
-		//DKLog("keydown ="+DKWidget_GetValue(event)+"\n", DKINFO);
 		if(DKWidget_GetValue(event) == "4"){ //Exit for ANDROID
 		    DK_Exit();
 		}
@@ -47,7 +44,12 @@ if(DK_GetBrowser() == "Rocket" && USE_CEF){
 	DKCef_SetUrl(iframe, url, currentBrowser);
 	DKCef_SetFocus(iframe);
 }
-else{
+else if(DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
+	var assets = DKAssets_LocalAssets();
+	var url = "file:///"+assets+"/index.html";
+	DKAddEvent("GLOBAL", "keydown", User_OnEvent);  //Exit for ANDROID
+}
+else{  //Duktape or V8 or Webview
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKSearch/DKSearch.js", function(){});
 	
@@ -57,5 +59,3 @@ else{
 		DKWidget_SetProperty(id, "bottom", "0rem");
 	});
 }
-
-

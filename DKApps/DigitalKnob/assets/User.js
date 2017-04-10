@@ -46,13 +46,6 @@ if(DK_GetBrowser() == "Rocket" && USE_CEF){ //Duktape
 	DKCef_SetFocus(iframe);
 
 	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", User_OnEvent);
-	/*
-	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-		DKWidget_RemoveProperty(id, "top");
-		DKWidget_SetProperty(id, "bottom", "0rem");
-	});
-	*/
 }
 else if(DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
 	var assets = DKAssets_LocalAssets();
@@ -62,13 +55,10 @@ else if(DK_GetBrowser() == "Rocket" && USE_Webview){ //Duktape
 else{  //Duktape or V8 or Webview
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("Digitalknob/Digitalknob.js", function(){});
-	//DKCreate("rem2.js", function(){});
-	
-	//if(DK_GetBrowser() != "CEF"){ 
-		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-			DKWidget_RemoveProperty(id, "top");
-			DKWidget_SetProperty(id, "bottom", "0rem");
-		});
-	//}
+
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		DKWidget_RemoveProperty(id, "top");
+		DKWidget_SetProperty(id, "bottom", "0rem");
+	});
 }
