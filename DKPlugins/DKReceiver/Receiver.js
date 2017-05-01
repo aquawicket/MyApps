@@ -4,6 +4,7 @@ function Receiver_Init()
 {
 	DKCreate("DKReceiver/Receiver.html");	
 	DKCreate("DKServer");
+	DKCreate("DKServerWebsockets"); //Test
 	var IP = DK_GetLocalIP();
 	DKWidget_SetInnerHtml("IPAddress", IP);
 	
