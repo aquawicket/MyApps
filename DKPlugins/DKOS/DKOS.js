@@ -1,6 +1,4 @@
 DKCreate("DKRocket/DKBrowser.css");
-DKCreate("DKWindow");
-DKCreate("DKRocket");
 var OS = DK_GetOS();
 DKLog("OS="+OS+"\n", DKINFO);
 if(OS != "iOS" && OS != "Android"){
