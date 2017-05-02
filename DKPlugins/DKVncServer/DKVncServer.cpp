@@ -18,16 +18,20 @@
 #include "radon.h"
 
 static rfbScreenInfoPtr rfbScreen;
+static int bpp = 4;
+
+#ifdef LINUX
 static Display *disp;
 static Window root;
-static int bpp = 4;
 static XImage *image;
+#endif
 
 
 ////////////////////////
 static void DrawBuffer()
 {
     //Capture Desktop
+#ifdef LINUX
     image = XGetImage(disp, root, 0, 0, rfbScreen->width, rfbScreen->height, AllPlanes, ZPixmap);
     
     int w,h;
@@ -51,6 +55,7 @@ static void DrawBuffer()
     rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
     XDestroyImage(image);
     image = NULL;
+#endif
 }
 
 /* Here we create a structure so that every client has its own pointer */
@@ -168,9 +173,11 @@ static void dokey(rfbBool down,rfbKeySym key,rfbClientPtr cl)
 ////////////////////////
 void DKVncServer::Init()
 {
+#ifdef LINUX
     disp = XOpenDisplay(NULL);
     root = DefaultRootWindow(disp);
     XMapWindow(disp, root);
+#endif
 
     // Get width and height of the display
     int windowWidth = 800;//XDisplayWidth(disp, 0);
