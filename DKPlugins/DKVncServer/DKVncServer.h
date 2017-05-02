@@ -3,6 +3,7 @@
 #define DKVncServer_H
 #include "DK.h"
 
+#include <rfb/rfb.h>
 
 ///////////////////////////////////////
 class DKVncServer : public DKObjectT<DKVncServer>
@@ -10,7 +11,9 @@ class DKVncServer : public DKObjectT<DKVncServer>
 public:
 	void Init();
 	void End();
-
+	void Loop();
+	
+	rfbScreenInfoPtr rfbScreen;
 };
 
 
