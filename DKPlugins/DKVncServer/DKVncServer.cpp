@@ -41,6 +41,7 @@ static void initBuffer(char* buffer, int width, int height)
 
 static rfbBool DrawBuffer(rfbClientPtr cl)
 {
+  /*
   //white
   int i,j;
   for(j=0;j<cl->screen->height;++j) {
@@ -54,16 +55,33 @@ static rfbBool DrawBuffer(rfbClientPtr cl)
     cl->screen->frameBuffer[j*cl->screen->width*bpp+2]=0xff;
     cl->screen->frameBuffer[j*cl->screen->width*bpp+3]=0xff;
   }
+  */
   
-  /*
   //Capture Desktop
     disp = XOpenDisplay(NULL);
     root = DefaultRootWindow(disp);
     XMapWindow(disp, root);
     XImage *image = XGetImage(disp, root, 0, 0, cl->screen->width, cl->screen->height, AllPlanes, ZPixmap);
-    memcpy(&cl->screen->frameBuffer, &image, sizeof(image));
+    
+    int w,h;
+    for(h=0;h<cl->screen->height;++h) {
+      for(w=0;w<cl->screen->width;++w) {
+	  unsigned long xpixel = XGetPixel(image, w, h);
+	  unsigned int red = (xpixel & 0xff000000) >> 24;
+	  unsigned int green = (xpixel & 0x00ff0000) >> 16;
+	  unsigned int blue = (xpixel & 0x0000ff00) >> 8;
+
+	  cl->screen->frameBuffer[(h*cl->screen->width+w)*bpp+0]=red;
+	  cl->screen->frameBuffer[(h*cl->screen->width+w)*bpp+1]=green;
+	  cl->screen->frameBuffer[(h*cl->screen->width+w)*bpp+2]=blue;
+      }
+      cl->screen->frameBuffer[h*cl->screen->width*bpp+0]=0xff;
+      cl->screen->frameBuffer[h*cl->screen->width*bpp+1]=0xff;
+      cl->screen->frameBuffer[h*cl->screen->width*bpp+2]=0xff;
+      cl->screen->frameBuffer[h*cl->screen->width*bpp+3]=0xff;
+    }
+    
     rfbMarkRectAsModified(cl->screen,0,0,cl->screen->width,cl->screen->height);
-    */
     return true;
 }
 
@@ -189,8 +207,8 @@ void DKVncServer::Init()
     XMapWindow(disp, root);
 
     // Get width and height of the display
-    int windowHeight = 400;//XDisplayHeight (disp, 0);
-    int windowWidth = 400;//XDisplayWidth(disp, 0);
+    int windowHeight = 800;//XDisplayHeight (disp, 0);
+    int windowWidth = 600;//XDisplayWidth(disp, 0);
     
   rfbScreen = rfbGetScreen(&DKApp::argc,DKApp::argv,windowWidth,windowHeight,8,3,bpp);
   if(!rfbScreen){
