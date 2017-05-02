@@ -13,7 +13,7 @@ public:
 	void End();
 	void Loop();
 	
-	rfbScreenInfoPtr rfbScreen;
+	
 };
 
 

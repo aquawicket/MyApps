@@ -17,9 +17,11 @@
 #include <rfb/keysym.h>
 #include "radon.h"
 
+static rfbScreenInfoPtr rfbScreen;
 static Display *disp;
 static Window root;
 static int bpp = 4;
+
 
 
 static void initBuffer(char* buffer, int width, int height)
@@ -39,49 +41,33 @@ static void initBuffer(char* buffer, int width, int height)
   }
 }
 
-static rfbBool DrawBuffer(rfbClientPtr cl)
+static rfbBool DrawBuffer()
 {
-  /*
-  //white
-  int i,j;
-  for(j=0;j<cl->screen->height;++j) {
-    for(i=0;i<cl->screen->width;++i) {
-      cl->screen->frameBuffer[(j*cl->screen->width+i)*bpp+0]=0xff;
-      cl->screen->frameBuffer[(j*cl->screen->width+i)*bpp+1]=0xff;
-      cl->screen->frameBuffer[(j*cl->screen->width+i)*bpp+2]=0xff;
-    }
-    cl->screen->frameBuffer[j*cl->screen->width*bpp+0]=0xff;
-    cl->screen->frameBuffer[j*cl->screen->width*bpp+1]=0xff;
-    cl->screen->frameBuffer[j*cl->screen->width*bpp+2]=0xff;
-    cl->screen->frameBuffer[j*cl->screen->width*bpp+3]=0xff;
-  }
-  */
-  
   //Capture Desktop
     disp = XOpenDisplay(NULL);
     root = DefaultRootWindow(disp);
     XMapWindow(disp, root);
-    XImage *image = XGetImage(disp, root, 0, 0, cl->screen->width, cl->screen->height, AllPlanes, ZPixmap);
+    XImage *image = XGetImage(disp, root, 0, 0, rfbScreen->width, rfbScreen->height, AllPlanes, ZPixmap);
     
     int w,h;
-    for(h=0;h<cl->screen->height;++h) {
-      for(w=0;w<cl->screen->width;++w) {
+    for(h=0;h<rfbScreen->height;++h) {
+      for(w=0;w<rfbScreen->width;++w) {
 	  unsigned long xpixel = XGetPixel(image, w, h);
-	  unsigned int red = (xpixel & 0xff000000) >> 24;
-	  unsigned int green = (xpixel & 0x00ff0000) >> 16;
-	  unsigned int blue = (xpixel & 0x0000ff00) >> 8;
+	  unsigned int red   = (xpixel & 0x00ff0000) >> 16;
+	  unsigned int green = (xpixel & 0x0000ff00) >> 8;
+	  unsigned int blue  = (xpixel & 0x000000ff);
 
-	  cl->screen->frameBuffer[(h*cl->screen->width+w)*bpp+0]=red;
-	  cl->screen->frameBuffer[(h*cl->screen->width+w)*bpp+1]=green;
-	  cl->screen->frameBuffer[(h*cl->screen->width+w)*bpp+2]=blue;
+	  rfbScreen->frameBuffer[(h*rfbScreen->width+w)*bpp+0]=red;
+	  rfbScreen->frameBuffer[(h*rfbScreen->width+w)*bpp+1]=green;
+	  rfbScreen->frameBuffer[(h*rfbScreen->width+w)*bpp+2]=blue;
       }
-      cl->screen->frameBuffer[h*cl->screen->width*bpp+0]=0xff;
-      cl->screen->frameBuffer[h*cl->screen->width*bpp+1]=0xff;
-      cl->screen->frameBuffer[h*cl->screen->width*bpp+2]=0xff;
-      cl->screen->frameBuffer[h*cl->screen->width*bpp+3]=0xff;
+      rfbScreen->frameBuffer[h*rfbScreen->width*bpp+0]=0xff;
+      rfbScreen->frameBuffer[h*rfbScreen->width*bpp+1]=0xff;
+      rfbScreen->frameBuffer[h*rfbScreen->width*bpp+2]=0xff;
+      rfbScreen->frameBuffer[h*rfbScreen->width*bpp+3]=0xff;
     }
     
-    rfbMarkRectAsModified(cl->screen,0,0,cl->screen->width,cl->screen->height);
+    rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
     return true;
 }
 
@@ -207,8 +193,8 @@ void DKVncServer::Init()
     XMapWindow(disp, root);
 
     // Get width and height of the display
-    int windowHeight = 800;//XDisplayHeight (disp, 0);
-    int windowWidth = 600;//XDisplayWidth(disp, 0);
+    int windowWidth = 800;//XDisplayWidth(disp, 0);
+    int windowHeight = 600;//XDisplayHeight (disp, 0);
     
   rfbScreen = rfbGetScreen(&DKApp::argc,DKApp::argv,windowWidth,windowHeight,8,3,bpp);
   if(!rfbScreen){
@@ -219,7 +205,7 @@ void DKVncServer::Init()
   rfbScreen->alwaysShared = TRUE;
   rfbScreen->ptrAddEvent = doptr;
   rfbScreen->kbdAddEvent = dokey;
-  rfbScreen->setTranslateFunction = DrawBuffer;
+  //rfbScreen->setTranslateFunction = DrawBuffer;
   rfbScreen->newClientHook = newclient;
   rfbScreen->httpDir = "../webclients";
   rfbScreen->httpEnableProxyConnect = TRUE;
@@ -241,6 +227,6 @@ void DKVncServer::End()
 void DKVncServer::Loop()
 {
   rfbProcessEvents(rfbScreen,100000);
-  //DrawBuffer(rfbScreen->frameBuffer);
+  DrawBuffer();
   //rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
 }
