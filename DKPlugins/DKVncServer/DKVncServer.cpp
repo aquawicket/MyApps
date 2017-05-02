@@ -21,33 +21,14 @@ static rfbScreenInfoPtr rfbScreen;
 static Display *disp;
 static Window root;
 static int bpp = 4;
+static XImage *image;
 
 
-
-static void initBuffer(char* buffer, int width, int height)
+////////////////////////
+static void DrawBuffer()
 {
-  //black
-  int i,j;
-  for(j=0;j<height;++j) {
-    for(i=0;i<width;++i) {
-      buffer[(j*width+i)*bpp+0]=0x00;
-      buffer[(j*width+i)*bpp+1]=0x00;
-      buffer[(j*width+i)*bpp+2]=0x00;
-    }
-    buffer[j*width*bpp+0]=0xff;
-    buffer[j*width*bpp+1]=0xff;
-    buffer[j*width*bpp+2]=0xff;
-    buffer[j*width*bpp+3]=0xff;
-  }
-}
-
-static rfbBool DrawBuffer()
-{
-  //Capture Desktop
-    disp = XOpenDisplay(NULL);
-    root = DefaultRootWindow(disp);
-    XMapWindow(disp, root);
-    XImage *image = XGetImage(disp, root, 0, 0, rfbScreen->width, rfbScreen->height, AllPlanes, ZPixmap);
+    //Capture Desktop
+    image = XGetImage(disp, root, 0, 0, rfbScreen->width, rfbScreen->height, AllPlanes, ZPixmap);
     
     int w,h;
     for(h=0;h<rfbScreen->height;++h) {
@@ -68,7 +49,8 @@ static rfbBool DrawBuffer()
     }
     
     rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
-    return true;
+    XDestroyImage(image);
+    image = NULL;
 }
 
 /* Here we create a structure so that every client has its own pointer */
@@ -97,7 +79,6 @@ static void newframebuffer(rfbScreenInfoPtr screen, int width, int height)
   char *oldfb, *newfb;
   oldfb = (char*)screen->frameBuffer;
   newfb = (char*)malloc(width * height * bpp);
-  initBuffer(newfb, width, height);
   rfbNewFramebuffer(screen, (char*)newfb, width, height, 8, 3, bpp);
   free(oldfb);
 }
@@ -154,22 +135,21 @@ static void dokey(rfbBool down,rfbKeySym key,rfbClientPtr cl)
     else if(key==XK_F11)
       rfbShutdownServer(cl->screen,FALSE); //close down server, but wait for all clients to disconnect
     else if(key==XK_Page_Up) {
-      initBuffer(cl->screen->frameBuffer, cl->screen->width, cl->screen->height);
       rfbMarkRectAsModified(cl->screen,0,0,cl->screen->width,cl->screen->height);
     } else if (key == XK_Up) {
       if (cl->screen->width < 1024) {
         if (cl->screen->width < 800) {
-          newframebuffer(cl->screen, 800, 600);
+          //newframebuffer(cl->screen, 800, 600);
         } else {
-          newframebuffer(cl->screen, 1024, 768);
+          //ewframebuffer(cl->screen, 1024, 768);
         }
       }
     } else if(key==XK_Down) {
       if (cl->screen->width > 640) {
         if (cl->screen->width > 800) {
-          newframebuffer(cl->screen, 800, 600);
+          //newframebuffer(cl->screen, 800, 600);
         } else {
-          newframebuffer(cl->screen, 640, 480);
+          //newframebuffer(cl->screen, 640, 480);
         }
       }
     } 
@@ -210,11 +190,12 @@ void DKVncServer::Init()
   rfbScreen->httpDir = "../webclients";
   rfbScreen->httpEnableProxyConnect = TRUE;
   
-  initBuffer(rfbScreen->frameBuffer, windowWidth, windowHeight);
+  //initBuffer(rfbScreen->frameBuffer, windowWidth, windowHeight);
   rfbDrawString(rfbScreen,&radonFont,10,10,"DKVncServer",0xffffff);
   
   rfbInitServer(rfbScreen);  
   DKApp::AppendLoopFunc(&DKVncServer::Loop, this);
+  DKApp::SetFramerate(4);
 }
 
 ///////////////////////
@@ -228,5 +209,4 @@ void DKVncServer::Loop()
 {
   rfbProcessEvents(rfbScreen,100000);
   DrawBuffer();
-  //rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
 }
