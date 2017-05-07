@@ -20,7 +20,7 @@ function Animation_End()
 ///////////////////////////////
 function Animation_OnEvent(event)
 {
-	DKLog("Animation_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Animation_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "box1")){
 		pos1 = -100;

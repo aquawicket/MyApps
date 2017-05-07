@@ -10,7 +10,7 @@ function Panel_Init()
 /////////////////////////////
 function Panel_OnEvent(event)
 {
-	DKLog("Panel_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Panel_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "login_Button")){
 		//DKLog("login_Button \n", DKDEBUG);

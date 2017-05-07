@@ -10,7 +10,7 @@ function Documents_Init()
 /////////////////////////////////
 function Documents_OnEvent(event)
 {
-	DKLog("Documents_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Documents_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_GetId(event).indexOf("delete_") > -1){
 		var file = DK_GetId(event).replace("delete_", "");

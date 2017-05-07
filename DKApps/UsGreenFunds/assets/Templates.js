@@ -11,7 +11,7 @@ function Templates_Init()
 /////////////////////////////
 function Templates_OnEvent(event)
 {
-	DKLog("Templates_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Templates_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "add_template_link")){
 		Templates_AddLink(DKWidget_GetValue("template_text"));

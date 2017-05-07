@@ -37,7 +37,7 @@ function DKApp_End()
 /////////////////////////////
 function DKApp_OnEvent(event)
 {
-	DKLog("DKApp_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKApp_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "DKApp_webapp")){
 		DKWidget_OpenLink(web_app);

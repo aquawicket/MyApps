@@ -13,7 +13,7 @@ function DKGoogleAd_End()
 //////////////////////////////////
 function DKGoogleAd_OnEvent(event)
 {
-	DKLog("DKGoogleAd_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKGoogleAd_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 }
 
 ///////////////////////////////////////////////////

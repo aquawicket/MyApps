@@ -62,10 +62,10 @@ function DKBrowser_End()
 /////////////////////////////////
 function DKBrowser_OnEvent(event)
 {
-	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Type(event, "keydown")){
-		DKBrowser_ProcessKey(DKWidget_GetValue(event));
+		DKBrowser_ProcessKey(DK_GetValue(event));
 	}
 	//if(DK_Type(event, "mousedown")){
 	//	if(DK_GetId(event) != "DKCefFrame"){
@@ -139,7 +139,7 @@ function DKBrowser_OnEvent(event)
 		DKCef_SetUrl("DKBrowser_cef", url, DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Type(event, "DKCef_OnLoadingStateChange")){
-		var num = parseInt(DKWidget_GetValue(event));
+		var num = parseInt(DK_GetValue(event));
 		//DKLog("DKCef_OnLoadingStateChange, "+num+"\n", DKINFO);
 		//DKLog(DKCef_GetUrl("DKBrowser_cef", num)+"\n", DKINFO);
 		var url = DKCef_GetUrl("DKBrowser_cef", num);
@@ -149,18 +149,18 @@ function DKBrowser_OnEvent(event)
 		return;
 	}
 	if(DK_Type(event, "DKCef_OnLoadError")){
-		DKBrowser_OnLoadError(DKWidget_GetValue(event));
+		DKBrowser_OnLoadError(DK_GetValue(event));
 	}
 	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
 		DKLog("DKCef_OnQueueNewBrowser \n");
 		DKBrowser_NewTab();
-		DKCef_SetUrl("DKBrowser_cef", DKWidget_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"));
-		DKBrowser_SetUrlBar(DKWidget_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"))
+		DKCef_SetUrl("DKBrowser_cef", DK_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKBrowser_SetUrlBar(DK_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"))
 		return;
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
 		DKLog("DKBrowser_OnEvent("+event+")\n", DKDEBUG);	
-		var data = DKWidget_GetValue(event);
+		var data = DK_GetValue(event);
 		var arry = data.split(",");
 		selection = arry[0];
 		source_url = arry[1];
@@ -169,7 +169,7 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Type(event, "DKCef_OnFullscreen")){
 		DKLog("DKCef_OnFullscreen");
-		var value = DKWidget_GetValue(event);
+		var value = DK_GetValue(event);
 		if(value == "true"){
 			DKWidget_Hide("Tabs");
 			DKWidget_Hide("Menu");

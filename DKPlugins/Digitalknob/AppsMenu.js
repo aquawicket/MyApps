@@ -94,7 +94,7 @@ function AppsMenu_AddApp(name)
 ////////////////////////////////
 function AppsMenu_OnEvent(event)
 {
-	DKLog("AppsMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("AppsMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	DKWidget_SetInnerHtml("Digitalknob_content",""); //clear the content
 	

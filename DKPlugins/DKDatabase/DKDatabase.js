@@ -40,7 +40,7 @@ function DKDatabase_End()
 //////////////////////////////////
 function DKDatabase_OnEvent(event)
 
-{	DKLog("DKDatabase_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+{	DKLog("DKDatabase_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 
 	if(DK_Id(event, "DatabaseConnect")){
 		DKDatabase_Connect();
@@ -96,23 +96,23 @@ function DKDatabase_OnEvent(event)
 	}
 	if(DK_Id(event, "DatabaseDrop")){
 		//DKLog("DatabaseDrop \n", DKINFO);
-		DKMySql_Database(DKWidget_GetValue(event));
+		DKMySql_Database(DK_GetValue(event));
 		DKDatabase_UpdateTables();
 		DKDatabase_UpdateRecords("");
 	}
 	if(DK_Id(event, "TableDrop")){
-		DKDatabase_UpdateRecords(DKWidget_GetValue(event));
+		DKDatabase_UpdateRecords(DK_GetValue(event));
 	}
 	if(DK_Type(event, "AddDatabase")){	
-		var query = "CREATE DATABASE "+DKWidget_GetValue(event);
+		var query = "CREATE DATABASE "+DK_GetValue(event);
 		DKMySql_Query(query);
 	}
 	if(DK_Type(event, "AddTable")){
-		var query = "CREATE TABLE "+DKWidget_GetValue(event)+" (ID INT(10) NOT NULL AUTO_INCREMENT, PRIMARY KEY (ID))";
+		var query = "CREATE TABLE "+DK_GetValue(event)+" (ID INT(10) NOT NULL AUTO_INCREMENT, PRIMARY KEY (ID))";
 		DKMySql_Query(query);
 	}
 	if(DK_Type(event, "AddColumn")){
-		var query ="ALTER TABLE "+DKWidget_GetValue("TableDrop")+" ADD "+DKWidget_GetValue(event)+" VARCHAR(60) NOT NULL";
+		var query ="ALTER TABLE "+DKWidget_GetValue("TableDrop")+" ADD "+DK_GetValue(event)+" VARCHAR(60) NOT NULL";
 		DKMySql_Query(query);
 		DKDatabase_UpdateRecords(DKWidget_GetValue("TableDrop"));
 	}

@@ -56,7 +56,7 @@ function TaskbarMenu_End()
 ///////////////////////////////////
 function TaskbarMenu_OnEvent(event)
 {
-	DKLog("TaskbarMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("TaskbarMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "FileExplorer")){
 		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
@@ -68,7 +68,7 @@ function TaskbarMenu_OnEvent(event)
 	}
 	if(DK_Type(event, "OpenFile")){
 		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
-			var file = DKWidget_GetValue(event);
+			var file = DK_GetValue(event);
 			DKFileAssociation_Open(file);		
 			DKRemoveEvent("TaskbarMenu", "OpenFile", TaskbarMenu_OnEvent);
 		});
@@ -173,7 +173,7 @@ function TaskbarMenu_OnEvent(event)
 		return;
 	}
 	if(DK_Id(event, "TaskbarMenu_Run")){
-		var key = DKWidget_GetValue(event);
+		var key = DK_GetValue(event);
 		DKLog("TaskbarMenu_Run: key="+key+"\n", DKINFO);
 		if(key != 72){ return; }
 		TaskbarMenu_Run(DKWidget_GetValue("TaskbarMenu_Run"))

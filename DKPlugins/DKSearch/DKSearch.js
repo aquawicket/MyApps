@@ -12,6 +12,6 @@ function DKSearch_End()
 
 ////////////////////////////////
 function DKSearch_OnEvent(event)
-{	DKLog("DKSearch_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+{	DKLog("DKSearch_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 
 }

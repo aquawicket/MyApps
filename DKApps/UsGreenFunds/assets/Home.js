@@ -20,13 +20,13 @@ function Home_Init()
 ////////////////////////////
 function Home_OnEvent(event)
 {
-	DKLog("Home_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Home_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "login")){
 		Home_Login();
 	}
 	if(DK_Type(event, "keydown")){
-		if(DKWidget_GetValue(event) == "13"){
+		if(DK_GetValue(event) == "13"){
 			Home_Login();
 		}
 	}

@@ -20,7 +20,7 @@ function Remote_Init()
 ////////////////////////////////
 function Remote_OnEvent(event)
 {
-	DKLog("Remote_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Remote_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "Power")){
 		DKClient_Send("Power");
@@ -47,8 +47,8 @@ function Remote_OnEvent(event)
 	}
 	
 	if(DK_Type(event, "client")){
-		DKLog("client: "+DKWidget_GetValue(event)+"\n", DKDEBUG);
-		if(DKWidget_GetValue(event) == "connected"){
+		DKLog("client: "+DK_GetValue(event)+"\n", DKDEBUG);
+		if(DK_GetValue(event) == "connected"){
 			DKWidget_Hide("address");
 			DKWidget_SetAttribute("Wifi", "src", "DKRemote/wifiGreen.png");
 			//DK_CallFunc("DKOSGRocket::DirtyRefresh","");
@@ -56,7 +56,7 @@ function Remote_OnEvent(event)
 			var address = DKWidget_GetValue("address");
 			DKFile_SetSetting(assets+"remote.txt", "[SERVER]", address); //provide full path in case file does not exist
 		}
-		if(DKWidget_GetValue(event) == "disconnected"){
+		if(DK_GetValue(event) == "disconnected"){
 			DKWidget_Show("address");
 			DKWidget_SetAttribute("Wifi", "src", "DKRemote/wifiRed.png");
 		}

@@ -47,7 +47,7 @@ DKCreate("Panel0.html");
 //////////////////////////////
 function Panel0_OnEvent(event)
 {
-	DKLog("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DKWidget_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_GetOS() == "Browser"){
 		DKVideo_RegisterEndVideo("DKVideo", Panel0_NextVideo);
