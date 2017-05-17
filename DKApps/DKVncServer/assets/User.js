@@ -1,3 +1,1 @@
-//TODO
-
 DKCreate("DKVncServer", function(){});
