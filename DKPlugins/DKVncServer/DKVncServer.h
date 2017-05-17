@@ -13,7 +13,6 @@ public:
 	void End();
 	void Loop();
 	
-	
 };
 
 
