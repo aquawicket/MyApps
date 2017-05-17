@@ -1,3 +1,3 @@
 //TODO
 
-//DKCreate("DKVncServer.js", function(){});
+DKCreate("DKVncServer", function(){});
