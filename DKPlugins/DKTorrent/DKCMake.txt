@@ -1,0 +1,3 @@
+DKDEPEND(libtorrent-master)
+
+DKPLUGIN(DKTorrent)
