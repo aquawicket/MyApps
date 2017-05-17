@@ -3,6 +3,11 @@
 #define DKTorrent_H
 #include "DK.h"
 
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <fstream>
+
 #include <libtorrent/session.hpp>
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/torrent_handle.hpp>

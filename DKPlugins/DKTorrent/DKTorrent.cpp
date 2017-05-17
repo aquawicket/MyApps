@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #include "DKTorrent.h"
 
-#include <iostream>
-#include <thread>
-#include <chrono>
-#include <fstream>
-
 
 // return the name of a torrent status enum
 char const* state(lt::torrent_status::state_t s)
@@ -94,14 +89,16 @@ void DKTorrent::Loop()
 void DKTorrent::AddTorrent(const DKString& url)
 {
 	lt::settings_pack pack;
+
 	pack.set_int(lt::settings_pack::alert_mask
 		, lt::alert::error_notification
 		| lt::alert::storage_notification
 		| lt::alert::status_notification);
-
+	
 	ses = new lt::session(pack);
 	lt::add_torrent_params atp;
 	last_save_resume = clk::now();
+
 
 	// load resume data from disk and pass it in as we add the magnet link
 	std::ifstream ifs(".resume_file", std::ios_base::binary);
