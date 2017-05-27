@@ -35,30 +35,30 @@ function AllStores_DoSearch(string)
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	
 	if(string){
-		//AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
-		//AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
+		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
+		AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
 		AllStores_FiveMilesToArry("https://www.5milesapp.com/", function(){
-		//AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
-		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
+		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
 			AllStores_ShowItems();
-		//});
-		//});
 		});
-		//});
-		//})
+		});
+		});
+		});
+		})
 	}
 	else{
-		//AllStores_CloseFiveToArry("https://www.close5.com", function(){
-		//AllStores_OfferUpToArry("https://offerup.com/", function(){
+		AllStores_CloseFiveToArry("https://www.close5.com", function(){
+		AllStores_OfferUpToArry("https://offerup.com/", function(){
 		AllStores_FiveMilesToArry("https://www.5milesapp.com/", function(){
-		//AllStores_LetGoToArry("https://us.letgo.com/en", function(){
-		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
 			AllStores_ShowItems();
-		//});
-		//});
 		});
-		//});
-		//});
+		});
+		});
+		});
+		});
 	}
 }
 
@@ -110,7 +110,7 @@ function AllStores_CraigslistToArry(url, callback)
 			
 			var items = div.getElementsByClassName("result-row");
 			for(var i=0; i<items.length; i++){
-				DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -211,17 +211,21 @@ function AllStores_FiveMilesToArry(url, callback)
 			div.innerHTML = rstring;
 			
 			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
-			for(var i=0; i<items.length; i++){
-				DKLog(items[i].parentNode.innerHTML+"\n", DKINFO);
+			for(var i=1; i<items.length; i++){
+				DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
 				item_data[1] = "5miles.png";
-				item_data[2];
-				item_data[3];
-				item_data[4];
-				item_data[5];
-				item_data[6];
+				item_data[2] = items[i].getElementsByClassName("waterItemImg")[0].alt; //img
+				var alinks = items[i].getElementsByClassName("waterItem_a_link")
+				item_data[3] = items[i].getElementsByClassName("waterItem_a_link")[alinks.length-1].innerHTML; //location
+				item_data[4] = items[i].getElementsByClassName("waterItemImg")[0].src; //img
+				if(items[i].getElementsByClassName("waterItemImg_par")[0]){
+					item_data[5] = "https://www.5milesapp.com/"+items[i].getElementsByClassName("waterItemImg_par")[0].href; //img
+					item_data[5] = item_data[5].replace("file:///C:","");
+				}
+				item_data[6] = items[i].getElementsByClassName("waterItem_price_now")[0].innerHTML; //img
 				item_arry.push(item_data);
 			}
 		}
