@@ -193,7 +193,12 @@ function AllStores_CraigslistToArry(url, callback)
 				else{
 					item_data[4] = "https://www.craigslist.org/images/peace.jpg";
 				}
-				item_data[5] = "https://orangecounty.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
+				if(items[i].getElementsByClassName("result-image gallery")[0].href.indexOf("https://") == -1){
+					item_data[5] = "https://orangecounty.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
+				}
+				else{
+					item_data[5] = items[i].getElementsByClassName("result-image gallery")[0].href;  //url
+				}
 				item_data[5] = item_data[5].replace("file:///C:","");
 				item_data[5] = item_data[5].replace("http://digitalknob.com","");
 				if(items[i].getElementsByClassName("result-price")[0]){
