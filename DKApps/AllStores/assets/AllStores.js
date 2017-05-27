@@ -40,7 +40,7 @@ function AllStores_LetGoToArry(callback)
 				
 				var item_data = new Array();
 				item_data[0] = "id";
-				item_data[1] = "letgo";
+				item_data[1] = "letgo.png";
 				
 				if(items[i].getElementsByClassName("img portrait")[0]){
 					item_data[2] = items[i].getElementsByClassName("img portrait")[0].title;  //title
@@ -76,7 +76,7 @@ function AllStores_CraigslistToArry(callback)
 				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				var item_data = new Array();
 				item_data[0] = "id";
-				item_data[1] = "craigslist";
+				item_data[1] = "craigslist.png";
 				item_data[2] = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 				if(items[i].getElementsByClassName("result-hood")[0]){
 					item_data[3] = items[i].getElementsByClassName("result-hood")[0].innerHTML;  //location
@@ -127,6 +127,7 @@ function AllStores_ShowItems()
 		itemdiv.style.overflow = "hidden";
 		
 		var imgdiv = document.createElement('div');
+		imgdiv.style.position = "relative";
 		imgdiv.style.display = "block";
 		imgdiv.style.width = "230rem";
 		imgdiv.style.height = "300rem";
@@ -151,6 +152,13 @@ function AllStores_ShowItems()
 		itemimg.style.margin = "auto";
 		itemurl.appendChild(itemimg);
 		
+		var host = document.createElement('img');
+		host.src = item_arry[i][1];
+		host.style.position = "absolute";
+		host.style.top = "0rem";
+		host.style.right = "0rem";
+		host.style.width = "100rem";
+		imgdiv.appendChild(host);
 		
 		var infodiv = document.createElement('div');
 		infodiv.style.display = "block";
