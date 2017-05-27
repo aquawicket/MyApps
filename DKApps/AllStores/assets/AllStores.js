@@ -249,7 +249,7 @@ function AllStores_FiveMilesToArry(url, callback)
 	DKLog("AllStores_FiveMilesToArry()\n", DKINFO);
 	if(DK_GetBrowser() != "CEF"){
 		callback();
-		return;
+		return; //Only available with CEF, so return.
 	}
 	
 	AllStores_GetUrlString(url, function(rstring){
