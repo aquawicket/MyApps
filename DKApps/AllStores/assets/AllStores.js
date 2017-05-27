@@ -5,14 +5,9 @@ function AllStores_Init()
 {
 	DKLog("AllStores_Init()\n", DKINFO);
 	DKCreate("AllStores.html", function(){});
+	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
 	
-	AllStores_LetGoToArry(function(){
-		AllStores_CraigslistToArry(function(){
-			AllStores_ShowItems();
-		});
-	});
-	
-	
+	AllStores_DoSearch();
 }
 
 ///////////////////////
@@ -25,12 +20,40 @@ function AllStores_End()
 function AllStores_OnEvent(event)
 {
 	DKLog("Tempalte_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
+	
+	if(DK_Id(event, "AllStores_search")){
+		var input = DKWidget_GetValue("AllStores_input");
+		AllStores_DoSearch(input);
+	}
 }
 
-////////////////////////////////////////
-function AllStores_LetGoToArry(callback)
+///////////////////////////////////
+function AllStores_DoSearch(string)
 {
-	AllStores_GetUrlString("https://us.letgo.com/en", function(rstring){
+	DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
+	item_arry = new Array();
+	DKWidget_SetInnerHtml("AllStores_items", "");
+	
+	if(string){
+		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
+			AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){
+				AllStores_ShowItems();
+			});
+		})
+	}
+	else{
+		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
+			AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+				AllStores_ShowItems();
+			});
+		})
+	}
+}
+
+/////////////////////////////////////////////
+function AllStores_LetGoToArry(url, callback)
+{
+	AllStores_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -62,10 +85,10 @@ function AllStores_LetGoToArry(callback)
 	});
 }
 
-/////////////////////////////////////////////
-function AllStores_CraigslistToArry(callback)
+//////////////////////////////////////////////////
+function AllStores_CraigslistToArry(url, callback)
 {
-	AllStores_GetUrlString("https://orangecounty.craigslist.org/search/sss", function(rstring){
+	AllStores_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
