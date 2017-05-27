@@ -6,6 +6,7 @@ if(DK_GetBrowser() != "CEF"){
 	var proxy2 = "https://crossorigin.me/";
 	var proxy3 = "https://cors.now.sh/";
 }
+//var scrollpos = 0;
 var item_arry = new Array();
 
 //TODO: Set geolocation
@@ -29,8 +30,10 @@ function AllStores_Init()
 	DKCreate("AllStores.html", function(){});
 	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
 	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
+	//DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
 	
 	var search = location.search.split('s=')[1];
+	//var scrollpos = location.search.split('p=')[1];
 	AllStores_DoSearch(search);
 }
 
@@ -43,15 +46,18 @@ function AllStores_End()
 /////////////////////////////////
 function AllStores_OnEvent(event)
 {
-	DKLog("Tempalte_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
+	DKLog("AllStores_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
+	
+	//scrollpos = window.pageYOffset;
+	//window.location.hash = "?p="+scrollpos;
 	
 	if(DK_Id(event, "AllStores_search")){ //Search clicked
 		var input = DKWidget_GetValue("AllStores_input");
 		if(input){
-			if(window.location.protocol == "html"){
+			if(window.location.protocol == "http:"){
 				window.location.href = "?s="+input;
 			}
-			AllStores_DoSearch(input);
+			AllStores_DoSearch(input); //file protocol
 		}
 	}
 	
@@ -59,10 +65,10 @@ function AllStores_OnEvent(event)
 		if(DKWidget_GetValue(event) == "13"){
 			var input = DKWidget_GetValue("AllStores_input");
 			if(input){
-				if(window.location.protocol == "html"){
+				if(window.location.protocol == "http:"){
 					window.location.href = "?s="+input;
 				}
-				AllStores_DoSearch(input);
+				AllStores_DoSearch(input); //file protocol
 			}
 		}
 	}
