@@ -145,7 +145,7 @@ function AllStores_LetGoToArry(url, callback)
 					item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
 					//item_data[5] = item_data[5].replace("file:///C:","");
 					//item_data[5] = item_data[5].replace("http://digitalknob.com","");
-					//item_data[6] = "$0"; //price
+					item_data[6] = "$0"; //price
 				}
 				if(items[i].getElementsByClassName("img landscape")[0]){
 					item_data[2] = items[i].getElementsByClassName("img landscape")[0].title;  //title
@@ -154,7 +154,7 @@ function AllStores_LetGoToArry(url, callback)
 					item_data[5] = items[i].getElementsByClassName("img landscape")[0];  //url
 					//item_data[5] = item_data[5].replace("file:///C:","");
 					//item_data[5] = item_data[5].replace("http://digitalknob.com","");
-					//item_data[6] = "$0"; //price
+					item_data[6] = "$0"; //price
 				}
 				item_arry.push(item_data);
 			}				
@@ -199,6 +199,9 @@ function AllStores_CraigslistToArry(url, callback)
 				if(items[i].getElementsByClassName("result-price")[0]){
 					item_data[6] = items[i].getElementsByClassName("result-price")[0].innerHTML; //price
 				}
+				else{
+					item_data[6] = "$0"; //price
+				}
 				item_arry.push(item_data);
 			}	
 		}
@@ -233,6 +236,9 @@ function AllStores_CloseFiveToArry(url, callback)
 				item_data[5] = item_data[5].replace("http://digitalknob.com","");
 				if(items[i].getElementsByTagName("span")[spans.length-2]){
 					item_data[6] = "$"+items[i].getElementsByTagName("span")[spans.length-2].innerHTML;  //price
+				}
+				else{
+					item_data[6] = "$0"; //price
 				}
 				item_arry.push(item_data);
 			}	
@@ -334,7 +340,7 @@ function AllStores_CarousellToArry(url, callback)
 				item_data[3] = "";
 				item_data[4] = "";
 				item_data[5] = "";
-				item_data[6] = "";
+				item_data[6] = "$0"; //price
 				
 				/*
 				item_data[2] = items[i].getElementsByClassName("waterItemImg")[0].alt; //img
@@ -360,6 +366,17 @@ function AllStores_CarousellToArry(url, callback)
 //////////////////////////////
 function AllStores_ShowItems()
 {
+	//sort by price
+	item_arry.sort(compareSecondColumn);
+	function compareSecondColumn(a, b) {
+		if(Number(a[6].replace(/[^0-9\.]+/g,"")) === Number(b[6].replace(/[^0-9\.]+/g,""))){
+			return 0;
+		}
+		else {
+			return (Number(a[6].replace(/[^0-9\.]+/g,"")) < Number(b[6].replace(/[^0-9\.]+/g,""))) ? -1 : 1;
+		}
+	}
+
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	for(var i=0; i<item_arry.length; i++){	
 		var itemdiv = document.createElement('div');
