@@ -35,26 +35,30 @@ function AllStores_DoSearch(string)
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	
 	if(string){
-		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
-		AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
-		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
-		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
+		//AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
+		//AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
+		AllStores_FiveMilesToArry("https://www.5milesapp.com/", function(){
+		//AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
+		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
 			AllStores_ShowItems();
+		//});
+		//});
 		});
-		});
-		});
-		})
+		//});
+		//})
 	}
 	else{
-		AllStores_CloseFiveToArry("https://www.close5.com", function(){
-		AllStores_OfferUpToArry("https://offerup.com/", function(){
-		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
-		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+		//AllStores_CloseFiveToArry("https://www.close5.com", function(){
+		//AllStores_OfferUpToArry("https://offerup.com/", function(){
+		AllStores_FiveMilesToArry("https://www.5milesapp.com/", function(){
+		//AllStores_LetGoToArry("https://us.letgo.com/en", function(){
+		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
 			AllStores_ShowItems();
+		//});
+		//});
 		});
-		});
-		});
-		});
+		//});
+		//});
 	}
 }
 
@@ -190,6 +194,34 @@ function AllStores_OfferUpToArry(url, callback)
 				item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
 				item_data[5] = items[i].getElementsByTagName("a")[0].href; //url
 				item_data[6] = items[i].parentNode.getElementsByClassName("item-info-price")[0].innerHTML; //location
+				item_arry.push(item_data);
+			}
+		}
+		
+		callback();
+	});
+}
+
+/////////////////////////////////////////////////
+function AllStores_FiveMilesToArry(url, callback)
+{
+	AllStores_GetUrlString(url, function(rstring){
+		if(rstring){	
+			var div = document.createElement('div');
+			div.innerHTML = rstring;
+			
+			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
+			for(var i=0; i<items.length; i++){
+				DKLog(items[i].parentNode.innerHTML+"\n", DKINFO);
+				
+				var item_data = new Array();
+				item_data[0] = "id";
+				item_data[1] = "5miles.png";
+				item_data[2];
+				item_data[3];
+				item_data[4];
+				item_data[5];
+				item_data[6];
 				item_arry.push(item_data);
 			}
 		}
