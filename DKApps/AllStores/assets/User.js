@@ -94,6 +94,11 @@ function LoadPage()
 		DKCreate("DKFrame/DKFrame.js", function(){
 			DKCreate("DKDebug/DKDebug.js", function(){
 				DKCreate("AllStores.js", function(){
+					DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+						var id = DKGoogleAd_CreateAd("AllStores.html", "100%", "100rem");
+						DKWidget_RemoveProperty(id, "top");
+						DKWidget_SetProperty(id, "bottom", "0rem");
+					});
 					//DKCreate("DKEditor/DKEditor.js", function(){});
 				});
 			});
