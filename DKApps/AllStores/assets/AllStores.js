@@ -37,7 +37,7 @@ function AllStores_DoSearch(string)
 	if(string){
 		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
 		AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
-		AllStores_FiveMilesToArry("https://www.5milesapp.com/", function(){
+		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){
 		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
 		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
 			AllStores_ShowItems();
@@ -212,7 +212,7 @@ function AllStores_FiveMilesToArry(url, callback)
 			
 			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
 			for(var i=1; i<items.length; i++){
-				DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
