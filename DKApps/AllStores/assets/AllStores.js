@@ -37,8 +37,10 @@ function AllStores_DoSearch(string)
 	if(string){
 		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
 		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){
-		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){		
+		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){	
+		AllStores_OfferUpToArry("https://offerup.com/", function(){		
 			AllStores_ShowItems();
+		});
 		});
 		});
 		})
@@ -47,7 +49,9 @@ function AllStores_DoSearch(string)
 		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
 		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
 		AllStores_CloseFiveToArry("https://www.close5.com", function(){
+		AllStores_OfferUpToArry("https://offerup.com/", function(){	
 			AllStores_ShowItems();
+		});
 		});
 		});
 		});
@@ -161,6 +165,20 @@ function AllStores_CloseFiveToArry(url, callback)
 		}
 	});
 }
+
+////////////////////////////////////////////////
+function AllStores_OfferUpToArry(url, callback)
+{
+	AllStores_GetUrlString(url, function(rstring){
+		if(rstring){	
+			var div = document.createElement('div');
+			div.innerHTML = rstring;
+		}
+		
+		callback();
+	});
+}
+
 
 //////////////////////////////
 function AllStores_ShowItems()
