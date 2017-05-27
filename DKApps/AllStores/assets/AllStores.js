@@ -36,9 +36,9 @@ function AllStores_DoSearch(string)
 	
 	if(string){
 		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
-		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){
-		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){	
-		AllStores_OfferUpToArry("https://offerup.com/", function(){		
+		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
+		AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
 			AllStores_ShowItems();
 		});
 		});
@@ -47,9 +47,9 @@ function AllStores_DoSearch(string)
 	}
 	else{
 		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
-		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
 		AllStores_CloseFiveToArry("https://www.close5.com", function(){
-		AllStores_OfferUpToArry("https://offerup.com/", function(){	
+		AllStores_OfferUpToArry("https://offerup.com/", function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
 			AllStores_ShowItems();
 		});
 		});
@@ -79,20 +79,20 @@ function AllStores_LetGoToArry(url, callback)
 					item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
 					item_data[4] = items[i].getElementsByClassName("img portrait")[0].firstChild.src; //image
 					item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
-					item_data[6] = "Price"; //price
+					item_data[6] = "$0"; //price
 				}
 				if(items[i].getElementsByClassName("img landscape")[0]){
 					item_data[2] = items[i].getElementsByClassName("img landscape")[0].title;  //title
 					item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
 					item_data[4] = items[i].getElementsByClassName("img landscape")[0].firstChild.src; //image
 					item_data[5] = items[i].getElementsByClassName("img landscape")[0];  //url
-					item_data[6] = "Price"; //price
+					item_data[6] = "$0"; //price
 				}
 				item_arry.push(item_data);
-			}
-
-			callback();			
+			}				
 		}
+		
+		callback();
 	});
 }
 
@@ -127,12 +127,12 @@ function AllStores_CraigslistToArry(url, callback)
 				}
 				item_data[5] = "https://orangecounty.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
 				item_data[5] = item_data[5].replace("file:///C:","");
-				item_data[6] = "Price"; //price
+				item_data[6] = "$0"; //price
 				item_arry.push(item_data);
-			}
-			
-			callback();
+			}	
 		}
+		
+		callback();
 	});
 }
 
@@ -146,7 +146,7 @@ function AllStores_CloseFiveToArry(url, callback)
 			
 			var items = div.getElementsByClassName("four wide large screen four wide widescreen four wide computer four wide tablet eight wide mobile column");
 			for(var i=0; i<items.length; i++){
-				DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -157,12 +157,12 @@ function AllStores_CloseFiveToArry(url, callback)
 				item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
 				item_data[5] = "https://www.close5.com"+items[i].getElementsByTagName("a")[0].href; //url
 				item_data[5] = item_data[5].replace("file:///C:","");
-				item_data[6] = "Price"; //price
+				item_data[6] = "$0"; //price
 				item_arry.push(item_data);
-			}
-			
-			callback();
+			}	
 		}
+		
+		callback();
 	});
 }
 
@@ -173,6 +173,21 @@ function AllStores_OfferUpToArry(url, callback)
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
+			
+			var items = div.getElementsByClassName("item-pic");
+			for(var i=0; i<items.length; i++){
+				DKLog(items[i].parentNode.innerHTML+"\n", DKINFO);
+				
+				var item_data = new Array();
+				item_data[0] = "id";
+				item_data[1] = "offerup.png";
+				item_data[2] = items[i].getElementsByTagName("img")[0].alt;  //title
+				item_data[3] = items[i].parentNode.getElementsByClassName("item-info-distance")[0].innerHTML; //location
+				item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
+				item_data[5] = items[i].getElementsByTagName("a")[0].href; //url
+				item_data[6] = items[i].parentNode.getElementsByClassName("item-info-price")[0].innerHTML; //location
+				item_arry.push(item_data);
+			}
 		}
 		
 		callback();
