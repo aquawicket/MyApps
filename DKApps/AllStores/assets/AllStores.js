@@ -188,7 +188,7 @@ function AllStores_ShowItems()
 		itemloc.style.fontSize = "16rem";
 		itemdiv.appendChild(itemloc);
 		
-		document.getElementById("AllStores.html").appendChild(itemdiv);
+		document.getElementById("AllStores_items").appendChild(itemdiv);
 	}
 }
 
