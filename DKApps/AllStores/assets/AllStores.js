@@ -35,18 +35,22 @@ function AllStores_DoSearch(string)
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	
 	if(string){
-		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
-			AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){
-				AllStores_ShowItems();
-			});
-		})
+		//AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
+		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){
+		AllStores_CloseFiveToArry("https://www.close5.com", function(){		
+			AllStores_ShowItems();
+		});
+		//});
+		//})
 	}
 	else{
-		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
-			AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
-				AllStores_ShowItems();
-			});
-		})
+		//AllStores_LetGoToArry("https://us.letgo.com/en", function(){
+		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+		AllStores_CloseFiveToArry("https://www.close5.com", function(){
+			AllStores_ShowItems();
+		});
+		//});
+		//});
 	}
 }
 
@@ -60,6 +64,7 @@ function AllStores_LetGoToArry(url, callback)
 			
 			var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
 			for(var i=0; i<items.length; i++){
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -70,12 +75,14 @@ function AllStores_LetGoToArry(url, callback)
 					item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
 					item_data[4] = items[i].getElementsByClassName("img portrait")[0].firstChild.src; //image
 					item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
+					item_data[6] = "Price"; //price
 				}
 				if(items[i].getElementsByClassName("img landscape")[0]){
 					item_data[2] = items[i].getElementsByClassName("img landscape")[0].title;  //title
 					item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
 					item_data[4] = items[i].getElementsByClassName("img landscape")[0].firstChild.src; //image
 					item_data[5] = items[i].getElementsByClassName("img landscape")[0];  //url
+					item_data[6] = "Price"; //price
 				}
 				item_arry.push(item_data);
 			}
@@ -95,8 +102,8 @@ function AllStores_CraigslistToArry(url, callback)
 			
 			var items = div.getElementsByClassName("result-row");
 			for(var i=0; i<items.length; i++){
-
 				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				
 				var item_data = new Array();
 				item_data[0] = "id";
 				item_data[1] = "craigslist.png";
@@ -116,6 +123,7 @@ function AllStores_CraigslistToArry(url, callback)
 				}
 				item_data[5] = "https://orangecounty.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
 				item_data[5] = item_data[5].replace("file:///C:","");
+				item_data[6] = "Price"; //price
 				item_arry.push(item_data);
 			}
 			
@@ -124,12 +132,32 @@ function AllStores_CraigslistToArry(url, callback)
 	});
 }
 
-///////////////////////////////
-function AllStores_PrintItems()
+/////////////////////////////////////////////////
+function AllStores_CloseFiveToArry(url, callback)
 {
-	for(var i=0; i<item_arry.length; i++){
-		DKLog(i+": title:"+item_arry[i][2]+" loc:"+item_arry[i][3]+" img:"+item_arry[i][4]+" url:"+item_arry[i][5]+"\n", DKINFO);
-	}
+	AllStores_GetUrlString(url, function(rstring){
+		if(rstring){	
+			var div = document.createElement('div');
+			div.innerHTML = rstring;
+			
+			var items = div.getElementsByClassName("four wide large screen four wide widescreen four wide computer four wide tablet eight wide mobile column");
+			for(var i=0; i<items.length; i++){
+				DKLog(items[i].innerHTML+"\n", DKINFO);
+				
+				var item_data = new Array();
+				item_data[0] = "id";
+				item_data[1] = "close5.png";
+				item_data[2] = "Title";  //title
+				item_data[3] = "Location"; //location
+				item_data[4] = "Img"; //img
+				item_data[5] = "https://www.close5.com"; //url
+				item_data[6] = "Price"; //price
+				item_arry.push(item_data);
+			}
+			
+			callback();
+		}
+	});
 }
 
 //////////////////////////////
