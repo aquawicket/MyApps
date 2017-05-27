@@ -67,7 +67,7 @@ if(DK_GetJavascript() == "Duktape"){
 	else if(USE_CEF){
 		DKLog("Creating CEF -> GUI \n", DKINFO);
 		var width = 800;
-		var height = 600;
+		var height = 680;
 		DKCreate("DKCef,Cef,0,0,"+width+","+height+","+DKApp_url);
 		DK_SetFramerate(5);
 	}

@@ -6,6 +6,7 @@ function AllStores_Init()
 	DKLog("AllStores_Init()\n", DKINFO);
 	DKCreate("AllStores.html", function(){});
 	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
+	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
 	
 	AllStores_DoSearch();
 }
@@ -21,9 +22,16 @@ function AllStores_OnEvent(event)
 {
 	DKLog("Tempalte_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
 	
-	if(DK_Id(event, "AllStores_search")){
+	if(DK_Id(event, "AllStores_search")){ //Search clicked
 		var input = DKWidget_GetValue("AllStores_input");
 		AllStores_DoSearch(input);
+	}
+	
+	if(DK_Id(event, "AllStores_input")){ //Enter pressed
+		if(DKWidget_GetValue(event) == "13"){
+			var input = DKWidget_GetValue("AllStores_input");
+			AllStores_DoSearch(input);
+		}
 	}
 }
 
@@ -34,12 +42,20 @@ function AllStores_DoSearch(string)
 	item_arry = new Array();
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	
+	var loading = document.createElement('img');
+	loading.id = "loading";
+	loading.src = "loading.gif";
+	loading.style.overflow = "hidden";
+	document.getElementById("AllStores_items").appendChild(loading);
+	
+	
 	if(string){
 		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
 		AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
 		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){
 		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
-		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){	
+			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));		
 			AllStores_ShowItems();
 		});
 		});
@@ -53,6 +69,7 @@ function AllStores_DoSearch(string)
 		AllStores_FiveMilesToArry("https://www.5milesapp.com/", function(){
 		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
 		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));	
 			AllStores_ShowItems();
 		});
 		});
