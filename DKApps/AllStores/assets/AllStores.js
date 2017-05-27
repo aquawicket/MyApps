@@ -1,5 +1,11 @@
-var proxy = "http://cors-anywhere.herokuapp.com/";
-var proxy2 = "https://crossorigin.me/";
+var proxy = "";
+var proxy2 = "";
+var proxy3 = "";
+if(DK_GetBrowser() != "CEF"){
+	var proxy = "http://cors-anywhere.herokuapp.com/";
+	var proxy2 = "https://crossorigin.me/";
+	var proxy3 = "https://cors.now.sh/";
+}
 var item_arry = new Array();
 
 /////////////////////////
@@ -59,26 +65,28 @@ function AllStores_DoSearch(string)
 	if(string){
 		AllStores_CloseFiveToArry(proxy+"https://www.close5.com/s/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
 		AllStores_OfferUpToArry(proxy2+"https://offerup.com/search/?q="+string, function(){ AllStores_Loading(); AllStores_ShowItems();
-		//AllStores_FiveMilesToArry(proxy2+"https://www.5milesapp.com/q/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
 		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
 		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ AllStores_Loading(); AllStores_ShowItems();
 			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));		
 		});
 		});
-		//});
 		});
-		})
+		});
+		});
 	}
 	else{
 		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ AllStores_Loading(); AllStores_ShowItems(); 
 		AllStores_OfferUpToArry(proxy2+"https://offerup.com", function(){ AllStores_Loading(); AllStores_ShowItems();
-		//AllStores_FiveMilesToArry(proxy2+"https://www.5milesapp.com", function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_FiveMilesToArry("https://www.5milesapp.com", function(){ AllStores_Loading(); 	AllStores_ShowItems();
 		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_Loading(); AllStores_ShowItems();
 		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_CarousellToArry(proxy+"https://us.carousell.com/search/products", function(){ AllStores_Loading(); AllStores_ShowItems();
 			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));	
 		});
 		});
-		//});
+		});
+		});
 		});
 		});
 	}
@@ -238,6 +246,12 @@ function AllStores_OfferUpToArry(url, callback)
 /////////////////////////////////////////////////
 function AllStores_FiveMilesToArry(url, callback)
 {
+	DKLog("AllStores_FiveMilesToArry()\n", DKINFO);
+	if(DK_GetBrowser() != "CEF"){
+		callback();
+		return;
+	}
+	
 	AllStores_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
@@ -245,7 +259,7 @@ function AllStores_FiveMilesToArry(url, callback)
 			
 			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
 			for(var i=1; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -260,6 +274,50 @@ function AllStores_FiveMilesToArry(url, callback)
 					item_data[5] = item_data[5].replace("http://digitalknob.com/","");
 				}
 				item_data[6] = items[i].getElementsByClassName("waterItem_price_now")[0].innerHTML; //img
+				item_arry.push(item_data);
+			}
+		}
+		
+		callback();
+	});
+}
+
+/////////////////////////////////////////////////
+function AllStores_CarousellToArry(url, callback)
+{
+	callback();
+	return;  //Not implemented yet,  return;
+		
+	AllStores_GetUrlString(url, function(rstring){
+		if(rstring){	
+			var div = document.createElement('div');
+			div.innerHTML = rstring;
+			
+			var items = div.getElementsByClassName("card pdt-card");
+			for(var i=1; i<items.length; i++){
+				DKLog(items[i].innerHTML+"\n", DKINFO);
+				
+				var item_data = new Array();
+				item_data[0] = "id";
+				item_data[1] = "carousell.png";
+				item_data[2] = "";
+				item_data[3] = "";
+				item_data[4] = "";
+				item_data[5] = "";
+				item_data[6] = "";
+				
+				/*
+				item_data[2] = items[i].getElementsByClassName("waterItemImg")[0].alt; //img
+				var alinks = items[i].getElementsByClassName("waterItem_a_link")
+				item_data[3] = items[i].getElementsByClassName("waterItem_a_link")[alinks.length-1].innerHTML; //location
+				item_data[4] = items[i].getElementsByClassName("waterItemImg")[0].src; //img
+				if(items[i].getElementsByClassName("waterItemImg_par")[0]){
+					item_data[5] = "https://www.5milesapp.com/"+items[i].getElementsByClassName("waterItemImg_par")[0].href; //img
+					item_data[5] = item_data[5].replace("file:///C:","");
+					item_data[5] = item_data[5].replace("http://digitalknob.com/","");
+				}
+				item_data[6] = items[i].getElementsByClassName("waterItem_price_now")[0].innerHTML; //img
+				*/
 				item_arry.push(item_data);
 			}
 		}
@@ -389,7 +447,6 @@ function AllStores_GetUrlString(url, callback)
 	
 	request.open("GET",url,true);
 	
-	/*
 	request.onreadystatechange=function(){
 		if(request.readyState==4){
 			if(request.status==200 || request.status==0){
@@ -402,11 +459,12 @@ function AllStores_GetUrlString(url, callback)
 			}
 		}
 	}
-	*/
 	
+	/*
 	request.onload=function(){
 		callback(request.responseText);
 	}
+	*/
 	
 	request.send(); 
 }
