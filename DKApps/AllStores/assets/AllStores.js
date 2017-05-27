@@ -8,6 +8,18 @@ if(DK_GetBrowser() != "CEF"){
 }
 var item_arry = new Array();
 
+//Set geolocation
+if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(AllStores_SetLocation);    
+}
+else{ 
+    alert("Geolocation is not supported by this browser.");
+}
+function AllStores_SetLocation(position)
+{
+	DKLog("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n", DKINFO);
+}
+
 /////////////////////////
 function AllStores_Init()
 {
@@ -259,7 +271,7 @@ function AllStores_FiveMilesToArry(url, callback)
 			
 			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
 			for(var i=1; i<items.length; i++){
-				DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -295,7 +307,7 @@ function AllStores_CarousellToArry(url, callback)
 			
 			var items = div.getElementsByClassName("card pdt-card");
 			for(var i=1; i<items.length; i++){
-				DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -455,6 +467,7 @@ function AllStores_GetUrlString(url, callback)
 			else{
 				DKLog("AJAX ERROR: "+request.statusText, DKWARN); //report error
 				DKLog("status: "+request.status, DKWARN);
+				callback();
 				return false;
 			}
 		}
