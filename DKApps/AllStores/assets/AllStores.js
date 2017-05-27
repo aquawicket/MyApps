@@ -30,7 +30,8 @@ function AllStores_Init()
 	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
 	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
 	
-	AllStores_DoSearch();
+	var search = location.search.split('s=')[1];
+	AllStores_DoSearch(search);
 }
 
 ///////////////////////
@@ -46,13 +47,23 @@ function AllStores_OnEvent(event)
 	
 	if(DK_Id(event, "AllStores_search")){ //Search clicked
 		var input = DKWidget_GetValue("AllStores_input");
-		AllStores_DoSearch(input);
+		if(input){
+			if(window.location.protocol == "html"){
+				window.location.href = "?s="+input;
+			}
+			AllStores_DoSearch(input);
+		}
 	}
 	
 	if(DK_Id(event, "AllStores_input")){ //Enter pressed
 		if(DKWidget_GetValue(event) == "13"){
 			var input = DKWidget_GetValue("AllStores_input");
-			AllStores_DoSearch(input);
+			if(input){
+				if(window.location.protocol == "html"){
+					window.location.href = "?s="+input;
+				}
+				AllStores_DoSearch(input);
+			}
 		}
 	}
 }
@@ -71,8 +82,8 @@ function AllStores_Loading()
 function AllStores_DoSearch(string)
 {
 	DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
-	item_arry = new Array();
 	
+	item_arry = new Array();
 	AllStores_Loading(); 
 	
 	if(string){
