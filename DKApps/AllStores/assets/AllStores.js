@@ -35,22 +35,22 @@ function AllStores_DoSearch(string)
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	
 	if(string){
-		//AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
-		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){
-		AllStores_CloseFiveToArry("https://www.close5.com", function(){		
+		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){
+		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){		
 			AllStores_ShowItems();
 		});
-		//});
-		//})
+		});
+		})
 	}
 	else{
-		//AllStores_LetGoToArry("https://us.letgo.com/en", function(){
-		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
 		AllStores_CloseFiveToArry("https://www.close5.com", function(){
 			AllStores_ShowItems();
 		});
-		//});
-		//});
+		});
+		});
 	}
 }
 
@@ -147,10 +147,12 @@ function AllStores_CloseFiveToArry(url, callback)
 				var item_data = new Array();
 				item_data[0] = "id";
 				item_data[1] = "close5.png";
-				item_data[2] = "Title";  //title
-				item_data[3] = "Location"; //location
-				item_data[4] = "Img"; //img
-				item_data[5] = "https://www.close5.com"; //url
+				var spans = items[i].getElementsByTagName("span");
+				item_data[2] = items[i].getElementsByTagName("span")[spans.length-1].innerHTML;  //title
+				item_data[3] = ""; //location
+				item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
+				item_data[5] = "https://www.close5.com"+items[i].getElementsByTagName("a")[0].href; //url
+				item_data[5] = item_data[5].replace("file:///C:","");
 				item_data[6] = "Price"; //price
 				item_arry.push(item_data);
 			}
