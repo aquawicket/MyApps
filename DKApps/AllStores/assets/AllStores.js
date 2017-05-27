@@ -8,17 +8,19 @@ if(DK_GetBrowser() != "CEF"){
 }
 var item_arry = new Array();
 
-//Set geolocation
+//TODO: Set geolocation
+/*
 if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(AllStores_SetLocation);    
 }
 else{ 
-    alert("Geolocation is not supported by this browser.");
+    DKLog("Geolocation is not supported by this browser.\n", DKINFO);
 }
 function AllStores_SetLocation(position)
 {
 	DKLog("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n", DKINFO);
 }
+*/
 
 /////////////////////////
 function AllStores_Init()
@@ -58,7 +60,6 @@ function AllStores_OnEvent(event)
 ////////////////////////////
 function AllStores_Loading()
 {
-	DKWidget_SetInnerHtml("AllStores_items", "");
 	var loading = document.createElement('img');
 	loading.id = "loading";
 	loading.src = "loading.gif";
@@ -75,11 +76,11 @@ function AllStores_DoSearch(string)
 	AllStores_Loading(); 
 	
 	if(string){
-		AllStores_CloseFiveToArry(proxy+"https://www.close5.com/s/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
-		AllStores_OfferUpToArry(proxy2+"https://offerup.com/search/?q="+string, function(){ AllStores_Loading(); AllStores_ShowItems();
-		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
-		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
-		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_CloseFiveToArry(proxy+"https://www.close5.com/s/"+string, function(){ AllStores_ShowItems(); AllStores_Loading(); 
+		AllStores_OfferUpToArry(proxy2+"https://offerup.com/search/?q="+string, function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ AllStores_ShowItems(); AllStores_Loading();
 			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));		
 		});
 		});
@@ -88,12 +89,12 @@ function AllStores_DoSearch(string)
 		});
 	}
 	else{
-		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ AllStores_Loading(); AllStores_ShowItems(); 
-		AllStores_OfferUpToArry(proxy2+"https://offerup.com", function(){ AllStores_Loading(); AllStores_ShowItems();
-		AllStores_FiveMilesToArry("https://www.5milesapp.com", function(){ AllStores_Loading(); 	AllStores_ShowItems();
-		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_Loading(); AllStores_ShowItems();
-		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ AllStores_Loading(); AllStores_ShowItems();
-		AllStores_CarousellToArry(proxy+"https://us.carousell.com/search/products", function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_OfferUpToArry(proxy2+"https://offerup.com", function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_FiveMilesToArry("https://www.5milesapp.com", function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_CarousellToArry(proxy+"https://us.carousell.com/search/products", function(){ AllStores_ShowItems(); AllStores_Loading();
 			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));	
 		});
 		});
@@ -342,8 +343,8 @@ function AllStores_CarousellToArry(url, callback)
 //////////////////////////////
 function AllStores_ShowItems()
 {
-	for(var i=0; i<item_arry.length; i++){
-		
+	DKWidget_SetInnerHtml("AllStores_items", "");
+	for(var i=0; i<item_arry.length; i++){	
 		var itemdiv = document.createElement('div');
 		itemdiv.style.display = "inline-block";
 		itemdiv.style.width = "230rem";
