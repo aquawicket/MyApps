@@ -83,6 +83,8 @@ function AllStores_LetGoToArry(url, callback)
 					item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
 					item_data[4] = items[i].getElementsByClassName("img portrait")[0].firstChild.src; //image
 					item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
+					//item_data[5] = item_data[5].replace("file:///C:","");
+					//item_data[5] = item_data[5].replace("http://digitalknob.com","");
 					//item_data[6] = "$0"; //price
 				}
 				if(items[i].getElementsByClassName("img landscape")[0]){
@@ -90,6 +92,8 @@ function AllStores_LetGoToArry(url, callback)
 					item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
 					item_data[4] = items[i].getElementsByClassName("img landscape")[0].firstChild.src; //image
 					item_data[5] = items[i].getElementsByClassName("img landscape")[0];  //url
+					//item_data[5] = item_data[5].replace("file:///C:","");
+					//item_data[5] = item_data[5].replace("http://digitalknob.com","");
 					//item_data[6] = "$0"; //price
 				}
 				item_arry.push(item_data);
@@ -131,6 +135,7 @@ function AllStores_CraigslistToArry(url, callback)
 				}
 				item_data[5] = "https://orangecounty.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
 				item_data[5] = item_data[5].replace("file:///C:","");
+				item_data[5] = item_data[5].replace("http://digitalknob.com","");
 				if(items[i].getElementsByClassName("result-price")[0]){
 					item_data[6] = items[i].getElementsByClassName("result-price")[0].innerHTML; //price
 				}
@@ -163,6 +168,7 @@ function AllStores_CloseFiveToArry(url, callback)
 				item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
 				item_data[5] = "https://www.close5.com"+items[i].getElementsByTagName("a")[0].href; //url
 				item_data[5] = item_data[5].replace("file:///C:","");
+				item_data[5] = item_data[5].replace("http://digitalknob.com","");
 				if(items[i].getElementsByTagName("span")[spans.length-2]){
 					item_data[6] = "$"+items[i].getElementsByTagName("span")[spans.length-2].innerHTML;  //price
 				}
@@ -193,6 +199,8 @@ function AllStores_OfferUpToArry(url, callback)
 				item_data[3] = items[i].parentNode.getElementsByClassName("item-info-distance")[0].innerHTML; //location
 				item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
 				item_data[5] = items[i].getElementsByTagName("a")[0].href; //url
+				item_data[5] = item_data[5].replace("file:///C:","");
+				item_data[5] = item_data[5].replace("http://digitalknob.com","");
 				item_data[6] = items[i].parentNode.getElementsByClassName("item-info-price")[0].innerHTML; //location
 				item_arry.push(item_data);
 			}
@@ -224,6 +232,7 @@ function AllStores_FiveMilesToArry(url, callback)
 				if(items[i].getElementsByClassName("waterItemImg_par")[0]){
 					item_data[5] = "https://www.5milesapp.com/"+items[i].getElementsByClassName("waterItemImg_par")[0].href; //img
 					item_data[5] = item_data[5].replace("file:///C:","");
+					item_data[5] = item_data[5].replace("http://digitalknob.com/","");
 				}
 				item_data[6] = items[i].getElementsByClassName("waterItem_price_now")[0].innerHTML; //img
 				item_arry.push(item_data);
