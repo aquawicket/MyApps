@@ -1,3 +1,5 @@
+var proxy = "http://cors-anywhere.herokuapp.com/";
+var proxy2 = "https://crossorigin.me/";
 var item_arry = new Array();
 
 /////////////////////////
@@ -35,45 +37,48 @@ function AllStores_OnEvent(event)
 	}
 }
 
-///////////////////////////////////
-function AllStores_DoSearch(string)
+////////////////////////////
+function AllStores_Loading()
 {
-	DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
-	item_arry = new Array();
 	DKWidget_SetInnerHtml("AllStores_items", "");
-	
 	var loading = document.createElement('img');
 	loading.id = "loading";
 	loading.src = "loading.gif";
 	loading.style.overflow = "hidden";
 	document.getElementById("AllStores_items").appendChild(loading);
+}
+
+///////////////////////////////////
+function AllStores_DoSearch(string)
+{
+	DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
+	item_arry = new Array();
 	
+	AllStores_Loading(); 
 	
 	if(string){
-		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
-		AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
-		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){
-		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
-		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){	
+		AllStores_CloseFiveToArry(proxy+"https://www.close5.com/s/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_OfferUpToArry(proxy2+"https://offerup.com/search/?q="+string, function(){ AllStores_Loading(); AllStores_ShowItems();
+		//AllStores_FiveMilesToArry(proxy2+"https://www.5milesapp.com/q/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ AllStores_Loading(); AllStores_ShowItems();
 			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));		
-			AllStores_ShowItems();
 		});
 		});
-		});
+		//});
 		});
 		})
 	}
 	else{
-		AllStores_CloseFiveToArry("https://www.close5.com", function(){
-		AllStores_OfferUpToArry("https://offerup.com/", function(){
-		AllStores_FiveMilesToArry("https://www.5milesapp.com/", function(){
-		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
-		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ AllStores_Loading(); AllStores_ShowItems(); 
+		AllStores_OfferUpToArry(proxy2+"https://offerup.com", function(){ AllStores_Loading(); AllStores_ShowItems();
+		//AllStores_FiveMilesToArry(proxy2+"https://www.5milesapp.com", function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_Loading(); AllStores_ShowItems();
+		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ AllStores_Loading(); AllStores_ShowItems();
 			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));	
-			AllStores_ShowItems();
 		});
 		});
-		});
+		//});
 		});
 		});
 	}
@@ -204,6 +209,7 @@ function AllStores_OfferUpToArry(url, callback)
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
+			//DKLog(rstring+"\n", DKINFO);
 			
 			var items = div.getElementsByClassName("item-pic");
 			for(var i=0; i<items.length; i++){
@@ -379,7 +385,9 @@ function AllStores_GetUrlString(url, callback)
 		return false;
 	}
 	
-	request.open("GET",url,true); 
+	request.open("GET",url,true);
+	
+	/*
 	request.onreadystatechange=function(){
 		if(request.readyState==4){
 			if(request.status==200 || request.status==0){
@@ -391,6 +399,11 @@ function AllStores_GetUrlString(url, callback)
 				return false;
 			}
 		}
+	}
+	*/
+	
+	request.onload=function(){
+		callback(request.responseText);
 	}
 	
 	request.send(); 
