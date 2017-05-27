@@ -188,6 +188,8 @@ function AllStores_CloseFiveToArry(url, callback)
 				item_data[2] = items[i].getElementsByTagName("span")[spans.length-1].innerHTML;  //title
 				item_data[3] = ""; //location
 				item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
+				item_data[4] = item_data[4].replace("file:///C:","https://www.close5.com");
+				item_data[4] = item_data[4].replace("http://digitalknob.com","https://www.close5.com");
 				item_data[5] = "https://www.close5.com"+items[i].getElementsByTagName("a")[0].href; //url
 				item_data[5] = item_data[5].replace("file:///C:","");
 				item_data[5] = item_data[5].replace("http://digitalknob.com","");
