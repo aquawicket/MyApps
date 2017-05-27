@@ -94,7 +94,7 @@ function LoadPage()
 		DKCreate("DKFrame/DKFrame.js", function(){
 			DKCreate("DKDebug/DKDebug.js", function(){
 				DKCreate("AllStores.js", function(){
-					DKCreate("DKEditor/DKEditor.js", function(){});
+					//DKCreate("DKEditor/DKEditor.js", function(){});
 				});
 			});
 		});
