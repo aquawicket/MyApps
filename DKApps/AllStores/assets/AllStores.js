@@ -35,26 +35,26 @@ function AllStores_DoSearch(string)
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	
 	if(string){
-		//AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
 		AllStores_CloseFiveToArry("https://www.close5.com/s/"+string, function(){
-		//AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
-		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
+		AllStores_OfferUpToArry("https://offerup.com/search/?q="+string, function(){
+		AllStores_LetGoToArry("https://us.letgo.com/en/q/"+string, function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss?query="+string, function(){		
 			AllStores_ShowItems();
-		//});
 		});
-		//});
-		//})
+		});
+		});
+		})
 	}
 	else{
-		//AllStores_LetGoToArry("https://us.letgo.com/en", function(){
 		AllStores_CloseFiveToArry("https://www.close5.com", function(){
-		//AllStores_OfferUpToArry("https://offerup.com/", function(){
-		//AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
+		AllStores_OfferUpToArry("https://offerup.com/", function(){
+		AllStores_LetGoToArry("https://us.letgo.com/en", function(){
+		AllStores_CraigslistToArry("https://orangecounty.craigslist.org/search/sss", function(){
 			AllStores_ShowItems();
-		//});
 		});
-		//});
-		//});
+		});
+		});
+		});
 	}
 }
 
@@ -106,7 +106,7 @@ function AllStores_CraigslistToArry(url, callback)
 			
 			var items = div.getElementsByClassName("result-row");
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -127,7 +127,9 @@ function AllStores_CraigslistToArry(url, callback)
 				}
 				item_data[5] = "https://orangecounty.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
 				item_data[5] = item_data[5].replace("file:///C:","");
-				//item_data[6] = "$0"; //price
+				if(items[i].getElementsByClassName("result-price")[0]){
+					item_data[6] = items[i].getElementsByClassName("result-price")[0].innerHTML; //price
+				}
 				item_arry.push(item_data);
 			}	
 		}
@@ -146,7 +148,7 @@ function AllStores_CloseFiveToArry(url, callback)
 			
 			var items = div.getElementsByClassName("four wide large screen four wide widescreen four wide computer four wide tablet eight wide mobile column");
 			for(var i=0; i<items.length; i++){
-				DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -178,7 +180,7 @@ function AllStores_OfferUpToArry(url, callback)
 			
 			var items = div.getElementsByClassName("item-pic");
 			for(var i=0; i<items.length; i++){
-				DKLog(items[i].parentNode.innerHTML+"\n", DKINFO);
+				//DKLog(items[i].parentNode.innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";
