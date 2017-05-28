@@ -22,6 +22,9 @@ function AllStores_SetLocation(position)
 	DKLog("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n", DKINFO);
 }
 */
+window.onhashchange = function(){
+	sessionStorage.scrollPos = 0; //reset scroll on back button
+}
 
 /////////////////////////
 function AllStores_Init()
@@ -30,11 +33,14 @@ function AllStores_Init()
 	DKCreate("AllStores.html", function(){});
 	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
 	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
-	//DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
+	DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
 	
 	var search = location.search.split('s=')[1];
-	//var scrollpos = location.search.split('p=')[1];
-	AllStores_DoSearch(search);
+	AllStores_DoSearch(search, function(){
+		//return scroll position in session storage
+		var ele = document.getElementById("AllStores_items");
+		ele.scrollTop = sessionStorage.scrollPos || 0;
+	});
 }
 
 ///////////////////////
@@ -48,29 +54,39 @@ function AllStores_OnEvent(event)
 {
 	DKLog("AllStores_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
 	
-	//scrollpos = window.pageYOffset;
-	//window.location.hash = "?p="+scrollpos;
+	//set scroll position in session storage
+	var ele = document.getElementById("AllStores_items");
+	sessionStorage.scrollPos = ele.scrollTop;
+	
 	
 	if(DK_Id(event, "AllStores_search")){ //Search clicked
+		sessionStorage.scrollPos = 0;
 		var input = DKWidget_GetValue("AllStores_input");
-		if(input){
-			if(window.location.protocol == "http:"){
+		if(window.location.protocol == "http:"){
+			if(input){
 				window.location.href = "?s="+input;
 			}
-			AllStores_DoSearch(input); //file protocol
+			else{
+				window.location.href = "";
+			}
 		}
+		AllStores_DoSearch(input); //file protocol
 	}
 	
 	if(DK_Id(event, "AllStores_input")){ //Enter pressed
+		sessionStorage.scrollPos = 0;
 		if(DKWidget_GetValue(event) == "13"){
 			var input = DKWidget_GetValue("AllStores_input");
-			if(input){
-				if(window.location.protocol == "http:"){
+			if(window.location.protocol == "http:"){
+				if(input){
 					window.location.href = "?s="+input;
 				}
-				AllStores_DoSearch(input); //file protocol
+				else{
+					window.location.href = "";
+				}
 			}
 		}
+		AllStores_DoSearch(input); //file protocol
 	}
 }
 
@@ -84,8 +100,8 @@ function AllStores_Loading()
 	document.getElementById("AllStores_items").appendChild(loading);
 }
 
-///////////////////////////////////
-function AllStores_DoSearch(string)
+/////////////////////////////////////////////
+function AllStores_DoSearch(string, callback)
 {
 	DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
 	
@@ -98,7 +114,8 @@ function AllStores_DoSearch(string)
 		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ AllStores_ShowItems(); AllStores_Loading();
-			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));		
+			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));
+			callback && callback();
 		});
 		});
 		});
@@ -112,7 +129,8 @@ function AllStores_DoSearch(string)
 		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_CarousellToArry(proxy+"https://us.carousell.com/search/products", function(){ AllStores_ShowItems(); AllStores_Loading();
-			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));	
+			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));
+			callback && callback();
 		});
 		});
 		});
