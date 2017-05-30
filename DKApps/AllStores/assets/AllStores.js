@@ -33,6 +33,7 @@ function AllStores_Init()
 	DKCreate("AllStores.html", function(){});
 	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
 	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
+	DKAddEvent("AllStores_logo", "click", AllStores_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
 	
 	var search = location.search.split('s=')[1];
@@ -52,12 +53,19 @@ function AllStores_End()
 /////////////////////////////////
 function AllStores_OnEvent(event)
 {
-	DKLog("AllStores_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
+	//DKLog("AllStores_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
 	
 	//set scroll position in session storage
 	var ele = document.getElementById("AllStores_items");
 	sessionStorage.scrollPos = ele.scrollTop;
 	
+	if(DK_Id(event, "AllStores_logo")){ //Enter pressed
+		sessionStorage.scrollPos = 0;
+		if(window.location.protocol == "http:"){
+			window.location.href = "";
+		}
+		AllStores_DoSearch(""); //file protocol
+	}
 	
 	if(DK_Id(event, "AllStores_search")){ //Search clicked
 		sessionStorage.scrollPos = 0;
@@ -385,9 +393,8 @@ function AllStores_CarousellToArry(url, callback)
 	});
 }
 
-
-//////////////////////////////
-function AllStores_ShowItems()
+///////////////////////////
+function AllStores_Filter()
 {
 	//sort by price
 	item_arry.sort(compareSecondColumn);
@@ -399,6 +406,13 @@ function AllStores_ShowItems()
 			return (Number(a[6].replace(/[^0-9\.]+/g,"")) < Number(b[6].replace(/[^0-9\.]+/g,""))) ? -1 : 1;
 		}
 	}
+}
+
+//////////////////////////////
+function AllStores_ShowItems()
+{
+	//sort by price
+	AllStores_Filter();
 
 	DKWidget_SetInnerHtml("AllStores_items", "");
 	for(var i=0; i<item_arry.length; i++){	
@@ -434,12 +448,17 @@ function AllStores_ShowItems()
 		var itemimg = document.createElement('img');
 		itemimg.src = item_arry[i][4];
 		itemimg.style.display = "block";
-		//itemimg.style.width = "100%";
 		itemimg.style.maxWidth = "230rem";
 		itemimg.style.maxHeight = "300rem";
 		itemimg.style.margin = "auto";
+		if(itemimg.width < itemimg.height){
+			itemimg.style.height = "100%";
+		}
+		else{
+			itemimg.style.width = "100%";
+		}
 		itemurl.appendChild(itemimg);
-		
+				
 		var host = document.createElement('img');
 		host.src = item_arry[i][1];
 		host.style.position = "absolute";
@@ -485,6 +504,7 @@ function AllStores_ShowItems()
 		itemdiv.appendChild(itemloc);
 		
 		document.getElementById("AllStores_items").appendChild(itemdiv);
+		
 	}
 }
 
