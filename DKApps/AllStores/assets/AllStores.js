@@ -399,7 +399,8 @@ function AllStores_CarousellToArry(url, callback)
 function AllStores_EbayToArry(url, callback)
 {
 	//DKLog("AllStores_EbayToArry()\n", DKINFO);
-		
+	
+	url = url.replace(" ","+");	
 	AllStores_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
@@ -433,14 +434,18 @@ function AllStores_EbayToArry(url, callback)
 ///////////////////////////
 function AllStores_Filter()
 {
+	var sortbyprice = true;
+	
 	//sort by price
-	item_arry.sort(compareSecondColumn);
-	function compareSecondColumn(a, b) {
-		if(Number(a[6].replace(/[^0-9\.]+/g,"")) === Number(b[6].replace(/[^0-9\.]+/g,""))){
-			return 0;
-		}
-		else {
-			return (Number(a[6].replace(/[^0-9\.]+/g,"")) < Number(b[6].replace(/[^0-9\.]+/g,""))) ? -1 : 1;
+	if(sortbyprice){
+		item_arry.sort(compareSecondColumn);
+		function compareSecondColumn(a, b) {
+			if(Number(a[6].replace(/[^0-9\.]+/g,"")) === Number(b[6].replace(/[^0-9\.]+/g,""))){
+				return 0;
+			}
+			else {
+				return (Number(a[6].replace(/[^0-9\.]+/g,"")) < Number(b[6].replace(/[^0-9\.]+/g,""))) ? -1 : 1;
+			}
 		}
 	}
 }
