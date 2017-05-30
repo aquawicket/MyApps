@@ -333,16 +333,16 @@ function AllStores_FiveMilesToArry(url, callback)
 				var item_data = new Array();
 				item_data[0] = "id";
 				item_data[1] = "5miles.png";
-				item_data[2] = items[i].getElementsByClassName("waterItemImg")[0].alt; //img
+				item_data[2] = items[i].getElementsByClassName("waterItemImg")[0].alt; //Title
 				var alinks = items[i].getElementsByClassName("waterItem_a_link")
 				item_data[3] = items[i].getElementsByClassName("waterItem_a_link")[alinks.length-1].innerHTML; //location
 				item_data[4] = items[i].getElementsByClassName("waterItemImg")[0].src; //img
 				if(items[i].getElementsByClassName("waterItemImg_par")[0]){
-					item_data[5] = "https://www.5milesapp.com/"+items[i].getElementsByClassName("waterItemImg_par")[0].href; //img
+					item_data[5] = "https://www.5milesapp.com/"+items[i].getElementsByClassName("waterItemImg_par")[0].href; //link
 					item_data[5] = item_data[5].replace("file:///C:","");
 					item_data[5] = item_data[5].replace("http://digitalknob.com/","");
 				}
-				item_data[6] = items[i].getElementsByClassName("waterItem_price_now")[0].innerHTML; //img
+				item_data[6] = items[i].getElementsByClassName("waterItem_price_now")[0].innerHTML; //price
 				item_arry.push(item_data);
 			}
 		}
@@ -413,12 +413,16 @@ function AllStores_EbayToArry(url, callback)
 				var item_data = new Array();
 				item_data[0] = "id";
 				item_data[1] = "ebay.png";
-				item_data[2] = "";
-				item_data[3] = "";
-				item_data[4] = "";
-				item_data[5] = "";
-				item_data[6] = ""; //price
-				
+				item_data[2] = items[i].getElementsByTagName("img")[0].alt; //TItle
+				item_data[3] = items[i].getElementsByClassName("lvdetails left space-zero full-width")[0].innerHTML; //location
+				if(item_data[4] = items[i].getElementsByTagName("img")[0].src == "https://ir.ebaystatic.com/pictures/aw/pics/s_1x2.gif"){
+					item_data[4] = items[i].getElementsByTagName("img")[0].getAttribute("imgurl"); //img
+				}
+				else{
+					item_data[4] = items[i].getElementsByTagName("img")[0].src; //img
+				}
+				item_data[5] = items[i].getElementsByTagName("a")[0].href; //url
+				item_data[6] = items[i].getElementsByClassName("bold")[0].innerHTML; //price	
 				item_arry.push(item_data);
 			}
 		}
