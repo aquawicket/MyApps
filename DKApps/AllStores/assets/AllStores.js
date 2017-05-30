@@ -29,7 +29,7 @@ window.onhashchange = function(){
 /////////////////////////
 function AllStores_Init()
 {
-	DKLog("AllStores_Init()\n", DKINFO);
+	//DKLog("AllStores_Init()\n", DKINFO);
 	DKCreate("AllStores.html", function(){});
 	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
 	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
@@ -47,7 +47,7 @@ function AllStores_Init()
 ///////////////////////
 function AllStores_End()
 {
-	DKLog("AllStores_End()\n", DKINFO);
+	//DKLog("AllStores_End()\n", DKINFO);
 }
 
 /////////////////////////////////
@@ -111,7 +111,7 @@ function AllStores_Loading()
 /////////////////////////////////////////////
 function AllStores_DoSearch(string, callback)
 {
-	DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
+	//DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
 	
 	item_arry = new Array();
 	AllStores_Loading(); 
@@ -122,8 +122,10 @@ function AllStores_DoSearch(string, callback)
 		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_EbayToArry(proxy+"http://www.ebay.com/sch/i.html?_from=R40&_nkw="+string+"&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&LH_BIN=1&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_fsradio2=%26LH_PrefLoc%3D99&_sadis=25&_stpos=92802&_fspt=1&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50", function(){ AllStores_ShowItems(); AllStores_Loading();
 			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));
 			callback && callback();
+		});
 		});
 		});
 		});
@@ -313,7 +315,7 @@ function AllStores_OfferUpToArry(url, callback)
 /////////////////////////////////////////////////
 function AllStores_FiveMilesToArry(url, callback)
 {
-	DKLog("AllStores_FiveMilesToArry()\n", DKINFO);
+	//DKLog("AllStores_FiveMilesToArry()\n", DKINFO);
 	if(DK_GetBrowser() != "CEF"){
 		callback();
 		return; //Only available with CEF, so return.
@@ -389,6 +391,37 @@ function AllStores_CarousellToArry(url, callback)
 			}
 		}
 		
+		callback();
+	});
+}
+
+////////////////////////////////////////////
+function AllStores_EbayToArry(url, callback)
+{
+	//DKLog("AllStores_EbayToArry()\n", DKINFO);
+		
+	AllStores_GetUrlString(url, function(rstring){
+		if(rstring){	
+			var div = document.createElement('div');
+			div.innerHTML = rstring;
+			//DKLog(rstring+"\n", DKINFO);
+			
+			var items = div.getElementsByClassName("sresult lvresult clearfix li shic");
+			for(var i=1; i<items.length; i++){
+				DKLog(items[i].innerHTML+"\n", DKINFO);
+				
+				var item_data = new Array();
+				item_data[0] = "id";
+				item_data[1] = "ebay.png";
+				item_data[2] = "";
+				item_data[3] = "";
+				item_data[4] = "";
+				item_data[5] = "";
+				item_data[6] = ""; //price
+				
+				item_arry.push(item_data);
+			}
+		}
 		callback();
 	});
 }
