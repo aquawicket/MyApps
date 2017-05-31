@@ -40,7 +40,9 @@ function AllStores_Init()
 	AllStores_DoSearch(search, function(){
 		//return scroll position in session storage
 		var ele = document.getElementById("AllStores_items");
-		ele.scrollTop = sessionStorage.scrollPos || 0;
+		if(!DK_IE()){
+			ele.scrollTop = sessionStorage.scrollPos || 0;
+		}
 	});
 }
 
@@ -57,10 +59,14 @@ function AllStores_OnEvent(event)
 	
 	//set scroll position in session storage
 	var ele = document.getElementById("AllStores_items");
-	sessionStorage.scrollPos = ele.scrollTop;
+	if(!DK_IE()){
+		sessionStorage.scrollPos = ele.scrollTop;
+	}
 	
 	if(DK_Id(event, "AllStores_logo")){ //Enter pressed
-		sessionStorage.scrollPos = 0;
+		if(!DK_IE()){
+			sessionStorage.scrollPos = 0;
+		}
 		if(window.location.protocol == "http:"){
 			window.location.href = "";
 		}
@@ -68,7 +74,9 @@ function AllStores_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "AllStores_search")){ //Search clicked
-		sessionStorage.scrollPos = 0;
+		if(!DK_IE()){
+			sessionStorage.scrollPos = 0;
+		}
 		var input = DKWidget_GetValue("AllStores_input");
 		if(window.location.protocol == "http:"){
 			if(input){
@@ -82,7 +90,9 @@ function AllStores_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "AllStores_input")){ //Enter pressed
-		sessionStorage.scrollPos = 0;
+		if(!DK_IE()){
+			sessionStorage.scrollPos = 0;
+		}
 		if(DKWidget_GetValue(event) == "13"){
 			var input = DKWidget_GetValue("AllStores_input");
 			if(window.location.protocol == "http:"){
