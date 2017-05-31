@@ -256,6 +256,11 @@ function AllStores_CraigslistToArry(url, callback)
 /////////////////////////////////////////////////
 function AllStores_CloseFiveToArry(url, callback)
 {
+	if(DK_IE()){
+		callback();
+		return;
+	}
+	
 	AllStores_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
@@ -563,6 +568,9 @@ function AllStores_ShowItems()
 function AllStores_GetUrlString(url, callback)
 {
 	try {
+        request = new XDomainRequest();
+    }catch(e){}
+	try {
         request = new XMLHttpRequest();
     }catch(e){}
     try {
@@ -589,6 +597,7 @@ function AllStores_GetUrlString(url, callback)
 	//DKLog("request.open(\"GET\","+url+",true)", DKINFO);
 	request.open("GET",url,true);
 	
+	/*
 	request.onreadystatechange=function(){
 		if(request.readyState==4){
 			if(request.status==200 || request.status==0){
@@ -602,12 +611,12 @@ function AllStores_GetUrlString(url, callback)
 			}
 		}
 	}
+	*/
 	
-	/*
 	request.onload=function(){
 		callback(request.responseText);
 	}
-	*/
+	
 	
 	request.send(); 
 }
