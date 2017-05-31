@@ -530,7 +530,6 @@ function AllStores_ShowItems()
 		infodiv.style.overflow = "hidden";
 		itemdiv.appendChild(infodiv);
 		
-		
 		var itemtitle = document.createElement('a');
 		itemtitle.innerHTML = item_arry[i][2];
 		itemtitle.style.display = "block";
@@ -587,6 +586,7 @@ function AllStores_GetUrlString(url, callback)
 		return false;
 	}
 	
+	//DKLog("request.open(\"GET\","+url+",true)", DKINFO);
 	request.open("GET",url,true);
 	
 	request.onreadystatechange=function(){
