@@ -143,7 +143,8 @@ function AllStores_DoSearch(string, callback)
 		});
 	}
 	else{
-		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ AllStores_ShowItems(); AllStores_Loading();
+		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ 
+		AllStores_ShowItems(); AllStores_Loading();
 		AllStores_OfferUpToArry(proxy2+"https://offerup.com", function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_FiveMilesToArry("https://www.5milesapp.com", function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_ShowItems(); AllStores_Loading();
