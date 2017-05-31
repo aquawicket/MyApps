@@ -143,8 +143,7 @@ function AllStores_DoSearch(string, callback)
 		});
 	}
 	else{
-		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ 
-		AllStores_ShowItems(); AllStores_Loading();
+		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_OfferUpToArry(proxy2+"https://offerup.com", function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_FiveMilesToArry("https://www.5milesapp.com", function(){ AllStores_ShowItems(); AllStores_Loading();
 		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_ShowItems(); AllStores_Loading();
@@ -476,9 +475,12 @@ function AllStores_ShowItems()
 	for(var i=0; i<item_arry.length; i++){	
 		var itemdiv = document.createElement('div');
 		itemdiv.style.display = "inline-block";
+		itemdiv.style.width = "230px";
 		itemdiv.style.width = "230rem";
+		itemdiv.style.height = "420px";
 		itemdiv.style.height = "420rem";
 		itemdiv.style.textAlign = "center";
+		itemdiv.style.margin = "4px";
 		itemdiv.style.margin = "4rem";
 		//itemdiv.style.borderStyle = "solid";
 		//itemdiv.style.borderWidth = "1rem";
@@ -489,7 +491,9 @@ function AllStores_ShowItems()
 		var imgdiv = document.createElement('div');
 		imgdiv.style.position = "relative";
 		imgdiv.style.display = "block";
+		imgdiv.style.width = "230px";
 		imgdiv.style.width = "230rem";
+		imgdiv.style.height = "300px";
 		imgdiv.style.height = "300rem";
 		//imgdiv.style.borderStyle = "solid";
 		//imgdiv.style.borderWidth = "1rem";
@@ -499,14 +503,18 @@ function AllStores_ShowItems()
 		var itemurl = document.createElement('a');
 		itemurl.href = item_arry[i][5];
 		itemurl.style.display = "block";
+		itemurl.style.width = "230px";
 		itemurl.style.width = "230rem";
+		itemurl.style.height = "300px";
 		itemurl.style.height = "300rem";
 		imgdiv.appendChild(itemurl);
 		
 		var itemimg = document.createElement('img');
 		itemimg.src = item_arry[i][4];
 		itemimg.style.display = "block";
+		itemimg.style.maxWidth = "230px";
 		itemimg.style.maxWidth = "230rem";
+		itemimg.style.maxHeight = "300px";
 		itemimg.style.maxHeight = "300rem";
 		itemimg.style.margin = "auto";
 		if(itemimg.width < itemimg.height){
@@ -520,14 +528,19 @@ function AllStores_ShowItems()
 		var host = document.createElement('img');
 		host.src = item_arry[i][1];
 		host.style.position = "absolute";
+		host.style.top = "0px";
 		host.style.top = "0rem";
+		host.style.right = "0px";
 		host.style.right = "0rem";
+		host.style.width = "100px";
 		host.style.width = "100rem";
 		itemurl.appendChild(host);
 		
 		var infodiv = document.createElement('div');
 		infodiv.style.display = "block";
+		infodiv.style.width = "230px";
 		infodiv.style.width = "230rem";
+		infodiv.style.height = "75px";
 		infodiv.style.height = "75rem";
 		//infodiv.style.borderStyle = "solid";
 		//infodiv.style.borderWidth = "1rem";
@@ -540,6 +553,7 @@ function AllStores_ShowItems()
 		itemtitle.innerHTML = item_arry[i][2];
 		itemtitle.style.display = "block";
 		itemtitle.style.fontWeight = "bold";
+		itemtitle.style.fontSize = "20px";
 		itemtitle.style.fontSize = "20rem";
 		itemtitle.style.overflow = "hidden";
 		infodiv.appendChild(itemtitle);
@@ -549,6 +563,7 @@ function AllStores_ShowItems()
 			itemprice.innerHTML = item_arry[i][6];
 		}
 		itemprice.style.display = "block";
+		itemprice.style.fontSize = "18px";
 		itemprice.style.fontSize = "18rem";
 		itemdiv.appendChild(itemprice);
 		
@@ -557,6 +572,7 @@ function AllStores_ShowItems()
 			itemloc.innerHTML = item_arry[i][3];
 		}
 		itemloc.style.display = "block";
+		itemloc.style.fontSize = "15px";
 		itemloc.style.fontSize = "15rem";
 		itemdiv.appendChild(itemloc);
 		
