@@ -91,7 +91,7 @@ function AllStores_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "AllStores_options")){
-		alert("Options not impelmented yet");
+		DKCreate("AllStores_options.js", function(){});
 	}
 	
 	if(DK_Id(event, "AllStores_input")){ //Enter pressed
