@@ -7,7 +7,7 @@ function AllStores_options_Init()
 ////////////////////////////////
 function AllStores_options_End()
 {
-	
+	DKClose("AllStores_options.html");
 }
 
 /////////////////////////////////////////

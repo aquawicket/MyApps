@@ -51,6 +51,12 @@ function AllStores_Init()
 function AllStores_End()
 {
 	//DKLog("AllStores_End()\n", DKINFO);
+	DKClose("AllStores.html");
+	DKRemoveEvent("AllStores_search", "click", AllStores_OnEvent);
+	DKRemoveEvent("AllStores_options", "click", AllStores_OnEvent);
+	DKRemoveEvent("AllStores_input", "keydown", AllStores_OnEvent);
+	DKRemoveEvent("AllStores_logo", "click", AllStores_OnEvent);
+	DKRemoveEvent("GLOBAL", "mousedown", AllStores_OnEvent);
 }
 
 /////////////////////////////////
@@ -91,7 +97,12 @@ function AllStores_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "AllStores_options")){
-		DKCreate("AllStores_options.js", function(){});
+		if(!DKWidget_ElementExists("AllStores_options.html")){
+			DKCreate("AllStores_options.js", function(){});
+		}
+		else{
+			DKClose("AllStores_options.js");
+		}
 	}
 	
 	if(DK_Id(event, "AllStores_input")){ //Enter pressed
