@@ -32,6 +32,7 @@ function AllStores_Init()
 	//DKLog("AllStores_Init()\n", DKINFO);
 	DKCreate("AllStores.html", function(){});
 	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
+	DKAddEvent("AllStores_options", "click", AllStores_OnEvent);
 	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
 	DKAddEvent("AllStores_logo", "click", AllStores_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
@@ -63,7 +64,7 @@ function AllStores_OnEvent(event)
 		sessionStorage.scrollPos = ele.scrollTop;
 	}
 	
-	if(DK_Id(event, "AllStores_logo")){ //Enter pressed
+	if(DK_Id(event, "AllStores_logo")){
 		if(!DK_IE()){
 			sessionStorage.scrollPos = 0;
 		}
@@ -87,6 +88,10 @@ function AllStores_OnEvent(event)
 			}
 		}
 		AllStores_DoSearch(input); //file protocol
+	}
+	
+	if(DK_Id(event, "AllStores_options")){
+		alert("Options not impelmented yet");
 	}
 	
 	if(DK_Id(event, "AllStores_input")){ //Enter pressed
@@ -115,7 +120,9 @@ function AllStores_Loading()
 	loading.id = "loading";
 	loading.src = "loading.gif";
 	loading.style.overflow = "hidden";
-	document.getElementById("AllStores_items").appendChild(loading);
+	if(loading){
+		document.getElementById("AllStores_items").appendChild(loading);
+	}
 }
 
 /////////////////////////////////////////////
