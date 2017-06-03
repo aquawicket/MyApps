@@ -69,7 +69,7 @@ function Wowzer_Init()
 		}
 	});
 	
-	//Test();
+	Test();
 }
 
 ///////////////////////
@@ -853,7 +853,7 @@ function Test()
 	script.id = "test_script";
 	//script.type = "text/javascript";
 	//script.type = "text/html";
-	//script.type="text/plain";
+	//script.type = "text/plain";
 	
     script.onerror = function(){
 		DKLog("script.onerror\n", DKINFO);
