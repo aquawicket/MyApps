@@ -96,7 +96,8 @@ function Wowzer_OnEvent(event)
 		if(!DK_IE()){
 			sessionStorage.scrollPos = 0;
 		}
-		window.location.href = "";
+		window.location.hash = "";
+		window.location.reload(true); //reload page ignoring cache
 	}
 	
 	if(DK_Id(event, "Wowzer_input")){ //Enter pressed
