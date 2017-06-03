@@ -10,6 +10,12 @@ if(DK_GetBrowser() != "CEF"){
 var item_arry = new Array();
 var item_arry2 = new Array();
 var sortbyprice = true;
+var close5 = true;
+var offerup = true;
+var letgo = true;
+var craigslist = true;
+var ebay = true;
+var fivemiles = true;
 
 //TODO: Set geolocation
 /*
@@ -480,6 +486,66 @@ function AllStores_Filter()
 			}
 			else {
 				return (Number(a[6].replace(/[^0-9\.]+/g,"")) < Number(b[6].replace(/[^0-9\.]+/g,""))) ? -1 : 1;
+			}
+		}
+	}
+	
+	//Close5
+	if(!close5){
+		for(var i=0; i<item_arry2.length; i++){
+			if(item_arry2[i][1] == "close5.png"){
+				item_arry2.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	
+	//OfferUp
+	if(!offerup){
+		for(var i=0; i<item_arry2.length; i++){
+			if(item_arry2[i][1] == "offerup.png"){
+				item_arry2.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	
+	//LetGo
+	if(!letgo){
+		for(var i=0; i<item_arry2.length; i++){
+			if(item_arry2[i][1] == "letgo.png"){
+				item_arry2.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	
+	//Craigslist
+	if(!craigslist){
+		for(var i=0; i<item_arry2.length; i++){
+			if(item_arry2[i][1] == "craigslist.png"){
+				item_arry2.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	
+	//Ebay
+	if(!ebay){
+		for(var i=0; i<item_arry2.length; i++){
+			if(item_arry2[i][1] == "ebay.png"){
+				item_arry2.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	
+	//5miles
+	if(!fivemiles){
+		for(var i=0; i<item_arry2.length; i++){
+			if(item_arry2[i][1] == "5miles.png"){
+				item_arry2.splice(i, 1);
+				i--;
 			}
 		}
 	}
