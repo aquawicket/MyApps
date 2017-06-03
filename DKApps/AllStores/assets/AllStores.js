@@ -127,8 +127,8 @@ function AllStores_OnEvent(event)
 					window.location.href = "";
 				}
 			}
+			AllStores_DoSearch(input); //file protocol
 		}
-		AllStores_DoSearch(input); //file protocol
 	}
 }
 
@@ -450,7 +450,7 @@ function AllStores_EbayToArry(url, callback)
 			
 			var items = div.getElementsByClassName("sresult lvresult clearfix li shic");
 			for(var i=1; i<items.length; i++){
-				DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n", DKINFO);
 				
 				var item_data = new Array();
 				item_data[0] = "id";

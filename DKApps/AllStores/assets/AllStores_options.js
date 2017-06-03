@@ -16,7 +16,7 @@ function AllStores_options_Init()
 	DKWidget_SetValue("AllStores_options_letgo", letgo);
 	DKWidget_SetValue("AllStores_options_craigslist", craigslist);
 	DKWidget_SetValue("AllStores_options_fivemiles", fivemiles);
-	DKWidget_SetValue("AllStores_options_ebay", fivemiles);
+	DKWidget_SetValue("AllStores_options_ebay", ebay);
 }
 
 ////////////////////////////////
