@@ -1,4 +1,4 @@
-//DKCreate("DKWindow/DKWindow.js", function(){});
+DKCreate("DKWindow/DKWindow.js", function(){});
 
 var USE_SDL = 0;
 var USE_ROCKET = 0;
