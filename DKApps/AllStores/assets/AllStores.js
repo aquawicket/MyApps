@@ -94,7 +94,7 @@ function AllStores_OnEvent(event)
 			sessionStorage.scrollPos = 0;
 		}
 		if(window.location.protocol == "http:"){
-			window.location.hash = "http://digitalknob.com/Wowzer/";
+			window.location.hash = "";
 		}
 		else{
 			window.location.hash = "";
