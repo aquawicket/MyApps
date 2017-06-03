@@ -16,6 +16,8 @@ var letgo = true;
 var craigslist = true;
 var ebay = true;
 var fivemiles = true;
+var low = "";
+var high = "";
 
 //TODO: Set geolocation
 /*
@@ -544,6 +546,26 @@ function AllStores_Filter()
 	if(!fivemiles){
 		for(var i=0; i<item_arry2.length; i++){
 			if(item_arry2[i][1] == "5miles.png"){
+				item_arry2.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	
+	//Price low
+	if(low){
+		for(var i=0; i<item_arry2.length; i++){
+			if(Number(item_arry2[i][6].replace(/[^0-9\.]+/g,"")) < Number(low)){ 
+				item_arry2.splice(i, 1);
+				i--;
+			}
+		}
+	}
+	
+	//Price high
+	if(high){
+		for(var i=0; i<item_arry2.length; i++){
+			if(Number(item_arry2[i][6].replace(/[^0-9\.]+/g,"")) > Number(high)){ 
 				item_arry2.splice(i, 1);
 				i--;
 			}
