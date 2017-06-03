@@ -8,6 +8,8 @@ if(DK_GetBrowser() != "CEF"){
 }
 //var scrollpos = 0;
 var item_arry = new Array();
+var item_arry2 = new Array();
+var sortbyprice = true;
 
 //TODO: Set geolocation
 /*
@@ -467,11 +469,11 @@ function AllStores_EbayToArry(url, callback)
 ///////////////////////////
 function AllStores_Filter()
 {
-	var sortbyprice = true;
+	item_arry2 = item_arry.slice(0);
 	
 	//sort by price
 	if(sortbyprice){
-		item_arry.sort(compareSecondColumn);
+		item_arry2.sort(compareSecondColumn);
 		function compareSecondColumn(a, b) {
 			if(Number(a[6].replace(/[^0-9\.]+/g,"")) === Number(b[6].replace(/[^0-9\.]+/g,""))){
 				return 0;
@@ -490,7 +492,7 @@ function AllStores_ShowItems()
 	AllStores_Filter();
 
 	DKWidget_SetInnerHtml("AllStores_items", "");
-	for(var i=0; i<item_arry.length; i++){	
+	for(var i=0; i<item_arry2.length; i++){	
 		var itemdiv = document.createElement('div');
 		itemdiv.style.display = "inline-block";
 		itemdiv.style.width = "230px";
@@ -519,7 +521,7 @@ function AllStores_ShowItems()
 		itemdiv.appendChild(imgdiv);
 		
 		var itemurl = document.createElement('a');
-		itemurl.href = item_arry[i][5];
+		itemurl.href = item_arry2[i][5];
 		itemurl.style.display = "block";
 		itemurl.style.width = "230px";
 		itemurl.style.width = "230rem";
@@ -528,7 +530,7 @@ function AllStores_ShowItems()
 		imgdiv.appendChild(itemurl);
 		
 		var itemimg = document.createElement('img');
-		itemimg.src = item_arry[i][4];
+		itemimg.src = item_arry2[i][4];
 		itemimg.style.display = "block";
 		itemimg.style.maxWidth = "230px";
 		itemimg.style.maxWidth = "230rem";
@@ -544,7 +546,7 @@ function AllStores_ShowItems()
 		itemurl.appendChild(itemimg);
 				
 		var host = document.createElement('img');
-		host.src = item_arry[i][1];
+		host.src = item_arry2[i][1];
 		host.style.position = "absolute";
 		host.style.top = "0px";
 		host.style.top = "0rem";
@@ -568,7 +570,7 @@ function AllStores_ShowItems()
 		itemdiv.appendChild(infodiv);
 		
 		var itemtitle = document.createElement('a');
-		itemtitle.innerHTML = item_arry[i][2];
+		itemtitle.innerHTML = item_arry2[i][2];
 		itemtitle.style.display = "block";
 		itemtitle.style.fontWeight = "bold";
 		itemtitle.style.fontSize = "20px";
@@ -577,8 +579,8 @@ function AllStores_ShowItems()
 		infodiv.appendChild(itemtitle);
 		
 		var itemprice = document.createElement('span');
-		if(item_arry[i][6]){
-			itemprice.innerHTML = item_arry[i][6];
+		if(item_arry2[i][6]){
+			itemprice.innerHTML = item_arry2[i][6];
 		}
 		itemprice.style.display = "block";
 		itemprice.style.fontSize = "18px";
@@ -586,8 +588,8 @@ function AllStores_ShowItems()
 		itemdiv.appendChild(itemprice);
 		
 		var itemloc = document.createElement('span');
-		if(item_arry[i][3]){
-			itemloc.innerHTML = item_arry[i][3];
+		if(item_arry2[i][3]){
+			itemloc.innerHTML = item_arry2[i][3];
 		}
 		itemloc.style.display = "block";
 		itemloc.style.fontSize = "15px";
