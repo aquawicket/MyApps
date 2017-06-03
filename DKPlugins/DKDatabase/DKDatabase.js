@@ -24,10 +24,10 @@ function DKDatabase_Init()
 		var name = DKFile_GetSetting(file, "[USERNAME]");
 		var pass = DKFile_GetSetting(file, "[PASSWORD]");
 		var port = DKFile_GetSetting(file, "[PORT]");
-		DKWidget_SetValue("ServerBox", server);
-		DKWidget_SetValue("NameBox", name);
-		DKWidget_SetValue("PassBox", pass);
-		DKWidget_SetValue("PortBox", port);
+		DKWidget_SetValue("DKDatabase_ServerBox", server);
+		DKWidget_SetValue("DKDatabase_NameBox", name);
+		DKWidget_SetValue("DKDatabase_PassBox", pass);
+		DKWidget_SetValue("DKDatabase_PortBox", port);
 	});
 }
 
