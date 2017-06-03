@@ -41,6 +41,9 @@ window.onhashchange = function(){
 		search = getUrlParameter(window.location.hash, "s");
 		AllStores_DoSearch(search);
 	}
+	//else{
+	//	AllStores_ShowItems();
+	//}
 }
 
 /////////////////////////
