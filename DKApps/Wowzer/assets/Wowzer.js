@@ -159,10 +159,10 @@ function Wowzer_DoSearch(string, callback)
 	Wowzer_Loading(); 
 	
 	if(string){
-		Wowzer_CloseFiveToArry(proxy+"https://www.close5.com/s/"+string, function(){ Wowzer_ShowItems(); Wowzer_Loading(); 
+		Wowzer_CloseFiveToArry(proxy+"https://www.close5.com/s/l/"+string+"/anaheim-california", function(){ Wowzer_ShowItems(); Wowzer_Loading(); 
 		Wowzer_OfferUpToArry(proxy2+"https://offerup.com/search/?q="+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
-		Wowzer_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_EbayToArry(proxy+"http://www.ebay.com/sch/i.html?_from=R40&_nkw="+string+"&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&LH_BIN=1&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_fsradio2=%26LH_PrefLoc%3D99&_sadis=25&_stpos=92802&_fspt=1&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 			document.getElementById("Wowzer_items").removeChild(document.getElementById("loading"));
@@ -175,10 +175,10 @@ function Wowzer_DoSearch(string, callback)
 		});
 	}
 	else{
-		Wowzer_CloseFiveToArry(proxy+"https://www.close5.com", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_CloseFiveToArry(proxy+"https://www.close5.com/l/anaheim-california", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_OfferUpToArry(proxy2+"https://offerup.com", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_FiveMilesToArry("https://www.5milesapp.com", function(){ Wowzer_ShowItems(); Wowzer_Loading();
-		Wowzer_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_LetGoToArry(proxy+"https://us.letgo.com/en/search?lat=33.8124094&lng=-117.91926790000002", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_CarousellToArry(proxy+"https://us.carousell.com/search/products", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 			document.getElementById("Wowzer_items").removeChild(document.getElementById("loading"));
