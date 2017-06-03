@@ -96,12 +96,7 @@ function Wowzer_OnEvent(event)
 		if(!DK_IE()){
 			sessionStorage.scrollPos = 0;
 		}
-		if(window.location.protocol == "http:"){
-			window.location.hash = "";
-		}
-		else{
-			window.location.hash = "";
-		}
+		window.location.href = "";
 	}
 	
 	if(DK_Id(event, "Wowzer_input")){ //Enter pressed
