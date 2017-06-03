@@ -93,9 +93,9 @@ function LoadPage()
 	DKCreate("DKScale/DKScale.js", function(){
 		DKCreate("DKFrame/DKFrame.js", function(){
 			DKCreate("DKDebug/DKDebug.js", function(){
-				DKCreate("AllStores.js", function(){
+				DKCreate("Wowzer.js", function(){
 					DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-						var id = DKGoogleAd_CreateAd("AllStores.html", "100%", "100rem");
+						var id = DKGoogleAd_CreateAd("Wowzer.html", "100%", "100rem");
 						DKWidget_RemoveProperty(id, "top");
 						DKWidget_SetProperty(id, "bottom", "0rem");
 					});

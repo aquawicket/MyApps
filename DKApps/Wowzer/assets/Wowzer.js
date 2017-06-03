@@ -23,12 +23,12 @@ var high = "";
 //TODO: Set geolocation
 /*
 if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(AllStores_SetLocation);    
+    navigator.geolocation.getCurrentPosition(Wowzer_SetLocation);    
 }
 else{ 
     DKLog("Geolocation is not supported by this browser.\n", DKINFO);
 }
-function AllStores_SetLocation(position)
+function Wowzer_SetLocation(position)
 {
 	DKLog("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n", DKINFO);
 }
@@ -39,30 +39,30 @@ window.onhashchange = function(){
 
 	if(search != getUrlParameter(window.location.hash, "s")){
 		search = getUrlParameter(window.location.hash, "s");
-		AllStores_DoSearch(search);
+		Wowzer_DoSearch(search);
 	}
 	//else{
-	//	AllStores_ShowItems();
+	//	Wowzer_ShowItems();
 	//}
 }
 
 /////////////////////////
-function AllStores_Init()
+function Wowzer_Init()
 {
-	//DKLog("AllStores_Init()\n", DKINFO);
-	DKCreate("AllStores.html", function(){});
-	DKAddEvent("AllStores_search", "click", AllStores_OnEvent);
-	DKAddEvent("AllStores_options", "click", AllStores_OnEvent);
-	DKAddEvent("AllStores_input", "keydown", AllStores_OnEvent);
-	DKAddEvent("AllStores_logo", "click", AllStores_OnEvent);
-	DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
+	//DKLog("Wowzer_Init()\n", DKINFO);
+	DKCreate("Wowzer.html", function(){});
+	DKAddEvent("Wowzer_search", "click", Wowzer_OnEvent);
+	DKAddEvent("Wowzer_options", "click", Wowzer_OnEvent);
+	DKAddEvent("Wowzer_input", "keydown", Wowzer_OnEvent);
+	DKAddEvent("Wowzer_logo", "click", Wowzer_OnEvent);
+	DKAddEvent("GLOBAL", "mousedown", Wowzer_OnEvent);
 	
 	search = getUrlParameter(window.location.hash, "s");
 	low = getUrlParameter(window.location.hash, "l");
 	high = getUrlParameter(window.location.hash, "h");
-	AllStores_DoSearch(search, function(){
+	Wowzer_DoSearch(search, function(){
 		//return scroll position in session storage
-		var ele = document.getElementById("AllStores_items");
+		var ele = document.getElementById("Wowzer_items");
 		if(!DK_IE()){
 			ele.scrollTop = sessionStorage.scrollPos || 0;
 		}
@@ -70,29 +70,29 @@ function AllStores_Init()
 }
 
 ///////////////////////
-function AllStores_End()
+function Wowzer_End()
 {
-	//DKLog("AllStores_End()\n", DKINFO);
-	DKClose("AllStores.html");
-	DKRemoveEvent("AllStores_search", "click", AllStores_OnEvent);
-	DKRemoveEvent("AllStores_options", "click", AllStores_OnEvent);
-	DKRemoveEvent("AllStores_input", "keydown", AllStores_OnEvent);
-	DKRemoveEvent("AllStores_logo", "click", AllStores_OnEvent);
-	DKRemoveEvent("GLOBAL", "mousedown", AllStores_OnEvent);
+	//DKLog("Wowzer_End()\n", DKINFO);
+	DKClose("Wowzer.html");
+	DKRemoveEvent("Wowzer_search", "click", Wowzer_OnEvent);
+	DKRemoveEvent("Wowzer_options", "click", Wowzer_OnEvent);
+	DKRemoveEvent("Wowzer_input", "keydown", Wowzer_OnEvent);
+	DKRemoveEvent("Wowzer_logo", "click", Wowzer_OnEvent);
+	DKRemoveEvent("GLOBAL", "mousedown", Wowzer_OnEvent);
 }
 
 /////////////////////////////////
-function AllStores_OnEvent(event)
+function Wowzer_OnEvent(event)
 {
-	//DKLog("AllStores_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
+	//DKLog("Wowzer_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
 	
 	//set scroll position in session storage
-	var ele = document.getElementById("AllStores_items");
+	var ele = document.getElementById("Wowzer_items");
 	if(!DK_IE()){
 		sessionStorage.scrollPos = ele.scrollTop;
 	}
 	
-	if(DK_Id(event, "AllStores_logo")){
+	if(DK_Id(event, "Wowzer_logo")){
 		if(!DK_IE()){
 			sessionStorage.scrollPos = 0;
 		}
@@ -104,12 +104,12 @@ function AllStores_OnEvent(event)
 		}
 	}
 	
-	if(DK_Id(event, "AllStores_input")){ //Enter pressed
+	if(DK_Id(event, "Wowzer_input")){ //Enter pressed
 		if(!DK_IE()){
 			sessionStorage.scrollPos = 0;
 		}
 		if(DKWidget_GetValue(event) == "13"){
-			var input = DKWidget_GetValue("AllStores_input");
+			var input = DKWidget_GetValue("Wowzer_input");
 			if(input){
 				window.location.hash = setUrlParameter(window.location.hash, "s", input);
 			}
@@ -119,11 +119,11 @@ function AllStores_OnEvent(event)
 		}
 	}
 	
-	if(DK_Id(event, "AllStores_search")){ //Search clicked
+	if(DK_Id(event, "Wowzer_search")){ //Search clicked
 		if(!DK_IE()){
 			sessionStorage.scrollPos = 0;
 		}
-		var input = DKWidget_GetValue("AllStores_input");
+		var input = DKWidget_GetValue("Wowzer_input");
 		if(input){
 			window.location.hash = setUrlParameter(window.location.hash, "s", input);
 		}
@@ -132,44 +132,44 @@ function AllStores_OnEvent(event)
 		}
 	}
 	
-	if(DK_Id(event, "AllStores_options")){
-		if(!DKWidget_ElementExists("AllStores_options.html")){
-			DKCreate("AllStores_options.js", function(){});
+	if(DK_Id(event, "Wowzer_options")){
+		if(!DKWidget_ElementExists("Wowzer_options.html")){
+			DKCreate("Wowzer_options.js", function(){});
 		}
 		else{
-			DKClose("AllStores_options.js");
+			DKClose("Wowzer_options.js");
 		}
 	}
 }
 
 ////////////////////////////
-function AllStores_Loading()
+function Wowzer_Loading()
 {
 	var loading = document.createElement('img');
 	loading.id = "loading";
 	loading.src = "loading.gif";
 	loading.style.overflow = "hidden";
 	if(loading){
-		document.getElementById("AllStores_items").appendChild(loading);
+		document.getElementById("Wowzer_items").appendChild(loading);
 	}
 }
 
 /////////////////////////////////////////////
-function AllStores_DoSearch(string, callback)
+function Wowzer_DoSearch(string, callback)
 {
-	//DKLog("AllStores_DoSearch("+string+")\n", DKINFO);
+	//DKLog("Wowzer_DoSearch("+string+")\n", DKINFO);
 	
 	item_arry = new Array();
-	AllStores_Loading(); 
+	Wowzer_Loading(); 
 	
 	if(string){
-		AllStores_CloseFiveToArry(proxy+"https://www.close5.com/s/"+string, function(){ AllStores_ShowItems(); AllStores_Loading(); 
-		AllStores_OfferUpToArry(proxy2+"https://offerup.com/search/?q="+string, function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_EbayToArry(proxy+"http://www.ebay.com/sch/i.html?_from=R40&_nkw="+string+"&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&LH_BIN=1&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_fsradio2=%26LH_PrefLoc%3D99&_sadis=25&_stpos=92802&_fspt=1&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50", function(){ AllStores_ShowItems(); AllStores_Loading();
-			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));
+		Wowzer_CloseFiveToArry(proxy+"https://www.close5.com/s/"+string, function(){ Wowzer_ShowItems(); Wowzer_Loading(); 
+		Wowzer_OfferUpToArry(proxy2+"https://offerup.com/search/?q="+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_EbayToArry(proxy+"http://www.ebay.com/sch/i.html?_from=R40&_nkw="+string+"&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&LH_BIN=1&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_fsradio2=%26LH_PrefLoc%3D99&_sadis=25&_stpos=92802&_fspt=1&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+			document.getElementById("Wowzer_items").removeChild(document.getElementById("loading"));
 			callback && callback();
 		});
 		});
@@ -179,13 +179,13 @@ function AllStores_DoSearch(string, callback)
 		});
 	}
 	else{
-		AllStores_CloseFiveToArry(proxy+"https://www.close5.com", function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_OfferUpToArry(proxy2+"https://offerup.com", function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_FiveMilesToArry("https://www.5milesapp.com", function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ AllStores_ShowItems(); AllStores_Loading();
-		AllStores_CarousellToArry(proxy+"https://us.carousell.com/search/products", function(){ AllStores_ShowItems(); AllStores_Loading();
-			document.getElementById("AllStores_items").removeChild(document.getElementById("loading"));
+		Wowzer_CloseFiveToArry(proxy+"https://www.close5.com", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_OfferUpToArry(proxy2+"https://offerup.com", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_FiveMilesToArry("https://www.5milesapp.com", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_LetGoToArry(proxy+"https://us.letgo.com/en", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_CarousellToArry(proxy+"https://us.carousell.com/search/products", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+			document.getElementById("Wowzer_items").removeChild(document.getElementById("loading"));
 			callback && callback();
 		});
 		});
@@ -197,9 +197,9 @@ function AllStores_DoSearch(string, callback)
 }
 
 /////////////////////////////////////////////
-function AllStores_LetGoToArry(url, callback)
+function Wowzer_LetGoToArry(url, callback)
 {
-	AllStores_GetUrlString(url, function(rstring){
+	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -239,9 +239,9 @@ function AllStores_LetGoToArry(url, callback)
 }
 
 //////////////////////////////////////////////////
-function AllStores_CraigslistToArry(url, callback)
+function Wowzer_CraigslistToArry(url, callback)
 {
-	AllStores_GetUrlString(url, function(rstring){
+	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -290,14 +290,14 @@ function AllStores_CraigslistToArry(url, callback)
 }
 
 /////////////////////////////////////////////////
-function AllStores_CloseFiveToArry(url, callback)
+function Wowzer_CloseFiveToArry(url, callback)
 {
 	if(DK_IE()){
 		callback();
 		return;
 	}
 	
-	AllStores_GetUrlString(url, function(rstring){
+	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -333,9 +333,9 @@ function AllStores_CloseFiveToArry(url, callback)
 }
 
 ////////////////////////////////////////////////
-function AllStores_OfferUpToArry(url, callback)
+function Wowzer_OfferUpToArry(url, callback)
 {
-	AllStores_GetUrlString(url, function(rstring){
+	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -364,15 +364,15 @@ function AllStores_OfferUpToArry(url, callback)
 }
 
 /////////////////////////////////////////////////
-function AllStores_FiveMilesToArry(url, callback)
+function Wowzer_FiveMilesToArry(url, callback)
 {
-	//DKLog("AllStores_FiveMilesToArry()\n", DKINFO);
+	//DKLog("Wowzer_FiveMilesToArry()\n", DKINFO);
 	if(DK_GetBrowser() != "CEF"){
 		callback();
 		return; //Only available with CEF, so return.
 	}
 	
-	AllStores_GetUrlString(url, function(rstring){
+	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -403,12 +403,12 @@ function AllStores_FiveMilesToArry(url, callback)
 }
 
 /////////////////////////////////////////////////
-function AllStores_CarousellToArry(url, callback)
+function Wowzer_CarousellToArry(url, callback)
 {
 	callback();
 	return;  //Not implemented yet,  return;
 		
-	AllStores_GetUrlString(url, function(rstring){
+	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -447,12 +447,12 @@ function AllStores_CarousellToArry(url, callback)
 }
 
 ////////////////////////////////////////////
-function AllStores_EbayToArry(url, callback)
+function Wowzer_EbayToArry(url, callback)
 {
-	//DKLog("AllStores_EbayToArry()\n", DKINFO);
+	//DKLog("Wowzer_EbayToArry()\n", DKINFO);
 	
 	url = url.replace(" ","+");	
-	AllStores_GetUrlString(url, function(rstring){
+	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
@@ -483,7 +483,7 @@ function AllStores_EbayToArry(url, callback)
 }
 
 ///////////////////////////
-function AllStores_Filter()
+function Wowzer_Filter()
 {
 	item_arry2 = item_arry.slice(0);
 	
@@ -582,12 +582,12 @@ function AllStores_Filter()
 }
 
 //////////////////////////////
-function AllStores_ShowItems()
+function Wowzer_ShowItems()
 {
 	//sort by price
-	AllStores_Filter();
+	Wowzer_Filter();
 
-	DKWidget_SetInnerHtml("AllStores_items", "");
+	DKWidget_SetInnerHtml("Wowzer_items", "");
 	for(var i=0; i<item_arry2.length; i++){	
 		var itemdiv = document.createElement('div');
 		itemdiv.style.display = "inline-block";
@@ -692,13 +692,13 @@ function AllStores_ShowItems()
 		itemloc.style.fontSize = "15rem";
 		itemdiv.appendChild(itemloc);
 		
-		document.getElementById("AllStores_items").appendChild(itemdiv);
+		document.getElementById("Wowzer_items").appendChild(itemdiv);
 		
 	}
 }
 
 //////////////////////////////////////////////
-function AllStores_GetUrlString(url, callback)
+function Wowzer_GetUrlString(url, callback)
 {
 	try {
         request = new XDomainRequest();
