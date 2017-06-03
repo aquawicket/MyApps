@@ -1,10 +1,12 @@
 var proxy = "";
 var proxy2 = "";
 var proxy3 = "";
+var proxy4 = ""
 if(DK_GetBrowser() != "CEF"){
-	var proxy = "http://cors-anywhere.herokuapp.com/";
-	var proxy2 = "https://crossorigin.me/";
-	var proxy3 = "https://cors.now.sh/";
+	proxy = "http://cors-anywhere.herokuapp.com/";
+	proxy2 = "https://crossorigin.me/";
+	proxy3 = "https://cors.now.sh/";
+	proxy4 = "http://alloworigin.com/get?url=";
 }
 //var scrollpos = 0;
 var item_arry = new Array();
@@ -69,7 +71,7 @@ function Wowzer_Init()
 		}
 	});
 	
-	Test();
+	//Test();
 }
 
 ///////////////////////
