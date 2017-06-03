@@ -57,9 +57,11 @@ function AllStores_options_OnEvent(event)
 	}
 	if(DK_Id(event, "AllStores_options_low")){
 		low = DKWidget_GetValue("AllStores_options_low");
+		window.location.hash = setUrlParameter(window.location.hash, "l", low);
 	}
 	if(DK_Id(event, "AllStores_options_high")){
 		high = DKWidget_GetValue("AllStores_options_high");
+		window.location.hash = setUrlParameter(window.location.hash, "h", high);
 	}
 	
 	AllStores_ShowItems();

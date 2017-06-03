@@ -36,9 +36,11 @@ function AllStores_SetLocation(position)
 window.onhashchange = function(){
 	DKLog("onhashchange: "+window.location.hash+"\n", DKINFO);
 	sessionStorage.scrollPos = 0; //reset scroll on back button
-	
-	search = window.location.hash.split('s=')[1];
-	AllStores_DoSearch(search);
+
+	if(search != getUrlParameter(window.location.hash, "s")){
+		search = getUrlParameter(window.location.hash, "s");
+		AllStores_DoSearch(search);
+	}
 }
 
 /////////////////////////
@@ -52,7 +54,9 @@ function AllStores_Init()
 	DKAddEvent("AllStores_logo", "click", AllStores_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
 	
-	search = window.location.hash.split('s=')[1];
+	search = getUrlParameter(window.location.hash, "s");
+	low = getUrlParameter(window.location.hash, "l");
+	high = getUrlParameter(window.location.hash, "h");
 	AllStores_DoSearch(search, function(){
 		//return scroll position in session storage
 		var ele = document.getElementById("AllStores_items");
@@ -90,12 +94,10 @@ function AllStores_OnEvent(event)
 			sessionStorage.scrollPos = 0;
 		}
 		if(window.location.protocol == "http:"){
-			//window.location.href = "http://digitalknob.com/Wowzer/";
 			window.location.hash = "http://digitalknob.com/Wowzer/";
 		}
 		else{
-			window.location.hash = "file:///C:/digitalknob/MyApps/DKApps/AllStores/assets/index.html";
-			//AllStores_DoSearch("");
+			window.location.hash = "";
 		}
 	}
 	
@@ -104,20 +106,13 @@ function AllStores_OnEvent(event)
 			sessionStorage.scrollPos = 0;
 		}
 		if(DKWidget_GetValue(event) == "13"){
-			search = DKWidget_GetValue("AllStores_input");
-			//if(window.location.protocol == "http:"){
-				if(search){
-					//window.location.href = "?s="+search;
-					window.location.hash = "?s="+search;
-				}
-				else{
-					//window.location.href = "";
-					window.location.hash = "";
-				}
-			//}
-			//else{
-			//	AllStores_DoSearch(search); //file protocol
-			//}
+			var input = DKWidget_GetValue("AllStores_input");
+			if(input){
+				window.location.hash = setUrlParameter(window.location.hash, "s", input);
+			}
+			else{
+				window.location.hash = removeUrlParameter(window.location.hash, "s");
+			}
 		}
 	}
 	
@@ -125,20 +120,13 @@ function AllStores_OnEvent(event)
 		if(!DK_IE()){
 			sessionStorage.scrollPos = 0;
 		}
-		search = DKWidget_GetValue("AllStores_input");
-		//if(window.location.protocol == "http:"){
-			if(search){
-				//window.location.href = "?s="+search;
-				window.location.hash = "?s="+search;
-			}
-			else{
-				//window.location.href = "";
-				window.location.hash = "";
-			}
-		//}
-		//else{
-		//	AllStores_DoSearch(search);
-		//}
+		var input = DKWidget_GetValue("AllStores_input");
+		if(input){
+			window.location.hash = setUrlParameter(window.location.hash, "s", input);
+		}
+		else{
+			window.location.hash = removeUrlParameter(window.location.hash, "s");
+		}
 	}
 	
 	if(DK_Id(event, "AllStores_options")){
@@ -767,4 +755,54 @@ function AllStores_GetUrlString(url, callback)
 		}
 	}
 	*/
+}
+
+//////////////////////////////////
+function getUrlParameter(url, key) 
+{
+    if (!url) url = window.location.href;
+    key = key.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + key + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+/////////////////////////////////////////
+function setUrlParameter(url, key, value)
+{
+  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+  var separator = url.indexOf('?') !== -1 ? "&" : "?";
+  if (url.match(re)) {
+    return url.replace(re, '$1' + key + "=" + value + '$2');
+  }
+  else {
+    return url + separator + key + "=" + value;
+  }
+}
+
+/////////////////////////////////////
+function removeUrlParameter(url, key)
+{
+    //prefer to use l.search if you have a location/link object
+    var urlparts= url.split('?');   
+		if (urlparts.length>=2) {
+			var prefix= encodeURIComponent(key)+'=';
+			var pars= urlparts[1].split(/[&;]/g);
+
+        //reverse iteration as may be destructive
+			for (var i= pars.length; i-- > 0;) {    
+            //idiom for string.startsWith
+				if (pars[i].lastIndexOf(prefix, 0) !== -1) {  
+					pars.splice(i, 1);
+				}
+			}
+
+			url= urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
+			return url;
+    } 
+	else{
+        return url;
+    }
 }
