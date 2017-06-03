@@ -9,6 +9,7 @@ if(DK_GetBrowser() != "CEF"){
 //var scrollpos = 0;
 var item_arry = new Array();
 var item_arry2 = new Array();
+var search = "";
 var sortbyprice = true;
 var close5 = true;
 var offerup = true;
@@ -33,7 +34,11 @@ function AllStores_SetLocation(position)
 }
 */
 window.onhashchange = function(){
+	DKLog("onhashchange: "+window.location.hash+"\n", DKINFO);
 	sessionStorage.scrollPos = 0; //reset scroll on back button
+	
+	search = window.location.hash.split('s=')[1];
+	AllStores_DoSearch(search);
 }
 
 /////////////////////////
@@ -47,7 +52,7 @@ function AllStores_Init()
 	DKAddEvent("AllStores_logo", "click", AllStores_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", AllStores_OnEvent);
 	
-	var search = location.search.split('s=')[1];
+	search = window.location.hash.split('s=')[1];
 	AllStores_DoSearch(search, function(){
 		//return scroll position in session storage
 		var ele = document.getElementById("AllStores_items");
@@ -85,33 +90,12 @@ function AllStores_OnEvent(event)
 			sessionStorage.scrollPos = 0;
 		}
 		if(window.location.protocol == "http:"){
-			window.location.href = "http://digitalknob.com/Wowzer/";
-		}
-		AllStores_DoSearch(""); //file protocol
-	}
-	
-	if(DK_Id(event, "AllStores_search")){ //Search clicked
-		if(!DK_IE()){
-			sessionStorage.scrollPos = 0;
-		}
-		var input = DKWidget_GetValue("AllStores_input");
-		if(window.location.protocol == "http:"){
-			if(input){
-				window.location.href = "?s="+input;
-			}
-			else{
-				window.location.href = "";
-			}
-		}
-		AllStores_DoSearch(input); //file protocol
-	}
-	
-	if(DK_Id(event, "AllStores_options")){
-		if(!DKWidget_ElementExists("AllStores_options.html")){
-			DKCreate("AllStores_options.js", function(){});
+			//window.location.href = "http://digitalknob.com/Wowzer/";
+			window.location.hash = "http://digitalknob.com/Wowzer/";
 		}
 		else{
-			DKClose("AllStores_options.js");
+			window.location.hash = "file:///C:/digitalknob/MyApps/DKApps/AllStores/assets/index.html";
+			//AllStores_DoSearch("");
 		}
 	}
 	
@@ -120,16 +104,49 @@ function AllStores_OnEvent(event)
 			sessionStorage.scrollPos = 0;
 		}
 		if(DKWidget_GetValue(event) == "13"){
-			var input = DKWidget_GetValue("AllStores_input");
-			if(window.location.protocol == "http:"){
-				if(input){
-					window.location.href = "?s="+input;
+			search = DKWidget_GetValue("AllStores_input");
+			//if(window.location.protocol == "http:"){
+				if(search){
+					//window.location.href = "?s="+search;
+					window.location.hash = "?s="+search;
 				}
 				else{
-					window.location.href = "";
+					//window.location.href = "";
+					window.location.hash = "";
 				}
+			//}
+			//else{
+			//	AllStores_DoSearch(search); //file protocol
+			//}
+		}
+	}
+	
+	if(DK_Id(event, "AllStores_search")){ //Search clicked
+		if(!DK_IE()){
+			sessionStorage.scrollPos = 0;
+		}
+		search = DKWidget_GetValue("AllStores_input");
+		//if(window.location.protocol == "http:"){
+			if(search){
+				//window.location.href = "?s="+search;
+				window.location.hash = "?s="+search;
 			}
-			AllStores_DoSearch(input); //file protocol
+			else{
+				//window.location.href = "";
+				window.location.hash = "";
+			}
+		//}
+		//else{
+		//	AllStores_DoSearch(search);
+		//}
+	}
+	
+	if(DK_Id(event, "AllStores_options")){
+		if(!DKWidget_ElementExists("AllStores_options.html")){
+			DKCreate("AllStores_options.js", function(){});
+		}
+		else{
+			DKClose("AllStores_options.js");
 		}
 	}
 }
