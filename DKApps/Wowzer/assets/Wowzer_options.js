@@ -74,6 +74,11 @@ function Wowzer_options_OnEvent(event)
 	if(DK_Id(event, "Wowzer_options_bug")){
 		alert("coming soon...");
 		return;
+		
+		//TODO
+		DKCreate("DKDebug/SendBugReport.js", function(){
+			DKFrame_Widget("SendBugReport.html");
+		});
 	}
 	
 	Wowzer_ShowItems();
