@@ -588,8 +588,8 @@ function Wowzer_ShowItems()
 		itemdiv.style.display = "inline-block";
 		itemdiv.style.width = "230px";
 		itemdiv.style.width = "230rem";
-		itemdiv.style.height = "420px";
-		itemdiv.style.height = "420rem";
+		itemdiv.style.height = "390px";
+		itemdiv.style.height = "390rem";
 		itemdiv.style.textAlign = "center";
 		itemdiv.style.margin = "4px";
 		itemdiv.style.margin = "4rem";
@@ -634,6 +634,7 @@ function Wowzer_ShowItems()
 		else{
 			itemimg.style.width = "100%";
 		}
+
 		itemurl.appendChild(itemimg);
 				
 		var host = document.createElement('img');
@@ -651,8 +652,8 @@ function Wowzer_ShowItems()
 		infodiv.style.display = "block";
 		infodiv.style.width = "230px";
 		infodiv.style.width = "230rem";
-		infodiv.style.height = "75px";
-		infodiv.style.height = "75rem";
+		infodiv.style.height = "49px";
+		infodiv.style.height = "49rem";
 		//infodiv.style.borderStyle = "solid";
 		//infodiv.style.borderWidth = "1rem";
 		//infodiv.style.borderColor = "green";
