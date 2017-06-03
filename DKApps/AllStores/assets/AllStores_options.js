@@ -7,12 +7,16 @@ function AllStores_options_Init()
 	DKAddEvent("AllStores_options_offerup", "click", AllStores_options_OnEvent);
 	DKAddEvent("AllStores_options_letgo", "click", AllStores_options_OnEvent);
 	DKAddEvent("AllStores_options_craigslist", "click", AllStores_options_OnEvent);
+	DKAddEvent("AllStores_options_fivemiles", "click", AllStores_options_OnEvent);
+	DKAddEvent("AllStores_options_ebay", "click", AllStores_options_OnEvent);
 	
 	DKWidget_SetValue("AllStores_options_price", sortbyprice);
 	DKWidget_SetValue("AllStores_options_close5", close5);
 	DKWidget_SetValue("AllStores_options_offerup", offerup);
 	DKWidget_SetValue("AllStores_options_letgo", letgo);
 	DKWidget_SetValue("AllStores_options_craigslist", craigslist);
+	DKWidget_SetValue("AllStores_options_fivemiles", fivemiles);
+	DKWidget_SetValue("AllStores_options_ebay", fivemiles);
 }
 
 ////////////////////////////////
@@ -40,6 +44,12 @@ function AllStores_options_OnEvent(event)
 	}
 	if(DK_Id(event, "AllStores_options_craigslist")){
 		craigslist = DKWidget_GetValue("AllStores_options_craigslist");
+	}
+	if(DK_Id(event, "AllStores_options_fivemiles")){
+		fivemiles = DKWidget_GetValue("AllStores_options_fivemiles");
+	}
+	if(DK_Id(event, "AllStores_options_ebay")){
+		ebay = DKWidget_GetValue("AllStores_options_ebay");
 	}
 	
 	AllStores_ShowItems();
