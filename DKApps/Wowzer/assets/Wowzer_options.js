@@ -11,6 +11,7 @@ function Wowzer_options_Init()
 	DKAddEvent("Wowzer_options_ebay", "click", Wowzer_options_OnEvent);
 	DKAddEvent("Wowzer_options_low", "keyup", Wowzer_options_OnEvent);
 	DKAddEvent("Wowzer_options_high", "keyup", Wowzer_options_OnEvent);
+	DKAddEvent("Wowzer_options_bug", "click", Wowzer_options_OnEvent);
 	
 	DKWidget_SetValue("Wowzer_options_price", sortbyprice);
 	DKWidget_SetValue("Wowzer_options_close5", close5);
@@ -68,6 +69,11 @@ function Wowzer_options_OnEvent(event)
 		if(DKWidget_GetValue(event) == 13){
 			DKClose("Wowzer_options.js");
 		}
+	}
+	
+	if(DK_Id(event, "Wowzer_options_bug")){
+		alert("coming soon...");
+		return;
 	}
 	
 	Wowzer_ShowItems();
