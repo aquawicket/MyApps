@@ -90,16 +90,18 @@ function LoadPage()
 {
 	//DKLog("Loading page... \n", DKINFO);
 	DKWidget_SetProperty("body","background-color","grey");
-	DKCreate("DKScale/DKScale.js", function(){
-		DKCreate("DKFrame/DKFrame.js", function(){
-			DKCreate("DKDebug/DKDebug.js", function(){
-				DKCreate("Wowzer.js", function(){
-					DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-						var id = DKGoogleAd_CreateAd("Wowzer_add", "100%", "100rem");
-						DKWidget_RemoveProperty(id, "top");
-						DKWidget_SetProperty(id, "bottom", "0rem");
+	DKCreate("DKWindow/DKWindow.js", function(){
+		DKCreate("DKScale/DKScale.js", function(){
+			DKCreate("DKFrame/DKFrame.js", function(){
+				DKCreate("DKDebug/DKDebug.js", function(){
+					DKCreate("Wowzer.js", function(){
+						DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+							var id = DKGoogleAd_CreateAd("Wowzer_add", "100%", "100rem");
+							DKWidget_RemoveProperty(id, "top");
+							DKWidget_SetProperty(id, "bottom", "0rem");
+						});
+						//DKCreate("DKEditor/DKEditor.js", function(){});
 					});
-					//DKCreate("DKEditor/DKEditor.js", function(){});
 				});
 			});
 		});
