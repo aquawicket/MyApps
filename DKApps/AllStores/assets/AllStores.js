@@ -85,7 +85,7 @@ function AllStores_OnEvent(event)
 			sessionStorage.scrollPos = 0;
 		}
 		if(window.location.protocol == "http:"){
-			window.location.href = "";
+			window.location.href = "http://digitalknob.com/Wowzer/";
 		}
 		AllStores_DoSearch(""); //file protocol
 	}
