@@ -58,10 +58,16 @@ function Wowzer_options_OnEvent(event)
 	if(DK_Id(event, "Wowzer_options_low")){
 		low = DKWidget_GetValue("Wowzer_options_low");
 		window.location.hash = setUrlParameter(window.location.hash, "l", low);
+		if(DKWidget_GetValue(event) == 13){
+			DKClose("Wowzer_options.js");
+		}
 	}
 	if(DK_Id(event, "Wowzer_options_high")){
 		high = DKWidget_GetValue("Wowzer_options_high");
 		window.location.hash = setUrlParameter(window.location.hash, "h", high);
+		if(DKWidget_GetValue(event) == 13){
+			DKClose("Wowzer_options.js");
+		}
 	}
 	
 	Wowzer_ShowItems();
