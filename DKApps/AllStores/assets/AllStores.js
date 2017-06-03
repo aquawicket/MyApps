@@ -721,6 +721,19 @@ function AllStores_GetUrlString(url, callback)
 	
 	//DKLog("request.open(\"GET\","+url+",true)", DKINFO);
 	request.open("GET",url,true);
+	request.send(); 
+
+	request.onload=function(){
+		callback(request.responseText);
+	}
+	request.ontimeout=function(){
+		DKLog("TIMEOUT: "+url+"\n", DKWARN);
+		callback();
+	}
+	request.onerror=function(){
+		DKLog("ERROR: "+url+"\n", DKWARN);
+		callback();
+	}
 	
 	/*
 	request.onreadystatechange=function(){
@@ -737,11 +750,4 @@ function AllStores_GetUrlString(url, callback)
 		}
 	}
 	*/
-	
-	request.onload=function(){
-		callback(request.responseText);
-	}
-	
-	
-	request.send(); 
 }
