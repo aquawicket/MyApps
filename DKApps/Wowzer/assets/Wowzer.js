@@ -15,8 +15,9 @@ var close5 = true;
 var offerup = true;
 var letgo = true;
 var craigslist = true;
-var ebay = true;
-var fivemiles = true;
+var ebay = false;
+var fivemiles = false;
+var carousell = false;
 var low = "";
 var high = "";
 
@@ -67,6 +68,8 @@ function Wowzer_Init()
 			ele.scrollTop = sessionStorage.scrollPos || 0;
 		}
 	});
+	
+	//Test();
 }
 
 ///////////////////////
@@ -164,7 +167,7 @@ function Wowzer_DoSearch(string, callback)
 		Wowzer_FiveMilesToArry("https://www.5milesapp.com/q/"+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_LetGoToArry(proxy+"https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 		Wowzer_CraigslistToArry(proxy+"https://orangecounty.craigslist.org/search/sss?query="+string, function(){ Wowzer_ShowItems(); Wowzer_Loading();
-		Wowzer_EbayToArry(proxy+"http://www.ebay.com/sch/i.html?_from=R40&_nkw="+string+"&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&LH_BIN=1&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_fsradio2=%26LH_PrefLoc%3D99&_sadis=25&_stpos=92802&_fspt=1&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50", function(){ Wowzer_ShowItems(); Wowzer_Loading();
+		Wowzer_EbayToArry(proxy+"https://www.ebay.com/sch/i.html?_from=R40&_nkw="+string+"&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&LH_BIN=1&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_fsradio2=%26LH_PrefLoc%3D99&_sadis=25&_stpos=92802&_fspt=1&_sargn=-1%26saslc%3D1&_salic=1&_sop=12&_dmd=1&_ipg=50", function(){ Wowzer_ShowItems(); Wowzer_Loading();
 			document.getElementById("Wowzer_items").removeChild(document.getElementById("loading"));
 			callback && callback();
 		});
@@ -195,6 +198,11 @@ function Wowzer_DoSearch(string, callback)
 /////////////////////////////////////////////
 function Wowzer_LetGoToArry(url, callback)
 {
+	if(!letgo){
+		callback();
+		return;
+	}
+	
 	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
@@ -237,6 +245,11 @@ function Wowzer_LetGoToArry(url, callback)
 //////////////////////////////////////////////////
 function Wowzer_CraigslistToArry(url, callback)
 {
+	if(!craigslist){
+		callback();
+		return;
+	}
+	
 	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
@@ -288,6 +301,11 @@ function Wowzer_CraigslistToArry(url, callback)
 /////////////////////////////////////////////////
 function Wowzer_CloseFiveToArry(url, callback)
 {
+	if(!close5){
+		callback();
+		return;
+	}
+	
 	if(DK_IE()){
 		callback();
 		return;
@@ -331,6 +349,11 @@ function Wowzer_CloseFiveToArry(url, callback)
 ////////////////////////////////////////////////
 function Wowzer_OfferUpToArry(url, callback)
 {
+	if(!offerup){
+		callback();
+		return;
+	}
+	
 	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
@@ -362,6 +385,11 @@ function Wowzer_OfferUpToArry(url, callback)
 /////////////////////////////////////////////////
 function Wowzer_FiveMilesToArry(url, callback)
 {
+	if(!fivemiles){
+		callback();
+		return;
+	}
+	
 	//DKLog("Wowzer_FiveMilesToArry()\n", DKINFO);
 	if(DK_GetBrowser() != "CEF"){
 		callback();
@@ -401,6 +429,11 @@ function Wowzer_FiveMilesToArry(url, callback)
 /////////////////////////////////////////////////
 function Wowzer_CarousellToArry(url, callback)
 {
+	if(!carousell){
+		callback();
+		return;
+	}
+	
 	callback();
 	return;  //Not implemented yet,  return;
 		
@@ -445,6 +478,10 @@ function Wowzer_CarousellToArry(url, callback)
 ////////////////////////////////////////////
 function Wowzer_EbayToArry(url, callback)
 {
+	if(!ebay){
+		callback();
+		return;
+	}
 	//DKLog("Wowzer_EbayToArry()\n", DKINFO);
 	
 	url = url.replace(" ","+");	
@@ -452,7 +489,7 @@ function Wowzer_EbayToArry(url, callback)
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
-			//DKLog(rstring+"\n", DKINFO);
+			DKLog(rstring+"\n", DKINFO);
 			
 			var items = div.getElementsByClassName("sresult lvresult clearfix li shic");
 			for(var i=1; i<items.length; i++){
@@ -805,4 +842,36 @@ function removeUrlParameter(url, key)
 	else{
         return url;
     }
+}
+
+///////// TESTS ///////////////////////////////////////////
+//////////////////////////////////////////////////////////
+function Test()
+{
+	var script = document.createElement('script');
+	script.src = "https://www.google.com";
+	script.id = "test_script";
+	//script.type = "text/javascript";
+	//script.type = "text/html";
+	//script.type="text/plain";
+	
+    script.onerror = function(){
+		DKLog("script.onerror\n", DKINFO);
+	};
+	script.onload = function(){
+		DKLog("script.onload\n", DKINFO);
+		DKLog(script.text+"\n", DKINFO);
+	};
+
+	/*
+	script.onreadystatechange = function(){
+		DKLog("script.onreadystatechange\n", DKINFO);
+		if(script.readyState == 'loaded'){
+			// Our script has download, but hasn't executed.
+			// It won't execute until we do:
+			DKLog("script.readystate = loaded\n", DKINFO);
+		}
+	};
+	*/
+	document.body.appendChild(script);
 }
