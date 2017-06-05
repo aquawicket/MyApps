@@ -7,6 +7,15 @@ function AppsMenu_Init()
 	AppsMenu_GetApps();
 }
 
+///////////////////////
+function AppsMenu_End()
+{
+	//DKLog("AppsMenu_End():\n");
+	
+	DKRemoveEvents(AppsMenu_OnEvent);
+	DKClose("AppsMenu.html");
+}
+
 ///////////////////////////
 function AppsMenu_GetApps()
 {
@@ -70,14 +79,6 @@ Don't you just hate how youtube music stops playing when you turn off your scree
 	if(name == "DKIDE"){
 		return "Integrated development environment.";
 	}
-}
-
-///////////////////////
-function AppsMenu_End()
-{
-	//DKLog("AppsMenu_End():\n");
-	DKRemoveEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
-	DKClose("AppsMenu.html");
 }
 
 //////////////////////////////
