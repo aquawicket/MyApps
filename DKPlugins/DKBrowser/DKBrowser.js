@@ -140,8 +140,8 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Type(event, "DKCef_OnLoadingStateChange")){
 		var num = parseInt(DK_GetValue(event));
-		//DKLog("DKCef_OnLoadingStateChange, "+num+"\n", DKINFO);
-		//DKLog(DKCef_GetUrl("DKBrowser_cef", num)+"\n", DKINFO);
+		//DKLog("DKCef_OnLoadingStateChange, "+num+"\n");
+		//DKLog(DKCef_GetUrl("DKBrowser_cef", num)+"\n");
 		var url = DKCef_GetUrl("DKBrowser_cef", num);
 		if(url){
 			DKBrowser_SetUrlBar(url, num); 
@@ -208,25 +208,25 @@ function DKBrowser_OnLoadError(error)
 //////////////////////////////////
 function DKBrowser_ProcessKey(key)
 {
-	//DKLog("DKBrowser_ProcessKey("+key+")\n", DKINFO);
+	//DKLog("DKBrowser_ProcessKey("+key+")\n");
 	
 	if(key == 78 && DK_KeyIsDown(17)){
-		//DKLog("New Window\n", DKINFO);
+		//DKLog("New Window\n");
 		var app = DKFile_GetFullExeName();
 		DK_Run(app);
 	}
 	if(key == 84 && DK_KeyIsDown(17)){
-		//DKLog("New Tab\n", DKINFO);
+		//DKLog("New Tab\n");
 		DKBrowser_NewTab();
 	}
 	if(key == 9 && DK_KeyIsDown(17) && !DK_KeyIsDown(16)){
-		DKLog("Next Tab\n", DKINFO);
+		DKLog("Next Tab\n");
 	}
 	if(key == 9 && DK_KeyIsDown(17) && DK_KeyIsDown(16)){
-		DKLog("Prev Tab\n", DKINFO);
+		DKLog("Prev Tab\n");
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
-		//DKLog("Homepage\n", DKINFO);
+		//DKLog("Homepage\n");
 		DKCef_SetUrl("DKBrowser_cef", "http://digitalknob.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	
@@ -278,7 +278,7 @@ function DKBrowser_UpdateTabs()
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
-	//DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKINFO);
+	//DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n");
 	DKWidget_SetInnerHtml("Tab"+num+"Text", url);
 	if(DKCef_GetCurrentBrowser("DKBrowser_cef") != num){ return; }
 	var focused = DKWidget_GetFocusElement();

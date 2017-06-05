@@ -42,7 +42,7 @@ function Taskbar_OnEvent(event)
 //////////////////////////
 function Taskbar_Animate()
 {
-	//DKLog("Taskbar_Animate(): frame()\n", DKINFO);
+	//DKLog("Taskbar_Animate(): frame()\n");
     if(pos == 0){
         clearInterval(animation);
     } 

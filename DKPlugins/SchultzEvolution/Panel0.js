@@ -80,7 +80,7 @@ function Panel0_NextRecord()
 ///////////////////////////
 function Panel0_NewRecord()
 {
-	DKLog("Creating new record. \n", DKINFO);
+	DKLog("Creating new record. \n");
 	var query = "INSERT INTO SyncRequest () VALUES ()";
 	var result = DKMySql_Query(query);
 	DKLog(result, DKDEBUG);

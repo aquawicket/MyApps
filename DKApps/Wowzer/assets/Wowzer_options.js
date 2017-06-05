@@ -33,7 +33,7 @@ function Wowzer_options_End()
 /////////////////////////////////////////
 function Wowzer_options_OnEvent(event)
 {
-	//DKLog("Wowzer_options_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
+	//DKLog("Wowzer_options_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "Wowzer_options_price")){
 		sortbyprice = DKWidget_GetValue("Wowzer_options_price");

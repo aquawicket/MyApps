@@ -21,7 +21,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 {
 	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+") \n", DKDEBUG);
 	DKLog("Browser = "+DK_GetBrowser()+"\n", DKDEBUG);
-	//DKLog("protocol = "+DKAssets_Protocol()+"\n", DKINFO);
+	//DKLog("protocol = "+DKAssets_Protocol()+"\n");
 	
 	//if(DK_GetBrowser() != "Rocket"){
 	if(DKAssets_Protocol() != "file:"){
@@ -72,8 +72,8 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		var px_height = DKWidget_GetClientHeight(id);
 		px_width = Math.min(parseInt(px_width), 1200);
 		px_height = Math.min(parseInt(px_height), 1200);
-		DKLog("px_width = "+String(px_width)+"\n", DKINFO);
-		DKLog("px_height = "+String(px_height)+"\n", DKINFO);
+		DKLog("px_width = "+String(px_width)+"\n");
+		DKLog("px_height = "+String(px_height)+"\n");
 		
 		DKWidget_SetProperty(id, "width", String(px_width)+":rem");
 		//DKWidget_SetProperty(id, "width", "100%");

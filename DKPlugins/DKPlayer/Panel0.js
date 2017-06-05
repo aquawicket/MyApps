@@ -203,7 +203,7 @@ function Panel0_AddUrl(url)
 ///////////////////////////
 function Panel0_NextVideo()
 {
-	DKLog("Loading next video...", DKINFO);
+	DKLog("Loading next video...");
 	//var x = document.getElementById("Playlist");
 	
 	if(!SHUFFLE){

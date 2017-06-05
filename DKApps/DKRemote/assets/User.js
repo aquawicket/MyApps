@@ -11,7 +11,7 @@ function User_OnEvent(event)  //Duktape
 {
 	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Type(event, "keydown")){
-		//DKLog("keydown ="+DK_GetValue(event)+"\n", DKINFO);
+		//DKLog("keydown ="+DK_GetValue(event)+"\n");
 		if(DK_GetValue(event) == "4"){ //Exit for ANDROID
 		    DK_Exit();
 		}

@@ -28,7 +28,7 @@ function scale_OnEvent(event)
 //////////////////////
 function scale_minus()
 {
-	//DKLog("scale_minus()\n", DKINFO);
+	//DKLog("scale_minus()\n");
 	var scale = DKWidget_GetScale();
 	scale = scale - 0.1;
 	if(scale < 1.0){ scale = 1.0; }
@@ -39,7 +39,7 @@ function scale_minus()
 /////////////////////
 function scale_plus()
 {
-	//DKLog("scale_plus()\n", DKINFO);
+	//DKLog("scale_plus()\n");
 	var scale = DKWidget_GetScale();
 	scale = scale + 0.1;
 	if(scale > 100.0){ scale = 100.0; }

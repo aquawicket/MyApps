@@ -30,7 +30,7 @@ function Clock_OnEvent(event)
 ///////////////////////
 function Clock_Update()
 {
-	//DKLog("tick\n", DKINFO);
+	//DKLog("tick\n");
 	if(second_flag){
 		DKWidget_SetProperty("time", "color", "rgb(255,255,255)");
 		second_flag = false;

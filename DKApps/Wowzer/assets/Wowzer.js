@@ -29,15 +29,15 @@ if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(Wowzer_SetLocation);    
 }
 else{ 
-    DKLog("Geolocation is not supported by this browser.\n", DKINFO);
+    DKLog("Geolocation is not supported by this browser.\n");
 }
 function Wowzer_SetLocation(position)
 {
-	DKLog("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n", DKINFO);
+	DKLog("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n");
 }
 */
 window.onhashchange = function(){
-	DKLog("onhashchange: "+window.location.hash+"\n", DKINFO);
+	DKLog("onhashchange: "+window.location.hash+"\n");
 	sessionStorage.scrollPos = 0; //reset scroll on back button
 
 	if(search != getUrlParameter(window.location.hash, "s")){
@@ -52,7 +52,7 @@ window.onhashchange = function(){
 /////////////////////////
 function Wowzer_Init()
 {
-	//DKLog("Wowzer_Init()\n", DKINFO);
+	//DKLog("Wowzer_Init()\n");
 	DKCreate("Wowzer.html", function(){});
 	DKAddEvent("Wowzer_search", "click", Wowzer_OnEvent);
 	DKAddEvent("Wowzer_options", "click", Wowzer_OnEvent);
@@ -77,7 +77,7 @@ function Wowzer_Init()
 ///////////////////////
 function Wowzer_End()
 {
-	//DKLog("Wowzer_End()\n", DKINFO);
+	//DKLog("Wowzer_End()\n");
 	DKClose("Wowzer.html");
 	DKRemoveEvent("Wowzer_search", "click", Wowzer_OnEvent);
 	DKRemoveEvent("Wowzer_options", "click", Wowzer_OnEvent);
@@ -89,7 +89,7 @@ function Wowzer_End()
 /////////////////////////////////
 function Wowzer_OnEvent(event)
 {
-	//DKLog("Wowzer_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKINFO);
+	//DKLog("Wowzer_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	//set scroll position in session storage
 	var ele = document.getElementById("Wowzer_items");
@@ -158,7 +158,7 @@ function Wowzer_Loading()
 /////////////////////////////////////////////
 function Wowzer_DoSearch(string, callback)
 {
-	//DKLog("Wowzer_DoSearch("+string+")\n", DKINFO);
+	//DKLog("Wowzer_DoSearch("+string+")\n");
 	
 	item_arry = new Array();
 	Wowzer_Loading(); 
@@ -212,7 +212,7 @@ function Wowzer_LetGoToArry(url, callback)
 			
 			var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -259,7 +259,7 @@ function Wowzer_CraigslistToArry(url, callback)
 			
 			var items = div.getElementsByClassName("result-row");
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -320,7 +320,7 @@ function Wowzer_CloseFiveToArry(url, callback)
 			
 			var items = div.getElementsByClassName("four wide large screen four wide widescreen four wide computer four wide tablet eight wide mobile column");
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -360,11 +360,11 @@ function Wowzer_OfferUpToArry(url, callback)
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
-			//DKLog(rstring+"\n", DKINFO);
+			//DKLog(rstring+"\n");
 			
 			var items = div.getElementsByClassName("item-pic");
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].parentNode.innerHTML+"\n", DKINFO);
+				//DKLog(items[i].parentNode.innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -392,7 +392,7 @@ function Wowzer_FiveMilesToArry(url, callback)
 		return;
 	}
 	
-	//DKLog("Wowzer_FiveMilesToArry()\n", DKINFO);
+	//DKLog("Wowzer_FiveMilesToArry()\n");
 	if(DK_GetBrowser() != "CEF"){
 		callback();
 		return; //Only available with CEF, so return.
@@ -405,7 +405,7 @@ function Wowzer_FiveMilesToArry(url, callback)
 			
 			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
 			for(var i=1; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -446,7 +446,7 @@ function Wowzer_CarousellToArry(url, callback)
 			
 			var items = div.getElementsByClassName("card pdt-card");
 			for(var i=1; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -484,18 +484,18 @@ function Wowzer_EbayToArry(url, callback)
 		callback();
 		return;
 	}
-	//DKLog("Wowzer_EbayToArry()\n", DKINFO);
+	//DKLog("Wowzer_EbayToArry()\n");
 	
 	url = url.replace(" ","+");	
 	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
-			DKLog(rstring+"\n", DKINFO);
+			DKLog(rstring+"\n");
 			
 			var items = div.getElementsByClassName("sresult lvresult clearfix li shic");
 			for(var i=1; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n", DKINFO);
+				//DKLog(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -763,7 +763,7 @@ function Wowzer_GetUrlString(url, callback)
 		return false;
 	}
 	
-	//DKLog("request.open(\"GET\","+url+",true)", DKINFO);
+	//DKLog("request.open(\"GET\","+url+",true)");
 	request.open("GET",url,true);
 	request.send(); 
 
@@ -858,20 +858,20 @@ function Test()
 	//script.type = "text/plain";
 	
     script.onerror = function(){
-		DKLog("script.onerror\n", DKINFO);
+		DKLog("script.onerror\n");
 	};
 	script.onload = function(){
-		DKLog("script.onload\n", DKINFO);
-		DKLog(script.text+"\n", DKINFO);
+		DKLog("script.onload\n");
+		DKLog(script.text+"\n");
 	};
 
 	/*
 	script.onreadystatechange = function(){
-		DKLog("script.onreadystatechange\n", DKINFO);
+		DKLog("script.onreadystatechange\n");
 		if(script.readyState == 'loaded'){
 			// Our script has download, but hasn't executed.
 			// It won't execute until we do:
-			DKLog("script.readystate = loaded\n", DKINFO);
+			DKLog("script.readystate = loaded\n");
 		}
 	};
 	*/
