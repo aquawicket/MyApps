@@ -14,5 +14,5 @@ function Home_End()
 ////////////////////////////
 function Home_OnEvent(event)
 {
-	DKLog("Home_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Home_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 }

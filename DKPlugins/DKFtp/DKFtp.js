@@ -14,7 +14,7 @@ function DKDatabase_End()
 /////////////////////////////
 function DKFtp_OnEvent(event)
 {	
-	DKLog("DKFtp_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKFtp_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	/*
 	if(DK_Id(event, "Blah")){

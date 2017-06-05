@@ -62,7 +62,7 @@ function DKBrowser_End()
 /////////////////////////////////
 function DKBrowser_OnEvent(event)
 {
-	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Type(event, "keydown")){
 		DKBrowser_ProcessKey(DK_GetValue(event));
@@ -159,7 +159,7 @@ function DKBrowser_OnEvent(event)
 		return;
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
-		DKLog("DKBrowser_OnEvent("+event+")\n", DKDEBUG);	
+		DKLog("DKBrowser_OnEvent("+event+")\n");	
 		var data = DK_GetValue(event);
 		var arry = data.split(",");
 		selection = arry[0];

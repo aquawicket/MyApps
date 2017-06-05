@@ -20,7 +20,7 @@ else{
 ////////////////////////////
 function User_OnEvent(event)  //Duktape
 {
-	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
 		var currentBrowser = DKCef_GetCurrentBrowser("DKCef_frame");

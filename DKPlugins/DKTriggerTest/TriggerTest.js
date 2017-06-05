@@ -11,5 +11,5 @@ function TriggerTest_Init()
 ///////////////////////////////////
 function TriggerTest_OnEvent(event)
 {
-	DKLog("TriggerTest_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("TriggerTest_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 }

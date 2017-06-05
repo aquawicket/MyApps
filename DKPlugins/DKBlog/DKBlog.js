@@ -15,5 +15,5 @@ function DKBlog_End()
 //////////////////////////////
 function DKBlog_OnEvent(event)
 {
-	DKLog("DKBlog_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKBlog_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 }

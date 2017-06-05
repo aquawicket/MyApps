@@ -47,7 +47,7 @@ DKCreate("Panel0.html");
 //////////////////////////////
 function Panel0_OnEvent(event)
 {
-	DKLog("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_GetOS() == "Browser"){
 		DKVideo_RegisterEndVideo("DKVideo", Panel0_NextVideo);
@@ -130,12 +130,12 @@ function Panel0_OnEvent(event)
 		if(!SHUFFLE){
 			SHUFFLE = 1;
 			DKWidget_SetAttribute("ShuffleButton","src","shuffle_on.png");
-			DKLog("Shuffle On", DKDEBUG);
+			DKLog("Shuffle On");
 		}
 		else{
 			SHUFFLE = 0;
 			DKWidget_SetAttribute("ShuffleButton","src","shuffle_off.png");
-			DKLog("Shuffle Off", DKDEBUG);
+			DKLog("Shuffle Off");
 		}
 	}
 }
@@ -197,7 +197,7 @@ function Panel0_AddUrl(url)
 	//add to mysql
 	var query = "INSERT INTO PLAYLIST_URLS (PLAYLIST_ID, URL) VALUES ('"+PLAYLIST_ID+"','"+url+"')";
 	var result = DKMySql_Query(query);
-	DKLog(result, DKDEBUG);
+	DKLog(result);
 }
 
 ///////////////////////////

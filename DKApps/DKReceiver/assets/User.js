@@ -10,7 +10,7 @@ DKAddEvent("GLOBAL", "minimize", User_OnEvent);
 ////////////////////////////
 function User_OnEvent(event)
 {
-	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	DKCreate("DKWindowJS");
 	DKWindow_Hide();
 }

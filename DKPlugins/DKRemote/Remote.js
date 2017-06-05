@@ -20,23 +20,23 @@ function Remote_Init()
 ////////////////////////////////
 function Remote_OnEvent(event)
 {
-	DKLog("Remote_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Remote_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "Power")){
 		DKClient_Send("Power");
-		DKLog("Server: Power\n", DKDEBUG);
+		DKLog("Server: Power\n");
 	}
 	if(DK_Id(event, "VolumeUp_Button")){
-		DKLog("Button: VolumeUp \n", DKDEBUG);
+		DKLog("Button: VolumeUp \n");
 		DKClient_Send("VolumeUp");
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
-		DKLog("Button: Volume Down\n", DKDEBUG);
+		DKLog("Button: Volume Down\n");
 		DKClient_Send("VolumeDown");
 	}
 
 	if(DK_Id(event, "Wifi")){
-		DKLog("Button: Wifi\n", DKDEBUG);
+		DKLog("Button: Wifi\n");
 		DKWidget_Toggle("address");
 		if(!DKWidget_Visible("address")){
 			Remote_Connect();
@@ -47,7 +47,7 @@ function Remote_OnEvent(event)
 	}
 	
 	if(DK_Type(event, "client")){
-		DKLog("client: "+DK_GetValue(event)+"\n", DKDEBUG);
+		DKLog("client: "+DK_GetValue(event)+"\n");
 		if(DK_GetValue(event) == "connected"){
 			DKWidget_Hide("address");
 			DKWidget_SetAttribute("Wifi", "src", "DKRemote/wifiGreen.png");

@@ -13,6 +13,6 @@ function Panel1_Init()
 //////////////////////////////
 function Panel1_OnEvent(event)
 {
-	DKLog("Panel1_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Panel1_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 }
 

@@ -15,5 +15,5 @@ function DKForum_End()
 ///////////////////////////////
 function DKForum_OnEvent(event)
 {
-	DKLog("DKForum_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKForum_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 }

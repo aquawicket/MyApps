@@ -22,7 +22,7 @@ function DKBrowserMenu_End()
 /////////////////////////////////////
 function DKBrowserMenu_OnEvent(event)
 {
-	DKLog("DKBrowserMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("DKBrowserMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event,"DKBrowserMenu_Cut")){
 		DKBrowserMenu_Cut();
@@ -51,7 +51,7 @@ function DKBrowserMenu_OnEvent(event)
 ////////////////////////////
 function DKBrowserMenu_Cut()
 {
-	DKLog("DKBrowserMenu_Cut()\n", DKDEBUG);
+	DKLog("DKBrowserMenu_Cut()\n");
 	if(DKCef_Focused("DKBrowser_cef")){
 		if(selection){
 			DK_SetClipboard(selection);
@@ -65,7 +65,7 @@ function DKBrowserMenu_Cut()
 /////////////////////////////
 function DKBrowserMenu_Copy()
 {
-	DKLog("DKBrowserMenu_Copy()\n", DKDEBUG);
+	DKLog("DKBrowserMenu_Copy()\n");
 	if(DKCef_Focused("DKBrowser_cef")){
 		if(selection){
 			DK_SetClipboard(selection);
@@ -79,7 +79,7 @@ function DKBrowserMenu_Copy()
 //////////////////////////////
 function DKBrowserMenu_Paste()
 {
-	DKLog("DKBrowserMenu_Paste()\n", DKDEBUG);
+	DKLog("DKBrowserMenu_Paste()\n");
 	if(DKCef_Focused("DKBrowser_cef")){
 		DKCef_Paste("DKBrowser_cef");
 	}
@@ -91,7 +91,7 @@ function DKBrowserMenu_Paste()
 //////////////////////////////////
 function DKBrowserMenu_SaveImage()
 {
-	DKLog("DKBrowserMenu_SaveImage()\n", DKDEBUG);
+	DKLog("DKBrowserMenu_SaveImage()\n");
 	if(source_url){
 		DKCef_DownloadUrl(source_url);
 	}
@@ -100,7 +100,7 @@ function DKBrowserMenu_SaveImage()
 /////////////////////////////////
 function DKBrowserMenu_CopyLink()
 {
-	DKLog("DKBrowserMenu_CopyLink()\n", DKDEBUG);
+	DKLog("DKBrowserMenu_CopyLink()\n");
 	if(link_url){
 		DK_SetClipboard(link_url);
 	}

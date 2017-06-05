@@ -56,7 +56,7 @@ function TaskbarMenu_End()
 ///////////////////////////////////
 function TaskbarMenu_OnEvent(event)
 {
-	DKLog("TaskbarMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("TaskbarMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "FileExplorer")){
 		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){

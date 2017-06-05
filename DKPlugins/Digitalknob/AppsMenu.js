@@ -75,7 +75,7 @@ Don't you just hate how youtube music stops playing when you turn off your scree
 ///////////////////////
 function AppsMenu_End()
 {
-	//DKLog("AppsMenu_End():\n", DKDEBUG);
+	//DKLog("AppsMenu_End():\n");
 	DKRemoveEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
 	DKClose("AppsMenu.html");
 }
@@ -94,7 +94,7 @@ function AppsMenu_AddApp(name)
 ////////////////////////////////
 function AppsMenu_OnEvent(event)
 {
-	DKLog("AppsMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("AppsMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	DKWidget_SetInnerHtml("Digitalknob_content",""); //clear the content
 	

@@ -40,7 +40,7 @@ function DKDatabase_End()
 //////////////////////////////////
 function DKDatabase_OnEvent(event)
 
-{	DKLog("DKDatabase_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+{	DKLog("DKDatabase_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_Id(event, "DatabaseConnect")){
 		DKDatabase_Connect();
@@ -172,7 +172,7 @@ function DKDatabase_UpdateDatabases()
 //////////////////////////////////
 function DKDatabase_UpdateTables()
 {
-	//DKLog("DKDatabase_UpdateTables() \n", DKDEBUG);
+	//DKLog("DKDatabase_UpdateTables() \n");
 	DKWidget_SetValue("TableDrop", "");
 	DKWidget_SetInnerHtml("TableDrop", ""); //clear
 

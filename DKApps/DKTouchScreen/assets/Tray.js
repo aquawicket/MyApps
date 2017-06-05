@@ -12,7 +12,7 @@ function Tray_Init()
 ////////////////////////////
 function Tray_OnEvent(event)
 {
-	DKLog("Tray_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Tray_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Type(event, "click")){
 		Tray_ToggleIcon();

@@ -26,13 +26,13 @@ function Taskbar_End()
 ///////////////////////////////
 function Taskbar_OnEvent(event)
 {
-	DKLog("Taskbar_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("Taskbar_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "start")){
 		DKCreate("DKOS/TaskbarMenu.js", function(){});
 	}
 	if(DK_Id(event, "test_animate")){
-		//DKLog("Taskbar_OnEvent(): animate\n", DKDEBUG);
+		//DKLog("Taskbar_OnEvent(): animate\n");
 		pos = -45;
 		animation = setInterval(Taskbar_Animate, 15);
 		//EventLoop.run();

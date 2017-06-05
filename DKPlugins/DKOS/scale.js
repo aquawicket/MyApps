@@ -15,7 +15,7 @@ function scale_End()
 /////////////////////////////
 function scale_OnEvent(event)
 {
-	DKLog("scale_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("scale_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event,"scale_minus")){
 		scale_minus();
@@ -32,7 +32,7 @@ function scale_minus()
 	var scale = DKWidget_GetScale();
 	scale = scale - 0.1;
 	if(scale < 1.0){ scale = 1.0; }
-	//DKLog("DKWidget_SetScale("+scale+")\n", DKDEBUG);
+	//DKLog("DKWidget_SetScale("+scale+")\n");
 	DKWidget_SetScale(scale);
 }
 
@@ -43,6 +43,6 @@ function scale_plus()
 	var scale = DKWidget_GetScale();
 	scale = scale + 0.1;
 	if(scale > 100.0){ scale = 100.0; }
-	//DKLog("DKWidget_SetScale("+scale+")\n", DKDEBUG);
+	//DKLog("DKWidget_SetScale("+scale+")\n");
 	DKWidget_SetScale(scale);
 }
