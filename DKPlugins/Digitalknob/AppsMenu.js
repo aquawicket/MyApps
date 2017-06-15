@@ -86,7 +86,9 @@ function AppsMenu_AddApp(name)
 {
 	var id = DKWidget_CreateElement("AppsMenu.html", "div", name)
 	DKWidget_SetAttribute(id, "class", "option");
+	DKWidget_SetProperty(id, "height", "40px");  //IE fix: This does not work. 
 	DKWidget_SetProperty(id, "height", "40rem");
+	DKWidget_SetProperty(id, "font-size", "30px");   //IE fix: This does not work. 
 	DKWidget_SetProperty(id, "font-size", "30rem");
 	DKWidget_SetInnerHtml(id, name);
 	DKAddEvent(name, "click", AppsMenu_OnEvent);
