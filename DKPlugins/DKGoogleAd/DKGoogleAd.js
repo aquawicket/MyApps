@@ -23,8 +23,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 	DKLog("Browser = "+DK_GetBrowser()+"\n");
 	//DKLog("protocol = "+DKAssets_Protocol()+"\n");
 	
-	//if(DK_GetBrowser() != "Rocket"){
-	if(DKAssets_Protocol() != "file:"){
+	if(DKAssets_Protocol() != "file:"){ //FIXME
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);
@@ -59,7 +58,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 	}
 	//else if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
 	else{
-		return; //TODO
+		//return; //TODO
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);
