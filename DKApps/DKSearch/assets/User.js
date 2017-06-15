@@ -1,20 +1,15 @@
-var USE_SDL = 0;
-var USE_ROCKET = 0;
-var USE_CEF = 1;
-var USE_Webview = 1;
-var DKApp_url = "file:///"+DKAssets_LocalAssets()+"/index.html";
-//var DKApp_url = "http://digitalknob.com/DKSearch/index.html";
-//var DKApp_url = "http://google.com";
-//var DKApp_url = "chrome://gpu";
 
+var USE_CEF = 1;     //Desktop
+var USE_WEBVIEW = 1; //Android, iOS?
+var USE_SDL = 0;     //Use with caution
+var USE_ROCKET = 0;  //Use with caution
+
+var DKApp_url = "file:///"+DKAssets_LocalAssets()+"/index.html";
+//var DKApp_url = "http://digitalknob.com/DKSearch
 
 //Validate settings
-if(DK_GetOS() == "Android" || DK_GetOS() == "iOS"){
-	USE_CEF = 0; //not available for mobile devices
-}
-else{
-	USE_Webview = 0; //not available for Desktop devices
-}
+if(DK_GetOS() == "Android" || DK_GetOS() == "iOS"){ USE_CEF = 0; }
+else{ USE_WEBVIEW = 0; }
 
 
 ////////////////////////////
@@ -22,25 +17,20 @@ function User_OnEvent(event)  //Duktape
 {
 	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
-	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
-		var currentBrowser = DKCef_GetCurrentBrowser("DKCef_frame");
-		DKCef_SetUrl("DKCef_frame", DK_GetValue(event), currentBrowser);
+	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){ //NOTE: look into this
+		DKCef_SetUrl("DKCef_frame", DK_GetValue(event), DKCef_GetCurrentBrowser("DKCef_frame"));
 	}
-	if(DK_Type(event, "keydown")){
-		if(DK_GetValue(event) == "4"){ //Exit for ANDROID
-		    DK_Exit();
-		}
+	if(DK_Type(event, "resize")){ //NOTE: this is for SDL, OSG, ROCKET or any other created windows.
+		DK_CallFunc("CefSDL::OnResize", "0,0,"+String(DKWindow_GetWidth())+","+String(DKWindow_GetHeight()));
 	}
-	if(DK_Type(event, "resize")){
-		var width = DKWindow_GetWidth();
-		var height = DKWindow_GetHeight();
-		DK_CallFunc("CefSDL::OnResize", "0,0,"+String(width)+","+String(height));
+	if(DK_Type(event, "keydown") && DK_GetValue(event) == "4"){ //NOTE: this is the back button on Android
+		DK_Exit();
 	}
 }
 
-////////////////////////////////
-if(DK_GetJavascript() == "Duktape"){
-	if(USE_SDL && USE_ROCKET && USE_CEF){
+////////////////////////////////////
+if(DK_GetJavascript() == "Duktape"){ //C++: Create a window LoadPage() can support
+	if(USE_ROCKET && USE_CEF){
 		DKLog("Creating SDL -> Rocket -> Cef -> GUI \n");
 		DKCreate("DKWindow");
 		DKCreate("DKRocket");
@@ -58,7 +48,7 @@ if(DK_GetJavascript() == "Duktape"){
 		DKCef_SetFocus(iframe);
 		DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", User_OnEvent);
 	}
-	else if(USE_SDL && USE_ROCKET){
+	else if(USE_ROCKET){
 		DKLog("Creating SDL -> ROCKET -> GUI \n");
 		DKCreate("DKWindow");
 		DKCreate("DKRocket");
@@ -83,30 +73,39 @@ if(DK_GetJavascript() == "Duktape"){
 		DKCreate("DKCef,Cef,0,0,"+width+","+height+","+DKApp_url);
 		DK_SetFramerate(5);
 	}
-	else if(USE_Webview){
+	else if(USE_WEBVIEW){ //TODO
 		DKLog("Creating WEBVIEW -> GUI \n");
 		DKAddEvent("GLOBAL", "keydown", User_OnEvent);
 	}
 	
-	//DKCreate("DKTray/DKTray.js", function(){});
-	//DKCreate("DKDebug/DKDebug.js", function(){});
+	DKCreate("DKTray/DKTray.js", function(){}); //FIXME - DKWindow is not implemented for CEF windows, yet.
+	DKCreate("DKDebug/DKDebug.js", function(){});
+	DKCreate("DKCef/DKDevTools.js", function(){});
 }
-else{  //V8 or Webview
+else{  //Javascript: V8, WEBVIEW or Duktape
 	LoadPage();
 }
 
+
+///////////////////
 function LoadPage()
 {
-	//DKLog("Loading page... \n");
-	DKWidget_SetProperty("body","background-color","grey");
-	DKCreate("DKScale/DKScale.js", function(){});
-	DKCreate("DKSearch/DKSearch.js", function(){});	
-	DKCreate("DKDebug/DKDebug.js", function(){});
+	DKLog("Loading page... \n");
 	
-	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-		DKWidget_RemoveProperty(id, "top");
-		DKWidget_SetProperty(id, "bottom", "0rem");
+	DKWidget_SetProperty("body","background-color","grey");
+	DKCreate("DKWindow/DKWindow.js", function(){
+		DKCreate("DKScale/DKScale.js", function(){
+			DKCreate("DKDebug/DKDebug.js", function(){
+				DKCreate("DKSearch/DKSearch.js", function(){});
+				
+				DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+					var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+					DKWidget_RemoveProperty(id, "top");
+					DKWidget_SetProperty(id, "bottom", "0rem");
+				});
+
+			});
+		});
 	});
 	
 	//DKCreate("DKUpdate");
