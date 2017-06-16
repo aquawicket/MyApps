@@ -1,0 +1,5 @@
+DKDEPEND(DKDuktape)
+DKDEPEND(DKConsole)
+DKDEPEND(DKMessage)
+DKDEPEND(DKTriggers)
+DKDEPEND(DKWidget)
