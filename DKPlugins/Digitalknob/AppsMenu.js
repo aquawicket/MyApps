@@ -11,9 +11,8 @@ function AppsMenu_Init()
 function AppsMenu_End()
 {
 	//DKLog("AppsMenu_End():\n");
-	
 	DKRemoveEvents(AppsMenu_OnEvent);
-	DKClose("AppsMenu.html");
+	DKClose("Digitalknob/AppsMenu.html");
 }
 
 ///////////////////////////
