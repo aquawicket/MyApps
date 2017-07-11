@@ -33,7 +33,7 @@ function Digitalknob_OnEvent(event)
 	
 	if(DK_Id(event, "Image")){
 		DKWidget_SetInnerHtml("Digitalknob_content","");
-		DKClose("Home.js");
+		DKClose("Digitalknob/Home.js");
 		DKCreate("Digitalknob/Home.js", function(){});
 	}
 	if(DK_Id(event, "AppsMenu")){
@@ -45,7 +45,7 @@ function Digitalknob_OnEvent(event)
 	}
 	if(DK_Id(event, "Digitalknob_login")){
 		DKCreate("DKLogin/DKLogin.js", function(){
-			DKFrame_Widget("DKLogin.html");
+			DKFrame_Widget("DKLogin/DKLogin.html");
 		});
 	}
 }

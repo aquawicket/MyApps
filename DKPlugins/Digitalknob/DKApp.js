@@ -135,7 +135,7 @@ function DKApp_UpdateApp(name)
 	}
 	
 	DKWidget_RemoveElement("loading");
-	DKWidget_SetProperty("DKApp.html", "visibility", "visible");
+	DKWidget_SetProperty("Digitalknob/DKApp.html", "visibility", "visible");
 }
 
 /////////////////////////////
@@ -185,7 +185,7 @@ function DKApp_SetDownload(name)
 	}
 	else{
 		//DKWidget_RemoveElement("DKApp_download");
-		var id = DKWidget_CreateElement("DKApp.html","div","notavailable");
+		var id = DKWidget_CreateElement("Digitalknob/DKApp.html","div","notavailable");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "top", "120rem");
 		DKWidget_SetProperty(id, "left", "170rem");

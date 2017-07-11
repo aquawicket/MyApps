@@ -83,7 +83,7 @@ Don't you just hate how youtube music stops playing when you turn off your scree
 //////////////////////////////
 function AppsMenu_AddApp(name)
 {
-	var id = DKWidget_CreateElement("AppsMenu.html", "div", name)
+	var id = DKWidget_CreateElement("Digitalknob/AppsMenu.html", "div", name)
 	DKWidget_SetAttribute(id, "class", "option");
 	DKWidget_SetProperty(id, "height", "40px");  //IE fix: This does not work. 
 	DKWidget_SetProperty(id, "height", "40rem");
@@ -102,7 +102,7 @@ function AppsMenu_OnEvent(event)
 	
 	if(DK_Type(event, "click")){
 		var id = DK_GetId(event);
-		DKClose("DKApp.js");
+		DKClose("Digitalknob/DKApp.js");
 		DKCreate("Digitalknob/DKApp.js", function(){
 			DKApp_UpdateApp(id);
 			DKApp_UpdateDescription(AppsMenu_GetDescription(id));
@@ -110,9 +110,9 @@ function AppsMenu_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "GLOBAL")){
-		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "AppsMenu.html")){
+		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "Digitalknob/AppsMenu.html")){
 			return;
 		}
 	}
-	DKClose("AppsMenu.js");
+	DKClose("Digitalknob/AppsMenu.js");
 }
