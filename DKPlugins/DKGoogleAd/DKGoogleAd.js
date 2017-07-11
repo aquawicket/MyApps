@@ -23,7 +23,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 	DKLog("Browser = "+DK_GetBrowser()+"\n");
 	//DKLog("protocol = "+DKAssets_Protocol()+"\n");
 	
-	if(DKAssets_Protocol() != "file:"){ //FIXME
+	//if(DKAssets_Protocol() != "file:"){ //FIXME
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);
@@ -55,6 +55,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		document.body.appendChild(script);
 	
 		return id;
+	/*
 	}
 	//else if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
 	else{
@@ -98,4 +99,5 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		DKCef_SetUrl(iframe, url, currentBrowser2);
 		return id;
 	}
+	*/
 }
