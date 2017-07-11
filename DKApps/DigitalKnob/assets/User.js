@@ -84,7 +84,6 @@ if(DK_GetJavascript() == "Duktape"){ //C++: Create a window LoadPage() can suppo
 	
 	DKCreate("DKTray/DKTray.js", function(){});
 	DKCreate("DKDebug/DKDebug.js", function(){});
-	DKCreate("DKCef/DKDevTools.js", function(){});
 }
 else{  //Javascript: V8, WEBVIEW or Duktape
 	LoadPage();
@@ -98,18 +97,18 @@ function LoadPage()
 	
 	DKWidget_SetProperty("body","background-color","grey");
 	DKCreate("DKWindow/DKWindow.js", function(){
-		DKCreate("DKScale/DKScale.js", function(){
-			DKCreate("DKDebug/DKDebug.js", function(){
-				
-				DKCreate("Digitalknob/Digitalknob.js", function(){});
-				DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-					var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-					DKWidget_RemoveProperty(id, "top");
-					DKWidget_SetProperty(id, "bottom", "0rem");
-				});
-				
-			});
-		});
+	DKCreate("DKScale/DKScale.js", function(){
+	DKCreate("DKGui/DKFrame.js", function(){
+	DKCreate("DKDebug/DKDebug.js", function(){		
+	DKCreate("Digitalknob/Digitalknob.js", function(){});
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		DKWidget_RemoveProperty(id, "top");
+		DKWidget_SetProperty(id, "bottom", "0rem");
+	});
+	});
+	});
+	});
 	});
 	
 	//DKCreate("DKUpdate");
