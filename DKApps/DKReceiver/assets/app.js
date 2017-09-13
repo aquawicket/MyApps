@@ -5,12 +5,12 @@ DKCreate("DKReceiver/Receiver.js", function(){});
 DKCreate("DKTray/DKTray.js", function(){});
 DKCreate("DKDebug/DKDebug.js", function(){});
 
-DKAddEvent("GLOBAL", "minimize", User_OnEvent);
+DKAddEvent("GLOBAL", "minimize", app_OnEvent);
 
-////////////////////////////
-function User_OnEvent(event)
+///////////////////////////
+function app_OnEvent(event)
 {
-	DKLog("User_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	DKCreate("DKWindowJS");
 	DKWindow_Hide();
 }
