@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "DKVncServer.h"
+#include "DK/stdafx.h"
+#include "DKVncServer/DKVncServer.h"
 
 #ifdef WIN32
 #define sleep Sleep
@@ -12,7 +12,6 @@
 #ifdef __IRIX__
 #include <netdb.h>
 #endif
-
 
 #include <rfb/keysym.h>
 #include "radon.h"

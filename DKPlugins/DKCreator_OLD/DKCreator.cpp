@@ -1,13 +1,13 @@
-#include "stdafx.h"
-#include "DKCreator.h"
-#include "DKFile.h"
-#include "DKUtil.h"
-#include "DKOsInfo.h"
-#include "DKThread.h"
-#include "DKXml.h"
-#include "DKCurl.h"
-#include "DKWidget.h"
-#include "DKArchive.h"
+#include "DK/stdafx.h"
+#include "DK/DKFile.h"
+#include "DK/DKOsInfo.h"
+#include "DK/DKUtil.h"
+#include "DKArchive/DKArchive.h"
+#include "DKCurl/DKCurl.h"
+#include "DKCreator/DKCreator.h"
+#include "DKThread/DKThread.h"
+#include "DKWidget/DKWidget.h"
+#include "DKXml/DKXml.h"
 
 //////////////////////
 void DKCreator::Init()

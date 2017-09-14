@@ -1,6 +1,5 @@
-#include "stdafx.h"
-#include "DKTorrent.h"
-
+#include "DK/stdafx.h"
+#include "DKTorrent/DKTorrent.h"
 
 // return the name of a torrent status enum
 char const* state(lt::torrent_status::state_t s)
