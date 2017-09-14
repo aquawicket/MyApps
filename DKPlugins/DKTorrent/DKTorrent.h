@@ -1,7 +1,7 @@
 #pragma once
 #ifndef DKTorrent_H
 #define DKTorrent_H
-#include "DK.h"
+#include "DK/DK.h"
 
 #include <iostream>
 #include <thread>
