@@ -1,5 +1,5 @@
 #include "DK/stdafx.h"
-#include "DKVncServer/DKVncServer.h"
+#include "DKVncServer.h"
 
 #ifdef WIN32
 #define sleep Sleep

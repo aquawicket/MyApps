@@ -1,7 +1,7 @@
 #pragma once
 #ifndef DKVncServer_H
 #define DKVncServer_H
-#include "DK.h"
+#include "DK/DK.h"
 
 #include <rfb/rfb.h>
 
