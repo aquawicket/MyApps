@@ -59,36 +59,45 @@ static void DrawBuffer()
 #ifdef WIN32
 	//TODO - https://pastebin.com/r3CZpWDs
 
-	int nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
-	int nScreenHeight = GetSystemMetrics(SM_CYSCREEN);
+	BITMAPINFO info = {0};
+	info.bmiHeader.biSize = sizeof(info.bmiHeader);
+	info.bmiHeader.biWidth = rfbScreen->width;
+	info.bmiHeader.biHeight = rfbScreen->height* -1;
+	info.bmiHeader.biPlanes = 1;
+	info.bmiHeader.biBitCount = 32;
+	info.bmiHeader.biCompression = BI_RGB;
+	BYTE *pbBitmap;
+
 	HWND hDesktopWnd = GetDesktopWindow();
-	HDC hDesktopDC = GetDC(hDesktopWnd);
-	HDC hCaptureDC = CreateCompatibleDC(hDesktopDC);
-	HBITMAP hCaptureBitmap = CreateCompatibleBitmap(hDesktopDC, rfbScreen->width, rfbScreen->height);
-	SelectObject(hCaptureDC,hCaptureBitmap); 
-	BitBlt(hCaptureDC,0,0,nScreenWidth,nScreenHeight,hDesktopDC,0,0,SRCCOPY|CAPTUREBLT); 
-	//SaveCapturedBitmap(hCaptureBitmap); //Place holder - Put your code
-	
-	int i,j;
-	for(j=0;j<rfbScreen->height;++j) {
-		for(i=0;i<rfbScreen->width;++i) {
-			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+0]=(i+j)*128/(rfbScreen->width+rfbScreen->height); // red
-			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+1]=i*128/rfbScreen->width; // green
-			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+2]=j*256/rfbScreen->height; // blue
-		}
-		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+0]=0xff;
-		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+1]=0xff;
-		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+2]=0xff;
+	HDC src_dc = GetDC(hDesktopWnd);
+	HDC buffer_dc = CreateCompatibleDC(src_dc);
+	HBITMAP dest_dc = CreateDIBSection(buffer_dc, &info, DIB_RGB_COLORS, (void**)&pbBitmap, NULL, 0);
+	BITMAP screen;
+	SelectObject(buffer_dc, dest_dc);
+	GetObject(dest_dc, sizeof(BITMAP), &screen);
+	int res = BitBlt(buffer_dc, 0, 0, rfbScreen->width, rfbScreen->height, src_dc, 0, 0, SRCCOPY);
+	int go = GetObject(dest_dc, sizeof(BITMAP), &screen);
+	long usec;
+	//Invert
+	size_t n = rfbScreen->width*rfbScreen->height * 4;
+	int* buffer = (int*)malloc(n);
+	int* dest = buffer;
+	int* src = ((int*)screen.bmBits);
+	while(src != ((int*)screen.bmBits) + (rfbScreen->width * rfbScreen->height - 1)){
+		char* c_dest = (char*)dest;
+		char* c_src = (char*)src;
+		c_dest[0] = c_src[2];
+		c_dest[1] = c_src[1];
+		c_dest[2] = c_src[0];
+		c_dest[3] = 0;
+		src++;
+		dest++;
 	}
-
-	//GetBitmapBits(hCaptureBitmap, sizeof(hCaptureBitmap), rfbScreen->frameBuffer);
-	//memcpy(rfbScreen->frameBuffer, hCaptureBitmap, rfbScreen->width * rfbScreen->height);
-
+	rfbScreen->frameBuffer = (char*)buffer;
 	rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
-
-	ReleaseDC(hDesktopWnd,hDesktopDC);
-	DeleteDC(hCaptureDC);
-	DeleteObject(hCaptureBitmap);
+	//ReleaseDC(hDesktopWnd,src_dc);
+	//DeleteDC(src_dc);
+	//DeleteObject(dest_dc);
 #endif
 }
 
