@@ -57,6 +57,8 @@ static void DrawBuffer()
 #endif
 
 #ifdef WIN32
+	//TODO - https://pastebin.com/r3CZpWDs
+
 	int nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
 	int nScreenHeight = GetSystemMetrics(SM_CYSCREEN);
 	HWND hDesktopWnd = GetDesktopWindow();
@@ -78,6 +80,9 @@ static void DrawBuffer()
 		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+1]=0xff;
 		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+2]=0xff;
 	}
+
+	//GetBitmapBits(hCaptureBitmap, sizeof(hCaptureBitmap), rfbScreen->frameBuffer);
+	//memcpy(rfbScreen->frameBuffer, hCaptureBitmap, rfbScreen->width * rfbScreen->height);
 
 	rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
 
