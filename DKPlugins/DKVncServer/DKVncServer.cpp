@@ -55,6 +55,21 @@ static void DrawBuffer()
     XDestroyImage(image);
     image = NULL;
 #endif
+
+#ifdef WIN32
+	int i,j;
+	for(j=0;j<rfbScreen->height;++j) {
+		for(i=0;i<rfbScreen->width;++i) {
+			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+0]=(i+j)*128/(rfbScreen->width+rfbScreen->height); /* red */
+			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+1]=i*128/rfbScreen->width; /* green */
+			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+2]=j*256/rfbScreen->height; /* blue */
+		}
+		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+0]=0xff;
+		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+1]=0xff;
+		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+2]=0xff;
+	}
+	rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
+#endif
 }
 
 /* Here we create a structure so that every client has its own pointer */
@@ -213,6 +228,6 @@ void DKVncServer::End()
 ////////////////////////
 void DKVncServer::Loop()
 {
-  rfbProcessEvents(rfbScreen,100000);
-  DrawBuffer();
+	rfbProcessEvents(rfbScreen,100000);
+	DrawBuffer();
 }
