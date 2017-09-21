@@ -57,18 +57,33 @@ static void DrawBuffer()
 #endif
 
 #ifdef WIN32
+	int nScreenWidth = GetSystemMetrics(SM_CXSCREEN);
+	int nScreenHeight = GetSystemMetrics(SM_CYSCREEN);
+	HWND hDesktopWnd = GetDesktopWindow();
+	HDC hDesktopDC = GetDC(hDesktopWnd);
+	HDC hCaptureDC = CreateCompatibleDC(hDesktopDC);
+	HBITMAP hCaptureBitmap = CreateCompatibleBitmap(hDesktopDC, rfbScreen->width, rfbScreen->height);
+	SelectObject(hCaptureDC,hCaptureBitmap); 
+	BitBlt(hCaptureDC,0,0,nScreenWidth,nScreenHeight,hDesktopDC,0,0,SRCCOPY|CAPTUREBLT); 
+	//SaveCapturedBitmap(hCaptureBitmap); //Place holder - Put your code
+	
 	int i,j;
 	for(j=0;j<rfbScreen->height;++j) {
 		for(i=0;i<rfbScreen->width;++i) {
-			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+0]=(i+j)*128/(rfbScreen->width+rfbScreen->height); /* red */
-			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+1]=i*128/rfbScreen->width; /* green */
-			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+2]=j*256/rfbScreen->height; /* blue */
+			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+0]=(i+j)*128/(rfbScreen->width+rfbScreen->height); // red
+			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+1]=i*128/rfbScreen->width; // green
+			rfbScreen->frameBuffer[(j*rfbScreen->width+i)*bpp+2]=j*256/rfbScreen->height; // blue
 		}
 		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+0]=0xff;
 		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+1]=0xff;
 		rfbScreen->frameBuffer[j*rfbScreen->width*bpp+2]=0xff;
 	}
+
 	rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
+
+	ReleaseDC(hDesktopWnd,hDesktopDC);
+	DeleteDC(hCaptureDC);
+	DeleteObject(hCaptureBitmap);
 #endif
 }
 
