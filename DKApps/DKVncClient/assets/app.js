@@ -1,0 +1,1 @@
+DKCreate("DKVncClient", function(){});
