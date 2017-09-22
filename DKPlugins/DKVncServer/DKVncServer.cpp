@@ -66,7 +66,7 @@ static void DrawBuffer()
 	info.bmiHeader.biPlanes = 1;
 	info.bmiHeader.biBitCount = 32;
 	info.bmiHeader.biCompression = BI_RGB;
-	BYTE *pbBitmap;
+	BYTE* pbBitmap;
 
 	HWND hDesktopWnd = GetDesktopWindow();
 	HDC src_dc = GetDC(hDesktopWnd);
@@ -94,10 +94,14 @@ static void DrawBuffer()
 		dest++;
 	}
 	rfbScreen->frameBuffer = (char*)buffer;
-	rfbMarkRectAsModified(rfbScreen,0,0,rfbScreen->width,rfbScreen->height);
-	//ReleaseDC(hDesktopWnd,src_dc);
-	//DeleteDC(src_dc);
-	//DeleteObject(dest_dc);
+	rfbMarkRectAsModified(rfbScreen, 0, 0, rfbScreen->width, rfbScreen->height);
+	ReleaseDC(hDesktopWnd, src_dc);
+	DeleteDC(src_dc);
+	DeleteDC(buffer_dc);
+	DeleteObject(dest_dc);
+	delete buffer;
+	delete dest;
+	delete src;
 #endif
 }
 
