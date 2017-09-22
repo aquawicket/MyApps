@@ -81,7 +81,7 @@ static void DrawBuffer()
 	//Invert
 	size_t n = rfbScreen->width*rfbScreen->height * 4;
 	int* buffer = (int*)malloc(n);
-	int* dest = buffer;
+	int* dest = (int*)rfbScreen->frameBuffer;
 	int* src = ((int*)screen.bmBits);
 	while(src != ((int*)screen.bmBits) + (rfbScreen->width * rfbScreen->height - 1)){
 		char* c_dest = (char*)dest;
@@ -93,15 +93,14 @@ static void DrawBuffer()
 		src++;
 		dest++;
 	}
-	rfbScreen->frameBuffer = (char*)buffer;
 	rfbMarkRectAsModified(rfbScreen, 0, 0, rfbScreen->width, rfbScreen->height);
 	ReleaseDC(hDesktopWnd, src_dc);
 	DeleteDC(src_dc);
 	DeleteDC(buffer_dc);
 	DeleteObject(dest_dc);
 	delete buffer;
-	delete dest;
-	delete src;
+	//delete dest;
+	//delete src;
 #endif
 }
 
