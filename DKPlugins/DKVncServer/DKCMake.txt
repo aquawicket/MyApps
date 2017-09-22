@@ -2,3 +2,4 @@
 DKDEPEND(libvncserver-master)
 
 DKPLUGIN(DKVncServer)
+DKASSETS(DKVncServer)

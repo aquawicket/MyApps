@@ -1,4 +1,5 @@
 #include "DK/stdafx.h"
+#include "DK/DKFile.h"
 #include "DKVncServer.h"
 
 #ifdef WIN32
@@ -57,7 +58,7 @@ static void DrawBuffer()
 #endif
 
 #ifdef WIN32
-	//TODO - https://pastebin.com/r3CZpWDs
+	//https://pastebin.com/r3CZpWDs
 
 	BITMAPINFO info = {0};
 	info.bmiHeader.biSize = sizeof(info.bmiHeader);
@@ -77,7 +78,6 @@ static void DrawBuffer()
 	GetObject(dest_dc, sizeof(BITMAP), &screen);
 	int res = BitBlt(buffer_dc, 0, 0, rfbScreen->width, rfbScreen->height, src_dc, 0, 0, SRCCOPY);
 	int go = GetObject(dest_dc, sizeof(BITMAP), &screen);
-	long usec;
 	//Invert
 	size_t n = rfbScreen->width*rfbScreen->height * 4;
 	int* buffer = (int*)malloc(n);
@@ -99,8 +99,6 @@ static void DrawBuffer()
 	DeleteDC(buffer_dc);
 	DeleteObject(dest_dc);
 	delete buffer;
-	//delete dest;
-	//delete src;
 #endif
 }
 
@@ -238,9 +236,8 @@ void DKVncServer::Init()
   rfbScreen->alwaysShared = TRUE;
   rfbScreen->ptrAddEvent = doptr;
   rfbScreen->kbdAddEvent = dokey;
-  //rfbScreen->setTranslateFunction = DrawBuffer;
   rfbScreen->newClientHook = newclient;
-  rfbScreen->httpDir = "../webclients";
+  rfbScreen->httpDir = (char*)DKFile::local_assets.c_str(); //+"DKVncServer";
   rfbScreen->httpEnableProxyConnect = TRUE;
   
   //initBuffer(rfbScreen->frameBuffer, windowWidth, windowHeight);
