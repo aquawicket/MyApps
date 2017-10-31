@@ -8,3 +8,4 @@
 [VNC_PASSWORD]
 [VNC_ENCODING] tight ultra raw
 [VNC_FPS] 48
+[VNC_MESSAGE_WAIT] 1
