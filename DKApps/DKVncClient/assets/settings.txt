@@ -5,7 +5,7 @@
 [LOG_FUNCS] OFF
 [VNC_SERVER] 64.31.98.34
 [VNC_PORT] 5900
-[VNC_PASSWORD]
+[VNC_PASSWORD] 8BallBreak
 [VNC_ENCODING] copyrect tight ultra hextile zlib corre rre raw
 [VNC_FPS] 48
 [VNC_MESSAGE_WAIT] 1
