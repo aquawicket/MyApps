@@ -3,7 +3,8 @@ var USE_WEBVIEW = 1; //Android, iOS?
 var USE_SDL = 0;     //Use with caution
 var USE_ROCKET = 0;  //Use with caution
 var DKApp_url = "file:///"+DKAssets_LocalAssets()+"/index.html";
-//var DKApp_url = "http://digitalknob.com/DigitalKnob";
+//var DKApp_url = "http://digitalknob.com/Digitalknob/";
+//var DKApp_url = "http://youtube.com";
 
 DKCreate("DK/init.js", function(){});
 
