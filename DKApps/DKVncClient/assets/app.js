@@ -1,1 +1,4 @@
-DKCreate("DKVncClient", function(){});
+DKCreate("DKDebug/DKDebug.js", function(){
+DKCreate("DKVncClient", function(){
+});
+});
