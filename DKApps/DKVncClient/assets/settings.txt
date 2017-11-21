@@ -1,9 +1,11 @@
+[WIDTH] 512
+[HEIGHT] 384
 [CONSOLE] ON
 [LOG_DEBUG] OFF
 [LOG_THREAD] OFF
 [LOG_LINES] OFF
 [LOG_FUNCS] OFF
-[VNC_SERVER] 64.31.98.34
+[VNC_SERVER] 10.0.1.147
 [VNC_PORT] 5900
 [VNC_PASSWORD] aquawicket
 [VNC_ENCODING] copyrect tight ultra hextile zlib corre rre raw
