@@ -125,7 +125,7 @@ function DKBrowser_OnEvent(event)
 		DKCef_Reload("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Id(event, "HomeButton")){
-		DKCef_SetUrl("DKBrowser_cef", "http://digitalknob.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", "http://google.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Id(event, "Textbox")){
 		DKCef_RemoveFocus("DKBrowser_cef");
@@ -227,7 +227,7 @@ function DKBrowser_ProcessKey(key)
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
 		//DKLog("Homepage\n");
-		DKCef_SetUrl("DKBrowser_cef", "http://digitalknob.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", "http://google.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	
 	var focused = DKWidget_GetFocusElement();
