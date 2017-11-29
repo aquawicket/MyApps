@@ -42,6 +42,7 @@ function DKBrowser_Init()
 	DKAddEvent("Paste", "click", DKBrowser_OnEvent);
 	DKAddEvent("SaveImage", "click", DKBrowser_OnEvent);
 	DKAddEvent("CopyLink", "click", DKBrowser_OnEvent);
+	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
 }
 
@@ -191,6 +192,12 @@ function DKBrowser_OnEvent(event)
 		DKCreate("DKBrowser/Settings.js", function(){
 			DKFrame_Widget("Settings.html");
 		});
+	}
+	if(DK_Id(event,"FindButton")){
+		DKLog("Find\n");
+		//DKCreate("DKBrowser/Find.js", function(){
+		//	DKFrame_Widget("Find.html");
+		//});
 	}
 }
 
