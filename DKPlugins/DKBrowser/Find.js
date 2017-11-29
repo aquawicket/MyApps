@@ -9,8 +9,9 @@ function Find_Init()
 ///////////////////
 function Find_End()
 {
+	DKRemoveEvents(Find_OnEvent);
 	DKCef_Find("DKBrowser_cef", ""); //FIXME: not working
-	DKClose("Find.html");
+	DKClose("DKBrowser/Find.html");
 }
 
 ////////////////////////////
@@ -22,6 +23,7 @@ function Find_OnEvent(event)
 		DKCef_Find("DKBrowser_cef", DKWidget_GetValue("FindInput"));
 	}
 	if(DK_Id(event, "FindCancel")){
-		DKClose("DKBrowser/Find.js"); //FIXME: not working
+		DKFrame_Close("DKBrowser/Find.html"); //FIXME: not working
+		return;
 	}
 }

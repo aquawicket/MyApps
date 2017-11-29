@@ -8,7 +8,7 @@ function Settings_Init()
 ///////////////////////
 function Settings_End()
 {
-	DKClose("Settings.html");
+	DKClose("DKBrowser/Settings.html");
 }
 
 ////////////////////////////////

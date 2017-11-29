@@ -190,12 +190,12 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Id(event,"Settings")){
 		DKCreate("DKBrowser/Settings.js", function(){
-			DKFrame_Widget("Settings.html");
+			DKFrame_Widget("DKBrowser/Settings.html");
 		});
 	}
 	if(DK_Id(event,"FindButton")){
 		DKCreate("DKBrowser/Find.js", function(){
-			DKFrame_Widget("Find.html");
+			DKFrame_Widget("DKBrowser/Find.html");
 		});
 	}
 }
