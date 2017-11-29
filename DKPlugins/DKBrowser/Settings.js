@@ -3,7 +3,6 @@ function Settings_Init()
 {
 	DKCreate("DKBrowser/Settings.html");
 	DKAddEvent("UpdateButton", "click", Settings_OnEvent);
-	DKAddEvent("FindButton", "click", Settings_OnEvent);
 }
 
 ///////////////////////
@@ -19,9 +18,6 @@ function Settings_OnEvent(event)
 	
 	if(DK_Id(event, "UpdateButton")){
 		Settings_Update();
-	}
-	if(DK_Id(event, "FindButton")){
-		DKCef_Find("DKBrowser_cef", "google"); //test: search for text "google" on page
 	}
 }
 
