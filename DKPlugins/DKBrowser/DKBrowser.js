@@ -194,11 +194,9 @@ function DKBrowser_OnEvent(event)
 		});
 	}
 	if(DK_Id(event,"FindButton")){
-		DKLog("Find\n");
-		DKCef_Find("DKBrowser_cef", "google"); //test: search for text "google" on page
-		//DKCreate("DKBrowser/Find.js", function(){
-		//	DKFrame_Widget("Find.html");
-		//});
+		DKCreate("DKBrowser/Find.js", function(){
+			DKFrame_Widget("Find.html");
+		});
 	}
 }
 
