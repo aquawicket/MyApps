@@ -7,5 +7,5 @@ DKWidget_SetProperty("DKBrowser.html", "height", "100%");
 DKCreate("DKTray/DKTray.js");
 DKCreate("DKDebug/DKDebug.js");
 DKCreate("DKSDLText");
-//DK_SetFramerate(60);
+DK_SetFramerate(60);
 //DKCreate("DKUpdate");
