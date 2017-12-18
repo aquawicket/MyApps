@@ -42,6 +42,7 @@ function DKBrowser_Init()
 	DKAddEvent("Paste", "click", DKBrowser_OnEvent);
 	DKAddEvent("SaveImage", "click", DKBrowser_OnEvent);
 	DKAddEvent("CopyLink", "click", DKBrowser_OnEvent);
+	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
 }
 
@@ -125,7 +126,7 @@ function DKBrowser_OnEvent(event)
 		DKCef_Reload("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Id(event, "HomeButton")){
-		DKCef_SetUrl("DKBrowser_cef", "http://digitalknob.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", "http://google.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Id(event, "Textbox")){
 		DKCef_RemoveFocus("DKBrowser_cef");
@@ -189,7 +190,12 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Id(event,"Settings")){
 		DKCreate("DKBrowser/Settings.js", function(){
-			DKFrame_Widget("Settings.html");
+			DKFrame_Widget("DKBrowser/Settings.html");
+		});
+	}
+	if(DK_Id(event,"FindButton")){
+		DKCreate("DKBrowser/Find.js", function(){
+			DKFrame_Widget("DKBrowser/Find.html");
 		});
 	}
 }
@@ -227,7 +233,7 @@ function DKBrowser_ProcessKey(key)
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
 		//DKLog("Homepage\n");
-		DKCef_SetUrl("DKBrowser_cef", "http://digitalknob.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", "http://google.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	
 	var focused = DKWidget_GetFocusElement();
