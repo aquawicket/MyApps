@@ -5,6 +5,7 @@ var USE_ROCKET = 0;  //Use with caution
 var DKApp_url = "http://www.youtube.com";
 
 DKCreate("DK/init.js", function(){});
+DK_SetFramerate(120);
 
 ///////////////////////
 function app_LoadPage()
