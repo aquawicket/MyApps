@@ -6,7 +6,7 @@ var DKApp_url = "http://www.youtube.com";
 
 DKCreate("DK/init.js", function(){});
 DK_SetFramerate(120);
-
+DKCreate("DKUpdate");
 
 ///////////////////////
 function app_LoadPage()
@@ -16,7 +16,7 @@ function app_LoadPage()
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKTray/DKTray.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-		DKCreate("DKUpdate");
+		//DKCreate("DKUpdate");
 	});
 	});
 	});
