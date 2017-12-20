@@ -100,7 +100,7 @@ function DKDev_OnEvent(event)
 		//DKLog("storedMouseX = "+storedMouseX);
 		
 		//FIXME
-		//DKLog("target = "+target+"\n", DKINFO)
+		//DKLog("target = "+target+"\n")
 		//if(target == "body"){  //target is always "body" in cef Mac and Linux
 		//	DKCreate("DKDev/DKDev_RootMenu.js", function(){});
 		//	return;
