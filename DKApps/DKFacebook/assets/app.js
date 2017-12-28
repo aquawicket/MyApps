@@ -1,5 +1,24 @@
-DKCreate("DKWindow");
-DKCreate("DKRocket");
-DKCreate("DKFacebook/facebook.html");
-DKCreate("DKTray/DKTray.js");
-DKCreate("DKDebug/DKDebug.js");
+var USE_CEF = 1;     //Desktop
+var USE_WEBVIEW = 1; //Android, iOS?
+var USE_SDL = 0;     //Use with caution
+var USE_ROCKET = 0;  //Use with caution
+var DKApp_url = "http://www.facebook.com";
+
+DKCreate("DK/init.js", function(){});
+DK_SetFramerate(120);
+DKCreate("DKUpdate");
+DKUpdate_CheckForUpdate();
+
+///////////////////////
+function app_LoadPage()
+{
+	DKLog("app_LoadPage()\n");
+	
+	DKCreate("DKWindow/DKWindow.js", function(){
+	DKCreate("DKTray/DKTray.js", function(){
+	DKCreate("DKDebug/DKDebug.js", function(){
+
+	});
+	});
+	});
+}
