@@ -23,20 +23,20 @@ function Receiver_OnEvent(event)
 		DKLog("Button: VolumeUp \n");
 		var volume = DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
-			DK_ChangeVolume(volume+5000);
+			DK_SetVolume(volume+5000);
 		}
 		else{
-			DK_ChangeVolume(volume+0.1);
+			DK_SetVolume(volume+0.1);
 		}
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
 		DKLog("Button: Volume Down\n");
 		var volume = DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
-			DK_ChangeVolume(volume-5000);
+			DK_SetVolume(volume-5000);
 		}
 		else{
-			DK_ChangeVolume(volume-0.1);
+			DK_SetVolume(volume-0.1);
 		}
 	}
 	
@@ -49,22 +49,22 @@ function Receiver_OnEvent(event)
 			DKLog("Client: VolumeUp\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
-				DK_ChangeVolume(volume+0.1);
+				DK_SetVolume(volume+0.1);
 				DKTray_ShowBalloon("Volume Up");
 			}
 			else{
-				DK_ChangeVolume(volume+5000);
+				DK_SetVolume(volume+5000);
 			}
 		}
 		if(DK_GetValue(event) == "VolumeDown"){
 			DKLog("Client: VolumeDown\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
-				DK_ChangeVolume(volume-0.1);
+				DK_SetVolume(volume-0.1);
 				DKTray_ShowBalloon("Volume Down");
 			}
 			else{
-				DK_ChangeVolume(volume-5000);
+				DK_SetVolume(volume-5000);
 			}
 		}
 	}
