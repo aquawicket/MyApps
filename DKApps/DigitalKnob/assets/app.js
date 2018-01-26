@@ -8,11 +8,10 @@ var DKApp_url = "file:///"+DKAssets_LocalAssets()+"/index.html";
 
 DKCreate("DK/init.js", function(){});
 
+
 ///////////////////////
 function app_LoadPage()
 {
-	DKLog("app_LoadPage()\n");
-	
 	DKWidget_SetProperty("body","background-color","grey");
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKScale/DKScale.js", function(){
