@@ -8,7 +8,7 @@ DKCreate("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-	DKCreate("DKOcr");
+
 }
 
 ///////////////////////
@@ -19,7 +19,9 @@ function app_LoadPage()
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKTray/DKTray.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-
+		DKCreate("DKOcr");
+		var assets = DKAssets_LocalAssets();
+		DKOcr_ImageToText(assets+"DKOcr/test.png");
 	});
 	});
 	});
