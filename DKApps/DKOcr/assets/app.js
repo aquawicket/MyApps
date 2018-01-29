@@ -19,9 +19,15 @@ function app_LoadPage()
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKTray/DKTray.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-		DKCreate("DKOcr");
+	DKCreate("DKPaint/DKPaint.js", function(){
+		var height = DKWindow_GetHeight();
+		DKWidget_SetProperty("DKPaint/DKPaint.html", "height", "100rem");
 		var assets = DKAssets_LocalAssets();
-		DKOcr_ImageToText(assets+"DKOcr/test.png");
+		DKPaint_Open(assets+"DKOcr/test.png");
+	DKCreate("DKNotepad/DKNotepad.js", function(){
+		DKWidget_SetProperty("DKNotepad/DKNotepad.html", "top", "500px");
+	});
+	});
 	});
 	});
 	});
