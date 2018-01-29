@@ -9,12 +9,12 @@ DKCreate("DK/init.js", function(){});
 ///////////////////////////
 function app_OnEvent(event)
 {
-	DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	//DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Type(event, "OpenFile")){
 		var file = DK_GetValue(event);
 		DKLog("OpenFile: "+file+" \n");
-		DKPaint_Open(file);
+		//DKPaint_Open(file);
 		var text = DKOcr_ImageToText(file);
 		DKWidget_SetAttribute("DKNotepad_Text", "value", text);
 	}
@@ -35,15 +35,15 @@ function app_LoadPage()
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKGui/DKFrame.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-	DKCreate("DKPaint/DKPaint.js", function(){
-		DKCreate("DKOcr")
-		DKWidget_SetProperty("DKPaint/DKPaint.html", "height", "50%");
-		var assets = DKAssets_LocalAssets();
+	//DKCreate("DKPaint/DKPaint.js", function(){
+		DKCreate("DKOcr");
+		//DKWidget_SetProperty("DKPaint/DKPaint.html", "height", "50%");
+		//var assets = DKAssets_LocalAssets();
 		//DKPaint_Open(assets+"DKOcr/test.png");
 	DKCreate("DKNotepad/DKNotepad.js", function(){
-		DKWidget_SetProperty("DKNotepad/DKNotepad.html", "top", "50%");
+		//DKWidget_SetProperty("DKNotepad/DKNotepad.html", "top", "50%");
 	});
-	});
+	//});
 	});
 	});
 	});
