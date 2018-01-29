@@ -18,18 +18,18 @@ function app_LoadPage()
 	DKLog("app_LoadPage()\n");
 	
 	DKCreate("DKWindow/DKWindow.js", function(){
-	//DKCreate("DKTray/DKTray.js", function(){
+	DKCreate("DKGui/DKFrame.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
 	DKCreate("DKPaint/DKPaint.js", function(){
-		var height = DKWindow_GetHeight();
-		DKWidget_SetProperty("DKPaint/DKPaint.html", "height", "100rem");
+		DKCreate("DKOcr")
+		DKWidget_SetProperty("DKPaint/DKPaint.html", "height", "50%");
 		var assets = DKAssets_LocalAssets();
 		DKPaint_Open(assets+"DKOcr/test.png");
 	DKCreate("DKNotepad/DKNotepad.js", function(){
-		DKWidget_SetProperty("DKNotepad/DKNotepad.html", "top", "500px");
+		DKWidget_SetProperty("DKNotepad/DKNotepad.html", "top", "50%");
 	});
 	});
 	});
-	//});
+	});
 	});
 }
