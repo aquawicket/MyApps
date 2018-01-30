@@ -1,13 +1,19 @@
-var USE_SDL = 1;
-var USE_ROCKET = 0;
-var USE_CEF = 1;
-var USE_Webview = 1;
-var DKApp_url = "file:///"+DKAssets_LocalAssets()+"/index.html";
+var USE_CEF     = 1; //Desktop
+var USE_WEBVIEW = 0; //TODO: Android, iOS
+var USE_SDL     = 0; //Use with caution
+var USE_ROCKET  = 0; //Use with caution
+var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
 //var DKApp_url = "http://digitalknob.com/DKIDE/index.html";
 //var DKApp_url = "http://google.com";
 //var DKApp_url = "chrome://gpu";
 
 DKCreate("DK/init.js", function(){});
+
+//////////////////////////
+function app_LoadPlugins()
+{
+
+}
 
 ///////////////////////
 function app_LoadPage()

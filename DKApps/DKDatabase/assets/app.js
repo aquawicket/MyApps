@@ -1,11 +1,17 @@
-var USE_SDL = 0;
-var USE_ROCKET = 0;
-var USE_CEF = 1;
-var USE_WEBVIEW = 1;
-var DKApp_url = "file:///"+DKAssets_LocalAssets()+"/index.html";
+var USE_CEF     = 0; //Desktop
+var USE_WEBVIEW = 0; //TODO: Android, iOS
+var USE_SDL     = 1; //Use with caution
+var USE_ROCKET  = 1; //Use with caution
+var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
 //var url = "http://digitalknob.com/DKDatabase/index.html";
 
 DKCreate("DK/init.js", function(){});
+
+//////////////////////////
+function app_LoadPlugins()
+{
+
+}
 
 ///////////////////////
 function app_LoadPage()
