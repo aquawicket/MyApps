@@ -15,8 +15,10 @@ function app_OnEvent(event)
 		var file = DK_GetValue(event);
 		DKLog("OpenFile: "+file+" \n");
 		//DKPaint_Open(file);
-		var text = DKOcr_ImageToText(file);
-		DKWidget_SetAttribute("DKNotepad_Text", "value", text);
+		var text;
+		if(text = DKOcr_ImageToText(file)){
+			DKWidget_SetAttribute("DKNotepad_Text", "value", text);
+		}
 	}
 }
 
