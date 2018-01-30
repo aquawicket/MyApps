@@ -19,6 +19,9 @@ function app_OnEvent(event)
 		if(text = DKOcr_ImageToText(file)){
 			DKWidget_SetAttribute("DKNotepad_Text", "value", text);
 		}
+		else{
+			DKNotepad_Open(file);
+		}
 	}
 }
 
