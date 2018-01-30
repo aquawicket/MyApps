@@ -98,9 +98,8 @@ function AppsMenu_OnEvent(event)
 {
 	DKLog("AppsMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
-	DKWidget_SetInnerHtml("Digitalknob_content",""); //clear the content
-	
 	if(DK_Type(event, "click")){
+		DKWidget_SetInnerHtml("Digitalknob_content",""); //clear the content
 		var id = DK_GetId(event);
 		DKClose("Digitalknob/DKApp.js");
 		DKCreate("Digitalknob/DKApp.js", function(){
