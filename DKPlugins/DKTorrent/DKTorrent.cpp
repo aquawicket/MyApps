@@ -17,11 +17,12 @@ char const* state(lt::torrent_status::state_t s)
 }
 
 //////////////////////
-void DKTorrent::Init()
+bool DKTorrent::Init()
 {
 	DKApp::AppendLoopFunc(&DKTorrent::Loop, this);
 
 	AddTorrent("magnet:?xt=urn:btih:b2a0b542ee6a1c0b693a92908502345e6c079f2c&dn=test+video&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Fzer0day.ch%3A1337&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969"); //Test
+	return true;
 }
 
 /////////////////////

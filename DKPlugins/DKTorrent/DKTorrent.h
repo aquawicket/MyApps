@@ -22,7 +22,7 @@ using clk = std::chrono::steady_clock;
 class DKTorrent : public DKObjectT<DKTorrent>
 {
 public:
-	void Init();
+	bool Init();
 	void End();
 	void Loop();
 	void AddTorrent(const DKString& url);
