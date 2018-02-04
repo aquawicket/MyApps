@@ -26,9 +26,9 @@ bool DKTorrent::Init()
 }
 
 /////////////////////
-void DKTorrent::End()
+bool DKTorrent::End()
 {
-
+	return true;
 }
 
 //////////////////////

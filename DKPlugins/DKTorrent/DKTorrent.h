@@ -23,7 +23,7 @@ class DKTorrent : public DKObjectT<DKTorrent>
 {
 public:
 	bool Init();
-	void End();
+	bool End();
 	void Loop();
 	void AddTorrent(const DKString& url);
 
