@@ -12,7 +12,7 @@ DKUpdate_CheckForUpdate();
 //////////////////////////
 function app_LoadPlugins()
 {
-	
+	DKCreate("DKTray/DKTray.js", function(){});
 }
 
 ///////////////////////
@@ -21,10 +21,8 @@ function app_LoadPage()
 	DKLog("app_LoadPage()\n");
 	
 	DKCreate("DKWindow/DKWindow.js", function(){
-	DKCreate("DKTray/DKTray.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
 
-	});
 	});
 	});
 }
