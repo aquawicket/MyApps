@@ -9,6 +9,12 @@ DK_SetFramerate(120);
 DKCreate("DKUpdate");
 DKUpdate_CheckForUpdate();
 
+//////////////////////////
+function app_LoadPlugins()
+{
+	
+}
+
 ///////////////////////
 function app_LoadPage()
 {
