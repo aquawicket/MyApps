@@ -10,6 +10,7 @@
 [VNC_PORT] 5900
 [VNC_PASSWORD]
 [VNC_ENCODING] copyrect tight ultra hextile zlib corre rre raw
+[VNC_BGR233] 1
 [VNC_MESSAGE_WAIT] 1
 [VNC_COMPRESSION] 0
 [VNC_QUALITY] 2
