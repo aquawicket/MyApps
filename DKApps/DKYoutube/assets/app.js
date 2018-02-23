@@ -12,7 +12,7 @@ DKCreate("DK/init.js", function(){});
 function app_LoadPlugins()
 {
 	DKCreate("DKTray/DKTray.js", function(){});
-	DK_SetFramerate(120);
+	DK_SetFramerate(240);
 	DKCreate("DKUpdate");
 	DKUpdate_CheckForUpdate();
 }
