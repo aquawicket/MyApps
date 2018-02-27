@@ -81,7 +81,7 @@ void DKCreator::Init()
 	RegisterEvent("DKCreator", "GenerateTemplate", &DKCreator::OnEvent, this);
 
 	// Register c++ functions to be called by string
-	// Use: DKString result = DKClass::CallFunc("class::function", "data"); 
+	// Use: bool success = DKClass::CallFunc("Class::Function", "data"); 
 	DKClass::RegisterFunc("DKCreator::GetAppList", &DKCreator::GetAppList, this);
 	DKClass::RegisterFunc("DKCreator::GetAppPath", &DKCreator::GetAppPath, this);
 	DKClass::RegisterFunc("DKCreator::GetLibList", &DKCreator::GetLibList, this);
