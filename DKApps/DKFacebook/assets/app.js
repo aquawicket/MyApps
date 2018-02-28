@@ -5,14 +5,14 @@ var USE_ROCKET  = 0; //Use with caution
 var DKApp_url   = "http://facebook.com/home.php";
 
 DKCreate("DK/init.js", function(){});
-DK_SetFramerate(120);
-DKCreate("DKUpdate");
-DKUpdate_CheckForUpdate();
 
 //////////////////////////
 function app_LoadPlugins()
 {
-
+	DKCreate("DKDebug/DKDebug.js", function(){});
+	DK_SetFramerate(120);
+	DKCreate("DKUpdate");
+	DKUpdate_CheckForUpdate();
 }
 
 ///////////////////////
@@ -22,9 +22,7 @@ function app_LoadPage()
 	
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKTray/DKTray.js", function(){
-	DKCreate("DKDebug/DKDebug.js", function(){
 
-	});
 	});
 	});
 }
