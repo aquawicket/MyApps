@@ -40,7 +40,7 @@ function TaskbarMenu_OnEvent(event)
 	DKLog("TaskbarMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "FileExplorer")){
-		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
+		DKCreate("DKFile/DKFileAssociation.js", function(){
 		DKFileAssociation_Open("DKFile/DKFileDialog.js");
 			var assets = DKAssets_LocalAssets();
 			DKAddEvent("TaskbarMenu", "OpenFile", TaskbarMenu_OnEvent);
@@ -48,7 +48,7 @@ function TaskbarMenu_OnEvent(event)
 		});
 	}
 	if(DK_Type(event, "OpenFile")){
-		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
+		DKCreate("DKFile/DKFileAssociation.js", function(){
 			var file = DK_GetValue(event);
 			DKFileAssociation_Open(file);		
 			DKRemoveEvent("TaskbarMenu", "OpenFile", TaskbarMenu_OnEvent);
@@ -67,22 +67,22 @@ function TaskbarMenu_OnEvent(event)
 		});
 	}
 	if(DK_Id(event, "OpenDev")){
-		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
+		DKCreate("DKFile/DKFileAssociation.js", function(){
 			DKFileAssociation_Open("DKDev/DKMenuRight.js");
 		});
 	}
 	if(DK_Id(event, "OpenNotepad")){
-		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
+		DKCreate("DKFile/DKFileAssociation.js", function(){
 			DKFileAssociation_Open("DKNotepad/DKNotepad.js");
 		});
 	}
 	if(DK_Id(event, "InputTest")){
-		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
+		DKCreate("DKFile/DKFileAssociation.js", function(){
 			DKFileAssociation_Open("DKInputTest/DKInput.js");
 		});
 	}
 	if(DK_Id(event, "OpenBrowser")){
-		DKCreate("DKFileAssociation/DKFileAssociation.js", function(){
+		DKCreate("DKFile/DKFileAssociation.js", function(){
 			DKFileAssociation_Open("DKBrowser/DKBrowser.js");
 		});
 	}
