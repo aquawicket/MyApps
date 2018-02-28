@@ -123,8 +123,10 @@ function TaskbarMenu_OnEvent(event)
 		});
 	}
 	if(DK_Id(event, "TestVideo")){
-		DKCreate("DKVideo");
-		DKVideo_Play("test.avi");
+		DKCreate("DKVideo/DKVideo.js", function(){
+			var assets = DKAssets_LocalAssets();
+			DKVideo_Play(assets+"DKVideo/test.avi");
+		});
 	}
 	if(DK_Id(event, "OpenSource")){
 		DKLog("OpenSource\n");
