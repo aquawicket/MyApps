@@ -17,10 +17,11 @@ function Taskbar_Init()
 //////////////////////
 function Taskbar_End()
 {
-	DKClose("Taskbar.html");
-	DKClose("scale.js");
-	DKClose("Clock.js");
-	DKClose("BugReport.js");
+	DKRemoveEvents(Taskbar_OnEvent);
+	DKClose("DKOS/Taskbar.html");
+	DKClose("DKOS/scale.js");
+	DKClose("DKOS/Clock.js");
+	DKClose("DKDebug/BugReport.js");
 }
 
 ///////////////////////////////
@@ -48,7 +49,7 @@ function Taskbar_Animate()
     } 
 	else{
         pos++; 
-		DKWidget_SetProperty("Taskbar.html","bottom",pos+"rem");
+		DKWidget_SetProperty("DKOS/Taskbar.html","bottom",pos+"rem");
 		DK_DoFrame();
     }
 }

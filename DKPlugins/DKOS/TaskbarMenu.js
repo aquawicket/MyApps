@@ -29,28 +29,8 @@ function TaskbarMenu_Init()
 //////////////////////////
 function TaskbarMenu_End()
 {
-	DKRemoveEvent("GLOBAL", "mousedown", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenSource", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenDebug", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("PushDKFiles", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("ClearConsole", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("Info", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("Reload", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("CloseDKOS", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("FileExplorer", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenConsole", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenBuilder", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenDev", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenNotepad", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("InputTest", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenBrowser", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenMessage", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenTetris", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("OpenSuperball", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("TestSound", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("TestVideo", "click", TaskbarMenu_OnEvent);
-	DKRemoveEvent("TaskbarMenu_Run", "keydown", TaskbarMenu_OnEvent);
-	DKClose("TaskbarMenu.html");
+	DKRemoveEvents(TaskbarMenu_OnEvent);
+	DKClose("DKOS/TaskbarMenu.html");
 }
 
 ///////////////////////////////////
