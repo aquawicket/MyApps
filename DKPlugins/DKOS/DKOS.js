@@ -15,13 +15,15 @@ function DKOS_Init()
 	}
 
 	DKCreate("DKGui/DKFrame.js", function(){
-		DKCreate("DKOS/Desktop.js", function(){
-			DKCreate("DKOS/Taskbar.js", function(){
-				if(OS == "iOS" || OS == "Android"){
-					//DKWidget_SetScale(2);   FIXME
-				}
-			});
-		});
+	DKCreate("DKGui/DKMenu.js", function(){
+	DKCreate("DKOS/Desktop.js", function(){
+	DKCreate("DKOS/Taskbar.js", function(){
+		if(OS == "iOS" || OS == "Android"){
+			//DKWidget_SetScale(2);   FIXME
+		}
+	});
+	});
+	});
 	});
 	});
 }

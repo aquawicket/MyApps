@@ -40,6 +40,15 @@ function TaskbarMenu_OnEvent(event)
 	DKLog("TaskbarMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "FileExplorer")){
+		DKCreate("DKFile/DKSolution.js", function(rval){
+			if(!rval){ return; }
+			DKFrame_Widget("DKFile/DKSolution.html");
+			DKFrame_SetTitle("DKFile/DKSolution.html", "File Explorer");
+			DKSolution_UpdatePath(DKAssets_LocalAssets());
+		});
+	}
+	/*
+	if(DK_Id(event, "FileExplorer")){
 		DKCreate("DKFile/DKFileAssociation.js", function(){
 		DKFileAssociation_Open("DKFile/DKFileDialog.js");
 			var assets = DKAssets_LocalAssets();
@@ -54,6 +63,7 @@ function TaskbarMenu_OnEvent(event)
 			DKRemoveEvent("DKOS/Taskbar.html", "OpenFile", TaskbarMenu_OnEvent);
 		});
 	}
+	*/
 	if(DK_Id(event, "OpenConsole")){
 		DKCreate("DKConsole/DKConsole.js", function(){});
 	}
