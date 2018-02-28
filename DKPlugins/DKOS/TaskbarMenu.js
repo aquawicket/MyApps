@@ -43,7 +43,7 @@ function TaskbarMenu_OnEvent(event)
 		DKCreate("DKFile/DKFileAssociation.js", function(){
 		DKFileAssociation_Open("DKFile/DKFileDialog.js");
 			var assets = DKAssets_LocalAssets();
-			DKAddEvent("TaskbarMenu", "OpenFile", TaskbarMenu_OnEvent);
+			DKAddEvent("DKOS/Taskbar.html", "OpenFile", TaskbarMenu_OnEvent);
 			DKSendEvent("DKFile/DKFileDialog.html", "GetFile", "TaskbarMenu,OpenFile,"+assets+",relative"); // To -> DKFileDialog
 		});
 	}
@@ -51,7 +51,7 @@ function TaskbarMenu_OnEvent(event)
 		DKCreate("DKFile/DKFileAssociation.js", function(){
 			var file = DK_GetValue(event);
 			DKFileAssociation_Open(file);		
-			DKRemoveEvent("TaskbarMenu", "OpenFile", TaskbarMenu_OnEvent);
+			DKRemoveEvent("DKOS/Taskbar.html", "OpenFile", TaskbarMenu_OnEvent);
 		});
 	}
 	if(DK_Id(event, "OpenConsole")){
