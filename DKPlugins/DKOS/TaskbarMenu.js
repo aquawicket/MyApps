@@ -1,7 +1,7 @@
 ///////////////////////////
 function TaskbarMenu_Init()
 {
-	DKCreate("DKOS/TaskbarMenu.html");
+	DKCreate("DKOS/TaskbarMenu.html", function(){
 	DKAddEvent("GLOBAL", "mousedown", TaskbarMenu_OnEvent);
 	DKAddEvent("OpenSource", "click", TaskbarMenu_OnEvent);
 	DKAddEvent("OpenDebug", "click", TaskbarMenu_OnEvent);
@@ -23,6 +23,7 @@ function TaskbarMenu_Init()
 	DKAddEvent("TestSound", "click", TaskbarMenu_OnEvent);
 	DKAddEvent("TestVideo", "click", TaskbarMenu_OnEvent);
 	DKAddEvent("TaskbarMenu_Run", "keydown", TaskbarMenu_OnEvent);
+	});
 	//DKWidget_SetFocus("TaskbarMenu_Run");
 }
 
@@ -43,7 +44,7 @@ function TaskbarMenu_OnEvent(event)
 		DKFileAssociation_Open("DKFile/DKFileDialog.js");
 			var assets = DKAssets_LocalAssets();
 			DKAddEvent("TaskbarMenu", "OpenFile", TaskbarMenu_OnEvent);
-			DKSendEvent("DKFileDialog.html", "GetFile", "TaskbarMenu,OpenFile,"+assets+",relative"); // To -> DKFileDialog
+			DKSendEvent("DKFile/DKFileDialog.html", "GetFile", "TaskbarMenu,OpenFile,"+assets+",relative"); // To -> DKFileDialog
 		});
 	}
 	if(DK_Type(event, "OpenFile")){
@@ -59,7 +60,7 @@ function TaskbarMenu_OnEvent(event)
 	if(DK_Id(event, "OpenBuilder")){
 		DKCreate("DKBuild/DKBuild.js", function(){
 			DKCreate("DKBuild/DKBuildGui.js", function(){
-			var frame = DKFrame_Widget("DKBuildGUI.html");
+			var frame = DKFrame_Widget("DKBuild/DKBuildGUI.html");
 			DKWidget_SetProperty(frame, "top", "20px");
 			DKWidget_SetProperty(frame, "left", "20px");
 			});
@@ -87,7 +88,7 @@ function TaskbarMenu_OnEvent(event)
 	}
 	if(DK_Id(event, "OpenMessage")){
 		DKCreate("DKMessage/DKMessage.js", function(){
-			DKFrame_Widget("DKMessage.html");
+			DKFrame_Widget("DKMessage/DKMessage.html");
 			DKMessageBox("", "ShowMessage", "test message");
 		});
 	}
@@ -112,7 +113,7 @@ function TaskbarMenu_OnEvent(event)
 		var assets = DKAssets_LocalAssets();
 		DKFile_StringToFile(source, assets+"source.html");
 		DKCreate("DKNotepad/DKNotepad.js", function(){
-			DKFrame_Widget("DKNotepad.html");
+			DKFrame_Widget("DKNotepad/DKNotepad.html");
 			DKNotepad_Open(assets+"source.html");
 			//DKLog(source+"\n");
 		});
@@ -160,11 +161,11 @@ function TaskbarMenu_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "GLOBAL")){
-		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "TaskbarMenu.html")){
+		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "DKOS/TaskbarMenu.html")){
 			return;
 		}
 	}
-	DKClose("TaskbarMenu.js");
+	DKClose("DKOS/TaskbarMenu.js");
 }
 
 //////////////////////////////////

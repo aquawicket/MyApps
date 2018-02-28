@@ -10,7 +10,7 @@ function BackgroundMenu_Init()
 /////////////////////////////
 function BackgroundMenu_End()
 {
-	DKClose("BackgroundMenu.html");
+	DKClose("DKOS/BackgroundMenu.html");
 }
 
 //////////////////////////////////////

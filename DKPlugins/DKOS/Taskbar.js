@@ -8,7 +8,7 @@ function Taskbar_Init()
 	DKCreate("DKOS/Clock.js", function(){});
 	if(DK_GetBrowser() == "Rocket"){
 		DKCreate("DKDebug/BugReport.js", function(){});
-		DKWidget_AppendChild("Taskbar.html","BugReport.html"); //reparent
+		DKWidget_AppendChild("DKOS/Taskbar.html","DKDebug/BugReport.html"); //reparent
 	}
 	DKAddEvent("start", "click", Taskbar_OnEvent);
 	DKAddEvent("test_animate", "click", Taskbar_OnEvent);

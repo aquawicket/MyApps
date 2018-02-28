@@ -8,7 +8,7 @@ function Desktop_Init()
 //////////////////////
 function Desktop_End()
 {
-	DKClose("Desktop.html");
+	DKClose("DKOS/Desktop.html");
 }
 
 ///////////////////////////////

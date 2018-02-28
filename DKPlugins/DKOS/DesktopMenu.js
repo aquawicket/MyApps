@@ -2,8 +2,8 @@
 function DesktopMenu_Init()
 {
 	DKCreate("DKOS/DesktopMenu.html");
-	DKWidget_SetProperty("DesktopMenu.html","top",DKWindow_GetMouseY()+"px");
-	DKWidget_SetProperty("DesktopMenu.html","left",DKWindow_GetMouseX()+"px");
+	DKWidget_SetProperty("DKOS/DesktopMenu.html","top",DKWindow_GetMouseY()+"px");
+	DKWidget_SetProperty("DKOS/DesktopMenu.html","left",DKWindow_GetMouseX()+"px");
 	
 	DKAddEvent("GLOBAL", "mousedown", DesktopMenu_OnEvent);
 	DKAddEvent("OpenBackgtoundMenu", "click", DesktopMenu_OnEvent);
@@ -13,10 +13,8 @@ function DesktopMenu_Init()
 //////////////////////////
 function DesktopMenu_End()
 {
-	DKRemoveEvent("GLOBAL", "mousedown", DesktopMenu_OnEvent);
-	DKRemoveEvent("OpenBackgtoundMenu", "click", DesktopMenu_OnEvent);
-	DKRemoveEvent("ToggleFullscreen", "click", DesktopMenu_OnEvent);
-	DKClose("DesktopMenu.html");
+	DKRemoveEvents(DesktopMenu_OnEvent);
+	DKClose("DKOS/DesktopMenu.html");
 }
 
 ///////////////////////////////////
@@ -26,7 +24,7 @@ function DesktopMenu_OnEvent(event)
 	
 	if(DK_Id(event, "OpenBackgtoundMenu")){
 		DKCreate("DKOS/BackgroundMenu.js", function(){
-			DKFrame_Widget("BackgroundMenu.html");
+			DKFrame_Widget("DKOS/BackgroundMenu.html");
 		});
 	}
 	if(DK_Id(event, "ToggleFullscreen")){
@@ -34,11 +32,11 @@ function DesktopMenu_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "GLOBAL")){
-		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "DesktopMenu.html")){
+		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "DKOS/DesktopMenu.html")){
 			return;
 		}
 	}
-	DKClose("DesktopMenu.js");
+	DKClose("DKOS/DesktopMenu.js");
 }
 
 ///////////////////////////////////
