@@ -47,23 +47,6 @@ function TaskbarMenu_OnEvent(event)
 			DKSolution_UpdatePath(DKAssets_LocalAssets());
 		});
 	}
-	/*
-	if(DK_Id(event, "FileExplorer")){
-		DKCreate("DKFile/DKFileAssociation.js", function(){
-		DKFileAssociation_Open("DKFile/DKFileDialog.js");
-			var assets = DKAssets_LocalAssets();
-			DKAddEvent("DKOS/Taskbar.html", "OpenFile", TaskbarMenu_OnEvent);
-			DKSendEvent("DKFile/DKFileDialog.html", "GetFile", "TaskbarMenu,OpenFile,"+assets+",relative"); // To -> DKFileDialog
-		});
-	}
-	if(DK_Type(event, "OpenFile")){
-		DKCreate("DKFile/DKFileAssociation.js", function(){
-			var file = DK_GetValue(event);
-			DKFileAssociation_Open(file);		
-			DKRemoveEvent("DKOS/Taskbar.html", "OpenFile", TaskbarMenu_OnEvent);
-		});
-	}
-	*/
 	if(DK_Id(event, "OpenConsole")){
 		DKCreate("DKConsole/DKConsole.js", function(){});
 	}
