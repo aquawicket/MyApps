@@ -9,8 +9,8 @@ function DKOS_Init()
 		var screenheight = DK_GetScreenHeight();
 		var newwidth = parseInt(screenwidth)-100;
 		var newheight = parseInt(screenheight)-150;
-		DKWindow_SetWidth(newwidth.toString()+"px");
-		DKWindow_SetHeight(newheight.toString()+"px");
+		DKWindow_SetWidth(newwidth);
+		DKWindow_SetHeight(newheight);
 	}
 
 	DKCreate("DKGui/DKFrame.js", function(){
