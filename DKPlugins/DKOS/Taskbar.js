@@ -3,7 +3,7 @@ var animation;
 ///////////////////////
 function Taskbar_Init()
 {
-	DKCreate("DKOS/Taskbar.html");
+	DKCreate("DKOS/Taskbar.html,DKOS/DKOS.html");
 	DKCreate("DKOS/scale.js", function(){});
 	DKCreate("DKOS/Clock.js", function(){});
 	if(DK_GetBrowser() == "Rocket"){

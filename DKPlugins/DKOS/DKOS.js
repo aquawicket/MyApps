@@ -2,6 +2,7 @@
 function DKOS_Init()
 {
 	DKCreate("DK/DKBrowser.css");
+	DKCreate("DKOS/DKOS.html", function(){
 	var OS = DK_GetOS();
 	DKLog("OS="+OS+"\n");
 	if(OS != "iOS" && OS != "Android"){
@@ -21,5 +22,6 @@ function DKOS_Init()
 				}
 			});
 		});
+	});
 	});
 }

@@ -1,7 +1,7 @@
 ///////////////////////
 function Desktop_Init()
 {
-	DKCreate("DKOS/Desktop.html");
+	DKCreate("DKOS/Desktop.html,DKOS/DKOS.html");
 	DKAddEvent("Background", "contextmenu", Desktop_OnEvent);
 }
 
