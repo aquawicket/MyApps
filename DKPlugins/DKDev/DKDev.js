@@ -15,9 +15,9 @@ function DKDev_Init()
 	DKAddEvent("GLOBAL", "OpenFile", DKDev_OnEvent);
 	DKAddEvent("GLOBAL", "FileChoice", DKDev_OnEvent);
 	
-	ignorelist += "DKBuildGUI.html,";
-	ignorelist += "DKDev.html,";
-	ignorelist += "DKMenuRight.html,";
+	ignorelist += "DKBuilder/DKBuildGUI.html,";
+	ignorelist += "DKDev/DKDev.html,";
+	ignorelist += "DKDev/DKMenuRight.html,";
 	
 	DKDev_CreateBox();
 	DKDev_HideBox();
@@ -27,9 +27,6 @@ function DKDev_Init()
 ////////////////////
 function DKDev_End()
 {
-	DKRemoveEvent("GLOBAL", "SaveHtmlFiles", DKDev_OnEvent);
-	DKRemoveEvent("GLOBAL", "OpenFile", DKDev_OnEvent);
-	DKRemoveEvent("GLOBAL", "FileChoice", DKDev_OnEvent);
 	DKRemoveEvents(DKDev_OnEvent);
 	DKClose("DKDev/DKDev.html");
 }
@@ -65,8 +62,8 @@ function DKDev_OnEvent(event)
 	
 	if(DK_Type(event, "mousedown")){
 		var target = DK_GetId(event);
-		if(DKWidget_IsChildOf(target, "DKDev_RootMenu.html")){ return; }
-		if(DKWidget_IsChildOf(target, "DKDev_Menu.html")){ return; }
+		if(DKWidget_IsChildOf(target, "DKDev/DKDev_RootMenu.html")){ return; }
+		if(DKWidget_IsChildOf(target, "DKDev/DKDev_Menu.html")){ return; }
 		if(target == "DKResizeImg"){ 
 			if(DK_GetBrowser() != "Rocket"){
 				DK_StopPropagation(event);
@@ -83,8 +80,8 @@ function DKDev_OnEvent(event)
 	if(DK_Type(event, "contextmenu")){
 		DKLog("DKDev_OnEvent(): contextmenu \n");
 		var target = DK_GetId(event);
-		if(DKWidget_IsChildOf(target, "DKDev_Menu.html")){ return; }
-		if(DKWidget_IsChildOf(target, "DKDev_RootMenu.html")){ return; }
+		if(DKWidget_IsChildOf(target, "DKDev/DKDev_Menu.html")){ return; }
+		if(DKWidget_IsChildOf(target, "DKDev/DKDev_RootMenu.html")){ return; }
 		if(target == "DevModeButton"){return;}
 		//DKDev_SelectElement(target);
 		mouseX = DKWidget_GetMouseWindowX();
@@ -289,8 +286,8 @@ function DKDev_SelectElement(id)
 	}
 
 	//DKLog("stored_element: "+stored_element+"\n");
-	DKSendEvent("DKMenuRightEdit.html", "SetElement", stored_element);
-	DKSendEvent("DKMenuRight.html", "SetPanel", "Edit");
+	DKSendEvent("DKDev/DKMenuRightEdit.html", "SetElement", stored_element);
+	DKSendEvent("DKDev/DKMenuRight.html", "SetPanel", "Edit");
 }
 
 /////////////////////////////////
@@ -309,8 +306,8 @@ function DKDev_AddDragHandles(id)
 		if(list[t] == "html"){ continue; }
 		if(list[t] == "body"){ continue; }
 		if(DKWidget_IsChildOf(list[t], "DKDev_Box")){ continue; }
-		if(DKWidget_IsChildOf(list[t], "DKDev_RootMenu.html")){ continue; }
-		if(DKWidget_IsChildOf(list[t], "DKDev_Menu.html")){ continue; }
+		if(DKWidget_IsChildOf(list[t], "DKDev/DKDev_RootMenu.html")){ continue; }
+		if(DKWidget_IsChildOf(list[t], "DKDev/DKDev_Menu.html")){ continue; }
 		if(DKDev_Ignore(list[t])){ continue; }	
 		
 		if(DKWidget_AddDragHandle(list[t], list[t])){

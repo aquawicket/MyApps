@@ -3,8 +3,8 @@
 function DKDev_Menu_Init()
 {
 	DKCreate("DKDev/DKDev_Menu.html", function(){});
-	DKWidget_SetProperty("DKDev_Menu.html","top",DKWindow_GetMouseY()+"rem");
-	DKWidget_SetProperty("DKDev_Menu.html","left",DKWindow_GetMouseX()+"rem");
+	DKWidget_SetProperty("DKDev/DKDev_Menu.html","top",DKWindow_GetMouseY()+"rem");
+	DKWidget_SetProperty("DKDev/DKDev_Menu.html","left",DKWindow_GetMouseX()+"rem");
 	DKAddEvent("GLOBAL", "mousedown", DKDev_Menu_OnEvent);
 	DKAddEvent("DKDev_Menu_NewFrame", "click", DKDev_Menu_OnEvent);
 	DKAddEvent("DKDev_Menu_NewFrame2", "click", DKDev_Menu_OnEvent);
@@ -32,7 +32,6 @@ function DKDev_Menu_Init()
 /////////////////////////
 function DKDev_Menu_End()
 {
-	DKRemoveEvent("GLOBAL", "mousedown", DKDev_Menu_OnEvent);
 	DKRemoveEvents(DKDev_Menu_OnEvent);
 	DKClose("DKDev/DKDev_Menu.html");
 }
@@ -47,9 +46,9 @@ function DKDev_Menu_OnEvent(event)
 	}
 	if(DK_Id(event, "DKDev_Menu_OpenFile")){
 		DKCreate("DKFile/DKFileDialog.js", function(){
-			DKFrame_Widget("DKFileDialog.html");
+			DKFrame_Widget("DKFile/DKFileDialog.html");
 			var assets = DKAssets_LocalAssets();
-			DKSendEvent("DKFileDialog.html", "GetFile", "GLOBAL,OpenFile,"+assets+",relative"); // To -> DKFileDialog
+			DKSendEvent("DKFile/DKFileDialog.html", "GetFile", "GLOBAL,OpenFile,"+assets+",relative"); // To -> DKFileDialog
 		});
 	}
 	if(DK_Id(event, "DKDev_Menu_NewDiv")){
@@ -57,9 +56,9 @@ function DKDev_Menu_OnEvent(event)
 	}
 	if(DK_Id(event, "DKDev_Menu_NewImage")){
 		DKCreate("DKFile/DKFileDialog.js", function(){
-			DKFrame_Widget("DKFileDialog.html");
+			DKFrame_Widget("DKFile/DKFileDialog.html");
 			var assets = DKAssets_LocalAssets();
-			DKSendEvent("DKFileDialog.html", "GetFile", "GLOBAL,OpenFile,"+assets+",relative"); // To -> DKFileDialog
+			DKSendEvent("DKFile/DKFileDialog.html", "GetFile", "GLOBAL,OpenFile,"+assets+",relative"); // To -> DKFileDialog
 		});
 	}
 	if(DK_Id(event, "DKDev_Menu_NewText")){
@@ -111,7 +110,7 @@ function DKDev_Menu_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "GLOBAL")){
-		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "DKDev_Menu.html")){
+		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "DKDev/DKDev_Menu.html")){
 			return;
 		}
 	}

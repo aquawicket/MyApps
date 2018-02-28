@@ -1,25 +1,25 @@
 ///////////////////////////
 function DKMenuRight_Init()
 {
-	DKCreate("DKDev/DKMenuRight.html", function(){});
+	DKCreate("DKDev/DKMenuRight.html", function(){
 	DKAddEvent("GLOBAL", "keydown", DKMenuRight_OnEvent);
 	DKAddEvent("DevModeButton", "click", DKMenuRight_OnEvent);
-	DKAddEvent("AppImage", "click", DKMenuRight_OnEvent);
+	//DKAddEvent("AppImage", "click", DKMenuRight_OnEvent);
 	DKAddEvent("Image19", "click", DKMenuRight_OnEvent);
-	DKAddEvent("Image20", "click", DKMenuRight_OnEvent);
+	//DKAddEvent("Image20", "click", DKMenuRight_OnEvent);
 	DKAddEvent("WebImage", "click", DKMenuRight_OnEvent);
 	DKAddEvent("TriggerImage", "click", DKMenuRight_OnEvent);
 	DKAddEvent("HookImage", "click", DKMenuRight_OnEvent);
-	DKAddEvent("DKMenuRight.html", "SetPanel", DKMenuRight_OnEvent);
+	DKAddEvent("DKDev/DKMenuRight.html", "SetPanel", DKMenuRight_OnEvent);
 
 	DKCreate("DKDev/DKMenuRightWeb.js", function(){});
 	DKCreate("DKDev/DKMenuRightEdit.js", function(){});
+	});
 }
 
 //////////////////////////
 function DKMenuRight_End()
 {
-	DKRemoveEvent("GLOBAL", "keydown", DKMenuRight_OnEvent);
 	DKRemoveEvents(DKMenuRight_OnEvent);
 	DKClose("DKDev/DKMenuRightWeb.js");
 	DKClose("DKDev/DKMenuRightTree.js");
@@ -47,12 +47,12 @@ function DKMenuRight_OnEvent(event)
 	}
 	if(DK_Id(event, "TriggerImage")){
 		DKCreate("DKTriggers/DKAutomate.js", function(){
-			DKFrame_Widget("DKAutomate.html");
+			DKFrame_Widget("DKTriggers/DKAutomate.html");
 		});
 	}
 	if(DK_Id(event, "HookImage")){
 		DKCreate("DKHook/DKHook.js", function(){
-			DKFrame_Widget("DKHook.html");
+			DKFrame_Widget("DKHook/DKHook.html");
 		});
 	}
 	if(DK_Id(event, "DevModeButton")){
@@ -67,10 +67,10 @@ function DKMenuRight_OnEvent(event)
 /////////////////////////////////////
 function DKMenuRight_SetPanel(string)
 {
-	DKWidget_Hide("DKMenuRightApp.html");
-	DKWidget_Hide("DKMenuRightEdit.html");
-	DKWidget_Hide("DKMenuRightTree.html");
-	DKWidget_Hide("DKMenuRightWeb.html");
+	DKWidget_Hide("DKDev/DKMenuRightApp.html");
+	DKWidget_Hide("DKDev/DKMenuRightEdit.html");
+	DKWidget_Hide("DKDev/DKMenuRightTree.html");
+	DKWidget_Hide("DKDev/DKMenuRightWeb.html");
 	DKWidget_SetAttribute("AppImage", "src", "DKDev/app.png");
 	DKWidget_SetAttribute("Image19", "src", "DKDev/pencil.png");
 	DKWidget_SetAttribute("Image20", "src", "DKDev/tree.png");
@@ -78,19 +78,19 @@ function DKMenuRight_SetPanel(string)
 
 	if(string == "App"){
 		DKWidget_SetAttribute("AppImage", "src", "DKDev/app-select.png");
-		DKWidget_Show("DKMenuRightApp.html");
+		DKWidget_Show("DKDev/DKMenuRightApp.html");
 	}
 	if(string == "Edit"){
 		DKWidget_SetAttribute("Image19", "src", "DKDev/pencil-select.png");
-		DKWidget_Show("DKMenuRightEdit.html");
+		DKWidget_Show("DKDev/DKMenuRightEdit.html");
 	}
 	if(string == "Tree"){
 		DKWidget_SetAttribute("Image20", "src", "DKDev/tree-select.png");
-		DKWidget_Show("DKMenuRightTree.html");
+		DKWidget_Show("DKDev/DKMenuRightTree.html");
 	}
 	if(string == "Web"){
 		DKWidget_SetAttribute("WebImage", "src", "DKDev/web-select.png");
-		DKWidget_Show("DKMenuRightWeb.html");
+		DKWidget_Show("DKDev/DKMenuRightWeb.html");
 	}
 }
 

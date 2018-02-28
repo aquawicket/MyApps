@@ -3,10 +3,10 @@ var MenuRight_element = "";
 ///////////////////////////////
 function DKMenuRightEdit_Init()
 {
-	DKCreate("DKDev/DKMenuRightEdit.html,DKMenuRight.html", function(){});
-	DKAddEvent("DKMenuRightEdit.html", "SetElement", DKMenuRightEdit_OnEvent);
-	DKAddEvent("DKMenuRightEdit.html", "background_color", DKMenuRightEdit_OnEvent);
-	DKAddEvent("DKMenuRightEdit.html", "foreground_color", DKMenuRightEdit_OnEvent);
+	DKCreate("DKDev/DKMenuRightEdit.html,DKDev/DKMenuRight.html", function(){});
+	DKAddEvent("DKDev/DKMenuRightEdit.html", "SetElement", DKMenuRightEdit_OnEvent);
+	DKAddEvent("DKDev/DKMenuRightEdit.html", "background_color", DKMenuRightEdit_OnEvent);
+	DKAddEvent("DKDev/DKMenuRightEdit.html", "foreground_color", DKMenuRightEdit_OnEvent);
 	//DKAddEvent("drag", DKMenuRightEdit_OnEvent);
 	//DKAddEvent("keydown", DKMenuRightEdit_OnEvent);
 	DKAddEvent("InfoTab", "click", DKMenuRightEdit_OnEvent);
@@ -126,14 +126,14 @@ function DKMenuRightEdit_OnEvent(event)
 	}
 	if(DK_Id(event,"DKBGColor")){
 		DKCreate("DKColorPicker/DKColorPicker.js", function(){
-			DKFrame_Widget("DKColorPicker.html");
-			DKSendEvent("DKColorPicker.html", "GetColor", "DKMenuRightEdit.html,background_color");
+			DKFrame_Widget("DKColorPicker/DKColorPicker.html");
+			DKSendEvent("DKColorPicker/DKColorPicker.html", "GetColor", "DKDev/DKMenuRightEdit.html,background_color");
 		});
 	}
 	if(DK_Id(event,"DKFGColor")){
 		DKCreate("DKColorPicker/DKColorPicker.js", function(){
-			DKFrame_Widget("DKColorPicker.html");
-			DKSendEvent("DKColorPicker.html", "GetColor", "DKMenuRightEdit.html,foreground_color");
+			DKFrame_Widget("DKColorPicker/DKColorPicker.html");
+			DKSendEvent("DKColorPicker/DKColorPicker.html", "GetColor", "DKDev/DKMenuRightEdit.html,foreground_color");
 		});
 	}
 	if(DK_Type(event,"background_color")){
