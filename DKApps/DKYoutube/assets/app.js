@@ -24,6 +24,9 @@ function app_LoadPage()
 	DKLog("app_LoadPage()\n");
 	
 	DKCreate("DKWindow/DKWindow.js", function(){
+	DKCreate("DKDebug/DKDebug.js", function(){
 		//add code here
+		DKLog("loaded");
+	});
 	});
 }

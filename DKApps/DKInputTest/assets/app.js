@@ -10,7 +10,7 @@ DKCreate("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-
+	DKCreate("DKDebug/DKDebug.js", function(){});
 }
 
 ///////////////////////
