@@ -13,7 +13,7 @@ function app_OnEvent(event)
 	//DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Type(event, "keydown") && DK_GetValue(event) == 122){ //F11
- 
+		DKLog("TODO: toggle fullscreen\n", DKINFO);
 	}
 }
 
@@ -36,7 +36,7 @@ function app_LoadPage()
 	
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-		DKAddEvent("GLOBAL", "keydown", app_OnEvent);
+		//DKAddEvent("GLOBAL", "keydown", app_OnEvent);
 	});
 	});
 }
