@@ -7,6 +7,16 @@ var DKApp_url   = "http://www.youtube.com";
 
 DKCreate("DK/init.js", function(){});
 
+///////////////////////////
+function app_OnEvent(event)
+{
+	//DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	
+	if(DK_Type(event, "keydown") && DK_GetValue(event) == 122){ //F11
+ 
+	}
+}
+
 
 //////////////////////////
 function app_LoadPlugins()
@@ -16,6 +26,7 @@ function app_LoadPlugins()
 	DK_SetFramerate(240);
 	DKCreate("DKUpdate");
 	DKUpdate_CheckForUpdate();
+	DKAddEvent("GLOBAL", "keydown", app_OnEvent);
 }
 
 ///////////////////////
@@ -25,8 +36,7 @@ function app_LoadPage()
 	
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-		//add code here
-		DKLog("loaded");
+		DKAddEvent("GLOBAL", "keydown", app_OnEvent);
 	});
 	});
 }
