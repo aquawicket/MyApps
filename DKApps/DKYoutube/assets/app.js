@@ -2,8 +2,8 @@ var USE_CEF     = 1; //Desktop
 var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
 var USE_ROCKET  = 0; //Use with caution
-var DKApp_url   = "http://www.youtube.com";
-//var DKApp_url   = "http://www.youtube.com/tv";
+//var DKApp_url   = "http://www.youtube.com";
+var DKApp_url   = "http://www.youtube.com/tv";
 
 DKCreate("DK/init.js", function(){});
 
@@ -20,13 +20,22 @@ function app_OnEvent(event)
 			DKWindow_Fullscreen();
 		}
 	}
+	
+	if(DK_Type(event, "1003")){ //Tray, Fullscreen
+		DKWindow_Show();
+		DKWindow_Restore();
+		DKWindow_Fullscreen();
+	}
 }
 
 
 //////////////////////////
 function app_LoadPlugins()
 {
-	DKCreate("DKTray/DKTray.js", function(){});
+	DKCreate("DKTray/DKTray.js", function(){
+		DKTray_AddItem("Fullscreen", 1003);
+		DKAddEvent("DKTray", "1003", app_OnEvent);
+	});
 	DKCreate("DKDebug/DKDebug.js", function(){});
 	DK_SetFramerate(240);
 	DKCreate("DKUpdate");
