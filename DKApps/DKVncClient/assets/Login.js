@@ -16,5 +16,7 @@ function Login_End()
 function Login_OnEvent(event)
 {
 	DKLog("Login_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKClose("Login.html");
+	//DKClose("DKWidget");
+	//DKClose("DKRocket");
 }
