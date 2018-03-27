@@ -27,10 +27,12 @@ function app_OnEvent(event)
 		DKWindow_Fullscreen();
 	}
 	
+	//FIXME
 	if(DK_Type(event, "1004")){ //Toggle youtube.com and youtube.com/TV
+		DKLog("DKCef_GetUrl(): DK_Type == 1004\n", DKINFO);
+		
 		//TODO
-		var url = DKCef_GetUrl();
-		DKLog("DKCef_GetUrl(): = "+url+"\n", DKINFO);
+		//var url = DKCef_GetUrl();
 	}
 }
 
@@ -41,6 +43,8 @@ function app_LoadPlugins()
 	DKCreate("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Fullscreen", 1003);
 		DKAddEvent("DKTray", "1003", app_OnEvent);
+		
+		//FIXME
 		DKTray_AddItem("Toggle YoutubeTV", 1004);
 		DKAddEvent("DKTray", "1004", app_OnEvent);
 	});
