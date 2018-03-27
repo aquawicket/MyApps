@@ -26,6 +26,10 @@ function app_OnEvent(event)
 		DKWindow_Restore();
 		DKWindow_Fullscreen();
 	}
+	
+	if(DK_Type(event, "1004")){ //Toggle youtube.com and youtube.com/TV
+		//TODO
+	}
 }
 
 
@@ -35,8 +39,8 @@ function app_LoadPlugins()
 	DKCreate("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Fullscreen", 1003);
 		DKAddEvent("DKTray", "1003", app_OnEvent);
-		//DKTray_AddItem("Toggle TV mode", 1004);
-		//DKAddEvent("DKTray", "1004", app_OnEvent);
+		DKTray_AddItem("Toggle YoutubeTV", 1004);
+		DKAddEvent("DKTray", "1004", app_OnEvent);
 	});
 	DKCreate("DKDebug/DKDebug.js", function(){});
 	DK_SetFramerate(240);
