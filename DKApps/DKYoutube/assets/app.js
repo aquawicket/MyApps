@@ -32,7 +32,8 @@ function app_OnEvent(event)
 		DKLog("DKCef_GetUrl(): DK_Type == 1004\n", DKINFO);
 		
 		//TODO
-		//var url = DKCef_GetUrl();
+		var url = DKCef_GetUrl();
+		DKLog("DKCef_GetUrl(): = "+url+"\n", DKINFO);
 	}
 }
 
