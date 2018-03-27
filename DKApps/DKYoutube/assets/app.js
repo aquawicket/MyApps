@@ -10,7 +10,7 @@ DKCreate("DK/init.js", function(){});
 ///////////////////////////
 function app_OnEvent(event)
 {
-	//DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Type(event, "keydown") && DK_GetValue(event) == 122){ //F11
 		if(DKWindow_IsFullscreen()){
@@ -29,6 +29,8 @@ function app_OnEvent(event)
 	
 	if(DK_Type(event, "1004")){ //Toggle youtube.com and youtube.com/TV
 		//TODO
+		var url = DKCef_GetUrl();
+		DKLog("DKCef_GetUrl(): = "+url+"\n", DKINFO);
 	}
 }
 
