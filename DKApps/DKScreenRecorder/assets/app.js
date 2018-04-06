@@ -13,7 +13,11 @@ function app_OnEvent(event)
 	
 	if(DK_Type(event, "1003")){ //Tray, Fullscreen
 		DKLog("Clicked Tray -> Record\n", DKINFO);
-		//TODO: Record the screen to a file. 
+		DKScreenRecorder_Record("video.avi"); //Record the screen to a file.
+	}
+	if(DK_Type(event, "1004")){ //Tray, Fullscreen
+		DKLog("Clicked Tray -> Stop\n", DKINFO);
+		DKScreenRecorder_Stop();
 	}
 }
 
@@ -24,6 +28,8 @@ function app_LoadPlugins()
 	DKCreate("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Record", 1003);
 		DKAddEvent("DKTray", "1003", app_OnEvent);
+		DKTray_AddItem("Stop", 1004);
+		DKAddEvent("DKTray", "1004", app_OnEvent);
 	});
 }
 
@@ -31,6 +37,4 @@ function app_LoadPlugins()
 function app_LoadPage()
 {
 	DKLog("app_LoadPage()\n");
-	
-	//TODO
 }
