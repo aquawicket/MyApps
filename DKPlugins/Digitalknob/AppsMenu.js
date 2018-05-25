@@ -1,7 +1,7 @@
 ////////////////////////
 function AppsMenu_Init()
 {
-	DKCreate("Digitalknob/AppsMenu.html");
+	DKCreate("Digitalknob/AppsMenu.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
 	
 	AppsMenu_GetApps();
