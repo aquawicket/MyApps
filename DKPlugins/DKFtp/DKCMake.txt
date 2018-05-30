@@ -1,3 +1,2 @@
-##DKDEPEND(DKRocket)
 DKASSETS(DKMessage)
 DKASSETS(DKFtp)
