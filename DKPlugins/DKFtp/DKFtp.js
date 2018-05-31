@@ -5,8 +5,8 @@ function DKFtp_Init()
 	//DKAddEvent("DKFtp.html", "blah", DKFtp_OnEvent);
 }
 
-/////////////////////////
-function DKDatabase_End()
+////////////////////
+function DKFtp_End()
 {
 	DKClose("DKFtp/DKFtp.html");
 }
