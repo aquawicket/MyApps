@@ -63,7 +63,7 @@ function DKEnvelope_PrintEnvelope()
 	var ele2 = DKWidget_CreateElement(ele, "div", "envelope");
 	DKWidget_SetProperty(ele2, "position", "absolute");
 	DKWidget_SetProperty(ele2, "top", "300rem");
-	DKWidget_SetProperty(ele2, "left", "100rem");
+	DKWidget_SetProperty(ele2, "left", "-20rem");
 	DKWidget_SetProperty(ele2, "width", "700rem");
 	DKWidget_SetProperty(ele2, "height", "300rem");
 	DKWidget_SetProperty(ele2, "background-color", "rgb(200,200,200)");
@@ -92,7 +92,7 @@ function DKEnvelope_PrintEnvelope()
 	DoPrint(function(){
 		DKLog("finnished printing\n", DKINFO);
 		DKWidget_RemoveElement(ele);
-		Widget_Show("DKGui/Desktop.html");
+		DKWidget_Show("DKGui/Desktop.html");
 		DKWidget_Show("DKGui/Taskbar.html");
 	});
 }
