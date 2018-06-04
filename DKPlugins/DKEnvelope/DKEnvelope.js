@@ -37,6 +37,13 @@ Object.prototype.rotate = function(d) {
     this.setAttribute("rotation", d);
 }
 
+//////////////////////////
+function DoPrint(callback)
+{
+    window.print();
+    setTimeout(function(){ callback(); }, 100);
+}
+
 ///////////////////////////////////
 function DKEnvelope_PrintEnvelope()
 {
@@ -82,10 +89,10 @@ function DKEnvelope_PrintEnvelope()
 	
 	document.getElementById(ele2).rotate(-90);
 	
-	DKCef_Print();
-	
-	//DKWidget_RemoveElement(ele);
-	//DKWidget_Show("DKGui/Desktop.html");
-	//DKWidget_Show("DKGui/Taskbar.html");
-	
+	DoPrint(function(){
+		DKLog("finnished printing\n", DKINFO);
+		DKWidget_RemoveElement(ele);
+		Widget_Show("DKGui/Desktop.html");
+		DKWidget_Show("DKGui/Taskbar.html");
+	});
 }
