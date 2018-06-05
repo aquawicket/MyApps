@@ -56,7 +56,7 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(ele, "position", "absolute");
 	DKWidget_SetProperty(ele, "width", "100%");
 	DKWidget_SetProperty(ele, "height", "100%");
-	DKWidget_SetProperty(ele, "background-color", "rgb(255,255,255)");
+	DKWidget_SetProperty(ele, "background-color", "rgb(200,200,200)");
 	DKWidget_SetProperty(ele, "z-index", "100");
 	
 	//Build the envelope and position it
@@ -66,7 +66,7 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(ele2, "left", "-10rem");
 	DKWidget_SetProperty(ele2, "width", "800rem");
 	DKWidget_SetProperty(ele2, "height", "300rem");
-	DKWidget_SetProperty(ele2, "background-color", "rgb(200,200,200)");
+	DKWidget_SetProperty(ele2, "background-color", "rgb(255,255,255)");
 	DKWidget_SetProperty(ele2, "z-index", "101");
 	
 	//mark the corners
