@@ -21,8 +21,9 @@ function DKEnvelope_OnEvent(event)
 	}
 }
 
-//////////////////////////////////////
-Object.prototype.rotate = function(d){
+/////////////////////////////////////
+Object.prototype.rotate = function(d)
+{
     var s = "rotate(" + d + "deg)";
     if(this.style){ // regular DOM Object
         this.style.MozTransform = s
@@ -70,7 +71,6 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(envelope_bg, "width", "100%");
 	DKWidget_SetProperty(envelope_bg, "height", "100%");
 	DKWidget_SetProperty(envelope_bg, "background-color", "rgb(200,200,200)");
-	DKWidget_SetProperty(envelope_bg, "z-index", "100");
 	
 	//Build the envelope and position it
 	var envelope = DKWidget_CreateElement(envelope_bg, "div", "envelope");
@@ -80,7 +80,6 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(envelope, "width", "800rem");
 	DKWidget_SetProperty(envelope, "height", "300rem");
 	DKWidget_SetProperty(envelope, "background-color", "rgb(255,255,255)");
-	DKWidget_SetProperty(envelope, "z-index", "101");
 	
 	//mark the corners
 	var x1 = DKWidget_CreateElement(envelope, "div", "x");
@@ -111,7 +110,6 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(returnAddress, "width", "200rem");
 	DKWidget_SetProperty(returnAddress, "height", "100rem");
 	DKWidget_SetProperty(returnAddress, "border", "none");
-	DKWidget_SetProperty(returnAddress, "z-index", "102");
 	var val = DKWidget_GetValue("returnAddress");
 	DKWidget_SetInnerHtml(returnAddress, val);
 	
@@ -123,7 +121,6 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(sendAddress, "width", "200rem");
 	DKWidget_SetProperty(sendAddress, "height", "100rem");
 	DKWidget_SetProperty(sendAddress, "border", "none");
-	DKWidget_SetProperty(sendAddress, "z-index", "102");
 	var val = DKWidget_GetValue("sendAddress");
 	DKWidget_SetInnerHtml(sendAddress, val);
 	
