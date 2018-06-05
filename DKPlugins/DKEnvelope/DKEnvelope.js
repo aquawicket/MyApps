@@ -39,19 +39,30 @@ Object.prototype.rotate = function(d){
     this.setAttribute("rotation", d);
 }
 
-//////////////////////////
-function DoPrint(callback)
+///////////////////////////////
+function DoPrint(ele, callback)
 {
+	var str = DKWidget_GetElements("body");
+	var elems = str.split(",");
+	for(var i=0; i<elems.length; i++){
+		if(ele != elems[i]){
+			DKWidget_Hide(elems[i]);
+		}
+	}
+	
     window.print();
-    setTimeout(function(){ callback(); }, 100);
+    setTimeout(function(){ 
+		for(var i=0; i<elems.length; i++){
+			DKWidget_Show(elems[i]);
+		}
+		callback(); 
+	}, 100);
 }
 
 ///////////////////////////////////
 function DKEnvelope_PrintEnvelope()
 {
 	DKLog("DKEnvelope_PrintEnvelope()");
-	DKWidget_Hide("DKGui/Desktop.html");
-	DKWidget_Hide("DKGui/Taskbar.html");
 	
 	//Create the blank background
 	var envelope_bg = DKWidget_CreateElement("body", "div", "envelope_background");
@@ -118,10 +129,8 @@ function DKEnvelope_PrintEnvelope()
 	
 	document.getElementById(envelope).rotate(-90);
 	
-	DoPrint(function(){
+	DoPrint(envelope_bg, function(){
 		DKLog("finnished printing\n", DKINFO);
 		DKWidget_RemoveElement(envelope_bg);
-		DKWidget_Show("DKGui/Desktop.html");
-		DKWidget_Show("DKGui/Taskbar.html");
 	});
 }
