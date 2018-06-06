@@ -208,6 +208,38 @@ function DKEnvelope_SaveAddresses()
 }
 
 ///////////////////////////////////
+function DKEnvelope_Rotate(elem, d)
+{
+	var ele = document.getElementById(elem);
+	var s = "rotate(" + d + "deg)";
+	if(ele.style){ // regular DOM Object
+		ele.style.MozTransform = s
+		ele.style.WebkitTransform = s;
+		ele.style.OTransform = s;
+		ele.style.transform = s;
+		
+		if(d >= 0){
+			var rotation = Math.PI * d / 180;
+		}
+		else{
+			var rotation = Math.PI * (360+d) / 180;
+		}
+	
+		var c = Math.cos(rotation);
+		var s = Math.sin(rotation);
+		ele.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11="+c+",M12="+(-s)+",M21="+s+",M22="+c+",SizingMethod='auto expand')";
+	} 
+	else if(ele.css){ // JQuery Object
+		ele.css("-moz-transform", s);
+		ele.css("-webkit-transform", s);
+		ele.css("-0-transform", s);
+		ele.css("transform", s);
+	}
+	ele.setAttribute("rotation", d);
+}
+	
+	
+///////////////////////////////////
 function DKEnvelope_PrintEnvelope()
 {
 	//DKLog("DKEnvelope_PrintEnvelope()");
@@ -271,8 +303,34 @@ function DKEnvelope_PrintEnvelope()
 	var val = DKWidget_GetValue("sendAddress");
 	DKWidget_SetInnerHtml(sendAddress, val);
 	
-	document.getElementById(envelope).rotate(-90);
+	//Polyfill
+	//if(!Element.prototype.rotate){
+	//	DKLog("Implementing Element.prototype.rotate\n", DKINFO);
+	//	Element.prototype.rotate = function(d){
+	//		var s = "rotate(" + d + "deg)";
+	//		if(this.style){ // regular DOM Object
+	//			this.style.MozTransform = s
+	//			this.style.WebkitTransform = s;
+	//			this.style.OTransform = s;
+	//			this.style.transform = s;
+	//			
+	//			var c = Math.cos(d);
+	//			var s = Math.sin(d);
+	//			this.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11="+c+",M12="+(-s)+",M21="+s+",M22="+c+",SizingMethod='auto expand')";
+	//		} 
+	//		else if (this.css){ // JQuery Object
+	//			this.css("-moz-transform", s);
+	//			this.css("-webkit-transform", s);
+	//			this.css("-0-transform", s);
+	//			this.css("transform", s);
+	//		}
+	//		this.setAttribute("rotation", d);
+	//	}
+	//}
 	
+	DKEnvelope_Rotate(envelope, -90);
+	//document.getElementById(envelope).rotate(-90);
+
 	DoPrint(envelope_bg, function(){
 		//DKLog("finnished printing\n", DKINFO);
 		DKWidget_RemoveElement(envelope_bg);
