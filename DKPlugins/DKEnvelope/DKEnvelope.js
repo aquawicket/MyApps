@@ -136,6 +136,9 @@ function DoPrint(ele, callback)
 ///////////////////////////////////
 function DKEnvelope_SaveAddresses()
 {
+	DKLog("DKEnvelope_SaveAddresses()\n", DKINFO);
+	DKLog("absolutepath = "+absolutepath+"\n", DKINFO);
+	
 	var sendAddress = DKWidget_GetValue("sendAddress");
 	var str = DKFile_FileToString("sendAddresses.txt");
 	if(!str){ str = ""; }
