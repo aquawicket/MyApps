@@ -1,10 +1,12 @@
 //////////////////////////
 function DKEnvelope_Init()
 {
-	DKCreate("DKEnvelope/DKEnvelope.html");
-	DKAddEvent("printEnvelope", "click", DKEnvelope_OnEvent);
-	DKAddEvent("returnAddress", "keyup", DKEnvelope_OnEvent);
-	DKAddEvent("sendAddress", "keyup", DKEnvelope_OnEvent);
+	DKCreate("DKEnvelope/DKEnvelope.html", function(){
+		DKAddEvent("printEnvelope", "click", DKEnvelope_OnEvent);
+		DKAddEvent("returnAddress", "keyup", DKEnvelope_OnEvent);
+		DKAddEvent("sendAddress", "keyup", DKEnvelope_OnEvent);
+		DKEnvelope_SetDefaultReturnAddress();
+	});
 }
 
 /////////////////////////
@@ -16,7 +18,7 @@ function DKEnvelope_End()
 //////////////////////////////////
 function DKEnvelope_OnEvent(event)
 {	
-	DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	//DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_Id(event, "printEnvelope")){
 		DKEnvelope_SaveAddresses();
@@ -28,6 +30,23 @@ function DKEnvelope_OnEvent(event)
 	if(DK_Id(event, "sendAddress")){
 		DKEnvelope_SendAddressAutofill();
 	}
+	if(DK_Id(event, "autofill")){
+		var val = DKWidget_GetInnerHtml("autofill");
+		//DKLog("val = "+val+"\n", DKINFO);
+		//DKWidget_SetInnerHtml("sendAddress", val);
+		
+		document.getElementById("sendAddress").value = val;
+		DKWidget_RemoveElement("autofill");
+	}
+}
+
+/////////////////////////////////////////////
+function DKEnvelope_SetDefaultReturnAddress()
+{
+	var str = DKFile_FileToString("returnAddresses.txt");
+	if(!str){ return; }
+	var returnAddresses = str.split(";");
+	DKWidget_SetInnerHtml("returnAddress", returnAddresses[1]);
 }
 
 ///////////////////////////////////////////
@@ -41,7 +60,38 @@ function DKEnvelope_ReturnAddressAutofill()
 function DKEnvelope_SendAddressAutofill()
 {
 	DKLog("DKEnvelope_SendAddressAutofill()\n", DKINFO);
-	//TODO
+	
+	var str = DKFile_FileToString("sendAddresses.txt");
+	if(!str){ return; }
+	var sendAddresses = str.split(";");
+	
+	//Check for partial match
+	var sendAddress = DKWidget_GetValue("sendAddress");
+	for(var i=0; i<sendAddresses.length; i++){
+		if(sendAddresses[i].includes(sendAddress)){
+			//DKLog("we have a partial match\n", DKINFO);
+			DKEnvelope_CreateSendAutofill(sendAddresses[i]);
+			return;
+		}
+	}
+	
+	DKEnvelope_CreateSendAutofill("");
+}
+
+///////////////////////////////////////////////
+function DKEnvelope_CreateSendAutofill(address)
+{
+	DKLog(address+"\n", DKINFO);
+	
+	DKWidget_RemoveElement("autofill");
+	
+	var autofill = DKWidget_CreateElement("envelope", "div", "autofill");
+	DKWidget_SetProperty(autofill, "position", "absolute");
+	DKWidget_SetProperty(autofill, "top", "60rem");
+	DKWidget_SetProperty(autofill, "left", "300rem");
+	DKWidget_SetProperty(autofill, "background-color", "rgb(200,200,200)");
+	DKWidget_SetInnerHtml(autofill, address);
+	DKAddEvent("autofill", "click", DKEnvelope_OnEvent);
 }
 
 /////////////////////////////////////
@@ -88,6 +138,7 @@ function DKEnvelope_SaveAddresses()
 {
 	var sendAddress = DKWidget_GetValue("sendAddress");
 	var str = DKFile_FileToString("sendAddresses.txt");
+	if(!str){ str = ""; }
 	var sendAddresses = str.split(";");
 	if(sendAddresses.includes(sendAddress) == false){
 		sendAddresses.push(sendAddress);
@@ -97,6 +148,7 @@ function DKEnvelope_SaveAddresses()
 	
 	var returnAddress = DKWidget_GetValue("returnAddress");
 	var str = DKFile_FileToString("returnAddresses.txt");
+	if(!str){ str = ""; }
 	var returnAddresses = str.split(";");
 	if(returnAddresses.includes(returnAddress) == false){
 		returnAddresses.push(returnAddress);
@@ -152,7 +204,7 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(returnAddress, "position", "absolute");
 	DKWidget_SetProperty(returnAddress, "top", "10rem");
 	DKWidget_SetProperty(returnAddress, "left", "10rem");
-	DKWidget_SetProperty(returnAddress, "width", "200rem");
+	DKWidget_SetProperty(returnAddress, "width", "300rem");
 	DKWidget_SetProperty(returnAddress, "height", "100rem");
 	DKWidget_SetProperty(returnAddress, "border", "none");
 	var val = DKWidget_GetValue("returnAddress");
@@ -163,7 +215,7 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(sendAddress, "position", "absolute");
 	DKWidget_SetProperty(sendAddress, "top", "80rem");
 	DKWidget_SetProperty(sendAddress, "left", "250rem");
-	DKWidget_SetProperty(sendAddress, "width", "200rem");
+	DKWidget_SetProperty(sendAddress, "width", "300rem");
 	DKWidget_SetProperty(sendAddress, "height", "100rem");
 	DKWidget_SetProperty(sendAddress, "border", "none");
 	var val = DKWidget_GetValue("sendAddress");
