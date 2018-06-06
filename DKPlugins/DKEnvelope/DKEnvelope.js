@@ -289,6 +289,7 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(returnAddress, "width", "300rem");
 	DKWidget_SetProperty(returnAddress, "height", "100rem");
 	DKWidget_SetProperty(returnAddress, "border", "none");
+	DKWidget_SetProperty(returnAddress, "overflow", "hidden");
 	var val = DKWidget_GetValue("returnAddress");
 	DKWidget_SetInnerHtml(returnAddress, val);
 	
@@ -300,6 +301,7 @@ function DKEnvelope_PrintEnvelope()
 	DKWidget_SetProperty(sendAddress, "width", "300rem");
 	DKWidget_SetProperty(sendAddress, "height", "100rem");
 	DKWidget_SetProperty(sendAddress, "border", "none");
+	DKWidget_SetProperty(sendAddress, "overflow", "hidden");
 	var val = DKWidget_GetValue("sendAddress");
 	DKWidget_SetInnerHtml(sendAddress, val);
 	
