@@ -52,14 +52,14 @@ function DKEnvelope_SetDefaultReturnAddress()
 ///////////////////////////////////////////
 function DKEnvelope_ReturnAddressAutofill()
 {
-	DKLog("DKEnvelope_ReturnAddressAutofill()\n", DKINFO);
+	//DKLog("DKEnvelope_ReturnAddressAutofill()\n", DKINFO);
 	//TODO
 }
 
 /////////////////////////////////////////
 function DKEnvelope_SendAddressAutofill()
 {
-	DKLog("DKEnvelope_SendAddressAutofill()\n", DKINFO);
+	//DKLog("DKEnvelope_SendAddressAutofill()\n", DKINFO);
 	
 	var str = DKFile_FileToString("sendAddresses.txt");
 	if(!str){ return; }
@@ -81,7 +81,7 @@ function DKEnvelope_SendAddressAutofill()
 ///////////////////////////////////////////////
 function DKEnvelope_CreateSendAutofill(address)
 {
-	DKLog(address+"\n", DKINFO);
+	//DKLog(address+"\n", DKINFO);
 	
 	DKWidget_RemoveElement("autofill");
 	
@@ -160,7 +160,7 @@ function DKEnvelope_SaveAddresses()
 ///////////////////////////////////
 function DKEnvelope_PrintEnvelope()
 {
-	DKLog("DKEnvelope_PrintEnvelope()");
+	//DKLog("DKEnvelope_PrintEnvelope()");
 	
 	//Create the blank background
 	var envelope_bg = DKWidget_CreateElement("body", "div", "envelope_background");
@@ -224,7 +224,7 @@ function DKEnvelope_PrintEnvelope()
 	document.getElementById(envelope).rotate(-90);
 	
 	DoPrint(envelope_bg, function(){
-		DKLog("finnished printing\n", DKINFO);
+		//DKLog("finnished printing\n", DKINFO);
 		DKWidget_RemoveElement(envelope_bg);
 	});
 }
