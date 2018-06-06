@@ -254,32 +254,32 @@ function DKEnvelope_PrintEnvelope()
 	//Build the envelope and position it
 	var envelope = DKWidget_CreateElement(envelope_bg, "div", "envelope");
 	DKWidget_SetProperty(envelope, "position", "absolute");
-	DKWidget_SetProperty(envelope, "top", "300rem");
-	DKWidget_SetProperty(envelope, "left", "-10rem");
-	DKWidget_SetProperty(envelope, "width", "800rem");
-	DKWidget_SetProperty(envelope, "height", "300rem");
+	DKWidget_SetProperty(envelope, "top", "260rem");
+	DKWidget_SetProperty(envelope, "left", "-80rem");
+	DKWidget_SetProperty(envelope, "width", "870rem");
+	DKWidget_SetProperty(envelope, "height", "350rem");
 	DKWidget_SetProperty(envelope, "background-color", "rgb(255,255,255)");
 	
 	//mark the corners
-	var x1 = DKWidget_CreateElement(envelope, "div", "x");
-	DKWidget_SetProperty(x1, "position", "absolute");
-	DKWidget_SetInnerHtml(x1, "x");
+	//var x1 = DKWidget_CreateElement(envelope, "div", "x");
+	//DKWidget_SetProperty(x1, "position", "absolute");
+	//DKWidget_SetInnerHtml(x1, "x");
 	
-	var x2 = DKWidget_CreateElement(envelope, "div", "x");
-	DKWidget_SetProperty(x2, "position", "absolute");
-	DKWidget_SetProperty(x2, "bottom", "0");
-	DKWidget_SetInnerHtml(x2, "x");
+	//var x2 = DKWidget_CreateElement(envelope, "div", "x");
+	//DKWidget_SetProperty(x2, "position", "absolute");
+	//DKWidget_SetProperty(x2, "bottom", "0");
+	//DKWidget_SetInnerHtml(x2, "x");
 	
-	var x3 = DKWidget_CreateElement(envelope, "div", "x");
-	DKWidget_SetProperty(x3, "position", "absolute");
-	DKWidget_SetProperty(x3, "right", "0");
-	DKWidget_SetInnerHtml(x3, "x");
+	//var x3 = DKWidget_CreateElement(envelope, "div", "x");
+	//DKWidget_SetProperty(x3, "position", "absolute");
+	//DKWidget_SetProperty(x3, "right", "0");
+	//DKWidget_SetInnerHtml(x3, "x");
 	
-	var x4 = DKWidget_CreateElement(envelope, "div", "x");
-	DKWidget_SetProperty(x4, "position", "absolute");
-	DKWidget_SetProperty(x4, "bottom", "0");
-	DKWidget_SetProperty(x4, "right", "0");
-	DKWidget_SetInnerHtml(x4, "x");
+	//var x4 = DKWidget_CreateElement(envelope, "div", "x");
+	//DKWidget_SetProperty(x4, "position", "absolute");
+	//DKWidget_SetProperty(x4, "bottom", "0");
+	//DKWidget_SetProperty(x4, "right", "0");
+	//DKWidget_SetInnerHtml(x4, "x");
 	
 	var returnAddress = DKWidget_CreateElement(envelope, "textarea", "returnAddress");
 	//DKWidget_SetAttribute(returnAddress, "readOnly", "true");
@@ -295,8 +295,8 @@ function DKEnvelope_PrintEnvelope()
 	var sendAddress = DKWidget_CreateElement(envelope, "textarea", "sendAddress");
 	//DKWidget_SetAttribute(returnAddress, "readOnly", "true");
 	DKWidget_SetProperty(sendAddress, "position", "absolute");
-	DKWidget_SetProperty(sendAddress, "top", "80rem");
-	DKWidget_SetProperty(sendAddress, "left", "250rem");
+	DKWidget_SetProperty(sendAddress, "top", "170rem");
+	DKWidget_SetProperty(sendAddress, "left", "350rem");
 	DKWidget_SetProperty(sendAddress, "width", "300rem");
 	DKWidget_SetProperty(sendAddress, "height", "100rem");
 	DKWidget_SetProperty(sendAddress, "border", "none");
