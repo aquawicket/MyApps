@@ -3,6 +3,8 @@ function DKEnvelope_Init()
 {
 	DKCreate("DKEnvelope/DKEnvelope.html");
 	DKAddEvent("printEnvelope", "click", DKEnvelope_OnEvent);
+	DKAddEvent("returnAddress", "keyup", DKEnvelope_OnEvent);
+	DKAddEvent("sendAddress", "keyup", DKEnvelope_OnEvent);
 }
 
 /////////////////////////
@@ -14,11 +16,32 @@ function DKEnvelope_End()
 //////////////////////////////////
 function DKEnvelope_OnEvent(event)
 {	
-	//DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_Id(event, "printEnvelope")){
+		DKEnvelope_SaveAddresses();
 		DKEnvelope_PrintEnvelope();
 	}
+	if(DK_Id(event, "returnAddress")){
+		DKEnvelope_ReturnAddressAutofill();
+	}
+	if(DK_Id(event, "sendAddress")){
+		DKEnvelope_SendAddressAutofill();
+	}
+}
+
+///////////////////////////////////////////
+function DKEnvelope_ReturnAddressAutofill()
+{
+	DKLog("DKEnvelope_ReturnAddressAutofill()\n", DKINFO);
+	//TODO
+}
+
+/////////////////////////////////////////
+function DKEnvelope_SendAddressAutofill()
+{
+	DKLog("DKEnvelope_SendAddressAutofill()\n", DKINFO);
+	//TODO
 }
 
 /////////////////////////////////////
@@ -58,6 +81,28 @@ function DoPrint(ele, callback)
 		}
 		callback(); 
 	}, 100);
+}
+
+///////////////////////////////////
+function DKEnvelope_SaveAddresses()
+{
+	var sendAddress = DKWidget_GetValue("sendAddress");
+	var str = DKFile_FileToString("sendAddresses.txt");
+	var sendAddresses = str.split(";");
+	if(sendAddresses.includes(sendAddress) == false){
+		sendAddresses.push(sendAddress);
+		var str2 = sendAddresses.join(";");
+		DKFile_StringToFile(str2, "sendAddresses.txt");
+	}
+	
+	var returnAddress = DKWidget_GetValue("returnAddress");
+	var str = DKFile_FileToString("returnAddresses.txt");
+	var returnAddresses = str.split(";");
+	if(returnAddresses.includes(returnAddress) == false){
+		returnAddresses.push(returnAddress);
+		var str2 = returnAddresses.join(";");
+		DKFile_StringToFile(str2, "returnAddresses.txt");
+	}
 }
 
 ///////////////////////////////////
