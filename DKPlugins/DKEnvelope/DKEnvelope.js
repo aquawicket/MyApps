@@ -32,9 +32,6 @@ function DKEnvelope_OnEvent(event)
 	}
 	if(DK_Id(event, "autofill")){
 		var val = DKWidget_GetInnerHtml("autofill");
-		//DKLog("val = "+val+"\n", DKINFO);
-		//DKWidget_SetInnerHtml("sendAddress", val);
-		
 		document.getElementById("sendAddress").value = val;
 		DKWidget_RemoveElement("autofill");
 	}
@@ -85,7 +82,6 @@ function DKEnvelope_SendAddressAutofill()
 	var sendAddress = DKWidget_GetValue("sendAddress");
 	for(var i=0; i<sendAddresses.length; i++){
 		if(sendAddresses[i].includes(sendAddress)){
-			//DKLog("we have a partial match\n", DKINFO);
 			DKEnvelope_CreateSendAutofill(sendAddresses[i]);
 			return;
 		}
@@ -149,9 +145,6 @@ function DoPrint(ele, callback)
 	}, 100);
 }
 
-//////////////////////////////
-
-
 ///////////////////////////////////
 function DKEnvelope_SaveAddresses()
 {
@@ -189,7 +182,6 @@ function DKEnvelope_SaveAddresses()
 	var str = DKFile_FileToString("sendAddresses.txt");
 	if(!str){ str = ""; }
 	var sendAddresses = str.split(";");
-	//if(sendAddresses.includes(sendAddress) == false){
 	if(sendAddresses.includes(sendAddress) == false){
 		sendAddresses.push(sendAddress);
 		var str2 = sendAddresses.join(";");
@@ -305,36 +297,9 @@ function DKEnvelope_PrintEnvelope()
 	var val = DKWidget_GetValue("sendAddress");
 	DKWidget_SetInnerHtml(sendAddress, val);
 	
-	//Polyfill
-	//if(!Element.prototype.rotate){
-	//	DKLog("Implementing Element.prototype.rotate\n", DKINFO);
-	//	Element.prototype.rotate = function(d){
-	//		var s = "rotate(" + d + "deg)";
-	//		if(this.style){ // regular DOM Object
-	//			this.style.MozTransform = s
-	//			this.style.WebkitTransform = s;
-	//			this.style.OTransform = s;
-	//			this.style.transform = s;
-	//			
-	//			var c = Math.cos(d);
-	//			var s = Math.sin(d);
-	//			this.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11="+c+",M12="+(-s)+",M21="+s+",M22="+c+",SizingMethod='auto expand')";
-	//		} 
-	//		else if (this.css){ // JQuery Object
-	//			this.css("-moz-transform", s);
-	//			this.css("-webkit-transform", s);
-	//			this.css("-0-transform", s);
-	//			this.css("transform", s);
-	//		}
-	//		this.setAttribute("rotation", d);
-	//	}
-	//}
-	
 	DKEnvelope_Rotate(envelope, -90);
-	//document.getElementById(envelope).rotate(-90);
 
 	DoPrint(envelope_bg, function(){
-		//DKLog("finnished printing\n", DKINFO);
 		DKWidget_RemoveElement(envelope_bg);
 	});
 }
