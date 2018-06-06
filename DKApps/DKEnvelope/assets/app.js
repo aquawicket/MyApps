@@ -16,14 +16,13 @@ function app_LoadPage()
 	DKCreate("DKWindow/DKWindow.js", function(){
 		DKCreate("DKScale/DKScale.js", function(){
 			DKCreate("DKDebug/DKDebug.js", function(){
-				DKCreate("DKEnvelope/DKEnvelope.js", function(){});
-				
-				DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-					var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-					DKWidget_RemoveProperty(id, "top");
-					DKWidget_SetProperty(id, "bottom", "0rem");
+				DKCreate("DKEnvelope/DKEnvelope.js", function(){
+					DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+						var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+						DKWidget_RemoveProperty(id, "top");
+						DKWidget_SetProperty(id, "bottom", "0rem");
+					});
 				});
-
 			});
 		});
 	});

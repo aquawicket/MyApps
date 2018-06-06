@@ -44,7 +44,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 
 		var container = document.getElementById(id);
 		var w = document.write;
-		document.write = function (content) {
+		document.write = function(content){
 			container.innerHTML = content;
 			document.write = w;	
 		};
