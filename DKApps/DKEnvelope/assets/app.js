@@ -5,8 +5,8 @@ var USE_ROCKET  = 0; //Use with caution
 var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
 //var DKApp_url = "http://digitalknob.com/DKEnvelope"
 
-DKCreate("DK/init.js", function(){});
 
+DKCreate("DK/init.js", function(){});
 
 //////////////////////////
 function app_LoadPlugins()
