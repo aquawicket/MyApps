@@ -23,7 +23,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 	DKLog("Browser = "+DK_GetBrowser()+"\n");
 	//DKLog("protocol = "+DKAssets_Protocol()+"\n");
 	
-	//if(DKAssets_Protocol() != "file:"){ //FIXME
+	//if(DKAssets_Protocol() != "file:"){
 		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 		DKWidget_SetProperty(id, "position", "absolute");
 		DKWidget_SetProperty(id, "width", width);
@@ -100,4 +100,15 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		return id;
 	}
 	*/
+}
+
+////////////////////////////////////////////////////////
+function DKGoogleAd_CreateAdFrame(parent, width, height)
+{
+	var adframe = DKWidget_CreateElement("body", "iframe", "AdFrame");
+	DKWidget_SetAttribute(adframe, "src", "http://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
+	DKWidget_SetProperty(adframe, "position", "absolute");
+	DKWidget_SetProperty(adframe, "width", width);
+	DKWidget_SetProperty(adframe, "height", height);
+	return adframe;
 }
