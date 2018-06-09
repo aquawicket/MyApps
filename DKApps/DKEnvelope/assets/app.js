@@ -25,7 +25,7 @@ function app_LoadPage()
 			DKCreate("DKDebug/DKDebug.js", function(){
 				DKCreate("DKEnvelope/DKEnvelope.js", function(){
 					DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-						var id = DKGoogleAd_CreateAdFrame("body", "100%", "110rem");
+						var id = DKGoogleAd_CreateAdFrame("body", "100%", "90rem");
 						DKWidget_RemoveProperty(id, "top");
 						DKWidget_SetProperty(id, "bottom", "0rem");
 					});
