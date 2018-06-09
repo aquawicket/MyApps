@@ -105,10 +105,28 @@ function DKGoogleAd_CreateAd(parent, width, height)
 ////////////////////////////////////////////////////////
 function DKGoogleAd_CreateAdFrame(parent, width, height)
 {
-	var adframe = DKWidget_CreateElement("body", "iframe", "AdFrame");
-	DKWidget_SetAttribute(adframe, "src", "http://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
-	DKWidget_SetProperty(adframe, "position", "absolute");
-	DKWidget_SetProperty(adframe, "width", width);
-	DKWidget_SetProperty(adframe, "height", height);
-	return adframe;
+	//DKLog("DKFrame_Iframe("+title+","+url+","+width+","+height+")\n");
+	
+	var id = DKWidget_CreateElement(parent, "div", "DKAdd");
+	DKWidget_SetProperty(id, "position", "absolute");
+	DKWidget_SetProperty(id, "width", width);
+	DKWidget_SetProperty(id, "height", height);
+	DKWidget_SetProperty(id, "text-align", "center");
+	DKWidget_SetProperty(id, "overflow", "hidden");
+		
+	var iframe = DKWidget_CreateElement(id, "iframe", "AdFrame");
+	DKWidget_SetAttribute(iframe, "src", "http://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
+	DKWidget_SetAttribute(iframe, "width", "100%");
+	DKWidget_SetAttribute(iframe, "height", "100%");
+	DKWidget_SetProperty(iframe, "border-width", "0rem");
+	DKWidget_SetProperty(iframe, "position", "absolute");
+	DKWidget_SetProperty(iframe, "overflow", "hidden");
+	DKWidget_SetProperty(iframe, "top", "0rem");
+	DKWidget_SetProperty(iframe, "left", "0rem");
+	DKWidget_RemoveProperty(iframe, "width");
+	DKWidget_RemoveProperty(iframe, "height");
+	DKWidget_RemoveProperty(iframe, "right");
+	DKWidget_RemoveProperty(iframe, "bottom");
+	
+	return id;
 }
