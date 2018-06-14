@@ -18,7 +18,7 @@ function DKEnvelope_End()
 //////////////////////////////////
 function DKEnvelope_OnEvent(event)
 {	
-	DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	//DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_Id(event, "printEnvelope")){
 		DKEnvelope_SaveAddresses();
