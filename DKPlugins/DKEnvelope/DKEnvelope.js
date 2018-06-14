@@ -58,7 +58,7 @@ function DKEnvelope_SendAddressAutofill()
 {
 	//DKLog("DKEnvelope_SendAddressAutofill()\n", DKINFO);
 	
-	//Polyfill for Internet Explorer
+	//Polyfill
 	if(!String.prototype.includes){
 		String.prototype.includes = function(search, start){
 			'use strict';
@@ -81,7 +81,7 @@ function DKEnvelope_SendAddressAutofill()
 	//Check for partial match
 	var sendAddress = DKWidget_GetValue("sendAddress");
 	for(var i=0; i<sendAddresses.length; i++){
-		if(sendAddresses[i].includes(sendAddress)){
+		if(sendAddresses[i].toLowerCase().includes(sendAddress.toLowerCase())){
 			DKEnvelope_CreateSendAutofill(sendAddresses[i]);
 			return;
 		}
