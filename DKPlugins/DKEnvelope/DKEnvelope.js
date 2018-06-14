@@ -18,7 +18,7 @@ function DKEnvelope_End()
 //////////////////////////////////
 function DKEnvelope_OnEvent(event)
 {	
-	//DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_Id(event, "printEnvelope")){
 		DKEnvelope_SaveAddresses();
@@ -28,6 +28,7 @@ function DKEnvelope_OnEvent(event)
 		DKEnvelope_ReturnAddressAutofill();
 	}
 	if(DK_Id(event, "sendAddress")){
+		
 		DKEnvelope_SendAddressAutofill();
 	}
 	if(DK_Id(event, "autofill")){
@@ -80,6 +81,10 @@ function DKEnvelope_SendAddressAutofill()
 	
 	//Check for partial match for beginning of string
 	var sendAddress = DKWidget_GetValue("sendAddress");
+	if(!sendAddress){
+		DKEnvelope_CreateSendAutofill("");
+		return;
+	}
 	for(var i=0; i<sendAddresses.length; i++){
 		if(sendAddresses[i].toLowerCase().indexOf(sendAddress.toLowerCase()) == 0){
 			DKEnvelope_CreateSendAutofill(sendAddresses[i]);
@@ -99,7 +104,7 @@ function DKEnvelope_CreateSendAutofill(address)
 	
 	var autofill = DKWidget_CreateElement("envelope", "div", "autofill");
 	DKWidget_SetProperty(autofill, "position", "absolute");
-	DKWidget_SetProperty(autofill, "top", "60rem");
+	DKWidget_SetProperty(autofill, "bottom", "172rem");
 	DKWidget_SetProperty(autofill, "left", "300rem");
 	DKWidget_SetProperty(autofill, "background-color", "rgb(200,200,200)");
 	DKWidget_SetInnerHtml(autofill, address);
