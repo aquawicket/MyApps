@@ -78,10 +78,10 @@ function DKEnvelope_SendAddressAutofill()
 	if(!str){ return; }
 	var sendAddresses = str.split(";");
 	
-	//Check for partial match
+	//Check for partial match for beginning of string
 	var sendAddress = DKWidget_GetValue("sendAddress");
 	for(var i=0; i<sendAddresses.length; i++){
-		if(sendAddresses[i].toLowerCase().includes(sendAddress.toLowerCase())){
+		if(sendAddresses[i].toLowerCase().indexOf(sendAddress.toLowerCase()) == 0){
 			DKEnvelope_CreateSendAutofill(sendAddresses[i]);
 			return;
 		}
