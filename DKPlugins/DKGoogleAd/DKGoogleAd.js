@@ -51,7 +51,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 
 		var script = document.createElement('script');
 		script.type = 'text/javascript';
-		script.src = 'http://pagead2.googlesyndication.com/pagead/show_ads.js';
+		script.src = 'https://pagead2.googlesyndication.com/pagead/show_ads.js';
 		document.body.appendChild(script);
 	
 		return id;
@@ -115,7 +115,7 @@ function DKGoogleAd_CreateAdFrame(parent, width, height)
 	DKWidget_SetProperty(id, "overflow", "hidden");
 		
 	var iframe = DKWidget_CreateElement(id, "iframe", "AdFrame");
-	DKWidget_SetAttribute(iframe, "src", "http://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
+	DKWidget_SetAttribute(iframe, "src", "https://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
 	DKWidget_SetAttribute(iframe, "width", "100%");
 	DKWidget_SetAttribute(iframe, "height", "100%");
 	DKWidget_SetProperty(iframe, "border-width", "0rem");
