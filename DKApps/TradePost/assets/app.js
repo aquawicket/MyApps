@@ -28,10 +28,9 @@ function app_LoadPage()
 	DKCreate("DKGui/DKFrame.js", function(){
 	DKCreate("DKGui/DKMenu.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-		//DKCreate("DKGui/Desktop.js", function(){
-			//DKCreate("DKGui/DKTaskbar/Taskbar.js", function(){
-			//});
-		//});
+		DKCreate("TradePost.js", function(){
+
+		});
 	});
 	});
 	});
