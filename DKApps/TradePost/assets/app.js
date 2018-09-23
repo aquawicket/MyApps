@@ -3,16 +3,16 @@ var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
 var USE_ROCKET  = 0; //Use with caution
 var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"index.html";
-//var DKApp_url = "http://digitalknob.com/DKGui/index.html";
+//var DKApp_url = "http://digitalknob.com/TradePost/index.html";
 
 DKCreate("DK/init.js", function(){});
 
 //////////////////////////
 function app_LoadPlugins()
 {
-	if(USE_SDL){
-		DKCreate("DKSDLText"); //SDL fps counter
-	}
+	//if(USE_SDL){
+	//	DKCreate("DKSDLText"); //SDL fps counter
+	//}
 	DKCreate("DKTray/DKTray.js", function(){});
 	DKCreate("DKDebug/DKDebug.js", function(){});
 }
@@ -28,11 +28,10 @@ function app_LoadPage()
 	DKCreate("DKGui/DKFrame.js", function(){
 	DKCreate("DKGui/DKMenu.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
-	DKCreate("DKGui/Desktop.js", function(){
-	DKCreate("DKGui/DKTaskbar/Taskbar.js", function(){
-	
-	});
-	});
+		//DKCreate("DKGui/Desktop.js", function(){
+			//DKCreate("DKGui/DKTaskbar/Taskbar.js", function(){
+			//});
+		//});
 	});
 	});
 	});
