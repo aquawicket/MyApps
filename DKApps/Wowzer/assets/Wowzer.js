@@ -279,7 +279,7 @@ function Wowzer_CraigslistToArry(url, callback)
 					item_data[4] = "https://www.craigslist.org/images/peace.jpg";
 				}
 				if(items[i].getElementsByClassName("result-image gallery")[0].href.indexOf("https://") == -1){
-					item_data[5] = "https://orangecounty.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
+					item_data[5] = "https://inlandempire.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
 				}
 				else{
 					item_data[5] = items[i].getElementsByClassName("result-image gallery")[0].href;  //url
