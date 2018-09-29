@@ -93,35 +93,49 @@ function TradePost_UpdateList()
 				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/"+row+"/0.jpg");
 			}
 			
-			var title = DKWidget_CreateElement(div, "div", "ItemTitle"+row);
-			DKWidget_SetProperty(title, "overflow", "hidden");
-			DKWidget_SetProperty(title, "width", "120rem");
-			DKWidget_SetProperty(title, "height", "60rem");
-			DKWidget_SetProperty(title, "display", "inline-block");
-			DKWidget_SetProperty(title, "background-color", "white");
-			DKWidget_SetProperty(title, "border-width", "1rem");
-			DKWidget_SetProperty(title, "border-color", "black");
-			DKWidget_SetProperty(title, "border-style", "solid");
+			var titleCell = DKWidget_CreateElement(div, "div", "ItemTitleCell"+row);
+			DKWidget_SetProperty(titleCell, "overflow", "hidden");
+			DKWidget_SetProperty(titleCell, "width", "120rem");
+			DKWidget_SetProperty(titleCell, "height", "60rem");
+			DKWidget_SetProperty(titleCell, "display", "inline-block");
+			DKWidget_SetProperty(titleCell, "border-width", "1rem");
+			DKWidget_SetProperty(titleCell, "border-color", "black");
+			DKWidget_SetProperty(titleCell, "border-style", "solid");
+			DKWidget_SetAttribute(titleCell, "row", row);
+			DKWidget_SetAttribute(titleCell, "column", 3);
+			
+			var title = DKWidget_CreateElement(titleCell, "textarea", "ItemTitle"+row);
+			DKWidget_SetProperty(title, "width", "100%");
+			DKWidget_SetProperty(title, "height", "100%");
+			DKWidget_SetProperty(title, "overflow-x", "hidden");
+			DKWidget_SetProperty(title, "word-wrap", "break-word");
+			DKWidget_SetProperty(title, "border-width", "0rem");
 			DKWidget_SetProperty(title, "font-weight", "bold");
-			DKWidget_SetAttribute(title, "row", row);
-			DKWidget_SetAttribute(title, "column", 3);
 
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/title.txt")){
 				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/Title.txt"));
 			}
 			
-			var description = DKWidget_CreateElement(div, "div", "ItemDescription"+row);
-			DKWidget_SetProperty(description, "overflow", "hidden");
-			DKWidget_SetProperty(description, "width", "120rem");
-			DKWidget_SetProperty(description, "height", "60rem");
-			DKWidget_SetProperty(description, "display", "inline-block");
-			DKWidget_SetProperty(description, "background-color", "white");
-			DKWidget_SetProperty(description, "border-width", "1rem");
-			DKWidget_SetProperty(description, "border-color", "black");
-			DKWidget_SetProperty(description, "border-style", "solid");
-			DKWidget_SetAttribute(description, "row", row);
-			DKWidget_SetAttribute(description, "column", 3);
+			var descriptionCell = DKWidget_CreateElement(div, "div", "ItemDescriptionCell"+row);
+			DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
+			DKWidget_SetProperty(descriptionCell, "width", "200rem");
+			DKWidget_SetProperty(descriptionCell, "height", "60rem");
+			DKWidget_SetProperty(descriptionCell, "display", "inline-block");
+			DKWidget_SetProperty(descriptionCell, "background-color", "white");
+			DKWidget_SetProperty(descriptionCell, "border-width", "1rem");
+			DKWidget_SetProperty(descriptionCell, "border-color", "black");
+			DKWidget_SetProperty(descriptionCell, "border-style", "solid");
+			DKWidget_SetAttribute(descriptionCell, "row", row);
+			DKWidget_SetAttribute(descriptionCell, "column", 3);
 
+			var description = DKWidget_CreateElement(descriptionCell, "textarea", "ItemDescription"+row);
+			DKWidget_SetProperty(description, "width", "100%");
+			DKWidget_SetProperty(description, "height", "100%");
+			DKWidget_SetProperty(description, "overflow-x", "hidden");
+			DKWidget_SetProperty(description, "word-wrap", "break-word");
+			DKWidget_SetProperty(description, "border-width", "0rem");
+			DKWidget_SetProperty(description, "font-weight", "bold");
+			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/description.txt")){
 				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/description.txt"));
 			}
