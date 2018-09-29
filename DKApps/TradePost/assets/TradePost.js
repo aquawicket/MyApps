@@ -54,7 +54,7 @@ function TradePost_UpdateList()
 	
 	DKWidget_SetInnerHtml("ItemList", ""); //clear
 	for(var row = 0; row < 3; row++){
-		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row)){
+		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
 			
 			//DKLog(DKAssets_LocalAssets()+"Items/"+r);
 			var div = DKWidget_CreateElement("ItemList", "div", "Item"+row);
@@ -93,11 +93,24 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(imageCell, "row", row);
 			DKWidget_SetAttribute(imageCell, "column", 2);
 			
-			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/0.jpg")){
+			/*
+			DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg", function(rval){
+				if(rval){
+					//alert("image exists");
+					var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
+					DKWidget_SetProperty(img, "width", "100%");
+					//DKWidget_SetProperty(img, "height", "100%");
+					DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg");
+				}
+			});
+			*/
+			
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg")){
+				//alert("image exists");
 				var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
 				DKWidget_SetProperty(img, "width", "100%");
 				//DKWidget_SetProperty(img, "height", "100%");
-				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/"+row+"/0.jpg");
+				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg");
 			}
 			
 			var titleCell = DKWidget_CreateElement(div, "div", "ItemTitleCell"+row);
@@ -121,8 +134,8 @@ function TradePost_UpdateList()
 			DKAddEvent(title, "keyup", TradePost_OnEvent);
 			DKAddEvent(title, "change", TradePost_OnEvent);
 
-			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/title.txt")){
-				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/title.txt"));
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt")){
+				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt"));
 			}
 			
 			var descriptionCell = DKWidget_CreateElement(div, "div", "ItemDescriptionCell"+row);
@@ -147,8 +160,8 @@ function TradePost_UpdateList()
 			DKAddEvent(description, "keyup", TradePost_OnEvent);
 			DKAddEvent(description, "change", TradePost_OnEvent);
 			
-			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/description.txt")){
-				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/description.txt"));
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt")){
+				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt"));
 			}
 			
 		}
