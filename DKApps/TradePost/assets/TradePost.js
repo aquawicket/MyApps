@@ -54,7 +54,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(div, "display", "inline-block");
 			DKWidget_SetProperty(div, "width", "100%");
 			DKWidget_SetProperty(div, "min-width", "450rem");
-			DKWidget_SetProperty(div, "height", "20rem");
+			//DKWidget_SetProperty(div, "height", "20rem");
 			DKWidget_SetProperty(div, "background-color", "white");
 			//DKWidget_SetProperty(div, "border-width", "1rem");
 			//DKWidget_SetProperty(div, "border-color", "black");
