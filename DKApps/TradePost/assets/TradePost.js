@@ -44,6 +44,8 @@ function TradePost_AddItem()
 function TradePost_UpdateList()
 {
 	DKLog("TradePost_UpdateList\n");
+	
+	DKWidget_SetInnerHtml("ItemList", ""); //clear
 	for(var i = 0; i < 1000; i++){
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+i)){
 			
@@ -54,7 +56,10 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(id, "min-width", "450rem");
 			DKWidget_SetProperty(id, "height", "18rem");
 			DKWidget_SetProperty(id, "background-color", "white");
-			//DKWidget_SetProperty(id, "border-width", "1rem");
+			DKWidget_SetProperty(id, "border-width", "1rem");
+			DKWidget_SetProperty(id, "border-color", "black");
+			DKWidget_SetProperty(id, "border-style", "solid");
+			DKWidget_SetValue(id, i);
 			
 			/*
 			for(var r=0; r < 10; r++){
