@@ -102,26 +102,30 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(title, "border-width", "1rem");
 			DKWidget_SetProperty(title, "border-color", "black");
 			DKWidget_SetProperty(title, "border-style", "solid");
+			DKWidget_SetProperty(title, "font-weight", "bold");
 			DKWidget_SetAttribute(title, "row", row);
 			DKWidget_SetAttribute(title, "column", 3);
 
-
-				
-			/*
-			for(var r=0; r < 10; r++){
-				var command = DKWidget_CreateElement(id, "input", "ItemValue"+i+r);
-				DKWidget_SetAttribute(command, "type", "text");
-				DKWidget_SetProperty(command, "overflow-x", "hidden");
-				DKWidget_SetProperty(command, "width", "100rem");
-				DKWidget_SetProperty(command, "height", "18rem");
-				DKWidget_SetProperty(command, "display", "inline-block");
-				DKWidget_SetProperty(command, "border-width", "1rem");
-				DKWidget_SetAttribute(command, "row", r);
-				DKWidget_SetAttribute(command, "column", i);
-				//DKWidget_SetValue(command, records[r+i]);
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/title.txt")){
+				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/Title.txt"));
 			}
-			*/
+			
+			var description = DKWidget_CreateElement(div, "div", "ItemDescription"+row);
+			DKWidget_SetProperty(description, "overflow", "hidden");
+			DKWidget_SetProperty(description, "width", "120rem");
+			DKWidget_SetProperty(description, "height", "60rem");
+			DKWidget_SetProperty(description, "display", "inline-block");
+			DKWidget_SetProperty(description, "background-color", "white");
+			DKWidget_SetProperty(description, "border-width", "1rem");
+			DKWidget_SetProperty(description, "border-color", "black");
+			DKWidget_SetProperty(description, "border-style", "solid");
+			DKWidget_SetAttribute(description, "row", row);
+			DKWidget_SetAttribute(description, "column", 3);
 
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/description.txt")){
+				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/description.txt"));
+			}
+			
 		}
 	}
 }
