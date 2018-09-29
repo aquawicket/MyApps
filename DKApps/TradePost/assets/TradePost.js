@@ -8,6 +8,8 @@ function TradePost_Init()
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"Items")){
 		DKFile_MkDir(DKAssets_LocalAssets()+"Items");
 	}
+	
+	TradePost_UpdateList();
 }
 
 ////////////////////////
@@ -35,10 +37,40 @@ function TradePost_AddItem()
 		i++;
 	}
 	DKFile_MkDir(DKAssets_LocalAssets()+"Items/"+i);
+	TradePost_UpdateList();
 }
 
 ///////////////////////////////
 function TradePost_UpdateList()
 {
-	//TODO
+	DKLog("TradePost_UpdateList\n");
+	for(var i = 0; i < 1000; i++){
+		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+i)){
+			
+			//DKLog(DKAssets_LocalAssets()+"Items/"+i);
+			var id = DKWidget_CreateElement("ItemList", "div", "Item"+i);
+			DKWidget_SetProperty(id, "display", "inline-block");
+			DKWidget_SetProperty(id, "width", "100%");
+			DKWidget_SetProperty(id, "min-width", "450rem");
+			DKWidget_SetProperty(id, "height", "18rem");
+			DKWidget_SetProperty(id, "background-color", "white");
+			//DKWidget_SetProperty(id, "border-width", "1rem");
+			
+			/*
+			for(var r=0; r < 10; r++){
+				var command = DKWidget_CreateElement(id, "input", "ItemValue"+i+r);
+				DKWidget_SetAttribute(command, "type", "text");
+				DKWidget_SetProperty(command, "overflow-x", "hidden");
+				DKWidget_SetProperty(command, "width", "100rem");
+				DKWidget_SetProperty(command, "height", "18rem");
+				DKWidget_SetProperty(command, "display", "inline-block");
+				DKWidget_SetProperty(command, "border-width", "1rem");
+				DKWidget_SetAttribute(command, "row", r);
+				DKWidget_SetAttribute(command, "column", i);
+				//DKWidget_SetValue(command, records[r+i]);
+			}
+			*/
+
+		}
+	}
 }
