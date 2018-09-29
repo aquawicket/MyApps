@@ -62,9 +62,9 @@ function TradePost_UpdateList()
 			//DKWidget_SetValue(div, row);
 			
 			var id = DKWidget_CreateElement(div, "div", "ItemId"+row);
-			DKWidget_SetProperty(id, "overflow-x", "hidden");
+			DKWidget_SetProperty(id, "overflow", "hidden");
 			DKWidget_SetProperty(id, "width", "30rem");
-			DKWidget_SetProperty(id, "height", "18rem");
+			DKWidget_SetProperty(id, "height", "60rem");
 			DKWidget_SetProperty(id, "display", "inline-block");
 			DKWidget_SetProperty(id, "background-color", "white");
 			DKWidget_SetProperty(id, "border-width", "1rem");
@@ -73,6 +73,26 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(id, "row", row);
 			DKWidget_SetAttribute(id, "column", 1);
 			DKWidget_SetValue(id, row);
+			
+			var image = DKWidget_CreateElement(div, "div", "ItemImage"+row);
+			DKWidget_SetProperty(image, "overflow", "hidden");
+			DKWidget_SetProperty(image, "width", "60rem");
+			DKWidget_SetProperty(image, "height", "60rem");
+			DKWidget_SetProperty(image, "display", "inline-block");
+			DKWidget_SetProperty(image, "background-color", "white");
+			DKWidget_SetProperty(image, "border-width", "1rem");
+			DKWidget_SetProperty(image, "border-color", "black");
+			DKWidget_SetProperty(image, "border-style", "solid");
+			DKWidget_SetAttribute(image, "row", row);
+			DKWidget_SetAttribute(image, "column", 1);
+			
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/0.jpg")){
+				var img = DKWidget_CreateElement(image, "img", "img"+row);
+				DKWidget_SetProperty(img, "width", "100%");
+				//DKWidget_SetProperty(img, "height", "100%");
+				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/"+row+"/0.jpg");
+			}
+
 				
 			/*
 			for(var r=0; r < 10; r++){
