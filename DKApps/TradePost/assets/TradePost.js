@@ -36,3 +36,9 @@ function TradePost_AddItem()
 	}
 	DKFile_MkDir(DKAssets_LocalAssets()+"Items/"+i);
 }
+
+///////////////////////////////
+function TradePost_UpdateList()
+{
+	//TODO
+}
