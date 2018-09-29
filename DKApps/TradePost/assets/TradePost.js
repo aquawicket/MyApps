@@ -53,7 +53,7 @@ function TradePost_UpdateList()
 	DKLog("TradePost_UpdateList\n");
 	
 	DKWidget_SetInnerHtml("ItemList", ""); //clear
-	for(var row = 0; row < 1000; row++){
+	for(var row = 0; row < 3; row++){
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row)){
 			
 			//DKLog(DKAssets_LocalAssets()+"Items/"+r);
@@ -81,20 +81,20 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(num, "column", 1);
 			DKWidget_SetValue(num, row);
 			
-			var image = DKWidget_CreateElement(div, "div", "ItemImage"+row);
-			DKWidget_SetProperty(image, "overflow", "hidden");
-			DKWidget_SetProperty(image, "width", "60rem");
-			DKWidget_SetProperty(image, "height", "60rem");
-			DKWidget_SetProperty(image, "display", "inline-block");
-			DKWidget_SetProperty(image, "background-color", "white");
-			DKWidget_SetProperty(image, "border-width", "1rem");
-			DKWidget_SetProperty(image, "border-color", "black");
-			DKWidget_SetProperty(image, "border-style", "solid");
-			DKWidget_SetAttribute(image, "row", row);
-			DKWidget_SetAttribute(image, "column", 2);
+			var imageCell = DKWidget_CreateElement(div, "div", "ItemImage"+row);
+			DKWidget_SetProperty(imageCell, "overflow", "hidden");
+			DKWidget_SetProperty(imageCell, "width", "60rem");
+			DKWidget_SetProperty(imageCell, "height", "60rem");
+			DKWidget_SetProperty(imageCell, "display", "inline-block");
+			DKWidget_SetProperty(imageCell, "background-color", "white");
+			DKWidget_SetProperty(imageCell, "border-width", "1rem");
+			DKWidget_SetProperty(imageCell, "border-color", "black");
+			DKWidget_SetProperty(imageCell, "border-style", "solid");
+			DKWidget_SetAttribute(imageCell, "row", row);
+			DKWidget_SetAttribute(imageCell, "column", 2);
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/0.jpg")){
-				var img = DKWidget_CreateElement(image, "img", "img"+row);
+				var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
 				DKWidget_SetProperty(img, "width", "100%");
 				//DKWidget_SetProperty(img, "height", "100%");
 				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/"+row+"/0.jpg");
