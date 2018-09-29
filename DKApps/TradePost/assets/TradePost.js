@@ -25,6 +25,13 @@ function TradePost_OnEvent(event)
 	if(DK_Id(event, "AddItem")){
 		TradePost_AddItem();
 	}
+	
+	if(DK_Type(event, "keyup")){
+		TradePost_ChangeTitle(DK_GetId(event), DK_GetValue(DK_GetId(event)));
+	}
+	if(DK_Type(event, "change")){
+		TradePost_ChangeTitle(DK_GetId(event), DK_GetId(event));
+	}
 }
 
 ////////////////////////////
@@ -111,9 +118,10 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(title, "word-wrap", "break-word");
 			DKWidget_SetProperty(title, "border-width", "0rem");
 			DKWidget_SetProperty(title, "font-weight", "bold");
+			DKAddEvent(title, "keyup", TradePost_OnEvent);
 
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+row+"/title.txt")){
-				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/Title.txt"));
+				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/"+row+"/title.txt"));
 			}
 			
 			var descriptionCell = DKWidget_CreateElement(div, "div", "ItemDescriptionCell"+row);
@@ -142,4 +150,13 @@ function TradePost_UpdateList()
 			
 		}
 	}
+}
+
+////////////////////////////////////////
+function TradePost_ChangeTitle(id, text)
+{
+	DKLog("TradePost_ChangeTitle("+id+", "+text+")\n");
+	
+	var row = id.replace("ItemTitle","");
+	DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/"+row+"/title.txt");
 }
