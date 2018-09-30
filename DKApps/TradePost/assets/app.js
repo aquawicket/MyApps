@@ -15,9 +15,9 @@ DKCef_SetUrl("DKBrowser_cef", DKAssets_LocalAssets()+"TradePost/index.html", DKC
 DK_RunDuktape("DKLog(\"Test\");");
 DK_RunDuktape("DKCef_SetFocus(\"DKBrowser_cef\");");
 
-
-//DK_RunJavascript("DKBrowser_NewTab();");
-//DK_RunJavascript("DKCef_SetUrl(\"DKBrowser_cef\", \"https://offerup.com/\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+//DKBrowser_NewTab();
+DK_RunDuktape("DKBrowser_NewTab();");
+DK_RunDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://offerup.com/\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 
 
 /*
