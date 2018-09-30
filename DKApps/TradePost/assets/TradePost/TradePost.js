@@ -48,13 +48,16 @@ function TradePost_OnEvent(event)
 		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://inlandempire.craigslist.org/d/for-sale/search/sss\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 	}
 	if(DK_Id(event, "Letgo")){
-		DKCef_SetUrl(0,"https://us.letgo.com/en");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://us.letgo.com/en\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 	}
 	if(DK_Id(event, "OfferUp")){
-		DKCef_SetUrl(0,"https://offerup.com");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://offerup.com\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 	}
 	if(DK_Id(event, "Facebook")){
-		DKCef_SetUrl(0,"https://facebook.com");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://facebook.com\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 	}
 	if(DK_Id(event, "Test")){
 		TradePost_Test();
@@ -224,5 +227,6 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n");
 	
-	DKCef_SetUrl(0,"https://inlandempire.craigslist.org/search/sss?"); //
+	DK_QueueDuktape("DKBrowser_NewTab();");
+	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://inlandempire.craigslist.org/d/for-sale/search/sss\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 }
