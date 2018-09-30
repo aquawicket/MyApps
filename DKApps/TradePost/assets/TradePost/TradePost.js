@@ -57,7 +57,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "Facebook")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://facebook.com\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://www.facebook.com/marketplace\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 	}
 	if(DK_Id(event, "Test")){
 		TradePost_Test();
