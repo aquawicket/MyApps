@@ -17,7 +17,8 @@ DK_RunDuktape("DKCef_SetFocus(\"DKBrowser_cef\");");
 
 //DKBrowser_NewTab();
 DK_RunDuktape("DKBrowser_NewTab();");
-DK_RunDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://offerup.com/\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+DK_RunDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://inlandempire.craigslist.org/d/for-sale/search/sss\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+DK_RunDuktape("DKBrowser_SelectTab(0);");
 
 
 /*
