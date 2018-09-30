@@ -10,4 +10,4 @@ DKCreate("DKSDLText");
 DK_SetFramerate(120);
 DKCreate("DKUpdate");
 
-DKCef_SetUrl("DKBrowser_cef", DKAssets_LocalAssets()+"TradePost", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+DKCef_SetUrl("DKBrowser_cef", DKAssets_LocalAssets()+"TradePost/index.html", DKCef_GetCurrentBrowser("DKBrowser_cef"));
