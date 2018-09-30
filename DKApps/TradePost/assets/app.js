@@ -9,3 +9,5 @@ DKCreate("DKDebug/DKDebug.js");
 DKCreate("DKSDLText");
 DK_SetFramerate(120);
 DKCreate("DKUpdate");
+
+DKCef_SetUrl("DKBrowser_cef", DKAssets_LocalAssets()+"TradePost", DKCef_GetCurrentBrowser("DKBrowser_cef"));
