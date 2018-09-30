@@ -15,7 +15,10 @@ DKCef_SetUrl("DKBrowser_cef", DKAssets_LocalAssets()+"TradePost/index.html", DKC
 DK_RunJavascript("DKLog(\"Test\");");
 DK_RunJavascript("DKCef_SetFocus(\"DKBrowser_cef\");");
 //DK_RunJavascript("DKBrowser_NewTab();");
-//DKBrowser_NewTab();
+
+DKBrowser_NewTab();
+//DK_RunJavascript("DKCef_SetUrl(\"DKBrowser_cef\", \"https://offerup.com/\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+
 
 
 /*
