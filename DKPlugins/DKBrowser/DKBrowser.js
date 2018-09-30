@@ -44,6 +44,8 @@ function DKBrowser_Init()
 	DKAddEvent("CopyLink", "click", DKBrowser_OnEvent);
 	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
+	
+	DKCef_SetUrl("DKBrowser_cef", "https://post.craigslist.org/c/inl", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 }
 
 ////////////////////////
@@ -145,7 +147,8 @@ function DKBrowser_OnEvent(event)
 		//DKLog(DKCef_GetUrl("DKBrowser_cef", num)+"\n");
 		var url = DKCef_GetUrl("DKBrowser_cef", num);
 		if(url){
-			DKBrowser_SetUrlBar(url, num); 
+			DKBrowser_SetUrlBar(url, num);
+			TEST(url, num);
 		}
 		return;
 	}
@@ -313,4 +316,23 @@ function DKBrowser_CloseTab(num)
 	}
 	DKCef_CloseBrowser("DKBrowser_cef", num);
 	DKBrowser_SelectTab(0);
+}
+
+
+///////////////////////
+function TEST(url, num)
+{
+	DKLog("TEST("+url+", "+num+")\n");
+	if(url == "https://inlandempire.craigslist.org/"){
+		DKLog("You are on Craigslist\n");
+		//DKCef_SetUrl("DKBrowser_cef", "https://inlandempire.craigslist.org/d/for-sale/search/sss", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+	}
+	
+	if(url == "https://inlandempire.craigslist.org/d/for-sale/search/sss"){
+		DKLog("You are on Craigslist - All for Sale\n");
+	}
+	
+	if(url.includes("https://post.craigslist.org")){
+		DKLog("You are on the Craigslist - Post page\n");
+	}
 }
