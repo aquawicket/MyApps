@@ -3,6 +3,11 @@ function TradePost_Init()
 {
 	DKCreate("TradePost.html");
 	DKAddEvent("AddItem", "click", TradePost_OnEvent);
+	DKAddEvent("Craigslist", "click", TradePost_OnEvent);
+	DKAddEvent("Letgo", "click", TradePost_OnEvent);
+	DKAddEvent("Letgo", "click", TradePost_OnEvent);
+	DKAddEvent("OfferUp", "click", TradePost_OnEvent);
+	DKAddEvent("Facebook", "click", TradePost_OnEvent);
 	
 	//Create Items folder if it does not exist.
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"Items")){
@@ -25,7 +30,18 @@ function TradePost_OnEvent(event)
 	if(DK_Id(event, "AddItem")){
 		TradePost_AddItem();
 	}
-	
+	if(DK_Id(event, "Craigslist")){
+		DKCef_SetUrl(0,"https://inlandempire.craigslist.org/search/sss?");
+	}
+	if(DK_Id(event, "Letgo")){
+		DKCef_SetUrl(0,"https://us.letgo.com/en");
+	}
+	if(DK_Id(event, "OfferUp")){
+		DKCef_SetUrl(0,"https://offerup.com");
+	}
+	if(DK_Id(event, "Facebook")){
+		DKCef_SetUrl(0,"https://facebook.com");
+	}
 	if(DK_Type(event, "keyup")){
 		TradePost_ChangeTitle(DK_GetId(event), DK_GetValue(DK_GetId(event)));
 	}
