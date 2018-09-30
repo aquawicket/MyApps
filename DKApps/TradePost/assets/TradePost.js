@@ -2,6 +2,14 @@
 function TradePost_Init()
 {
 	DKCreate("TradePost.html");
+	
+	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnLoadError", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_ContextMenu", TradePost_OnEvent);
+	
 	DKAddEvent("AddItem", "click", TradePost_OnEvent);
 	DKAddEvent("Craigslist", "click", TradePost_OnEvent);
 	DKAddEvent("Letgo", "click", TradePost_OnEvent);
@@ -27,7 +35,8 @@ function TradePost_End()
 
 /////////////////////////////////
 function TradePost_OnEvent(event)
-{	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+{	
+	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_Id(event, "AddItem")){
 		TradePost_AddItem();
