@@ -46,7 +46,7 @@ function DKBrowser_Init()
 	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
 	
-	DKCef_SetUrl("DKBrowser_cef", "https://post.craigslist.org/c/inl", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+	//DKCef_SetUrl("DKBrowser_cef", "https://post.craigslist.org/c/inl", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 }
 
 ////////////////////////
@@ -156,8 +156,7 @@ function DKBrowser_OnEvent(event)
 		var num = parseInt(DK_GetValue(event));
 		var url = DKCef_GetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 		if(url){
-			//DKBrowser_SetUrlBar(url, num);
-			TEST(url, num);
+			//TEST(url, num);
 		}
 		return;
 	}
