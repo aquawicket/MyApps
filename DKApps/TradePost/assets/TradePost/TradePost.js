@@ -44,7 +44,9 @@ function TradePost_OnEvent(event)
 		TradePost_AddItem();
 	}
 	if(DK_Id(event, "Craigslist")){
-		DKCef_SetUrl(0,"https://inlandempire.craigslist.org/search/sss?");
+		//DKCef_SetUrl(0,"https://inlandempire.craigslist.org/search/sss?");
+		DKBrowser_NewTab();
+		DKCef_SetUrl("DKBrowser_cef", "https://inlandempire.craigslist.org/d/for-sale/search/sss", 0);
 	}
 	if(DK_Id(event, "Letgo")){
 		DKCef_SetUrl(0,"https://us.letgo.com/en");
