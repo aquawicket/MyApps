@@ -11,7 +11,7 @@ function DKBrowser_Init()
 
 	DKAddEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
-	//DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnLoadEnd", DKBrowser_OnEvent);
@@ -156,7 +156,7 @@ function DKBrowser_OnEvent(event)
 		var num = parseInt(DK_GetValue(event));
 		var url = DKCef_GetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 		if(url){
-			DKBrowser_SetUrlBar(url, num);
+			//DKBrowser_SetUrlBar(url, num);
 			TEST(url, num);
 		}
 		return;
@@ -333,9 +333,10 @@ function TEST(url, num)
 {
 	//DKLog("TEST("+url+", "+num+")\n");
 	
-	if(url.indexOf("https://post.craigslist.org") !== -1){
+	if(url.indexOf("https://post.craigslist.org") !== -1 && url.indexOf("s=type") !== -1 ){
 		DKLog("You are on the Craigslist - Post page\n");
 		
-		DKCef_RunJavascript("DKBrowser_cef", "");
+		DKCef_RunJavascript("DKBrowser_cef", "var ele = document.querySelectorAll('[value=\"fso\"]'); ele[0].click();");
+		DKCef_RunJavascript("DKBrowser_cef", "var ele = document.querySelectorAll('[value=\"Continue\"]'); ele[0].click();");
 	}
 }
