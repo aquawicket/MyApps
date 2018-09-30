@@ -9,6 +9,7 @@ function TradePost_Init()
 	DKAddEvent("OfferUp", "click", TradePost_OnEvent);
 	DKAddEvent("Facebook", "click", TradePost_OnEvent);
 	DKAddEvent("Test", "click", TradePost_OnEvent);
+	DKAddEvent("Refresh", "click", TradePost_OnEvent);
 	
 	//Create Items folder if it does not exist.
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"Items")){
@@ -45,6 +46,9 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "Test")){
 		TradePost_Test();
+	}
+	if(DK_Id(event, "Refresh")){
+		DK_Refresh();
 	}
 	if(DK_Type(event, "keyup")){
 		TradePost_ChangeTitle(DK_GetId(event), DK_GetValue(DK_GetId(event)));
@@ -208,4 +212,6 @@ function TradePost_ChangeTitle(id, text)
 function TradePost_Test()
 {
 	DKLog("TradePost_Test\n");
+	
+	DKCef_SetUrl(0,"https://inlandempire.craigslist.org/search/sss?"); //
 }
