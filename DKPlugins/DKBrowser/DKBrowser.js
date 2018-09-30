@@ -336,6 +336,6 @@ function TEST(url, num)
 	if(url.indexOf("https://post.craigslist.org") !== -1){
 		DKLog("You are on the Craigslist - Post page\n");
 		
-		
+		DKCef_RunJavascript("DKBrowser_cef", "");
 	}
 }
