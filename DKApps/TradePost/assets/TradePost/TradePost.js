@@ -92,7 +92,7 @@ function TradePost_UpdateList()
 	DKLog("TradePost_UpdateList\n");
 	
 	DKWidget_SetInnerHtml("ItemList", ""); //clear
-	for(var row = 0; row < 3; row++){
+	for(var row = 0; row < 1000; row++){
 		DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
 			var div = DKWidget_CreateElement("ItemList", "div", "Item"+row);
@@ -228,5 +228,6 @@ function TradePost_Test()
 	DKLog("TradePost_Test\n");
 	
 	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://inlandempire.craigslist.org/d/for-sale/search/sss\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://post.craigslist.org/c/inl\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+	
 }
