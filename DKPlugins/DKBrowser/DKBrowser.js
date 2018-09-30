@@ -11,9 +11,10 @@ function DKBrowser_Init()
 
 	DKAddEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
+	//DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", DKBrowser_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnLoadEnd", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
@@ -146,6 +147,14 @@ function DKBrowser_OnEvent(event)
 		//DKLog("DKCef_OnLoadingStateChange, "+num+"\n");
 		//DKLog(DKCef_GetUrl("DKBrowser_cef", num)+"\n");
 		var url = DKCef_GetUrl("DKBrowser_cef", num);
+		if(url){
+			DKBrowser_SetUrlBar(url, num);
+		}
+		return;
+	}
+	if(DK_Type(event, "DKCef_OnLoadEnd")){
+		var num = parseInt(DK_GetValue(event));
+		var url = DKCef_GetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 		if(url){
 			DKBrowser_SetUrlBar(url, num);
 			TEST(url, num);
@@ -322,17 +331,11 @@ function DKBrowser_CloseTab(num)
 ///////////////////////
 function TEST(url, num)
 {
-	DKLog("TEST("+url+", "+num+")\n");
-	if(url == "https://inlandempire.craigslist.org/"){
-		DKLog("You are on Craigslist\n");
-		//DKCef_SetUrl("DKBrowser_cef", "https://inlandempire.craigslist.org/d/for-sale/search/sss", DKCef_GetCurrentBrowser("DKBrowser_cef"));
-	}
+	//DKLog("TEST("+url+", "+num+")\n");
 	
-	if(url == "https://inlandempire.craigslist.org/d/for-sale/search/sss"){
-		DKLog("You are on Craigslist - All for Sale\n");
-	}
-	
-	if(url.includes("https://post.craigslist.org")){
+	if(url.indexOf("https://post.craigslist.org") !== -1){
 		DKLog("You are on the Craigslist - Post page\n");
+		
+		
 	}
 }
