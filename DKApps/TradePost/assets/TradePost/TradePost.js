@@ -75,10 +75,10 @@ function TradePost_AddItem()
 	DKLog("TradePost_AddItem\n");
 	
 	var i = 0;
-	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/"+i)){
+	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+i)){
 		i++;
 	}
-	DKFile_MkDir(DKAssets_LocalAssets()+"Items/"+i);
+	DKFile_MkDir(DKAssets_LocalAssets()+"Items/Item"+i);
 	TradePost_UpdateList();
 }
 
@@ -89,9 +89,8 @@ function TradePost_UpdateList()
 	
 	DKWidget_SetInnerHtml("ItemList", ""); //clear
 	for(var row = 0; row < 3; row++){
+		DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
-			
-			//DKLog(DKAssets_LocalAssets()+"Items/"+r);
 			var div = DKWidget_CreateElement("ItemList", "div", "Item"+row);
 			DKWidget_SetProperty(div, "display", "inline-block");
 			DKWidget_SetProperty(div, "width", "100%");
@@ -210,11 +209,11 @@ function TradePost_ChangeTitle(id, text)
 	
 	if(id.includes("ItemTitle")){
 		id = id.replace("ItemTitle","");
-		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/"+id+"/title.txt");
+		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/title.txt");
 	}
 	if(id.includes("ItemDescription")){
 		id = id.replace("ItemDescription","");
-		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/"+id+"/description.txt");
+		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/description.txt");
 	}
 	
 }
