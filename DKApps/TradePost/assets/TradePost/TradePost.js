@@ -46,8 +46,7 @@ function TradePost_OnEvent(event)
 		TradePost_UploadImage(DK_GetValue(event));
 	}
 	if(DK_IdLike(event, "ImageCell")){
-		var num = DK_GetId(event).replace("ImageCell","");
-		UploadId = num;
+		UploadId = DK_GetId(event).replace("ImageCell","");
 		DKCef_FileDialog("DKBrowser_cef");
 		return;
 	}
@@ -229,4 +228,7 @@ function TradePost_UploadImage(file)
 {
 	DKLog("TradePost_UploadImage("+file+")\n");
 	DKLog("UploadId = "+UploadId+"\n");
+	
+	//Copy file to DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg"
+	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg", true);
 }
