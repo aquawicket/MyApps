@@ -42,17 +42,16 @@ function TradePost_OnEvent(event)
 {	
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
+	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
+		TradePost_UploadImage(DK_GetValue(event));
+		return;
+	}
 	if(DK_IdLike(event, "catagoryCell")){
 		UploadId = DK_GetId(event).replace("catagoryCell","");
 		DKCreate("CatagoryMenu.js", function(){
 			DKMenu_ValidatePosition("CatagoryMenu.html");
 		});
 		return;
-	}
-	
-		
-	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
-		TradePost_UploadImage(DK_GetValue(event));
 	}
 	if(DK_IdLike(event, "imageCell")){
 		UploadId = DK_GetId(event).replace("imageCell","");
@@ -198,14 +197,26 @@ function TradePost_UpdateList()
 			}
 			
 			var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+row);
+			DKWidget_SetProperty(catagoryCell, "display", "inline-block");
 			DKWidget_SetProperty(catagoryCell, "overflow", "hidden");
 			DKWidget_SetProperty(catagoryCell, "width", "100rem");
 			DKWidget_SetProperty(catagoryCell, "height", "80rem");
-			DKWidget_SetProperty(catagoryCell, "display", "inline-block");
+			DKWidget_SetProperty(catagoryCell, "text-align", "center");
 			DKWidget_SetProperty(catagoryCell, "border-width", "1rem");
 			DKWidget_SetProperty(catagoryCell, "border-color", "black");
 			DKWidget_SetProperty(catagoryCell, "border-style", "solid");
 			DKAddEvent(catagoryCell, "click", TradePost_OnEvent);
+			
+			var catagory = DKWidget_CreateElement(catagoryCell, "input", "catagory"+row);
+			DKWidget_SetAttribute(catagory, "type", "text");
+			DKWidget_SetProperty(catagory, "display", "inline-block");
+			DKWidget_SetProperty(catagory, "width", "100%");
+			DKWidget_SetProperty(catagory, "overflow-x", "hidden");
+			DKAddEvent(catagory, "change", TradePost_OnEvent);
+			
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt")){
+				DKWidget_SetValue(catagory, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt"));
+			}
 		}
 	}
 }
@@ -222,6 +233,10 @@ function TradePost_ChangeTitle(id, text)
 	if(id.includes("description")){
 		id = id.replace("description","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/description.txt");
+	}
+	if(id.includes("catagory")){
+		id = id.replace("catagory","");
+		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/catagory.txt");
 	}
 	
 }

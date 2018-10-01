@@ -22,10 +22,11 @@ function CatagoryMenu_End()
 /////////////////////////////////////
 function CatagoryMenu_OnEvent(event)
 {
-	//DKLog("CatagoryMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("CatagoryMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(!DK_Id(event,"GLOBAL")){
 		DKLog(DK_GetId(event)+"\n");
+		DKWidget_SetValue("catagory"+UploadId, DK_GetId(event));
 	}
 	
 	DKClose("CatagoryMenu.js");
