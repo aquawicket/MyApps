@@ -128,6 +128,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(num, "width", "30rem");
 			DKWidget_SetProperty(num, "height", "80rem");
 			DKWidget_SetProperty(num, "border-width", "1rem");
+			DKWidget_SetProperty(num, "border-right-width", "0rem");
 			DKWidget_SetProperty(num, "border-color", "black");
 			DKWidget_SetProperty(num, "border-style", "solid");
 			DKWidget_SetAttribute(num, "row", row);
@@ -141,6 +142,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(imageCell, "text-align", "center");
 			DKWidget_SetProperty(imageCell, "overflow", "hidden");
 			DKWidget_SetProperty(imageCell, "border-width", "1rem");
+			DKWidget_SetProperty(imageCell, "border-right-width", "0rem");
 			DKWidget_SetProperty(imageCell, "border-color", "black");
 			DKWidget_SetProperty(imageCell, "border-style", "solid");
 			DKAddEvent(imageCell, "click", TradePost_OnEvent);
@@ -159,6 +161,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(titleCell, "height", "80rem");
 			DKWidget_SetProperty(titleCell, "display", "inline-block");
 			DKWidget_SetProperty(titleCell, "border-width", "1rem");
+			DKWidget_SetProperty(titleCell, "border-right-width", "0rem");
 			DKWidget_SetProperty(titleCell, "border-color", "black");
 			DKWidget_SetProperty(titleCell, "border-style", "solid");
 			
@@ -182,6 +185,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(descriptionCell, "height", "80rem");
 			DKWidget_SetProperty(descriptionCell, "display", "inline-block");
 			DKWidget_SetProperty(descriptionCell, "border-width", "1rem");
+			DKWidget_SetProperty(descriptionCell, "border-right-width", "0rem");
 			DKWidget_SetProperty(descriptionCell, "border-color", "black");
 			DKWidget_SetProperty(descriptionCell, "border-style", "solid");
 
@@ -206,6 +210,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(catagoryCell, "height", "80rem");
 			DKWidget_SetProperty(catagoryCell, "text-align", "center");
 			DKWidget_SetProperty(catagoryCell, "border-width", "1rem");
+			//DKWidget_SetProperty(catagoryCell, "border-right-width", "0rem");
 			DKWidget_SetProperty(catagoryCell, "border-color", "black");
 			DKWidget_SetProperty(catagoryCell, "border-style", "solid");
 			
