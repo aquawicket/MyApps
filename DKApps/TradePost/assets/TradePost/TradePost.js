@@ -209,10 +209,12 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(catagoryCell, "border-color", "black");
 			DKWidget_SetProperty(catagoryCell, "border-style", "solid");
 			
-			var catagory = DKWidget_CreateElement(catagoryCell, "input", "catagory"+row);
+			var catagory = DKWidget_CreateElement(catagoryCell, "textarea", "catagory"+row);
 			DKWidget_SetAttribute(catagory, "type", "text");
 			DKWidget_SetProperty(catagory, "display", "inline-block");
 			DKWidget_SetProperty(catagory, "width", "100%");
+			DKWidget_SetProperty(catagory, "height", "100%");
+			DKWidget_SetProperty(catagory, "word-wrap", "break-word");
 			DKWidget_SetProperty(catagory, "overflow-x", "hidden");
 			DKAddEvent(catagory, "click", TradePost_OnEvent);
 			DKAddEvent(catagory, "change", TradePost_OnEvent);
