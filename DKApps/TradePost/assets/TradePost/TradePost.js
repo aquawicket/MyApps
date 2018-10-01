@@ -102,7 +102,7 @@ function TradePost_OnEvent(event)
 ////////////////////////////
 function TradePost_AddItem()
 {
-	DKLog("TradePost_AddItem\n");
+	//DKLog("TradePost_AddItem\n");
 	
 	var i = 0;
 	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+i)){
@@ -115,11 +115,11 @@ function TradePost_AddItem()
 ///////////////////////////////
 function TradePost_UpdateList()
 {
-	DKLog("TradePost_UpdateList\n");
+	//DKLog("TradePost_UpdateList\n");
 	
 	DKWidget_SetInnerHtml("ItemList", ""); //clear
 	for(var row = 0; row < 1000; row++){
-		DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
+		//DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
 			var div = DKWidget_CreateElement("ItemList", "div", "item"+row);
 			DKWidget_SetProperty(div, "display", "inline-block");
@@ -264,7 +264,7 @@ function TradePost_UpdateList()
 ////////////////////////////////////////
 function TradePost_ChangeTitle(id, text)
 {
-	DKLog("TradePost_ChangeTitle("+id+", "+text+")\n");
+	//DKLog("TradePost_ChangeTitle("+id+", "+text+")\n");
 	
 	if(id.includes("title")){
 		id = id.replace("title","");
@@ -298,7 +298,7 @@ function TradePost_Test()
 ////////////////////////////////////
 function TradePost_UploadImage(file)
 {
-	DKLog("TradePost_UploadImage("+file+")\n");
+	//DKLog("TradePost_UploadImage("+file+")\n");
 	//DKLog("UploadId = "+UploadId+"\n");
 	
 	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg", true);

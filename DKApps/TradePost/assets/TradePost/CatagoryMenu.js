@@ -10,7 +10,7 @@ function CatagoryMenu_Init()
 	var arry = elements .split(",");
 	for(var i=0; i<arry.length; i++){
 		DKAddEvent(arry[i], "mousedown", CatagoryMenu_OnEvent);
-		DKLog("added "+arry[i]+"\n")
+		//DKLog("added "+arry[i]+"\n")
 	}
 }
 
