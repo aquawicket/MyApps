@@ -230,5 +230,5 @@ function TradePost_UploadImage(file)
 	//DKLog("UploadId = "+UploadId+"\n");
 	
 	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg", true);
-	TradePost_UpdateList();
+	DKWidget_SetAttribute("img"+UploadId, "src", DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg?"+new Date().getTime());
 }
