@@ -137,7 +137,7 @@ function TradePost_UpdateList()
 			
 			var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+row);
 			DKWidget_SetProperty(imageCell, "display", "inline-block");
-			DKWidget_SetProperty(imageCell, "width", "80rem");
+			DKWidget_SetProperty(imageCell, "width", "142rem");
 			DKWidget_SetProperty(imageCell, "height", "80rem");
 			DKWidget_SetProperty(imageCell, "text-align", "center");
 			DKWidget_SetProperty(imageCell, "overflow", "hidden");
