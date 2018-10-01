@@ -227,8 +227,8 @@ function TradePost_Test()
 function TradePost_UploadImage(file)
 {
 	DKLog("TradePost_UploadImage("+file+")\n");
-	DKLog("UploadId = "+UploadId+"\n");
+	//DKLog("UploadId = "+UploadId+"\n");
 	
-	//Copy file to DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg"
 	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg", true);
+	TradePost_UpdateList();
 }
