@@ -20,6 +20,7 @@ function TradePost_Init()
 	DKAddEvent("Letgo", "click", TradePost_OnEvent);
 	DKAddEvent("OfferUp", "click", TradePost_OnEvent);
 	DKAddEvent("Facebook", "click", TradePost_OnEvent);
+	DKAddEvent("Ebay", "click", TradePost_OnEvent);
 	DKAddEvent("Test", "click", TradePost_OnEvent);
 	DKAddEvent("Refresh", "click", TradePost_OnEvent);
 	
@@ -77,6 +78,10 @@ function TradePost_OnEvent(event)
 	if(DK_Id(event, "Facebook")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
 		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://www.facebook.com/marketplace\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+	}
+	if(DK_Id(event, "Ebay")){
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://www.ebay.com\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 	}
 	if(DK_Id(event, "Test")){
 		TradePost_Test();
