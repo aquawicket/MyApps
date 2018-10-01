@@ -46,8 +46,8 @@ function TradePost_OnEvent(event)
 		TradePost_UploadImage(DK_GetValue(event));
 		return;
 	}
-	if(DK_IdLike(event, "catagoryCell")){
-		UploadId = DK_GetId(event).replace("catagoryCell","");
+	if(DK_IdLike(event, "catagory")){
+		UploadId = DK_GetId(event).replace("catagory","");
 		DKCreate("CatagoryMenu.js", function(){
 			DKMenu_ValidatePosition("CatagoryMenu.html");
 		});
@@ -60,6 +60,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "AddItem")){
 		TradePost_AddItem();
+		return;
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
@@ -85,9 +86,11 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Type(event, "keyup")){
 		TradePost_ChangeTitle(DK_GetId(event), DK_GetValue(DK_GetId(event)));
+		return;
 	}
 	if(DK_Type(event, "change")){
 		TradePost_ChangeTitle(DK_GetId(event), DK_GetValue(DK_GetId(event)));
+		return;
 	}
 }
 
@@ -205,13 +208,13 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(catagoryCell, "border-width", "1rem");
 			DKWidget_SetProperty(catagoryCell, "border-color", "black");
 			DKWidget_SetProperty(catagoryCell, "border-style", "solid");
-			DKAddEvent(catagoryCell, "click", TradePost_OnEvent);
 			
 			var catagory = DKWidget_CreateElement(catagoryCell, "input", "catagory"+row);
 			DKWidget_SetAttribute(catagory, "type", "text");
 			DKWidget_SetProperty(catagory, "display", "inline-block");
 			DKWidget_SetProperty(catagory, "width", "100%");
 			DKWidget_SetProperty(catagory, "overflow-x", "hidden");
+			DKAddEvent(catagory, "click", TradePost_OnEvent);
 			DKAddEvent(catagory, "change", TradePost_OnEvent);
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt")){
@@ -230,11 +233,11 @@ function TradePost_ChangeTitle(id, text)
 		id = id.replace("title","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/title.txt");
 	}
-	if(id.includes("description")){
+	else if(id.includes("description")){
 		id = id.replace("description","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/description.txt");
 	}
-	if(id.includes("catagory")){
+	else if(id.includes("catagory")){
 		id = id.replace("catagory","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/catagory.txt");
 	}

@@ -27,6 +27,7 @@ function CatagoryMenu_OnEvent(event)
 	if(!DK_Id(event,"GLOBAL")){
 		DKLog(DK_GetId(event)+"\n");
 		DKWidget_SetValue("catagory"+UploadId, DK_GetId(event));
+		DKSendEvent("catagory"+UploadId, "change");
 	}
 	
 	DKClose("CatagoryMenu.js");
