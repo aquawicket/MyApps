@@ -18,6 +18,7 @@ function DKBrowser_Init()
 	DKAddEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", DKBrowser_OnEvent);
 	DKAddEvent("Tab0", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab1", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab2", "click", DKBrowser_OnEvent);
