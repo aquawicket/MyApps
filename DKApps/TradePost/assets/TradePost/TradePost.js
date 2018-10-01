@@ -152,7 +152,7 @@ function TradePost_UpdateList()
 				DKWidget_SetProperty(img, "display", "block");
 				DKWidget_SetProperty(img, "width", "100%");
 				DKWidget_SetProperty(img, "margin", "auto");
-				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg");
+				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg?"+new Date().getTime());
 			}
 			
 			var titleCell = DKWidget_CreateElement(div, "div", "titleCell"+row);
