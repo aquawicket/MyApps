@@ -40,6 +40,10 @@ function TradePost_OnEvent(event)
 {	
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
+	if(DK_IdLike(event, "ImageCell")){
+		DKLog("DK_IdLike(event, img)\n");
+		document.getElementById("ItemImageUpload0").click();
+	}
 	if(DK_Id(event, "AddItem")){
 		TradePost_AddItem();
 	}
@@ -98,20 +102,14 @@ function TradePost_UpdateList()
 			var div = DKWidget_CreateElement("ItemList", "div", "Item"+row);
 			DKWidget_SetProperty(div, "display", "inline-block");
 			DKWidget_SetProperty(div, "width", "100%");
-			DKWidget_SetProperty(div, "min-width", "450rem");
-			//DKWidget_SetProperty(div, "height", "20rem");
+			//DKWidget_SetProperty(div, "min-width", "450rem");
 			DKWidget_SetProperty(div, "background-color", "white");
-			//DKWidget_SetProperty(div, "border-width", "1rem");
-			//DKWidget_SetProperty(div, "border-color", "black");
-			//DKWidget_SetProperty(div, "border-style", "solid");
-			//DKWidget_SetValue(div, row);
 			
 			var num = DKWidget_CreateElement(div, "div", "ItemId"+row);
+			DKWidget_SetProperty(num, "display", "inline-block");
 			DKWidget_SetProperty(num, "overflow", "hidden");
 			DKWidget_SetProperty(num, "width", "30rem");
-			DKWidget_SetProperty(num, "height", "60rem");
-			DKWidget_SetProperty(num, "display", "inline-block");
-			DKWidget_SetProperty(num, "background-color", "white");
+			DKWidget_SetProperty(num, "height", "80rem");
 			DKWidget_SetProperty(num, "border-width", "1rem");
 			DKWidget_SetProperty(num, "border-color", "black");
 			DKWidget_SetProperty(num, "border-style", "solid");
@@ -119,42 +117,40 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(num, "column", 1);
 			DKWidget_SetValue(num, row);
 			
-			var imageCell = DKWidget_CreateElement(div, "div", "ItemImage"+row);
-			DKWidget_SetProperty(imageCell, "overflow", "hidden");
-			DKWidget_SetProperty(imageCell, "width", "60rem");
-			DKWidget_SetProperty(imageCell, "height", "60rem");
+			var imageCell = DKWidget_CreateElement(div, "div", "ImageCell"+row);
 			DKWidget_SetProperty(imageCell, "display", "inline-block");
-			DKWidget_SetProperty(imageCell, "background-color", "white");
+			DKWidget_SetProperty(imageCell, "width", "80rem");
+			DKWidget_SetProperty(imageCell, "height", "80rem");
+			DKWidget_SetProperty(imageCell, "text-align", "center");
+			DKWidget_SetProperty(imageCell, "overflow", "hidden");
 			DKWidget_SetProperty(imageCell, "border-width", "1rem");
 			DKWidget_SetProperty(imageCell, "border-color", "black");
 			DKWidget_SetProperty(imageCell, "border-style", "solid");
 			DKWidget_SetAttribute(imageCell, "row", row);
 			DKWidget_SetAttribute(imageCell, "column", 2);
+			DKAddEvent(imageCell, "click", TradePost_OnEvent);
+			//document.getElementById("ItemImage0").onclick = document.getElementById("ItemImageUpload0").click();
 			
-			/*
-			DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg", function(rval){
-				if(rval){
-					//alert("image exists");
-					var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
-					DKWidget_SetProperty(img, "width", "100%");
-					//DKWidget_SetProperty(img, "height", "100%");
-					DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg");
-				}
-			});
-			*/
+			var imageUpload = DKWidget_CreateElement(imageCell , "input", "ItemImageUpload"+row);
+			DKWidget_SetAttribute(imageUpload, "type", "file");
+			DKWidget_SetProperty(imageUpload, "width", "1px");
+			DKWidget_SetProperty(imageUpload, "height", "1px");
+			DKWidget_SetProperty(imageUpload, "visibility", "hidden");
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg")){
-				//alert("image exists");
 				var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
+				DKWidget_SetProperty(img, "display", "block");
 				DKWidget_SetProperty(img, "width", "100%");
-				//DKWidget_SetProperty(img, "height", "100%");
+				DKWidget_SetProperty(img, "margin", "auto");
 				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg");
+				//DKAddEvent(img, "click", TradePost_OnEvent);
+				//document.getElementById("img0").onclick = document.getElementById("ItemImageUpload0").click();
 			}
 			
 			var titleCell = DKWidget_CreateElement(div, "div", "ItemTitleCell"+row);
 			DKWidget_SetProperty(titleCell, "overflow", "hidden");
 			DKWidget_SetProperty(titleCell, "width", "120rem");
-			DKWidget_SetProperty(titleCell, "height", "60rem");
+			DKWidget_SetProperty(titleCell, "height", "80rem");
 			DKWidget_SetProperty(titleCell, "display", "inline-block");
 			DKWidget_SetProperty(titleCell, "border-width", "1rem");
 			DKWidget_SetProperty(titleCell, "border-color", "black");
@@ -178,10 +174,9 @@ function TradePost_UpdateList()
 			
 			var descriptionCell = DKWidget_CreateElement(div, "div", "ItemDescriptionCell"+row);
 			DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
-			DKWidget_SetProperty(descriptionCell, "width", "200rem");
-			DKWidget_SetProperty(descriptionCell, "height", "60rem");
+			DKWidget_SetProperty(descriptionCell, "width", "220rem");
+			DKWidget_SetProperty(descriptionCell, "height", "80rem");
 			DKWidget_SetProperty(descriptionCell, "display", "inline-block");
-			DKWidget_SetProperty(descriptionCell, "background-color", "white");
 			DKWidget_SetProperty(descriptionCell, "border-width", "1rem");
 			DKWidget_SetProperty(descriptionCell, "border-color", "black");
 			DKWidget_SetProperty(descriptionCell, "border-style", "solid");
@@ -201,7 +196,6 @@ function TradePost_UpdateList()
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt")){
 				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt"));
 			}
-			
 		}
 	}
 }
