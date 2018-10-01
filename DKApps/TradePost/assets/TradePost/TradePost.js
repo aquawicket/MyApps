@@ -208,9 +208,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(catagoryCell, "overflow", "hidden");
 			DKWidget_SetProperty(catagoryCell, "width", "100rem");
 			DKWidget_SetProperty(catagoryCell, "height", "80rem");
-			DKWidget_SetProperty(catagoryCell, "text-align", "center");
+			//DKWidget_SetProperty(catagoryCell, "text-align", "center");
 			DKWidget_SetProperty(catagoryCell, "border-width", "1rem");
-			//DKWidget_SetProperty(catagoryCell, "border-right-width", "0rem");
+			DKWidget_SetProperty(catagoryCell, "border-right-width", "0rem");
 			DKWidget_SetProperty(catagoryCell, "border-color", "black");
 			DKWidget_SetProperty(catagoryCell, "border-style", "solid");
 			
@@ -226,6 +226,31 @@ function TradePost_UpdateList()
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt")){
 				DKWidget_SetValue(catagory, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt"));
+			}
+			
+			var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+row);
+			DKWidget_SetProperty(priceCell, "display", "inline-block");
+			DKWidget_SetProperty(priceCell, "overflow", "hidden");
+			DKWidget_SetProperty(priceCell, "width", "70rem");
+			DKWidget_SetProperty(priceCell, "height", "80rem");
+			DKWidget_SetProperty(priceCell, "text-align", "center");
+			DKWidget_SetProperty(priceCell, "border-width", "1rem");
+			//DKWidget_SetProperty(priceCell, "border-right-width", "0rem");
+			DKWidget_SetProperty(priceCell, "border-color", "black");
+			DKWidget_SetProperty(priceCell, "border-style", "solid");
+			
+			var price = DKWidget_CreateElement(priceCell, "textarea", "price"+row);
+			DKWidget_SetAttribute(price, "type", "text");
+			DKWidget_SetProperty(price, "display", "inline-block");
+			DKWidget_SetProperty(price, "width", "100%");
+			DKWidget_SetProperty(price, "height", "100%");
+			DKWidget_SetProperty(price, "word-wrap", "break-word");
+			DKWidget_SetProperty(price, "overflow-x", "hidden");
+			DKAddEvent(price, "keyup", TradePost_OnEvent);
+			DKAddEvent(price, "change", TradePost_OnEvent);
+			
+			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt")){
+				DKWidget_SetValue(price, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt"));
 			}
 		}
 	}
@@ -247,6 +272,10 @@ function TradePost_ChangeTitle(id, text)
 	else if(id.includes("catagory")){
 		id = id.replace("catagory","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/catagory.txt");
+	}
+	else if(id.includes("price")){
+		id = id.replace("price","");
+		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/price.txt");
 	}
 	
 }
