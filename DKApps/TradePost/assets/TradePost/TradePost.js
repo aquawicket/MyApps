@@ -197,15 +197,20 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(catagoryCell, "border-color", "black");
 			DKWidget_SetProperty(catagoryCell, "border-style", "solid");
 			
-			var catagory = DKWidget_CreateElement(catagoryCell, "textarea", "catagory"+row);
+			var catagory = DKWidget_CreateElement(catagoryCell, "select", "catagory"+row);
 			DKWidget_SetProperty(catagory, "width", "100%");
-			DKWidget_SetProperty(catagory, "height", "100%");
+			//DKWidget_SetProperty(catagory, "height", "100%");
 			DKWidget_SetProperty(catagory, "overflow-x", "hidden");
-			DKWidget_SetProperty(catagory, "word-wrap", "break-word");
+			//DKWidget_SetProperty(catagory, "word-wrap", "break-word");
 			DKWidget_SetProperty(catagory, "border-width", "0rem");
 			DKWidget_SetProperty(catagory, "font-weight", "bold");
 			DKAddEvent(catagory, "keyup", TradePost_OnEvent);
 			DKAddEvent(catagory, "change", TradePost_OnEvent);
+			
+			var catagory0 = DKWidget_CreateElement(catagory, "option", "catagory0");
+			DKWidget_SetAttribute(catagory0, "value", "Electronics");
+			
+			
 		}
 	}
 }
