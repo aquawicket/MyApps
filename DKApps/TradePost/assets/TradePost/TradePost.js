@@ -40,6 +40,9 @@ function TradePost_OnEvent(event)
 {	
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
+	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
+		TradePost_UploadImage(DK_GetValue(event));
+	}
 	if(DK_IdLike(event, "ImageCell")){
 		//var num = DK_GetId(event).replace("ImageCell","");
 		//DKLog("Clicking ImageUpload"+num+"\n");
@@ -232,4 +235,10 @@ function TradePost_Test()
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://post.craigslist.org/c/inl\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
 	
+}
+
+////////////////////////////////////
+function TradePost_UploadImage(file)
+{
+	DKLog("TradePost_UploadImage("+file+")\n");
 }
