@@ -10,7 +10,6 @@ function TradePost_Init()
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_ContextMenu", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnContextCreated", TradePost_OnEvent);
-	//DKAddEvent("GLOBAL", "mousemove", TradePost_OnEvent);
 	
 	DKAddEvent("AddItem", "click", TradePost_OnEvent);
 	DKAddEvent("Craigslist", "click", TradePost_OnEvent);
@@ -41,8 +40,9 @@ function TradePost_OnEvent(event)
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_IdLike(event, "ImageCell")){
-		DKLog("DK_IdLike(event, img)\n");
-		document.getElementById("ItemImageUpload0").click();
+		var num = DK_GetId(event).replace("ImageCell","");
+		DKLog("Clicking ImageUpload"+num+"\n");
+		document.getElementById("ImageUpload"+num).click();
 	}
 	if(DK_Id(event, "AddItem")){
 		TradePost_AddItem();
@@ -129,9 +129,8 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(imageCell, "row", row);
 			DKWidget_SetAttribute(imageCell, "column", 2);
 			DKAddEvent(imageCell, "click", TradePost_OnEvent);
-			//document.getElementById("ItemImage0").onclick = document.getElementById("ItemImageUpload0").click();
 			
-			var imageUpload = DKWidget_CreateElement(imageCell , "input", "ItemImageUpload"+row);
+			var imageUpload = DKWidget_CreateElement(imageCell , "input", "ImageUpload"+row);
 			DKWidget_SetAttribute(imageUpload, "type", "file");
 			DKWidget_SetProperty(imageUpload, "width", "1px");
 			DKWidget_SetProperty(imageUpload, "height", "1px");
@@ -143,11 +142,9 @@ function TradePost_UpdateList()
 				DKWidget_SetProperty(img, "width", "100%");
 				DKWidget_SetProperty(img, "margin", "auto");
 				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg");
-				//DKAddEvent(img, "click", TradePost_OnEvent);
-				//document.getElementById("img0").onclick = document.getElementById("ItemImageUpload0").click();
 			}
 			
-			var titleCell = DKWidget_CreateElement(div, "div", "ItemTitleCell"+row);
+			var titleCell = DKWidget_CreateElement(div, "div", "TitleCell"+row);
 			DKWidget_SetProperty(titleCell, "overflow", "hidden");
 			DKWidget_SetProperty(titleCell, "width", "120rem");
 			DKWidget_SetProperty(titleCell, "height", "80rem");
@@ -158,7 +155,7 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(titleCell, "row", row);
 			DKWidget_SetAttribute(titleCell, "column", 3);
 			
-			var title = DKWidget_CreateElement(titleCell, "textarea", "ItemTitle"+row);
+			var title = DKWidget_CreateElement(titleCell, "textarea", "Title"+row);
 			DKWidget_SetProperty(title, "width", "100%");
 			DKWidget_SetProperty(title, "height", "100%");
 			DKWidget_SetProperty(title, "overflow-x", "hidden");
@@ -172,7 +169,7 @@ function TradePost_UpdateList()
 				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt"));
 			}
 			
-			var descriptionCell = DKWidget_CreateElement(div, "div", "ItemDescriptionCell"+row);
+			var descriptionCell = DKWidget_CreateElement(div, "div", "DescriptionCell"+row);
 			DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
 			DKWidget_SetProperty(descriptionCell, "width", "220rem");
 			DKWidget_SetProperty(descriptionCell, "height", "80rem");
@@ -183,7 +180,7 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(descriptionCell, "row", row);
 			DKWidget_SetAttribute(descriptionCell, "column", 3);
 
-			var description = DKWidget_CreateElement(descriptionCell, "textarea", "ItemDescription"+row);
+			var description = DKWidget_CreateElement(descriptionCell, "textarea", "Description"+row);
 			DKWidget_SetProperty(description, "width", "100%");
 			DKWidget_SetProperty(description, "height", "100%");
 			DKWidget_SetProperty(description, "overflow-x", "hidden");
@@ -205,12 +202,12 @@ function TradePost_ChangeTitle(id, text)
 {
 	DKLog("TradePost_ChangeTitle("+id+", "+text+")\n");
 	
-	if(id.includes("ItemTitle")){
-		id = id.replace("ItemTitle","");
+	if(id.includes("Title")){
+		id = id.replace("Title","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/title.txt");
 	}
-	if(id.includes("ItemDescription")){
-		id = id.replace("ItemDescription","");
+	if(id.includes("Description")){
+		id = id.replace("Description","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/description.txt");
 	}
 	
