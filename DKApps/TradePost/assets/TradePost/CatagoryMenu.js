@@ -5,9 +5,13 @@ function CatagoryMenu_Init()
 	
 	DKCreate("CatagoryMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", CatagoryMenu_OnEvent);
-	DKAddEvent("electronics", "mousedown", CatagoryMenu_OnEvent);
-	DKAddEvent("computers", "mousedown", CatagoryMenu_OnEvent);
-	DKAddEvent("cell phones", "mousedown", CatagoryMenu_OnEvent);
+	
+	var elements = DKWidget_GetElements("CatagoryMenu.html");
+	var arry = elements .split(",");
+	for(var i=0; i<arry.length; i++){
+		DKAddEvent(arry[i], "mousedown", CatagoryMenu_OnEvent);
+		DKLog("added "+arry[i]+"\n")
+	}
 }
 
 ////////////////////////////
