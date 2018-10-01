@@ -40,9 +40,10 @@ function TradePost_OnEvent(event)
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
 	if(DK_IdLike(event, "ImageCell")){
-		var num = DK_GetId(event).replace("ImageCell","");
-		DKLog("Clicking ImageUpload"+num+"\n");
-		document.getElementById("ImageUpload"+num).click();
+		//var num = DK_GetId(event).replace("ImageCell","");
+		//DKLog("Clicking ImageUpload"+num+"\n");
+		//document.getElementById("ImageUpload"+num).click();
+		DKCef_FileDialog("DKBrowser_cef");
 		return;
 	}
 	if(DK_IdLike(event, "ImageUpload")){
