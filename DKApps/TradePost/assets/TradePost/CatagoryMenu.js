@@ -5,9 +5,9 @@ function CatagoryMenu_Init()
 	
 	DKCreate("CatagoryMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", CatagoryMenu_OnEvent);
-	DKAddEvent("Electronics", "mousedown", CatagoryMenu_OnEvent);
-	DKAddEvent("Computers", "mousedown", CatagoryMenu_OnEvent);
-	DKAddEvent("Cars", "mousedown", CatagoryMenu_OnEvent);
+	DKAddEvent("electronics", "mousedown", CatagoryMenu_OnEvent);
+	DKAddEvent("computers", "mousedown", CatagoryMenu_OnEvent);
+	DKAddEvent("cell phones", "mousedown", CatagoryMenu_OnEvent);
 }
 
 ////////////////////////////
