@@ -143,7 +143,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(imageUpload, "width", "1px");
 			DKWidget_SetProperty(imageUpload, "height", "1px");
 			DKWidget_SetProperty(imageUpload, "visibility", "hidden");
-			DKAddEvent(imageUpload, "change", TradePost_OnEvent);
+			//DKAddEvent(imageUpload, "change", TradePost_OnEvent);
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg")){
 				var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
