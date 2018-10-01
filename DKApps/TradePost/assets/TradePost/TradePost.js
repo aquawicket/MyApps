@@ -1,3 +1,5 @@
+var UploadId;
+
 /////////////////////////
 function TradePost_Init()
 {
@@ -44,17 +46,9 @@ function TradePost_OnEvent(event)
 		TradePost_UploadImage(DK_GetValue(event));
 	}
 	if(DK_IdLike(event, "ImageCell")){
-		//var num = DK_GetId(event).replace("ImageCell","");
-		//DKLog("Clicking ImageUpload"+num+"\n");
-		//document.getElementById("ImageUpload"+num).click();
+		var num = DK_GetId(event).replace("ImageCell","");
+		UploadId = num;
 		DKCef_FileDialog("DKBrowser_cef");
-		return;
-	}
-	if(DK_IdLike(event, "ImageUpload")){
-		var num = DK_GetId(event).replace("ImageUpload","");
-		DKLog("Uploading file "+DK_GetValue(event)+"\n");
-		
-		DKLog(document.getElementById(DK_GetId(event)).files[0].path+"\n");
 		return;
 	}
 	if(DK_Id(event, "AddItem")){
@@ -142,13 +136,6 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(imageCell, "row", row);
 			DKWidget_SetAttribute(imageCell, "column", 2);
 			DKAddEvent(imageCell, "click", TradePost_OnEvent);
-			
-			var imageUpload = DKWidget_CreateElement(imageCell , "input", "ImageUpload"+row);
-			DKWidget_SetAttribute(imageUpload, "type", "file");
-			DKWidget_SetProperty(imageUpload, "width", "1px");
-			DKWidget_SetProperty(imageUpload, "height", "1px");
-			DKWidget_SetProperty(imageUpload, "visibility", "hidden");
-			//DKAddEvent(imageUpload, "change", TradePost_OnEvent);
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg")){
 				var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
@@ -241,4 +228,5 @@ function TradePost_Test()
 function TradePost_UploadImage(file)
 {
 	DKLog("TradePost_UploadImage("+file+")\n");
+	DKLog("UploadId = "+UploadId+"\n");
 }
