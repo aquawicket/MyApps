@@ -45,8 +45,8 @@ function TradePost_OnEvent(event)
 	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
 		TradePost_UploadImage(DK_GetValue(event));
 	}
-	if(DK_IdLike(event, "ImageCell")){
-		UploadId = DK_GetId(event).replace("ImageCell","");
+	if(DK_IdLike(event, "imageCell")){
+		UploadId = DK_GetId(event).replace("imageCell","");
 		DKCef_FileDialog("DKBrowser_cef");
 		return;
 	}
@@ -105,13 +105,13 @@ function TradePost_UpdateList()
 	for(var row = 0; row < 1000; row++){
 		DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
-			var div = DKWidget_CreateElement("ItemList", "div", "Item"+row);
+			var div = DKWidget_CreateElement("ItemList", "div", "item"+row);
 			DKWidget_SetProperty(div, "display", "inline-block");
 			DKWidget_SetProperty(div, "width", "100%");
 			//DKWidget_SetProperty(div, "min-width", "450rem");
 			DKWidget_SetProperty(div, "background-color", "white");
 			
-			var num = DKWidget_CreateElement(div, "div", "ItemId"+row);
+			var num = DKWidget_CreateElement(div, "div", "itemId"+row);
 			DKWidget_SetProperty(num, "display", "inline-block");
 			DKWidget_SetProperty(num, "overflow", "hidden");
 			DKWidget_SetProperty(num, "width", "30rem");
@@ -123,7 +123,7 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(num, "column", 1);
 			DKWidget_SetValue(num, row);
 			
-			var imageCell = DKWidget_CreateElement(div, "div", "ImageCell"+row);
+			var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+row);
 			DKWidget_SetProperty(imageCell, "display", "inline-block");
 			DKWidget_SetProperty(imageCell, "width", "80rem");
 			DKWidget_SetProperty(imageCell, "height", "80rem");
@@ -132,8 +132,6 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(imageCell, "border-width", "1rem");
 			DKWidget_SetProperty(imageCell, "border-color", "black");
 			DKWidget_SetProperty(imageCell, "border-style", "solid");
-			DKWidget_SetAttribute(imageCell, "row", row);
-			DKWidget_SetAttribute(imageCell, "column", 2);
 			DKAddEvent(imageCell, "click", TradePost_OnEvent);
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg")){
@@ -144,7 +142,7 @@ function TradePost_UpdateList()
 				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg");
 			}
 			
-			var titleCell = DKWidget_CreateElement(div, "div", "TitleCell"+row);
+			var titleCell = DKWidget_CreateElement(div, "div", "titleCell"+row);
 			DKWidget_SetProperty(titleCell, "overflow", "hidden");
 			DKWidget_SetProperty(titleCell, "width", "120rem");
 			DKWidget_SetProperty(titleCell, "height", "80rem");
@@ -152,10 +150,8 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(titleCell, "border-width", "1rem");
 			DKWidget_SetProperty(titleCell, "border-color", "black");
 			DKWidget_SetProperty(titleCell, "border-style", "solid");
-			DKWidget_SetAttribute(titleCell, "row", row);
-			DKWidget_SetAttribute(titleCell, "column", 3);
 			
-			var title = DKWidget_CreateElement(titleCell, "textarea", "Title"+row);
+			var title = DKWidget_CreateElement(titleCell, "textarea", "title"+row);
 			DKWidget_SetProperty(title, "width", "100%");
 			DKWidget_SetProperty(title, "height", "100%");
 			DKWidget_SetProperty(title, "overflow-x", "hidden");
@@ -169,7 +165,7 @@ function TradePost_UpdateList()
 				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt"));
 			}
 			
-			var descriptionCell = DKWidget_CreateElement(div, "div", "DescriptionCell"+row);
+			var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+row);
 			DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
 			DKWidget_SetProperty(descriptionCell, "width", "220rem");
 			DKWidget_SetProperty(descriptionCell, "height", "80rem");
@@ -177,10 +173,8 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(descriptionCell, "border-width", "1rem");
 			DKWidget_SetProperty(descriptionCell, "border-color", "black");
 			DKWidget_SetProperty(descriptionCell, "border-style", "solid");
-			DKWidget_SetAttribute(descriptionCell, "row", row);
-			DKWidget_SetAttribute(descriptionCell, "column", 3);
 
-			var description = DKWidget_CreateElement(descriptionCell, "textarea", "Description"+row);
+			var description = DKWidget_CreateElement(descriptionCell, "textarea", "description"+row);
 			DKWidget_SetProperty(description, "width", "100%");
 			DKWidget_SetProperty(description, "height", "100%");
 			DKWidget_SetProperty(description, "overflow-x", "hidden");
@@ -193,6 +187,25 @@ function TradePost_UpdateList()
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt")){
 				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt"));
 			}
+			
+			var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+row);
+			DKWidget_SetProperty(catagoryCell, "overflow", "hidden");
+			DKWidget_SetProperty(catagoryCell, "width", "100rem");
+			DKWidget_SetProperty(catagoryCell, "height", "80rem");
+			DKWidget_SetProperty(catagoryCell, "display", "inline-block");
+			DKWidget_SetProperty(catagoryCell, "border-width", "1rem");
+			DKWidget_SetProperty(catagoryCell, "border-color", "black");
+			DKWidget_SetProperty(catagoryCell, "border-style", "solid");
+			
+			var catagory = DKWidget_CreateElement(catagoryCell, "textarea", "catagory"+row);
+			DKWidget_SetProperty(catagory, "width", "100%");
+			DKWidget_SetProperty(catagory, "height", "100%");
+			DKWidget_SetProperty(catagory, "overflow-x", "hidden");
+			DKWidget_SetProperty(catagory, "word-wrap", "break-word");
+			DKWidget_SetProperty(catagory, "border-width", "0rem");
+			DKWidget_SetProperty(catagory, "font-weight", "bold");
+			DKAddEvent(catagory, "keyup", TradePost_OnEvent);
+			DKAddEvent(catagory, "change", TradePost_OnEvent);
 		}
 	}
 }
@@ -202,12 +215,12 @@ function TradePost_ChangeTitle(id, text)
 {
 	DKLog("TradePost_ChangeTitle("+id+", "+text+")\n");
 	
-	if(id.includes("Title")){
-		id = id.replace("Title","");
+	if(id.includes("title")){
+		id = id.replace("title","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/title.txt");
 	}
-	if(id.includes("Description")){
-		id = id.replace("Description","");
+	if(id.includes("description")){
+		id = id.replace("description","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/description.txt");
 	}
 	
