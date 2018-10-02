@@ -14,6 +14,8 @@ function TradePost_Init()
 	DKAddEvent("GLOBAL", "DKCef_OnContextCreated", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", TradePost_OnEvent);
 	
+	//DKAddEvent("GLOBAL", "mousemove", TradePost_OnEvent);
+	
 	DKAddEvent("AddItem", "click", TradePost_OnEvent);
 	DKAddEvent("Craigslist", "click", TradePost_OnEvent);
 	DKAddEvent("Letgo", "click", TradePost_OnEvent);
@@ -293,6 +295,8 @@ function TradePost_Test()
 	
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://post.craigslist.org/c/inl\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+	var ele = document.querySelectorAll("input[value=fso]");
+	DKLog("ELEMENT = "+ele[0]+"\n");
 	
 }
 
