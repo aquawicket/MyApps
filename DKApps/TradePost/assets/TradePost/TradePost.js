@@ -442,7 +442,8 @@ function WaitForElement(selector, time)
 	}
 }
 
-escape = function (str) {
+///////////////////////
+escape = function(str){
   return str
     .replace(/[\\]/g, '\\\\')
     .replace(/[\"]/g, '\\\"')
