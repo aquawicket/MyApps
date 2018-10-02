@@ -8,9 +8,9 @@ function CatagoryMenu_Init()
 	
 	var elements = DKWidget_GetElements("CatagoryMenu.html");
 	var arry = elements .split(",");
-	for(var i=0; i<arry.length; i++){
+	for(var i=0; i<arry.length-1; i++){
 		DKAddEvent(arry[i], "mousedown", CatagoryMenu_OnEvent);
-		//DKLog("added "+arry[i]+"\n")
+		DKLog("added "+arry[i]+"\n")
 	}
 }
 
