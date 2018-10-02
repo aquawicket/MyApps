@@ -317,15 +317,15 @@ function TradePost_Test()
 function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n");
-	if(action == "PostToCraigslist"){
-		
-		var title = "Toaster";
-		var price = "15";
+	
+	if(action == "PostToCraigslist"){	
+		var title = "Sylvania SSD803 DVD VHS Player";
+		var price = "50";
 		var city = "Lake Elsinore";
 		var zip = "92570";
-		var description = "This is a bad ass toaster!";
-		var make = "General Electric";
-		var model = "unknown";
+		var description = "100% Working Sylvania SSD803 DVD VHS Player. MP3 CD Playback capability. Excellent condition with Remote. Great Picture and smooth playback.";
+		var make = "Sylvania";
+		var model = "SSD803";
 		var condition = "new";
 		var email = "aquawicket@gmail.com";
 		var phone = "7146316285";
@@ -342,7 +342,7 @@ function TradePost_PageLoaded(value)
 function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
 	var url = window.location.toString();
-	console.log("url = " + url);
+	//console.log("url = " + url);
 	
 	//first Craigslist post page
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=type") != -1){
@@ -368,16 +368,27 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 		document.querySelector('input[name="sale_manufacturer"]').value = make;
 		document.querySelector('input[name="sale_model"]').value = model;
 		//document.querySelector('select[name="condition"]').value = condition;
-		document.querySelector('input[name="FromEMail"]').value = email;
-		document.querySelector('input[name="ConfirmEMail"]').value = email;
+		//document.querySelector('input[name="FromEMail"]').value = email;
+		//document.querySelector('input[name="ConfirmEMail"]').value = email;
 		document.querySelector('input[name="contact_text_ok"]').click();
 		document.querySelector('input[name="contact_phone"]').value = phone;
 		document.querySelector('input[name="contact_name"]').value = name;
 		document.querySelector('input[name="xstreet0"]').value = street;
 		document.querySelector('input[name="city"]').value = city;
+		document.querySelector('button[name="go"]').click();
 		return;
 	}
 	
-	action = "";
+	//fourth Craigslist post page
+	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=geoverify") != -1){
+		document.querySelector('button[class="continue bigbutton"]').click();
+		return;
+	}
+	
+	//fifth Craigslist post page
+	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=editimage") != -1){
+		//TODO
+		return;
+	}
 }
 
