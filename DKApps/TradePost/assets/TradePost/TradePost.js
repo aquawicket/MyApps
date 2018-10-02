@@ -318,21 +318,33 @@ function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n");
 	if(action == "PostToCraigslist"){
-		var code = LetRunThisInAnotherContext.toString() + "LetRunThisInAnotherContext('test')";
-		DKLog(code);
+		
+		var title = "Toaster";
+		var price = "15";
+		var city = "Lake Elsinore";
+		var zip = "92570";
+		var description = "This is a bad ass toaster!";
+		var make = "General Electric";
+		var model = "unknown";
+		var email = "aquawicket@gmail.com";
+		var phone = "7146316285";
+		var name = "Paul";
+		var street = "Patterson St.";
+		
+		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
+
 		DK_RunJavascript(code, 1);
 	}
 }
 
-/////////////////////////////////////////
-function LetRunThisInAnotherContext(text)
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+function PostToCraigslist(title, price, city, zip, description, make, model, email, phone, name, street)
 {
 	var url = window.location.toString();
 	console.log("url = " + url);
 	
 	//first Craigslist post page
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=type") != -1){
-		//console.log("We are on the first post page");
 		var button = document.querySelector('input[value="fso"]');
 		if(button){ button.click(); }
 		var submit = document.querySelector('button[name="go"]');
@@ -346,6 +358,17 @@ function LetRunThisInAnotherContext(text)
 		if(button){ button.click(); }
 		var submit = document.querySelector('button[name="go"]');
 		if(submit){ submit.click(); }
+		return;
+	}
+	
+	//third Craigslist post page
+	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=edit") != -1){
+		console.log(title);
+		var _title = document.querySelector('input[id="PostingTitle"]');
+		if(_title){ _title.value = title; }
+		var _price = document.querySelector('input[name="price"]');
+		console.log(_price);
+		if(_price){ _price.value = Number(price); }
 		return;
 	}
 	
