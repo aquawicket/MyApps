@@ -326,19 +326,20 @@ function TradePost_PageLoaded(value)
 		var description = "This is a bad ass toaster!";
 		var make = "General Electric";
 		var model = "unknown";
+		var condition = "new";
 		var email = "aquawicket@gmail.com";
 		var phone = "7146316285";
 		var name = "Paul";
 		var street = "Patterson St.";
 		
-		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
+		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
 
 		DK_RunJavascript(code, 1);
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-function PostToCraigslist(title, price, city, zip, description, make, model, email, phone, name, street)
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
 	var url = window.location.toString();
 	console.log("url = " + url);
@@ -367,8 +368,33 @@ function PostToCraigslist(title, price, city, zip, description, make, model, ema
 		var _title = document.querySelector('input[id="PostingTitle"]');
 		if(_title){ _title.value = title; }
 		var _price = document.querySelector('input[name="price"]');
-		console.log(_price);
 		if(_price){ _price.value = Number(price); }
+		var _city = document.querySelector('input[id="GeographicArea"]');
+		if(_city){ _city.value = city; }
+		var _zip = document.querySelector('input[id="postal_code"]');
+		if(_zip){ _zip.value = zip; }
+		var _description = document.querySelector('textarea[id="PostingBody"]');
+		if(_description){ _description.value = description; }
+		var _make = document.querySelector('input[name="sale_manufacturer"]');
+		if(_make){ _make.value = make; }
+		var _model = document.querySelector('input[name="sale_model"]');
+		if(_model){ _model.value = model; }
+		//var _condition = document.querySelector('select[name="condition"]');
+		//if(_condition){ _condition.value = "10"; }	
+		var _email = document.querySelector('input[name="FromEMail"]');
+		if(_email){ _email.value = email; }
+		var _email2 = document.querySelector('input[name="ConfirmEMail"]');
+		if(_email2){ _email2.value = email; }
+		var contact_text = document.querySelector('input[name="contact_text_ok"]');
+		if(contact_text){ contact_text.click(); }
+		var _phone = document.querySelector('input[name="contact_phone"]');
+		if(_phone){ _phone.value = phone; }
+		var _name = document.querySelector('input[name="contact_name"]');
+		if(_name){ _name.value = name; }
+		var _street = document.querySelector('input[name="xstreet0"]');
+		if(_street){ _street.value = street; }
+		var _city = document.querySelector('input[name="city"]');
+		if(_city){ _city.value = city; }
 		return;
 	}
 	
