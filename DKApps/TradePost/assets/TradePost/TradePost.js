@@ -295,9 +295,8 @@ function TradePost_Test()
 	
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://post.craigslist.org/c/inl\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
-	var ele = document.querySelectorAll("input[value=fso]");
-	DKLog("ELEMENT = "+ele[0]+"\n");
-	
+	//var ele = document.querySelectorAll("input[value=fso]");
+	//DKLog("ELEMENT = "+ele[0]+"\n");
 }
 
 ////////////////////////////////////
