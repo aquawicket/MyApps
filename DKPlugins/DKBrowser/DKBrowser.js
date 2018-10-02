@@ -47,7 +47,7 @@ function DKBrowser_Init()
 	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
 	
-	//DKCef_SetUrl("DKBrowser_cef", "https://post.craigslist.org/c/inl", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+	//DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "https://post.craigslist.org/c/inl");
 }
 
 ////////////////////////
@@ -130,7 +130,7 @@ function DKBrowser_OnEvent(event)
 		DKCef_Reload("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
 	}
 	if(DK_Id(event, "HomeButton")){
-		DKCef_SetUrl("DKBrowser_cef", "http://google.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "http://google.com");
 	}
 	if(DK_Id(event, "Textbox")){
 		DKCef_RemoveFocus("DKBrowser_cef");
@@ -141,7 +141,7 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Id(event, "GoButton")){
 		var url = DKWidget_GetValue("Textbox");
-		DKCef_SetUrl("DKBrowser_cef", url, DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), url);
 	}
 	if(DK_Type(event, "DKCef_OnLoadingStateChange")){
 		var num = parseInt(DK_GetValue(event));
@@ -167,7 +167,7 @@ function DKBrowser_OnEvent(event)
 	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
 		DKLog("DKCef_OnQueueNewBrowser \n");
 		DKBrowser_NewTab();
-		DKCef_SetUrl("DKBrowser_cef", DK_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DK_GetValue(event));
 		DKBrowser_SetUrlBar(DK_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"))
 		return;
 	}
@@ -219,7 +219,7 @@ function DKBrowser_OnLoadError(error)
 		var url = DKWidget_GetValue("Textbox");
 		url = url.replace(" ", "%20");
 		var search = "https://www.google.com/?gws_rd=ssl#q=" + url;
-		DKCef_SetUrl("DKBrowser_cef", search, DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), search);
 	}
 }
 
@@ -245,14 +245,14 @@ function DKBrowser_ProcessKey(key)
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
 		//DKLog("Homepage\n");
-		DKCef_SetUrl("DKBrowser_cef", "http://google.com", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "http://google.com");
 	}
 	
 	var focused = DKWidget_GetFocusElement();
 	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(key == 13 && (focused == "Textbox")){
 		var url = DKWidget_GetValue("Textbox");
-		DKCef_SetUrl("DKBrowser_cef", url, DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), url);
 	}
 }
 

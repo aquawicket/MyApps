@@ -78,23 +78,23 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://inlandempire.craigslist.org/d/for-sale/search/sss\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
 	}
 	if(DK_Id(event, "Letgo")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://us.letgo.com/en\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
 	}
 	if(DK_Id(event, "OfferUp")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://offerup.com\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://offerup.com');");
 	}
 	if(DK_Id(event, "Facebook")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://www.facebook.com/marketplace\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.facebook.com/marketplace');");
 	}
 	if(DK_Id(event, "Ebay")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://www.ebay.com\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
 	}
 	if(DK_Id(event, "Test")){
 		TradePost_Test();
@@ -339,7 +339,7 @@ function TradePost_PostItem(itemNum)
 	DKLog("TradePost_PostItem("+itemNum+")\n");
 	action = "PostToCraigslist";
 	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://post.craigslist.org/c/inl\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
+	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
 }
 
 ////////////////////////////////////
