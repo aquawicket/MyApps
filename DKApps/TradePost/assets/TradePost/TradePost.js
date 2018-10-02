@@ -350,7 +350,12 @@ function TradePost_PageLoaded(value)
 	var url = DKCef_GetUrl(0, 1);
 	DKLog("url = "+url);
 	
-	if(action == "PostToCraigslist"){	
+	if(action == "PostToCraigslist" && url.indexOf("s=preview") != -1){
+		action = "";
+	}
+	
+	if(action == "PostToCraigslist"){
+		DKLog("RUNNING PostToCraigslist");
 		var title = "Sylvania SSD803 DVD VHS Player";
 		var price = "50";
 		var city = "Lake Elsinore";
