@@ -318,9 +318,7 @@ function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n");
 	if(action == "PostToCraigslist"){
-
 		//DK_RunJavascript("console.log(\"test\");", 1);
-
 		var code = LetRunThisInAnotherContext.toString() + "LetRunThisInAnotherContext('test')";
 		DKLog(code);
 		DK_RunJavascript(code, 1);
@@ -332,7 +330,16 @@ function TradePost_PageLoaded(value)
 /////////////////////////////////////////
 function LetRunThisInAnotherContext(text)
 {
-	console.log("We are running LetRunThisInAnotherContext");
-	console.log("The text variable = "+text);
+	var url = window.location.toString();
+	console.log("url = " + url);
+	
+	//first Craigslist post page
+	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=type") != -1){
+		console.log("We are on the first post page");
+		var button = document.querySelector('input[value=fso]');
+		if(button){ button.click(); }
+		var submit = document.querySelector('button[name=go]');
+		if(submit){ submit.click(); }
+	}
 }
 
