@@ -389,6 +389,8 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=editimage") != -1){
 		//TODO - add images
 		document.querySelector('button[class="done bigbutton"]').click();
+		
+		//TODO - need to find a way to turn off action "PostToCraigslist" now
 		return;
 	}
 }
