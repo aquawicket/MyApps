@@ -55,6 +55,11 @@ function TradePost_OnEvent(event)
 		TradePost_UploadImage(DK_GetValue(event));
 		return;
 	}
+	if(DK_IdLike(event, "post")){
+		currentItem = DK_GetId(event).replace("post","");
+		TradePost_PostItem(currentItem);
+		return;
+	}
 	if(DK_IdLike(event, "catagory")){
 		currentItem = DK_GetId(event).replace("catagory","");
 		DKCreate("CatagoryMenu.js", function(){
@@ -249,7 +254,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(priceCell, "height", "80rem");
 			DKWidget_SetProperty(priceCell, "text-align", "center");
 			DKWidget_SetProperty(priceCell, "border-width", "1rem");
-			//DKWidget_SetProperty(priceCell, "border-right-width", "0rem");
+			DKWidget_SetProperty(priceCell, "border-right-width", "0rem");
 			DKWidget_SetProperty(priceCell, "border-color", "black");
 			DKWidget_SetProperty(priceCell, "border-style", "solid");
 			
@@ -266,6 +271,25 @@ function TradePost_UpdateList()
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt")){
 				DKWidget_SetValue(price, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt"));
 			}
+			
+			var postCell = DKWidget_CreateElement(div, "div", "postCell"+row);
+			DKWidget_SetProperty(postCell, "display", "inline-block");
+			DKWidget_SetProperty(postCell, "overflow", "hidden");
+			DKWidget_SetProperty(postCell, "width", "70rem");
+			DKWidget_SetProperty(postCell, "height", "80rem");
+			DKWidget_SetProperty(postCell, "text-align", "center");
+			DKWidget_SetProperty(postCell, "border-width", "1rem");
+			//DKWidget_SetProperty(postCell, "border-right-width", "0rem");
+			DKWidget_SetProperty(postCell, "border-color", "black");
+			DKWidget_SetProperty(postCell, "border-style", "solid");
+			
+			var post = DKWidget_CreateElement(postCell, "button", "post"+row);
+			DKWidget_SetProperty(post, "display", "inline-block");
+			DKWidget_SetProperty(post, "width", "90%");
+			DKWidget_SetProperty(post, "height", "25rem");
+			DKWidget_SetProperty(post, "overflow-x", "hidden");
+			DKWidget_SetInnerHtml(post, "Post");
+			DKAddEvent(post, "click", TradePost_OnEvent);
 		}
 	}
 }
@@ -307,7 +331,12 @@ function TradePost_UploadImage(file)
 function TradePost_Test()
 {
 	DKLog("TradePost_Test\n");
-	
+}
+
+////////////////////////////////////
+function TradePost_PostItem(itemNum)
+{
+	DKLog("TradePost_PostItem("+itemNum+")\n");
 	action = "PostToCraigslist";
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://post.craigslist.org/c/inl\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
@@ -392,6 +421,20 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 		
 		//TODO - need to find a way to turn off action "PostToCraigslist" now
 		return;
+	}
+}
+
+
+// Wait for element to exist
+function WaitForElement(selector, time){
+	if(document.querySelector(selector) != null){
+		alert("The element is displayed, you can put your code instead of this alert.")
+		return;
+	}
+	else{
+		setTimeout(function(){
+			waitForElementToDisplay(selector, time);
+		}, time);
 	}
 }
 
