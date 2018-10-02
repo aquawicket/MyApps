@@ -9,6 +9,7 @@ function TradePost_Init()
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnLoadError", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnLoadEnd", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_ContextMenu", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnContextCreated", TradePost_OnEvent);
