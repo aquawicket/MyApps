@@ -327,7 +327,7 @@ function TradePost_PageLoaded(value)
 		var make = "Sylvania";
 		var model = "SSD803";
 		var condition = "new";
-		var email = "aquawicket@gmail.com";
+		var email = "dummy@email.com";
 		var phone = "7146316285";
 		var name = "Paul";
 		var street = "Patterson St.";
@@ -359,7 +359,7 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	}
 	
 	//third Craigslist post page
-	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=edit") != -1){
+	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=edit") != -1 && url.indexOf("s=editimage") == -1){
 		document.querySelector('input[id="PostingTitle"]').value = title;
 		document.querySelector('input[name="price"]').value = Number(price);
 		document.querySelector('input[id="GeographicArea"]').value = city;
@@ -368,8 +368,8 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 		document.querySelector('input[name="sale_manufacturer"]').value = make;
 		document.querySelector('input[name="sale_model"]').value = model;
 		//document.querySelector('select[name="condition"]').value = condition;
-		//document.querySelector('input[name="FromEMail"]').value = email;
-		//document.querySelector('input[name="ConfirmEMail"]').value = email;
+		document.querySelector('input[name="FromEMail"]').value = email;
+		document.querySelector('input[name="ConfirmEMail"]').value = email;
 		document.querySelector('input[name="contact_text_ok"]').click();
 		document.querySelector('input[name="contact_phone"]').value = phone;
 		document.querySelector('input[name="contact_name"]').value = name;
@@ -387,7 +387,8 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	
 	//fifth Craigslist post page
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=editimage") != -1){
-		//TODO
+		//TODO - add images
+		document.querySelector('button[class="done bigbutton"]').click();
 		return;
 	}
 }
