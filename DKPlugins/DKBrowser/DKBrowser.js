@@ -53,6 +53,15 @@ function DKBrowser_Init()
 ////////////////////////
 function DKBrowser_End()
 {
+	DKLog("DKBrowser_End()\n");
+	
+	//close all browsers
+	while(DKCef_GetBrowsers("DKBrowser_cef") > 1){
+		DKLog("DKBrowserEnd(): closing browser "+(DKCef_GetBrowsers("DKBrowser_cef")-1)+"\n");
+		DKCef_CloseBrowser("DKBrowser_cef", DKCef_GetBrowsers("DKBrowser_cef")-1);
+	}
+	DKCef_CloseBrowser("DKBrowser_cef", 0); //close first browser
+	
 	DKRemoveEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
 	DKRemoveEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
 	DKRemoveEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
@@ -61,6 +70,7 @@ function DKBrowser_End()
 	DKRemoveEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
 	DKRemoveEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
 	DKRemoveEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
+	
 	DKClose("DKBrowser.html");
 }
 
