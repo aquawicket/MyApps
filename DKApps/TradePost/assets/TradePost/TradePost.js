@@ -1,4 +1,5 @@
 var currentItem;
+var action;
 
 /////////////////////////
 function TradePost_Init()
@@ -46,6 +47,10 @@ function TradePost_OnEvent(event)
 {	
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 
+	if(DK_Type(event, "DKCef_OnLoadEnd")){
+		TradePost_PageLoaded(DK_GetValue(event));
+		return;
+	}
 	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
 		TradePost_UploadImage(DK_GetValue(event));
 		return;
@@ -289,24 +294,32 @@ function TradePost_ChangeTitle(id, text)
 	
 }
 
+////////////////////////////////////
+function TradePost_UploadImage(file)
+{
+	if(!file){ return; }
+	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg", true);
+	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
+}
+
+
 /////////////////////////
 function TradePost_Test()
 {
 	DKLog("TradePost_Test\n");
 	
+	action = "PostToCraigslist";
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl(\"DKBrowser_cef\", \"https://post.craigslist.org/c/inl\", DKCef_GetCurrentBrowser(\"DKBrowser_cef\"));");
-	//var ele = document.querySelectorAll("input[value=fso]");
-	//DKLog("ELEMENT = "+ele[0]+"\n");
 }
 
 ////////////////////////////////////
-function TradePost_UploadImage(file)
+function TradePost_PageLoaded(value)
 {
-	//DKLog("TradePost_UploadImage("+file+")\n");
-	//DKLog("currentItem = "+currentItem+"\n");
-	
-	if(!file){ return; }
-	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg", true);
-	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
+	DKLog("TradePost_PageLoaded("+value+")\n");
+	//if(action == "PostToCraigslist"){
+		DK_RunJavascript("console.log(\"test\");");
+		action = "";
+	//}
 }
+
