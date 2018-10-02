@@ -320,12 +320,8 @@ function TradePost_PageLoaded(value)
 	if(action == "PostToCraigslist"){
 
 		//DK_RunJavascript("console.log(\"test\");", 1);
-		
-		//var func = LetRunThisInAnotherContext("test");
+
 		var code = LetRunThisInAnotherContext.toString() + "LetRunThisInAnotherContext('test')";
-		//code = code.replace("function(){","");
-		//code = code.replace("}", "");
-		
 		DKLog(code);
 		DK_RunJavascript(code, 1);
 		
