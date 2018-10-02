@@ -29,12 +29,12 @@ function CatagoryMenu_OnEvent(event)
 	DKLog("CatagoryMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(!DK_Id(event,"GLOBAL")){
-		DKWidget_SetValue("catagory"+UploadId, DK_GetId(event));
-		DKSendEvent("catagory"+UploadId, "change");
+		DKWidget_SetValue("catagory"+currentItem, DK_GetId(event));
+		DKSendEvent("catagory"+currentItem, "change");
 	}
 	if(DK_Id(event,"none")){
-		DKWidget_SetValue("catagory"+UploadId, "");
-		DKSendEvent("catagory"+UploadId, "change");
+		DKWidget_SetValue("catagory"+currentItem, "");
+		DKSendEvent("catagory"+currentItem, "change");
 	}
 	
 	DKClose("CatagoryMenu.js");

@@ -1,4 +1,4 @@
-var UploadId;
+var currentItem;
 
 /////////////////////////
 function TradePost_Init()
@@ -51,14 +51,14 @@ function TradePost_OnEvent(event)
 		return;
 	}
 	if(DK_IdLike(event, "catagory")){
-		UploadId = DK_GetId(event).replace("catagory","");
+		currentItem = DK_GetId(event).replace("catagory","");
 		DKCreate("CatagoryMenu.js", function(){
 			DKMenu_ValidatePosition("CatagoryMenu.html");
 		});
 		return;
 	}
 	if(DK_IdLike(event, "imageCell")){
-		UploadId = DK_GetId(event).replace("imageCell","");
+		currentItem = DK_GetId(event).replace("imageCell","");
 		DKCef_FileDialog("DKBrowser_cef");
 		return;
 	}
@@ -304,9 +304,9 @@ function TradePost_Test()
 function TradePost_UploadImage(file)
 {
 	//DKLog("TradePost_UploadImage("+file+")\n");
-	//DKLog("UploadId = "+UploadId+"\n");
+	//DKLog("currentItem = "+currentItem+"\n");
 	
 	if(!file){ return; }
-	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg", true);
-	DKWidget_SetAttribute("img"+UploadId, "src", DKAssets_LocalAssets()+"Items/Item"+UploadId+"/Img0.jpg?"+new Date().getTime());
+	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg", true);
+	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
 }
