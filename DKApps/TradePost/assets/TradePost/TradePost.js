@@ -357,8 +357,8 @@ function TradePost_PageLoaded(value)
 		var city = "Lake Elsinore";
 		var zip = "92570";
 		var description = document.getElementById("description"+currentItem).value;
-		var make = "Sylvania";
-		var model = "SSD803";
+		var make = "";
+		var model = "";
 		var condition = "new";
 		var email = "dummy@email.com";
 		var phone = "7146316285";
