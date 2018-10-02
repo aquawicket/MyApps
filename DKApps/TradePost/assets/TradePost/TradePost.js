@@ -366,7 +366,7 @@ function TradePost_PageLoaded(value)
 		
 		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
 
-		DK_RunJavascript(0, 1, code);
+		DKCef_RunJavascript(0, 1, code);
 	}
 }
 
