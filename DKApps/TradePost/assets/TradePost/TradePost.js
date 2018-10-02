@@ -317,9 +317,9 @@ function TradePost_Test()
 function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n");
-	//if(action == "PostToCraigslist"){
-		DK_RunJavascript("console.log(\"test\");");
+	if(action == "PostToCraigslist"){
+		DK_RunJavascript("console.log(\"test\");", 1);
 		action = "";
-	//}
+	}
 }
 
