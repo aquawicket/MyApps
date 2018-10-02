@@ -318,8 +318,25 @@ function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n");
 	if(action == "PostToCraigslist"){
-		DK_RunJavascript("console.log(\"test\");", 1);
+
+		//DK_RunJavascript("console.log(\"test\");", 1);
+		
+		//var func = LetRunThisInAnotherContext("test");
+		var code = LetRunThisInAnotherContext.toString() + "LetRunThisInAnotherContext('test')";
+		//code = code.replace("function(){","");
+		//code = code.replace("}", "");
+		
+		DKLog(code);
+		DK_RunJavascript(code, 1);
+		
 		action = "";
 	}
+}
+
+/////////////////////////////////////////
+function LetRunThisInAnotherContext(text)
+{
+	console.log("We are running LetRunThisInAnotherContext");
+	console.log("The text variable = "+text);
 }
 
