@@ -356,9 +356,10 @@ function TradePost_PageLoaded(value)
 		var price = document.getElementById("price"+currentItem).value.replace("$","");
 		var city = "Lake Elsinore";
 		var zip = "92570";
-		var description = document.getElementById("description"+currentItem).value;
-		var make = "";
-		var model = "";
+		var description = escape(document.getElementById("description"+currentItem).value);
+		DKLog(description);
+		var make = " ";
+		var model = " ";
 		var condition = "new";
 		var email = "dummy@email.com";
 		var phone = "7146316285";
@@ -441,3 +442,14 @@ function WaitForElement(selector, time)
 	}
 }
 
+escape = function (str) {
+  return str
+    .replace(/[\\]/g, '\\\\')
+    .replace(/[\"]/g, '\\\"')
+    .replace(/[\/]/g, '\\/')
+    .replace(/[\b]/g, '\\b')
+    .replace(/[\f]/g, '\\f')
+    .replace(/[\n]/g, '\\n')
+    .replace(/[\r]/g, '\\r')
+    .replace(/[\t]/g, '\\t');
+};
