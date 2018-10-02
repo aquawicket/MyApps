@@ -347,6 +347,9 @@ function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n");
 	
+	var url = DKCef_GetUrl(0, 1);
+	DKLog("url = "+url);
+	
 	if(action == "PostToCraigslist"){	
 		var title = "Sylvania SSD803 DVD VHS Player";
 		var price = "50";
@@ -363,7 +366,7 @@ function TradePost_PageLoaded(value)
 		
 		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
 
-		DK_RunJavascript(code, 1);
+		DK_RunJavascript(0, 1, code);
 	}
 }
 
