@@ -337,9 +337,14 @@ function TradePost_Test()
 function TradePost_PostItem(itemNum)
 {
 	DKLog("TradePost_PostItem("+itemNum+")\n");
-	action = "PostToCraigslist";
+	
+	//action = "PostToCraigslist";
+	//DK_QueueDuktape("DKBrowser_NewTab();");
+	//DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
+	
+	action = "PostToLetGo";
 	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
+	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
 }
 
 ////////////////////////////////////
@@ -368,6 +373,27 @@ function TradePost_PageLoaded(value)
 		
 		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
 
+		DKCef_RunJavascript(0, 1, code);
+	}
+	
+	if(action == "PostToLetGo"){
+		//TODO - create a condition to quit here
+		var title = document.getElementById("title"+currentItem).value;
+		var price = document.getElementById("price"+currentItem).value.replace("$","");
+		var city = "Lake Elsinore";
+		var zip = "92570";
+		var description = escape(document.getElementById("description"+currentItem).value);
+		DKLog(description);
+		var make = " ";
+		var model = " ";
+		var condition = "new";
+		var email = "dummy@email.com";
+		var phone = "7146316285";
+		var name = "Paul";
+		var street = "Patterson St.";
+		
+		var code = PostToLetGo.toString() + "PostToLetGo('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
+		
 		DKCef_RunJavascript(0, 1, code);
 	}
 }
@@ -426,19 +452,28 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	}
 }
 
-
-// Wait for element to exist
-///////////////////////////////////////
-function WaitForElement(selector, time)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
-	if(document.querySelector(selector) != null){
-		alert("The element is displayed, you can put your code instead of this alert.")
+	function WaitForElement(selector, time, callback){
+		if(document.querySelector(selector) != null){
+			callback && callback();
+			return;
+		}
+		else{
+			setTimeout(function(){
+				WaitForElement(selector, time);
+			}, time);
+		}
+	};
+
+	var url = window.location.toString();
+	
+	if(url.indexOf("https://us.letgo.com/en") != -1){
+		WaitForElement('button[data-test="chat-button"]', 0, function(){ 
+			document.querySelector('button[data-test="sell-your-stuff-button"]').click();
+		});
 		return;
-	}
-	else{
-		setTimeout(function(){
-			waitForElementToDisplay(selector, time);
-		}, time);
 	}
 }
 
