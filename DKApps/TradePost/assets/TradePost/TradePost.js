@@ -350,17 +350,13 @@ function TradePost_PageLoaded(value)
 	var url = DKCef_GetUrl(0, 1);
 	DKLog("url = "+url);
 	
-	if(action == "PostToCraigslist" && url.indexOf("s=preview") != -1){
-		action = "";
-	}
-	
 	if(action == "PostToCraigslist"){
-		DKLog("RUNNING PostToCraigslist");
-		var title = "Sylvania SSD803 DVD VHS Player";
-		var price = "50";
+		if(url.indexOf("s=preview") != -1){ action = ""; return;} //End posting in on the preview screen
+		var title = document.getElementById("title"+currentItem).value;
+		var price = document.getElementById("price"+currentItem).value.replace("$","");
 		var city = "Lake Elsinore";
 		var zip = "92570";
-		var description = "100% Working Sylvania SSD803 DVD VHS Player. MP3 CD Playback capability. Excellent condition with Remote. Great Picture and smooth playback.";
+		var description = document.getElementById("description"+currentItem).value;
 		var make = "Sylvania";
 		var model = "SSD803";
 		var condition = "new";
@@ -379,23 +375,22 @@ function TradePost_PageLoaded(value)
 function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
 	var url = window.location.toString();
-	//console.log("url = " + url);
 	
-	//first Craigslist post page
+	//Craigslist post page - type
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=type") != -1){
 		document.querySelector('input[value="fso"]').click();
 		document.querySelector('button[name="go"]').click();
 		return;
 	}
 	
-	//second Craigslist post page
+	//Craigslist post page - Catagory
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=cat") != -1){
 		document.querySelector('input[value="96"]').click();
 		document.querySelector('button[name="go"]').click();
 		return;
 	}
 	
-	//third Craigslist post page
+	//Craigslist post page - Edit
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=edit") != -1 && url.indexOf("s=editimage") == -1){
 		document.querySelector('input[id="PostingTitle"]').value = title;
 		document.querySelector('input[name="price"]').value = Number(price);
@@ -416,25 +411,25 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 		return;
 	}
 	
-	//fourth Craigslist post page
+	//Craigslist post page - Location
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=geoverify") != -1){
 		document.querySelector('button[class="continue bigbutton"]').click();
 		return;
 	}
 	
-	//fifth Craigslist post page
+	//Craigslist post page - Edit Image
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=editimage") != -1){
 		//TODO - add images
 		document.querySelector('button[class="done bigbutton"]').click();
-		
-		//TODO - need to find a way to turn off action "PostToCraigslist" now
 		return;
 	}
 }
 
 
 // Wait for element to exist
-function WaitForElement(selector, time){
+///////////////////////////////////////
+function WaitForElement(selector, time)
+{
 	if(document.querySelector(selector) != null){
 		alert("The element is displayed, you can put your code instead of this alert.")
 		return;
