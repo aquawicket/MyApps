@@ -318,12 +318,9 @@ function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n");
 	if(action == "PostToCraigslist"){
-		//DK_RunJavascript("console.log(\"test\");", 1);
 		var code = LetRunThisInAnotherContext.toString() + "LetRunThisInAnotherContext('test')";
 		DKLog(code);
 		DK_RunJavascript(code, 1);
-		
-		action = "";
 	}
 }
 
@@ -336,16 +333,22 @@ function LetRunThisInAnotherContext(text)
 	//first Craigslist post page
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=type") != -1){
 		//console.log("We are on the first post page");
-		var button = document.querySelector('input[value=fso]');
+		var button = document.querySelector('input[value="fso"]');
 		if(button){ button.click(); }
-		var submit = document.querySelector('button[name=go]');
+		var submit = document.querySelector('button[name="go"]');
 		if(submit){ submit.click(); }
+		return;
 	}
 	
 	//second Craigslist post page
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=cat") != -1){
-		var button = document.querySelector('input[value=96]');
+		var button = document.querySelector('input[value="96"]');
 		if(button){ button.click(); }
+		var submit = document.querySelector('button[name="go"]');
+		if(submit){ submit.click(); }
+		return;
 	}
+	
+	action = "";
 }
 
