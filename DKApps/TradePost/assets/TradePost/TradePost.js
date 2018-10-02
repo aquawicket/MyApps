@@ -335,11 +335,17 @@ function LetRunThisInAnotherContext(text)
 	
 	//first Craigslist post page
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=type") != -1){
-		console.log("We are on the first post page");
+		//console.log("We are on the first post page");
 		var button = document.querySelector('input[value=fso]');
 		if(button){ button.click(); }
 		var submit = document.querySelector('button[name=go]');
 		if(submit){ submit.click(); }
+	}
+	
+	//second Craigslist post page
+	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=cat") != -1){
+		var button = document.querySelector('input[value=96]');
+		if(button){ button.click(); }
 	}
 }
 
