@@ -58,8 +58,10 @@ function DKBrowser_End()
 	//close all browsers
 	while(DKCef_GetBrowsers("DKBrowser_cef") > 1){
 		DKLog("DKBrowserEnd(): closing browser "+(DKCef_GetBrowsers("DKBrowser_cef")-1)+"\n");
+		DKCef_CloseDevTools("DKBrowser_cef", DKCef_GetBrowsers("DKBrowser_cef")-1);
 		DKCef_CloseBrowser("DKBrowser_cef", DKCef_GetBrowsers("DKBrowser_cef")-1);
 	}
+	DKCef_CloseDevTools("DKBrowser_cef", 0);
 	DKCef_CloseBrowser("DKBrowser_cef", 0); //close first browser
 	
 	DKRemoveEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
