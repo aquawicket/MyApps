@@ -56,6 +56,7 @@ function DKBrowser_End()
 	DKLog("DKBrowser_End()\n");
 	
 	//close all browsers
+	/*
 	while(DKCef_GetBrowsers("DKBrowser_cef") > 1){
 		DKLog("DKBrowserEnd(): closing browser "+(DKCef_GetBrowsers("DKBrowser_cef")-1)+"\n");
 		DKCef_CloseDevTools("DKBrowser_cef", DKCef_GetBrowsers("DKBrowser_cef")-1);
@@ -63,6 +64,7 @@ function DKBrowser_End()
 	}
 	DKCef_CloseDevTools("DKBrowser_cef", 0);
 	DKCef_CloseBrowser("DKBrowser_cef", 0); //close first browser
+	*/
 	
 	DKRemoveEvents(DKBrowser_OnEvent);
 	//DKRemoveEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
@@ -74,7 +76,7 @@ function DKBrowser_End()
 	//DKRemoveEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
 	//DKRemoveEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
 	
-	DKClose("DKBrowser.html");
+	DKClose("DKBrowser/DKBrowser.html");
 }
 
 /////////////////////////////////
@@ -169,9 +171,7 @@ function DKBrowser_OnEvent(event)
 	if(DK_Type(event, "DKCef_OnLoadEnd")){
 		var num = parseInt(DK_GetValue(event));
 		var url = DKCef_GetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
-		if(url){
-			//TEST(url, num);
-		}
+		//TODO
 		return;
 	}
 	if(DK_Type(event, "DKCef_OnLoadError")){
@@ -338,18 +338,4 @@ function DKBrowser_CloseTab(num)
 	}
 	DKCef_CloseBrowser("DKBrowser_cef", num);
 	DKBrowser_SelectTab(0);
-}
-
-
-///////////////////////
-function TEST(url, num)
-{
-	//DKLog("TEST("+url+", "+num+")\n");
-	
-	if(url.indexOf("https://post.craigslist.org") !== -1 && url.indexOf("s=type") !== -1 ){
-		DKLog("You are on the Craigslist - Post page\n");
-		
-		DKCef_RunJavascript("DKBrowser_cef", "var ele = document.querySelectorAll('[value=\"fso\"]'); ele[0].click();");
-		DKCef_RunJavascript("DKBrowser_cef", "var ele = document.querySelectorAll('[value=\"Continue\"]'); ele[0].click();");
-	}
 }

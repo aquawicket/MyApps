@@ -6,12 +6,12 @@ DKWidget_SetProperty("DKBrowser.html", "width", "100%");
 DKWidget_SetProperty("DKBrowser.html", "height", "100%");
 DKCreate("DKTray/DKTray.js");
 DKCreate("DKDebug/DKDebug.js");
-DKCreate("DKAdmin/DKAdmin.js", function(){
-	//DKFrame_Widget("DKAdmin/DKAdmin.html");
-});
+DKCreate("DKAdmin/DKAdmin.js");
+DKWidget_SetProperty("body", "background-color", "rgb:(120,120,120)");
+
 //DKCreate("DKSDLText");
 //DK_SetFramerate(120);
-DKCreate("DKUpdate");
+//DKCreate("DKUpdate");
 
 DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DKAssets_LocalAssets()+"TradePost.html");
 
