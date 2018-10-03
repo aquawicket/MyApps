@@ -4,8 +4,8 @@ var action;
 /////////////////////////
 function TradePost_Init()
 {
-	DKCreate("TradePost.html");
-	DKCreate("../DKGui/DKMenu.js", function(){});
+	DKCreate("TradePost/TradePost.html");
+	DKCreate("DKGui/DKMenu.js", function(){});
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", TradePost_OnEvent);
@@ -40,7 +40,7 @@ function TradePost_Init()
 function TradePost_End()
 {
 	DKRemoveEvents(TradePost_OnEvent);
-	DKClose("TradePost.html");
+	DKClose("TradePost/TradePost.html");
 }
 
 /////////////////////////////////
@@ -72,7 +72,7 @@ function TradePost_OnEvent(event)
 		currentItem = DK_GetId(event).replace("imageCell","");
 		DKCreate("ItemImages.js", function(){
 			ItemImages_SetItem(currentItem);
-			DKCreate("../DKGui/DKFrame.js", function(){
+			DKCreate("DKGui/DKFrame.js", function(){
 				DKFrame_Widget("ItemImages.html");
 			});
 		});

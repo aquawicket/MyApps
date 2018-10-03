@@ -5,7 +5,7 @@ var ItemImages_imageNum = 0;
 function ItemImages_Init()
 {
 	//DKLog("ItemImages_Init()\n");
-	DKCreate("ItemImages.html");
+	DKCreate("TradePost/ItemImages.html");
 	
 	DKAddEvent("ItemImages_upload", "click", ItemImages_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", ItemImages_OnEvent);
@@ -16,7 +16,7 @@ function ItemImages_End()
 {
 	//DKLog("ItemImages_End()\n");
 	DKRemoveEvents(ItemImages_OnEvent);
-	DKClose("ItemImages.html");
+	DKClose("TradePost/ItemImages.html");
 }
 
 //////////////////////////////////
@@ -41,8 +41,8 @@ function ItemImages_OnEvent(event)
 		ItemImages_UploadImage(DK_GetValue(event));
 		return;
 	}
-	if(DK_Type(event, "ItemImages_delete")){
-		//TODO
+	if(DK_Id(event, "ItemImages_delete")){
+		ItemImages_Delete(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg");
 	}
 }
 
@@ -110,4 +110,21 @@ function ItemImages_UploadImage(file)
 	ItemImages_imageNum = i;
 	ItemImages_Update();
 	DKWidget_SetAttribute("img"+ItemImages_itemNum, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img0.jpg?"+new Date().getTime());
+}
+
+////////////////////////////////
+function ItemImages_Delete(file)
+{
+	DKLog("ItemImages_Delete("+file+")\n");
+	
+	DKCreate("DKMessage/DKMessage.js", function(){
+		DKFrame_Widget("DKMessage/DKMessage.html");
+		DKMessage_Confirm("delete this file?", function(rval){
+			//DKLog("DKMessage_Confirm(): rval = "+rval+"\n");
+			if(rval == true){
+				DKFile_Delete(file);
+				ItemImages_imageNum = 0;
+			}
+		});
+	});
 }

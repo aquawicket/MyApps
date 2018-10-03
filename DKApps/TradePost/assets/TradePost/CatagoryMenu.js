@@ -3,7 +3,7 @@ function CatagoryMenu_Init()
 {
 	//DKLog("CatagoryMenu_Init()\n");
 	
-	DKCreate("CatagoryMenu.html");
+	DKCreate("TradePost/CatagoryMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", CatagoryMenu_OnEvent);
 	
 	var elements = DKWidget_GetElements("CatagoryMenu.html");
@@ -20,7 +20,7 @@ function CatagoryMenu_End()
 	//DKLog("CatagoryMenu_End()\n");
 	
 	DKRemoveEvents(CatagoryMenu_OnEvent);
-	DKClose("CatagoryMenu.html");
+	DKClose("TradePost/CatagoryMenu.html");
 }
 
 /////////////////////////////////////

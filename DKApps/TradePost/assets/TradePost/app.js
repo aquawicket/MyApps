@@ -1,1 +1,0 @@
-DKCreate("TradePost.js", function(){});
