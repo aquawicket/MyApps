@@ -482,10 +482,12 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 			document.querySelector('button[data-test="sell-your-stuff-button"]').click();
 			WaitForElement('div[class="dropZoneDefault"]', 0, function(){
 				console.log("found dropZone\n");
-				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
-				var y = Number(DKWindow_GetY()) + 320;
-				DK_SetMousePos(x,y);
-				DK_LeftClick();
+				//var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
+				//var y = Number(DKWindow_GetY()) + 320;
+				//DK_SetMousePos(x,y);
+				//DK_LeftClick();
+				
+				//Let's drag and drop the images
 			});
 		});
 		return;
