@@ -9,7 +9,8 @@ DKCreate("DKDebug/DKDebug.js");
 DKCreate("DKAdmin/DKAdmin.js");
 DKWidget_SetProperty("body", "background-color", "rgb:(120,120,120)");
 
-DKCreate("DKSDLText");
+DKCreate("DKSDLText"); //This currently fixed cef redraw issues.
+
 //DK_SetFramerate(120);
 //DKCreate("DKUpdate");
 
