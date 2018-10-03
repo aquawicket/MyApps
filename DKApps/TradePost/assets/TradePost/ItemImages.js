@@ -63,6 +63,13 @@ function ItemImages_Update()
 	DKWidget_SetProperty(img, "position", "absolute");
 	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg")){
 		DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg?"+new Date().getTime());
+		
+		var trash = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_delete");
+		DKWidget_SetAttribute(trash, "src", "trash.png");
+		DKWidget_SetProperty(trash, "position", "absolute");
+		DKWidget_SetProperty(trash, "bottom", "100rem");
+		DKWidget_SetProperty(trash, "right", "10rem");
+		DKAddEvent(trash, "click", ItemImages_OnEvent);
 	}
 	
 	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum-1)+".jpg")){
@@ -72,7 +79,7 @@ function ItemImages_Update()
 		DKWidget_SetProperty(leftArrow, "position", "absolute");
 		DKWidget_SetProperty(leftArrow, "top", "30%");
 		DKWidget_SetProperty(leftArrow, "height", "20%");
-		DKAddEvent("ItemImages_left", "click", ItemImages_OnEvent);
+		DKAddEvent(leftArrow, "click", ItemImages_OnEvent);
 	}
 	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum+1)+".jpg")){
 		DKLog("rightArrow\n");
@@ -82,7 +89,7 @@ function ItemImages_Update()
 		DKWidget_SetProperty(rightArrow, "top", "30%");
 		DKWidget_SetProperty(rightArrow, "height", "20%");
 		DKWidget_SetProperty(rightArrow, "right", "0px");
-		DKAddEvent("ItemImages_right", "click", ItemImages_OnEvent);
+		DKAddEvent(rightArrow, "click", ItemImages_OnEvent);
 	}
 }
 
