@@ -346,7 +346,8 @@ function TradePost_Test()
 	//DKLog("###### TEST ######\n");
 	//DKLog("###### TEST ######\n");
 	
-	DK_RunDuktape('DKCreate("DKThreadPool");DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
+	DK_RunDuktape('DKCreate("DKGit/DKGit.js");');
+	DK_RunDuktape('DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
 }
 
 ////////////////////////////////////
