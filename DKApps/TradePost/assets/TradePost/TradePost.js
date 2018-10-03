@@ -70,7 +70,12 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "imageCell")){
 		currentItem = DK_GetId(event).replace("imageCell","");
-		DKCef_FileDialog("DKBrowser_cef");
+		//DKCef_FileDialog("DKBrowser_cef");
+		DKCreate("ItemImages.js", function(){
+			DKCreate("../DKGui/DKFrame.js", function(){
+				DKFrame_Widget("ItemImages.html");
+			});
+		});
 		return;
 	}
 	if(DK_Id(event, "AddItem")){
