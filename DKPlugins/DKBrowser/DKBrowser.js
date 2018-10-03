@@ -317,6 +317,7 @@ function DKBrowser_SetUrlBar(url, num)
 	if(focused != "Textbox"){
 		DKWidget_SetValue("Textbox", url);
 	}
+	DKCef_SelectBrowser("DKBrowser_cef", num);
 }
 
 /////////////////////////////////
