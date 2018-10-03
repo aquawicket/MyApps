@@ -478,6 +478,10 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 	if(url.indexOf("https://us.letgo.com/en") != -1){
 		WaitForElement('button[data-test="chat-button"]', 0, function(){ 
 			document.querySelector('button[data-test="sell-your-stuff-button"]').click();
+			WaitForElement('div[class="dropZoneDefault"]', 0, function(){
+				console.log("found dropZone\n");
+				document.querySelector('div[class="dropZoneDefault"]').click();
+			});
 		});
 		return;
 	}
