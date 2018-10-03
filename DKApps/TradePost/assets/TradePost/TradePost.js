@@ -72,6 +72,7 @@ function TradePost_OnEvent(event)
 		currentItem = DK_GetId(event).replace("imageCell","");
 		//DKCef_FileDialog("DKBrowser_cef");
 		DKCreate("ItemImages.js", function(){
+			ItemImages_SetItem(currentItem);
 			DKCreate("../DKGui/DKFrame.js", function(){
 				DKFrame_Widget("ItemImages.html");
 			});

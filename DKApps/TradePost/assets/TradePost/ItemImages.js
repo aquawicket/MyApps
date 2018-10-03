@@ -1,3 +1,5 @@
+var ItemImages_itemNum;
+
 //////////////////////////
 function ItemImages_Init()
 {
@@ -18,4 +20,17 @@ function ItemImages_OnEvent(event)
 {
 	DKLog("ItemImages_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
+}
+
+////////////////////////////////////
+function ItemImages_SetItem(itemNum)
+{
+	ItemImages_itemNum = itemNum;
+	ItemImages_Update();
+}
+
+////////////////////////////
+function ItemImages_Update()
+{
+	DKWidget_SetInnerHtml("ItemImages.html", "Item# "+ItemImages_itemNum);
 }
