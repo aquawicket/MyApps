@@ -339,6 +339,14 @@ function TradePost_UploadImage(file)
 function TradePost_Test()
 {
 	DKLog("TradePost_Test\n");
+	
+	//TODO - we need to be able to work with this file dialog after it is opened. 
+	DKCef_FileDialog("DKBrowser_cef");
+	
+	
+	DKLog("###### TEST ######\n");
+	DKLog("###### TEST ######\n");
+	DKLog("###### TEST ######\n");
 }
 
 ////////////////////////////////////
