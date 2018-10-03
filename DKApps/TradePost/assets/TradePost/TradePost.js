@@ -4,6 +4,8 @@ var action;
 /////////////////////////
 function TradePost_Init()
 {
+	DKCreate("DKAdmin/DKAdmin.js", function(){});
+	
 	DKCreate("TradePost/TradePost.html");
 	DKCreate("DKGui/DKMenu.js", function(){});
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", TradePost_OnEvent);

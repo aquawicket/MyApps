@@ -124,6 +124,7 @@ function ItemImages_Delete(file)
 			if(rval == true){
 				DKFile_Delete(file);
 				ItemImages_imageNum = 0;
+				ItemImages_Update();
 			}
 		});
 	});
