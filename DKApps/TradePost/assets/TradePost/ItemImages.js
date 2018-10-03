@@ -41,6 +41,9 @@ function ItemImages_OnEvent(event)
 		ItemImages_UploadImage(DK_GetValue(event));
 		return;
 	}
+	if(DK_Type(event, "ItemImages_delete")){
+		//TODO
+	}
 }
 
 ////////////////////////////////////
