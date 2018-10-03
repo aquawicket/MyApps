@@ -13,7 +13,7 @@ DKWidget_SetProperty("body", "background-color", "rgb:(120,120,120)");
 //DK_SetFramerate(120);
 //DKCreate("DKUpdate");
 
-DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DKAssets_LocalAssets()+"TradePost.html");
+DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DKAssets_LocalAssets()+"TradePost_index.html");
 
 DK_RunDuktape("DKLog('Test');");
 DK_RunDuktape("DKCef_SetFocus('DKBrowser_cef');");
