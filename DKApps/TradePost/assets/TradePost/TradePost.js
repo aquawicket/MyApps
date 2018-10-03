@@ -146,7 +146,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(div, "display", "inline-block");
 			DKWidget_SetProperty(div, "width", "100%");
 			//DKWidget_SetProperty(div, "min-width", "450rem");
-			DKWidget_SetProperty(div, "background-color", "white");
+			DKWidget_SetProperty(div, "background-color", "rgb(200,200,200)");
 			
 			var num = DKWidget_CreateElement(div, "div", "itemId"+row);
 			DKWidget_SetProperty(num, "display", "inline-block");
@@ -199,6 +199,8 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(title, "word-wrap", "break-word");
 			DKWidget_SetProperty(title, "border-width", "0rem");
 			DKWidget_SetProperty(title, "font-weight", "bold");
+			DKWidget_SetProperty(title, "font-family", "Verdana,sans-serif");
+			DKWidget_SetProperty(title, "font-size", "11rem");
 			DKAddEvent(title, "keyup", TradePost_OnEvent);
 			DKAddEvent(title, "change", TradePost_OnEvent);
 
@@ -222,7 +224,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(description, "overflow-x", "hidden");
 			DKWidget_SetProperty(description, "word-wrap", "break-word");
 			DKWidget_SetProperty(description, "border-width", "0rem");
-			DKWidget_SetProperty(description, "font-weight", "bold");
+			//DKWidget_SetProperty(description, "font-weight", "bold");
+			DKWidget_SetProperty(description, "font-family", "Verdana,sans-serif");
+			DKWidget_SetProperty(description, "font-size", "11rem");
 			DKAddEvent(description, "keyup", TradePost_OnEvent);
 			DKAddEvent(description, "change", TradePost_OnEvent);
 			
@@ -273,6 +277,7 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(price, "height", "100%");
 			DKWidget_SetProperty(price, "word-wrap", "break-word");
 			DKWidget_SetProperty(price, "overflow-x", "hidden");
+			DKWidget_SetProperty(price, "font-size", "15rem");
 			DKAddEvent(price, "keyup", TradePost_OnEvent);
 			DKAddEvent(price, "change", TradePost_OnEvent);
 			
