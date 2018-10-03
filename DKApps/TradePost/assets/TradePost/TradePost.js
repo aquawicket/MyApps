@@ -347,8 +347,8 @@ function TradePost_Test()
 	//DKLog("###### TEST ######\n");
 	
 	//FIXME - crashes
-	//DK_QueueDuktape('DKCreate("DKGit/DKGit.js");');
-	//DK_QueueDuktape('DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
+	DK_RunDuktape('DKCreate("DKGit/DKGit.js");');
+	DK_QueueDuktape('DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
 }
 
 ////////////////////////////////////
