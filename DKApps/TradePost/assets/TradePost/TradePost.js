@@ -14,7 +14,7 @@ function TradePost_Init()
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_ContextMenu", TradePost_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnContextCreated", TradePost_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", TradePost_OnEvent);
+	//DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", TradePost_OnEvent);
 	
 	//DKAddEvent("GLOBAL", "mousemove", TradePost_OnEvent);
 	
@@ -52,10 +52,10 @@ function TradePost_OnEvent(event)
 		TradePost_PageLoaded(DK_GetValue(event));
 		return;
 	}
-	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
-		TradePost_UploadImage(DK_GetValue(event));
-		return;
-	}
+	//if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
+	//	TradePost_UploadImage(DK_GetValue(event));
+	//	return;
+	//}
 	if(DK_IdLike(event, "post")){
 		currentItem = DK_GetId(event).replace("post","");
 		TradePost_PostItem(currentItem);
@@ -70,7 +70,6 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "imageCell")){
 		currentItem = DK_GetId(event).replace("imageCell","");
-		//DKCef_FileDialog("DKBrowser_cef");
 		DKCreate("ItemImages.js", function(){
 			ItemImages_SetItem(currentItem);
 			DKCreate("../DKGui/DKFrame.js", function(){

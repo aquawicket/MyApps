@@ -6,6 +6,9 @@ function ItemImages_Init()
 {
 	//DKLog("ItemImages_Init()\n");
 	DKCreate("ItemImages.html");
+	
+	DKAddEvent("ItemImages_upload", "click", ItemImages_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", ItemImages_OnEvent);
 }
 
 /////////////////////////
@@ -31,6 +34,13 @@ function ItemImages_OnEvent(event)
 		ItemImages_imageNum++;
 		ItemImages_Update();
 	}
+	if(DK_Id(event, "ItemImages_upload")){
+		DKCef_FileDialog("DKBrowser_cef");
+	}
+	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
+		ItemImages_UploadImage(DK_GetValue(event));
+		return;
+	}
 }
 
 ////////////////////////////////////
@@ -43,6 +53,8 @@ function ItemImages_SetItem(itemNum)
 ////////////////////////////
 function ItemImages_Update()
 {
+	DKLog("ItemImages_Update()\n");
+	
 	DKWidget_SetInnerHtml("ItemImages_div", ""); //clear
 	
 	DKLog("ItemImages_Update(): image# "+ItemImages_imageNum+"\n");
@@ -72,4 +84,13 @@ function ItemImages_Update()
 		DKWidget_SetProperty(rightArrow, "right", "0px");
 		DKAddEvent("ItemImages_right", "click", ItemImages_OnEvent);
 	}
+}
+
+/////////////////////////////////////
+function ItemImages_UploadImage(file)
+{
+	if(!file){ return; }
+	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img0.jpg", true);
+	ItemImages_Update();
+	DKWidget_SetAttribute("img"+ItemImages_itemNum, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img0.jpg?"+new Date().getTime());
 }
