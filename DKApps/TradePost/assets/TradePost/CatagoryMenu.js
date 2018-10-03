@@ -6,7 +6,7 @@ function CatagoryMenu_Init()
 	DKCreate("TradePost/CatagoryMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", CatagoryMenu_OnEvent);
 	
-	var elements = DKWidget_GetElements("CatagoryMenu.html");
+	var elements = DKWidget_GetElements("TradePost/CatagoryMenu.html");
 	var arry = elements .split(",");
 	for(var i=0; i<arry.length-1; i++){
 		DKAddEvent(arry[i], "mousedown", CatagoryMenu_OnEvent);
@@ -37,5 +37,5 @@ function CatagoryMenu_OnEvent(event)
 		DKSendEvent("catagory"+currentItem, "change");
 	}
 	
-	DKClose("CatagoryMenu.js");
+	DKClose("TradePost/CatagoryMenu.js");
 }
