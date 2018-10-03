@@ -63,17 +63,17 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "catagory")){
 		currentItem = DK_GetId(event).replace("catagory","");
-		DKCreate("CatagoryMenu.js", function(){
-			DKMenu_ValidatePosition("CatagoryMenu.html");
+		DKCreate("TradePost/CatagoryMenu.js", function(){
+			DKMenu_ValidatePosition("TradePost/CatagoryMenu.html");
 		});
 		return;
 	}
 	if(DK_IdLike(event, "imageCell")){
 		currentItem = DK_GetId(event).replace("imageCell","");
-		DKCreate("ItemImages.js", function(){
+		DKCreate("TradePost/ItemImages.js", function(){
 			ItemImages_SetItem(currentItem);
 			DKCreate("DKGui/DKFrame.js", function(){
-				DKFrame_Widget("ItemImages.html");
+				DKFrame_Widget("TradePost/ItemImages.html");
 			});
 		});
 		return;

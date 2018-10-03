@@ -68,7 +68,7 @@ function ItemImages_Update()
 		DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg?"+new Date().getTime());
 		
 		var trash = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_delete");
-		DKWidget_SetAttribute(trash, "src", "trash.png");
+		DKWidget_SetAttribute(trash, "src", "TradePost/trash.png");
 		DKWidget_SetProperty(trash, "position", "absolute");
 		DKWidget_SetProperty(trash, "bottom", "100rem");
 		DKWidget_SetProperty(trash, "right", "10rem");
@@ -78,7 +78,7 @@ function ItemImages_Update()
 	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum-1)+".jpg")){
 		DKLog("leftArrow\n");
 		var leftArrow = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_left");
-		DKWidget_SetAttribute(leftArrow, "src", "imageLeft.png");
+		DKWidget_SetAttribute(leftArrow, "src", "TradePost/imageLeft.png");
 		DKWidget_SetProperty(leftArrow, "position", "absolute");
 		DKWidget_SetProperty(leftArrow, "top", "30%");
 		DKWidget_SetProperty(leftArrow, "height", "20%");
@@ -87,7 +87,7 @@ function ItemImages_Update()
 	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum+1)+".jpg")){
 		DKLog("rightArrow\n");
 		var rightArrow = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_right");
-		DKWidget_SetAttribute(rightArrow, "src", "imageRight.png");
+		DKWidget_SetAttribute(rightArrow, "src", "TradePost/imageRight.png");
 		DKWidget_SetProperty(rightArrow, "position", "absolute");
 		DKWidget_SetProperty(rightArrow, "top", "30%");
 		DKWidget_SetProperty(rightArrow, "height", "20%");
