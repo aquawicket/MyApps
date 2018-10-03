@@ -6,8 +6,11 @@ DKWidget_SetProperty("DKBrowser.html", "width", "100%");
 DKWidget_SetProperty("DKBrowser.html", "height", "100%");
 DKCreate("DKTray/DKTray.js");
 DKCreate("DKDebug/DKDebug.js");
-DKCreate("DKSDLText");
-DK_SetFramerate(120);
+DKCreate("DKAdmin/DKAdmin.js", function(){
+	DKFrame_Widget("DKAdmin/DKAdmin.html");
+});
+//DKCreate("DKSDLText");
+//DK_SetFramerate(120);
 DKCreate("DKUpdate");
 
 DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DKAssets_LocalAssets()+"TradePost/index.html");
