@@ -172,10 +172,10 @@ function TradePost_UpdateList()
 			DKAddEvent(imageCell, "click", TradePost_OnEvent);
 			
 			
-				var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
-				DKWidget_SetProperty(img, "display", "block");
-				DKWidget_SetProperty(img, "width", "100%");
-				DKWidget_SetProperty(img, "margin", "auto");
+			var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
+			DKWidget_SetProperty(img, "display", "block");
+			DKWidget_SetProperty(img, "width", "100%");
+			DKWidget_SetProperty(img, "margin", "auto");
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg")){
 				DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg?"+new Date().getTime());
 			}

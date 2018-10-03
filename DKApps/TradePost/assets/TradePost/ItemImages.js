@@ -86,11 +86,18 @@ function ItemImages_Update()
 	}
 }
 
+
+
 /////////////////////////////////////
 function ItemImages_UploadImage(file)
 {
 	if(!file){ return; }
-	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img0.jpg", true);
+	var i=0;
+	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg")){
+		i++;
+	}
+	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg", true);
+	ItemImages_imageNum = i;
 	ItemImages_Update();
 	DKWidget_SetAttribute("img"+ItemImages_itemNum, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img0.jpg?"+new Date().getTime());
 }
