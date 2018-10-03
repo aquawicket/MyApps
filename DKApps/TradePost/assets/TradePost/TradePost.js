@@ -1,3 +1,4 @@
+var items = {}; //TODO: work with JSON objects for storing data
 var currentItem;
 var action;
 
