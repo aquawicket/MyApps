@@ -32,13 +32,14 @@ function ItemImages_SetItem(itemNum)
 ////////////////////////////
 function ItemImages_Update()
 {
-	DKWidget_SetInnerHtml("ItemImages.html", "Item# "+ItemImages_itemNum);
+	//DKWidget_SetInnerHtml("ItemImages.html", "Item# "+ItemImages_itemNum);
 	
-	for(var i=0; i<100; i++){
+	//for(var i=0; i<100; i++){
+		var i = 0;
 		var img = DKWidget_CreateElement("ItemImages.html", "img", "ItemImages_img");
-		DKWidget_SetProperty(img, "width", "200rem");
+		DKWidget_SetProperty(img, "width", "100%");
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg")){
 			DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg?"+new Date().getTime());
 		}
-	}
+	//}
 }
