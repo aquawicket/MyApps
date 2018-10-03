@@ -341,12 +341,12 @@ function TradePost_Test()
 	DKLog("TradePost_Test\n");
 	
 	//TODO - we need to be able to work with this file dialog after it is opened. 
-	DKCef_FileDialog("DKBrowser_cef");
+	//DKCef_FileDialog("DKBrowser_cef");
+	//DKLog("###### TEST ######\n");
+	//DKLog("###### TEST ######\n");
+	//DKLog("###### TEST ######\n");
 	
-	
-	DKLog("###### TEST ######\n");
-	DKLog("###### TEST ######\n");
-	DKLog("###### TEST ######\n");
+	DK_RunDuktape('DKCreate("DKThreadPool");DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
 }
 
 ////////////////////////////////////
