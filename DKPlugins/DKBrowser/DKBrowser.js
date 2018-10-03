@@ -64,14 +64,15 @@ function DKBrowser_End()
 	DKCef_CloseDevTools("DKBrowser_cef", 0);
 	DKCef_CloseBrowser("DKBrowser_cef", 0); //close first browser
 	
-	DKRemoveEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
-	DKRemoveEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
-	DKRemoveEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
-	DKRemoveEvent("GLOBAL", "DKCef_OnBeforePopup", DKBrowser_OnEvent);
-	DKRemoveEvent("GLOBAL", "DKCef_OnQueueNewBrowser", DKBrowser_OnEvent);
-	DKRemoveEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
-	DKRemoveEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
-	DKRemoveEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
+	DKRemoveEvents(DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "DKCef_OnBeforePopup", DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "DKCef_OnQueueNewBrowser", DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
+	//DKRemoveEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
 	
 	DKClose("DKBrowser.html");
 }

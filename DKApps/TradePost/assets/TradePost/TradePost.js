@@ -39,6 +39,7 @@ function TradePost_Init()
 ////////////////////////
 function TradePost_End()
 {
+	DKRemoveEvents(TradePost_OnEvent);
 	DKClose("TradePost.html");
 }
 
