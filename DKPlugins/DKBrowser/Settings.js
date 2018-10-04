@@ -6,6 +6,8 @@ function Settings_Init()
 	DKAddEvent("UpdateButton", "click", Settings_OnEvent);
 	DKAddEvent("VersionButton", "click", Settings_OnEvent);
 	DKAddEvent("GpuButton", "click", Settings_OnEvent);
+	DKAddEvent("SystemButton", "click", Settings_OnEvent);
+	DKAddEvent("NetInternalsButton", "click", Settings_OnEvent);
 }
 
 ///////////////////////
@@ -27,6 +29,12 @@ function Settings_OnEvent(event)
 	}
 	if(DK_Id(event, "GpuButton")){
 		Settings_Gpu();
+	}
+	if(DK_Id(event, "SystemButton")){
+		Settings_System();
+	}
+	if(DK_Id(event, "NetInternalsButton")){
+		Settings_NetInternals();
 	}
 }
 
@@ -53,4 +61,20 @@ function Settings_Gpu()
 	//DKLog("Settings_Gpu()\n");
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://gpu");
+}
+
+//////////////////////////
+function Settings_System()
+{
+	//DKLog("Settings_System()\n");
+	DKBrowser_NewTab(0);
+	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://system");
+}
+
+////////////////////////////////
+function Settings_NetInternals()
+{
+	//DKLog("Settings_NetInternals()\n");
+	DKBrowser_NewTab(0);
+	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://net-internals");
 }
