@@ -5,8 +5,8 @@ var action;
 /////////////////////////
 function TradePost_Init()
 {
+	DKLog("TradePost_Init()\n", DKDEBUG);
 	DKCreate("DKAdmin/DKAdmin.js", function(){});
-	
 	DKCreate("TradePost/TradePost.html");
 	DKCreate("DKGui/DKMenu.js", function(){});
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", TradePost_OnEvent);
@@ -42,6 +42,7 @@ function TradePost_Init()
 ////////////////////////
 function TradePost_End()
 {
+	DKLog("TradePost_End()\n", DKDEBUG);
 	DKRemoveEvents(TradePost_OnEvent);
 	DKClose("TradePost/TradePost.html");
 }
@@ -49,8 +50,7 @@ function TradePost_End()
 /////////////////////////////////
 function TradePost_OnEvent(event)
 {	
-	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-
+	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Type(event, "DKCef_OnLoadEnd")){
 		TradePost_PageLoaded(DK_GetValue(event));
 		return;
@@ -124,8 +124,7 @@ function TradePost_OnEvent(event)
 ////////////////////////////
 function TradePost_AddItem()
 {
-	//DKLog("TradePost_AddItem\n");
-	
+	DKLog("TradePost_AddItem\n", DKDEBUG);
 	var i = 0;
 	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+i)){
 		i++;
@@ -137,8 +136,7 @@ function TradePost_AddItem()
 ///////////////////////////////
 function TradePost_UpdateList()
 {
-	//DKLog("TradePost_UpdateList\n");
-	
+	DKLog("TradePost_UpdateList\n", DKDEBUG);
 	DKWidget_SetInnerHtml("ItemList", ""); //clear
 	for(var row = 0; row < 1000; row++){
 		//DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
@@ -311,8 +309,7 @@ function TradePost_UpdateList()
 ////////////////////////////////////////
 function TradePost_ChangeTitle(id, text)
 {
-	//DKLog("TradePost_ChangeTitle("+id+", "+text+")\n");
-	
+	DKLog("TradePost_ChangeTitle("+id+", "+text+")\n", DKDEBUG);
 	if(id.includes("title")){
 		id = id.replace("title","");
 		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/title.txt");
@@ -335,6 +332,7 @@ function TradePost_ChangeTitle(id, text)
 ////////////////////////////////////
 function TradePost_UploadImage(file)
 {
+	DKLog("TradePost_UploadImage("+file+")\n", DKDEBUG);
 	if(!file){ return; }
 	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg", true);
 	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
@@ -344,8 +342,7 @@ function TradePost_UploadImage(file)
 /////////////////////////
 function TradePost_Test()
 {
-	DKLog("TradePost_Test\n");
-	
+	DKLog("TradePost_Test\n", DKDEBUG);
 	//TODO - we need to be able to work with this file dialog after it is opened. 
 	//DKCef_FileDialog("DKBrowser_cef");
 	//DKLog("###### TEST ######\n");
@@ -360,8 +357,7 @@ function TradePost_Test()
 ////////////////////////////////////
 function TradePost_PostItem(itemNum)
 {
-	DKLog("TradePost_PostItem("+itemNum+")\n");
-	
+	DKLog("TradePost_PostItem("+itemNum+")\n", DKDEBUG);
 	//action = "PostToCraigslist";
 	//DK_QueueDuktape("DKBrowser_NewTab();");
 	//DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
@@ -374,8 +370,7 @@ function TradePost_PostItem(itemNum)
 ////////////////////////////////////
 function TradePost_PageLoaded(value)
 {
-	DKLog("TradePost_PageLoaded("+value+")\n");
-	
+	DKLog("TradePost_PageLoaded("+value+")\n", DKDEBUG);
 	var url = DKCef_GetUrl(0, 1);
 	DKLog("url = "+url);
 	
@@ -425,6 +420,7 @@ function TradePost_PageLoaded(value)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
+	DKLog("PostToCraigslist(many vars))\n", DKDEBUG);
 	var url = window.location.toString();
 	
 	//Craigslist post page - type
@@ -479,6 +475,7 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
+	DKLog("PostToLetGo(many vars))\n", DKDEBUG);
 	function WaitForElement(selector, time, callback){
 		if(document.querySelector(selector) != null){
 			callback && callback();

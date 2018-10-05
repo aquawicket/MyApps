@@ -1,8 +1,7 @@
 /////////////////////////////
 function CatagoryMenu_Init()
 {
-	//DKLog("CatagoryMenu_Init()\n");
-	
+	DKLog("CatagoryMenu_Init()\n", DKDEBUG);
 	DKCreate("TradePost/CatagoryMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", CatagoryMenu_OnEvent);
 	
@@ -17,8 +16,7 @@ function CatagoryMenu_Init()
 ////////////////////////////
 function CatagoryMenu_End()
 {
-	//DKLog("CatagoryMenu_End()\n");
-	
+	DKLog("CatagoryMenu_End()\n", DKDEBUG);
 	DKRemoveEvents(CatagoryMenu_OnEvent);
 	DKClose("TradePost/CatagoryMenu.html");
 }
@@ -26,8 +24,7 @@ function CatagoryMenu_End()
 /////////////////////////////////////
 function CatagoryMenu_OnEvent(event)
 {
-	DKLog("CatagoryMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKLog("CatagoryMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	if(!DK_Id(event,"GLOBAL")){
 		DKWidget_SetValue("catagory"+currentItem, DK_GetId(event));
 		DKSendEvent("catagory"+currentItem, "change");
