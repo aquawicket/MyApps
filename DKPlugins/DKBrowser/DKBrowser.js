@@ -6,6 +6,8 @@ var parent = "";
 /////////////////////////
 function DKBrowser_Init()
 {
+	DKLog("DKBrowser_Init()\n", DKDEBUG);
+	
 	//DKCreate("DKCef");
 	DKCreate("DKBrowser/DKBrowser.html");
 
@@ -53,7 +55,7 @@ function DKBrowser_Init()
 ////////////////////////
 function DKBrowser_End()
 {
-	DKLog("DKBrowser_End()\n");
+	DKLog("DKBrowser_End()\n", DKDEBUG);
 	
 	//close all browsers
 	/*
@@ -82,7 +84,7 @@ function DKBrowser_End()
 /////////////////////////////////
 function DKBrowser_OnEvent(event)
 {
-	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Type(event, "keydown")){
 		DKBrowser_ProcessKey(DK_GetValue(event));
@@ -228,6 +230,8 @@ function DKBrowser_OnEvent(event)
 /////////////////////////////////////
 function DKBrowser_OnLoadError(error)
 {
+	DKLog("DKBrowser_OnLoadError("+error+")\n", DKDEBUG);
+	
 	if(error == "-105"){
 		var url = DKWidget_GetValue("Textbox");
 		url = url.replace(" ", "%20");
@@ -239,7 +243,7 @@ function DKBrowser_OnLoadError(error)
 //////////////////////////////////
 function DKBrowser_ProcessKey(key)
 {
-	//DKLog("DKBrowser_ProcessKey("+key+")\n");
+	DKLog("DKBrowser_ProcessKey("+key+")\n", DKDEBUG);
 	
 	if(key == 78 && DK_KeyIsDown(17)){
 		//DKLog("New Window\n");
@@ -272,6 +276,8 @@ function DKBrowser_ProcessKey(key)
 ///////////////////////////
 function DKBrowser_NewTab()
 {
+	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
+	
 	DKCef_NewBrowser("DKBrowser_cef");
 	var num = DKCef_GetBrowsers("DKBrowser_cef");
 	DKBrowser_SelectTab(num-1);
@@ -280,6 +286,8 @@ function DKBrowser_NewTab()
 ///////////////////////////////
 function DKBrowser_UpdateTabs()
 {
+	DKLog("DKBrowser_UpdateTabs()\n", DKDEBUG);
+	
 	var num = DKCef_GetBrowsers("DKBrowser_cef");
 	var current = DKCef_GetCurrentBrowser("DKBrowser_cef");
 	for(var i=0; i<6; i++){
@@ -309,7 +317,8 @@ function DKBrowser_UpdateTabs()
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
-	//DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n");
+	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKDEBUG);
+	
 	DKWidget_SetInnerHtml("Tab"+num+"Text", url);
 	if(DKCef_GetCurrentBrowser("DKBrowser_cef") != num){ return; }
 	var focused = DKWidget_GetFocusElement();
@@ -323,6 +332,8 @@ function DKBrowser_SetUrlBar(url, num)
 /////////////////////////////////
 function DKBrowser_SelectTab(num)
 {
+	DKLog("DKBrowser_SelectTab("+num+")\n", DKDEBUG);
+	
 	DKCef_SelectBrowser("DKBrowser_cef", num);
 	DKBrowser_UpdateTabs();
 }
@@ -330,6 +341,8 @@ function DKBrowser_SelectTab(num)
 ////////////////////////////////
 function DKBrowser_CloseTab(num)
 {
+	DKLog("DKBrowser_CloseTab("+num+")\n", DKDEBUG);
+	
 	if(DKCef_GetBrowsers("DKBrowser_cef") == 1){
 		DKFrame_Close("DKBrowser.html");
 		DKClose("DKBrowser.html");
