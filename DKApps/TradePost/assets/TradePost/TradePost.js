@@ -380,7 +380,7 @@ function TradePost_UpdateHeader()
 	//post
 	var header_post = DKWidget_CreateElement("Header", "div", "header_post");
 	DKWidget_SetProperty(header_post, "display", "inline-block");
-	DKWidget_SetProperty(header_post, "width", "170rem");
+	DKWidget_SetProperty(header_post, "width", "165rem");
 	DKWidget_SetProperty(header_post, "border-width", "1rem");
 	//DKWidget_SetProperty(header_post, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_post, "border-color", "black");
@@ -642,7 +642,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(postCell, "position", "relative");
 		DKWidget_SetProperty(postCell, "display", "inline-block");
 		DKWidget_SetProperty(postCell, "overflow", "hidden");
-		DKWidget_SetProperty(postCell, "width", "170rem");
+		DKWidget_SetProperty(postCell, "width", "165rem");
 		DKWidget_SetProperty(postCell, "height", rowHeight);
 		DKWidget_SetProperty(postCell, "border-width", "1rem");
 		//DKWidget_SetProperty(postCell, "border-right-width", "0rem");
@@ -762,6 +762,14 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(ebayPost, "top", "123rem");
 		DKWidget_SetProperty(ebayPost, "left", "80rem");
 		DKAddEvent(ebayPost, "click", TradePost_OnEvent);
+		
+		
+		var postAll = DKWidget_CreateElement(postCell, "img", "postAll"+items[row].id);
+		DKWidget_SetAttribute(postAll, "src", DKAssets_LocalAssets()+"/TradePost/postAll.png");
+		DKWidget_SetProperty(postAll, "position", "absolute");
+		DKWidget_SetProperty(postAll, "top", "2rem");
+		DKWidget_SetProperty(postAll, "left", "110rem");
+		DKAddEvent(postAll, "click", TradePost_OnEvent);
 	}
 }
 
