@@ -31,7 +31,7 @@ function ItemImages_OnEvent(event)
 		ItemImages_Update();
 	}
 	if(DK_Id(event, "ItemImages_upload")){
-		DKCef_FileDialog("DKBrowser_cef");
+		DKCef_FileDialog("DKBrowser_cef", "FILE_DIALOG_OPEN", "Open Image");
 	}
 	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
 		ItemImages_UploadImage(DK_GetValue(event));
