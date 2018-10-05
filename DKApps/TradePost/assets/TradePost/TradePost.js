@@ -664,6 +664,13 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(letgoLink, "left", "20rem");
 		DKAddEvent(letgoLink, "click", TradePost_OnEvent);
 		
+		var letgoAge = DKWidget_CreateElement(postCell, "div", "letgoAge"+items[row].id);
+		DKWidget_SetProperty(letgoAge, "position", "absolute");
+		DKWidget_SetProperty(letgoAge, "top", "6rem");
+		DKWidget_SetProperty(letgoAge, "left", "53rem");
+		DKWidget_SetProperty(letgoAge, "font-weight", "bold");
+		DKWidget_SetInnerHtml(letgoAge, "8d");
+		
 		var letgoPost = DKWidget_CreateElement(postCell, "img", "letgoPost"+items[row].id);
 		DKWidget_SetAttribute(letgoPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
 		DKWidget_SetProperty(letgoPost, "position", "absolute");
@@ -686,6 +693,13 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(offerupLink, "top", "30rem");
 		DKWidget_SetProperty(offerupLink, "left", "20rem");
 		DKAddEvent(offerupLink, "click", TradePost_OnEvent);
+		
+		var offerupAge = DKWidget_CreateElement(postCell, "div", "offerupAge"+items[row].id);
+		DKWidget_SetProperty(offerupAge, "position", "absolute");
+		DKWidget_SetProperty(offerupAge, "top", "36rem");
+		DKWidget_SetProperty(offerupAge, "left", "53rem");
+		DKWidget_SetProperty(offerupAge, "font-weight", "bold");
+		DKWidget_SetInnerHtml(offerupAge, "4h");
 		
 		var offerupPost = DKWidget_CreateElement(postCell, "img", "offerupPost"+items[row].id);
 		DKWidget_SetAttribute(offerupPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
@@ -710,6 +724,13 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(craigslistLink, "left", "20rem");
 		DKAddEvent(craigslistLink, "click", TradePost_OnEvent);
 		
+		var craigslistAge = DKWidget_CreateElement(postCell, "div", "craigslistAge"+items[row].id);
+		DKWidget_SetProperty(craigslistAge, "position", "absolute");
+		DKWidget_SetProperty(craigslistAge, "top", "66rem");
+		DKWidget_SetProperty(craigslistAge, "left", "53rem");
+		DKWidget_SetProperty(craigslistAge, "font-weight", "bold");
+		DKWidget_SetInnerHtml(craigslistAge, "2d");
+		
 		var craigslistPost = DKWidget_CreateElement(postCell, "img", "craigslistPost"+items[row].id);
 		DKWidget_SetAttribute(craigslistPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
 		DKWidget_SetProperty(craigslistPost, "position", "absolute");
@@ -733,6 +754,13 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(facebookLink, "left", "20rem");
 		DKAddEvent(facebookLink, "click", TradePost_OnEvent);
 		
+		var facebookAge = DKWidget_CreateElement(postCell, "div", "facebookAge"+items[row].id);
+		DKWidget_SetProperty(facebookAge, "position", "absolute");
+		DKWidget_SetProperty(facebookAge, "top", "96rem");
+		DKWidget_SetProperty(facebookAge, "left", "53rem");
+		DKWidget_SetProperty(facebookAge, "font-weight", "bold");
+		DKWidget_SetInnerHtml(facebookAge, "13w");
+		
 		var facebookPost = DKWidget_CreateElement(postCell, "img", "facebookPost"+items[row].id);
 		DKWidget_SetAttribute(facebookPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
 		DKWidget_SetProperty(facebookPost, "position", "absolute");
@@ -755,6 +783,13 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(ebayLink, "top", "120rem");
 		DKWidget_SetProperty(ebayLink, "left", "20rem");
 		DKAddEvent(ebayLink, "click", TradePost_OnEvent);
+		
+		var ebayAge = DKWidget_CreateElement(postCell, "div", "ebayAge"+items[row].id);
+		DKWidget_SetProperty(ebayAge, "position", "absolute");
+		DKWidget_SetProperty(ebayAge, "top", "126rem");
+		DKWidget_SetProperty(ebayAge, "left", "53rem");
+		DKWidget_SetProperty(ebayAge, "font-weight", "bold");
+		DKWidget_SetInnerHtml(ebayAge, "5d");
 		
 		var ebayPost = DKWidget_CreateElement(postCell, "img", "ebayPost"+items[row].id);
 		DKWidget_SetAttribute(ebayPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
