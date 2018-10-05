@@ -1,4 +1,4 @@
-var item = {}, items = []; //TODO: work with JSON objects for storing data
+items = []; //TODO: work with JSON objects for storing data
 var currentItem;
 var action;
 
@@ -159,7 +159,7 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(num, "row", row);
 			DKWidget_SetAttribute(num, "column", 1);
 			DKWidget_SetValue(num, row);
-			items.push({});
+			items.push({}); //add a new object to items
 			items[row].id = row;
 						
 			var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+row);
@@ -235,7 +235,7 @@ function TradePost_UpdateList()
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt")){
 				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt"));
-				//items.id.description = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt");
+				items[row].description = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt");
 			}
 			
 			var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+row);
@@ -261,7 +261,7 @@ function TradePost_UpdateList()
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt")){
 				DKWidget_SetValue(catagory, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt"));
-				//items.id.catagory = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt");
+				items[row].catagory = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt");
 			}
 			
 			var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+row);
@@ -288,7 +288,7 @@ function TradePost_UpdateList()
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt")){
 				DKWidget_SetValue(price, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt"));
-				//items.id.price = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt");
+				items[row].price = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt");
 			}
 			
 			var postCell = DKWidget_CreateElement(div, "div", "postCell"+row);
@@ -362,7 +362,26 @@ function TradePost_Test()
 	
 	DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
-		DKLog("id:"+items[i].id+" title:"+items[i].title+"\n");
+		/*
+		DKLog("\n");
+		DKLog("items["+i+"]id: "+items[i].id+"\n");
+		DKLog("items["+i+"]title: "+items[i].title+"\n");
+		DKLog("items["+i+"]description: "+items[i].description+"\n");
+		DKLog("items["+i+"]catagory: "+items[i].catagory+"\n");
+		DKLog("items["+i+"]price: "+items[i].price+"\n");
+		*/
+		
+		var json_string = JSON.stringify(items[i]);
+		DKLog(json_string+"\n");
+		
+		/*
+		var item_object = JSON.parse(json_string);
+		DKLog("item_object.id: "+item_object.id+"\n");
+		DKLog("item_object.title: "+item_object.title+"\n");
+		DKLog("item_object.description: "+item_object.description+"\n");
+		DKLog("item_object.catagory: "+item_object.catagory+"\n");
+		DKLog("item_object.price: "+item_object.price+"\n");
+		*/
 	}
 }
 
