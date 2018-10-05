@@ -130,8 +130,8 @@ function TradePost_GetFirstAvailableId()
 	//FIXME - find the first available number id in the items.id's
 	var id = 0;
 	for(var i = 0; i<items.length; i++){
-		if(items[i].id >= id){
-			id++;
+		if(items[i].id == id){
+			id++; i=0;
 		}
 	}
 	
@@ -149,8 +149,49 @@ function TradePost_AddItem()
 	DKFile_MkDir(DKAssets_LocalAssets()+"Items/Item"+i);
 	items.push({});
 	items[items.length-1].id = TradePost_GetFirstAvailableId();
-	TradePost_SaveItem(i);
+	TradePost_SaveItem(items.length-1);
 	TradePost_UpdateList();
+}
+
+////////////////////////////////
+function TradePost_SaveItem(row)
+{
+	var json = JSON.stringify(items[row]);
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/data.json");
+}
+
+///////////////////////////////////////
+function TradePost_ChangeText(id, text)
+{
+	DKLog("TradePost_ChangeText("+id+", "+text+")\n", DKDEBUG);
+	if(id.includes("title")){
+		var id = id.replace("title","");
+		
+		var row;
+		for(var i=0; i<items.length; i++){
+			if(items[i].id == id){
+				row = i; //get the row from the id
+			}
+		}
+		
+		items[row].title = text;
+		TradePost_SaveItem(row);
+	}
+	
+	//TODO - logic needs to be implemented the same as above. 
+	else if(id.includes("description")){
+		var id = id.replace("description","");
+		items[id].description = text;
+	}
+	else if(id.includes("catagory")){
+		var id = id.replace("catagory","");
+		items[id].catagory = text;
+	}
+	else if(id.includes("price")){
+		var id = id.replace("price","");
+		items[id].price = text;
+	}
+	
 }
 
 //////////////////////////////
@@ -186,13 +227,13 @@ function TradePost_UpdateList()
 	DKWidget_SetInnerHtml("ItemList", ""); //clear
 
 	for(var row=0; row<items.length; row++){
-		var div = DKWidget_CreateElement("ItemList", "div", "item"+row);
+		var div = DKWidget_CreateElement("ItemList", "div", "item"+items[row].id);
 		DKWidget_SetProperty(div, "display", "inline-block");
 		DKWidget_SetProperty(div, "width", "100%");
 		DKWidget_SetProperty(div, "min-width", "450rem");
 		DKWidget_SetProperty(div, "background-color", "rgb(200,200,200)");
 			
-		var num = DKWidget_CreateElement(div, "div", "itemId"+row);
+		var num = DKWidget_CreateElement(div, "div", "itemId"+items[row].id);
 		DKWidget_SetProperty(num, "display", "inline-block");
 		DKWidget_SetProperty(num, "overflow", "hidden");
 		DKWidget_SetProperty(num, "width", "30rem");
@@ -201,11 +242,9 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(num, "border-right-width", "0rem");
 		DKWidget_SetProperty(num, "border-color", "black");
 		DKWidget_SetProperty(num, "border-style", "solid");
-		DKWidget_SetAttribute(num, "row", row);
-		DKWidget_SetAttribute(num, "column", 1);
 		DKWidget_SetValue(num, items[row].id);
 						
-		var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+row);
+		var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+items[row].id);
 		DKWidget_SetProperty(imageCell, "display", "inline-block");
 		DKWidget_SetProperty(imageCell, "width", "142rem");
 		DKWidget_SetProperty(imageCell, "height", "80rem");
@@ -218,15 +257,15 @@ function TradePost_UpdateList()
 		DKAddEvent(imageCell, "click", TradePost_OnEvent);
 			
 			
-		var img = DKWidget_CreateElement(imageCell, "img", "img"+row);
+		var img = DKWidget_CreateElement(imageCell, "img", "img"+items[row].id);
 		DKWidget_SetProperty(img, "display", "block");
 		DKWidget_SetProperty(img, "width", "100%");
 		DKWidget_SetProperty(img, "margin", "auto");
-		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg")){
-			DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+row+"/Img0.jpg?"+new Date().getTime());
+		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/Img0.jpg")){
+			DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/Img0.jpg?"+new Date().getTime());
 		}
 			
-		var titleCell = DKWidget_CreateElement(div, "div", "titleCell"+row);
+		var titleCell = DKWidget_CreateElement(div, "div", "titleCell"+items[row].id);
 		DKWidget_SetProperty(titleCell, "overflow", "hidden");
 		DKWidget_SetProperty(titleCell, "width", "120rem");
 		DKWidget_SetProperty(titleCell, "height", "80rem");
@@ -236,7 +275,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(titleCell, "border-color", "black");
 		DKWidget_SetProperty(titleCell, "border-style", "solid");
 		
-		var title = DKWidget_CreateElement(titleCell, "textarea", "title"+row);
+		var title = DKWidget_CreateElement(titleCell, "textarea", "title"+items[row].id);
 		DKWidget_SetProperty(title, "width", "100%");
 		DKWidget_SetProperty(title, "height", "100%");
 		DKWidget_SetProperty(title, "overflow-x", "hidden");
@@ -252,7 +291,7 @@ function TradePost_UpdateList()
 		}
 			
 			
-		var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+row);
+		var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+items[row].id);
 		DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
 		DKWidget_SetProperty(descriptionCell, "width", "220rem");
 		DKWidget_SetProperty(descriptionCell, "height", "80rem");
@@ -262,7 +301,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(descriptionCell, "border-color", "black");
 		DKWidget_SetProperty(descriptionCell, "border-style", "solid");
 
-		var description = DKWidget_CreateElement(descriptionCell, "textarea", "description"+row);
+		var description = DKWidget_CreateElement(descriptionCell, "textarea", "description"+items[row].id);
 		DKWidget_SetProperty(description, "width", "100%");
 		DKWidget_SetProperty(description, "height", "100%");
 		DKWidget_SetProperty(description, "overflow-x", "hidden");
@@ -278,7 +317,7 @@ function TradePost_UpdateList()
 		}
 			
 				
-		var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+row);
+		var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+items[row].id);
 		DKWidget_SetProperty(catagoryCell, "display", "inline-block");
 		DKWidget_SetProperty(catagoryCell, "overflow", "hidden");
 		DKWidget_SetProperty(catagoryCell, "width", "100rem");
@@ -289,7 +328,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(catagoryCell, "border-color", "black");
 		DKWidget_SetProperty(catagoryCell, "border-style", "solid");
 			
-		var catagory = DKWidget_CreateElement(catagoryCell, "textarea", "catagory"+row);
+		var catagory = DKWidget_CreateElement(catagoryCell, "textarea", "catagory"+items[row].id);
 		DKWidget_SetAttribute(catagory, "type", "text");
 		DKWidget_SetProperty(catagory, "display", "inline-block");
 		DKWidget_SetProperty(catagory, "width", "100%");
@@ -303,7 +342,7 @@ function TradePost_UpdateList()
 		}
 			
 			
-		var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+row);
+		var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+items[row].id);
 		DKWidget_SetProperty(priceCell, "display", "inline-block");
 		DKWidget_SetProperty(priceCell, "overflow", "hidden");
 		DKWidget_SetProperty(priceCell, "width", "70rem");
@@ -314,7 +353,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(priceCell, "border-color", "black");
 		DKWidget_SetProperty(priceCell, "border-style", "solid");
 			
-		var price = DKWidget_CreateElement(priceCell, "textarea", "price"+row);
+		var price = DKWidget_CreateElement(priceCell, "textarea", "price"+items[row].id);
 		DKWidget_SetAttribute(price, "type", "text");
 		DKWidget_SetProperty(price, "display", "inline-block");
 		DKWidget_SetProperty(price, "width", "100%");
@@ -329,7 +368,7 @@ function TradePost_UpdateList()
 		}
 		
 				
-		var postCell = DKWidget_CreateElement(div, "div", "postCell"+row);
+		var postCell = DKWidget_CreateElement(div, "div", "postCell"+items[row].id);
 		DKWidget_SetProperty(postCell, "display", "inline-block");
 		DKWidget_SetProperty(postCell, "overflow", "hidden");
 		DKWidget_SetProperty(postCell, "width", "70rem");
@@ -340,7 +379,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(postCell, "border-color", "black");
 		DKWidget_SetProperty(postCell, "border-style", "solid");
 			
-		var post = DKWidget_CreateElement(postCell, "button", "post"+row);
+		var post = DKWidget_CreateElement(postCell, "button", "post"+items[row].id);
 		DKWidget_SetProperty(post, "display", "inline-block");
 		DKWidget_SetProperty(post, "width", "90%");
 		DKWidget_SetProperty(post, "height", "25rem");
@@ -348,39 +387,6 @@ function TradePost_UpdateList()
 		DKWidget_SetInnerHtml(post, "Post");
 		DKAddEvent(post, "click", TradePost_OnEvent);
 	}
-}
-
-///////////////////////////////////////
-function TradePost_ChangeText(id, text)
-{
-	DKLog("TradePost_ChangeText("+id+", "+text+")\n", DKDEBUG);
-	if(id.includes("title")){
-		var row = id.replace("title","");
-		items[row].title = text;
-		TradePost_SaveItem(row);
-	}
-	else if(id.includes("description")){
-		var row = id.replace("description","");
-		items[row].description = text;
-		TradePost_SaveItem(row);
-	}
-	else if(id.includes("catagory")){
-		var row = id.replace("catagory","");
-		items[row].catagory = text;
-		TradePost_SaveItem(row);
-	}
-	else if(id.includes("price")){
-		var row = id.replace("price","");
-		items[row].price = text;
-		TradePost_SaveItem(row);
-	}
-}
-
-////////////////////////////////
-function TradePost_SaveItem(row)
-{
-	var json = JSON.stringify(items[row]);
-	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
 }
 
 ////////////////////////////////////
