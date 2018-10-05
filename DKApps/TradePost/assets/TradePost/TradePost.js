@@ -956,12 +956,6 @@ function TradePost_UploadImage(file)
 function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
-	//TODO - we need to be able to work with this file dialog after it is opened. 
-	//DKCef_FileDialog("DKBrowser_cef");
-	
-	//FIXME - crashes
-	//DK_RunDuktape('DKCreate("DKGit/DKGit.js");');
-	//DK_QueueDuktape('DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
 	
 	DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
@@ -986,6 +980,8 @@ function TradePost_Test()
 		DKLog("item_object.price: "+item_object.price+"\n");
 		*/
 	}
+	
+	
 }
 
 ////////////////////////////////////
