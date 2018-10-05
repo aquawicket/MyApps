@@ -188,6 +188,40 @@ function TradePost_OnEvent(event)
 		TradePost_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
 		return;
 	}
+	
+	if(DK_Id(event, "header_id")){
+		DKLog("header_id\n");
+	}
+	if(DK_Id(event, "header_image")){
+		DKLog("header_image\n");
+	}
+	if(DK_Id(event, "header_title")){
+		DKLog("header_title\n");
+	}
+	if(DK_Id(event, "header_description")){
+		DKLog("header_description\n");
+	}
+	if(DK_Id(event, "header_make")){
+		DKLog("header_make\n");
+	}
+	if(DK_Id(event, "header_model")){
+		DKLog("header_model\n");
+	}
+	if(DK_Id(event, "header_condition")){
+		DKLog("header_condition\n");
+	}
+	if(DK_Id(event, "header_catagory")){
+		DKLog("header_catagory\n");
+	}
+	if(DK_Id(event, "header_price")){
+		DKLog("header_price\n");
+	}
+	if(DK_Id(event, "header_date")){
+		DKLog("header_date\n");
+	}
+	if(DK_Id(event, "header_post")){
+		DKLog("header_post\n");
+	}
 }
 
 ////////////////////////////////////////
