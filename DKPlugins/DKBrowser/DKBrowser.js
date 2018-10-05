@@ -277,7 +277,6 @@ function DKBrowser_ProcessKey(key)
 function DKBrowser_NewTab()
 {
 	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
-	
 	DKCef_NewBrowser("DKBrowser_cef");
 	var num = DKCef_GetBrowsers("DKBrowser_cef");
 	DKBrowser_SelectTab(num-1);
@@ -295,7 +294,7 @@ function DKBrowser_UpdateTabs()
 			DKWidget_SetProperty("Tab"+String(i),"display","inline-block");
 			var url = DKCef_GetUrl("DKBrowser_cef", i);
 			if(url){
-				DKWidget_SetInnerHtml("Tab"+String(i)+"Text", url);
+				//DKWidget_SetInnerHtml("Tab"+String(i)+"Text", url);
 			}
 			if(i == current){
 				DKWidget_SetProperty("Tab"+String(i),"background-color","rgb(230,230,230)");
@@ -309,6 +308,7 @@ function DKBrowser_UpdateTabs()
 		}
 	}
 	
+	return;
 	//Set url 
 	var url = DKWidget_GetInnerHtml("Tab"+current+"Text");
 	DKWidget_SetValue("Textbox", url);

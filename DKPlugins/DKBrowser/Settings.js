@@ -2,12 +2,13 @@
 function Settings_Init()
 {
 	DKLog("Settings_Init()\n", DKDEBUG);
-	DKCreate("DKBrowser/Settings.html");
-	DKAddEvent("UpdateButton", "click", Settings_OnEvent);
-	DKAddEvent("VersionButton", "click", Settings_OnEvent);
-	DKAddEvent("GpuButton", "click", Settings_OnEvent);
-	DKAddEvent("SystemButton", "click", Settings_OnEvent);
-	DKAddEvent("NetInternalsButton", "click", Settings_OnEvent);
+	DKCreate("DKBrowser/Settings.html", function(){
+		DKAddEvent("UpdateButton", "click", Settings_OnEvent);
+		DKAddEvent("VersionButton", "click", Settings_OnEvent);
+		DKAddEvent("GpuButton", "click", Settings_OnEvent);
+		DKAddEvent("SystemButton", "click", Settings_OnEvent);
+		DKAddEvent("NetInternalsButton", "click", Settings_OnEvent);
+	});
 }
 
 ///////////////////////
