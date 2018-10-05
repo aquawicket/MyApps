@@ -403,8 +403,10 @@ function TradePost_PostItem(itemNum)
 function TradePost_PageLoaded(value)
 {
 	DKLog("TradePost_PageLoaded("+value+")\n", DKDEBUG);
-	var url = DKCef_GetUrl(0, 1);
-	DKLog("url = "+url);
+	
+	if(DKCef_GetBrowsers() < 2){ return; }
+	var url = DKCef_GetUrl("", 1);
+	//DKLog("url = "+url);
 	
 	if(action == "PostToCraigslist"){
 		if(url.indexOf("s=preview") != -1){ action = ""; return;} //End posting in on the preview screen
@@ -452,7 +454,7 @@ function TradePost_PageLoaded(value)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
-	DKLog("PostToCraigslist(many vars))\n", DKDEBUG);
+	console.log("PostToCraigslist(many vars))\n");
 	var url = window.location.toString();
 	
 	//Craigslist post page - type
@@ -507,7 +509,7 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street)
 {
-	DKLog("PostToLetGo(many vars))\n", DKDEBUG);
+	console.log("PostToLetGo(many vars))\n");
 	function WaitForElement(selector, time, callback){
 		if(document.querySelector(selector) != null){
 			callback && callback();
