@@ -62,9 +62,15 @@ function TradePost_OnEvent(event)
 	//	TradePost_UploadImage(DK_GetValue(event));
 	//	return;
 	//}
-	if(DK_IdLike(event, "post")){
-		currentItem = DK_GetId(event).replace("post","");
-		TradePost_PostItem(currentItem);
+	
+	if(DK_IdLike(event, "imageCell")){
+		currentItem = DK_GetId(event).replace("imageCell","");
+		DKCreate("TradePost/ItemImages.js", function(){
+			ItemImages_SetItem(currentItem);
+			DKCreate("DKGui/DKFrame.js", function(){
+				DKFrame_Widget("TradePost/ItemImages.html");
+			});
+		});
 		return;
 	}
 	if(DK_IdLike(event, "condition")){
@@ -81,16 +87,42 @@ function TradePost_OnEvent(event)
 		});
 		return;
 	}
-	if(DK_IdLike(event, "imageCell")){
-		currentItem = DK_GetId(event).replace("imageCell","");
-		DKCreate("TradePost/ItemImages.js", function(){
-			ItemImages_SetItem(currentItem);
-			DKCreate("DKGui/DKFrame.js", function(){
-				DKFrame_Widget("TradePost/ItemImages.html");
-			});
-		});
+	if(DK_IdLike(event, "letgoLink")){
+		currentItem = DK_GetId(event).replace("letgoLink","");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
 		return;
 	}
+	if(DK_IdLike(event, "offerupLink")){
+		currentItem = DK_GetId(event).replace("offerupLink","");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://offerup.com');");
+		return;
+	}
+	if(DK_IdLike(event, "craigslistLink")){
+		currentItem = DK_GetId(event).replace("craigslistLink","");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
+		return;
+	}
+	if(DK_IdLike(event, "facebookLink")){
+		currentItem = DK_GetId(event).replace("facebookLink","");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.facebook.com/marketplace');");
+		return;
+	}
+	if(DK_IdLike(event, "ebayLink")){
+		currentItem = DK_GetId(event).replace("ebayLink","");
+		DK_QueueDuktape("DKBrowser_NewTab();");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
+		return;
+	}
+	if(DK_IdLike(event, "post")){
+		currentItem = DK_GetId(event).replace("post","");
+		TradePost_PostItem(currentItem);
+		return;
+	}
+	
 	if(DK_Id(event, "AddItem")){
 		TradePost_AddItem();
 		return;
