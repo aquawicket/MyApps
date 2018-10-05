@@ -89,8 +89,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "letgoLink")){
 		currentItem = DK_GetId(event).replace("letgoLink","");
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
+		window.open("https://us.letgo.com/en", "_blank", "width=800,height=600");
 		return;
 	}
 	if(DK_IdLike(event, "letgoPost")){
@@ -100,8 +99,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "offerupLink")){
 		currentItem = DK_GetId(event).replace("offerupLink","");
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://offerup.com');");
+		window.open("https://offerup.com", "_blank", "width=800,height=600");
 		return;
 	}
 	if(DK_IdLike(event, "offerupPost")){
@@ -111,8 +109,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "craigslistLink")){
 		currentItem = DK_GetId(event).replace("craigslistLink","");
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
+		window.open("https://inlandempire.craigslist.org/d/for-sale/search/sss", "_blank", "width=800,height=600");
 		return;
 	}
 	if(DK_IdLike(event, "craigslistPost")){
@@ -122,8 +119,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "facebookLink")){
 		currentItem = DK_GetId(event).replace("facebookLink","");
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.facebook.com/marketplace');");
+		window.open("https://www.facebook.com/marketplace", "_blank", "width=800,height=600");
 		return;
 	}
 	if(DK_IdLike(event, "facebookPost")){
@@ -133,8 +129,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "ebayLink")){
 		currentItem = DK_GetId(event).replace("ebayLink","");
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
+		window.open("https://www.ebay.com", "_blank", "width=800,height=600");
 		return;
 	}
 	if(DK_IdLike(event, "ebayPost")){
@@ -156,7 +151,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
 	}
 	if(DK_Id(event, "Letgo")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
