@@ -6,7 +6,6 @@ function ItemImages_Init()
 {
 	DKLog("ItemImages_Init()\n", DKDEBUG);
 	DKCreate("TradePost/ItemImages.html");
-	
 	DKAddEvent("ItemImages_upload", "click", ItemImages_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", ItemImages_OnEvent);
 }
@@ -24,12 +23,10 @@ function ItemImages_OnEvent(event)
 {
 	DKLog("ItemImages_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Id(event, "ItemImages_left")){
-		DKLog("left\n");
 		ItemImages_imageNum--;
 		ItemImages_Update();
 	}
 	if(DK_Id(event, "ItemImages_right")){
-		DKLog("right\n");
 		ItemImages_imageNum++;
 		ItemImages_Update();
 	}
@@ -59,7 +56,6 @@ function ItemImages_Update()
 	DKLog("ItemImages_Update()\n", DKDEBUG);
 	DKWidget_SetInnerHtml("ItemImages_div", ""); //clear
 	
-	DKLog("ItemImages_Update(): image# "+ItemImages_imageNum+"\n");
 	var img = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_img");
 	DKWidget_SetProperty(img, "width", "100%");
 	DKWidget_SetProperty(img, "position", "absolute");
@@ -75,7 +71,6 @@ function ItemImages_Update()
 	}
 	
 	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum-1)+".jpg")){
-		DKLog("leftArrow\n");
 		var leftArrow = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_left");
 		DKWidget_SetAttribute(leftArrow, "src", "TradePost/imageLeft.png");
 		DKWidget_SetProperty(leftArrow, "position", "absolute");
@@ -84,7 +79,6 @@ function ItemImages_Update()
 		DKAddEvent(leftArrow, "click", ItemImages_OnEvent);
 	}
 	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum+1)+".jpg")){
-		DKLog("rightArrow\n");
 		var rightArrow = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_right");
 		DKWidget_SetAttribute(rightArrow, "src", "TradePost/imageRight.png");
 		DKWidget_SetProperty(rightArrow, "position", "absolute");
@@ -94,8 +88,6 @@ function ItemImages_Update()
 		DKAddEvent(rightArrow, "click", ItemImages_OnEvent);
 	}
 }
-
-
 
 /////////////////////////////////////
 function ItemImages_UploadImage(file)
