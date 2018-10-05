@@ -122,6 +122,22 @@ function TradePost_OnEvent(event)
 	}
 }
 
+////////////////////////////////////////
+function TradePost_GetFirstAvailableId()
+{
+	if(!items){ return false; }
+	
+	//FIXME - find the first available number id in the items.id's
+	var id = 0;
+	for(var i = 0; i<items.length; i++){
+		if(items[i].id >= id){
+			id++;
+		}
+	}
+	
+	return id;
+}
+
 ////////////////////////////
 function TradePost_AddItem()
 {
@@ -132,7 +148,8 @@ function TradePost_AddItem()
 	}
 	DKFile_MkDir(DKAssets_LocalAssets()+"Items/Item"+i);
 	items.push({});
-	items[items.length-1].id = items.length;
+	items[items.length-1].id = TradePost_GetFirstAvailableId();
+	TradePost_SaveItem(i);
 	TradePost_UpdateList();
 }
 
@@ -145,7 +162,7 @@ function TradePost_LoadItems()
 			if(!DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json")){
 				//DKFile_StringToFile("", DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
 				items.push({});
-				items[items.length-1].id = items.length;
+				items[items.length-1].id = TradePost_GetFirstAvailableId();
 			}
 			else{
 				var json = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
@@ -155,7 +172,7 @@ function TradePost_LoadItems()
 				}
 				else{
 					items.push({});
-					items[items.length-1].id = items.length;
+					items[items.length-1].id = TradePost_GetFirstAvailableId();
 				}
 			}
 		}
@@ -338,32 +355,32 @@ function TradePost_ChangeText(id, text)
 {
 	DKLog("TradePost_ChangeText("+id+", "+text+")\n", DKDEBUG);
 	if(id.includes("title")){
-		id = id.replace("title","");
-		items[id].title = text;
-		TradePost_SaveItem(id);
+		var row = id.replace("title","");
+		items[row].title = text;
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("description")){
-		id = id.replace("description","");
-		items[id].description = text;
-		TradePost_SaveItem(id);
+		var row = id.replace("description","");
+		items[row].description = text;
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("catagory")){
-		id = id.replace("catagory","");
-		items[id].catagory = text;
-		TradePost_SaveItem(id);
+		var row = id.replace("catagory","");
+		items[row].catagory = text;
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("price")){
-		id = id.replace("price","");
-		items[id].price = text;
-		TradePost_SaveItem(id);
+		var row = id.replace("price","");
+		items[row].price = text;
+		TradePost_SaveItem(row);
 	}
 }
 
-///////////////////////////////
-function TradePost_SaveItem(id)
+////////////////////////////////
+function TradePost_SaveItem(row)
 {
-	var json = JSON.stringify(items[id]);
-	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+id+"/data.json");
+	var json = JSON.stringify(items[row]);
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
 }
 
 ////////////////////////////////////
