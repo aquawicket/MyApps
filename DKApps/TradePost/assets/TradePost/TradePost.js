@@ -142,9 +142,20 @@ function TradePost_UpdateList()
 		//DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
 			
-			var json = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
-			var item = JSON.parse(json);
-			items.push(item); //add item to items 
+			if(!DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json")){
+				DKFile_StringToFile("", DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
+				items.push({});
+			}
+			else{
+				var json = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
+				if(json){
+					var item = JSON.parse(json);
+					items.push(item); //add item to items
+				}
+				else{
+					items.push({});
+				}
+			}
 			
 			var div = DKWidget_CreateElement("ItemList", "div", "item"+row);
 			DKWidget_SetProperty(div, "display", "inline-block");
@@ -208,7 +219,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(title, "font-size", "11rem");
 			DKAddEvent(title, "keyup", TradePost_OnEvent);
 			DKAddEvent(title, "change", TradePost_OnEvent);
-			DKWidget_SetValue(title, item.title);
+			if(items[row].title){
+				DKWidget_SetValue(title, items[row].title);
+			}
 			
 			
 			var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+row);
@@ -232,7 +245,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(description, "font-size", "11rem");
 			DKAddEvent(description, "keyup", TradePost_OnEvent);
 			DKAddEvent(description, "change", TradePost_OnEvent);
-			DKWidget_SetValue(description, item.description);
+			if(items[row].description){
+				DKWidget_SetValue(description, items[row].description);
+			}
 			
 				
 			var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+row);
@@ -255,7 +270,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(catagory, "overflow-x", "hidden");
 			DKAddEvent(catagory, "click", TradePost_OnEvent);
 			DKAddEvent(catagory, "change", TradePost_OnEvent);
-			DKWidget_SetValue(catagory, item.catagory);
+			if(items[row].catagory){
+				DKWidget_SetValue(catagory, items[row].catagory);
+			}
 			
 			
 			var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+row);
@@ -279,7 +296,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(price, "font-size", "15rem");
 			DKAddEvent(price, "keyup", TradePost_OnEvent);
 			DKAddEvent(price, "change", TradePost_OnEvent);
-			DKWidget_SetValue(price, item.price);
+			if(items[row].price){
+				DKWidget_SetValue(price, items[row].price);
+			}
 			
 				
 			var postCell = DKWidget_CreateElement(div, "div", "postCell"+row);
