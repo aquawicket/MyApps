@@ -1,6 +1,7 @@
 items = []; //items stored here, for use with json
 var currentItem;
 var action;
+var rowHeight = "150rem";
 
 /////////////////////////
 function TradePost_Init()
@@ -269,7 +270,6 @@ function TradePost_UpdateHeader()
 	var header_id = DKWidget_CreateElement("Header", "div", "header_id");
 	DKWidget_SetProperty(header_id, "display", "inline-block");
 	DKWidget_SetProperty(header_id, "width", "30rem");
-	DKWidget_SetProperty(header_id, "height", "20rem");
 	DKWidget_SetProperty(header_id, "border-width", "1rem");
 	DKWidget_SetProperty(header_id, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_id, "border-color", "black");
@@ -282,7 +282,6 @@ function TradePost_UpdateHeader()
 	var header_image = DKWidget_CreateElement("Header", "div", "header_image");
 	DKWidget_SetProperty(header_image, "display", "inline-block");
 	DKWidget_SetProperty(header_image, "width", "142rem");
-	DKWidget_SetProperty(header_image, "height", "20rem");
 	DKWidget_SetProperty(header_image, "border-width", "1rem");
 	DKWidget_SetProperty(header_image, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_image, "border-color", "black");
@@ -294,7 +293,6 @@ function TradePost_UpdateHeader()
 	var header_title = DKWidget_CreateElement("Header", "div", "header_title");
 	DKWidget_SetProperty(header_title, "display", "inline-block");
 	DKWidget_SetProperty(header_title, "width", "120rem");
-	DKWidget_SetProperty(header_title, "height", "20rem");
 	DKWidget_SetProperty(header_title, "border-width", "1rem");
 	DKWidget_SetProperty(header_title, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_title, "border-color", "black");
@@ -306,7 +304,6 @@ function TradePost_UpdateHeader()
 	var header_description = DKWidget_CreateElement("Header", "div", "header_description");
 	DKWidget_SetProperty(header_description, "display", "inline-block");
 	DKWidget_SetProperty(header_description, "width", "220rem");
-	DKWidget_SetProperty(header_description, "height", "20rem");
 	DKWidget_SetProperty(header_description, "border-width", "1rem");
 	DKWidget_SetProperty(header_description, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_description, "border-color", "black");
@@ -318,7 +315,6 @@ function TradePost_UpdateHeader()
 	var header_make = DKWidget_CreateElement("Header", "div", "header_make");
 	DKWidget_SetProperty(header_make, "display", "inline-block");
 	DKWidget_SetProperty(header_make, "width", "100rem");
-	DKWidget_SetProperty(header_make, "height", "20rem");
 	DKWidget_SetProperty(header_make, "border-width", "1rem");
 	DKWidget_SetProperty(header_make, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_make, "border-color", "black");
@@ -330,7 +326,6 @@ function TradePost_UpdateHeader()
 	var header_model = DKWidget_CreateElement("Header", "div", "header_model");
 	DKWidget_SetProperty(header_model, "display", "inline-block");
 	DKWidget_SetProperty(header_model, "width", "100rem");
-	DKWidget_SetProperty(header_model, "height", "20rem");
 	DKWidget_SetProperty(header_model, "border-width", "1rem");
 	DKWidget_SetProperty(header_model, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_model, "border-color", "black");
@@ -342,7 +337,6 @@ function TradePost_UpdateHeader()
 	var header_condition = DKWidget_CreateElement("Header", "div", "header_condition");
 	DKWidget_SetProperty(header_condition, "display", "inline-block");
 	DKWidget_SetProperty(header_condition, "width", "100rem");
-	DKWidget_SetProperty(header_condition, "height", "20rem");
 	DKWidget_SetProperty(header_condition, "border-width", "1rem");
 	DKWidget_SetProperty(header_condition, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_condition, "border-color", "black");
@@ -354,7 +348,6 @@ function TradePost_UpdateHeader()
 	var header_catagory = DKWidget_CreateElement("Header", "div", "header_catagory");
 	DKWidget_SetProperty(header_catagory, "display", "inline-block");
 	DKWidget_SetProperty(header_catagory, "width", "100rem");
-	DKWidget_SetProperty(header_catagory, "height", "20rem");
 	DKWidget_SetProperty(header_catagory, "border-width", "1rem");
 	DKWidget_SetProperty(header_catagory, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_catagory, "border-color", "black");
@@ -366,7 +359,6 @@ function TradePost_UpdateHeader()
 	var header_price = DKWidget_CreateElement("Header", "div", "header_price");
 	DKWidget_SetProperty(header_price, "display", "inline-block");
 	DKWidget_SetProperty(header_price, "width", "70rem");
-	DKWidget_SetProperty(header_price, "height", "20rem");
 	DKWidget_SetProperty(header_price, "border-width", "1rem");
 	DKWidget_SetProperty(header_price, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_price, "border-color", "black");
@@ -378,7 +370,6 @@ function TradePost_UpdateHeader()
 	var header_date = DKWidget_CreateElement("Header", "div", "header_date");
 	DKWidget_SetProperty(header_date, "display", "inline-block");
 	DKWidget_SetProperty(header_date, "width", "70rem");
-	DKWidget_SetProperty(header_date, "height", "20rem");
 	DKWidget_SetProperty(header_date, "border-width", "1rem");
 	DKWidget_SetProperty(header_date, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_date, "border-color", "black");
@@ -390,7 +381,6 @@ function TradePost_UpdateHeader()
 	var header_post = DKWidget_CreateElement("Header", "div", "header_post");
 	DKWidget_SetProperty(header_post, "display", "inline-block");
 	DKWidget_SetProperty(header_post, "width", "70rem");
-	DKWidget_SetProperty(header_post, "height", "20rem");
 	DKWidget_SetProperty(header_post, "border-width", "1rem");
 	//DKWidget_SetProperty(header_post, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_post, "border-color", "black");
@@ -419,7 +409,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(num, "display", "inline-block");
 		DKWidget_SetProperty(num, "overflow", "hidden");
 		DKWidget_SetProperty(num, "width", "30rem");
-		DKWidget_SetProperty(num, "height", "80rem");
+		DKWidget_SetProperty(num, "height", rowHeight);
 		DKWidget_SetProperty(num, "border-width", "1rem");
 		DKWidget_SetProperty(num, "border-right-width", "0rem");
 		DKWidget_SetProperty(num, "border-color", "black");
@@ -431,7 +421,7 @@ function TradePost_UpdateList()
 		var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+items[row].id);
 		DKWidget_SetProperty(imageCell, "display", "inline-block");
 		DKWidget_SetProperty(imageCell, "width", "142rem");
-		DKWidget_SetProperty(imageCell, "height", "80rem");
+		DKWidget_SetProperty(imageCell, "height", rowHeight);
 		DKWidget_SetProperty(imageCell, "text-align", "center");
 		DKWidget_SetProperty(imageCell, "overflow", "hidden");
 		DKWidget_SetProperty(imageCell, "border-width", "1rem");
@@ -453,7 +443,7 @@ function TradePost_UpdateList()
 		var titleCell = DKWidget_CreateElement(div, "div", "titleCell"+items[row].id);
 		DKWidget_SetProperty(titleCell, "overflow", "hidden");
 		DKWidget_SetProperty(titleCell, "width", "120rem");
-		DKWidget_SetProperty(titleCell, "height", "80rem");
+		DKWidget_SetProperty(titleCell, "height", rowHeight);
 		DKWidget_SetProperty(titleCell, "display", "inline-block");
 		DKWidget_SetProperty(titleCell, "border-width", "1rem");
 		DKWidget_SetProperty(titleCell, "border-right-width", "0rem");
@@ -480,7 +470,7 @@ function TradePost_UpdateList()
 		var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+items[row].id);
 		DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
 		DKWidget_SetProperty(descriptionCell, "width", "220rem");
-		DKWidget_SetProperty(descriptionCell, "height", "80rem");
+		DKWidget_SetProperty(descriptionCell, "height", rowHeight);
 		DKWidget_SetProperty(descriptionCell, "display", "inline-block");
 		DKWidget_SetProperty(descriptionCell, "border-width", "1rem");
 		DKWidget_SetProperty(descriptionCell, "border-right-width", "0rem");
@@ -506,7 +496,7 @@ function TradePost_UpdateList()
 		var makeCell = DKWidget_CreateElement(div, "div", "makeCell"+items[row].id);
 		DKWidget_SetProperty(makeCell, "overflow", "hidden");
 		DKWidget_SetProperty(makeCell, "width", "100rem");
-		DKWidget_SetProperty(makeCell, "height", "80rem");
+		DKWidget_SetProperty(makeCell, "height", rowHeight);
 		DKWidget_SetProperty(makeCell, "display", "inline-block");
 		DKWidget_SetProperty(makeCell, "border-width", "1rem");
 		DKWidget_SetProperty(makeCell, "border-right-width", "0rem");
@@ -532,7 +522,7 @@ function TradePost_UpdateList()
 		var modelCell = DKWidget_CreateElement(div, "div", "modelCell"+items[row].id);
 		DKWidget_SetProperty(modelCell, "overflow", "hidden");
 		DKWidget_SetProperty(modelCell, "width", "100rem");
-		DKWidget_SetProperty(modelCell, "height", "80rem");
+		DKWidget_SetProperty(modelCell, "height", rowHeight);
 		DKWidget_SetProperty(modelCell, "display", "inline-block");
 		DKWidget_SetProperty(modelCell, "border-width", "1rem");
 		DKWidget_SetProperty(modelCell, "border-right-width", "0rem");
@@ -559,7 +549,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(conditionCell, "display", "inline-block");
 		DKWidget_SetProperty(conditionCell, "overflow", "hidden");
 		DKWidget_SetProperty(conditionCell, "width", "100rem");
-		DKWidget_SetProperty(conditionCell, "height", "80rem");
+		DKWidget_SetProperty(conditionCell, "height", rowHeight);
 		DKWidget_SetProperty(conditionCell, "border-width", "1rem");
 		DKWidget_SetProperty(conditionCell, "border-right-width", "0rem");
 		DKWidget_SetProperty(conditionCell, "border-color", "black");
@@ -584,7 +574,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(catagoryCell, "display", "inline-block");
 		DKWidget_SetProperty(catagoryCell, "overflow", "hidden");
 		DKWidget_SetProperty(catagoryCell, "width", "100rem");
-		DKWidget_SetProperty(catagoryCell, "height", "80rem");
+		DKWidget_SetProperty(catagoryCell, "height", rowHeight);
 		DKWidget_SetProperty(catagoryCell, "border-width", "1rem");
 		DKWidget_SetProperty(catagoryCell, "border-right-width", "0rem");
 		DKWidget_SetProperty(catagoryCell, "border-color", "black");
@@ -609,7 +599,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(priceCell, "display", "inline-block");
 		DKWidget_SetProperty(priceCell, "overflow", "hidden");
 		DKWidget_SetProperty(priceCell, "width", "70rem");
-		DKWidget_SetProperty(priceCell, "height", "80rem");
+		DKWidget_SetProperty(priceCell, "height", rowHeight);
 		DKWidget_SetProperty(priceCell, "text-align", "center");
 		DKWidget_SetProperty(priceCell, "border-width", "1rem");
 		DKWidget_SetProperty(priceCell, "border-right-width", "0rem");
@@ -636,7 +626,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(date, "display", "inline-block");
 		DKWidget_SetProperty(date, "overflow", "hidden");
 		DKWidget_SetProperty(date, "width", "70rem");
-		DKWidget_SetProperty(date, "height", "80rem");
+		DKWidget_SetProperty(date, "height", rowHeight);
 		DKWidget_SetProperty(date, "border-width", "1rem");
 		DKWidget_SetProperty(date, "border-right-width", "0rem");
 		DKWidget_SetProperty(date, "border-color", "black");
@@ -652,7 +642,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(postCell, "display", "inline-block");
 		DKWidget_SetProperty(postCell, "overflow", "hidden");
 		DKWidget_SetProperty(postCell, "width", "70rem");
-		DKWidget_SetProperty(postCell, "height", "80rem");
+		DKWidget_SetProperty(postCell, "height", rowHeight);
 		DKWidget_SetProperty(postCell, "text-align", "center");
 		DKWidget_SetProperty(postCell, "border-width", "1rem");
 		//DKWidget_SetProperty(postCell, "border-right-width", "0rem");
