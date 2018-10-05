@@ -1,25 +1,25 @@
 //////////////////////////
 function DKGoogleAd_Init()
 {
-
+	DKLog("DKGoogleAd_Init()\n", DKDEBUG);
 }
 
 /////////////////////////
 function DKGoogleAd_End()
 {
-
+	DKLog("DKGoogleAd_End()\n", DKDEBUG);
 }
 
 //////////////////////////////////
 function DKGoogleAd_OnEvent(event)
 {
-	DKLog("DKGoogleAd_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("DKGoogleAd_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 }
 
 ///////////////////////////////////////////////////
 function DKGoogleAd_CreateAd(parent, width, height)
 {
-	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+") \n");
+	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+")\n", DKDEBUG);
 	DKLog("Browser = "+DK_GetBrowser()+"\n");
 	//DKLog("protocol = "+DKAssets_Protocol()+"\n");
 	
@@ -105,8 +105,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 ////////////////////////////////////////////////////////
 function DKGoogleAd_CreateAdFrame(parent, width, height)
 {
-	//DKLog("DKFrame_Iframe("+title+","+url+","+width+","+height+")\n");
-	
+	DKLog("DKGoogleAd_CreateAdFrame("+parent+", "+width+", "+height+")\n", DKDEBUG);
 	var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 	DKWidget_SetProperty(id, "position", "absolute");
 	DKWidget_SetProperty(id, "width", width);
