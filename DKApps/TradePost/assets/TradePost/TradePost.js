@@ -156,6 +156,12 @@ function TradePost_AddItem()
 	DKFile_MkDir(DKAssets_LocalAssets()+"Items/Item"+i);
 	items.push({});
 	items[items.length-1].id = TradePost_GetFirstAvailableId();
+	
+	//save date
+	var event = new Date();
+	var jsonDate = event.toJSON();
+	items[items.length-1].date = jsonDate;
+	
 	TradePost_SaveItem(items.length-1);
 	TradePost_UpdateList();
 	var elmnt = document.getElementById("item"+items[items.length-1].id);
@@ -264,7 +270,7 @@ function TradePost_UpdateList()
 	for(var row=0; row<items.length; row++){
 		var div = DKWidget_CreateElement("ItemList", "div", "item"+items[row].id);
 		DKWidget_SetProperty(div, "display", "inline-block");
-		DKWidget_SetProperty(div, "width", "1070rem");
+		DKWidget_SetProperty(div, "width", "1150rem");
 		DKWidget_SetProperty(div, "min-width", "450rem");
 		DKWidget_SetProperty(div, "background-color", "rgb(200,200,200)");
 		
@@ -485,6 +491,21 @@ function TradePost_UpdateList()
 			DKWidget_SetValue(price, items[row].price);
 		}
 		
+		
+		//date		
+		var date = DKWidget_CreateElement(div, "div", "date"+items[row].id);
+		DKWidget_SetProperty(date, "display", "inline-block");
+		DKWidget_SetProperty(date, "overflow", "hidden");
+		DKWidget_SetProperty(date, "width", "80rem");
+		DKWidget_SetProperty(date, "height", "80rem");
+		DKWidget_SetProperty(date, "border-width", "1rem");
+		DKWidget_SetProperty(date, "border-right-width", "0rem");
+		DKWidget_SetProperty(date, "border-color", "black");
+		DKWidget_SetProperty(date, "border-style", "solid");
+		var _date = new Date(items[row].date).toUTCString()
+		if(_date){
+			DKWidget_SetValue(date, _date);
+		}
 		
 		
 		//post
