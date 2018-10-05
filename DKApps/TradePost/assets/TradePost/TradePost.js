@@ -190,6 +190,18 @@ function TradePost_ChangeText(id, text)
 		items[row].description = text;
 		TradePost_SaveItem(row);
 	}
+	else if(id.includes("make")){
+		var id = id.replace("make","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].make = text;
+		TradePost_SaveItem(row);
+	}
+	else if(id.includes("model")){
+		var id = id.replace("model","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].model = text;
+		TradePost_SaveItem(row);
+	}
 	else if(id.includes("catagory")){
 		var id = id.replace("catagory","");
 		var row = TradePost_GetRowFromId(id);
@@ -317,13 +329,61 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(description, "overflow-x", "hidden");
 		DKWidget_SetProperty(description, "word-wrap", "break-word");
 		DKWidget_SetProperty(description, "border-width", "0rem");
-		//DKWidget_SetProperty(description, "font-weight", "bold");
 		DKWidget_SetProperty(description, "font-family", "Verdana,sans-serif");
 		DKWidget_SetProperty(description, "font-size", "11rem");
 		DKAddEvent(description, "keyup", TradePost_OnEvent);
 		DKAddEvent(description, "change", TradePost_OnEvent);
 		if(items[row].description){
 			DKWidget_SetValue(description, items[row].description);
+		}
+		
+		
+		var makeCell = DKWidget_CreateElement(div, "div", "makeCell"+items[row].id);
+		DKWidget_SetProperty(makeCell, "overflow", "hidden");
+		DKWidget_SetProperty(makeCell, "width", "100rem");
+		DKWidget_SetProperty(makeCell, "height", "80rem");
+		DKWidget_SetProperty(makeCell, "display", "inline-block");
+		DKWidget_SetProperty(makeCell, "border-width", "1rem");
+		DKWidget_SetProperty(makeCell, "border-right-width", "0rem");
+		DKWidget_SetProperty(makeCell, "border-color", "black");
+		DKWidget_SetProperty(makeCell, "border-style", "solid");
+		
+		var make = DKWidget_CreateElement(makeCell, "textarea", "make"+items[row].id);
+		DKWidget_SetProperty(make, "width", "100%");
+		DKWidget_SetProperty(make, "height", "100%");
+		DKWidget_SetProperty(make, "overflow-x", "hidden");
+		DKWidget_SetProperty(make, "word-wrap", "break-word");
+		DKWidget_SetProperty(make, "border-width", "0rem");
+		DKWidget_SetProperty(make, "font-family", "Verdana,sans-serif");
+		DKWidget_SetProperty(make, "font-size", "11rem");
+		DKAddEvent(make, "keyup", TradePost_OnEvent);
+		DKAddEvent(make, "change", TradePost_OnEvent);
+		if(items[row].make){
+			DKWidget_SetValue(make, items[row].make);
+		}
+		
+		var modelCell = DKWidget_CreateElement(div, "div", "modelCell"+items[row].id);
+		DKWidget_SetProperty(modelCell, "overflow", "hidden");
+		DKWidget_SetProperty(modelCell, "width", "100rem");
+		DKWidget_SetProperty(modelCell, "height", "80rem");
+		DKWidget_SetProperty(modelCell, "display", "inline-block");
+		DKWidget_SetProperty(modelCell, "border-width", "1rem");
+		DKWidget_SetProperty(modelCell, "border-right-width", "0rem");
+		DKWidget_SetProperty(modelCell, "border-color", "black");
+		DKWidget_SetProperty(modelCell, "border-style", "solid");
+		
+		var model = DKWidget_CreateElement(modelCell, "textarea", "model"+items[row].id);
+		DKWidget_SetProperty(model, "width", "100%");
+		DKWidget_SetProperty(model, "height", "100%");
+		DKWidget_SetProperty(model, "overflow-x", "hidden");
+		DKWidget_SetProperty(model, "word-wrap", "break-word");
+		DKWidget_SetProperty(model, "border-width", "0rem");
+		DKWidget_SetProperty(model, "font-family", "Verdana,sans-serif");
+		DKWidget_SetProperty(model, "font-size", "11rem");
+		DKAddEvent(model, "keyup", TradePost_OnEvent);
+		DKAddEvent(model, "change", TradePost_OnEvent);
+		if(items[row].model){
+			DKWidget_SetValue(model, items[row].model);
 		}
 			
 				
