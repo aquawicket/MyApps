@@ -9,3 +9,4 @@ DKCreate("DKDebug/DKDebug.js");
 DKCreate("DKSDLText");
 DK_SetFramerate(120);
 DKCreate("DKUpdate");
+DKWidget_SetProperty("body", "background-color", "rgb:(245,245,245)");
