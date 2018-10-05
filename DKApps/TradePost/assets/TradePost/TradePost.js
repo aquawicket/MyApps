@@ -982,6 +982,16 @@ function TradePost_Test()
 	}
 	
 	
+	//Wait for a Open Files window to appear, set the path, select all files, open
+	DKCreate("DKHandles");
+	if(!DKHandles_WaitForWindow("Open Files", 5)){
+		DKLog("Open Files never showed up\n");
+		return;
+	}
+	DKLog("We found Open Files");
+	//Now get the url bar and change the path
+		
+		
 }
 
 ////////////////////////////////////
