@@ -380,7 +380,7 @@ function TradePost_UpdateHeader()
 	//post
 	var header_post = DKWidget_CreateElement("Header", "div", "header_post");
 	DKWidget_SetProperty(header_post, "display", "inline-block");
-	DKWidget_SetProperty(header_post, "width", "70rem");
+	DKWidget_SetProperty(header_post, "width", "170rem");
 	DKWidget_SetProperty(header_post, "border-width", "1rem");
 	//DKWidget_SetProperty(header_post, "border-right-width", "0rem");
 	DKWidget_SetProperty(header_post, "border-color", "black");
@@ -399,7 +399,7 @@ function TradePost_UpdateList()
 	for(var row=0; row<items.length; row++){
 		var div = DKWidget_CreateElement("ItemList", "div", "item"+items[row].id);
 		DKWidget_SetProperty(div, "display", "inline-block");
-		DKWidget_SetProperty(div, "width", "1150rem");
+		DKWidget_SetProperty(div, "width", "1250rem");
 		DKWidget_SetProperty(div, "min-width", "450rem");
 		DKWidget_SetProperty(div, "background-color", "rgb(200,200,200)");
 		
@@ -641,14 +641,49 @@ function TradePost_UpdateList()
 		var postCell = DKWidget_CreateElement(div, "div", "postCell"+items[row].id);
 		DKWidget_SetProperty(postCell, "display", "inline-block");
 		DKWidget_SetProperty(postCell, "overflow", "hidden");
-		DKWidget_SetProperty(postCell, "width", "70rem");
+		DKWidget_SetProperty(postCell, "width", "170rem");
 		DKWidget_SetProperty(postCell, "height", rowHeight);
-		DKWidget_SetProperty(postCell, "text-align", "center");
 		DKWidget_SetProperty(postCell, "border-width", "1rem");
 		//DKWidget_SetProperty(postCell, "border-right-width", "0rem");
 		DKWidget_SetProperty(postCell, "border-color", "black");
 		DKWidget_SetProperty(postCell, "border-style", "solid");
-			
+		
+		
+		var letgoCheck = DKWidget_CreateElement(postCell, "input", "letgoCheck"+items[row].id);
+		DKWidget_SetAttribute(letgoCheck, "type", "checkbox");
+		DKWidget_SetProperty(letgoCheck, "display", "block");
+		DKWidget_SetProperty(letgoCheck, "position", "relative");
+		//DKWidget_SetProperty(letgoCheck, "left", "0px");
+		
+		var offerupCheck = DKWidget_CreateElement(postCell, "input", "offerupCheck"+items[row].id);
+		DKWidget_SetAttribute(offerupCheck, "type", "checkbox");
+		DKWidget_SetProperty(offerupCheck, "display", "block");
+		DKWidget_SetProperty(offerupCheck, "position", "relative");
+		//DKWidget_SetProperty(offerupCheck, "top", "0px");
+		//DKWidget_SetProperty(offerupCheck, "left", "0px");
+		
+		var craigslistCheck = DKWidget_CreateElement(postCell, "input", "craigslistCheck"+items[row].id);
+		DKWidget_SetAttribute(craigslistCheck, "type", "checkbox");
+		DKWidget_SetProperty(craigslistCheck, "display", "block");
+		DKWidget_SetProperty(craigslistCheck, "position", "relative");
+		//DKWidget_SetProperty(craigslistCheck, "top", "0px");
+		//DKWidget_SetProperty(craigslistCheck, "left", "0px");
+		
+		var facebookCheck = DKWidget_CreateElement(postCell, "input", "facebookCheck"+items[row].id);
+		DKWidget_SetAttribute(facebookCheck, "type", "checkbox");
+		DKWidget_SetProperty(facebookCheck, "display", "block");
+		DKWidget_SetProperty(facebookCheck, "position", "relative");
+		//DKWidget_SetProperty(facebookCheck, "top", "0px");
+		//DKWidget_SetProperty(facebookCheck, "left", "0px");
+		
+		var ebayCheck = DKWidget_CreateElement(postCell, "input", "ebayCheck"+items[row].id);
+		DKWidget_SetAttribute(ebayCheck, "type", "checkbox");
+		DKWidget_SetProperty(ebayCheck, "display", "block");
+		DKWidget_SetProperty(ebayCheck, "position", "relative");
+		//DKWidget_SetProperty(ebayCheck, "top", "0px");
+		//DKWidget_SetProperty(ebayCheck, "left", "0px");
+
+		/*
 		var post = DKWidget_CreateElement(postCell, "button", "post"+items[row].id);
 		DKWidget_SetProperty(post, "display", "inline-block");
 		DKWidget_SetProperty(post, "width", "90%");
@@ -656,6 +691,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(post, "overflow-x", "hidden");
 		DKWidget_SetInnerHtml(post, "Post");
 		DKAddEvent(post, "click", TradePost_OnEvent);
+		*/
 	}
 }
 
