@@ -151,6 +151,8 @@ function TradePost_AddItem()
 	items[items.length-1].id = TradePost_GetFirstAvailableId();
 	TradePost_SaveItem(items.length-1);
 	TradePost_UpdateList();
+	var elmnt = document.getElementById("item"+items[items.length-1].id);
+	elmnt.scrollIntoView();
 }
 
 ////////////////////////////////
