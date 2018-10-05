@@ -639,6 +639,7 @@ function TradePost_UpdateList()
 		
 		//post
 		var postCell = DKWidget_CreateElement(div, "div", "postCell"+items[row].id);
+		DKWidget_SetProperty(postCell, "position", "relative");
 		DKWidget_SetProperty(postCell, "display", "inline-block");
 		DKWidget_SetProperty(postCell, "overflow", "hidden");
 		DKWidget_SetProperty(postCell, "width", "170rem");
@@ -651,38 +652,58 @@ function TradePost_UpdateList()
 		
 		var letgoCheck = DKWidget_CreateElement(postCell, "input", "letgoCheck"+items[row].id);
 		DKWidget_SetAttribute(letgoCheck, "type", "checkbox");
-		DKWidget_SetProperty(letgoCheck, "display", "block");
-		DKWidget_SetProperty(letgoCheck, "position", "relative");
-		//DKWidget_SetProperty(letgoCheck, "left", "0px");
+		DKWidget_SetProperty(letgoCheck, "position", "absolute");
+		
+		var letgoLink = DKWidget_CreateElement(postCell, "img", "letgoLink"+items[row].id);
+		DKWidget_SetAttribute(letgoLink, "src", DKAssets_LocalAssets()+"/TradePost/letgo_small.png");
+		DKWidget_SetProperty(letgoLink, "position", "absolute");
+		DKWidget_SetProperty(letgoLink, "left", "30rem");
 		
 		var offerupCheck = DKWidget_CreateElement(postCell, "input", "offerupCheck"+items[row].id);
 		DKWidget_SetAttribute(offerupCheck, "type", "checkbox");
-		DKWidget_SetProperty(offerupCheck, "display", "block");
-		DKWidget_SetProperty(offerupCheck, "position", "relative");
-		//DKWidget_SetProperty(offerupCheck, "top", "0px");
-		//DKWidget_SetProperty(offerupCheck, "left", "0px");
+		DKWidget_SetProperty(offerupCheck, "position", "absolute");
+		DKWidget_SetProperty(offerupCheck, "top", "30rem");
+		
+		var offerupLink = DKWidget_CreateElement(postCell, "img", "offerupLink"+items[row].id);
+		DKWidget_SetAttribute(offerupLink, "src", DKAssets_LocalAssets()+"/TradePost/offerup_small.png");
+		DKWidget_SetProperty(offerupLink, "position", "absolute");
+		DKWidget_SetProperty(offerupLink, "top", "30rem");
+		DKWidget_SetProperty(offerupLink, "left", "30rem");
 		
 		var craigslistCheck = DKWidget_CreateElement(postCell, "input", "craigslistCheck"+items[row].id);
 		DKWidget_SetAttribute(craigslistCheck, "type", "checkbox");
-		DKWidget_SetProperty(craigslistCheck, "display", "block");
-		DKWidget_SetProperty(craigslistCheck, "position", "relative");
-		//DKWidget_SetProperty(craigslistCheck, "top", "0px");
-		//DKWidget_SetProperty(craigslistCheck, "left", "0px");
+		DKWidget_SetProperty(craigslistCheck, "position", "absolute");
+		DKWidget_SetProperty(craigslistCheck, "top", "60rem");
+		
+		var craigslistLink = DKWidget_CreateElement(postCell, "img", "craigslistLink"+items[row].id);
+		DKWidget_SetAttribute(craigslistLink, "src", DKAssets_LocalAssets()+"/TradePost/craigslist_small.jpg");
+		DKWidget_SetProperty(craigslistLink, "position", "absolute");
+		DKWidget_SetProperty(craigslistLink, "top", "60rem");
+		DKWidget_SetProperty(craigslistLink, "left", "30rem");
 		
 		var facebookCheck = DKWidget_CreateElement(postCell, "input", "facebookCheck"+items[row].id);
 		DKWidget_SetAttribute(facebookCheck, "type", "checkbox");
-		DKWidget_SetProperty(facebookCheck, "display", "block");
-		DKWidget_SetProperty(facebookCheck, "position", "relative");
-		//DKWidget_SetProperty(facebookCheck, "top", "0px");
-		//DKWidget_SetProperty(facebookCheck, "left", "0px");
+		DKWidget_SetProperty(facebookCheck, "position", "absolute");
+		DKWidget_SetProperty(facebookCheck, "top", "90rem");
+		
+		var facebookLink = DKWidget_CreateElement(postCell, "img", "facebookLink"+items[row].id);
+		DKWidget_SetAttribute(facebookLink, "src", DKAssets_LocalAssets()+"/TradePost/facebook_small.png");
+		DKWidget_SetProperty(facebookLink, "position", "absolute");
+		DKWidget_SetProperty(facebookLink, "top", "90rem");
+		DKWidget_SetProperty(facebookLink, "left", "30rem");
 		
 		var ebayCheck = DKWidget_CreateElement(postCell, "input", "ebayCheck"+items[row].id);
 		DKWidget_SetAttribute(ebayCheck, "type", "checkbox");
-		DKWidget_SetProperty(ebayCheck, "display", "block");
-		DKWidget_SetProperty(ebayCheck, "position", "relative");
-		//DKWidget_SetProperty(ebayCheck, "top", "0px");
-		//DKWidget_SetProperty(ebayCheck, "left", "0px");
+		DKWidget_SetProperty(ebayCheck, "position", "absolute");
+		DKWidget_SetProperty(ebayCheck, "top", "120rem");
+		
+		var ebayLink = DKWidget_CreateElement(postCell, "img", "ebayLink"+items[row].id);
+		DKWidget_SetAttribute(ebayLink, "src", DKAssets_LocalAssets()+"/TradePost/ebay_small.png");
+		DKWidget_SetProperty(ebayLink, "position", "absolute");
+		DKWidget_SetProperty(ebayLink, "top", "120rem");
+		DKWidget_SetProperty(ebayLink, "left", "30rem");
 
+		
 		/*
 		var post = DKWidget_CreateElement(postCell, "button", "post"+items[row].id);
 		DKWidget_SetProperty(post, "display", "inline-block");
