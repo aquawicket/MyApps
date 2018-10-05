@@ -162,38 +162,46 @@ function TradePost_SaveItem(row)
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/data.json");
 }
 
+///////////////////////////////////
+function TradePost_GetRowFromId(id)
+{
+	var row;
+	for(var i=0; i<items.length; i++){
+		if(items[i].id == id){
+			row = i;
+		}
+	}
+	return row;
+}
+
 ///////////////////////////////////////
 function TradePost_ChangeText(id, text)
 {
 	DKLog("TradePost_ChangeText("+id+", "+text+")\n", DKDEBUG);
 	if(id.includes("title")){
 		var id = id.replace("title","");
-		
-		var row;
-		for(var i=0; i<items.length; i++){
-			if(items[i].id == id){
-				row = i; //get the row from the id
-			}
-		}
-		
+		var row = TradePost_GetRowFromId(id);
 		items[row].title = text;
 		TradePost_SaveItem(row);
 	}
-	
-	//TODO - logic needs to be implemented the same as above. 
 	else if(id.includes("description")){
 		var id = id.replace("description","");
-		items[id].description = text;
+		var row = TradePost_GetRowFromId(id);
+		items[row].description = text;
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("catagory")){
 		var id = id.replace("catagory","");
-		items[id].catagory = text;
+		var row = TradePost_GetRowFromId(id);
+		items[row].catagory = text;
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("price")){
 		var id = id.replace("price","");
-		items[id].price = text;
+		var row = TradePost_GetRowFromId(id);
+		items[row].price = text;
+		TradePost_SaveItem(row);
 	}
-	
 }
 
 //////////////////////////////
