@@ -366,6 +366,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_id, "border-style", "solid");
 	DKWidget_SetProperty(header_id, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_id, "id");
+	DKAddEvent(header_id, "click", TradePost_OnEvent);
 	
 	//image
 	var header_image = DKWidget_CreateElement("Header", "div", "header_image");
@@ -377,6 +378,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_image, "border-style", "solid");
 	DKWidget_SetProperty(header_image, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_image, "image");
+	DKAddEvent(header_image, "click", TradePost_OnEvent);
 	
 	//title
 	var header_title = DKWidget_CreateElement("Header", "div", "header_title");
@@ -388,6 +390,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_title, "border-style", "solid");
 	DKWidget_SetProperty(header_title, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_title, "title");
+	DKAddEvent(header_title, "click", TradePost_OnEvent);
 	
 	//description
 	var header_description = DKWidget_CreateElement("Header", "div", "header_description");
@@ -399,6 +402,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_description, "border-style", "solid");
 	DKWidget_SetProperty(header_description, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_description, "description");
+	DKAddEvent(header_description, "click", TradePost_OnEvent);
 	
 	//make
 	var header_make = DKWidget_CreateElement("Header", "div", "header_make");
@@ -410,6 +414,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_make, "border-style", "solid");
 	DKWidget_SetProperty(header_make, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_make, "make");
+	DKAddEvent(header_make, "click", TradePost_OnEvent);
 	
 	//model
 	var header_model = DKWidget_CreateElement("Header", "div", "header_model");
@@ -421,6 +426,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_model, "border-style", "solid");
 	DKWidget_SetProperty(header_model, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_model, "model");
+	DKAddEvent(header_model, "click", TradePost_OnEvent);
 	
 	//condition
 	var header_condition = DKWidget_CreateElement("Header", "div", "header_condition");
@@ -432,6 +438,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_condition, "border-style", "solid");
 	DKWidget_SetProperty(header_condition, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_condition, "condition");
+	DKAddEvent(header_condition, "click", TradePost_OnEvent);
 	
 	//catagory
 	var header_catagory = DKWidget_CreateElement("Header", "div", "header_catagory");
@@ -443,6 +450,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_catagory, "border-style", "solid");
 	DKWidget_SetProperty(header_catagory, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_catagory, "catagory");
+	DKAddEvent(header_catagory, "click", TradePost_OnEvent);
 	
 	//price
 	var header_price = DKWidget_CreateElement("Header", "div", "header_price");
@@ -454,6 +462,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_price, "border-style", "solid");
 	DKWidget_SetProperty(header_price, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_price, "price");
+	DKAddEvent(header_price, "click", TradePost_OnEvent);
 	
 	//date
 	var header_date = DKWidget_CreateElement("Header", "div", "header_date");
@@ -465,6 +474,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_date, "border-style", "solid");
 	DKWidget_SetProperty(header_date, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_date, "date");
+	DKAddEvent(header_date, "click", TradePost_OnEvent);
 	
 	//post
 	var header_post = DKWidget_CreateElement("Header", "div", "header_post");
@@ -476,6 +486,7 @@ function TradePost_UpdateHeader()
 	DKWidget_SetProperty(header_post, "border-style", "solid");
 	DKWidget_SetProperty(header_post, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_post, "post");
+	DKAddEvent(header_post, "click", TradePost_OnEvent);
 
 }
 
