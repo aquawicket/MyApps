@@ -235,6 +235,36 @@ function TradePost_ChangeText(id, text)
 		items[row].price = text;
 		TradePost_SaveItem(row);
 	}
+	else if(id.includes("letgoCheck")){
+		var id = id.replace("letgoCheck","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].letgoCheck = text;
+		TradePost_SaveItem(row);
+	}
+	else if(id.includes("offerupCheck")){
+		var id = id.replace("offerupCheck","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].offerupCheck = text;
+		TradePost_SaveItem(row);
+	}
+	else if(id.includes("craigslistCheck")){
+		var id = id.replace("craigslistCheck","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].craigslistCheck = text;
+		TradePost_SaveItem(row);
+	}
+	else if(id.includes("facebookCheck")){
+		var id = id.replace("facebookCheck","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].facebookCheck = text;
+		TradePost_SaveItem(row);
+	}
+	else if(id.includes("ebayCheck")){
+		var id = id.replace("ebayCheck","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].ebayCheck = text;
+		TradePost_SaveItem(row);
+	}
 }
 
 //////////////////////////////
@@ -656,6 +686,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(letgoCheck, "top", "3rem");
 		DKWidget_SetProperty(letgoCheck, "width", "16px");
 		DKWidget_SetProperty(letgoCheck, "height", "16px");
+		DKWidget_SetValue(letgoCheck, items[row].letgoCheck);
 		DKAddEvent(letgoCheck, "change", TradePost_OnEvent);
 		
 		var letgoLink = DKWidget_CreateElement(postCell, "img", "letgoLink"+items[row].id);
@@ -685,6 +716,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(offerupCheck, "top", "33rem");
 		DKWidget_SetProperty(offerupCheck, "width", "16px");
 		DKWidget_SetProperty(offerupCheck, "height", "16px");
+		DKWidget_SetValue(offerupCheck, items[row].offerupCheck);
 		DKAddEvent(offerupCheck, "change", TradePost_OnEvent);
 		
 		var offerupLink = DKWidget_CreateElement(postCell, "img", "offerupLink"+items[row].id);
@@ -715,6 +747,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(craigslistCheck, "top", "63rem");
 		DKWidget_SetProperty(craigslistCheck, "width", "16px");
 		DKWidget_SetProperty(craigslistCheck, "height", "16px");
+		DKWidget_SetValue(craigslistCheck, items[row].craigslistCheck);
 		DKAddEvent(craigslistCheck, "change", TradePost_OnEvent);
 		
 		var craigslistLink = DKWidget_CreateElement(postCell, "img", "craigslistLink"+items[row].id);
@@ -745,6 +778,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(facebookCheck, "top", "93rem");
 		DKWidget_SetProperty(facebookCheck, "width", "16px");
 		DKWidget_SetProperty(facebookCheck, "height", "16px");
+		DKWidget_SetValue(facebookCheck, items[row].facebookCheck);
 		DKAddEvent(facebookCheck, "change", TradePost_OnEvent);
 		
 		var facebookLink = DKWidget_CreateElement(postCell, "img", "facebookLink"+items[row].id);
@@ -775,6 +809,7 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(ebayCheck, "top", "123rem");
 		DKWidget_SetProperty(ebayCheck, "width", "16px");
 		DKWidget_SetProperty(ebayCheck, "height", "16px");
+		DKWidget_SetValue(ebayCheck, items[row].ebayCheck);
 		DKAddEvent(ebayCheck, "change", TradePost_OnEvent);
 		
 		var ebayLink = DKWidget_CreateElement(postCell, "img", "ebayLink"+items[row].id);
