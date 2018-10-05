@@ -1,4 +1,4 @@
-items = []; //TODO: work with JSON objects for storing data
+items = []; //items stored here, for use with json
 var currentItem;
 var action;
 
@@ -112,11 +112,11 @@ function TradePost_OnEvent(event)
 		DK_Refresh();
 	}
 	if(DK_Type(event, "keyup")){
-		TradePost_ChangeTitle(DK_GetId(event), DK_GetValue(DK_GetId(event)));
+		TradePost_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
 		return;
 	}
 	if(DK_Type(event, "change")){
-		TradePost_ChangeTitle(DK_GetId(event), DK_GetValue(DK_GetId(event)));
+		TradePost_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
 		return;
 	}
 }
@@ -141,6 +141,11 @@ function TradePost_UpdateList()
 	for(var row = 0; row < 1000; row++){
 		//DKLog(DKAssets_LocalAssets()+"Items/Item"+row+"\n");
 		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
+			
+			var json = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
+			var item = JSON.parse(json);
+			items.push(item); //add item to items 
+			
 			var div = DKWidget_CreateElement("ItemList", "div", "item"+row);
 			DKWidget_SetProperty(div, "display", "inline-block");
 			DKWidget_SetProperty(div, "width", "100%");
@@ -159,7 +164,6 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(num, "row", row);
 			DKWidget_SetAttribute(num, "column", 1);
 			DKWidget_SetValue(num, row);
-			items.push({}); //add a new object to items
 			items[row].id = row;
 						
 			var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+row);
@@ -204,12 +208,8 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(title, "font-size", "11rem");
 			DKAddEvent(title, "keyup", TradePost_OnEvent);
 			DKAddEvent(title, "change", TradePost_OnEvent);
+			DKWidget_SetValue(title, item.title);
 			
-
-			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt")){
-				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt"));
-				items[row].title = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt");
-			}
 			
 			var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+row);
 			DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
@@ -232,12 +232,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(description, "font-size", "11rem");
 			DKAddEvent(description, "keyup", TradePost_OnEvent);
 			DKAddEvent(description, "change", TradePost_OnEvent);
+			DKWidget_SetValue(description, item.description);
 			
-			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt")){
-				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt"));
-				items[row].description = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt");
-			}
-			
+				
 			var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+row);
 			DKWidget_SetProperty(catagoryCell, "display", "inline-block");
 			DKWidget_SetProperty(catagoryCell, "overflow", "hidden");
@@ -258,11 +255,8 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(catagory, "overflow-x", "hidden");
 			DKAddEvent(catagory, "click", TradePost_OnEvent);
 			DKAddEvent(catagory, "change", TradePost_OnEvent);
+			DKWidget_SetValue(catagory, item.catagory);
 			
-			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt")){
-				DKWidget_SetValue(catagory, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt"));
-				items[row].catagory = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt");
-			}
 			
 			var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+row);
 			DKWidget_SetProperty(priceCell, "display", "inline-block");
@@ -285,12 +279,9 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(price, "font-size", "15rem");
 			DKAddEvent(price, "keyup", TradePost_OnEvent);
 			DKAddEvent(price, "change", TradePost_OnEvent);
+			DKWidget_SetValue(price, item.price);
 			
-			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt")){
-				DKWidget_SetValue(price, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt"));
-				items[row].price = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt");
-			}
-			
+				
 			var postCell = DKWidget_CreateElement(div, "div", "postCell"+row);
 			DKWidget_SetProperty(postCell, "display", "inline-block");
 			DKWidget_SetProperty(postCell, "overflow", "hidden");
@@ -314,26 +305,36 @@ function TradePost_UpdateList()
 }
 
 ////////////////////////////////////////
-function TradePost_ChangeTitle(id, text)
+function TradePost_ChangeText(id, text)
 {
-	DKLog("TradePost_ChangeTitle("+id+", "+text+")\n", DKDEBUG);
+	DKLog("TradePost_ChangeText("+id+", "+text+")\n", DKDEBUG);
 	if(id.includes("title")){
 		id = id.replace("title","");
-		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/title.txt");
+		items[id].title = text;
+		TradePost_SaveData(id);
 	}
 	else if(id.includes("description")){
 		id = id.replace("description","");
-		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/description.txt");
+		items[id].description = text;
+		TradePost_SaveData(id);
 	}
 	else if(id.includes("catagory")){
 		id = id.replace("catagory","");
-		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/catagory.txt");
+		items[id].catagory = text;
+		TradePost_SaveData(id);
 	}
 	else if(id.includes("price")){
 		id = id.replace("price","");
-		DKFile_StringToFile(text, DKAssets_LocalAssets()+"Items/Item"+id+"/price.txt");
+		items[id].price = text;
+		TradePost_SaveData(id);
 	}
-	
+}
+
+///////////////////////////////
+function TradePost_SaveData(id)
+{
+	var json = JSON.stringify(items[id]);
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+id+"/data.json");
 }
 
 ////////////////////////////////////
