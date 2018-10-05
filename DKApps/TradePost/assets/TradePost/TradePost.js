@@ -65,6 +65,13 @@ function TradePost_OnEvent(event)
 		TradePost_PostItem(currentItem);
 		return;
 	}
+	if(DK_IdLike(event, "condition")){
+		currentItem = DK_GetId(event).replace("condition","");
+		DKCreate("TradePost/ConditionMenu.js", function(){
+			DKMenu_ValidatePosition("TradePost/ConditionMenu.html");
+		});
+		return;
+	}
 	if(DK_IdLike(event, "catagory")){
 		currentItem = DK_GetId(event).replace("catagory","");
 		DKCreate("TradePost/CatagoryMenu.js", function(){
@@ -202,6 +209,12 @@ function TradePost_ChangeText(id, text)
 		items[row].model = text;
 		TradePost_SaveItem(row);
 	}
+	else if(id.includes("condition")){
+		var id = id.replace("condition","");
+		var row = TradePost_GetRowFromId(id);
+		items[row].condition = text;
+		TradePost_SaveItem(row);
+	}
 	else if(id.includes("catagory")){
 		var id = id.replace("catagory","");
 		var row = TradePost_GetRowFromId(id);
@@ -254,7 +267,9 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(div, "width", "100%");
 		DKWidget_SetProperty(div, "min-width", "450rem");
 		DKWidget_SetProperty(div, "background-color", "rgb(200,200,200)");
-			
+		
+		
+		//id		
 		var num = DKWidget_CreateElement(div, "div", "itemId"+items[row].id);
 		DKWidget_SetProperty(num, "display", "inline-block");
 		DKWidget_SetProperty(num, "overflow", "hidden");
@@ -265,7 +280,9 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(num, "border-color", "black");
 		DKWidget_SetProperty(num, "border-style", "solid");
 		DKWidget_SetValue(num, items[row].id);
-						
+			
+			
+		//image
 		var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+items[row].id);
 		DKWidget_SetProperty(imageCell, "display", "inline-block");
 		DKWidget_SetProperty(imageCell, "width", "142rem");
@@ -278,7 +295,6 @@ function TradePost_UpdateList()
 		DKWidget_SetProperty(imageCell, "border-style", "solid");
 		DKAddEvent(imageCell, "click", TradePost_OnEvent);
 			
-			
 		var img = DKWidget_CreateElement(imageCell, "img", "img"+items[row].id);
 		DKWidget_SetProperty(img, "display", "block");
 		DKWidget_SetProperty(img, "width", "100%");
@@ -287,6 +303,8 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/Img0.jpg?"+new Date().getTime());
 		}
 			
+		
+		//title	
 		var titleCell = DKWidget_CreateElement(div, "div", "titleCell"+items[row].id);
 		DKWidget_SetProperty(titleCell, "overflow", "hidden");
 		DKWidget_SetProperty(titleCell, "width", "120rem");
@@ -313,6 +331,7 @@ function TradePost_UpdateList()
 		}
 			
 			
+		//description
 		var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+items[row].id);
 		DKWidget_SetProperty(descriptionCell, "overflow", "hidden");
 		DKWidget_SetProperty(descriptionCell, "width", "220rem");
@@ -338,6 +357,7 @@ function TradePost_UpdateList()
 		}
 		
 		
+		//make
 		var makeCell = DKWidget_CreateElement(div, "div", "makeCell"+items[row].id);
 		DKWidget_SetProperty(makeCell, "overflow", "hidden");
 		DKWidget_SetProperty(makeCell, "width", "100rem");
@@ -362,6 +382,8 @@ function TradePost_UpdateList()
 			DKWidget_SetValue(make, items[row].make);
 		}
 		
+		
+		//model
 		var modelCell = DKWidget_CreateElement(div, "div", "modelCell"+items[row].id);
 		DKWidget_SetProperty(modelCell, "overflow", "hidden");
 		DKWidget_SetProperty(modelCell, "width", "100rem");
@@ -385,14 +407,39 @@ function TradePost_UpdateList()
 		if(items[row].model){
 			DKWidget_SetValue(model, items[row].model);
 		}
+		
+		
+		//condition
+		var conditionCell = DKWidget_CreateElement(div, "div", "conditionCell"+items[row].id);
+		DKWidget_SetProperty(conditionCell, "display", "inline-block");
+		DKWidget_SetProperty(conditionCell, "overflow", "hidden");
+		DKWidget_SetProperty(conditionCell, "width", "100rem");
+		DKWidget_SetProperty(conditionCell, "height", "80rem");
+		DKWidget_SetProperty(conditionCell, "border-width", "1rem");
+		DKWidget_SetProperty(conditionCell, "border-right-width", "0rem");
+		DKWidget_SetProperty(conditionCell, "border-color", "black");
+		DKWidget_SetProperty(conditionCell, "border-style", "solid");
 			
-				
+		var condition = DKWidget_CreateElement(conditionCell, "textarea", "condition"+items[row].id);
+		DKWidget_SetAttribute(condition, "type", "text");
+		DKWidget_SetProperty(condition, "display", "inline-block");
+		DKWidget_SetProperty(condition, "width", "100%");
+		DKWidget_SetProperty(condition, "height", "100%");
+		DKWidget_SetProperty(condition, "word-wrap", "break-word");
+		DKWidget_SetProperty(condition, "overflow-x", "hidden");
+		DKAddEvent(condition, "click", TradePost_OnEvent);
+		DKAddEvent(condition, "change", TradePost_OnEvent);
+		if(items[row].condition){
+			DKWidget_SetValue(condition, items[row].condition);
+		}
+		
+	
+		//catagory
 		var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+items[row].id);
 		DKWidget_SetProperty(catagoryCell, "display", "inline-block");
 		DKWidget_SetProperty(catagoryCell, "overflow", "hidden");
 		DKWidget_SetProperty(catagoryCell, "width", "100rem");
 		DKWidget_SetProperty(catagoryCell, "height", "80rem");
-		//DKWidget_SetProperty(catagoryCell, "text-align", "center");
 		DKWidget_SetProperty(catagoryCell, "border-width", "1rem");
 		DKWidget_SetProperty(catagoryCell, "border-right-width", "0rem");
 		DKWidget_SetProperty(catagoryCell, "border-color", "black");
@@ -412,6 +459,7 @@ function TradePost_UpdateList()
 		}
 			
 			
+		//price
 		var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+items[row].id);
 		DKWidget_SetProperty(priceCell, "display", "inline-block");
 		DKWidget_SetProperty(priceCell, "overflow", "hidden");
@@ -437,7 +485,9 @@ function TradePost_UpdateList()
 			DKWidget_SetValue(price, items[row].price);
 		}
 		
-				
+		
+		
+		//post
 		var postCell = DKWidget_CreateElement(div, "div", "postCell"+items[row].id);
 		DKWidget_SetProperty(postCell, "display", "inline-block");
 		DKWidget_SetProperty(postCell, "overflow", "hidden");
@@ -475,9 +525,6 @@ function TradePost_Test()
 	DKLog("TradePost_Test\n", DKDEBUG);
 	//TODO - we need to be able to work with this file dialog after it is opened. 
 	//DKCef_FileDialog("DKBrowser_cef");
-	//DKLog("###### TEST ######\n");
-	//DKLog("###### TEST ######\n");
-	//DKLog("###### TEST ######\n");
 	
 	//FIXME - crashes
 	//DK_RunDuktape('DKCreate("DKGit/DKGit.js");');
