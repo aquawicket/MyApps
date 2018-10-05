@@ -93,10 +93,20 @@ function TradePost_OnEvent(event)
 		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
 		return;
 	}
+	if(DK_IdLike(event, "letgoPost")){
+		currentItem = DK_GetId(event).replace("letgoPost","");
+		DKLog("letgoPost \n");
+		return;
+	}
 	if(DK_IdLike(event, "offerupLink")){
 		currentItem = DK_GetId(event).replace("offerupLink","");
 		DK_QueueDuktape("DKBrowser_NewTab();");
 		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://offerup.com');");
+		return;
+	}
+	if(DK_IdLike(event, "offerupPost")){
+		currentItem = DK_GetId(event).replace("offerupPost","");
+		DKLog("offerupPost \n");
 		return;
 	}
 	if(DK_IdLike(event, "craigslistLink")){
@@ -105,10 +115,20 @@ function TradePost_OnEvent(event)
 		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
 		return;
 	}
+	if(DK_IdLike(event, "craigslistPost")){
+		currentItem = DK_GetId(event).replace("craigslistPost","");
+		DKLog("craigslistPost \n");
+		return;
+	}
 	if(DK_IdLike(event, "facebookLink")){
 		currentItem = DK_GetId(event).replace("facebookLink","");
 		DK_QueueDuktape("DKBrowser_NewTab();");
 		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.facebook.com/marketplace');");
+		return;
+	}
+	if(DK_IdLike(event, "facebookPost")){
+		currentItem = DK_GetId(event).replace("facebookPost","");
+		DKLog("facebookPost \n");
 		return;
 	}
 	if(DK_IdLike(event, "ebayLink")){
@@ -117,9 +137,16 @@ function TradePost_OnEvent(event)
 		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
 		return;
 	}
-	if(DK_IdLike(event, "post")){
-		currentItem = DK_GetId(event).replace("post","");
-		TradePost_PostItem(currentItem);
+	if(DK_IdLike(event, "ebayPost")){
+		currentItem = DK_GetId(event).replace("ebayPost","");
+		DKLog("ebayPost \n");
+		return;
+	}
+	if(DK_IdLike(event, "postAll")){
+		currentItem = DK_GetId(event).replace("postAll","");
+		DKLog("postAll \n");
+		//TODO - post to all selected locations
+		//TradePost_PostItem(currentItem);
 		return;
 	}
 	
