@@ -7,7 +7,7 @@ DKWidget_SetProperty("DKBrowser.html", "height", "100%");
 DKCreate("DKTray/DKTray.js");
 DKCreate("DKDebug/DKDebug.js");
 DKCreate("DKAdmin/DKAdmin.js");
-DKWidget_SetProperty("body", "background-color", "rgb:(120,120,120)");
+DKWidget_SetProperty("body", "background-color", "rgb:(245,245,245)");
 
 DKCreate("DKSDLText"); //This currently fixed cef redraw issues.
 
