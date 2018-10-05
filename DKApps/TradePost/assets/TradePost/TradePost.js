@@ -304,7 +304,7 @@ function TradePost_UpdateList()
 	}
 }
 
-////////////////////////////////////////
+///////////////////////////////////////
 function TradePost_ChangeText(id, text)
 {
 	DKLog("TradePost_ChangeText("+id+", "+text+")\n", DKDEBUG);
