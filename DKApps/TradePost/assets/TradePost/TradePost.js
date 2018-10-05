@@ -1,4 +1,4 @@
-var items = {}; //TODO: work with JSON objects for storing data
+var item = {}, items = []; //TODO: work with JSON objects for storing data
 var currentItem;
 var action;
 
@@ -144,7 +144,7 @@ function TradePost_UpdateList()
 			var div = DKWidget_CreateElement("ItemList", "div", "item"+row);
 			DKWidget_SetProperty(div, "display", "inline-block");
 			DKWidget_SetProperty(div, "width", "100%");
-			//DKWidget_SetProperty(div, "min-width", "450rem");
+			DKWidget_SetProperty(div, "min-width", "450rem");
 			DKWidget_SetProperty(div, "background-color", "rgb(200,200,200)");
 			
 			var num = DKWidget_CreateElement(div, "div", "itemId"+row);
@@ -159,7 +159,9 @@ function TradePost_UpdateList()
 			DKWidget_SetAttribute(num, "row", row);
 			DKWidget_SetAttribute(num, "column", 1);
 			DKWidget_SetValue(num, row);
-			
+			items.push({});
+			items[row].id = row;
+						
 			var imageCell = DKWidget_CreateElement(div, "div", "imageCell"+row);
 			DKWidget_SetProperty(imageCell, "display", "inline-block");
 			DKWidget_SetProperty(imageCell, "width", "142rem");
@@ -202,9 +204,11 @@ function TradePost_UpdateList()
 			DKWidget_SetProperty(title, "font-size", "11rem");
 			DKAddEvent(title, "keyup", TradePost_OnEvent);
 			DKAddEvent(title, "change", TradePost_OnEvent);
+			
 
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt")){
 				DKWidget_SetValue(title, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt"));
+				items[row].title = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/title.txt");
 			}
 			
 			var descriptionCell = DKWidget_CreateElement(div, "div", "descriptionCell"+row);
@@ -231,6 +235,7 @@ function TradePost_UpdateList()
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt")){
 				DKWidget_SetValue(description, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt"));
+				//items.id.description = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/description.txt");
 			}
 			
 			var catagoryCell = DKWidget_CreateElement(div, "div", "catagoryCell"+row);
@@ -256,6 +261,7 @@ function TradePost_UpdateList()
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt")){
 				DKWidget_SetValue(catagory, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt"));
+				//items.id.catagory = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/catagory.txt");
 			}
 			
 			var priceCell = DKWidget_CreateElement(div, "div", "priceCell"+row);
@@ -282,6 +288,7 @@ function TradePost_UpdateList()
 			
 			if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt")){
 				DKWidget_SetValue(price, DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt"));
+				//items.id.price = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/price.txt");
 			}
 			
 			var postCell = DKWidget_CreateElement(div, "div", "postCell"+row);
@@ -350,8 +357,13 @@ function TradePost_Test()
 	//DKLog("###### TEST ######\n");
 	
 	//FIXME - crashes
-	DK_RunDuktape('DKCreate("DKGit/DKGit.js");');
-	DK_QueueDuktape('DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
+	//DK_RunDuktape('DKCreate("DKGit/DKGit.js");');
+	//DK_QueueDuktape('DKThread_DKQueue("GitCommit","GitMenu_GitCommit();");');
+	
+	DKLog("######### ITEMS ##########\n");
+	for(var i=0; i<items.length; i++){
+		DKLog("id:"+items[i].id+" title:"+items[i].title+"\n");
+	}
 }
 
 ////////////////////////////////////
