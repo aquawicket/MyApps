@@ -31,10 +31,11 @@ function ItemImages_OnEvent(event)
 		ItemImages_Update();
 	}
 	if(DK_Id(event, "ItemImages_upload")){
-		DKCef_FileDialog("DKBrowser_cef", "FILE_DIALOG_OPEN", "Open Image");
+		//DKCef_FileDialog("DKBrowser_cef", "FILE_DIALOG_OPEN", "Open Image");
+		DKCef_FileDialog("DKBrowser_cef", "FILE_DIALOG_OPEN_MULTIPLE", "Open Image");
 	}
 	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
-		ItemImages_UploadImage(DK_GetValue(event));
+		ItemImages_UploadImages(DK_GetValue(event));
 		return;
 	}
 	if(DK_Id(event, "ItemImages_delete")){
@@ -89,18 +90,24 @@ function ItemImages_Update()
 	}
 }
 
-/////////////////////////////////////
-function ItemImages_UploadImage(file)
+///////////////////////////////////////
+function ItemImages_UploadImages(files)
 {
-	DKLog("ItemImages_UploadImage("+file+")\n", DKDEBUG);
-	if(!file){ return; }
-	var i=0;
-	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg")){
-		i++;
+	DKLog("ItemImages_UploadImages("+files+")\n", DKDEBUG);
+	if(!files){ return; }
+	
+	var arry = files.split(";");
+	for(var i=0; i<arry.length; i++){
+		DKLog(arry[i]+"\n");
+		
+		var i=0;
+		while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg")){
+			i++;
+		}
+		DKFile_Copy(arry[i], DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg", true);
+		ItemImages_imageNum = i;
+		ItemImages_Update();
 	}
-	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg", true);
-	ItemImages_imageNum = i;
-	ItemImages_Update();
 	DKWidget_SetAttribute("img"+ItemImages_itemNum, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img0.jpg?"+new Date().getTime());
 }
 
