@@ -264,7 +264,7 @@ function TradePost_UpdateList()
 	for(var row=0; row<items.length; row++){
 		var div = DKWidget_CreateElement("ItemList", "div", "item"+items[row].id);
 		DKWidget_SetProperty(div, "display", "inline-block");
-		DKWidget_SetProperty(div, "width", "100%");
+		DKWidget_SetProperty(div, "width", "1070rem");
 		DKWidget_SetProperty(div, "min-width", "450rem");
 		DKWidget_SetProperty(div, "background-color", "rgb(200,200,200)");
 		
