@@ -1,7 +1,7 @@
 ////////////////////////
 function Settings_Init()
 {
-	//DKLog("Settings_Init()\n");
+	DKLog("Settings_Init()\n", DKDEBUG);
 	DKCreate("DKBrowser/Settings.html");
 	DKAddEvent("UpdateButton", "click", Settings_OnEvent);
 	DKAddEvent("VersionButton", "click", Settings_OnEvent);
@@ -13,14 +13,14 @@ function Settings_Init()
 ///////////////////////
 function Settings_End()
 {
-	//DKLog("Settings_End()\n");
+	DKLog("Settings_End()\n", DKDEBUG);
 	DKClose("DKBrowser/Settings.html");
 }
 
 ////////////////////////////////
 function Settings_OnEvent(event)
 {
-	//DKLog("Settings_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("Settings_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Id(event, "UpdateButton")){
 		Settings_Update();
 	}
@@ -41,7 +41,7 @@ function Settings_OnEvent(event)
 //////////////////////////
 function Settings_Update()
 {
-	//DKLog("Settings_Update()\n");
+	DKLog("Settings_Update()\n", DKDEBUG);
 	DKCreate("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
@@ -50,7 +50,7 @@ function Settings_Update()
 ///////////////////////////
 function Settings_Version()
 {
-	//DKLog("Settings_Version()\n");
+	DKLog("Settings_Version()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://version");
 }
@@ -58,7 +58,7 @@ function Settings_Version()
 ///////////////////////
 function Settings_Gpu()
 {
-	//DKLog("Settings_Gpu()\n");
+	DKLog("Settings_Gpu()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://gpu");
 }
@@ -66,7 +66,7 @@ function Settings_Gpu()
 //////////////////////////
 function Settings_System()
 {
-	//DKLog("Settings_System()\n");
+	DKLog("Settings_System()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://system");
 }
@@ -74,7 +74,7 @@ function Settings_System()
 ////////////////////////////////
 function Settings_NetInternals()
 {
-	//DKLog("Settings_NetInternals()\n");
+	DKLog("Settings_NetInternals()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://net-internals");
 }
