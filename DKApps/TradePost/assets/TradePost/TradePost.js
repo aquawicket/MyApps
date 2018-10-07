@@ -98,7 +98,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "letgoPost")){
 		currentItem = DK_GetId(event).replace("letgoPost","");
-		DKLog("letgoPost \n");
+		TradePost_LetGoPost(currentItem);
 		return;
 	}
 	if(DK_IdLike(event, "offerupLink")){
@@ -1042,10 +1042,6 @@ function TradePost_PostItem(itemNum)
 	//action = "PostToCraigslist";
 	//DK_QueueDuktape("DKBrowser_NewTab();");
 	//DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
-	
-	action = "PostToLetGo";
-	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
 }
 
 ////////////////////////////////////
@@ -1188,6 +1184,15 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 		});
 		return;
 	}
+}
+
+/////////////////////////////////////////
+function TradePost_LetGoPost(currentItem)
+{
+	DKLog("TradePost_LetGoPost("+currentItem+")", DKINFO);
+	action = "PostToLetGo";
+	DK_QueueDuktape("DKBrowser_NewTab();");
+	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
 }
 
 ///////////////////////
