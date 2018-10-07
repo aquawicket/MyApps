@@ -1068,8 +1068,9 @@ function TradePost_PageLoaded(value)
 		var phone = "7146316285";
 		var name = "Paul";
 		var street = "Patterson St.";
+		var images = DKAssets_LocalAssets()+"Items/Item"+items[currentItem].id;
 		
-		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
+		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 
 		DKCef_RunJavascript(0, 1, code);
 	}
@@ -1089,15 +1090,16 @@ function TradePost_PageLoaded(value)
 		var phone = "7146316285";
 		var name = "Paul";
 		var street = "Patterson St.";
+		var images = DKAssets_LocalAssets()+"Items/Item"+items[currentItem].id;
 		
-		var code = PostToLetGo.toString() + "PostToLetGo('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"')";
+		var code = PostToLetGo.toString() + "PostToLetGo('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 		
 		DKCef_RunJavascript(0, 1, code);
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street)
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
 	console.log("PostToCraigslist(many vars))\n");
 	var url = window.location.toString();
@@ -1151,10 +1153,14 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
 	console.log("PostToLetGo(many vars))\n");
+	function sleep(ms){
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
 	function WaitForElement(selector, time, callback){
 		if(document.querySelector(selector) != null){
 			callback && callback();
@@ -1174,12 +1180,19 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 			document.querySelector('button[data-test="sell-your-stuff-button"]').click();
 			WaitForElement('div[class="dropZoneDefault"]', 0, function(){
 				console.log("found dropZone\n");
-				//var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
-				//var y = Number(DKWindow_GetY()) + 320;
-				//DK_SetMousePos(x,y);
-				//DK_LeftClick();
-				
-				//Let's drag and drop the images
+				images = images.replace(",","");
+				DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
+				sleep(1000);
+				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
+				var y = Number(DKWindow_GetY()) + 320;
+				DK_SetMousePos(x,y);
+				sleep(100);
+				DK_LeftClick();
+				WaitForElement('input[name="price"]', 0, function(){
+					sleep(500);
+					document.querySelector('input[name="price"]').value = 30; //FIXME: NOT WORKING
+					
+				});
 			});
 		});
 		return;
