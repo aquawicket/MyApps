@@ -1188,11 +1188,14 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 				DK_SetMousePos(x,y);
 				sleep(100);
 				DK_LeftClick();
-				WaitForElement('input[name="price"]', 0, function(){
-					sleep(500);
-					document.querySelector('input[name="price"]').value = 30; //FIXME: NOT WORKING
+				sleep(5000);
+				//WaitForElement('input[name="price"]', 5, function(){
+					//DK_StrokeKey(9);
+					//DK_StrokeKey(9);
+					//console.log("found it\n");
+					document.querySelector('input[name="price"]').value = 30;
 					
-				});
+				//});
 			});
 		});
 		return;
