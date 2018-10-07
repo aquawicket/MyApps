@@ -1017,18 +1017,30 @@ function TradePost_Test()
 	DK_LeftClick();	
 	var path = "C:/digitalknob/MyApps/DKApps/TradePost/assets/Items/Item6";
 	DK_SetClipboard(path);
-	DK_PressKey(17);
-	DK_StrokeKey(86);
-	DK_ReleaseKey(17);
-	DK_StrokeKey(13);
+	DK_PressKey(17); DK_Sleep(100); // ctrl down
+	DK_StrokeKey(86); DK_Sleep(100); // v
+	DK_ReleaseKey(17); DK_Sleep(100); // ctrl up
+	DK_StrokeKey(13); DK_Sleep(100); // enter
 	
 	//Process folders window
+	DK_StrokeKey(9); DK_Sleep(100); // tab
+	DK_StrokeKey(9); DK_Sleep(100); // tab
+	DK_StrokeKey(9); DK_Sleep(100); // tab
+	DK_PressKey(17); DK_Sleep(100); // ctrl down
+	DK_StrokeKey(65); DK_Sleep(100); // a 
+	DK_ReleaseKey(17); DK_Sleep(100); // ctrl up
+	
+	/*
 	if(!DKHandles_WaitForWindow("DirectUIHWND", 1)){
 		DKLog("DirectUIHWND never showed up\n", DKERROR);
 		return;
 	}
 	
-	
+	if(!DKHandles_SetWindowHandle("DirectUIHWND", 1)){
+		return;
+	}
+	DKLog("Somehow we were able to set window handle to DirectUIHWND, yeay\n");
+	*/
 }
 
 ////////////////////////////////////
