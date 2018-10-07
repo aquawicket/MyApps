@@ -1164,38 +1164,57 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 	function WaitForElement(selector, time, callback){
 		if(document.querySelector(selector) != null){
 			callback && callback();
-			return;
+			return true;
 		}
 		else{
-			setTimeout(function(){
-				WaitForElement(selector, time);
-			}, time);
+			setTimeout(function(){ WaitForElement(selector, time);}, time);
 		}
 	};
+	
+	function x(){
+		var promise = new Promise(function(resolve, reject){
+			window.setTimeout(function() {
+				resolve('done!');
+			});
+		});
+		return promise;
+	}
+
 
 	var url = window.location.toString();
+	
+				
 	
 	if(url.indexOf("https://us.letgo.com/en") != -1){
 		WaitForElement('button[data-test="chat-button"]', 0, function(){ 
 			document.querySelector('button[data-test="sell-your-stuff-button"]').click();
 			WaitForElement('div[class="dropZoneDefault"]', 0, function(){
+				
+				x().then(function(done){   //FIXME:   x() loses scope here, not defined
+					console.log(done); // --> 'done!'
+				});
+			
 				console.log("found dropZone\n");
 				images = images.replace(",","");
 				DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
-				sleep(1000);
 				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
 				var y = Number(DKWindow_GetY()) + 320;
 				DK_SetMousePos(x,y);
 				sleep(100);
 				DK_LeftClick();
-				sleep(5000);
-				//WaitForElement('input[name="price"]', 5, function(){
+				//sleep(5000);
+				
+				
+					
+				/*
+				WaitForElement('input[name="price"]', 10000, function(){
 					//DK_StrokeKey(9);
 					//DK_StrokeKey(9);
-					//console.log("found it\n");
+					console.log("found it\n");
 					document.querySelector('input[name="price"]').value = 30;
 					
-				//});
+				});
+				*/
 			});
 		});
 		return;
