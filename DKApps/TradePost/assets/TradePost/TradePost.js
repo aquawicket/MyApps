@@ -1014,7 +1014,8 @@ function TradePost_Test()
 	
 	//Process url bar
 	DK_SetMousePos(left+10,top+10);
-	DK_LeftClick();	
+	DK_LeftClick();
+	//We need the correct images path of the current item
 	var path = "C:/digitalknob/MyApps/DKApps/TradePost/assets/Items/Item6";
 	DK_SetClipboard(path);
 	DK_PressKey(17); DK_Sleep(100); // ctrl down
@@ -1030,17 +1031,8 @@ function TradePost_Test()
 	DK_StrokeKey(65); DK_Sleep(100); // a 
 	DK_ReleaseKey(17); DK_Sleep(100); // ctrl up
 	
-	/*
-	if(!DKHandles_WaitForWindow("DirectUIHWND", 1)){
-		DKLog("DirectUIHWND never showed up\n", DKERROR);
-		return;
-	}
-	
-	if(!DKHandles_SetWindowHandle("DirectUIHWND", 1)){
-		return;
-	}
-	DKLog("Somehow we were able to set window handle to DirectUIHWND, yeay\n");
-	*/
+	//This will press open
+	//DK_StrokeKey(13); //enter
 }
 
 ////////////////////////////////////
