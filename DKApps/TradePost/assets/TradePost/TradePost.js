@@ -21,6 +21,7 @@ function TradePost_Init()
 	//DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", TradePost_OnEvent);
 	
 	//DKAddEvent("GLOBAL", "mousemove", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "keydown", TradePost_OnEvent);
 	
 	DKAddEvent("AddItem", "click", TradePost_OnEvent);
 	DKAddEvent("Craigslist", "click", TradePost_OnEvent);
@@ -62,6 +63,9 @@ function TradePost_OnEvent(event)
 	//	TradePost_UploadImage(DK_GetValue(event));
 	//	return;
 	//}
+	if(DK_Type(event, "keydown")){
+		DKLog("key: "+DK_GetValue(event)+"\n");
+	}
 	
 	if(DK_IdLike(event, "imageCell")){
 		currentItem = DK_GetId(event).replace("imageCell","");
@@ -968,8 +972,8 @@ function TradePost_Test()
 		DKLog("items["+i+"]price: "+items[i].price+"\n");
 		*/
 		
-		var json_string = JSON.stringify(items[i]);
-		DKLog(json_string+"\n");
+		//var json_string = JSON.stringify(items[i]);
+		//DKLog(json_string+"\n");
 		
 		/*
 		var item_object = JSON.parse(json_string);
@@ -985,13 +989,46 @@ function TradePost_Test()
 	//Wait for a Open Files window to appear, set the path, select all files, open
 	DKCreate("DKHandles");
 	if(!DKHandles_WaitForWindow("Open Files", 5)){
-		DKLog("Open Files never showed up\n");
+		DKLog("Open Files never showed up\n", DKERROR);
 		return;
 	}
-	DKLog("We found Open Files");
-	//Now get the url bar and change the path
-		
-		
+	if(!DKHandles_WaitForWindow("Address", 1)){
+		DKLog("address bar never showed up\n", DKERROR);
+		return;
+	}
+	
+	var currentHandle = DKHandles_CurrentHandle();
+	
+	if(!DKHandles_SetWindowHandle("Address", 3)){
+		DKLog("DKHandles_SetWindowHandle(\"Address\"): failed\n");
+	}
+	var currentHandle = DKHandles_CurrentHandle();
+	var top = DKHandles_GetTop(currentHandle);
+	var left = DKHandles_GetLeft(currentHandle);
+	var right = DKHandles_GetRight(currentHandle);
+	var bottom = DKHandles_GetBottom(currentHandle);
+	DKLog("top = "+top+"\n");
+	DKLog("left = "+left+"\n");
+	DKLog("right = "+right+"\n");
+	DKLog("bottom = "+bottom+"\n");
+	
+	//Process url bar
+	DK_SetMousePos(left+10,top+10);
+	DK_LeftClick();	
+	var path = "C:/digitalknob/MyApps/DKApps/TradePost/assets/Items/Item6";
+	DK_SetClipboard(path);
+	DK_PressKey(17);
+	DK_StrokeKey(86);
+	DK_ReleaseKey(17);
+	DK_StrokeKey(13);
+	
+	//Process folders window
+	if(!DKHandles_WaitForWindow("DirectUIHWND", 1)){
+		DKLog("DirectUIHWND never showed up\n", DKERROR);
+		return;
+	}
+	
+	
 }
 
 ////////////////////////////////////
