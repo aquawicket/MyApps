@@ -7,8 +7,8 @@ var rowHeight = "150rem";
 function Inventory_Init()
 {
 	DKLog("Inventory_Init()\n", DKDEBUG);
+	DKCreate("TradePost/Inventory.html", function(){});
 	DKCreate("DKAdmin/DKAdmin.js", function(){});
-	DKCreate("TradePost/Inventory.html");
 	DKCreate("DKGui/DKMenu.js", function(){});
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", Inventory_OnEvent);
@@ -38,6 +38,7 @@ function Inventory_Init()
 		DKFile_MkDir(DKAssets_LocalAssets()+"Items");
 	}
 	
+	return;
 	Inventory_UpdateHeader();
 	Inventory_LoadItems();
 	Inventory_UpdateList();
