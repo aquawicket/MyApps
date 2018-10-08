@@ -1195,14 +1195,12 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 				console.log("'button[data-test=\"chat-button\"] NOT FOUND'\n");
 				return;
 			}
-			//sleep(3000);
 			document.querySelector('button[data-test="sell-your-stuff-button"]').click(); //Sell button
 			WaitForElement('div[class="dropZoneDefault"]', 5000, function(rval){
 				if(rval == false){
 					console.log("'div[class=\"dropZoneDefault\"]' NOT FOUND!");
 					return;
 				}
-				//sleep(3000);
 				images = images.replace(",","");
 				DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
 				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
@@ -1214,7 +1212,6 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 						console.log("'input[name=\"price\"]' NOT FOUND!");
 						return;
 					}
-					//sleep(3000);
 					console.log("'input[name=\"price\"]' FOUND!");
 					document.querySelector('input[name="price"]').value = 30;
 					WaitForElement('button[type="submit"]', 5000, function(rval){ //Submit Price
@@ -1222,33 +1219,25 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 							console.log("'button[type=\"submit\"]' NOT FOUND!");
 							return;
 						}
-						//sleep(3000);
 						document.querySelector('button[type="submit"]').click();
-						//sleep(3000);
-						
-						/*
-						var spans = document.getElementsByTagName("span");
-						for(var i = 0; i < spans.length; i++){ 
-							if(spans[i].innerHTML == "Add more details"){
-								console.log("'Additional button FOUND!"); 
-								//spans[i].parentElement.click();
-								return;
-							}
-						}
-						*/
-						
-						WaitForElement('img[src="https://static.letgo.com/site-images/bike.png"]', 5000, function(rval){ //Aditional Options window
+						WaitForElement('img[src="https://static.letgo.com/site-images/bike.png"]', 60000, function(rval){ //Aditional Options window
 							if(rval == false){ 
 								console.log("'img[src=\"https://static.letgo.com/site-images/bike.png\"]' NOT FOUND!"); 
 								return;
 							}
-							//sleep(3000);
-							console.log("'img[src=\"https://static.letgo.com/site-images/bike.png\"]' FOUND!"); 
 							var spans = document.getElementsByTagName("span");
 							for(var i = 0; i < spans.length; i++){ 
 								if(spans[i].innerHTML == "Add more details"){
-									console.log("'Additional button FOUND!"); 
 									spans[i].parentElement.click();
+									WaitForElement('input[name="name"]', 5000, function(rval){ 
+										if(rval == false){
+											console.log("'input[name=\"name\"]' NOT FOUND!");
+											return;
+										}
+										document.querySelector('input[name="price"]').value = title;
+										//////////////////////
+										return;
+									});
 									return;
 								}
 							}
