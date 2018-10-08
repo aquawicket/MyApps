@@ -55,6 +55,13 @@ function Buy_OnEvent(event)
 	if(DK_Id(event, "Buy_ScrapLetGo")){
 		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ Buy_ShowItems(); })
 	}
+	if(DK_IdLike(event, "hide")){
+		event.preventDefault();
+		var num = DK_GetId(event).replace("hide","");
+		DKLog("Hide item "+num+"\n");
+		buyItems[num].hidden = true;
+		Buy_ShowItems();
+	}
 }
 
 ///////////////////////////////////////
@@ -232,7 +239,11 @@ function Buy_ShowItems()
 
 	DKWidget_SetInnerHtml("Buy_Container", "");
 	for(var i=0; i<buyItems.length; i++){
+		if(buyItems[i].hidden == true){
+			continue;
+		}
 		var itemdiv = document.createElement('div');
+		itemdiv.id = "itemdiv"+i;
 		itemdiv.style.display = "inline-block";
 		itemdiv.style.width = "230px";
 		itemdiv.style.width = "230rem";
@@ -248,6 +259,7 @@ function Buy_ShowItems()
 		itemdiv.style.overflow = "hidden";
 		
 		var imgdiv = document.createElement('div');
+		imgdiv.id = "imgdiv"+i;
 		imgdiv.style.position = "relative";
 		imgdiv.style.display = "block";
 		imgdiv.style.width = "230px";
@@ -260,6 +272,7 @@ function Buy_ShowItems()
 		itemdiv.appendChild(imgdiv);
 		
 		var itemurl = document.createElement('a');
+		itemurl.id = "itemurl"+i;
 		itemurl.href = buyItems[i].link;
 		itemurl.style.display = "block";
 		itemurl.style.width = "230px";
@@ -270,6 +283,7 @@ function Buy_ShowItems()
 		imgdiv.appendChild(itemurl);
 		
 		var itemimg = document.createElement('img');
+		itemimg.id = "itemimg"+i;
 		itemimg.src = buyItems[i].img;
 		itemimg.style.display = "block";
 		itemimg.style.maxWidth = "230px";
@@ -287,6 +301,7 @@ function Buy_ShowItems()
 		itemurl.appendChild(itemimg);
 				
 		var host = document.createElement('img');
+		host.id = "host"+i;
 		host.src = buyItems[i].providerImg;
 		host.style.position = "absolute";
 		host.style.top = "0px";
@@ -297,7 +312,21 @@ function Buy_ShowItems()
 		host.style.width = "100rem";
 		itemurl.appendChild(host);
 		
+		var hide = document.createElement('img');
+		hide.id = "hide"+i;
+		hide.src = "TradePost/hide.png";
+		hide.style.position = "absolute";
+		hide.style.top = "265px";
+		hide.style.top = "265rem";
+		hide.style.left = "0px";
+		hide.style.left = "0rem";
+		hide.style.width = "40px";
+		hide.style.width = "40rem";
+		itemurl.appendChild(hide);
+		//DKAddEvent(hide.id, "click", Buy_OnEvent);
+		
 		var infodiv = document.createElement('div');
+		infodiv.id = "infodiv"+i;
 		infodiv.style.display = "block";
 		infodiv.style.width = "230px";
 		infodiv.style.width = "230rem";
@@ -311,6 +340,7 @@ function Buy_ShowItems()
 		itemdiv.appendChild(infodiv);
 		
 		var itemtitle = document.createElement('a');
+		itemtitle.id = "itemtitle"+i;
 		itemtitle.innerHTML = buyItems[i].title;
 		itemtitle.style.display = "block";
 		itemtitle.style.fontWeight = "bold";
@@ -320,6 +350,7 @@ function Buy_ShowItems()
 		infodiv.appendChild(itemtitle);
 		
 		var itemprice = document.createElement('span');
+		itemprice.id = "itemprice"+i;
 		if(buyItems[i].price){
 			itemprice.innerHTML = buyItems[i].price;
 		}
@@ -329,6 +360,7 @@ function Buy_ShowItems()
 		itemdiv.appendChild(itemprice);
 		
 		var itemloc = document.createElement('span');
+		itemloc.id = "itemloc"+i;
 		if(buyItems[i].loc){
 			itemloc.innerHTML = buyItems[i].loc;
 		}
@@ -338,6 +370,7 @@ function Buy_ShowItems()
 		itemdiv.appendChild(itemloc);
 		
 		document.getElementById("Buy_Container").appendChild(itemdiv);
+		DKAddEvent(hide.id, "click", Buy_OnEvent);
 	}
 	
 	Buy_SaveData();
