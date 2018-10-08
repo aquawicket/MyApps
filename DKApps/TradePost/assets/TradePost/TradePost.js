@@ -1157,42 +1157,51 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
 	console.log("PostToLetGo(many vars))\n");
+	/*
 	function sleep(ms){
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
-
+	*/
+	
 	function WaitForElement(selector, time, callback){
+		console.log("WaitForElement("+selector+", "+time+")\n");
 		if(document.querySelector(selector) != null){
-			callback && callback();
+			console.log("WaitForElement("+selector+", "+time+") = true\n");
+			callback && callback(true);
 			return true;
 		}
 		else{
-			setTimeout(function(){ WaitForElement(selector, time);}, time);
+			console.log("WaitForElement("+selector+", "+time+") = false\n");
+			if(time < 100){
+				console.log("WaitForElement("+selector+", "+time+") = time < 100\n");
+				callback && callback(false);
+				return false
+			}
+			setTimeout( function(){ WaitForElement(selector, time-100, callback); }, 100); //test every 10th of a second
 		}
 	};
+
 	
-	function x(){
-		var promise = new Promise(function(resolve, reject){
-			window.setTimeout(function() {
-				resolve('done!');
-			});
-		});
-		return promise;
-	}
-
-
 	var url = window.location.toString();
-	
-				
-	
+		
 	if(url.indexOf("https://us.letgo.com/en") != -1){
-		WaitForElement('button[data-test="chat-button"]', 0, function(){ 
-			document.querySelector('button[data-test="sell-your-stuff-button"]').click();
+
+		WaitForElement('button[data-test="chat-button"]', 5000, function(rval){  //wait for 5 seconds
+			if(rval == true){
+				document.querySelector('button[data-test="sell-your-stuff-button"]').click();
+				WaitForElement('div[class="dropZoneDefault"]', 5000, function(){
+					
+				});
+				return;
+			}
+			console.log("'button[data-test=\"chat-button\"] was never found'\n");
+			return;
+			
+			/*
+
 			WaitForElement('div[class="dropZoneDefault"]', 0, function(){
 				
-				x().then(function(done){   //FIXME:   x() loses scope here, not defined
-					console.log(done); // --> 'done!'
-				});
+
 			
 				console.log("found dropZone\n");
 				images = images.replace(",","");
@@ -1206,19 +1215,20 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 				
 				
 					
-				/*
-				WaitForElement('input[name="price"]', 10000, function(){
-					//DK_StrokeKey(9);
-					//DK_StrokeKey(9);
-					console.log("found it\n");
-					document.querySelector('input[name="price"]').value = 30;
-					
-				});
-				*/
+				
+				//WaitForElement('input[name="price"]', 10000, function(){
+				//	//DK_StrokeKey(9);
+				//	//DK_StrokeKey(9);
+				//	console.log("found it\n");
+				//	document.querySelector('input[name="price"]').value = 30;	
+				//});
 			});
+			*/
 		});
 		return;
 	}
+	
+	
 }
 
 /////////////////////////////////////////
