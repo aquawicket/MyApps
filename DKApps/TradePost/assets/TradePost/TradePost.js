@@ -1158,23 +1158,21 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
 	console.log("PostToLetGo(many vars))\n");
-	/*
 	function sleep(ms){
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
-	*/
 	
 	function WaitForElement(selector, time, callback){
-		console.log("WaitForElement("+selector+", "+time+")\n");
+		//console.log("WaitForElement("+selector+", "+time+")\n");
 		if(document.querySelector(selector) != null){
-			console.log("WaitForElement("+selector+", "+time+") = true\n");
+			//console.log("WaitForElement("+selector+", "+time+") = true\n");
 			callback && callback(true);
 			return true;
 		}
 		else{
-			console.log("WaitForElement("+selector+", "+time+") = false\n");
+			//console.log("WaitForElement("+selector+", "+time+") = false\n");
 			if(time < 100){
-				console.log("WaitForElement("+selector+", "+time+") = time < 100\n");
+				//console.log("WaitForElement("+selector+", "+time+") = time < 100\n");
 				callback && callback(false);
 				return false
 			}
@@ -1191,12 +1189,14 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 				console.log("'button[data-test=\"chat-button\"] NOT FOUND'\n");
 				return;
 			}
+			sleep(3000);
 			document.querySelector('button[data-test="sell-your-stuff-button"]').click(); //Sell button
 			WaitForElement('div[class="dropZoneDefault"]', 5000, function(rval){
 				if(rval == false){
 					console.log("'div[class=\"dropZoneDefault\"]' NOT FOUND!");
 					return;
 				}
+				sleep(3000);
 				images = images.replace(",","");
 				DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
 				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
@@ -1208,6 +1208,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 						console.log("'input[name=\"price\"]' NOT FOUND!");
 						return;
 					}
+					sleep(3000);
 					console.log("'input[name=\"price\"]' FOUND!");
 					document.querySelector('input[name="price"]').value = 30;
 					WaitForElement('button[type="submit"]', 5000, function(rval){ //Submit Price
@@ -1215,12 +1216,15 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 							console.log("'button[type=\"submit\"]' NOT FOUND!");
 							return;
 						}
+						sleep(3000);
 						document.querySelector('button[type="submit"]').click();
 						WaitForElement('button[role="button"]', 5000, function(rval){ //Aditional Options
 							if(rval == false){ 
-								console.log("'button[type=\"submit\"]' NOT FOUND!"); 
+								console.log("'button[role=\"button\"]' NOT FOUND!"); 
 								return;
 							}
+							sleep(3000);
+							console.log("'button[role=\"button\"]' FOUND!"); 
 							document.querySelector('button[role="button"]').click();
 							return;
 						});
