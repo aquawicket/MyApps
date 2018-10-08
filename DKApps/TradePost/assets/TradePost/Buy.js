@@ -67,8 +67,7 @@ function Buy_OnEvent(event)
 		var num = DK_GetId(event).replace("searchEbay","");
 		DKLog("searchEbay item "+num+"\n");
 		//Open a new ebay tab searching for the title
-		window.open("https://www.ebay.com", "_blank", "width=800,height=600");
-		
+		window.open("https://www.ebay.com/sch/i.html?_from=R40&_nkw="+buyItems[num].title, "_blank", "width=800,height=600");
 	}
 }
 
