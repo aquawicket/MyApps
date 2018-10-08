@@ -3,6 +3,12 @@ function Buy_Init()
 {
 	DKLog("Buy_Init()\n", DKDEBUG);
 	DKCreate("TradePost/Buy.html");
+	
+	DKAddEvent("Buy_ScrapCraigslist", "click", Buy_OnEvent);
+	DKAddEvent("Buy_ScrapLetsGo", "click", Buy_OnEvent);
+	DKAddEvent("Buy_ScrapOfferUp", "click", Buy_OnEvent);
+	DKAddEvent("Buy_ScrapFacebook", "click", Buy_OnEvent);
+	DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
 }
 
 //////////////////
