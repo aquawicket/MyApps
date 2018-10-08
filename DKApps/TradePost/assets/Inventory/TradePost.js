@@ -1,66 +1,66 @@
- items = []; //items stored here, for use with json
+items = []; //items stored here, for use with json
 var currentItem;
 var action;
 var rowHeight = "150rem";
 
 /////////////////////////
-function Inventory_Init()
+function TradePost_Init()
 {
-	DKLog("Inventory_Init()\n", DKDEBUG);
-	DKCreate("TradePost/Inventory.html");
+	DKLog("TradePost_Init()\n", DKDEBUG);
 	DKCreate("DKAdmin/DKAdmin.js", function(){});
+	DKCreate("TradePost/TradePost.html");
 	DKCreate("DKGui/DKMenu.js", function(){});
-	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnLoadError", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnLoadEnd", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_ContextMenu", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnContextCreated", Inventory_OnEvent);
-	//DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", Inventory_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnLoadError", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnLoadEnd", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_ContextMenu", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "DKCef_OnContextCreated", TradePost_OnEvent);
+	//DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", TradePost_OnEvent);
 	
-	//DKAddEvent("GLOBAL", "mousemove", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "keydown", Inventory_OnEvent);
+	//DKAddEvent("GLOBAL", "mousemove", TradePost_OnEvent);
+	DKAddEvent("GLOBAL", "keydown", TradePost_OnEvent);
 	
-	DKAddEvent("AddItem", "click", Inventory_OnEvent);
-	DKAddEvent("Craigslist", "click", Inventory_OnEvent);
-	DKAddEvent("Letgo", "click", Inventory_OnEvent);
-	DKAddEvent("Letgo", "click", Inventory_OnEvent);
-	DKAddEvent("OfferUp", "click", Inventory_OnEvent);
-	DKAddEvent("Facebook", "click", Inventory_OnEvent);
-	DKAddEvent("Ebay", "click", Inventory_OnEvent);
-	DKAddEvent("Test", "click", Inventory_OnEvent);
-	DKAddEvent("Refresh", "click", Inventory_OnEvent);
+	DKAddEvent("AddItem", "click", TradePost_OnEvent);
+	DKAddEvent("Craigslist", "click", TradePost_OnEvent);
+	DKAddEvent("Letgo", "click", TradePost_OnEvent);
+	DKAddEvent("Letgo", "click", TradePost_OnEvent);
+	DKAddEvent("OfferUp", "click", TradePost_OnEvent);
+	DKAddEvent("Facebook", "click", TradePost_OnEvent);
+	DKAddEvent("Ebay", "click", TradePost_OnEvent);
+	DKAddEvent("Test", "click", TradePost_OnEvent);
+	DKAddEvent("Refresh", "click", TradePost_OnEvent);
 	
 	//Create Items folder if it does not exist.
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"Items")){
 		DKFile_MkDir(DKAssets_LocalAssets()+"Items");
 	}
 	
-	Inventory_UpdateHeader();
-	Inventory_LoadItems();
-	Inventory_UpdateList();
+	TradePost_UpdateHeader();
+	TradePost_LoadItems();
+	TradePost_UpdateList();
 }
 
 ////////////////////////
-function Inventory_End()
+function TradePost_End()
 {
-	DKLog("Inventory_End()\n", DKDEBUG);
-	DKRemoveEvents(Inventory_OnEvent);
-	DKClose("TradePost/Inventory.html");
+	DKLog("TradePost_End()\n", DKDEBUG);
+	DKRemoveEvents(TradePost_OnEvent);
+	DKClose("TradePost/TradePost.html");
 }
 
 /////////////////////////////////
-function Inventory_OnEvent(event)
+function TradePost_OnEvent(event)
 {	
-	DKLog("Inventory_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Type(event, "DKCef_OnLoadEnd")){
-		Inventory_PageLoaded(DK_GetValue(event));
+		TradePost_PageLoaded(DK_GetValue(event));
 		return;
 	}
 	//if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
-	//	Inventory_UploadImage(DK_GetValue(event));
+	//	TradePost_UploadImage(DK_GetValue(event));
 	//	return;
 	//}
 	if(DK_Type(event, "keydown")){
@@ -98,7 +98,7 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "letgoPost")){
 		currentItem = DK_GetId(event).replace("letgoPost","");
-		Inventory_LetGoPost(currentItem);
+		TradePost_LetGoPost(currentItem);
 		return;
 	}
 	if(DK_IdLike(event, "offerupLink")){
@@ -118,7 +118,7 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "craigslistPost")){
 		currentItem = DK_GetId(event).replace("craigslistPost","");
-		Inventory_CraigslistPost(currentItem);
+		TradePost_CraigslistPost(currentItem);
 		return;
 	}
 	if(DK_IdLike(event, "facebookLink")){
@@ -145,12 +145,12 @@ function Inventory_OnEvent(event)
 		currentItem = DK_GetId(event).replace("postAll","");
 		DKLog("postAll \n");
 		//TODO - post to all selected locations
-		//Inventory_PostItem(currentItem);
+		//TradePost_PostItem(currentItem);
 		return;
 	}
 	
 	if(DK_Id(event, "AddItem")){
-		Inventory_AddItem();
+		TradePost_AddItem();
 		return;
 	}
 	if(DK_Id(event, "Craigslist")){
@@ -174,17 +174,17 @@ function Inventory_OnEvent(event)
 		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
 	}
 	if(DK_Id(event, "Test")){
-		Inventory_Test();
+		TradePost_Test();
 	}
 	if(DK_Id(event, "Refresh")){
 		DK_Refresh();
 	}
 	if(DK_Type(event, "keyup")){
-		Inventory_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
+		TradePost_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
 		return;
 	}
 	if(DK_Type(event, "change")){
-		Inventory_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
+		TradePost_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
 		return;
 	}
 	
@@ -224,7 +224,7 @@ function Inventory_OnEvent(event)
 }
 
 ////////////////////////////////////////
-function Inventory_GetFirstAvailableId()
+function TradePost_GetFirstAvailableId()
 {
 	if(!items){ return false; }
 	
@@ -240,37 +240,37 @@ function Inventory_GetFirstAvailableId()
 }
 
 ////////////////////////////
-function Inventory_AddItem()
+function TradePost_AddItem()
 {
-	DKLog("Inventory_AddItem\n", DKDEBUG);
+	DKLog("TradePost_AddItem\n", DKDEBUG);
 	var i = 0;
 	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+i)){
 		i++;
 	}
 	DKFile_MkDir(DKAssets_LocalAssets()+"Items/Item"+i);
 	items.push({});
-	items[items.length-1].id = Inventory_GetFirstAvailableId();
+	items[items.length-1].id = TradePost_GetFirstAvailableId();
 	
 	//save date
 	var event = new Date();
 	var jsonDate = event.toJSON();
 	items[items.length-1].date = jsonDate;
 	
-	Inventory_SaveItem(items.length-1);
-	Inventory_UpdateList();
+	TradePost_SaveItem(items.length-1);
+	TradePost_UpdateList();
 	var elmnt = document.getElementById("item"+items[items.length-1].id);
 	elmnt.scrollIntoView();
 }
 
 ////////////////////////////////
-function Inventory_SaveItem(row)
+function TradePost_SaveItem(row)
 {
 	var json = JSON.stringify(items[row]);
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/data.json");
 }
 
 ///////////////////////////////////
-function Inventory_GetRowFromId(id)
+function TradePost_GetRowFromId(id)
 {
 	var row;
 	for(var i=0; i<items.length; i++){
@@ -282,85 +282,85 @@ function Inventory_GetRowFromId(id)
 }
 
 ///////////////////////////////////////
-function Inventory_ChangeText(id, text)
+function TradePost_ChangeText(id, text)
 {
-	DKLog("Inventory_ChangeText("+id+", "+text+")\n", DKDEBUG);
+	DKLog("TradePost_ChangeText("+id+", "+text+")\n", DKDEBUG);
 	if(id.includes("title")){
 		var id = id.replace("title","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].title = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("description")){
 		var id = id.replace("description","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].description = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("make")){
 		var id = id.replace("make","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].make = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("model")){
 		var id = id.replace("model","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].model = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("condition")){
 		var id = id.replace("condition","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].condition = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("catagory")){
 		var id = id.replace("catagory","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].catagory = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("price")){
 		var id = id.replace("price","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].price = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("letgoCheck")){
 		var id = id.replace("letgoCheck","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].letgoCheck = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("offerupCheck")){
 		var id = id.replace("offerupCheck","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].offerupCheck = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("craigslistCheck")){
 		var id = id.replace("craigslistCheck","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].craigslistCheck = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("facebookCheck")){
 		var id = id.replace("facebookCheck","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].facebookCheck = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 	else if(id.includes("ebayCheck")){
 		var id = id.replace("ebayCheck","");
-		var row = Inventory_GetRowFromId(id);
+		var row = TradePost_GetRowFromId(id);
 		items[row].ebayCheck = text;
-		Inventory_SaveItem(row);
+		TradePost_SaveItem(row);
 	}
 }
 
 //////////////////////////////
-function Inventory_LoadItems()
+function TradePost_LoadItems()
 {
 	items = []; //clear items
 	for(var row = 0; row < 1000; row++){
@@ -368,7 +368,7 @@ function Inventory_LoadItems()
 			if(!DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json")){
 				//DKFile_StringToFile("", DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
 				items.push({});
-				items[items.length-1].id = Inventory_GetFirstAvailableId();
+				items[items.length-1].id = TradePost_GetFirstAvailableId();
 			}
 			else{
 				var json = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
@@ -378,7 +378,7 @@ function Inventory_LoadItems()
 				}
 				else{
 					items.push({});
-					items[items.length-1].id = Inventory_GetFirstAvailableId();
+					items[items.length-1].id = TradePost_GetFirstAvailableId();
 				}
 			}
 		}
@@ -386,7 +386,7 @@ function Inventory_LoadItems()
 }
 
 /////////////////////////////////
-function Inventory_UpdateHeader()
+function TradePost_UpdateHeader()
 {
 	//id		
 	var header_id = DKWidget_CreateElement("Header", "div", "header_id");
@@ -399,7 +399,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_id, "border-style", "solid");
 	DKWidget_SetProperty(header_id, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_id, "id");
-	DKAddEvent(header_id, "click", Inventory_OnEvent);
+	DKAddEvent(header_id, "click", TradePost_OnEvent);
 	
 	//image
 	var header_image = DKWidget_CreateElement("Header", "div", "header_image");
@@ -411,7 +411,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_image, "border-style", "solid");
 	DKWidget_SetProperty(header_image, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_image, "image");
-	DKAddEvent(header_image, "click", Inventory_OnEvent);
+	DKAddEvent(header_image, "click", TradePost_OnEvent);
 	
 	//title
 	var header_title = DKWidget_CreateElement("Header", "div", "header_title");
@@ -423,7 +423,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_title, "border-style", "solid");
 	DKWidget_SetProperty(header_title, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_title, "title");
-	DKAddEvent(header_title, "click", Inventory_OnEvent);
+	DKAddEvent(header_title, "click", TradePost_OnEvent);
 	
 	//description
 	var header_description = DKWidget_CreateElement("Header", "div", "header_description");
@@ -435,7 +435,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_description, "border-style", "solid");
 	DKWidget_SetProperty(header_description, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_description, "description");
-	DKAddEvent(header_description, "click", Inventory_OnEvent);
+	DKAddEvent(header_description, "click", TradePost_OnEvent);
 	
 	//make
 	var header_make = DKWidget_CreateElement("Header", "div", "header_make");
@@ -447,7 +447,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_make, "border-style", "solid");
 	DKWidget_SetProperty(header_make, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_make, "make");
-	DKAddEvent(header_make, "click", Inventory_OnEvent);
+	DKAddEvent(header_make, "click", TradePost_OnEvent);
 	
 	//model
 	var header_model = DKWidget_CreateElement("Header", "div", "header_model");
@@ -459,7 +459,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_model, "border-style", "solid");
 	DKWidget_SetProperty(header_model, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_model, "model");
-	DKAddEvent(header_model, "click", Inventory_OnEvent);
+	DKAddEvent(header_model, "click", TradePost_OnEvent);
 	
 	//condition
 	var header_condition = DKWidget_CreateElement("Header", "div", "header_condition");
@@ -471,7 +471,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_condition, "border-style", "solid");
 	DKWidget_SetProperty(header_condition, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_condition, "condition");
-	DKAddEvent(header_condition, "click", Inventory_OnEvent);
+	DKAddEvent(header_condition, "click", TradePost_OnEvent);
 	
 	//catagory
 	var header_catagory = DKWidget_CreateElement("Header", "div", "header_catagory");
@@ -483,7 +483,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_catagory, "border-style", "solid");
 	DKWidget_SetProperty(header_catagory, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_catagory, "catagory");
-	DKAddEvent(header_catagory, "click", Inventory_OnEvent);
+	DKAddEvent(header_catagory, "click", TradePost_OnEvent);
 	
 	//price
 	var header_price = DKWidget_CreateElement("Header", "div", "header_price");
@@ -495,7 +495,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_price, "border-style", "solid");
 	DKWidget_SetProperty(header_price, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_price, "price");
-	DKAddEvent(header_price, "click", Inventory_OnEvent);
+	DKAddEvent(header_price, "click", TradePost_OnEvent);
 	
 	//date
 	var header_date = DKWidget_CreateElement("Header", "div", "header_date");
@@ -507,7 +507,7 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_date, "border-style", "solid");
 	DKWidget_SetProperty(header_date, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_date, "date");
-	DKAddEvent(header_date, "click", Inventory_OnEvent);
+	DKAddEvent(header_date, "click", TradePost_OnEvent);
 	
 	//post
 	var header_post = DKWidget_CreateElement("Header", "div", "header_post");
@@ -519,14 +519,14 @@ function Inventory_UpdateHeader()
 	DKWidget_SetProperty(header_post, "border-style", "solid");
 	DKWidget_SetProperty(header_post, "background-color", "rgb(150,150,150)");
 	DKWidget_SetValue(header_post, "post");
-	DKAddEvent(header_post, "click", Inventory_OnEvent);
+	DKAddEvent(header_post, "click", TradePost_OnEvent);
 
 }
 
 ///////////////////////////////
-function Inventory_UpdateList()
+function TradePost_UpdateList()
 {
-	DKLog("Inventory_UpdateList\n", DKDEBUG);
+	DKLog("TradePost_UpdateList\n", DKDEBUG);
 	DKWidget_SetInnerHtml("ItemList", ""); //clear	
 	
 	for(var row=0; row<items.length; row++){
@@ -561,7 +561,7 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(imageCell, "border-right-width", "0rem");
 		DKWidget_SetProperty(imageCell, "border-color", "black");
 		DKWidget_SetProperty(imageCell, "border-style", "solid");
-		DKAddEvent(imageCell, "click", Inventory_OnEvent);
+		DKAddEvent(imageCell, "click", TradePost_OnEvent);
 			
 		var img = DKWidget_CreateElement(imageCell, "img", "img"+items[row].id);
 		DKWidget_SetProperty(img, "display", "block");
@@ -592,8 +592,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(title, "font-weight", "bold");
 		DKWidget_SetProperty(title, "font-family", "Verdana,sans-serif");
 		DKWidget_SetProperty(title, "font-size", "11rem");
-		DKAddEvent(title, "keyup", Inventory_OnEvent);
-		DKAddEvent(title, "change", Inventory_OnEvent);
+		DKAddEvent(title, "keyup", TradePost_OnEvent);
+		DKAddEvent(title, "change", TradePost_OnEvent);
 		if(items[row].title){
 			DKWidget_SetValue(title, items[row].title);
 		}
@@ -618,8 +618,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(description, "border-width", "0rem");
 		DKWidget_SetProperty(description, "font-family", "Verdana,sans-serif");
 		DKWidget_SetProperty(description, "font-size", "11rem");
-		DKAddEvent(description, "keyup", Inventory_OnEvent);
-		DKAddEvent(description, "change", Inventory_OnEvent);
+		DKAddEvent(description, "keyup", TradePost_OnEvent);
+		DKAddEvent(description, "change", TradePost_OnEvent);
 		if(items[row].description){
 			DKWidget_SetValue(description, items[row].description);
 		}
@@ -644,8 +644,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(make, "border-width", "0rem");
 		DKWidget_SetProperty(make, "font-family", "Verdana,sans-serif");
 		DKWidget_SetProperty(make, "font-size", "11rem");
-		DKAddEvent(make, "keyup", Inventory_OnEvent);
-		DKAddEvent(make, "change", Inventory_OnEvent);
+		DKAddEvent(make, "keyup", TradePost_OnEvent);
+		DKAddEvent(make, "change", TradePost_OnEvent);
 		if(items[row].make){
 			DKWidget_SetValue(make, items[row].make);
 		}
@@ -670,8 +670,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(model, "border-width", "0rem");
 		DKWidget_SetProperty(model, "font-family", "Verdana,sans-serif");
 		DKWidget_SetProperty(model, "font-size", "11rem");
-		DKAddEvent(model, "keyup", Inventory_OnEvent);
-		DKAddEvent(model, "change", Inventory_OnEvent);
+		DKAddEvent(model, "keyup", TradePost_OnEvent);
+		DKAddEvent(model, "change", TradePost_OnEvent);
 		if(items[row].model){
 			DKWidget_SetValue(model, items[row].model);
 		}
@@ -695,8 +695,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(condition, "height", "100%");
 		DKWidget_SetProperty(condition, "word-wrap", "break-word");
 		DKWidget_SetProperty(condition, "overflow-x", "hidden");
-		DKAddEvent(condition, "click", Inventory_OnEvent);
-		DKAddEvent(condition, "change", Inventory_OnEvent);
+		DKAddEvent(condition, "click", TradePost_OnEvent);
+		DKAddEvent(condition, "change", TradePost_OnEvent);
 		if(items[row].condition){
 			DKWidget_SetValue(condition, items[row].condition);
 		}
@@ -720,8 +720,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(catagory, "height", "100%");
 		DKWidget_SetProperty(catagory, "word-wrap", "break-word");
 		DKWidget_SetProperty(catagory, "overflow-x", "hidden");
-		DKAddEvent(catagory, "click", Inventory_OnEvent);
-		DKAddEvent(catagory, "change", Inventory_OnEvent);
+		DKAddEvent(catagory, "click", TradePost_OnEvent);
+		DKAddEvent(catagory, "change", TradePost_OnEvent);
 		if(items[row].catagory){
 			DKWidget_SetValue(catagory, items[row].catagory);
 		}
@@ -747,8 +747,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(price, "word-wrap", "break-word");
 		DKWidget_SetProperty(price, "overflow-x", "hidden");
 		DKWidget_SetProperty(price, "font-size", "15rem");
-		DKAddEvent(price, "keyup", Inventory_OnEvent);
-		DKAddEvent(price, "change", Inventory_OnEvent);
+		DKAddEvent(price, "keyup", TradePost_OnEvent);
+		DKAddEvent(price, "change", TradePost_OnEvent);
 		if(items[row].price){
 			DKWidget_SetValue(price, items[row].price);
 		}
@@ -790,13 +790,13 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(letgoCheck, "width", "16px");
 		DKWidget_SetProperty(letgoCheck, "height", "16px");
 		DKWidget_SetValue(letgoCheck, items[row].letgoCheck);
-		DKAddEvent(letgoCheck, "change", Inventory_OnEvent);
+		DKAddEvent(letgoCheck, "change", TradePost_OnEvent);
 		
 		var letgoLink = DKWidget_CreateElement(postCell, "img", "letgoLink"+items[row].id);
 		DKWidget_SetAttribute(letgoLink, "src", DKAssets_LocalAssets()+"/TradePost/letgo_small.png");
 		DKWidget_SetProperty(letgoLink, "position", "absolute");
 		DKWidget_SetProperty(letgoLink, "left", "20rem");
-		DKAddEvent(letgoLink, "click", Inventory_OnEvent);
+		DKAddEvent(letgoLink, "click", TradePost_OnEvent);
 		
 		var letgoAge = DKWidget_CreateElement(postCell, "div", "letgoAge"+items[row].id);
 		DKWidget_SetProperty(letgoAge, "position", "absolute");
@@ -810,7 +810,7 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(letgoPost, "position", "absolute");
 		DKWidget_SetProperty(letgoPost, "top", "3rem");
 		DKWidget_SetProperty(letgoPost, "left", "80rem");
-		DKAddEvent(letgoPost, "click", Inventory_OnEvent);
+		DKAddEvent(letgoPost, "click", TradePost_OnEvent);
 		
 		
 		var offerupCheck = DKWidget_CreateElement(postCell, "input", "offerupCheck"+items[row].id);
@@ -820,14 +820,14 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(offerupCheck, "width", "16px");
 		DKWidget_SetProperty(offerupCheck, "height", "16px");
 		DKWidget_SetValue(offerupCheck, items[row].offerupCheck);
-		DKAddEvent(offerupCheck, "change", Inventory_OnEvent);
+		DKAddEvent(offerupCheck, "change", TradePost_OnEvent);
 		
 		var offerupLink = DKWidget_CreateElement(postCell, "img", "offerupLink"+items[row].id);
 		DKWidget_SetAttribute(offerupLink, "src", DKAssets_LocalAssets()+"/TradePost/offerup_small.png");
 		DKWidget_SetProperty(offerupLink, "position", "absolute");
 		DKWidget_SetProperty(offerupLink, "top", "30rem");
 		DKWidget_SetProperty(offerupLink, "left", "20rem");
-		DKAddEvent(offerupLink, "click", Inventory_OnEvent);
+		DKAddEvent(offerupLink, "click", TradePost_OnEvent);
 		
 		var offerupAge = DKWidget_CreateElement(postCell, "div", "offerupAge"+items[row].id);
 		DKWidget_SetProperty(offerupAge, "position", "absolute");
@@ -841,7 +841,7 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(offerupPost, "position", "absolute");
 		DKWidget_SetProperty(offerupPost, "top", "33rem");
 		DKWidget_SetProperty(offerupPost, "left", "80rem");
-		DKAddEvent(offerupPost, "click", Inventory_OnEvent);
+		DKAddEvent(offerupPost, "click", TradePost_OnEvent);
 		
 		
 		var craigslistCheck = DKWidget_CreateElement(postCell, "input", "craigslistCheck"+items[row].id);
@@ -851,14 +851,14 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(craigslistCheck, "width", "16px");
 		DKWidget_SetProperty(craigslistCheck, "height", "16px");
 		DKWidget_SetValue(craigslistCheck, items[row].craigslistCheck);
-		DKAddEvent(craigslistCheck, "change", Inventory_OnEvent);
+		DKAddEvent(craigslistCheck, "change", TradePost_OnEvent);
 		
 		var craigslistLink = DKWidget_CreateElement(postCell, "img", "craigslistLink"+items[row].id);
 		DKWidget_SetAttribute(craigslistLink, "src", DKAssets_LocalAssets()+"/TradePost/craigslist_small.jpg");
 		DKWidget_SetProperty(craigslistLink, "position", "absolute");
 		DKWidget_SetProperty(craigslistLink, "top", "60rem");
 		DKWidget_SetProperty(craigslistLink, "left", "20rem");
-		DKAddEvent(craigslistLink, "click", Inventory_OnEvent);
+		DKAddEvent(craigslistLink, "click", TradePost_OnEvent);
 		
 		var craigslistAge = DKWidget_CreateElement(postCell, "div", "craigslistAge"+items[row].id);
 		DKWidget_SetProperty(craigslistAge, "position", "absolute");
@@ -872,7 +872,7 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(craigslistPost, "position", "absolute");
 		DKWidget_SetProperty(craigslistPost, "top", "63rem");
 		DKWidget_SetProperty(craigslistPost, "left", "80rem");
-		DKAddEvent(craigslistPost, "click", Inventory_OnEvent);
+		DKAddEvent(craigslistPost, "click", TradePost_OnEvent);
 		
 		
 		var facebookCheck = DKWidget_CreateElement(postCell, "input", "facebookCheck"+items[row].id);
@@ -882,14 +882,14 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(facebookCheck, "width", "16px");
 		DKWidget_SetProperty(facebookCheck, "height", "16px");
 		DKWidget_SetValue(facebookCheck, items[row].facebookCheck);
-		DKAddEvent(facebookCheck, "change", Inventory_OnEvent);
+		DKAddEvent(facebookCheck, "change", TradePost_OnEvent);
 		
 		var facebookLink = DKWidget_CreateElement(postCell, "img", "facebookLink"+items[row].id);
 		DKWidget_SetAttribute(facebookLink, "src", DKAssets_LocalAssets()+"/TradePost/facebook_small.png");
 		DKWidget_SetProperty(facebookLink, "position", "absolute");
 		DKWidget_SetProperty(facebookLink, "top", "90rem");
 		DKWidget_SetProperty(facebookLink, "left", "20rem");
-		DKAddEvent(facebookLink, "click", Inventory_OnEvent);
+		DKAddEvent(facebookLink, "click", TradePost_OnEvent);
 		
 		var facebookAge = DKWidget_CreateElement(postCell, "div", "facebookAge"+items[row].id);
 		DKWidget_SetProperty(facebookAge, "position", "absolute");
@@ -903,7 +903,7 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(facebookPost, "position", "absolute");
 		DKWidget_SetProperty(facebookPost, "top", "93rem");
 		DKWidget_SetProperty(facebookPost, "left", "80rem");
-		DKAddEvent(facebookPost, "click", Inventory_OnEvent);
+		DKAddEvent(facebookPost, "click", TradePost_OnEvent);
 		
 		
 		var ebayCheck = DKWidget_CreateElement(postCell, "input", "ebayCheck"+items[row].id);
@@ -913,14 +913,14 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(ebayCheck, "width", "16px");
 		DKWidget_SetProperty(ebayCheck, "height", "16px");
 		DKWidget_SetValue(ebayCheck, items[row].ebayCheck);
-		DKAddEvent(ebayCheck, "change", Inventory_OnEvent);
+		DKAddEvent(ebayCheck, "change", TradePost_OnEvent);
 		
 		var ebayLink = DKWidget_CreateElement(postCell, "img", "ebayLink"+items[row].id);
 		DKWidget_SetAttribute(ebayLink, "src", DKAssets_LocalAssets()+"/TradePost/ebay_small.png");
 		DKWidget_SetProperty(ebayLink, "position", "absolute");
 		DKWidget_SetProperty(ebayLink, "top", "120rem");
 		DKWidget_SetProperty(ebayLink, "left", "20rem");
-		DKAddEvent(ebayLink, "click", Inventory_OnEvent);
+		DKAddEvent(ebayLink, "click", TradePost_OnEvent);
 		
 		var ebayAge = DKWidget_CreateElement(postCell, "div", "ebayAge"+items[row].id);
 		DKWidget_SetProperty(ebayAge, "position", "absolute");
@@ -934,7 +934,7 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(ebayPost, "position", "absolute");
 		DKWidget_SetProperty(ebayPost, "top", "123rem");
 		DKWidget_SetProperty(ebayPost, "left", "80rem");
-		DKAddEvent(ebayPost, "click", Inventory_OnEvent);
+		DKAddEvent(ebayPost, "click", TradePost_OnEvent);
 		
 		
 		var postAll = DKWidget_CreateElement(postCell, "img", "postAll"+items[row].id);
@@ -942,14 +942,14 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(postAll, "position", "absolute");
 		DKWidget_SetProperty(postAll, "top", "2rem");
 		DKWidget_SetProperty(postAll, "left", "110rem");
-		DKAddEvent(postAll, "click", Inventory_OnEvent);
+		DKAddEvent(postAll, "click", TradePost_OnEvent);
 	}
 }
 
 ////////////////////////////////////
-function Inventory_UploadImage(file)
+function TradePost_UploadImage(file)
 {
-	DKLog("Inventory_UploadImage("+file+")\n", DKDEBUG);
+	DKLog("TradePost_UploadImage("+file+")\n", DKDEBUG);
 	if(!file){ return; }
 	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg", true);
 	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
@@ -957,9 +957,9 @@ function Inventory_UploadImage(file)
 
 
 /////////////////////////
-function Inventory_Test()
+function TradePost_Test()
 {
-	DKLog("Inventory_Test\n", DKDEBUG);
+	DKLog("TradePost_Test\n", DKDEBUG);
 	
 	DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
@@ -1036,24 +1036,24 @@ function Inventory_Test()
 }
 
 ////////////////////////////////////
-function Inventory_PostItem(itemNum)
+function TradePost_PostItem(itemNum)
 {
-	DKLog("Inventory_PostItem("+itemNum+")\n", DKDEBUG);
+	DKLog("TradePost_PostItem("+itemNum+")\n", DKDEBUG);
 	//action = "PostToCraigslist";
 	//DK_QueueDuktape("DKBrowser_NewTab();");
 	//DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
 }
 
 ////////////////////////////////////
-function Inventory_PageLoaded(value)
+function TradePost_PageLoaded(value)
 {
-	DKLog("Inventory_PageLoaded("+value+")\n", DKDEBUG);
+	DKLog("TradePost_PageLoaded("+value+")\n", DKDEBUG);
 	
 	if(DKCef_GetBrowsers() < 2){ return; }
 	var url = DKCef_GetUrl("", 1);
 	//DKLog("url = "+url);
 	if(action == ""){
-		DKLog("Inventory_PageLoaded(): action is off\n");
+		DKLog("TradePost_PageLoaded(): action is off\n");
 	}
 	if(action == "PostToCraigslist"){
 		if(url.indexOf("s=preview") != -1){ action = ""; return;} //End posting in on the preview screen
@@ -1289,18 +1289,18 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 }
 
 //////////////////////////////////////////////
-function Inventory_CraigslistPost(currentItem)
+function TradePost_CraigslistPost(currentItem)
 {
-	DKLog("Inventory_CraigslistPost("+currentItem+")");
+	DKLog("TradePost_CraigslistPost("+currentItem+")");
 	action = "PostToCraigslist";
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
 }
 
 /////////////////////////////////////////
-function Inventory_LetGoPost(currentItem)
+function TradePost_LetGoPost(currentItem)
 {
-	DKLog("Inventory_LetGoPost("+currentItem+")");
+	DKLog("TradePost_LetGoPost("+currentItem+")");
 	action = "PostToLetGo";
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");

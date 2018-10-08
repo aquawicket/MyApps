@@ -7,8 +7,8 @@ var rowHeight = "150rem";
 function Inventory_Init()
 {
 	DKLog("Inventory_Init()\n", DKDEBUG);
-	DKCreate("TradePost/Inventory.html");
-	DKCreate("DKAdmin/DKAdmin.js", function(){});
+	//DKCreate("DKAdmin/DKAdmin.js", function(){});
+	DKCreate("Inventory/Inventory.html");
 	DKCreate("DKGui/DKMenu.js", function(){});
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", Inventory_OnEvent);
@@ -48,7 +48,7 @@ function Inventory_End()
 {
 	DKLog("Inventory_End()\n", DKDEBUG);
 	DKRemoveEvents(Inventory_OnEvent);
-	DKClose("TradePost/Inventory.html");
+	DKClose("Inventory/Inventory.html");
 }
 
 /////////////////////////////////
@@ -69,25 +69,25 @@ function Inventory_OnEvent(event)
 	
 	if(DK_IdLike(event, "imageCell")){
 		currentItem = DK_GetId(event).replace("imageCell","");
-		DKCreate("TradePost/ItemImages.js", function(){
+		DKCreate("Inventory/ItemImages.js", function(){
 			ItemImages_SetItem(currentItem);
 			DKCreate("DKGui/DKFrame.js", function(){
-				DKFrame_Widget("TradePost/ItemImages.html");
+				DKFrame_Widget("Inventory/ItemImages.html");
 			});
 		});
 		return;
 	}
 	if(DK_IdLike(event, "condition")){
 		currentItem = DK_GetId(event).replace("condition","");
-		DKCreate("TradePost/ConditionMenu.js", function(){
-			DKMenu_ValidatePosition("TradePost/ConditionMenu.html");
+		DKCreate("Inventory/ConditionMenu.js", function(){
+			DKMenu_ValidatePosition("Inventory/ConditionMenu.html");
 		});
 		return;
 	}
 	if(DK_IdLike(event, "catagory")){
 		currentItem = DK_GetId(event).replace("catagory","");
-		DKCreate("TradePost/CatagoryMenu.js", function(){
-			DKMenu_ValidatePosition("TradePost/CatagoryMenu.html");
+		DKCreate("Inventory/CatagoryMenu.js", function(){
+			DKMenu_ValidatePosition("Inventory/CatagoryMenu.html");
 		});
 		return;
 	}
@@ -793,7 +793,7 @@ function Inventory_UpdateList()
 		DKAddEvent(letgoCheck, "change", Inventory_OnEvent);
 		
 		var letgoLink = DKWidget_CreateElement(postCell, "img", "letgoLink"+items[row].id);
-		DKWidget_SetAttribute(letgoLink, "src", DKAssets_LocalAssets()+"/TradePost/letgo_small.png");
+		DKWidget_SetAttribute(letgoLink, "src", DKAssets_LocalAssets()+"/Inventory/letgo_small.png");
 		DKWidget_SetProperty(letgoLink, "position", "absolute");
 		DKWidget_SetProperty(letgoLink, "left", "20rem");
 		DKAddEvent(letgoLink, "click", Inventory_OnEvent);
@@ -806,7 +806,7 @@ function Inventory_UpdateList()
 		DKWidget_SetInnerHtml(letgoAge, "8d");
 		
 		var letgoPost = DKWidget_CreateElement(postCell, "img", "letgoPost"+items[row].id);
-		DKWidget_SetAttribute(letgoPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
+		DKWidget_SetAttribute(letgoPost, "src", DKAssets_LocalAssets()+"/Inventory/post.png");
 		DKWidget_SetProperty(letgoPost, "position", "absolute");
 		DKWidget_SetProperty(letgoPost, "top", "3rem");
 		DKWidget_SetProperty(letgoPost, "left", "80rem");
@@ -823,7 +823,7 @@ function Inventory_UpdateList()
 		DKAddEvent(offerupCheck, "change", Inventory_OnEvent);
 		
 		var offerupLink = DKWidget_CreateElement(postCell, "img", "offerupLink"+items[row].id);
-		DKWidget_SetAttribute(offerupLink, "src", DKAssets_LocalAssets()+"/TradePost/offerup_small.png");
+		DKWidget_SetAttribute(offerupLink, "src", DKAssets_LocalAssets()+"/Inventory/offerup_small.png");
 		DKWidget_SetProperty(offerupLink, "position", "absolute");
 		DKWidget_SetProperty(offerupLink, "top", "30rem");
 		DKWidget_SetProperty(offerupLink, "left", "20rem");
@@ -837,7 +837,7 @@ function Inventory_UpdateList()
 		DKWidget_SetInnerHtml(offerupAge, "4h");
 		
 		var offerupPost = DKWidget_CreateElement(postCell, "img", "offerupPost"+items[row].id);
-		DKWidget_SetAttribute(offerupPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
+		DKWidget_SetAttribute(offerupPost, "src", DKAssets_LocalAssets()+"/Inventory/post.png");
 		DKWidget_SetProperty(offerupPost, "position", "absolute");
 		DKWidget_SetProperty(offerupPost, "top", "33rem");
 		DKWidget_SetProperty(offerupPost, "left", "80rem");
@@ -854,7 +854,7 @@ function Inventory_UpdateList()
 		DKAddEvent(craigslistCheck, "change", Inventory_OnEvent);
 		
 		var craigslistLink = DKWidget_CreateElement(postCell, "img", "craigslistLink"+items[row].id);
-		DKWidget_SetAttribute(craigslistLink, "src", DKAssets_LocalAssets()+"/TradePost/craigslist_small.jpg");
+		DKWidget_SetAttribute(craigslistLink, "src", DKAssets_LocalAssets()+"/Inventory/craigslist_small.jpg");
 		DKWidget_SetProperty(craigslistLink, "position", "absolute");
 		DKWidget_SetProperty(craigslistLink, "top", "60rem");
 		DKWidget_SetProperty(craigslistLink, "left", "20rem");
@@ -868,7 +868,7 @@ function Inventory_UpdateList()
 		DKWidget_SetInnerHtml(craigslistAge, "2d");
 		
 		var craigslistPost = DKWidget_CreateElement(postCell, "img", "craigslistPost"+items[row].id);
-		DKWidget_SetAttribute(craigslistPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
+		DKWidget_SetAttribute(craigslistPost, "src", DKAssets_LocalAssets()+"/Inventory/post.png");
 		DKWidget_SetProperty(craigslistPost, "position", "absolute");
 		DKWidget_SetProperty(craigslistPost, "top", "63rem");
 		DKWidget_SetProperty(craigslistPost, "left", "80rem");
@@ -885,7 +885,7 @@ function Inventory_UpdateList()
 		DKAddEvent(facebookCheck, "change", Inventory_OnEvent);
 		
 		var facebookLink = DKWidget_CreateElement(postCell, "img", "facebookLink"+items[row].id);
-		DKWidget_SetAttribute(facebookLink, "src", DKAssets_LocalAssets()+"/TradePost/facebook_small.png");
+		DKWidget_SetAttribute(facebookLink, "src", DKAssets_LocalAssets()+"/Inventory/facebook_small.png");
 		DKWidget_SetProperty(facebookLink, "position", "absolute");
 		DKWidget_SetProperty(facebookLink, "top", "90rem");
 		DKWidget_SetProperty(facebookLink, "left", "20rem");
@@ -899,7 +899,7 @@ function Inventory_UpdateList()
 		DKWidget_SetInnerHtml(facebookAge, "13w");
 		
 		var facebookPost = DKWidget_CreateElement(postCell, "img", "facebookPost"+items[row].id);
-		DKWidget_SetAttribute(facebookPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
+		DKWidget_SetAttribute(facebookPost, "src", DKAssets_LocalAssets()+"/Inventory/post.png");
 		DKWidget_SetProperty(facebookPost, "position", "absolute");
 		DKWidget_SetProperty(facebookPost, "top", "93rem");
 		DKWidget_SetProperty(facebookPost, "left", "80rem");
@@ -916,7 +916,7 @@ function Inventory_UpdateList()
 		DKAddEvent(ebayCheck, "change", Inventory_OnEvent);
 		
 		var ebayLink = DKWidget_CreateElement(postCell, "img", "ebayLink"+items[row].id);
-		DKWidget_SetAttribute(ebayLink, "src", DKAssets_LocalAssets()+"/TradePost/ebay_small.png");
+		DKWidget_SetAttribute(ebayLink, "src", DKAssets_LocalAssets()+"/Inventory/ebay_small.png");
 		DKWidget_SetProperty(ebayLink, "position", "absolute");
 		DKWidget_SetProperty(ebayLink, "top", "120rem");
 		DKWidget_SetProperty(ebayLink, "left", "20rem");
@@ -930,7 +930,7 @@ function Inventory_UpdateList()
 		DKWidget_SetInnerHtml(ebayAge, "5d");
 		
 		var ebayPost = DKWidget_CreateElement(postCell, "img", "ebayPost"+items[row].id);
-		DKWidget_SetAttribute(ebayPost, "src", DKAssets_LocalAssets()+"/TradePost/post.png");
+		DKWidget_SetAttribute(ebayPost, "src", DKAssets_LocalAssets()+"/Inventory/post.png");
 		DKWidget_SetProperty(ebayPost, "position", "absolute");
 		DKWidget_SetProperty(ebayPost, "top", "123rem");
 		DKWidget_SetProperty(ebayPost, "left", "80rem");
@@ -938,7 +938,7 @@ function Inventory_UpdateList()
 		
 		
 		var postAll = DKWidget_CreateElement(postCell, "img", "postAll"+items[row].id);
-		DKWidget_SetAttribute(postAll, "src", DKAssets_LocalAssets()+"/TradePost/postAll.png");
+		DKWidget_SetAttribute(postAll, "src", DKAssets_LocalAssets()+"/Inventory/postAll.png");
 		DKWidget_SetProperty(postAll, "position", "absolute");
 		DKWidget_SetProperty(postAll, "top", "2rem");
 		DKWidget_SetProperty(postAll, "left", "110rem");
@@ -1016,7 +1016,7 @@ function Inventory_Test()
 	DK_SetMousePos(left+10,top+10);
 	DK_LeftClick();
 	//We need the correct images path of the current item
-	var path = "C:/digitalknob/MyApps/DKApps/TradePost/assets/Items/Item6";
+	var path = "C:/digitalknob/MyApps/DKApps/Inventory/assets/Items/Item6";
 	DK_SetClipboard(path);
 	DK_PressKey(17); DK_Sleep(100); // ctrl down
 	DK_StrokeKey(86); DK_Sleep(100); // v
@@ -1165,7 +1165,7 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	
 	//Craigslist post page - Edit Image
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=editimage") != -1){
-		DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
+		DK_Run(DKAssets_LocalAssets()+"Inventory/AutoOpener.exe", images); //run the auto opener tool
 		WaitForElement('button[id="plupload"]', 5000, function(rval){  //wait for 5 seconds
 			if(rval == false){
 				console.log("'button[id=\"plupload\"]' NOT FOUND!");
@@ -1229,7 +1229,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 					return;
 				}
 				images = images.replace(",","");
-				DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
+				DK_Run(DKAssets_LocalAssets()+"Inventory/AutoOpener.exe", images); //run the auto opener tool
 				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
 				var y = Number(DKWindow_GetY()) + 320;
 				DK_SetMousePos(x,y);
