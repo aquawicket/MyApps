@@ -1229,16 +1229,25 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 							for(var i = 0; i < spans.length; i++){ 
 								if(spans[i].innerHTML == "Add more details"){
 									spans[i].parentElement.click();
-									WaitForElement('input[name="name"]', 5000, function(rval){ 
+									WaitForElement('textarea[name="description"]', 5000, function(rval){ 
 										if(rval == false){
-											console.log("'input[name=\"name\"]' NOT FOUND!");
+											console.log("'textarea[name=\"description\"]' NOT FOUND!");
 											return;
 										}
-										document.querySelector('input[name="price"]').value = title;
-										//////////////////////
+										//////////////////////////
+										document.querySelector('input[name="name"]').value = title;
+										document.querySelector('textarea[name="description"]').value = description;
+										document.querySelector('input[name="price"]').value = price;
+										var spans = document.getElementsByTagName("span");
+										for(var i = 0; i < spans.length; i++){ 
+											if(spans[i].innerHTML == "Save changes"){
+												spans[i].parentElement.click();
+												return; ///// ####################################### END OF SCRIPT 
+											}
+										}
+										console.log("'Save Changes button NOT FOUND!");
 										return;
 									});
-									return;
 								}
 							}
 							console.log("'Additional button NOT FOUND!");
