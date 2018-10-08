@@ -1052,7 +1052,9 @@ function TradePost_PageLoaded(value)
 	if(DKCef_GetBrowsers() < 2){ return; }
 	var url = DKCef_GetUrl("", 1);
 	//DKLog("url = "+url);
-	
+	if(action == ""){
+		DKLog("TradePost_PageLoaded(): action is off\n");
+	}
 	if(action == "PostToCraigslist"){
 		if(url.indexOf("s=preview") != -1){ action = ""; return;} //End posting in on the preview screen
 		var title = document.getElementById("title"+currentItem).value;
@@ -1097,6 +1099,7 @@ function TradePost_PageLoaded(value)
 		DKCef_RunJavascript(0, 1, code);
 	}
 	action = "";
+	DKLog("TradePost_PageLoaded(): end of function, turning off action...\n");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1226,7 +1229,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 							}
 							sleep(3000);
 							console.log("'button[role=\"button\"]' FOUND!"); 
-							document.querySelector('button[role="button"]').click();
+							//document.querySelector('button[role="button"]').click();
 							return;
 						});
 					});	
