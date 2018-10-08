@@ -1,5 +1,4 @@
 var item_arry = new Array();
-var item_arry2 = new Array();
 
 ///////////////////
 function Buy_Init()
@@ -52,7 +51,7 @@ function Buy_CraigslistToArry(url, callback)
 			//DKLog(items[i].innerHTML+"\n");
 			var item_data = new Array();
 			item_data[0] = "id";
-			item_data[1] = "craigslist.png";
+			item_data[1] = "TradePost/craigslist.png";
 			item_data[2] = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 			if(items[i].getElementsByClassName("result-hood")[0]){
 				item_data[3] = items[i].getElementsByClassName("result-hood")[0].innerHTML;  //location
@@ -143,7 +142,7 @@ function Buy_ShowItems()
 	//Wowzer_Filter();
 
 	DKWidget_SetInnerHtml("Buy_Container", "");
-	for(var i=0; i<item_arry2.length; i++){	
+	for(var i=0; i<item_arry.length; i++){	
 		var itemdiv = document.createElement('div');
 		itemdiv.style.display = "inline-block";
 		itemdiv.style.width = "230px";
@@ -158,6 +157,8 @@ function Buy_ShowItems()
 		//itemdiv.style.borderColor = "red";
 		itemdiv.style.background = "white";
 		itemdiv.style.overflow = "hidden";
+		//var url = item_arry[i][5];
+		//itemdiv.onclick = function(){ window.open(url, "_blank", "width=800,height=600"); }
 		
 		var imgdiv = document.createElement('div');
 		imgdiv.style.position = "relative";
@@ -172,16 +173,17 @@ function Buy_ShowItems()
 		itemdiv.appendChild(imgdiv);
 		
 		var itemurl = document.createElement('a');
-		itemurl.href = item_arry2[i][5];
+		itemurl.href = item_arry[i][5];
 		itemurl.style.display = "block";
 		itemurl.style.width = "230px";
 		itemurl.style.width = "230rem";
 		itemurl.style.height = "300px";
 		itemurl.style.height = "300rem";
+		itemurl.target = "_blank";
 		imgdiv.appendChild(itemurl);
 		
 		var itemimg = document.createElement('img');
-		itemimg.src = item_arry2[i][4];
+		itemimg.src = item_arry[i][4];
 		itemimg.style.display = "block";
 		itemimg.style.maxWidth = "230px";
 		itemimg.style.maxWidth = "230rem";
@@ -198,7 +200,7 @@ function Buy_ShowItems()
 		itemurl.appendChild(itemimg);
 				
 		var host = document.createElement('img');
-		host.src = item_arry2[i][1];
+		host.src = item_arry[i][1];
 		host.style.position = "absolute";
 		host.style.top = "0px";
 		host.style.top = "0rem";
@@ -222,7 +224,7 @@ function Buy_ShowItems()
 		itemdiv.appendChild(infodiv);
 		
 		var itemtitle = document.createElement('a');
-		itemtitle.innerHTML = item_arry2[i][2];
+		itemtitle.innerHTML = item_arry[i][2];
 		itemtitle.style.display = "block";
 		itemtitle.style.fontWeight = "bold";
 		itemtitle.style.fontSize = "20px";
@@ -231,8 +233,8 @@ function Buy_ShowItems()
 		infodiv.appendChild(itemtitle);
 		
 		var itemprice = document.createElement('span');
-		if(item_arry2[i][6]){
-			itemprice.innerHTML = item_arry2[i][6];
+		if(item_arry[i][6]){
+			itemprice.innerHTML = item_arry[i][6];
 		}
 		itemprice.style.display = "block";
 		itemprice.style.fontSize = "18px";
@@ -240,8 +242,8 @@ function Buy_ShowItems()
 		itemdiv.appendChild(itemprice);
 		
 		var itemloc = document.createElement('span');
-		if(item_arry2[i][3]){
-			itemloc.innerHTML = item_arry2[i][3];
+		if(item_arry[i][3]){
+			itemloc.innerHTML = item_arry[i][3];
 		}
 		itemloc.style.display = "block";
 		itemloc.style.fontSize = "15px";
