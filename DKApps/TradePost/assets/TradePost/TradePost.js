@@ -1222,16 +1222,27 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 						sleep(3000);
 						document.querySelector('button[type="submit"]').click();
 						sleep(3000);
-						WaitForElement('button[role="button"]', 5000, function(rval){ //Aditional Options
+						
+						var spans = document.getElementsByTagName("span");
+						for(var i = 0; i < spans.length; i++){ 
+							if(allElements[i].innerHTML == "Add more details"){
+								console.log("'Additional button FOUND!"); 
+								allElements[i].parentElement.click();
+								return;
+							}
+						}
+						/*
+						WaitForElement('button[role="button"]:not([type="submit"]', 5000, function(rval){ //Aditional Options
 							if(rval == false){ 
-								console.log("'button[role=\"button\"]' NOT FOUND!"); 
+								console.log("'button[role=\"button\"]:not([type=\"submit\"]' NOT FOUND!"); 
 								return;
 							}
 							sleep(3000);
-							console.log("'button[role=\"button\"]' FOUND!"); 
-							//document.querySelector('button[role="button"]').click();
+							console.log("'button[role=\"button\"]:not([type=\"submit\"]' FOUND!"); 
+							document.querySelector('button[role="button"]:not([type="submit"]').click();
 							return;
 						});
+						*/
 					});	
 				});
 			});	
