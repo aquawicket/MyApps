@@ -1096,6 +1096,7 @@ function TradePost_PageLoaded(value)
 		
 		DKCef_RunJavascript(0, 1, code);
 	}
+	action = "";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1186,47 +1187,46 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 		
 	if(url.indexOf("https://us.letgo.com/en") != -1){
 		WaitForElement('button[data-test="chat-button"]', 5000, function(rval){  //wait for 5 seconds
-			if(rval == true){
-				document.querySelector('button[data-test="sell-your-stuff-button"]').click();
-				WaitForElement('div[class="dropZoneDefault"]', 5000, function(rval){
-					if(rval == true){
-						images = images.replace(",","");
-						DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
-						var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
-						var y = Number(DKWindow_GetY()) + 320;
-						DK_SetMousePos(x,y);
-						DK_LeftClick();
-						WaitForElement('input[name="price"]', 5000, function(rval){
-							if(rval == true){
-								console.log("'input[name=\"price\"]' FOUND!");
-								document.querySelector('input[name="price"]').value = 30;
-								WaitForElement('button[type="submit"]', 5000, function(rval){
-									if(rval == true){
-										document.querySelector('button[type="submit"]').click();
-										WaitForElement('button[role="button"]', 5000, function(rval){
-											if(rval == true){
-												document.querySelector('button[role="button"]').click();
-												return;
-											}
-											console.log("'button[type=\"submit\"]' NOT FOUND!");
-											return;
-																				
-										});
-									}
-									console.log("'button[type=\"submit\"]' NOT FOUND!");
-									return;
-								});
-							}
-							console.log("'input[name=\"price\"]' NOT FOUND!");
-							return;
-						});
-					}
+			if(rval == false){
+				console.log("'button[data-test=\"chat-button\"] NOT FOUND'\n");
+				return;
+			}
+			document.querySelector('button[data-test="sell-your-stuff-button"]').click(); //Sell button
+			WaitForElement('div[class="dropZoneDefault"]', 5000, function(rval){
+				if(rval == false){
 					console.log("'div[class=\"dropZoneDefault\"]' NOT FOUND!");
 					return;
+				}
+				images = images.replace(",","");
+				DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
+				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
+				var y = Number(DKWindow_GetY()) + 320;
+				DK_SetMousePos(x,y);
+				DK_LeftClick();
+				WaitForElement('input[name="price"]', 5000, function(rval){ //Price
+					if(rval == false){
+						console.log("'input[name=\"price\"]' NOT FOUND!");
+						return;
+					}
+					console.log("'input[name=\"price\"]' FOUND!");
+					document.querySelector('input[name="price"]').value = 30;
+					WaitForElement('button[type="submit"]', 5000, function(rval){ //Submit Price
+						if(rval == false){
+							console.log("'button[type=\"submit\"]' NOT FOUND!");
+							return;
+						}
+						document.querySelector('button[type="submit"]').click();
+						WaitForElement('button[role="button"]', 5000, function(rval){ //Aditional Options
+							if(rval == false){ 
+								console.log("'button[type=\"submit\"]' NOT FOUND!"); 
+								return;
+							}
+							document.querySelector('button[role="button"]').click();
+							return;
+						});
+					});	
 				});
-			}
-			console.log("'button[data-test=\"chat-button\"] NOT FOUND'\n");
-			return;
+			});	
 		});
 	}
 }
