@@ -1185,46 +1185,45 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 	var url = window.location.toString();
 		
 	if(url.indexOf("https://us.letgo.com/en") != -1){
-
 		WaitForElement('button[data-test="chat-button"]', 5000, function(rval){  //wait for 5 seconds
 			if(rval == true){
 				document.querySelector('button[data-test="sell-your-stuff-button"]').click();
-				WaitForElement('div[class="dropZoneDefault"]', 5000, function(){
-					
+				WaitForElement('div[class="dropZoneDefault"]', 5000, function(rval){
+					if(rval == true){
+						images = images.replace(",","");
+						DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
+						var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
+						var y = Number(DKWindow_GetY()) + 320;
+						DK_SetMousePos(x,y);
+						DK_LeftClick();
+						WaitForElement('input[name="price"]', 5000, function(rval){
+							if(rval == true){
+								console.log("'input[name=\"price\"]' FOUND!");
+								document.querySelector('input[name="price"]').value = 30;
+								return;
+							}
+							console.log("'input[name=\"price\"]' NOT FOUND!");
+							return;
+						});
+					}
+					console.log("'div[class=\"dropZoneDefault\"]' NOT FOUND!");
+					return;
 				});
-				return;
 			}
-			console.log("'button[data-test=\"chat-button\"] was never found'\n");
+			console.log("'button[data-test=\"chat-button\"] NOT FOUND'\n");
 			return;
+		});
 			
 			/*
-
-			WaitForElement('div[class="dropZoneDefault"]', 0, function(){
-				
-
-			
-				console.log("found dropZone\n");
-				images = images.replace(",","");
-				DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
-				var x = Number(DKWindow_GetX()) + (Number(DKWindow_GetWidth()) / 2);
-				var y = Number(DKWindow_GetY()) + 320;
-				DK_SetMousePos(x,y);
-				sleep(100);
-				DK_LeftClick();
-				//sleep(5000);
-				
-				
-					
-				
 				//WaitForElement('input[name="price"]', 10000, function(){
 				//	//DK_StrokeKey(9);
 				//	//DK_StrokeKey(9);
 				//	console.log("found it\n");
 				//	document.querySelector('input[name="price"]').value = 30;	
 				//});
-			});
+
 			*/
-		});
+		
 		return;
 	}
 	
