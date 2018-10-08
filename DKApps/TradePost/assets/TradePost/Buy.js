@@ -122,7 +122,7 @@ function Buy_LetGoToArry(url, callback)
 				
 		var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
 		for(var i=0; i<items.length; i++){
-			DKLog(items[i].innerHTML+"\n");
+			//DKLog(items[i].innerHTML+"\n");
 				
 			var item_data = new Array();
 			item_data[0] = "id";
