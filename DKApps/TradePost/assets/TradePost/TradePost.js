@@ -1200,7 +1200,22 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 							if(rval == true){
 								console.log("'input[name=\"price\"]' FOUND!");
 								document.querySelector('input[name="price"]').value = 30;
-								return;
+								WaitForElement('button[type="submit"]', 5000, function(rval){
+									if(rval == true){
+										document.querySelector('button[type="submit"]').click();
+										WaitForElement('button[role="button"]', 5000, function(rval){
+											if(rval == true){
+												document.querySelector('button[role="button"]').click();
+												return;
+											}
+											console.log("'button[type=\"submit\"]' NOT FOUND!");
+											return;
+																				
+										});
+									}
+									console.log("'button[type=\"submit\"]' NOT FOUND!");
+									return;
+								});
 							}
 							console.log("'input[name=\"price\"]' NOT FOUND!");
 							return;
@@ -1213,21 +1228,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 			console.log("'button[data-test=\"chat-button\"] NOT FOUND'\n");
 			return;
 		});
-			
-			/*
-				//WaitForElement('input[name="price"]', 10000, function(){
-				//	//DK_StrokeKey(9);
-				//	//DK_StrokeKey(9);
-				//	console.log("found it\n");
-				//	document.querySelector('input[name="price"]').value = 30;	
-				//});
-
-			*/
-		
-		return;
 	}
-	
-	
 }
 
 /////////////////////////////////////////
