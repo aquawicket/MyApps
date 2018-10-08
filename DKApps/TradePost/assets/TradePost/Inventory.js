@@ -23,16 +23,6 @@ function Inventory_Init()
 	//DKAddEvent("GLOBAL", "mousemove", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "keydown", Inventory_OnEvent);
 	
-	DKAddEvent("AddItem", "click", Inventory_OnEvent);
-	DKAddEvent("Craigslist", "click", Inventory_OnEvent);
-	DKAddEvent("Letgo", "click", Inventory_OnEvent);
-	DKAddEvent("Letgo", "click", Inventory_OnEvent);
-	DKAddEvent("OfferUp", "click", Inventory_OnEvent);
-	DKAddEvent("Facebook", "click", Inventory_OnEvent);
-	DKAddEvent("Ebay", "click", Inventory_OnEvent);
-	DKAddEvent("Test", "click", Inventory_OnEvent);
-	DKAddEvent("Refresh", "click", Inventory_OnEvent);
-	
 	//Create Items folder if it does not exist.
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"Items")){
 		DKFile_MkDir(DKAssets_LocalAssets()+"Items");
@@ -153,32 +143,7 @@ function Inventory_OnEvent(event)
 		Inventory_AddItem();
 		return;
 	}
-	if(DK_Id(event, "Craigslist")){
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
-	}
-	if(DK_Id(event, "Letgo")){
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
-	}
-	if(DK_Id(event, "OfferUp")){
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://offerup.com');");
-	}
-	if(DK_Id(event, "Facebook")){
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.facebook.com/marketplace');");
-	}
-	if(DK_Id(event, "Ebay")){
-		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
-	}
-	if(DK_Id(event, "Test")){
-		Inventory_Test();
-	}
-	if(DK_Id(event, "Refresh")){
-		DK_Refresh();
-	}
+
 	if(DK_Type(event, "keyup")){
 		Inventory_ChangeText(DK_GetId(event), DK_GetValue(DK_GetId(event)));
 		return;
@@ -946,6 +911,7 @@ function Inventory_UpdateList()
 	}
 }
 
+/*
 ////////////////////////////////////
 function Inventory_UploadImage(file)
 {
@@ -954,6 +920,7 @@ function Inventory_UploadImage(file)
 	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg", true);
 	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
 }
+*/
 
 
 /////////////////////////
