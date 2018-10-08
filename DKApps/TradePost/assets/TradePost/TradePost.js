@@ -1218,6 +1218,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 						}
 						sleep(3000);
 						document.querySelector('button[type="submit"]').click();
+						sleep(3000);
 						WaitForElement('button[role="button"]', 5000, function(rval){ //Aditional Options
 							if(rval == false){ 
 								console.log("'button[role=\"button\"]' NOT FOUND!"); 
