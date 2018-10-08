@@ -4,8 +4,6 @@
 
 buyItems = []; //items stored here, for use with json
  
-var item_arry = new Array();
-
 ///////////////////
 function Buy_Init()
 {
@@ -61,48 +59,37 @@ function Buy_CraigslistToArry(url, callback)
 		var items = div.getElementsByClassName("result-row");
 		for(var i=0; i<items.length; i++){
 			//DKLog(items[i].innerHTML+"\n");
-			
-			//TODO: fill JSON object
-			buyItems.push({});
-			//buyItems[items.length-1].id = "id"; //FIXME: undefined
-			/*
-			buyItems[items.length-1].provider = "craigslist";
-			buyItems[items.length-1].title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
-			buyItems[items.length-1].loc = items[i].getElementsByClassName("result-hood")[0].innerHTML;
-			*/
-			
-			var item_data = new Array();
-			item_data[0] = "id";
-			item_data[1] = "TradePost/craigslist.png";
-			item_data[2] = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
+			buyItems.push({}); //new object
+			buyItems[buyItems.length-1].id = 0; //id
+			buyItems[buyItems.length-1].providerImg = "TradePost/craigslist.png"; //host banner
+			buyItems[buyItems.length-1].title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 			if(items[i].getElementsByClassName("result-hood")[0]){
-				item_data[3] = items[i].getElementsByClassName("result-hood")[0].innerHTML;  //location
+				buyItems[buyItems.length-1].loc = items[i].getElementsByClassName("result-hood")[0].innerHTML; //location
 			}
 			var img = items[i].getElementsByClassName("result-image gallery")[0].getAttribute("data-ids");
 			if(img){
 				img = img.replace("0:", "");
 				img = img.replace("1:", "");
 				var arry = img.split(",");
-				item_data[4] = "https://images.craigslist.org/"+arry[0]+"_300x300.jpg";
+				buyItems[buyItems.length-1].img = "https://images.craigslist.org/"+arry[0]+"_300x300.jpg"; //image
 			}
 			else{
-				item_data[4] = "https://www.craigslist.org/images/peace.jpg";
+				buyItems[buyItems.length-1].img = "https://www.craigslist.org/images/peace.jpg"; //no image
 			}	
 			if(items[i].getElementsByClassName("result-image gallery")[0].href.indexOf("https://") == -1){
-				item_data[5] = "https://inlandempire.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href;  //url
+				buyItems[buyItems.length-1].link = "https://inlandempire.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href; //url
 			}
 			else{
-				item_data[5] = items[i].getElementsByClassName("result-image gallery")[0].href;  //url
+				buyItems[buyItems.length-1].link = items[i].getElementsByClassName("result-image gallery")[0].href;  //url
 			}
-			item_data[5] = item_data[5].replace("file:///C:","");
-			item_data[5] = item_data[5].replace("http://digitalknob.com","");
+			buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("file:///C:",""); //url fix
+			buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("http://digitalknob.com",""); //url fix
 			if(items[i].getElementsByClassName("result-price")[0]){
-				item_data[6] = items[i].getElementsByClassName("result-price")[0].innerHTML; //price
+				buyItems[buyItems.length-1].price = items[i].getElementsByClassName("result-price")[0].innerHTML; //price
 			}
 			else{
-				item_data[6] = "$0"; //price
+				buyItems[buyItems.length-1].price = "$0"; //price
 			}
-			item_arry.push(item_data);
 		}	
 		callback();
 	});
@@ -123,30 +110,27 @@ function Buy_LetGoToArry(url, callback)
 		var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
 		for(var i=0; i<items.length; i++){
 			//DKLog(items[i].innerHTML+"\n");
-				
-			var item_data = new Array();
-			item_data[0] = "id";
-			item_data[1] = "TradePost/letgo.png";
-				
+			buyItems.push({}); //new object
+			buyItems[buyItems.length-1].id = 0; //id	
+			buyItems[buyItems.length-1].providerImg = "TradePost/letgo.png"; //host banner
 			if(items[i].getElementsByClassName("img portrait")[0]){
-				item_data[2] = items[i].getElementsByClassName("img portrait")[0].title;  //title
-				item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
-				item_data[4] = items[i].getElementsByClassName("img portrait")[0].firstChild.src; //image
-				item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
-				//item_data[5] = item_data[5].replace("file:///C:","");
-				//item_data[5] = item_data[5].replace("http://digitalknob.com","");
-				item_data[6] = "$0"; //price
+				buyItems[buyItems.length-1].title = items[i].getElementsByClassName("img portrait")[0].title;  //title
+				buyItems[buyItems.length-1].loc = items[i].getElementsByClassName("city")[0].innerHTML;  //location
+				buyItems[buyItems.length-1].img = items[i].getElementsByClassName("img portrait")[0].firstChild.src; //image
+				buyItems[buyItems.length-1].link = item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
+				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("file:///C:",""); //url fix
+				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("http://digitalknob.com",""); //url fix
+				buyItems[buyItems.length-1].price = "$0"; //price
 			}
 			if(items[i].getElementsByClassName("img landscape")[0]){
-				item_data[2] = items[i].getElementsByClassName("img landscape")[0].title;  //title
-				item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
-				item_data[4] = items[i].getElementsByClassName("img landscape")[0].firstChild.src; //image
-				item_data[5] = items[i].getElementsByClassName("img landscape")[0];  //url
-				//item_data[5] = item_data[5].replace("file:///C:","");
-				//item_data[5] = item_data[5].replace("http://digitalknob.com","");
-				item_data[6] = "$0"; //price
+				buyItems[buyItems.length-1].title = items[i].getElementsByClassName("img landscape")[0].title;  //title
+				buyItems[buyItems.length-1].loc = items[i].getElementsByClassName("city")[0].innerHTML;  //location
+				buyItems[buyItems.length-1].img = items[i].getElementsByClassName("img landscape")[0].firstChild.src; //image
+				buyItems[buyItems.length-1].link = items[i].getElementsByClassName("img landscape")[0];  //url
+				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("file:///C:",""); //url fix
+				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("http://digitalknob.com",""); //url fix
+				buyItems[buyItems.length-1].price = "$0"; //price
 			}
-			item_arry.push(item_data);
 		}				
 		callback();
 	});
@@ -205,10 +189,10 @@ function Buy_ShowItems()
 {
 	DKLog("Buy_ShowItems()\n", DKDEBUG);
 	//sort by price
-	//Wowzer_Filter();
+	//Buy_Filter();
 
 	DKWidget_SetInnerHtml("Buy_Container", "");
-	for(var i=0; i<item_arry.length; i++){	
+	for(var i=0; i<buyItems.length; i++){
 		var itemdiv = document.createElement('div');
 		itemdiv.style.display = "inline-block";
 		itemdiv.style.width = "230px";
@@ -223,8 +207,6 @@ function Buy_ShowItems()
 		//itemdiv.style.borderColor = "red";
 		itemdiv.style.background = "white";
 		itemdiv.style.overflow = "hidden";
-		//var url = item_arry[i][5];
-		//itemdiv.onclick = function(){ window.open(url, "_blank", "width=800,height=600"); }
 		
 		var imgdiv = document.createElement('div');
 		imgdiv.style.position = "relative";
@@ -239,7 +221,7 @@ function Buy_ShowItems()
 		itemdiv.appendChild(imgdiv);
 		
 		var itemurl = document.createElement('a');
-		itemurl.href = item_arry[i][5];
+		itemurl.href = buyItems[i].link;
 		itemurl.style.display = "block";
 		itemurl.style.width = "230px";
 		itemurl.style.width = "230rem";
@@ -249,7 +231,8 @@ function Buy_ShowItems()
 		imgdiv.appendChild(itemurl);
 		
 		var itemimg = document.createElement('img');
-		itemimg.src = item_arry[i][4];
+		DKLog("buyItems["+i+"].img = "+buyItems[i].img+"\n");
+		itemimg.src = buyItems[i].img;
 		itemimg.style.display = "block";
 		itemimg.style.maxWidth = "230px";
 		itemimg.style.maxWidth = "230rem";
@@ -266,7 +249,7 @@ function Buy_ShowItems()
 		itemurl.appendChild(itemimg);
 				
 		var host = document.createElement('img');
-		host.src = item_arry[i][1];
+		host.src = buyItems[i].providerImg;
 		host.style.position = "absolute";
 		host.style.top = "0px";
 		host.style.top = "0rem";
@@ -290,7 +273,7 @@ function Buy_ShowItems()
 		itemdiv.appendChild(infodiv);
 		
 		var itemtitle = document.createElement('a');
-		itemtitle.innerHTML = item_arry[i][2];
+		itemtitle.innerHTML = buyItems[i].title;
 		itemtitle.style.display = "block";
 		itemtitle.style.fontWeight = "bold";
 		itemtitle.style.fontSize = "20px";
@@ -299,8 +282,8 @@ function Buy_ShowItems()
 		infodiv.appendChild(itemtitle);
 		
 		var itemprice = document.createElement('span');
-		if(item_arry[i][6]){
-			itemprice.innerHTML = item_arry[i][6];
+		if(buyItems[i].price){
+			itemprice.innerHTML = buyItems[i].price;
 		}
 		itemprice.style.display = "block";
 		itemprice.style.fontSize = "18px";
@@ -308,8 +291,8 @@ function Buy_ShowItems()
 		itemdiv.appendChild(itemprice);
 		
 		var itemloc = document.createElement('span');
-		if(item_arry[i][3]){
-			itemloc.innerHTML = item_arry[i][3];
+		if(buyItems[i].loc){
+			itemloc.innerHTML = buyItems[i].loc;
 		}
 		itemloc.style.display = "block";
 		itemloc.style.fontSize = "15px";
