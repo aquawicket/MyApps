@@ -1,3 +1,9 @@
+//TODO - we need to store everything to a JSON object so we can save/load.
+//When scraping, make sure NOT to append items to the JSON object that already exist.
+//
+
+ buyItems = []; //items stored here, for use with json
+ 
 var item_arry = new Array();
 
 ///////////////////
@@ -7,7 +13,7 @@ function Buy_Init()
 	DKCreate("TradePost/Buy.html");
 	
 	DKAddEvent("Buy_ScrapCraigslist", "click", Buy_OnEvent);
-	DKAddEvent("Buy_ScrapLetsGo", "click", Buy_OnEvent);
+	DKAddEvent("Buy_ScrapLetGo", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapOfferUp", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapFacebook", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
@@ -29,7 +35,12 @@ function Buy_OnEvent(event)
 	var string = "";
 
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/d/for-sale/search/sss", function(){ Buy_ShowItems(); })
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?query="+string, function(){ 
+			Buy_ShowItems(); 
+		})
+	}
+	if(DK_Id(event, "Buy_ScrapLetGo")){
+		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ Buy_ShowItems(); })
 	}
 }
 
@@ -49,6 +60,16 @@ function Buy_CraigslistToArry(url, callback)
 		var items = div.getElementsByClassName("result-row");
 		for(var i=0; i<items.length; i++){
 			//DKLog(items[i].innerHTML+"\n");
+			
+			//TODO: fill JSON object
+			/*
+			buyItems.push({});
+			buyItems[items.length-1].id = "id";
+			buyItems[items.length-1].provider = "craigslist";
+			buyItems[items.length-1].title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
+			buyItems[items.length-1].loc = items[i].getElementsByClassName("result-hood")[0].innerHTML;
+			*/
+			
 			var item_data = new Array();
 			item_data[0] = "id";
 			item_data[1] = "TradePost/craigslist.png";
@@ -82,6 +103,50 @@ function Buy_CraigslistToArry(url, callback)
 			}
 			item_arry.push(item_data);
 		}	
+		callback();
+	});
+}
+
+///////////////////////////////////////
+function Buy_LetGoToArry(url, callback)
+{
+	Buy_GetUrlString(url, function(rstring){
+		if(!rstring){ 
+			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
+			return;
+		}
+		
+		var div = document.createElement('div');
+		div.innerHTML = rstring;
+				
+		var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
+		for(var i=0; i<items.length; i++){
+			DKLog(items[i].innerHTML+"\n");
+				
+			var item_data = new Array();
+			item_data[0] = "id";
+			item_data[1] = "TradePost/letgo.png";
+				
+			if(items[i].getElementsByClassName("img portrait")[0]){
+				item_data[2] = items[i].getElementsByClassName("img portrait")[0].title;  //title
+				item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
+				item_data[4] = items[i].getElementsByClassName("img portrait")[0].firstChild.src; //image
+				item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
+				//item_data[5] = item_data[5].replace("file:///C:","");
+				//item_data[5] = item_data[5].replace("http://digitalknob.com","");
+				item_data[6] = "$0"; //price
+			}
+			if(items[i].getElementsByClassName("img landscape")[0]){
+				item_data[2] = items[i].getElementsByClassName("img landscape")[0].title;  //title
+				item_data[3] = items[i].getElementsByClassName("city")[0].innerHTML;  //location
+				item_data[4] = items[i].getElementsByClassName("img landscape")[0].firstChild.src; //image
+				item_data[5] = items[i].getElementsByClassName("img landscape")[0];  //url
+				//item_data[5] = item_data[5].replace("file:///C:","");
+				//item_data[5] = item_data[5].replace("http://digitalknob.com","");
+				item_data[6] = "$0"; //price
+			}
+			item_arry.push(item_data);
+		}				
 		callback();
 	});
 }
