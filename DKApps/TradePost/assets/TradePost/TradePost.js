@@ -1186,7 +1186,7 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=preview") != -1){
 		WaitForElement('button[name="go"]', 5000, function(rval){  //wait for 5 seconds
-			document.querySelector('button[name="go"]').click();
+			document.querySelector('button[name="go"]').click(); //comment this line out to allow user to publish
 			return;
 		});
 	}
