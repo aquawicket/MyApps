@@ -1316,5 +1316,6 @@ escape = function(str){
     .replace(/[\f]/g, '\\f')
     .replace(/[\n]/g, '\\n')
     .replace(/[\r]/g, '\\r')
-    .replace(/[\t]/g, '\\t');
+    .replace(/[\t]/g, '\\t')
+	.replace(/[\']/g, '\\\'');
 };
