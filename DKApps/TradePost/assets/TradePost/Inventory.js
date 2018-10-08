@@ -193,16 +193,14 @@ function Inventory_OnEvent(event)
 ////////////////////////////////////////
 function Inventory_GetFirstAvailableId()
 {
+	DKLog("Inventory_GetFirstAvailableId()\n", DKDEBUG);
 	if(!items){ return false; }
-	
-	//FIXME - find the first available number id in the items.id's
 	var id = 0;
 	for(var i = 0; i<items.length; i++){
 		if(items[i].id == id){
 			id++; i=0;
 		}
 	}
-	
 	return id;
 }
 
@@ -219,9 +217,10 @@ function Inventory_AddItem()
 	items[items.length-1].id = Inventory_GetFirstAvailableId();
 	
 	//save date
-	var event = new Date();
-	var jsonDate = event.toJSON();
-	items[items.length-1].date = jsonDate;
+	//var event = new Date();
+	//var jsonDate = event.toJSON();
+	//items[items.length-1].date = jsonDate;
+	items[items.length-1].date = new Date().toJSON();
 	
 	Inventory_SaveItem(items.length-1);
 	Inventory_UpdateList();

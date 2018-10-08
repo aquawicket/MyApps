@@ -82,6 +82,20 @@ function Buy_CheckForDuplicate(itemUrl)
 	return false;
 }
 
+//////////////////////////////////
+function Buy_GetFirstAvailableId()
+{
+	DKLog("Inventory_GetFirstAvailableId()\n", DKDEBUG);
+	if(!buyItems){ return false; }
+	var id = 0;
+	for(var i = 0; i<buyItems.length; i++){
+		if(buyItems[i].id == id){
+			id++; i=0;
+		}
+	}
+	return id;
+}
+
 ////////////////////////////////////////////
 function Buy_CraigslistToArry(url, callback)
 {
@@ -112,7 +126,9 @@ function Buy_CraigslistToArry(url, callback)
 			}
 			
 			buyItems.push({}); //new object
-			buyItems[buyItems.length-1].id = 0; //id
+			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id
+			buyItems[buyItems.length-1].date = new Date().toJSON();
+			
 			buyItems[buyItems.length-1].providerImg = "TradePost/craigslist.png"; //host banner
 			buyItems[buyItems.length-1].title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 			if(items[i].getElementsByClassName("result-hood")[0]){
@@ -163,7 +179,7 @@ function Buy_LetGoToArry(url, callback)
 		for(var i=0; i<items.length; i++){
 			//DKLog(items[i].innerHTML+"\n");
 			buyItems.push({}); //new object
-			buyItems[buyItems.length-1].id = 0; //id	
+			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id	
 			buyItems[buyItems.length-1].providerImg = "TradePost/letgo.png"; //host banner
 			if(items[i].getElementsByClassName("img portrait")[0]){
 				buyItems[buyItems.length-1].title = items[i].getElementsByClassName("img portrait")[0].title;  //title
