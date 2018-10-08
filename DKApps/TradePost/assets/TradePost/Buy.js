@@ -15,6 +15,9 @@ function Buy_Init()
 	DKAddEvent("Buy_ScrapOfferUp", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapFacebook", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
+	
+	Buy_LoadData();
+	Buy_ShowItems();
 }
 
 //////////////////
@@ -33,13 +36,36 @@ function Buy_OnEvent(event)
 	var string = "";
 
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?query="+string, function(){ 
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?query="+string, function(){
+			Buy_ShowItems(); 
+		})
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120&query="+string, function(){
+			Buy_ShowItems(); 
+		})
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240&query="+string, function(){
+			Buy_ShowItems(); 
+		})
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=360&query="+string, function(){
+			Buy_ShowItems(); 
+		})
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480&query="+string, function(){
 			Buy_ShowItems(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
 		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ Buy_ShowItems(); })
 	}
+}
+
+///////////////////////////////////////
+function Buy_CheckForDuplicate(itemUrl)
+{
+	for(var i=0; i<buyItems.length; i++){
+		if(itemUrl == buyItems[i].link){
+			return true;
+		}
+	}
+	return false;
 }
 
 ////////////////////////////////////////////
@@ -59,6 +85,19 @@ function Buy_CraigslistToArry(url, callback)
 		var items = div.getElementsByClassName("result-row");
 		for(var i=0; i<items.length; i++){
 			//DKLog(items[i].innerHTML+"\n");
+			
+			//check for duplicate
+			if(items[i].getElementsByClassName("result-image gallery")[0].href.indexOf("https://") == -1){
+				if(Buy_CheckForDuplicate("https://inlandempire.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href)){
+					continue;
+				}
+			}
+			else{
+				if(Buy_CheckForDuplicate(items[i].getElementsByClassName("result-image gallery")[0].href)){
+					continue;
+				}
+			}
+			
 			buyItems.push({}); //new object
 			buyItems[buyItems.length-1].id = 0; //id
 			buyItems[buyItems.length-1].providerImg = "TradePost/craigslist.png"; //host banner
@@ -231,7 +270,6 @@ function Buy_ShowItems()
 		imgdiv.appendChild(itemurl);
 		
 		var itemimg = document.createElement('img');
-		DKLog("buyItems["+i+"].img = "+buyItems[i].img+"\n");
 		itemimg.src = buyItems[i].img;
 		itemimg.style.display = "block";
 		itemimg.style.maxWidth = "230px";
@@ -301,4 +339,26 @@ function Buy_ShowItems()
 		
 		document.getElementById("Buy_Container").appendChild(itemdiv);
 	}
+	
+	Buy_SaveData();
+}
+
+///////////////////////
+function Buy_LoadData()
+{
+	if(!DKFile_Exists(DKAssets_LocalAssets()+"buyItems.json")){
+		DKLog("Buy_LoadData(): buyItems.json does not exist\n");
+		return;
+	}
+	var json = DKFile_FileToString(DKAssets_LocalAssets()+"buyItems.json");
+	if(json){
+		buyItems = JSON.parse(json);
+	}
+}
+
+///////////////////////
+function Buy_SaveData()
+{
+	var json = JSON.stringify(buyItems);
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buyItems.json");
 }
