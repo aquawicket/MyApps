@@ -2,7 +2,7 @@
 //When scraping, make sure NOT to append items to the JSON object that already exist.
 //
 
- buyItems = []; //items stored here, for use with json
+buyItems = []; //items stored here, for use with json
  
 var item_arry = new Array();
 
@@ -47,6 +47,7 @@ function Buy_OnEvent(event)
 ////////////////////////////////////////////
 function Buy_CraigslistToArry(url, callback)
 {
+	//buyItems = []; //clear
 	DKLog("Buy_CraigslistToArry("+url+", callback)\n", DKDEBUG);
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
@@ -62,9 +63,9 @@ function Buy_CraigslistToArry(url, callback)
 			//DKLog(items[i].innerHTML+"\n");
 			
 			//TODO: fill JSON object
-			/*
 			buyItems.push({});
-			buyItems[items.length-1].id = "id";
+			//buyItems[items.length-1].id = "id"; //FIXME: undefined
+			/*
 			buyItems[items.length-1].provider = "craigslist";
 			buyItems[items.length-1].title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 			buyItems[items.length-1].loc = items[i].getElementsByClassName("result-hood")[0].innerHTML;
