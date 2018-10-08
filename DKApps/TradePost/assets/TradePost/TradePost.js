@@ -1172,14 +1172,16 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 				return;
 			}
 			var rect = document.querySelector('button[id="plupload"]').getBoundingClientRect();
-			console.log("window: "+DKWindow_GetX()+", "+DKWindow_GetY()+"\n");
-			console.log("rect: top="+rect.top+", right="+rect.right+", bottom="+rect.bottom+", left="+rect.left+"\n");
 			var x = DKWindow_GetX()+parseInt(rect.left+35);
 			var y = DKWindow_GetY()+parseInt(rect.top+70);
-			console.log("mouseTo: "+x+", "+y+"\n");
 			DK_SetMousePos(x, y);
 			DK_LeftClick(); //document.querySelector('button[id="plupload"]').click();
 
+			//// NOTE: THE SCRIPT WILL STOP HERE, Need to know when to click on the "done with images" button;
+			//// Would it to auto-click when the images are done uploading, rather than a set time like 2 minutes.
+			setTimeout(function(){
+				document.querySelector('button[class="done bigbutton"]').click();
+			}, 120000);
 			return;
 		});
 	}
