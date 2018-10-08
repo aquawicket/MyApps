@@ -118,7 +118,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_IdLike(event, "craigslistPost")){
 		currentItem = DK_GetId(event).replace("craigslistPost","");
-		DKLog("craigslistPost \n");
+		TradePost_CraigslistPost(currentItem);
 		return;
 	}
 	if(DK_IdLike(event, "facebookLink")){
@@ -155,7 +155,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
 	}
 	if(DK_Id(event, "Letgo")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
@@ -1078,7 +1078,6 @@ function TradePost_PageLoaded(value)
 	}
 	
 	if(action == "PostToLetGo"){
-		//TODO - create a condition to quit here
 		var title = document.getElementById("title"+currentItem).value;
 		var price = document.getElementById("price"+currentItem).value.replace("$","");
 		var city = "Lake Elsinore";
@@ -1097,15 +1096,30 @@ function TradePost_PageLoaded(value)
 		var code = PostToLetGo.toString() + "PostToLetGo('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 		
 		DKCef_RunJavascript(0, 1, code);
+		action = "";
 	}
-	action = "";
-	DKLog("TradePost_PageLoaded(): end of function, turning off action...\n");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
-	console.log("PostToCraigslist(many vars))\n");
+	console.log("PostToCraigslist()\n");
+	
+	function WaitForElement(selector, time, callback){
+		if(document.querySelector(selector) != null){
+			callback && callback(true);
+			return true;
+		}
+		else{
+			if(time < 100){
+				callback && callback(false);
+				return false
+			}
+			setTimeout( function(){ WaitForElement(selector, time-100, callback); }, 100); //test every 10th of a second
+		}
+	};
+	
+	
 	var url = window.location.toString();
 	
 	//Craigslist post page - type
@@ -1132,8 +1146,8 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 		document.querySelector('input[name="sale_manufacturer"]').value = make;
 		document.querySelector('input[name="sale_model"]').value = model;
 		//document.querySelector('select[name="condition"]').value = condition;
-		document.querySelector('input[name="FromEMail"]').value = email;
-		document.querySelector('input[name="ConfirmEMail"]').value = email;
+		//document.querySelector('input[name="FromEMail"]').value = email;
+		//document.querySelector('input[name="ConfirmEMail"]').value = email;
 		document.querySelector('input[name="contact_text_ok"]').click();
 		document.querySelector('input[name="contact_phone"]').value = phone;
 		document.querySelector('input[name="contact_name"]').value = name;
@@ -1151,34 +1165,30 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	
 	//Craigslist post page - Edit Image
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=editimage") != -1){
-		//TODO - add images
-		document.querySelector('button[class="done bigbutton"]').click();
-		return;
+		DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
+		WaitForElement('button[id="plupload"]', 5000, function(rval){  //wait for 5 seconds
+			if(rval == false){
+				console.log("'button[id=\"plupload\"]' NOT FOUND!");
+				return;
+			}
+			document.querySelector('button[id="plupload"]').click();
+			return;
+		});
 	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
-	console.log("PostToLetGo(many vars))\n");
-	
-	function sleep(ms){ //this is a blocking sleep
-		console.log("sleep("+ms+")\n");
-        var start = new Date().getTime();
-        while(new Date().getTime() < start + ms);
-     }
+	console.log("PostToLetGo())\n");
 	
 	function WaitForElement(selector, time, callback){
-		//console.log("WaitForElement("+selector+", "+time+")\n");
 		if(document.querySelector(selector) != null){
-			//console.log("WaitForElement("+selector+", "+time+") = true\n");
 			callback && callback(true);
 			return true;
 		}
 		else{
-			//console.log("WaitForElement("+selector+", "+time+") = false\n");
 			if(time < 100){
-				//console.log("WaitForElement("+selector+", "+time+") = time < 100\n");
 				callback && callback(false);
 				return false
 			}
@@ -1235,6 +1245,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 											return;
 										}
 										//////////////////////////
+										document.querySelector('input[name="name"]').click(); //unlock Save changes button?
 										document.querySelector('input[name="name"]').value = title;
 										document.querySelector('textarea[name="description"]').value = description;
 										document.querySelector('input[name="price"]').value = price;
@@ -1260,10 +1271,19 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 	}
 }
 
+//////////////////////////////////////////////
+function TradePost_CraigslistPost(currentItem)
+{
+	DKLog("TradePost_CraigslistPost("+currentItem+")");
+	action = "PostToCraigslist";
+	DK_QueueDuktape("DKBrowser_NewTab();");
+	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
+}
+
 /////////////////////////////////////////
 function TradePost_LetGoPost(currentItem)
 {
-	DKLog("TradePost_LetGoPost("+currentItem+")", DKINFO);
+	DKLog("TradePost_LetGoPost("+currentItem+")");
 	action = "PostToLetGo";
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
