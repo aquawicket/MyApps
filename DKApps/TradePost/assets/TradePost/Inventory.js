@@ -23,6 +23,8 @@ function Inventory_Init()
 	//DKAddEvent("GLOBAL", "mousemove", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "keydown", Inventory_OnEvent);
 	
+	DKAddEvent("Inventory_AddItem", "click", Inventory_OnEvent);
+	
 	//Create Items folder if it does not exist.
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"Items")){
 		DKFile_MkDir(DKAssets_LocalAssets()+"Items");
@@ -139,7 +141,7 @@ function Inventory_OnEvent(event)
 		return;
 	}
 	
-	if(DK_Id(event, "AddItem")){
+	if(DK_Id(event, "Inventory_AddItem")){
 		Inventory_AddItem();
 		return;
 	}
@@ -223,8 +225,10 @@ function Inventory_AddItem()
 	
 	Inventory_SaveItem(items.length-1);
 	Inventory_UpdateList();
-	var elmnt = document.getElementById("item"+items[items.length-1].id);
-	elmnt.scrollIntoView();
+	
+	//scroll to bottom
+	var itemList = document.getElementById("ItemList");
+	itemList.scrollTop = itemList.scrollHeight;
 }
 
 ////////////////////////////////

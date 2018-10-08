@@ -3,6 +3,7 @@ function TradePost_Init()
 {
 	DKLog("TradePost_Init()\n", DKDEBUG);
 	DKCreate("TradePost/TradePost.html");
+	DKCreate("TradePost/Buy.js", function(){});
 	DKCreate("TradePost/Inventory.js", function(){});
 	DKCreate("DKAdmin/DKAdmin.js", function(){});
 	DKCreate("DKGui/DKMenu.js", function(){});
@@ -34,12 +35,14 @@ function TradePost_OnEvent(event)
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 
 	if(DK_Id(event, "Buy")){
-		//Todo
 		DKLog("Buy\n");
+		DKWidget_Hide("TradePost/Inventory.html");
+		DKWidget_Show("TradePost/Buy.html");
 	}
 	if(DK_Id(event, "Inventory")){
-		//Todo
 		DKLog("Inventory\n");
+		DKWidget_Hide("TradePost/Buy.html");
+		DKWidget_Show("TradePost/Inventory.html");
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
