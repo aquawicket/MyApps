@@ -78,7 +78,6 @@ function Buy_CheckForDuplicate(itemUrl)
 ////////////////////////////////////////////
 function Buy_CraigslistToArry(url, callback)
 {
-	//buyItems = []; //clear
 	DKLog("Buy_CraigslistToArry("+url+", callback)\n", DKDEBUG);
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
@@ -339,7 +338,7 @@ function Buy_ShowItems()
 		infodiv.style.overflow = "hidden";
 		itemdiv.appendChild(infodiv);
 		
-		var itemtitle = document.createElement('a');
+		var itemtitle = document.createElement('div');
 		itemtitle.id = "itemtitle"+i;
 		itemtitle.innerHTML = buyItems[i].title;
 		itemtitle.style.display = "block";
@@ -347,6 +346,7 @@ function Buy_ShowItems()
 		itemtitle.style.fontSize = "20px";
 		itemtitle.style.fontSize = "20rem";
 		itemtitle.style.overflow = "hidden";
+		//itemtitle.style.userSelect = "text";
 		infodiv.appendChild(itemtitle);
 		
 		var itemprice = document.createElement('span');
