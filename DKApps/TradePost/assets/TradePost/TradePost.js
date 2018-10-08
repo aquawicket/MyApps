@@ -1174,18 +1174,23 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 			var rect = document.querySelector('button[id="plupload"]').getBoundingClientRect();
 			console.log("window: "+DKWindow_GetX()+", "+DKWindow_GetY()+"\n");
 			console.log("rect: top="+rect.top+", right="+rect.right+", bottom="+rect.bottom+", left="+rect.left+"\n");
-			var x = Number(Number(DKWindow_GetX())+Number(rect.left));
-			var y = Number(Number(DKWindow_GetY())+Number(rect.top));
+			var x = DKWindow_GetX()+parseInt(rect.left+35);
+			var y = DKWindow_GetY()+parseInt(rect.top+70);
 			console.log("mouseTo: "+x+", "+y+"\n");
-			//var x = Number(Number(DKWindow_GetX())+Number(rect.left));
-			//var y = Number(Number(DKWindow_GetY())+Number(rect.top));
 			DK_SetMousePos(x, y);
-			
-			
-			document.querySelector('button[id="plupload"]').click();
+			DK_LeftClick(); //document.querySelector('button[id="plupload"]').click();
+
 			return;
 		});
 	}
+	
+	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=preview") != -1){
+		WaitForElement('button[name="go"]', 5000, function(rval){  //wait for 5 seconds
+			document.querySelector('button[name="go"]').click();
+			return;
+		});
+	}
+	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
