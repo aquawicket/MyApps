@@ -79,6 +79,7 @@ function Buy_CheckForDuplicate(itemUrl)
 {
 	for(var i=0; i<buyItems.length; i++){
 		if(itemUrl == buyItems[i].link){
+			DKLog("Buy_CheckForDuplicate(): found duplicate\n");
 			return true;
 		}
 	}
@@ -197,7 +198,6 @@ function Buy_LetGoToArry(url, callback)
 			if(!p2){ DKLog("p2 invalid\n"); continue; }
 			var a = p.firstChild; //< a href="url">
 			if(!a){ DKLog("a invalid\n"); continue; }
-			
 			
 			var link = a.href; //url
 			if(!link){ DKLog("link invalid\n"); continue; }
