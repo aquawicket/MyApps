@@ -79,7 +79,7 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
 	
-	DKCef_ViewPageSource("",0);
+	DKCef_GetPageSource("",0);
 	
 	DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
