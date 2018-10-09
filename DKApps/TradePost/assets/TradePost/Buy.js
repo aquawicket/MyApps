@@ -227,14 +227,19 @@ function Buy_LetGoToArry(url, callback)
 			buyItems[buyItems.length-1].loc = loc;
 			buyItems[buyItems.length-1].img = img;
 			buyItems[buyItems.length-1].link = link;
-			//buyItems[buyItems.length-1].price = "";		
 
-			setTimeout(function(){ 
-				Buy_LetGoGetPrice(i, function(){ Buy_ShowItems() });
-			}, 5000*i);
+			Buy_LetGoGetPriceTrigger(i);
 		}				
 		callback();
 	});
+}
+
+/////////////////////////////////////
+function Buy_LetGoGetPriceTrigger(id)
+{
+	setTimeout(function(){
+		Buy_LetGoGetPrice(id, function(){ Buy_ShowItems() });
+	}, 2000*id);
 }
 
 /////////////////////////////////////////////
