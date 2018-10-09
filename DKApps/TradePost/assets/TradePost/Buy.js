@@ -251,7 +251,7 @@ function Buy_LetGoToArry(url, callback)
 /////////////////////////////////////
 function Buy_LetGoGetPriceTrigger(id)
 {
-	DKLog("Buy_LetGoGetPriceTrigger("+id+")\n", DEBUG);
+	DKLog("Buy_LetGoGetPriceTrigger("+id+")\n", DKDEBUG);
 	
 	var toText = id.toString(); //convert to string
 	var lastChar = toText.slice(-1); //gets last character
@@ -298,10 +298,10 @@ function Buy_LetGoGetPrice(itemNum, callback)
 		
 		for(var i=0; i<buyItems.length; i++){
 			if(buyItems[i].link == url){
-				buyItems[i].price = price;
+				buyItems[i].price = price.replace("$","");
 				var ele = document.getElementById("itemprice"+i);
 				if(!ele){ DKLog("can't find itemprice"+i+"\n"); continue; }
-				ele.innerHTML = buyItems[i].price;
+				ele.innerHTML = "$"+buyItems[i].price;
 			}
 		}
 		
