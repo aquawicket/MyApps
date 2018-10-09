@@ -15,6 +15,7 @@ function Buy_Init()
 	DKAddEvent("Buy_ScrapOfferUp", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapFacebook", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
+	DKAddEvent("Buy_Settings", "click", Buy_OnEvent);
 	
 	Buy_LoadData();
 	Buy_ShowItems();
@@ -53,6 +54,13 @@ function Buy_OnEvent(event)
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
 		Buy_OfferUpToArry("https://offerup.com", function(){ Buy_ShowItems(); })
+	}
+	if(DK_Id(event, "Buy_Settings")){
+		DKCreate("DKGui/DKFrame.js", function(){
+		DKCreate("TradePost/BuySettings.js", function(){
+			DKFrame_Widget("TradePost/BuySettings.html");
+		});
+		});
 	}
 	if(DK_IdLike(event, "hide")){
 		event.preventDefault();
