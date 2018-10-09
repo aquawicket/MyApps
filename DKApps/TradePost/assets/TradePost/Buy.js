@@ -14,8 +14,9 @@ function Buy_Init()
 	DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
 	DKAddEvent("Buy_Settings", "click", Buy_OnEvent);
 	
+	Buy_LoadSettings();
 	Buy_LoadData();
-	Buy_ShowItems();
+	Buy_Update();
 }
 
 //////////////////
@@ -39,7 +40,7 @@ function Buy_OnEvent(event)
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=360", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480", function(){
-			Buy_ShowItems(); 
+			Buy_Update();
 		})
 		})
 		})
@@ -47,16 +48,20 @@ function Buy_OnEvent(event)
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
-		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ Buy_ShowItems(); })
+		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ 
+			Buy_Update(); 
+		})
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
-		Buy_OfferUpToArry("https://offerup.com", function(){ Buy_ShowItems(); })
+		Buy_OfferUpToArry("https://offerup.com", function(){ 
+			Buy_Update(); 
+		})
 	}
 	if(DK_Id(event, "Buy_Settings")){
 		DKCreate("DKGui/DKFrame.js", function(){
-		DKCreate("TradePost/BuySettings.js", function(){
-			DKFrame_Widget("TradePost/BuySettings.html");
-		});
+			DKCreate("TradePost/BuySettings.js", function(){
+				DKFrame_Widget("TradePost/BuySettings.html");
+			});
 		});
 	}
 	if(DK_IdLike(event, "hide")){
@@ -64,7 +69,7 @@ function Buy_OnEvent(event)
 		var num = DK_GetId(event).replace("hide","");
 		DKLog("Hide item "+num+"\n");
 		buyItems[num].hidden = true;
-		Buy_ShowItems();
+		Buy_Update();
 	}
 	if(DK_IdLike(event, "searchEbay")){
 		event.preventDefault();
@@ -176,7 +181,7 @@ function Buy_LetGoToArry(url, callback)
 {
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
-			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
+			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN);
 			return;
 		}
 		
@@ -405,10 +410,10 @@ function Buy_GetUrlString(url, callback)
 	}
 }
 
-////////////////////////
-function Buy_ShowItems()
+/////////////////////
+function Buy_Update()
 {
-	DKLog("Buy_ShowItems()\n", DKDEBUG);
+	DKLog("Buy_Update()\n", DKDEBUG);
 	//sort by price
 	//Buy_Filter();
 	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
@@ -593,4 +598,26 @@ function Buy_SaveData()
 {
 	var json = JSON.stringify(buyItems);
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buyItems.json");
+}
+
+///////////////////////////
+function Buy_LoadSettings()
+{
+	DKLog("Buy_LoadSettings()\n", DKDEBUG);
+	if(!DKFile_Exists(DKAssets_LocalAssets()+"buySettings.json")){
+		DKLog("Buy_LoadData(): buySettings.json does not exist\n");
+		return;
+	}
+	var json = DKFile_FileToString(DKAssets_LocalAssets()+"buySettings.json");
+	if(json){
+		buySettings = JSON.parse(json);
+	}
+}
+
+///////////////////////////
+function Buy_SaveSettings()
+{
+	DKLog("Buy_SaveSettings()\n", DKDEBUG);
+	var json = JSON.stringify(buySettings);
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buySettings.json");
 }
