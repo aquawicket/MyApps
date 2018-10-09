@@ -70,18 +70,17 @@ function Buy_OnEvent(event)
 		});
 	}
 	if(DK_IdLike(event, "itemurl")){
-		DKLog("itemurl\n");
 		var num = DK_GetId(event).replace("itemurl","");
 		window.open(buyItems[num].link, "_blank", "top=0,left=0,width=800,height=600");
 	}
 	if(DK_IdLike(event, "hide")){
-		event.preventDefault();
+		DK_StopPropagation(event);
 		var num = DK_GetId(event).replace("hide","");
 		buyItems[num].hidden = true;
 		Buy_Update();
 	}
 	if(DK_IdLike(event, "searchEbay")){
-		event.preventDefault();
+		DK_StopPropagation(event);
 		var num = DK_GetId(event).replace("searchEbay","");
 		//Open a new ebay tab searching for the title
 		var link = "https://www.ebay.com/sch/i.html?_from=R40&_nkw="+buyItems[num].title; //Search
