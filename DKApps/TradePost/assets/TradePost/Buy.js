@@ -205,6 +205,7 @@ function Buy_LetGoToArry(url, callback)
 
 			var link = a.href; //url
 			if(!link){ DKLog("link invalid\n"); continue; }
+			link = link.replace("file:///C:", "https://us.letgo.com");
 			var title = a.title; //title
 			if(!title){ DKLog("title invalid\n"); continue; }
 			var loc = p2.innerHTML; //location
@@ -214,7 +215,6 @@ function Buy_LetGoToArry(url, callback)
 			
 			/*
 			DKLog("##########################\n");
-			link = link.replace("file:///C:", "https://us.letgo.com");
 			DKLog("url = "+link+"\n");
 			DKLog("title = "+title+"\n");
 			DKLog("location ="+loc+"\n");
