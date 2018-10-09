@@ -79,6 +79,8 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
 	
+	DKCef_ViewPageSource("",0);
+	
 	DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
 		/*
@@ -104,6 +106,7 @@ function TradePost_Test()
 	}
 	
 	
+	/*
 	//Wait for a Open Files window to appear, set the path, select all files, open
 	DKCreate("DKHandles");
 	if(!DKHandles_WaitForWindow("Open Files", 5)){
@@ -151,4 +154,5 @@ function TradePost_Test()
 	
 	//This will press open
 	//DK_StrokeKey(13); //enter
+	*/
 }

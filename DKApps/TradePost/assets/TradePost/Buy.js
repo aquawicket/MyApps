@@ -62,12 +62,11 @@ function Buy_OnEvent(event)
 			Buy_Update(); 
 		})
 	}
-	if(DK_Id(event, "Buy_Settings")){
-		DKCreate("DKGui/DKFrame.js", function(){
-			DKCreate("TradePost/BuySettings.js", function(){
-				DKFrame_Widget("TradePost/BuySettings.html");
-			});
-		});
+	if(DK_Id(event, "Buy_ScrapFacebook")){
+		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
+		Buy_FacebookToArry("https://www.facebook.com/marketplace", function(){ 
+			Buy_Update(); 
+		})
 	}
 	if(DK_IdLike(event, "itemurl")){
 		var num = DK_GetId(event).replace("itemurl","");
@@ -199,6 +198,7 @@ function Buy_LetGoToArry(url, callback)
 				
 		var items = div.querySelectorAll('div[class*="feed-item"]');
 		for(var i=0; i<items.length; i++){
+			//DKLog(items[i].innerHTML+"\n");
 			var div1 = items[i].firstChild.firstChild.firstChild; // <div class="sc-...">
 			if(!div1){ DKLog("div1 invalid\n"); continue; }
 			var div2 = div1.firstChild; // <div>
@@ -329,7 +329,7 @@ function Buy_OfferUpToArry(url, callback)
 		
 		var items = div.querySelectorAll('a[class*="db-item-tile"]');
 		for(var i=0; i<items.length; i++){
-			
+			//DKLog(items[i].innerHTML+"\n");
 			var div1 = items[i].firstChild; //<div class="_b31be13">
 			if(!div1){ DKLog("div1 invalid\n"); continue; }
 			var div2 = div1.firstChild; //<div class="_178faes">
@@ -374,6 +374,32 @@ function Buy_OfferUpToArry(url, callback)
 			buyItems[buyItems.length-1].link = link;
 			buyItems[buyItems.length-1].price = price;
 		}
+		callback();
+	});
+}
+
+//////////////////////////////////////////
+function Buy_FacebookToArry(url, callback)
+{
+	DKLog("Buy_FacebookToArry("+url+",callback)\n");
+	
+	Buy_GetUrlString(url, function(rstring){
+		if(!rstring){ 
+			DKLog("Buy_FacebookToArry(): rstring invalid\n", DKWARN); 
+			return;
+		}
+		//DKLog(rstring+"\n");
+		var div = document.createElement('div');
+		div.innerHTML = rstring;
+		
+		DKFile_StringToFile(rstring, "facebookMarket.html", true);
+		
+		var items = div.querySelectorAll('a[data-testid="marketplace_feed_item"]');
+		for(var i=0; i<items.length; i++){
+			DKLog("Item Found\n");
+			//TODO
+		}
+		
 		callback();
 	});
 }
