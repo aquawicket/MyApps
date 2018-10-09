@@ -227,8 +227,43 @@ function Buy_LetGoToArry(url, callback)
 			buyItems[buyItems.length-1].loc = loc;
 			buyItems[buyItems.length-1].img = img;
 			buyItems[buyItems.length-1].link = link;
-			buyItems[buyItems.length-1].price = "";			
+			//buyItems[buyItems.length-1].price = "";		
+
+			setTimeout(function(){ 
+				Buy_LetGoGetPrice(i, function(){ Buy_ShowItems() });
+			}, 5000*i);
 		}				
+		callback();
+	});
+}
+
+/////////////////////////////////////////////
+function Buy_LetGoGetPrice(itemNum, callback)
+{
+	DKLog("Buy_LetGoGetPrice("+itemNum+",callback)\n");
+	
+	var url = buyItems[itemNum].link;
+	Buy_GetUrlString(url, function(rstring){
+		if(!rstring){ 
+			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
+			return;
+		}
+		var div = document.createElement('div');
+		div.innerHTML = rstring;
+		
+		var element = div.querySelector('div[class="price"][data-test="price"]');
+		if(!element){ DKLog("element invalid\n"); }
+	
+		var price = element.innerHTML;
+		price = price.replace("<span>", "");
+		price = price.replace("</span>", "");
+		
+		for(var i=0; i<buyItems.length; i++){
+			if(buyItems[i].link == url){
+				buyItems[i].price = price;
+			}
+		}
+		
 		callback();
 	});
 }
