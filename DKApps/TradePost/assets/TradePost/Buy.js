@@ -128,7 +128,6 @@ function Buy_CraigslistToArry(url, callback)
 			buyItems.push({}); //new object
 			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id
 			buyItems[buyItems.length-1].date = new Date().toJSON();
-			
 			buyItems[buyItems.length-1].providerImg = "TradePost/craigslist.png"; //host banner
 			buyItems[buyItems.length-1].title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 			if(items[i].getElementsByClassName("result-hood")[0]){
@@ -175,12 +174,27 @@ function Buy_LetGoToArry(url, callback)
 		var div = document.createElement('div');
 		div.innerHTML = rstring;
 				
-		var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
+		var items = div.querySelectorAll('div[class*="feed-item"]');
 		for(var i=0; i<items.length; i++){
-			//DKLog(items[i].innerHTML+"\n");
+			//DKLog("##########################"+items[i].innerHTML+"\n");
 			buyItems.push({}); //new object
 			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id	
+			buyItems[buyItems.length-1].date = new Date().toJSON();
 			buyItems[buyItems.length-1].providerImg = "TradePost/letgo.png"; //host banner
+			
+			var base = items[i].firstChild.firstChild.firstChild.firstChild;
+			if(!base){ continue; }
+			var item = base.firstChild;
+			if(!item){ continue; }
+			var link = item.firstChild.href;
+			if(!link){ continue; }
+			var title = item.firstChild.title;
+			DKLog("##########################\n");
+			DKLog(item.innerHTML+"\n");
+			link = link.replace("file:///C:", "https://us.letgo.com");
+			//DKLog("url = "+link+"\n");
+			DKLog("title = "+title+"\n");
+			/*
 			if(items[i].getElementsByClassName("img portrait")[0]){
 				buyItems[buyItems.length-1].title = items[i].getElementsByClassName("img portrait")[0].title;  //title
 				buyItems[buyItems.length-1].loc = items[i].getElementsByClassName("city")[0].innerHTML;  //location
@@ -199,6 +213,7 @@ function Buy_LetGoToArry(url, callback)
 				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("http://digitalknob.com",""); //url fix
 				buyItems[buyItems.length-1].price = "$0"; //price
 			}
+			*/
 		}				
 		callback();
 	});
