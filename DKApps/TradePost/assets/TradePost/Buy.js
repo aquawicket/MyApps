@@ -1,5 +1,6 @@
 var buyItems = []; //items stored here, for use with json
 var buySettings = {}; //new object
+var queueSize = 0;
 
  
 ///////////////////
@@ -256,11 +257,16 @@ function Buy_LetGoGetPriceTrigger(id)
 	var lastChar = toText.slice(-1); //gets last character
 	var lastDigit = +(lastChar); //convert last character to number
 
+	queueSize++;
+	
 	setTimeout(function(){
-		Buy_LetGoGetPrice(id, function(){ 
-			Buy_SaveData();
+		Buy_LetGoGetPrice(id, function(rval){ 
+			queueSize--;
+			if(rval){
+				Buy_SaveData();
+			}
 		});
-	}, 5000*lastDigit);
+	}, 5000*queueSize);
 }
 
 /////////////////////////////////////////////
@@ -270,12 +276,14 @@ function Buy_LetGoGetPrice(itemNum, callback)
 	
 	if(buyItems[itemNum].price){
 		DKLog("Buy_LetGoGetPrice(): already has a price\n");
+		callback(false);
 		return; 
 	}
 	var url = buyItems[itemNum].link;
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
 			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
+			callback(false);
 			return;
 		}
 		var div = document.createElement('div');
@@ -297,7 +305,7 @@ function Buy_LetGoGetPrice(itemNum, callback)
 			}
 		}
 		
-		callback();
+		callback(true);
 	});
 }
 
