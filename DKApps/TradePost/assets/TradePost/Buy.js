@@ -1,8 +1,5 @@
-//TODO - we need to store everything to a JSON object so we can save/load.
-//When scraping, make sure NOT to append items to the JSON object that already exist.
-//
-
 buyItems = []; //items stored here, for use with json
+buySettings = {}; //new object
  
 ///////////////////
 function Buy_Init()

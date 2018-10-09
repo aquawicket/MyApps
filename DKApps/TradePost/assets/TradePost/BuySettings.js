@@ -1,5 +1,3 @@
-buySettings = {}; //new object
-
 ///////////////////////////
 function BuySettings_Init()
 {
