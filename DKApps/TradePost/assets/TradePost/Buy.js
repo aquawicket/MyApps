@@ -69,23 +69,28 @@ function Buy_OnEvent(event)
 			});
 		});
 	}
+	if(DK_IdLike(event, "itemurl")){
+		DKLog("itemurl\n");
+		var num = DK_GetId(event).replace("itemurl","");
+		window.open(buyItems[num].link, "_blank", "top=0,left=0,width=800,height=600");
+	}
 	if(DK_IdLike(event, "hide")){
 		event.preventDefault();
 		var num = DK_GetId(event).replace("hide","");
-		DKLog("Hide item "+num+"\n");
 		buyItems[num].hidden = true;
 		Buy_Update();
 	}
 	if(DK_IdLike(event, "searchEbay")){
 		event.preventDefault();
 		var num = DK_GetId(event).replace("searchEbay","");
-		DKLog("searchEbay item "+num+"\n");
 		//Open a new ebay tab searching for the title
 		var link = "https://www.ebay.com/sch/i.html?_from=R40&_nkw="+buyItems[num].title; //Search
 		link += "&LH_BIN=1"; //Buy It Now
 		link += "&_sop=15"; //Sort by price lowest first
 		link += "&LH_Sold=1"; //Show only sold items
-		window.open(link, "_blank", "width=800,height=600");
+		
+		var top = 0;
+		window.open(link, "_blank", "top=0,left=0,width=800,height=600");
 	}
 }
 
@@ -486,15 +491,15 @@ function Buy_Update()
 		//imgdiv.style.borderColor = "blue";
 		itemdiv.appendChild(imgdiv);
 		
-		var itemurl = document.createElement('a');
+		var itemurl = document.createElement('div');
 		itemurl.id = "itemurl"+i;
-		itemurl.href = buyItems[i].link;
+		//itemurl.href = buyItems[i].link;
 		itemurl.style.display = "block";
 		itemurl.style.width = "230px";
 		itemurl.style.width = "230rem";
 		itemurl.style.height = "300px";
 		itemurl.style.height = "300rem";
-		itemurl.target = "_blank";
+		//itemurl.target = "_blank";
 		imgdiv.appendChild(itemurl);
 		
 		var itemimg = document.createElement('img');
@@ -604,6 +609,7 @@ function Buy_Update()
 		
 		document.getElementById("Buy_Container").appendChild(itemdiv);
 		
+		DKAddEvent(itemurl.id, "click", Buy_OnEvent);
 		DKAddEvent(hide.id, "click", Buy_OnEvent);
 		DKAddEvent(searchEbay.id, "click", Buy_OnEvent);
 	}
