@@ -6,6 +6,7 @@ function BuySettings_Init()
 		DKAddEvent("BuySettings_hideNoImage", "click", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_lowPrice", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_highPrice", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_sortBy", "click", BuySettings_OnEvent);
 	});
 	BuySettings_Update();
 }
@@ -40,6 +41,11 @@ function BuySettings_OnEvent(event)
 		Buy_SaveSettings();
 		Buy_Update();
 	}
+	if(DK_Id(event, "BuySettings_sortBy")){
+		DKCreate("TradePost/SortByMenu.js", function(){
+			DKMenu_ValidatePosition("TradePost/SortByMenu.html");
+		});
+	}
 }
 
 /////////////////////////////
@@ -48,4 +54,5 @@ function BuySettings_Update()
 	DKWidget_SetValue("BuySettings_hideNoImage", buySettings.hideNoImage);
 	DKWidget_SetValue("BuySettings_lowPrice", buySettings.lowPrice);
 	DKWidget_SetValue("BuySettings_highPrice", buySettings.highPrice);
+	DKWidget_SetValue("BuySettings_sortBy", buySettings.sortBy);
 }

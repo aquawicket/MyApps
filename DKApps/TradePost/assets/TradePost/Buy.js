@@ -419,7 +419,18 @@ function Buy_Update()
 {
 	DKLog("Buy_Update()\n", DKDEBUG);
 	
-	//Buy_SortItems('price', true);
+	if(buySettings.sortBy == "Date"){
+		Buy_SortItems('date', true);
+	}
+	if(buySettings.sortBy == "Price: Low to High"){
+		Buy_SortItems('price', true);
+	}
+	if(buySettings.sortBy == "Price: High to Low"){
+		Buy_SortItems('price', false);
+	}
+	if(buySettings.sortBy == "Title"){
+		Buy_SortItems('title', true);
+	}
 	
 	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
 	var shown = 0;
