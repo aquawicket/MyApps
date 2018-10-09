@@ -36,20 +36,16 @@ function Buy_OnEvent(event)
 	var string = "";
 
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?query="+string, function(){
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=360", function(){
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480", function(){
 			Buy_ShowItems(); 
 		})
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120&query="+string, function(){
-			Buy_ShowItems(); 
 		})
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240&query="+string, function(){
-			Buy_ShowItems(); 
 		})
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=360&query="+string, function(){
-			Buy_ShowItems(); 
 		})
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480&query="+string, function(){
-			Buy_ShowItems(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
@@ -258,12 +254,15 @@ function Buy_ShowItems()
 	DKLog("Buy_ShowItems()\n", DKDEBUG);
 	//sort by price
 	//Buy_Filter();
-
+	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
+	
+	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
 	for(var i=0; i<buyItems.length; i++){
 		if(buyItems[i].hidden == true){
 			continue;
 		}
+		shown++;
 		var itemdiv = document.createElement('div');
 		itemdiv.id = "itemdiv"+i;
 		itemdiv.style.display = "inline-block";
@@ -409,6 +408,7 @@ function Buy_ShowItems()
 		DKAddEvent(searchEbay.id, "click", Buy_OnEvent);
 	}
 	
+	DKWidget_SetInnerHtml("Buy_ItemsShown", "Shown: "+shown);
 	Buy_SaveData();
 }
 
