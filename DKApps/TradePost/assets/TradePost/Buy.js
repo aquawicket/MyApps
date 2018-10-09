@@ -51,6 +51,9 @@ function Buy_OnEvent(event)
 	if(DK_Id(event, "Buy_ScrapLetGo")){
 		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ Buy_ShowItems(); })
 	}
+	if(DK_Id(event, "Buy_ScrapOfferUp")){
+		Buy_OfferUpToArry("https://offerup.com", function(){ Buy_ShowItems(); })
+	}
 	if(DK_IdLike(event, "hide")){
 		event.preventDefault();
 		var num = DK_GetId(event).replace("hide","");
@@ -195,14 +198,7 @@ function Buy_LetGoToArry(url, callback)
 			var a = p.firstChild; //< a href="url">
 			if(!a){ DKLog("a invalid\n"); continue; }
 			
-			if(Buy_CheckForDuplicate(a.href)){ continue; }
 			
-			//DKLog("##########################"+items[i].innerHTML+"\n");
-			buyItems.push({}); //new object
-			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id	
-			buyItems[buyItems.length-1].date = new Date().toJSON();
-			buyItems[buyItems.length-1].providerImg = "TradePost/letgo.png"; //host banner
-
 			var link = a.href; //url
 			if(!link){ DKLog("link invalid\n"); continue; }
 			link = link.replace("file:///C:", "https://us.letgo.com");
@@ -213,20 +209,91 @@ function Buy_LetGoToArry(url, callback)
 			var img = img.src;
 			if(!img){ DKLog("img invalid\n"); continue; }
 			
+			if(Buy_CheckForDuplicate(link)){ continue; }
 			/*
 			DKLog("##########################\n");
 			DKLog("url = "+link+"\n");
 			DKLog("title = "+title+"\n");
-			DKLog("location ="+loc+"\n");
-			DKLog("image ="+img+"\n");
+			DKLog("img = "+img+"\n");
+			DKLog("loc = "+loc+"\n");
+			DKLog("price = "+price+"\n");
 			*/
 			
+			buyItems.push({}); //new object
+			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id	
+			buyItems[buyItems.length-1].date = new Date().toJSON();
+			buyItems[buyItems.length-1].providerImg = "TradePost/letgo.png"; //host banner
 			buyItems[buyItems.length-1].title = title;
 			buyItems[buyItems.length-1].loc = loc;
 			buyItems[buyItems.length-1].img = img;
 			buyItems[buyItems.length-1].link = link;
 			buyItems[buyItems.length-1].price = "";			
 		}				
+		callback();
+	});
+}
+
+/////////////////////////////////////////
+function Buy_OfferUpToArry(url, callback)
+{
+	DKLog("Buy_OfferUpToArry("+url+",callback)\n");
+	
+	Buy_GetUrlString(url, function(rstring){
+		if(!rstring){ 
+			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
+			return;
+		}
+	
+		var div = document.createElement('div');
+		div.innerHTML = rstring;
+		
+		var items = div.querySelectorAll('a[class*="db-item-tile"]');
+		for(var i=0; i<items.length; i++){
+			
+			var div1 = items[i].firstChild; //<div class="_b31be13">
+			if(!div1){ DKLog("div1 invalid\n"); continue; }
+			var div2 = div1.firstChild; //<div class="_178faes">
+			if(!div2){ DKLog("div2 invalid\n"); continue; }
+			var sub_div1 = div1.childNodes[1]; //<div class="_1g9xn5a">
+			if(!sub_div1){ DKLog("sub_div1 invalid\n"); continue; }
+			var price_div_par = sub_div1.childNodes[1]; //
+			if(!price_div_par){ DKLog("price_div_par invalid\n"); continue; }
+			var price_div = price_div_par.firstChild; //<span class="_1hwuc5f4">
+			if(!price_div){ DKLog("price_div invalid\n"); continue; }
+			var loc_div = sub_div1.childNodes[2].firstChild; //<span class="_19rx43s2">
+			if(!loc_div){ DKLog("loc_div invalid\n"); continue; }
+			var div3 = div2.firstChild; //<div class="_1pq2fo4">
+			if(!div3){ DKLog("div3 invalid\n"); continue; }
+			var img1 = div3.firstChild; //<img>
+			if(!img1){ DKLog("img1 invalid\n"); continue; }
+			
+			var link = items[i].href;
+			link = link.replace("file:///C:", "https://offerup.com");
+			var img = img1.src;
+			var title = img1.alt;
+			var price = price_div.innerHTML;
+			var loc = loc_div.innerHTML;
+			title = title.replace(" for Sale in "+loc, "");
+			
+			if(Buy_CheckForDuplicate(link)){ continue; }
+			
+			DKLog("##########################\n");
+			DKLog("url = "+link+"\n");
+			DKLog("title = "+title+"\n");
+			DKLog("loc = "+loc+"\n");
+			DKLog("img = "+img+"\n");
+			DKLog("price = "+price+"\n");
+
+			buyItems.push({}); //new object
+			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id	
+			buyItems[buyItems.length-1].date = new Date().toJSON();
+			buyItems[buyItems.length-1].providerImg = "TradePost/offerup.png"; //host banner
+			buyItems[buyItems.length-1].title = title;
+			buyItems[buyItems.length-1].loc = loc;
+			buyItems[buyItems.length-1].img = img;
+			buyItems[buyItems.length-1].link = link;
+			buyItems[buyItems.length-1].price = price;
+		}
 		callback();
 	});
 }
