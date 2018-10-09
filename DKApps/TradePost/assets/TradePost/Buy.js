@@ -176,44 +176,56 @@ function Buy_LetGoToArry(url, callback)
 				
 		var items = div.querySelectorAll('div[class*="feed-item"]');
 		for(var i=0; i<items.length; i++){
+			var div1 = items[i].firstChild.firstChild.firstChild; // <div class="sc-...">
+			if(!div1){ DKLog("div1 invalid\n"); continue; }
+			var div2 = div1.firstChild; // <div>
+			if(!div2){ DKLog("div2 invalid\n"); continue; }
+			var inner = div2.firstChild; //<div class="inner">
+			if(!inner){ DKLog("inner invalid\n"); continue; }
+			var img = inner.firstChild.firstChild; //<img>
+			if(!img){ DKLog("img invalid\n"); continue; }
+			var footer = div2.childNodes[1]; //<div class="footer">
+			if(!footer){ DKLog("div3 invalid\n"); continue; }
+			var div4 = footer.firstChild; // <div class="sc-...">
+			if(!div4){ DKLog("div4 invalid\n"); continue; }
+			var p = div4.firstChild; //<p class="sc-..."> //url, title
+			if(!p){ DKLog("p invalid\n"); continue; }
+			var p2 = div4.childNodes[1]; //<p class="sc-..."> //location
+			if(!p2){ DKLog("p2 invalid\n"); continue; }
+			var a = p.firstChild; //< a href="url">
+			if(!a){ DKLog("a invalid\n"); continue; }
+			
+			if(Buy_CheckForDuplicate(a.href)){ continue; }
+			
 			//DKLog("##########################"+items[i].innerHTML+"\n");
 			buyItems.push({}); //new object
 			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id	
 			buyItems[buyItems.length-1].date = new Date().toJSON();
 			buyItems[buyItems.length-1].providerImg = "TradePost/letgo.png"; //host banner
+
+			var link = a.href; //url
+			if(!link){ DKLog("link invalid\n"); continue; }
+			var title = a.title; //title
+			if(!title){ DKLog("title invalid\n"); continue; }
+			var loc = p2.innerHTML; //location
+			if(!loc){ DKLog("loc invalid\n"); continue; }
+			var img = img.src;
+			if(!img){ DKLog("img invalid\n"); continue; }
 			
-			var base = items[i].firstChild.firstChild.firstChild.firstChild;
-			if(!base){ continue; }
-			var item = base.firstChild;
-			if(!item){ continue; }
-			var link = item.firstChild.href;
-			if(!link){ continue; }
-			var title = item.firstChild.title;
-			DKLog("##########################\n");
-			DKLog(item.innerHTML+"\n");
-			link = link.replace("file:///C:", "https://us.letgo.com");
-			//DKLog("url = "+link+"\n");
-			DKLog("title = "+title+"\n");
 			/*
-			if(items[i].getElementsByClassName("img portrait")[0]){
-				buyItems[buyItems.length-1].title = items[i].getElementsByClassName("img portrait")[0].title;  //title
-				buyItems[buyItems.length-1].loc = items[i].getElementsByClassName("city")[0].innerHTML;  //location
-				buyItems[buyItems.length-1].img = items[i].getElementsByClassName("img portrait")[0].firstChild.src; //image
-				buyItems[buyItems.length-1].link = item_data[5] = items[i].getElementsByClassName("img portrait")[0];  //url
-				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("file:///C:",""); //url fix
-				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("http://digitalknob.com",""); //url fix
-				buyItems[buyItems.length-1].price = "$0"; //price
-			}
-			if(items[i].getElementsByClassName("img landscape")[0]){
-				buyItems[buyItems.length-1].title = items[i].getElementsByClassName("img landscape")[0].title;  //title
-				buyItems[buyItems.length-1].loc = items[i].getElementsByClassName("city")[0].innerHTML;  //location
-				buyItems[buyItems.length-1].img = items[i].getElementsByClassName("img landscape")[0].firstChild.src; //image
-				buyItems[buyItems.length-1].link = items[i].getElementsByClassName("img landscape")[0];  //url
-				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("file:///C:",""); //url fix
-				//buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("http://digitalknob.com",""); //url fix
-				buyItems[buyItems.length-1].price = "$0"; //price
-			}
+			DKLog("##########################\n");
+			link = link.replace("file:///C:", "https://us.letgo.com");
+			DKLog("url = "+link+"\n");
+			DKLog("title = "+title+"\n");
+			DKLog("location ="+loc+"\n");
+			DKLog("image ="+img+"\n");
 			*/
+			
+			buyItems[buyItems.length-1].title = title;
+			buyItems[buyItems.length-1].loc = loc;
+			buyItems[buyItems.length-1].img = img;
+			buyItems[buyItems.length-1].link = link;
+			buyItems[buyItems.length-1].price = "";			
 		}				
 		callback();
 	});
