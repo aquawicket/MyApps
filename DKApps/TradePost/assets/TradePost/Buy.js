@@ -251,7 +251,7 @@ function Buy_LetGoToArry(url, callback)
 /////////////////////////////////////
 function Buy_LetGoGetPriceTrigger(id)
 {
-	DKLog("Buy_LetGoGetPriceTrigger("+id+")\n");
+	DKLog("Buy_LetGoGetPriceTrigger("+id+")\n", DEBUG);
 	
 	var toText = id.toString(); //convert to string
 	var lastChar = toText.slice(-1); //gets last character
@@ -272,7 +272,7 @@ function Buy_LetGoGetPriceTrigger(id)
 /////////////////////////////////////////////
 function Buy_LetGoGetPrice(itemNum, callback)
 {
-	DKLog("Buy_LetGoGetPrice("+itemNum+",callback)\n");
+	DKLog("Buy_LetGoGetPrice("+itemNum+",callback)\n", DKDEBUG);
 	
 	if(buyItems[itemNum].price){
 		DKLog("Buy_LetGoGetPrice(): already has a price\n");
