@@ -153,7 +153,7 @@ function Buy_CraigslistToArry(url, callback)
 				buyItems[buyItems.length-1].img = "https://images.craigslist.org/"+arry[0]+"_300x300.jpg"; //image
 			}
 			else{
-				buyItems[buyItems.length-1].img = "https://www.craigslist.org/images/peace.jpg"; //no image
+				//buyItems[buyItems.length-1].img = "https://www.craigslist.org/images/peace.jpg"; //no image
 			}	
 			if(items[i].getElementsByClassName("result-image gallery")[0].href.indexOf("https://") == -1){
 				buyItems[buyItems.length-1].link = "https://inlandempire.craigslist.org"+items[i].getElementsByClassName("result-image gallery")[0].href; //url
