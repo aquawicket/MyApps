@@ -170,11 +170,11 @@ function Buy_CraigslistToArry(url, callback)
 			buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("file:///C:",""); //url fix
 			buyItems[buyItems.length-1].link = buyItems[buyItems.length-1].link.replace("http://digitalknob.com",""); //url fix
 			if(items[i].getElementsByClassName("result-price")[0]){
-				buyItems[buyItems.length-1].price = items[i].getElementsByClassName("result-price")[0].innerHTML; //price
+				buyItems[buyItems.length-1].price = Number(items[i].getElementsByClassName("result-price")[0].innerHTML.replace("$","")); //price
 			}
-			else{
-				buyItems[buyItems.length-1].price = "$0"; //price
-			}
+			//else{
+				//buyItems[buyItems.length-1].price = "$0"; //price
+			//}
 		}	
 		callback();
 	});
@@ -290,7 +290,7 @@ function Buy_LetGoGetPrice(itemNum, callback)
 		
 		for(var i=0; i<buyItems.length; i++){
 			if(buyItems[i].link == url){
-				buyItems[i].price = price;
+				buyItems[i].price = price.replace("$","");
 				var ele = document.getElementById("itemprice"+i);
 				if(!ele){ DKLog("can't find itemprice"+i+"\n"); continue; }
 				ele.innerHTML = buyItems[i].price;
@@ -339,7 +339,7 @@ function Buy_OfferUpToArry(url, callback)
 			link = link.replace("file:///C:", "https://offerup.com");
 			var img = img1.src;
 			var title = img1.alt;
-			var price = price_div.innerHTML;
+			var price = price_div.innerHTML.replace("$","");
 			var loc = loc_div.innerHTML;
 			title = title.replace(" for Sale in "+loc, "");
 			
@@ -418,10 +418,10 @@ function Buy_GetUrlString(url, callback)
 function Buy_Update()
 {
 	DKLog("Buy_Update()\n", DKDEBUG);
-	//sort by price
-	//Buy_Filter();
-	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
 	
+	//Buy_SortItems('price', true);
+	
+	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
 	for(var i=0; i<buyItems.length; i++){
@@ -432,10 +432,10 @@ function Buy_Update()
 			continue;
 		}
 		if(buySettings.lowPrice && buyItems[i].price){
-			if(Number(buyItems[i].price.replace("$","")) < buySettings.lowPrice){ continue; }
+			if(buyItems[i].price < buySettings.lowPrice){ continue; }
 		}
 		if(buySettings.highPrice && buyItems[i].price){
-			if(Number(buyItems[i].price.replace("$","")) > buySettings.highPrice){ continue; }
+			if(buyItems[i].price > buySettings.highPrice){ continue; }
 		}
 		shown++;
 		var itemdiv = document.createElement('div');
@@ -566,7 +566,7 @@ function Buy_Update()
 		var itemprice = document.createElement('span');
 		itemprice.id = "itemprice"+i;
 		if(buyItems[i].price){
-			itemprice.innerHTML = buyItems[i].price;
+			itemprice.innerHTML = "$"+buyItems[i].price;
 		}
 		itemprice.style.display = "block";
 		itemprice.style.fontSize = "18px";
@@ -633,4 +633,17 @@ function Buy_SaveSettings()
 	DKLog("Buy_SaveSettings()\n", DKDEBUG);
 	var json = JSON.stringify(buySettings);
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buySettings.json");
+}
+
+//////////////////////////////////////////
+function Buy_SortItems(property, acending)
+{
+	buyItems = buyItems.sort(function(a, b){
+        if(acending){
+            return (a[property] > b[property]) ? 1 : ((a[property] < b[property]) ? -1 : 0);
+        } 
+		else{
+            return (b[property] > a[property]) ? 1 : ((b[property] < a[property]) ? -1 : 0);
+        }
+    });
 }
