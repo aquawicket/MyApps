@@ -209,11 +209,7 @@ function Buy_LetGoToArry(url, callback)
 			var img = img.src;
 			if(!img){ DKLog("img invalid\n"); continue; }
 			
-			if(Buy_CheckForDuplicate(link)){ 
-				Buy_LetGoGetPriceTrigger(i);
-				continue; 
-			}
-			Buy_LetGoGetPriceTrigger(i);
+			if(Buy_CheckForDuplicate(link)){ continue; }
 			
 			/*
 			DKLog("##########################\n");
@@ -240,10 +236,17 @@ function Buy_LetGoToArry(url, callback)
 /////////////////////////////////////
 function Buy_LetGoGetPriceTrigger(id)
 {
-	if(buyItems[id] && buyItems[id].price){ return; }
+	DKLog("Buy_LetGoGetPriceTrigger("+id+")\n");
+	
+	var toText = id.toString(); //convert to string
+	var lastChar = toText.slice(-1); //gets last character
+	var lastDigit = +(lastChar); //convert last character to number
+
 	setTimeout(function(){
-		Buy_LetGoGetPrice(id, function(){ Buy_ShowItems() });
-	}, 3000*id);
+		Buy_LetGoGetPrice(id, function(){ 
+			Buy_SaveData();
+		});
+	}, 5000*lastDigit);
 }
 
 /////////////////////////////////////////////
@@ -251,6 +254,10 @@ function Buy_LetGoGetPrice(itemNum, callback)
 {
 	DKLog("Buy_LetGoGetPrice("+itemNum+",callback)\n");
 	
+	if(buyItems[itemNum].price){
+		DKLog("Buy_LetGoGetPrice(): already has a price\n");
+		return; 
+	}
 	var url = buyItems[itemNum].link;
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
@@ -270,6 +277,9 @@ function Buy_LetGoGetPrice(itemNum, callback)
 		for(var i=0; i<buyItems.length; i++){
 			if(buyItems[i].link == url){
 				buyItems[i].price = price;
+				var ele = document.getElementById("itemprice"+i);
+				if(!ele){ DKLog("can't find itemprice"+i+"\n"); continue; }
+				ele.innerHTML = buyItems[i].price;
 			}
 		}
 		
@@ -523,6 +533,12 @@ function Buy_ShowItems()
 		itemtitle.style.overflow = "hidden";
 		//itemtitle.style.userSelect = "text";
 		infodiv.appendChild(itemtitle);
+		
+		if(buyItems[i].providerImg == "TradePost/letgo.png"){
+			if(!buyItems[i].price){
+				Buy_LetGoGetPriceTrigger(i);
+			}
+		}
 		
 		var itemprice = document.createElement('span');
 		itemprice.id = "itemprice"+i;
