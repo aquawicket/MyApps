@@ -79,7 +79,7 @@ function Buy_CheckForDuplicate(itemUrl)
 {
 	for(var i=0; i<buyItems.length; i++){
 		if(itemUrl == buyItems[i].link){
-			DKLog("Buy_CheckForDuplicate(): found duplicate\n");
+			//DKLog("Buy_CheckForDuplicate(): found duplicate\n");
 			return true;
 		}
 	}
@@ -209,7 +209,12 @@ function Buy_LetGoToArry(url, callback)
 			var img = img.src;
 			if(!img){ DKLog("img invalid\n"); continue; }
 			
-			if(Buy_CheckForDuplicate(link)){ continue; }
+			if(Buy_CheckForDuplicate(link)){ 
+				Buy_LetGoGetPriceTrigger(i);
+				continue; 
+			}
+			Buy_LetGoGetPriceTrigger(i);
+			
 			/*
 			DKLog("##########################\n");
 			DKLog("url = "+link+"\n");
@@ -227,8 +232,6 @@ function Buy_LetGoToArry(url, callback)
 			buyItems[buyItems.length-1].loc = loc;
 			buyItems[buyItems.length-1].img = img;
 			buyItems[buyItems.length-1].link = link;
-
-			Buy_LetGoGetPriceTrigger(i);
 		}				
 		callback();
 	});
@@ -237,9 +240,10 @@ function Buy_LetGoToArry(url, callback)
 /////////////////////////////////////
 function Buy_LetGoGetPriceTrigger(id)
 {
+	if(buyItems[id] && buyItems[id].price){ return; }
 	setTimeout(function(){
 		Buy_LetGoGetPrice(id, function(){ Buy_ShowItems() });
-	}, 2000*id);
+	}, 3000*id);
 }
 
 /////////////////////////////////////////////
