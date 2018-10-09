@@ -1,5 +1,6 @@
-buyItems = []; //items stored here, for use with json
-buySettings = {}; //new object
+var buyItems = []; //items stored here, for use with json
+var buySettings = {}; //new object
+
  
 ///////////////////
 function Buy_Init()
@@ -35,6 +36,7 @@ function Buy_OnEvent(event)
 	var string = "";
 
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
+		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
@@ -48,11 +50,13 @@ function Buy_OnEvent(event)
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
+		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ 
 			Buy_Update(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
+		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_OfferUpToArry("https://offerup.com", function(){ 
 			Buy_Update(); 
 		})
