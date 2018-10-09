@@ -290,7 +290,7 @@ function Buy_LetGoGetPrice(itemNum, callback)
 		
 		for(var i=0; i<buyItems.length; i++){
 			if(buyItems[i].link == url){
-				buyItems[i].price = price.replace("$","");
+				buyItems[i].price = price;
 				var ele = document.getElementById("itemprice"+i);
 				if(!ele){ DKLog("can't find itemprice"+i+"\n"); continue; }
 				ele.innerHTML = buyItems[i].price;
