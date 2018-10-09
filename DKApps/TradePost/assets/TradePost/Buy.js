@@ -339,7 +339,7 @@ function Buy_OfferUpToArry(url, callback)
 			link = link.replace("file:///C:", "https://offerup.com");
 			var img = img1.src;
 			var title = img1.alt;
-			var price = price_div.innerHTML.replace("$","");
+			var price = Number(price_div.innerHTML.replace("$",""));
 			var loc = loc_div.innerHTML;
 			title = title.replace(" for Sale in "+loc, "");
 			

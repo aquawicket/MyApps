@@ -26,16 +26,19 @@ function BuySettings_OnEvent(event)
 		var val = DKWidget_GetValue("BuySettings_hideNoImage");
 		buySettings.hideNoImage = val;
 		Buy_SaveSettings();
+		Buy_Update();
 	}
 	if(DK_Id(event, "BuySettings_lowPrice")){
 		var val = DKWidget_GetValue("BuySettings_lowPrice");
 		buySettings.lowPrice = val;
 		Buy_SaveSettings();
+		Buy_Update();
 	}
 	if(DK_Id(event, "BuySettings_highPrice")){
 		var val = DKWidget_GetValue("BuySettings_highPrice");
 		buySettings.highPrice = val;
 		Buy_SaveSettings();
+		Buy_Update();
 	}
 }
 
