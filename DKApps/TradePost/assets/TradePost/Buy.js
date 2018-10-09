@@ -428,8 +428,14 @@ function Buy_Update()
 		if(buySettings.hideNoImage && !buyItems[i].img){
 			continue;
 		}
-		if(buyItems[i].hidden == true){
+		if(buyItems[i].hidden){
 			continue;
+		}
+		if(buySettings.lowPrice && buyItems[i].price){
+			if(Number(buyItems[i].price.replace("$","")) < buySettings.lowPrice){ continue; }
+		}
+		if(buySettings.highPrice && buyItems[i].price){
+			if(Number(buyItems[i].price.replace("$","")) > buySettings.highPrice){ continue; }
 		}
 		shown++;
 		var itemdiv = document.createElement('div');
