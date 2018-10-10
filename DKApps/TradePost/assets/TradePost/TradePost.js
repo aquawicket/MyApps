@@ -10,7 +10,7 @@ function TradePost_Init()
 	DKCreate("DKAdmin/DKAdmin.js", function(){});
 	DKCreate("DKGui/DKMenu.js", function(){});
 	
-	DKAddEvent("GLOBAL", "DKCef_SourceReceived", TradePost_OnEvent);
+	//DKAddEvent("GLOBAL", "DKCef_SourceReceived", TradePost_OnEvent);
 	DKAddEvent("Buy", "click", TradePost_OnEvent);
 	DKAddEvent("Inventory", "click", TradePost_OnEvent);
 	DKAddEvent("Craigslist", "click", TradePost_OnEvent);
@@ -36,10 +36,12 @@ function TradePost_OnEvent(event)
 {	
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 
+	/*
 	if(DK_Type(event, "DKCef_SourceReceived")){
 		var source = DK_GetValue(event);
 		DKLog("DKCef_SourceReceived() = "+DK_GetValue(event)+"\n");
 	}
+	*/
 	
 	if(DK_Id(event, "Buy")){
 		DKLog("Buy\n");
@@ -84,7 +86,8 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
 	
-	DKCef_GetPageSource("", 0);
+	var source = DKCef_GetPageSource("", 0);
+	DKLog("source = "+source+"\n");
 	
 	DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
