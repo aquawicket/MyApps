@@ -389,12 +389,14 @@ function Buy_FacebookToArry(url, callback)
 			return;
 		}
 		//DKLog(rstring+"\n");
-		var div = document.createElement('div');
-		div.innerHTML = rstring;
+		//var div = document.createElement('div');
+		//div.innerHTML = rstring;
 		
-		DKFile_StringToFile(rstring, "facebookMarket.html", true);
+		//We have to extract the items through raw text
+		//TODO
+
 		
-		var items = div.querySelectorAll('a[data-testid="marketplace_feed_item"]');
+		
 		for(var i=0; i<items.length; i++){
 			DKLog("Item Found\n");
 			//TODO
