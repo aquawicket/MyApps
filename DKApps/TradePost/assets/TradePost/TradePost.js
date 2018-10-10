@@ -86,8 +86,14 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
 	
-	var source = DKCef_GetPageSource("", 0);
-	DKLog("source = "+source+"\n");
+	function error(){
+		var foo = {};
+		return foo.bar();
+	}
+	error();
+
+	//var source = DKCef_GetPageSource("", 0);
+	//DKLog("source = "+source+"\n");
 	
 	DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){

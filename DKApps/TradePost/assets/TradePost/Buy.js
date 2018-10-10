@@ -34,8 +34,6 @@ function Buy_OnEvent(event)
 {
 	DKLog("Buy_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
-	var string = "";
-
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
 		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){
@@ -68,6 +66,14 @@ function Buy_OnEvent(event)
 			Buy_Update(); 
 		})
 	}
+	if(DK_Id(event, "Buy_Settings")){
+		DKCreate("TradePost/BuySettings.js", function(){
+			DKCreate("DKGui/DKFrame.js", function(){
+				DKFrame_Widget("TradePost/BuySettings.html");
+			});
+		});
+	}
+	
 	if(DK_IdLike(event, "itemurl")){
 		var num = DK_GetId(event).replace("itemurl","");
 		window.open(buyItems[num].link, "_blank", "top=0,left=0,width=800,height=600");
