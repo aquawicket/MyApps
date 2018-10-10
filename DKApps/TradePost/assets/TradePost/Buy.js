@@ -49,19 +49,19 @@ function Buy_OnEvent(event)
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
-		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
-		Buy_LetGoToArry("https://us.letgo.com/en/q/"+string+"?lat=33.8124094&lng=-117.91926790000002", function(){ 
+		//document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
+		Buy_LetGoToArry("https://us.letgo.com/en/q/?lat=33.8124094&lng=-117.91926790000002", function(){ 
 			Buy_Update(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
-		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
+		//document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_OfferUpToArry("https://offerup.com", function(){ 
 			Buy_Update(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapFacebook")){
-		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
+		//document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_FacebookToArry("https://www.facebook.com/marketplace", function(){ 
 			Buy_Update(); 
 		})
@@ -88,13 +88,20 @@ function Buy_OnEvent(event)
 		DK_StopPropagation(event);
 		var num = DK_GetId(event).replace("searchEbay","");
 		//Open a new ebay tab searching for the title
-		var link = "https://www.ebay.com/sch/i.html?_from=R40&_nkw="+buyItems[num].title; //Search
-		link += "&LH_BIN=1"; //Buy It Now
+		var title = buyItems[num].title.replace(" ","+");
+		var link = "https://www.ebay.com/sch/i.html?_from=R40&_nkw="+title; //Search
 		link += "&_sop=15"; //Sort by price lowest first
+		link += "&LH_BIN=1"; //Buy It Now
 		link += "&LH_Sold=1"; //Show only sold items
+		
+		link = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=iPhone&_sop=15&LH_BIN=1&LH_Sold=1";
+		
+		DK_SetClipboard(link);
+		DKLog(link+"\n");
 		
 		var top = 0;
 		window.open(link, "_blank", "top=0,left=0,width=800,height=600");
+		
 	}
 }
 
@@ -258,15 +265,16 @@ function Buy_LetGoToArry(url, callback)
 	});
 }
 
+
+
+/////  TODO - Buy_LetGoGetPriceTrigger() use something other than the number / id 
+
+
 /////////////////////////////////////
 function Buy_LetGoGetPriceTrigger(id)
 {
 	DKLog("Buy_LetGoGetPriceTrigger("+id+")\n", DKDEBUG);
 	
-	var toText = id.toString(); //convert to string
-	var lastChar = toText.slice(-1); //gets last character
-	var lastDigit = +(lastChar); //convert last character to number
-
 	queueSize++;
 	
 	setTimeout(function(){
@@ -279,17 +287,29 @@ function Buy_LetGoGetPriceTrigger(id)
 	}, 5000*queueSize);
 }
 
-/////////////////////////////////////////////
-function Buy_LetGoGetPrice(itemNum, callback)
+////////////////////////////////////////
+function Buy_LetGoGetPrice(id, callback)
 {
-	DKLog("Buy_LetGoGetPrice("+itemNum+",callback)\n", DKDEBUG);
+	DKLog("Buy_LetGoGetPrice("+id+",callback)\n", DKDEBUG);
 	
-	if(buyItems[itemNum].price){
+	//get item number
+	var num = -1;
+	for(var i=0; i<buyItems.length; i++){
+		if(id == buyItems[i].id){
+			num = i;
+		}
+	}
+	if(num == -1){ 
+		DKLog("Buy_LetGoGetPrice("+id+", "+callback+"): could not find item with matching id\n", DKERROR);
+		return false; 
+	}
+	
+	if(buyItems[num].price){
 		DKLog("Buy_LetGoGetPrice(): already has a price\n");
 		callback(false);
 		return; 
 	}
-	var url = buyItems[itemNum].link;
+	var url = buyItems[num].link;
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
 			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
@@ -469,7 +489,7 @@ function Buy_Update()
 	DKLog("Buy_Update()\n", DKDEBUG);
 	
 	if(buySettings.sortBy == "Date"){
-		Buy_SortItems('date', true);
+		Buy_SortItems('date', false); //newest to oldest
 	}
 	if(buySettings.sortBy == "Price: Low to High"){
 		Buy_SortItems('price', true);
@@ -619,7 +639,7 @@ function Buy_Update()
 		
 		if(buyItems[i].providerImg == "TradePost/letgo.png"){
 			if(!buyItems[i].price){
-				Buy_LetGoGetPriceTrigger(i);
+				Buy_LetGoGetPriceTrigger(buyItems[i].id);
 			}
 		}
 		
