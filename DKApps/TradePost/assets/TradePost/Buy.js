@@ -560,8 +560,9 @@ function Buy_OfferUpToArry(url, callback)
 			if(url == "https://offerup.com/explore/k/antiques"){ buyItems[buyItems.length-1].catagory = "antiques"; }
 			if(url == "https://offerup.com/explore/k/appliances"){ buyItems[buyItems.length-1].catagory = "appliances"; }
 			if(url == "https://offerup.com/explore/k/arts-crafts"){ buyItems[buyItems.length-1].catagory = "arts-crafts"; }
-			if(url == "https://offerup.com/explore/k/audio-equipment"){ buyItems[buyItems.length-1].catagory = "audio-equipment"; }
-			if(url == "https://offerup.com/explore/k/auto-parts"){ buyItems[buyItems.length-1].catagory = "baby-kids"; }
+			if(url == "https://offerup.com/explore/k/auto-parts"){ buyItems[buyItems.length-1].catagory = "auto-parts"; }
+			if(url == "https://offerup.com/explore/k/baby-kids"){ buyItems[buyItems.length-1].catagory = "baby-kids"; }
+			if(url == "https://offerup.com/explore/k/baby-kids"){ buyItems[buyItems.length-1].catagory = "baby-kids"; }
 			if(url == "https://offerup.com/explore/k/beauty-health"){ buyItems[buyItems.length-1].catagory = "beauty-health"; }
 			if(url == "https://offerup.com/explore/k/bicycles"){ buyItems[buyItems.length-1].catagory = "bicycles"; }
 			if(url == "https://offerup.com/explore/k/boats-marine"){ buyItems[buyItems.length-1].catagory = "boats-marine"; }
