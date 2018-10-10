@@ -55,24 +55,30 @@ function Buy_OnEvent(event)
 			Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480", function(){ Buy_Update(); })
 		});
 		*/
+		
+		/*
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){       
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){  
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=360", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480", function(){
+			*/
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/d/free-stuff/search/zip", function(){
 			Buy_Update();
 			return;
 		})
+		/*
 		})
 		})
 		})
 		})
+		})
+		*/
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
 		Buy_LetGoToArry("https://us.letgo.com/en/category/cars", function(){
 		Buy_LetGoToArry("https://us.letgo.com/en/category/housing", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/free-stuff", function(){
 		Buy_LetGoToArry("https://us.letgo.com/en/category/electronics", function(){
 		Buy_LetGoToArry("https://us.letgo.com/en/category/cars-motors", function(){
 		Buy_LetGoToArry("https://us.letgo.com/en/category/sports-leisure-games", function(){
@@ -82,11 +88,11 @@ function Buy_OnEvent(event)
 		Buy_LetGoToArry("https://us.letgo.com/en/category/baby-child", function(){
 		Buy_LetGoToArry("https://us.letgo.com/en/category/other", function(){
 		Buy_LetGoToArry("https://us.letgo.com/en/category/services", function(){
-		Buy_LetGoToArry("https://us.letgo.com", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/free-stuff", function(){
 			Buy_Update();
 			return;
 		})
-		})
+
 		})
 		})
 		})
@@ -140,7 +146,7 @@ function Buy_OnEvent(event)
 		Buy_OfferUpToArry("https://offerup.com/explore/k/video-equipment", function(){
 		Buy_OfferUpToArry("https://offerup.com/explore/k/video-games", function(){
 		Buy_OfferUpToArry("https://offerup.com/explore/k/wedding", function(){
-		Buy_OfferUpToArry("https://offerup.com", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/free", function(){
 			Buy_Update();
 			return;
 		})
@@ -208,7 +214,7 @@ function Buy_OnEvent(event)
 	
 	if(DK_IdLike(event, "itemurl")){
 		var num = DK_GetId(event).replace("itemurl","");
-		window.open(buyItems[num].link, "_blank", "top=0,left=0,width=800,height=600");
+		window.open(buyItems[num].link, "_blank", "top=0,left=0,width=900,height=700");
 		return;
 	}
 	if(DK_IdLike(event, "hide")){
@@ -228,7 +234,7 @@ function Buy_OnEvent(event)
 		link += "&LH_BIN=1"; //Buy It Now
 		link += "&LH_Sold=1"; //Show only sold items
 		
-		window.open(link, "_blank", "top=0,left=0,width=800,height=600");
+		window.open(link, "_blank", "top=0,left=0,width=900,height=700");
 		return;
 	}
 	return;
@@ -293,6 +299,20 @@ function Buy_CraigslistToArry(url, callback)
 			buyItems[buyItems.length-1].id = Buy_GetFirstAvailableId(); //id
 			buyItems[buyItems.length-1].date = new Date().toJSON();
 			buyItems[buyItems.length-1].providerImg = "TradePost/craigslist.png"; //host banner
+			
+			if(url == "https://inlandempire.craigslist.org/d/free-stuff/search/zip"){ buyItems[buyItems.length-1].catagory = "free"; }
+			
+			/*
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			if(url == "https://inlandempire.craigslist.org/"){ buyItems[buyItems.length-1].catagory = ""; }
+			*/
+	
 			buyItems[buyItems.length-1].title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 			if(items[i].getElementsByClassName("result-hood")[0]){
 				buyItems[buyItems.length-1].loc = items[i].getElementsByClassName("result-hood")[0].innerHTML; //location
@@ -389,6 +409,18 @@ function Buy_LetGoToArry(url, callback)
 			buyItems[buyItems.length-1].loc = loc;
 			buyItems[buyItems.length-1].img = img;
 			buyItems[buyItems.length-1].link = link;
+			if(url == "https://us.letgo.com/en/category/cars"){ buyItems[buyItems.length-1].catagory = "cars"; }
+			if(url == "https://us.letgo.com/en/category/housing"){ buyItems[buyItems.length-1].catagory = "housing"; }
+			if(url == "https://us.letgo.com/en/category/electronics"){ buyItems[buyItems.length-1].catagory = "electronics"; }
+			if(url == "https://us.letgo.com/en/category/cars-motors"){ buyItems[buyItems.length-1].catagory = "cars-motors"; }
+			if(url == "https://us.letgo.com/en/category/sports-leisure-games"){ buyItems[buyItems.length-1].catagory = "sports-leisure-games"; }
+			if(url == "https://us.letgo.com/en/category/home-garden"){ buyItems[buyItems.length-1].catagory = "home-garden"; }
+			if(url == "https://us.letgo.com/en/category/movies-books-music"){ buyItems[buyItems.length-1].catagory = "movies-books-music"; }
+			if(url == "https://us.letgo.com/en/category/fashion-accessories"){ buyItems[buyItems.length-1].catagory = "fashion-accessories"; }
+			if(url == "https://us.letgo.com/en/category/baby-child"){ buyItems[buyItems.length-1].catagory = "baby-child"; }
+			if(url == "https://us.letgo.com/en/category/other"){ buyItems[buyItems.length-1].catagory = "other"; }
+			if(url == "https://us.letgo.com/en/category/services"){ buyItems[buyItems.length-1].catagory = "services"; }
+			if(url == "https://us.letgo.com/en/category/free-stuff"){ buyItems[buyItems.length-1].catagory = "free"; }
 		}				
 		callback();
 	});
@@ -525,6 +557,44 @@ function Buy_OfferUpToArry(url, callback)
 			buyItems[buyItems.length-1].img = img;
 			buyItems[buyItems.length-1].link = link;
 			buyItems[buyItems.length-1].price = price;
+			if(url == "https://offerup.com/explore/k/antiques"){ buyItems[buyItems.length-1].catagory = "antiques"; }
+			if(url == "https://offerup.com/explore/k/appliances"){ buyItems[buyItems.length-1].catagory = "appliances"; }
+			if(url == "https://offerup.com/explore/k/arts-crafts"){ buyItems[buyItems.length-1].catagory = "arts-crafts"; }
+			if(url == "https://offerup.com/explore/k/audio-equipment"){ buyItems[buyItems.length-1].catagory = "audio-equipment"; }
+			if(url == "https://offerup.com/explore/k/auto-parts"){ buyItems[buyItems.length-1].catagory = "baby-kids"; }
+			if(url == "https://offerup.com/explore/k/beauty-health"){ buyItems[buyItems.length-1].catagory = "beauty-health"; }
+			if(url == "https://offerup.com/explore/k/bicycles"){ buyItems[buyItems.length-1].catagory = "bicycles"; }
+			if(url == "https://offerup.com/explore/k/boats-marine"){ buyItems[buyItems.length-1].catagory = "boats-marine"; }
+			if(url == "https://offerup.com/explore/k/books-magazines"){ buyItems[buyItems.length-1].catagory = "books-magazines"; }
+			if(url == "https://offerup.com/explore/k/business-equipment"){ buyItems[buyItems.length-1].catagory = "business-equipment"; }
+			if(url == "https://offerup.com/explore/k/campers-rvs"){ buyItems[buyItems.length-1].catagory = "campers-rvs"; }
+			if(url == "https://offerup.com/explore/k/cars-trucks"){ buyItems[buyItems.length-1].catagory = "cars-trucks"; }
+			if(url == "https://offerup.com/explore/k/cds-dvds"){ buyItems[buyItems.length-1].catagory = "cds-dvds"; }
+			if(url == "https://offerup.com/explore/k/cell-phones"){ buyItems[buyItems.length-1].catagory = "cell-phones"; }
+			if(url == "https://offerup.com/explore/k/clothing-shoes"){ buyItems[buyItems.length-1].catagory = "clothing-shoes"; }
+			if(url == "https://offerup.com/explore/k/collectibles"){ buyItems[buyItems.length-1].catagory = "collectibles"; }
+			if(url == "https://offerup.com/explore/k/computer-equipment"){ buyItems[buyItems.length-1].catagory = "computer-equipment"; }
+			if(url == "https://offerup.com/explore/k/electronics"){ buyItems[buyItems.length-1].catagory = "electronics"; }
+			if(url == "https://offerup.com/explore/k/exercise"){ buyItems[buyItems.length-1].catagory = "exercise"; }
+			if(url == "https://offerup.com/explore/k/free"){ buyItems[buyItems.length-1].catagory = "free"; }
+			if(url == "https://offerup.com/explore/k/furniture"){ buyItems[buyItems.length-1].catagory = "furniture"; }
+			if(url == "https://offerup.com/explore/k/games-toys"){ buyItems[buyItems.length-1].catagory = "games-toys"; }
+			if(url == "https://offerup.com/explore/k/general"){ buyItems[buyItems.length-1].catagory = "general"; }
+			if(url == "https://offerup.com/explore/k/home-garden"){ buyItems[buyItems.length-1].catagory = "home-garden"; }
+			if(url == "https://offerup.com/explore/k/household"){ buyItems[buyItems.length-1].catagory = "household"; }
+			if(url == "https://offerup.com/explore/k/jewelry-accessories"){ buyItems[buyItems.length-1].catagory = "jewelry-accessories"; }
+			if(url == "https://offerup.com/explore/k/motorcycles"){ buyItems[buyItems.length-1].catagory = "motorcycles"; }
+			if(url == "https://offerup.com/explore/k/musical-instruments"){ buyItems[buyItems.length-1].catagory = "musical-instruments"; }
+			if(url == "https://offerup.com/explore/k/pet-supplies"){ buyItems[buyItems.length-1].catagory = "pet-supplies"; }
+			if(url == "https://offerup.com/explore/k/photography"){ buyItems[buyItems.length-1].catagory = "photography"; }
+			if(url == "https://offerup.com/explore/k/software"){ buyItems[buyItems.length-1].catagory = "software"; }
+			if(url == "https://offerup.com/explore/k/sports-outdoors"){ buyItems[buyItems.length-1].catagory = "sports-outdoors"; }
+			if(url == "https://offerup.com/explore/k/tickets"){ buyItems[buyItems.length-1].catagory = "tickets"; }
+			if(url == "https://offerup.com/explore/k/tools-machinery"){ buyItems[buyItems.length-1].catagory = "tools-machinery"; }
+			if(url == "https://offerup.com/explore/k/tvs"){ buyItems[buyItems.length-1].catagory = "tvs"; }
+			if(url == "https://offerup.com/explore/k/video-equipment"){ buyItems[buyItems.length-1].catagory = "video-equipment"; }
+			if(url == "https://offerup.com/explore/k/video-games"){ buyItems[buyItems.length-1].catagory = "video-games"; }
+			if(url == "https://offerup.com/explore/k/wedding"){ buyItems[buyItems.length-1].catagory = "wedding"; }
 		}
 		callback();
 	});
@@ -816,7 +886,7 @@ function Buy_LoadData()
 ///////////////////////
 function Buy_SaveData()
 {
-	var json = JSON.stringify(buyItems);
+	var json = JSON.stringify(buyItems, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buyItems.json");
 }
 
@@ -838,7 +908,7 @@ function Buy_LoadSettings()
 function Buy_SaveSettings()
 {
 	DKLog("Buy_SaveSettings()\n", DKDEBUG);
-	var json = JSON.stringify(buySettings);
+	var json = JSON.stringify(buySettings, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buySettings.json");
 }
 

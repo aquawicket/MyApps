@@ -233,7 +233,7 @@ function Inventory_AddItem()
 ////////////////////////////////
 function Inventory_SaveItem(row)
 {
-	var json = JSON.stringify(items[row]);
+	var json = JSON.stringify(items[row], null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/data.json");
 }
 
@@ -942,7 +942,7 @@ function Inventory_Test()
 		DKLog("items["+i+"]price: "+items[i].price+"\n");
 		*/
 		
-		//var json_string = JSON.stringify(items[i]);
+		//var json_string = JSON.stringify(items[i], null, "\t");
 		//DKLog(json_string+"\n");
 		
 		/*
