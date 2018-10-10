@@ -959,7 +959,7 @@ function Buy_Update()
 		
 		if(buyItems[i].providerImg == "TradePost/letgo.png"){
 			if(!buyItems[i].price){
-				Buy_LetGoGetPriceTrigger(buyItems[i].id);
+				//Buy_LetGoGetPriceTrigger(buyItems[i].id);
 			}
 		}
 		

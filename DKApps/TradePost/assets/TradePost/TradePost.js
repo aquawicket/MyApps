@@ -21,6 +21,8 @@ function TradePost_Init()
 	DKAddEvent("Ebay", "click", TradePost_OnEvent);
 	DKAddEvent("Test", "click", TradePost_OnEvent);
 	DKAddEvent("Refresh", "click", TradePost_OnEvent);
+	
+	var connectionStatusTimer = setInterval(function(){ TradePost_UpdateConnectionStatus() }, 10000);
 }
 
 ////////////////////////
@@ -80,6 +82,29 @@ function TradePost_OnEvent(event)
 		DK_Refresh();
 	}
 }
+
+///////////////////////////////////////////
+function TradePost_UpdateConnectionStatus()
+{
+	DKLog("TradePost_UpdateConnectionStatus()\n", DKDEBUG);
+	if(!DKWidget_ElementExists("Status")){
+		var status = DKWidget_CreateElement("TradePost/TradePost.html", "div", "Status");
+		DKWidget_SetProperty(status, "position", "absolute");
+		DKWidget_SetProperty(status, "display", "block");
+		DKWidget_SetProperty(status, "top", "10rem");
+		DKWidget_SetProperty(status, "right", "10rem");
+	}
+	if(navigator.onLine){
+		//DKLog("TradePost_UpdateConnectionStatus(): online\n");
+		DKWidget_SetInnerHtml("Status", "online");
+		DKWidget_SetProperty("Status", "color", "black");
+		return;
+	}
+	//DKLog("TradePost_UpdateConnectionStatus(): OFFLINE!\n");
+	DKWidget_SetInnerHtml("Status", "OFFLINE!");
+	DKWidget_SetProperty("Status", "color", "red");
+}
+
 
 /////////////////////////
 function TradePost_Test()
