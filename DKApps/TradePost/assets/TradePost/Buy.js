@@ -394,13 +394,16 @@ function Buy_FacebookToArry(url, callback)
 		
 		//We have to extract the items through raw text
 		//TODO
-
+		DKFile_StringToFile(rstring, "facebookMarket.html", true);
 		
-		
+		var first_link = rstring.indexOf("share_uri");
+		DKLog("first_link found at "+first_link+"\n");
+		/*
 		for(var i=0; i<items.length; i++){
 			DKLog("Item Found\n");
 			//TODO
 		}
+		*/
 		
 		callback();
 	});
