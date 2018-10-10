@@ -206,6 +206,116 @@ function BuySettings_OnEvent(event)
 		Buy_SaveSettings();
 		Buy_Update();
 	}
+	if(DK_Id(event, "BuySettings_craigslistElectronics")){
+		buySettings.craigslistElectronics = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistFarmGarden")){
+		buySettings.craigslistFarmGarden = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistFreeStuff")){
+		buySettings.craigslistFreeStuff = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistFurniture")){
+		buySettings.craigslistFurniture = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistGarageSales")){
+		buySettings.craigslistGarageSales = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistGeneral")){
+		buySettings.craigslistGeneral = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistHeavyEquipment")){
+		buySettings.craigslistHeavyEquipment = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistHousehold")){
+		buySettings.craigslistHousehold = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistJewelry")){
+		buySettings.craigslistJewelry = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistMaterials")){
+		buySettings.craigslistMaterials = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistMotorcycleParts")){
+		buySettings.craigslistMotorcycleParts = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistMotorcycles")){
+		buySettings.craigslistMotorcycles = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistMusicInstr")){
+		buySettings.craigslistMusicInstr = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistPhotoVideo")){
+		buySettings.craigslistPhotoVideo = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistRVs")){
+		buySettings.craigslistRVs = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistSporting")){
+		buySettings.craigslistSporting = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistTickets")){
+		buySettings.craigslistTickets = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistTools")){
+		buySettings.craigslistTools = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistToysGames")){
+		buySettings.craigslistToysGames = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistTrailers")){
+		buySettings.craigslistTrailers = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistVideoGames")){
+		buySettings.craigslistVideoGames = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistWanted")){
+		buySettings.craigslistWanted = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
 }
 
 /////////////////////////////
