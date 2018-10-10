@@ -355,8 +355,20 @@ function Buy_CraigslistToArry(url, callback)
 	if(!buySettings.craigslistBabyKids && url == "https://inlandempire.craigslist.org/search/baa"){ callback(); return; }	//baby+kids
 	if(!buySettings.craigslistBarter && url == "https://inlandempire.craigslist.org/search/bar"){ callback(); return; }	//barter
 	if(!buySettings.craigslistBeautyHlth && url == "https://inlandempire.craigslist.org/search/haa"){ callback(); return; }	//beauty+hlth
-		
-	
+	if(!buySettings.craigslistBikeParts && url == "https://inlandempire.craigslist.org/search/bip"){ callback(); return; }	//bike parts
+	if(!buySettings.craigslistBikes && url == "https://inlandempire.craigslist.org/search/bia"){ callback(); return; }	//bikes
+	if(!buySettings.craigslistBoatParts && url == "https://inlandempire.craigslist.org/search/bpa"){ callback(); return; }	//boat parts
+	if(!buySettings.craigslistBoats && url == "https://inlandempire.craigslist.org/search/boo"){ callback(); return; }	//boats
+	if(!buySettings.craigslistBooks && url == "https://inlandempire.craigslist.org/search/boo"){ callback(); return; }	//books
+	if(!buySettings.craigslistBusniess && url == "https://inlandempire.craigslist.org/search/bfa"){ callback(); return; }	//busniess
+	if(!buySettings.craigslistCarsTrucks && url == "https://inlandempire.craigslist.org/search/cta"){ callback(); return; }	//cars+trucks
+	if(!buySettings.craigslistCdsDvdVhs && url == "https://inlandempire.craigslist.org/search/ema"){ callback(); return; }	//cds/dvd/vhs
+	if(!buySettings.craigslistCellPhones && url == "https://inlandempire.craigslist.org/search/moa"){ callback(); return; }	//cell phones
+	if(!buySettings.craigslistClothesAcc && url == "https://inlandempire.craigslist.org/search/cla"){ callback(); return; }	//clothes+acc
+	if(!buySettings.craigslistCollectibles && url == "https://inlandempire.craigslist.org/search/cba"){ callback(); return; }	//collectibles
+	if(!buySettings.craigslistComputerParts && url == "https://inlandempire.craigslist.org/search/syp"){ callback(); return; }	//computer parts
+	if(!buySettings.craigslistComputers && url == "https://inlandempire.craigslist.org/search/sya"){ callback(); return; }	//computers
+
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
 			DKLog("Buy_CraigslistToArry(): rstring invalid\n", DKWARN); 
