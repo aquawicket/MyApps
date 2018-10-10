@@ -15,6 +15,7 @@ function Buy_Init()
 	DKAddEvent("Buy_ScrapFacebook", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
 	DKAddEvent("Buy_Settings", "click", Buy_OnEvent);
+	DKAddEvent("Buy_Clear", "click", Buy_OnEvent);
 	
 	Buy_LoadSettings();
 	Buy_LoadData();
@@ -35,6 +36,7 @@ function Buy_OnEvent(event)
 	DKLog("Buy_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
+		document.getElementById("Buy_Container").scrollTo(0,0);
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
@@ -48,16 +50,19 @@ function Buy_OnEvent(event)
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
+		document.getElementById("Buy_Container").scrollTo(0,0);
 		Buy_LetGoToArry("https://us.letgo.com/en/q/?lat=33.8124094&lng=-117.91926790000002", function(){ 
 			Buy_Update(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
+		document.getElementById("Buy_Container").scrollTo(0,0);
 		Buy_OfferUpToArry("https://offerup.com", function(){ 
 			Buy_Update(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapFacebook")){
+		document.getElementById("Buy_Container").scrollTo(0,0);
 		Buy_FacebookToArry("https://www.facebook.com/marketplace", function(){ 
 			Buy_Update(); 
 		})
@@ -68,6 +73,11 @@ function Buy_OnEvent(event)
 				DKFrame_Widget("TradePost/BuySettings.html");
 			});
 		});
+	}
+	if(DK_Id(event, "Buy_Clear")){
+		buyItems = []; //clear json
+		Buy_Update();
+		Buy_SaveData();
 	}
 	
 	if(DK_IdLike(event, "itemurl")){
@@ -367,7 +377,7 @@ function Buy_OfferUpToArry(url, callback)
 			var img = img1.src;
 			var title = img1.alt;
 			var price = Number(price_div.innerHTML.replace("$",""));
-			var loc = loc_div.innerHTML;
+			var loc = loc_div.innerHTML.replace(", CA","");
 			title = title.replace(" for Sale in "+loc, "");
 			
 			if(Buy_CheckForDuplicate(link)){ continue; }
