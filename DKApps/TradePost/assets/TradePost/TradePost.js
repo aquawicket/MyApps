@@ -37,6 +37,7 @@ function TradePost_OnEvent(event)
 	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 
 	if(DK_Type(event, "DKCef_SourceReceived")){
+		var source = DK_GetValue(event);
 		DKLog("DKCef_SourceReceived() = "+DK_GetValue(event)+"\n");
 	}
 	
