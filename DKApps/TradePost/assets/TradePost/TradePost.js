@@ -86,11 +86,27 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
 	
+	DKCreate("TradePost/Helper.js", function(){
+		
+	});
+	
+	Helper_Queue( function(){ TestFunction(1, function(rval){ DKLog("1 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(2, function(rval){ DKLog("2 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(3, function(rval){ DKLog("3 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(4, function(rval){ DKLog("4 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(5, function(rval){ DKLog("5 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(6, function(rval){ DKLog("6 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(7, function(rval){ DKLog("7 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(8, function(rval){ DKLog("8 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(9, function(rval){ DKLog("9 * 2 = "+rval+"\n"); } ); } );
+	
+	/*
 	function error(){
 		var foo = {};
 		return foo.bar();
 	}
 	error();
+	*/
 
 	//var source = DKCef_GetPageSource("", 0);
 	//DKLog("source = "+source+"\n");
