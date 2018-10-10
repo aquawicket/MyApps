@@ -368,6 +368,28 @@ function Buy_CraigslistToArry(url, callback)
 	if(!buySettings.craigslistCollectibles && url == "https://inlandempire.craigslist.org/search/cba"){ callback(); return; }	//collectibles
 	if(!buySettings.craigslistComputerParts && url == "https://inlandempire.craigslist.org/search/syp"){ callback(); return; }	//computer parts
 	if(!buySettings.craigslistComputers && url == "https://inlandempire.craigslist.org/search/sya"){ callback(); return; }	//computers
+	if(!buySettings.craigslistElectronics && url == "https://inlandempire.craigslist.org/search/ela"){ callback(); return; }	//electronics
+	if(!buySettings.craigslistFarmGarden && url == "https://inlandempire.craigslist.org/search/gra"){ callback(); return; }	//farm+garden
+	if(!buySettings.craigslistFreeStuff && url == "https://inlandempire.craigslist.org/search/zip"){ callback(); return; }	//free stuff
+	if(!buySettings.craigslistFurniture && url == "https://inlandempire.craigslist.org/search/fua"){ callback(); return; }	//furniture
+	if(!buySettings.craigslistGarageSales && url == "https://inlandempire.craigslist.org/search/gms"){ callback(); return; }	//garage sales
+	if(!buySettings.craigslistGeneral && url == "https://inlandempire.craigslist.org/search/foa"){ callback(); return; }	//general
+	if(!buySettings.craigslistHeavyEquipment && url == "https://inlandempire.craigslist.org/search/hva"){ callback(); return; }	//heavy equipment
+	if(!buySettings.craigslistHousehold && url == "https://inlandempire.craigslist.org/search/hsa"){ callback(); return; }	//household
+	if(!buySettings.craigslistJewelry && url == "https://inlandempire.craigslist.org/search/jwa"){ callback(); return; }	//jewelry
+	if(!buySettings.craigslistMaterials && url == "https://inlandempire.craigslist.org/search/maa"){ callback(); return; }	//materials
+	if(!buySettings.craigslistMotorcycleParts && url == "https://inlandempire.craigslist.org/search/mpa"){ callback(); return; }	//motorcycle parts
+	if(!buySettings.craigslistMotorcycles && url == "https://inlandempire.craigslist.org/search/mca"){ callback(); return; }	//motorcycles
+	if(!buySettings.craigslistMusicInstr && url == "https://inlandempire.craigslist.org/search/msa"){ callback(); return; }	//music instr
+	if(!buySettings.craigslistPhotoVideo && url == "https://inlandempire.craigslist.org/search/pha"){ callback(); return; }	//photo+video
+	if(!buySettings.craigslistRVs && url == "https://inlandempire.craigslist.org/search/rva"){ callback(); return; }	//RVs
+	if(!buySettings.craigslistSporting && url == "https://inlandempire.craigslist.org/search/sga"){ callback(); return; }	//sporting
+	if(!buySettings.craigslistTickets && url == "https://inlandempire.craigslist.org/search/tia"){ callback(); return; }	//tickets
+	if(!buySettings.craigslistTools && url == "https://inlandempire.craigslist.org/search/tla"){ callback(); return; }	//tools
+	if(!buySettings.craigslistToysGames && url == "https://inlandempire.craigslist.org/search/taa"){ callback(); return; }	//toys+games
+	if(!buySettings.craigslistTrailers && url == "https://inlandempire.craigslist.org/search/tra"){ callback(); return; }	//trailers
+	if(!buySettings.craigslistVideoGames && url == "https://inlandempire.craigslist.org/search/vga"){ callback(); return; }	//video games
+	if(!buySettings.craigslistWanted && url == "https://inlandempire.craigslist.org/search/waa"){ callback(); return; }	//wanted
 
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
