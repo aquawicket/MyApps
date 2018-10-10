@@ -35,7 +35,6 @@ function Buy_OnEvent(event)
 	DKLog("Buy_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
-		document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
@@ -49,19 +48,16 @@ function Buy_OnEvent(event)
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
-		//document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_LetGoToArry("https://us.letgo.com/en/q/?lat=33.8124094&lng=-117.91926790000002", function(){ 
 			Buy_Update(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
-		//document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_OfferUpToArry("https://offerup.com", function(){ 
 			Buy_Update(); 
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapFacebook")){
-		//document.getElementById("Buy_Container").scrollTop = document.getElementById("Buy_Container").scrollHeight; //scroll to bottom
 		Buy_FacebookToArry("https://www.facebook.com/marketplace", function(){ 
 			Buy_Update(); 
 		})
@@ -87,21 +83,14 @@ function Buy_OnEvent(event)
 	if(DK_IdLike(event, "searchEbay")){
 		DK_StopPropagation(event);
 		var num = DK_GetId(event).replace("searchEbay","");
-		//Open a new ebay tab searching for the title
+		//Open a new ebay popup searching for the title
 		var title = buyItems[num].title.replace(" ","+");
 		var link = "https://www.ebay.com/sch/i.html?_from=R40&_nkw="+title; //Search
 		link += "&_sop=15"; //Sort by price lowest first
 		link += "&LH_BIN=1"; //Buy It Now
 		link += "&LH_Sold=1"; //Show only sold items
 		
-		link = "https://www.ebay.com/sch/i.html?_from=R40&_nkw=iPhone&_sop=15&LH_BIN=1&LH_Sold=1";
-		
-		DK_SetClipboard(link);
-		DKLog(link+"\n");
-		
-		var top = 0;
 		window.open(link, "_blank", "top=0,left=0,width=800,height=600");
-		
 	}
 }
 
@@ -305,7 +294,7 @@ function Buy_LetGoGetPrice(id, callback)
 	}
 	
 	if(buyItems[num].price){
-		DKLog("Buy_LetGoGetPrice(): already has a price\n");
+		DKLog("Buy_LetGoGetPrice("+id+"): already has a price\n", DKWARN);
 		callback(false);
 		return; 
 	}
