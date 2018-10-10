@@ -70,7 +70,7 @@ function Buy_OnEvent(event)
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/bia", function(){	//bikes
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/bpa", function(){	//boat parts
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/boo", function(){	//boats
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/boo", function(){	//books
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/bka", function(){	//books
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/bfa", function(){	//busniess
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/cta", function(){	//cars+trucks
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/ema", function(){	//cds/dvd/vhs
@@ -359,7 +359,7 @@ function Buy_CraigslistToArry(url, callback)
 	if(!buySettings.craigslistBikes && url == "https://inlandempire.craigslist.org/search/bia"){ callback(); return; }	//bikes
 	if(!buySettings.craigslistBoatParts && url == "https://inlandempire.craigslist.org/search/bpa"){ callback(); return; }	//boat parts
 	if(!buySettings.craigslistBoats && url == "https://inlandempire.craigslist.org/search/boo"){ callback(); return; }	//boats
-	if(!buySettings.craigslistBooks && url == "https://inlandempire.craigslist.org/search/boo"){ callback(); return; }	//books
+	if(!buySettings.craigslistBooks && url == "https://inlandempire.craigslist.org/search/bka"){ callback(); return; }	//books
 	if(!buySettings.craigslistBusniess && url == "https://inlandempire.craigslist.org/search/bfa"){ callback(); return; }	//busniess
 	if(!buySettings.craigslistCarsTrucks && url == "https://inlandempire.craigslist.org/search/cta"){ callback(); return; }	//cars+trucks
 	if(!buySettings.craigslistCdsDvdVhs && url == "https://inlandempire.craigslist.org/search/ema"){ callback(); return; }	//cds/dvd/vhs
@@ -436,7 +436,7 @@ function Buy_CraigslistToArry(url, callback)
 			if(url == "https://inlandempire.craigslist.org/search/bia"){ buyItem.catagory = "bikes"; }	//bikes
 			if(url == "https://inlandempire.craigslist.org/search/bpa"){ buyItem.catagory = "boat parts"; }	//boat parts
 			if(url == "https://inlandempire.craigslist.org/search/boo"){ buyItem.catagory = "boats"; }	//boats
-			if(url == "https://inlandempire.craigslist.org/search/boo"){ buyItem.catagory = "books"; }	//books
+			if(url == "https://inlandempire.craigslist.org/search/bka"){ buyItem.catagory = "books"; }	//books
 			if(url == "https://inlandempire.craigslist.org/search/bfa"){ buyItem.catagory = "busniess"; }	//busniess
 			if(url == "https://inlandempire.craigslist.org/search/cta"){ buyItem.catagory = "cars+trucks"; }	//cars+trucks
 			if(url == "https://inlandempire.craigslist.org/search/ema"){ buyItem.catagory = "cds/dvd/vhs"; }	//cds/dvd/vhs

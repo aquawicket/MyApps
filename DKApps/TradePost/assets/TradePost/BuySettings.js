@@ -22,7 +22,6 @@ function BuySettings_Init()
 		DKAddEvent("BuySettings_craigslistBikes", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistBoatParts", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistBoats", "change", BuySettings_OnEvent);
-		DKAddEvent("BuySettings_craigslistBoats", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistBooks", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistBusniess", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistCarsTrucks", "change", BuySettings_OnEvent);
@@ -172,12 +171,12 @@ function BuySettings_OnEvent(event)
 		Buy_Update();
 	}
 	if(DK_Id(event, "BuySettings_craigslistCarsTrucks")){
-		buySettings.craigslistBoats = DKWidget_GetValue(DK_GetId(event));
+		buySettings.craigslistCarsTrucks = DKWidget_GetValue(DK_GetId(event));
 		Buy_SaveSettings();
 		Buy_Update();
 	}
 	if(DK_Id(event, "BuySettings_craigslistCdsDvdVhs")){
-		buySettings.craigslistCarsTrucks = DKWidget_GetValue(DK_GetId(event));
+		buySettings.craigslistCdsDvdVhs = DKWidget_GetValue(DK_GetId(event));
 		Buy_SaveSettings();
 		Buy_Update();
 	}
@@ -342,8 +341,8 @@ function BuySettings_Update()
 	DKWidget_SetValue("BuySettings_craigslistBoats", buySettings.craigslistBoats);
 	DKWidget_SetValue("BuySettings_craigslistBooks", buySettings.craigslistBooks);
 	DKWidget_SetValue("BuySettings_craigslistBusniess", buySettings.craigslistBusniess);
-	DKWidget_SetValue("BuySettings_craigslistCarsTrucks", buySettings.craigslistBoats);
-	DKWidget_SetValue("BuySettings_craigslistCdsDvdVhs", buySettings.craigslistCarsTrucks);
+	DKWidget_SetValue("BuySettings_craigslistCarsTrucks", buySettings.craigslistCarsTrucks);
+	DKWidget_SetValue("BuySettings_craigslistCdsDvdVhs", buySettings.craigslistCdsDvdVhs);
 	DKWidget_SetValue("BuySettings_craigslistCellPhones", buySettings.craigslistCellPhones);
 	DKWidget_SetValue("BuySettings_craigslistClothesAcc", buySettings.craigslistClothesAcc);
 	DKWidget_SetValue("BuySettings_craigslistCollectibles", buySettings.craigslistCollectibles);
