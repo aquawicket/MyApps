@@ -86,10 +86,12 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
 	
-	DKCreate("TradePost/Helper.js", function(){
-		
-	});
+	//DKCreate("TradePost/Helper.js", function(){});
 	
+	
+	Helper_GetDistance();
+	
+	/*
 	Helper_Queue( function(){ TestFunction(1, function(rval){ DKLog("1 * 2 = "+rval+"\n"); } ); } );
 	Helper_Queue( function(){ TestFunction(2, function(rval){ DKLog("2 * 2 = "+rval+"\n"); } ); } );
 	Helper_Queue( function(){ TestFunction(3, function(rval){ DKLog("3 * 2 = "+rval+"\n"); } ); } );
@@ -99,6 +101,7 @@ function TradePost_Test()
 	Helper_Queue( function(){ TestFunction(7, function(rval){ DKLog("7 * 2 = "+rval+"\n"); } ); } );
 	Helper_Queue( function(){ TestFunction(8, function(rval){ DKLog("8 * 2 = "+rval+"\n"); } ); } );
 	Helper_Queue( function(){ TestFunction(9, function(rval){ DKLog("9 * 2 = "+rval+"\n"); } ); } );
+	*/
 	
 	/*
 	function error(){

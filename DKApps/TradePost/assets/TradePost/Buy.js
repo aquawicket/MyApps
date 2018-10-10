@@ -8,6 +8,7 @@ function Buy_Init()
 {
 	DKLog("Buy_Init()\n", DKDEBUG);
 	DKCreate("TradePost/Buy.html");
+	DKCreate("TradePost/Helper.js", function(){});
 	
 	DKAddEvent("Buy_ScrapCraigslist", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapLetGo", "click", Buy_OnEvent);
@@ -37,6 +38,23 @@ function Buy_OnEvent(event)
 	
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
+		/*
+		Helper_Queue( function(){
+			Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){ Buy_Update(); })
+		});
+		Helper_Queue( function(){
+			Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){ Buy_Update(); })
+		});
+		Helper_Queue( function(){
+			Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){ Buy_Update(); })
+		});
+		Helper_Queue( function(){
+			Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=360", function(){ Buy_Update(); })
+		});
+		Helper_Queue( function(){
+			Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480", function(){ Buy_Update(); })
+		});
+		*/
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){       
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){  
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
