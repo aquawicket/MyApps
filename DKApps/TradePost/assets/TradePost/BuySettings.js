@@ -44,20 +44,17 @@ function BuySettings_OnEvent(event)
 		});
 	}
 	if(DK_Id(event, "BuySettings_hideNoImage")){
-		var val = DKWidget_GetValue("BuySettings_hideNoImage");
-		buySettings.hideNoImage = val;
+		buySettings.hideNoImage = DKWidget_GetValue(DK_GetId(event));
 		Buy_SaveSettings();
 		Buy_Update();
 	}
 	if(DK_Id(event, "BuySettings_lowPrice")){
-		var val = DKWidget_GetValue("BuySettings_lowPrice");
-		buySettings.lowPrice = val;
+		buySettings.lowPrice = DKWidget_GetValue(DK_GetId(event));
 		Buy_SaveSettings();
 		Buy_Update();
 	}
 	if(DK_Id(event, "BuySettings_highPrice")){
-		var val = DKWidget_GetValue("BuySettings_highPrice");
-		buySettings.highPrice = val;
+		buySettings.highPrice = DKWidget_GetValue(DK_GetId(event));
 		Buy_SaveSettings();
 		Buy_Update();
 	}
