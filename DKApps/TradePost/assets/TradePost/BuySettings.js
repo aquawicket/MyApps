@@ -349,4 +349,26 @@ function BuySettings_Update()
 	DKWidget_SetValue("BuySettings_craigslistCollectibles", buySettings.craigslistCollectibles);
 	DKWidget_SetValue("BuySettings_craigslistComputerParts", buySettings.craigslistComputerParts);
 	DKWidget_SetValue("BuySettings_craigslistComputers", buySettings.craigslistComputers);
+	DKWidget_SetValue("BuySettings_craigslistElectronics", buySettings.craigslistElectronics);
+	DKWidget_SetValue("BuySettings_craigslistFarmGarden", buySettings.craigslistFarmGarden);
+	DKWidget_SetValue("BuySettings_craigslistFreeStuff", buySettings.craigslistFreeStuff);
+	DKWidget_SetValue("BuySettings_craigslistFurniture", buySettings.craigslistFurniture);
+	DKWidget_SetValue("BuySettings_craigslistGarageSales", buySettings.craigslistGarageSales);
+	DKWidget_SetValue("BuySettings_craigslistGeneral", buySettings.craigslistGeneral);
+	DKWidget_SetValue("BuySettings_craigslistHeavyEquipment", buySettings.craigslistHeavyEquipment);
+	DKWidget_SetValue("BuySettings_craigslistHousehold", buySettings.craigslistHousehold);
+	DKWidget_SetValue("BuySettings_craigslistJewelry", buySettings.craigslistJewelry);
+	DKWidget_SetValue("BuySettings_craigslistMaterials", buySettings.craigslistMaterials);
+	DKWidget_SetValue("BuySettings_craigslistMotorcycleParts", buySettings.craigslistMotorcycleParts);
+	DKWidget_SetValue("BuySettings_craigslistMotorcycles", buySettings.craigslistMotorcycles);
+	DKWidget_SetValue("BuySettings_craigslistMusicInstr", buySettings.craigslistMusicInstr);
+	DKWidget_SetValue("BuySettings_craigslistPhotoVideo", buySettings.craigslistPhotoVideo);
+	DKWidget_SetValue("BuySettings_craigslistRVs", buySettings.craigslistRVs);
+	DKWidget_SetValue("BuySettings_craigslistSporting", buySettings.craigslistSporting);
+	DKWidget_SetValue("BuySettings_craigslistTickets", buySettings.craigslistTickets);
+	DKWidget_SetValue("BuySettings_craigslistTools", buySettings.craigslistTools);
+	DKWidget_SetValue("BuySettings_craigslistToysGames", buySettings.craigslistToysGames);
+	DKWidget_SetValue("BuySettings_craigslistTrailers", buySettings.craigslistTrailers);
+	DKWidget_SetValue("BuySettings_craigslistVideoGames", buySettings.craigslistVideoGames);
+	DKWidget_SetValue("BuySettings_craigslistWanted", buySettings.craigslistWanted);
 }
