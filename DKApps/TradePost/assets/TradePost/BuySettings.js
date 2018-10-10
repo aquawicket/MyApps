@@ -32,6 +32,28 @@ function BuySettings_Init()
 		DKAddEvent("BuySettings_craigslistCollectibles", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistComputerParts", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistComputers", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistElectronics", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistFarmGarden", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistFreeStuff", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistFurniture", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistGarageSales", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistGeneral", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistHeavyEquipment", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistHousehold", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistJewelry", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistMaterials", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistMotorcycleParts", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistMotorcycles", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistMusicInstr", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistPhotoVideo", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistRVs", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistSporting", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistTickets", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistTools", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistToysGames", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistTrailers", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistVideoGames", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistWanted", "change", BuySettings_OnEvent);	
 	});
 	BuySettings_Update();
 }
