@@ -37,12 +37,13 @@ function Buy_OnEvent(event)
 	
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){
-		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?", function(){       
+		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=120", function(){  
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=240", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=360", function(){
 		Buy_CraigslistToArry("https://inlandempire.craigslist.org/search/sss?s=480", function(){
 			Buy_Update();
+			return;
 		})
 		})
 		})
@@ -51,26 +52,132 @@ function Buy_OnEvent(event)
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
-		Buy_LetGoToArry("https://us.letgo.com/en/q/?lat=33.8124094&lng=-117.91926790000002", function(){ 
-			Buy_Update(); 
+		Buy_LetGoToArry("https://us.letgo.com/en/category/cars", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/housing", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/free-stuff", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/electronics", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/cars-motors", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/sports-leisure-games", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/home-garden", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/movies-books-music", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/fashion-accessories", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/baby-child", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/other", function(){
+		Buy_LetGoToArry("https://us.letgo.com/en/category/services", function(){
+		Buy_LetGoToArry("https://us.letgo.com", function(){
+			Buy_Update();
+			return;
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
-		document.getElementById("Buy_Container").scrollTo(0,0);
-		Buy_OfferUpToArry("https://offerup.com", function(){ 
-			Buy_Update(); 
+		document.getElementById("Buy_Container").scrollTo(0,0);	
+		Buy_OfferUpToArry("https://offerup.com/explore/k/antiques", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/appliances", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/arts-crafts", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/audio-equipment", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/auto-parts", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/baby-kids", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/beauty-health", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/bicycles", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/boats-marine", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/books-magazines", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/business-equipment", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/campers-rvs", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/cars-trucks", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/cds-dvds", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/cell-phones", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/clothing-shoes", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/collectibles", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/computer-equipment", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/electronics", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/exercise", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/free", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/furniture", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/games-toys", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/general", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/home-garden", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/household", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/jewelry-accessories", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/motorcycles", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/musical-instruments", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/pet-supplies", function(){	
+		Buy_OfferUpToArry("https://offerup.com/explore/k/photography", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/software", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/sports-outdoors", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/tickets", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/tools-machinery", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/tvs", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/video-equipment", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/video-games", function(){
+		Buy_OfferUpToArry("https://offerup.com/explore/k/wedding", function(){
+		Buy_OfferUpToArry("https://offerup.com", function(){
+			Buy_Update();
+			return;
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
+		})
 		})
 	}
 	if(DK_Id(event, "Buy_ScrapFacebook")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
 		Buy_FacebookToArry("https://www.facebook.com/marketplace", function(){ 
 			Buy_Update(); 
+			return;
 		})
 	}
 	if(DK_Id(event, "Buy_Settings")){
 		DKCreate("TradePost/BuySettings.js", function(){
 			DKCreate("DKGui/DKFrame.js", function(){
 				DKFrame_Widget("TradePost/BuySettings.html");
+				return;
 			});
 		});
 	}
@@ -78,17 +185,20 @@ function Buy_OnEvent(event)
 		buyItems = []; //clear json
 		Buy_Update();
 		Buy_SaveData();
+		return;
 	}
 	
 	if(DK_IdLike(event, "itemurl")){
 		var num = DK_GetId(event).replace("itemurl","");
 		window.open(buyItems[num].link, "_blank", "top=0,left=0,width=800,height=600");
+		return;
 	}
 	if(DK_IdLike(event, "hide")){
 		DK_StopPropagation(event);
 		var num = DK_GetId(event).replace("hide","");
 		buyItems[num].hidden = true;
 		Buy_Update();
+		return;
 	}
 	if(DK_IdLike(event, "searchEbay")){
 		DK_StopPropagation(event);
@@ -101,7 +211,9 @@ function Buy_OnEvent(event)
 		link += "&LH_Sold=1"; //Show only sold items
 		
 		window.open(link, "_blank", "top=0,left=0,width=800,height=600");
+		return;
 	}
+	return;
 }
 
 ///////////////////////////////////////
@@ -264,9 +376,6 @@ function Buy_LetGoToArry(url, callback)
 	});
 }
 
-
-
-/////  TODO - Buy_LetGoGetPriceTrigger() use something other than the number / id 
 
 
 /////////////////////////////////////
