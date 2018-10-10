@@ -22,6 +22,16 @@ function BuySettings_Init()
 		DKAddEvent("BuySettings_craigslistBikes", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistBoatParts", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistBoats", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistBoats", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistBooks", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistBusniess", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistCarsTrucks", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistCdsDvdVhs", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistCellPhones", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistClothesAcc", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistCollectibles", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistComputerParts", "change", BuySettings_OnEvent);
+		DKAddEvent("BuySettings_craigslistComputers", "change", BuySettings_OnEvent);
 	});
 	BuySettings_Update();
 }
@@ -129,6 +139,51 @@ function BuySettings_OnEvent(event)
 		Buy_SaveSettings();
 		Buy_Update();
 	}
+	if(DK_Id(event, "BuySettings_craigslistBooks")){
+		buySettings.craigslistBooks = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistBusniess")){
+		buySettings.craigslistBusniess = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistCarsTrucks")){
+		buySettings.craigslistBoats = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistCdsDvdVhs")){
+		buySettings.craigslistCarsTrucks = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistCellPhones")){
+		buySettings.craigslistCellPhones = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistClothesAcc")){
+		buySettings.craigslistClothesAcc = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistCollectibles")){
+		buySettings.craigslistCollectibles = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistComputerParts")){
+		buySettings.craigslistComputerParts = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
+	if(DK_Id(event, "BuySettings_craigslistComputers")){
+		buySettings.craigslistComputers = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		Buy_Update();
+	}
 }
 
 /////////////////////////////
@@ -153,4 +208,13 @@ function BuySettings_Update()
 	DKWidget_SetValue("BuySettings_craigslistBikes", buySettings.craigslistBikes);
 	DKWidget_SetValue("BuySettings_craigslistBoatParts", buySettings.craigslistBoatParts);
 	DKWidget_SetValue("BuySettings_craigslistBoats", buySettings.craigslistBoats);
+	DKWidget_SetValue("BuySettings_craigslistBooks", buySettings.craigslistBooks);
+	DKWidget_SetValue("BuySettings_craigslistBusniess", buySettings.craigslistBusniess);
+	DKWidget_SetValue("BuySettings_craigslistCarsTrucks", buySettings.craigslistBoats);
+	DKWidget_SetValue("BuySettings_craigslistCdsDvdVhs", buySettings.craigslistCarsTrucks);
+	DKWidget_SetValue("BuySettings_craigslistCellPhones", buySettings.craigslistCellPhones);
+	DKWidget_SetValue("BuySettings_craigslistClothesAcc", buySettings.craigslistClothesAcc);
+	DKWidget_SetValue("BuySettings_craigslistCollectibles", buySettings.craigslistCollectibles);
+	DKWidget_SetValue("BuySettings_craigslistComputerParts", buySettings.craigslistComputerParts);
+	DKWidget_SetValue("BuySettings_craigslistComputers", buySettings.craigslistComputers);
 }
