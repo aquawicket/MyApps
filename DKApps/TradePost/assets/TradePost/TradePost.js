@@ -109,6 +109,15 @@ function TradePost_Test()
 	
 	//DKCreate("TradePost/Helper.js", function(){});
 	
+	var shown = 0;
+	var max = 12;
+	var arry = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	for(var i=0; (i<arry.length && shown<max); i++){
+		console.log("i="+i);
+		console.log("arry["+i+"]="+arry[i]);
+		
+		shown++
+	}
 	/*
 	var addressA = "26705 Patterson St. Perris CA 92570";
 	var addressB = "EASTVALE/NORCO/CORONA";

@@ -1,7 +1,7 @@
 var buyItems = []; //items stored here, for use with json
 var buySettings = {}; //new object
 var queueSize = 0;
-var itemsPerPage = 20;
+var itemsPerPage = 19;
 var startItem = 0;
 var nextPage = 0;
 var prevPage = 0;
@@ -205,17 +205,17 @@ function Buy_Update()
 		Buy_SortItems('title', true);
 	}
 	
-	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
+	DKWidget_SetInnerHtml("Buy_ItemCount", "Records: "+buyItems.length);
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
 	for(var i=startItem; (i<buyItems.length && shown<itemsPerPage); i++){
-		DKLog("i = "+i+"\n");
-		nextPage = i;
-		//if(nextPage > buyItems.length - itemsPerPage){
-		//	nextPage = buyItems.length - itemsPerPage;
-		//}
-		//prevPage = i - itemsPerPage;
-		//if(prevPage < 0){ prevPage = 0; }
+		nextPage = startItem+itemsPerPage;
+		if(nextPage > buyItems.length - itemsPerPage){
+			nextPage = buyItems.length - itemsPerPage;
+		}
+		prevPage = startItem-itemsPerPage;
+		if(prevPage < 0){ prevPage = 0; }
+		
 		
 		if(buySettings.hideNoImage && !buyItems[i].img){
 			continue;
@@ -232,6 +232,7 @@ function Buy_Update()
 		if(Craigslist_IsFiltered(buyItems[i].catagory)){
 			continue;
 		}
+
 		shown++;
 		var itemdiv = document.createElement('div');
 		itemdiv.id = "itemdiv"+i;
