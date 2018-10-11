@@ -75,12 +75,8 @@ function TradePost_OnEvent(event)
 		DK_QueueDuktape("DKBrowser_NewTab();");
 		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
 	}
-	if(DK_Id(event, "Test")){
-		TradePost_Test();
-	}
-	if(DK_Id(event, "Refresh")){
-		DK_Refresh();
-	}
+	DK_Id(event, "Test") && TradePost_Test();
+	DK_Id(event, "Refresh") && DK_Refresh();
 }
 
 ///////////////////////////////////////////
