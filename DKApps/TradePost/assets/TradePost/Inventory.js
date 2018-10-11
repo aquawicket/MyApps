@@ -1137,7 +1137,7 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 	if(url.indexOf("https://post.craigslist.org") != -1 && url.indexOf("s=editimage") != -1){
 		DK_Run(DKAssets_LocalAssets()+"TradePost/AutoOpener.exe", images); //run the auto opener tool
 		WaitForElement('button[id="plupload"]', 5000, function(rval){  //wait for 5 seconds
-			if(rval == false){
+			if(!rval){
 				console.log("'button[id=\"plupload\"]' NOT FOUND!");
 				return;
 			}
@@ -1188,13 +1188,13 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 		
 	if(url.indexOf("https://us.letgo.com/en") != -1){
 		WaitForElement('button[data-test="chat-button"]', 5000, function(rval){  //wait for 5 seconds
-			if(rval == false){
+			if(!rval){
 				console.log("'button[data-test=\"chat-button\"] NOT FOUND'\n");
 				return;
 			}
 			document.querySelector('button[data-test="sell-your-stuff-button"]').click(); //Sell button
 			WaitForElement('div[class="dropZoneDefault"]', 5000, function(rval){
-				if(rval == false){
+				if(!rval){
 					console.log("'div[class=\"dropZoneDefault\"]' NOT FOUND!");
 					return;
 				}
@@ -1205,20 +1205,20 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 				DK_SetMousePos(x,y);
 				DK_LeftClick();
 				WaitForElement('input[name="price"]', 5000, function(rval){ //Price
-					if(rval == false){
+					if(!rval){
 						console.log("'input[name=\"price\"]' NOT FOUND!");
 						return;
 					}
 					console.log("'input[name=\"price\"]' FOUND!");
 					document.querySelector('input[name="price"]').value = 30;
 					WaitForElement('button[type="submit"]', 5000, function(rval){ //Submit Price
-						if(rval == false){
+						if(!rval){
 							console.log("'button[type=\"submit\"]' NOT FOUND!");
 							return;
 						}
 						document.querySelector('button[type="submit"]').click();
 						WaitForElement('img[src="https://static.letgo.com/site-images/bike.png"]', 60000, function(rval){ //Aditional Options window
-							if(rval == false){ 
+							if(!rval){ 
 								console.log("'img[src=\"https://static.letgo.com/site-images/bike.png\"]' NOT FOUND!"); 
 								return;
 							}
@@ -1227,7 +1227,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 								if(spans[i].innerHTML == "Add more details"){
 									spans[i].parentElement.click();
 									WaitForElement('textarea[name="description"]', 5000, function(rval){ 
-										if(rval == false){
+										if(!rval){
 											console.log("'textarea[name=\"description\"]' NOT FOUND!");
 											return;
 										}

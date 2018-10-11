@@ -113,9 +113,11 @@ function TradePost_Test()
 	
 	//DKCreate("TradePost/Helper.js", function(){});
 	
+	/*
 	var addressA = "26705 Patterson St. Perris CA 92570";
 	var addressB = "EASTVALE/NORCO/CORONA";
 	Helper_GetDistance(addressA, addressB);
+	*/
 	
 	/*
 	Helper_Queue( function(){ TestFunction(1, function(rval){ DKLog("1 * 2 = "+rval+"\n"); } ); } );
