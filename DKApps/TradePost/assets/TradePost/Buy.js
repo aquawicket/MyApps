@@ -1,7 +1,10 @@
 var buyItems = []; //items stored here, for use with json
 var buySettings = {}; //new object
 var queueSize = 0;
-var itemsPerPage = 200;
+var itemsPerPage = 20;
+var startItem = 0;
+var nextPage = 0;
+var prevPage = 0;
 
  
 ///////////////////
@@ -20,6 +23,8 @@ function Buy_Init()
 		DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
 		DKAddEvent("Buy_Settings", "click", Buy_OnEvent);
 		DKAddEvent("Buy_Clear", "click", Buy_OnEvent);
+		DKAddEvent("Buy_Prev", "click", Buy_OnEvent);
+		DKAddEvent("Buy_Next", "click", Buy_OnEvent);
 		Buy_LoadSettings();
 		Buy_LoadData();
 		Buy_Update();
@@ -42,6 +47,14 @@ function Buy_OnEvent(event)
 {
 	DKLog("Buy_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
+	if(DK_Id(event, "Buy_Prev")){
+		startItem = prevPage;
+		Buy_Update();
+	}
+	if(DK_Id(event, "Buy_Next")){
+		startItem = nextPage;
+		Buy_Update();
+	}
 	if(DK_Id(event, "Buy_ScrapCraigslist")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
 		Craigslist_Scrape();
@@ -178,7 +191,7 @@ function Buy_GetUrlString(url, callback)
 function Buy_Update()
 {
 	DKLog("Buy_Update()\n", DKDEBUG);
-	
+	DKLog("startItem = "+startItem+"\n");
 	if(buySettings.sortBy == "Date"){
 		Buy_SortItems('date', false); //newest to oldest
 	}
@@ -195,7 +208,15 @@ function Buy_Update()
 	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
-	for(var i=0; (i<buyItems.length && shown<itemsPerPage); i++){
+	for(var i=startItem; (i<buyItems.length && shown<itemsPerPage); i++){
+		DKLog("i = "+i+"\n");
+		nextPage = i;
+		//if(nextPage > buyItems.length - itemsPerPage){
+		//	nextPage = buyItems.length - itemsPerPage;
+		//}
+		//prevPage = i - itemsPerPage;
+		//if(prevPage < 0){ prevPage = 0; }
+		
 		if(buySettings.hideNoImage && !buyItems[i].img){
 			continue;
 		}
@@ -363,6 +384,9 @@ function Buy_Update()
 		DKAddEvent(hide.id, "click", Buy_OnEvent);
 		DKAddEvent(searchEbay.id, "click", Buy_OnEvent);
 	}
+	
+	DKLog("prevPage = "+prevPage+"\n");
+	DKLog("nextPage = "+nextPage+"\n");
 	
 	DKWidget_SetInnerHtml("Buy_ItemsShown", "Shown: "+shown);
 	Buy_SaveData();
