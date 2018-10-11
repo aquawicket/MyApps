@@ -210,6 +210,8 @@ function Buy_Update()
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
 	for(var i=startItem; (i<buyItems.length && shown<itemsPerPage); i++){
+		
+		//TODO - fix the pages so next and prev work correctly with filters and skiped items
 		nextPage = startItem+itemsPerPage;
 		if(nextPage > buyItems.length - itemsPerPage){
 			nextPage = buyItems.length - itemsPerPage;
