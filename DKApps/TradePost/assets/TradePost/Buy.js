@@ -195,7 +195,7 @@ function Buy_Update()
 	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
-	for(var i=0; (i<buyItems.length && i<itemsPerPage); i++){
+	for(var i=0; (i<buyItems.length && shown<itemsPerPage); i++){
 		if(buySettings.hideNoImage && !buyItems[i].img){
 			continue;
 		}
