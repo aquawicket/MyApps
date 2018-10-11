@@ -206,6 +206,7 @@ function Buy_Update()
 	}
 	
 	DKWidget_SetInnerHtml("Buy_ItemCount", "Records: "+buyItems.length);
+
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
 	for(var i=startItem; (i<buyItems.length && shown<itemsPerPage); i++){
