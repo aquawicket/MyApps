@@ -187,9 +187,9 @@ function DKBrowser_OnEvent(event)
 		return;
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
-		DKLog("DKBrowser_OnEvent("+event+")\n");	
+		DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 		var data = DK_GetValue(event);
-		var arry = data.split(",");
+		var arry = data.split(";");
 		selection = arry[0];
 		source_url = arry[1];
 		link_url = arry[2];

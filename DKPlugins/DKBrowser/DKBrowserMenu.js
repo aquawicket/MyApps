@@ -8,8 +8,41 @@ function DKBrowserMenu_Init()
 	DKAddEvent("DKBrowserMenu_Cut", "click", DKBrowserMenu_OnEvent);
 	DKAddEvent("DKBrowserMenu_Copy", "click", DKBrowserMenu_OnEvent);
 	DKAddEvent("DKBrowserMenu_Paste", "click", DKBrowserMenu_OnEvent);
-	DKAddEvent("DKBrowserMenu_SaveImage", "click", DKBrowserMenu_OnEvent);
-	DKAddEvent("DKBrowserMenu_CopyLink", "click", DKBrowserMenu_OnEvent);
+	
+	DKAddEvent("DKBrowserMenu_OpenImageInNewTab", "click", DKBrowserMenu_OnEvent);
+	DKAddEvent("DKBrowserMenu_SaveImageAs", "click", DKBrowserMenu_OnEvent);
+	DKAddEvent("DKBrowserMenu_CopyImage", "click", DKBrowserMenu_OnEvent);
+	DKAddEvent("DKBrowserMenu_CopyImageAddress", "click", DKBrowserMenu_OnEvent);
+	
+	DKAddEvent("DKBrowserMenu_OpenLinkInNewTab", "click", DKBrowserMenu_OnEvent);
+	DKAddEvent("DKBrowserMenu_OpenLinkInNewWindow", "click", DKBrowserMenu_OnEvent);
+	DKAddEvent("DKBrowserMenu_SaveLinkAs", "click", DKBrowserMenu_OnEvent);
+	DKAddEvent("DKBrowserMenu_CopyLinkAddress", "click", DKBrowserMenu_OnEvent);
+	
+	if(source_url){	
+		DKWidget_Show("DKBrowserMenu_OpenImageInNewTab");
+		DKWidget_Show("DKBrowserMenu_SaveImageAs"); 
+		DKWidget_Show("DKBrowserMenu_CopyImage"); 
+		DKWidget_Show("DKBrowserMenu_CopyImageAddress"); 
+	}
+	else{ 
+		DKWidget_Hide("DKBrowserMenu_OpenImageInNewTab");
+		DKWidget_Hide("DKBrowserMenu_SaveImageAs"); 
+		DKWidget_Hide("DKBrowserMenu_CopyImage"); 
+		DKWidget_Hide("DKBrowserMenu_CopyImageAddress"); 
+	}
+	if(link_url){ 
+		DKWidget_Show("DKBrowserMenu_OpenLinkInNewTab");
+		DKWidget_Show("DKBrowserMenu_OpenLinkInNewWindow"); 
+		DKWidget_Show("DKBrowserMenu_SaveLinkAs"); 
+		DKWidget_Show("DKBrowserMenu_CopyLinkAddress"); 
+	}
+	else{
+		DKWidget_Hide("DKBrowserMenu_OpenLinkInNewTab");
+		DKWidget_Hide("DKBrowserMenu_OpenLinkInNewWindow"); 
+		DKWidget_Hide("DKBrowserMenu_SaveLinkAs"); 
+		DKWidget_Hide("DKBrowserMenu_CopyLinkAddress");  
+	}
 }
 
 ////////////////////////////
@@ -33,11 +66,29 @@ function DKBrowserMenu_OnEvent(event)
 	if(DK_Id(event,"DKBrowserMenu_Paste")){
 		DKBrowserMenu_Paste();
 	}
-	if(DK_Id(event,"DKBrowserMenu_SaveImage")){
-		DKBrowserMenu_SaveImage();
+	if(DK_Id(event,"DKBrowserMenu_OpenImageInNewTab")){
+		DKBrowserMenu_OpenImageInNewTab();
 	}
-	if(DK_Id(event,"DKBrowserMenu_CopyLink")){
-		DKBrowserMenu_CopyLink();
+	if(DK_Id(event,"DKBrowserMenu_SaveImageAs")){
+		DKBrowserMenu_SaveImageAs();
+	}
+	if(DK_Id(event,"DKBrowserMenu_CopyImage")){
+		DKBrowserMenu_CopyImage();
+	}
+	if(DK_Id(event,"DKBrowserMenu_CopyImageAddress")){
+		DKBrowserMenu_CopyImageAddress();
+	}
+	if(DK_Id(event,"DKBrowserMenu_OpenLinkInNewTab")){
+		DKBrowserMenu_OpenLinkInNewTab();
+	}
+	if(DK_Id(event,"DKBrowserMenu_OpenLinkInNewWindow")){
+		DKBrowserMenu_OpenLinkInNewWindow();
+	} 
+	if(DK_Id(event,"DKBrowserMenu_SaveLinkAs")){
+		DKBrowserMenu_SaveLinkAs();
+	} 
+	if(DK_Id(event,"DKBrowserMenu_CopyLinkAddress")){
+		DKBrowserMenu_CopyLinkAddress();
 	}
 	
 	if(DK_Id(event, "GLOBAL")){
@@ -88,19 +139,67 @@ function DKBrowserMenu_Paste()
 	}
 }
 
-//////////////////////////////////
-function DKBrowserMenu_SaveImage()
+//////////////////////////////////////////
+function DKBrowserMenu_OpenImageInNewTab()
 {
-	DKLog("DKBrowserMenu_SaveImage()\n");
+	DKLog("DKBrowserMenu_OpenImageInNewTab()\n", DKDEBUG);
 	if(source_url){
-		DKCef_DownloadUrl(source_url);
+		//window.open(source_url, "_blank", "width=900,height=700");
 	}
 }
 
-/////////////////////////////////
-function DKBrowserMenu_CopyLink()
+////////////////////////////////////
+function DKBrowserMenu_SaveImageAs()
 {
-	DKLog("DKBrowserMenu_CopyLink()\n");
+	DKLog("DKBrowserMenu_SaveImageAs()\n", DKDEBUG);
+	if(source_url){
+		DKCef_DownloadUrl("",source_url);
+	}
+}
+
+//////////////////////////////////
+function DKBrowserMenu_CopyImage()
+{
+	DKLog("DKBrowserMenu_CopyImage()\n", DKDEBUG);
+}
+
+/////////////////////////////////////////
+function DKBrowserMenu_CopyImageAddress()
+{
+	DKLog("DKBrowserMenu_CopyImageAddress()\n", DKDEBUG);
+	if(source_url){
+		DK_SetClipboard(source_url);
+	}
+}
+
+/////////////////////////////////////////
+function DKBrowserMenu_OpenLinkInNewTab()
+{
+	DKLog("DKBrowserMenu_OpenLinkInNewTab()\n", DKDEBUG);
+}
+
+////////////////////////////////////////////
+function DKBrowserMenu_OpenLinkInNewWindow()
+{
+	DKLog("DKBrowserMenu_OpenLinkInNewWindow()\n", DKDEBUG);
+	if(link_url){
+		//window.open(link_url, "_blank", "width=900,height=700");
+	}
+}
+
+///////////////////////////////////
+function DKBrowserMenu_SaveLinkAs()
+{
+	DKLog("DKBrowserMenu_SaveLinkAs()\n", DKDEBUG);
+	if(link_url){
+		DKCef_DownloadUrl("",link_url);
+	}
+}
+
+////////////////////////////////////////
+function DKBrowserMenu_CopyLinkAddress()
+{
+	DKLog("DKBrowserMenu_CopyLinkAddress()\n", DKDEBUG);
 	if(link_url){
 		DK_SetClipboard(link_url);
 	}
