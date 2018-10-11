@@ -9,22 +9,24 @@ function Buy_Init()
 {
 	DKLog("Buy_Init()\n", DKDEBUG);
 	DKCreate("TradePost/Buy.html");
-	DKCreate("TradePost/Helper.js", function(){});
-	DKCreate("TradePost/Craigslist.js", function(){});
-	DKCreate("TradePost/Letgo.js", function(){});
-	DKCreate("TradePost/Offerup.js", function(){});
-	
-	DKAddEvent("Buy_ScrapCraigslist", "click", Buy_OnEvent);
-	DKAddEvent("Buy_ScrapLetGo", "click", Buy_OnEvent);
-	DKAddEvent("Buy_ScrapOfferUp", "click", Buy_OnEvent);
-	DKAddEvent("Buy_ScrapFacebook", "click", Buy_OnEvent);
-	DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
-	DKAddEvent("Buy_Settings", "click", Buy_OnEvent);
-	DKAddEvent("Buy_Clear", "click", Buy_OnEvent);
-	
-	Buy_LoadSettings();
-	Buy_LoadData();
-	Buy_Update();
+	DKCreate("TradePost/Helper.js", function(){
+	DKCreate("TradePost/Craigslist.js", function(){
+	DKCreate("TradePost/Letgo.js", function(){
+	DKCreate("TradePost/Offerup.js", function(){
+		DKAddEvent("Buy_ScrapCraigslist", "click", Buy_OnEvent);
+		DKAddEvent("Buy_ScrapLetGo", "click", Buy_OnEvent);
+		DKAddEvent("Buy_ScrapOfferUp", "click", Buy_OnEvent);
+		DKAddEvent("Buy_ScrapFacebook", "click", Buy_OnEvent);
+		DKAddEvent("Buy_ScrapEbay", "click", Buy_OnEvent);
+		DKAddEvent("Buy_Settings", "click", Buy_OnEvent);
+		DKAddEvent("Buy_Clear", "click", Buy_OnEvent);
+		Buy_LoadSettings();
+		Buy_LoadData();
+		Buy_Update();
+	});
+	});
+	});
+	});
 }
 
 //////////////////
@@ -205,6 +207,9 @@ function Buy_Update()
 		}
 		if(buySettings.highPrice && buyItems[i].price){
 			if(buyItems[i].price > buySettings.highPrice){ continue; }
+		}
+		if(Craigslist_IsFiltered(buyItems[i].catagory)){
+			continue;
 		}
 		shown++;
 		var itemdiv = document.createElement('div');

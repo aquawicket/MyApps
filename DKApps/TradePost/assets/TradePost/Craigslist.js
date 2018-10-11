@@ -293,3 +293,53 @@ function Craigslist_ToArry(url, callback)
 		callback();
 	});
 }
+
+////////////////////////////////////////
+function Craigslist_IsFiltered(catagory)
+{
+	if(!buySettings.craigslistAntiques && catagory == "antiques"){ return true; }
+	if(!buySettings.craigslistAppliances && catagory == "appliances"){ return true; }
+	if(!buySettings.craigslistArtsCrafts && catagory == "arts+crafts"){ return true; }
+	if(!buySettings.craigslistAtvsUtvsSnow && catagory == "atvs/utvs/snow"){ return true; }
+	if(!buySettings.craigslistAutoParts && catagory == "auto parts"){ return true; }
+	if(!buySettings.craigslistAutoWheelsTires && catagory == "auto wheels & tires"){ return true; }
+	if(!buySettings.craigslistAviation && catagory == "aviation"){ return true; }
+	if(!buySettings.craigslistBabyKids && catagory == "baby+kids"){ return true; }
+	if(!buySettings.craigslistBarter && catagory == "barter"){ return true; }
+	if(!buySettings.craigslistBeautyHlth && catagory == "beauty+hlth"){ return true; }
+	if(!buySettings.craigslistBikeParts && catagory == "bike parts"){ return true; }
+	if(!buySettings.craigslistBikes && catagory == "bikes"){ return true; }
+	if(!buySettings.craigslistBoatParts && catagory == "boat parts"){ return true; }
+	if(!buySettings.craigslistBoats && catagory == "boats"){ return true; }
+	if(!buySettings.craigslistBooks && catagory == "books"){ return true; }
+	if(!buySettings.craigslistBusniess && catagory == "busniess"){ return true; }
+	if(!buySettings.craigslistCarsTrucks && catagory == "cars+trucks"){ return true; }
+	if(!buySettings.craigslistCdsDvdVhs && catagory == "cds/dvd/vhs"){ return true; }
+	if(!buySettings.craigslistCellPhones && catagory == "cell phones"){ return true; }
+	if(!buySettings.craigslistClothesAcc && catagory == "clothes+acc"){ return true; }
+	if(!buySettings.craigslistCollectibles && catagory == "collectibles"){ return true; }
+	if(!buySettings.craigslistComputerParts && catagory == "computer parts"){ return true; }
+	if(!buySettings.craigslistComputers && catagory == "computers"){ return true; }
+	if(!buySettings.craigslistElectronics && catagory == "electronics"){ return true; }
+	if(!buySettings.craigslistFarmGarden && catagory == "farm+garden"){ return true; }
+	if(!buySettings.craigslistFreeStuff && catagory == "free stuff"){ return true; }
+	if(!buySettings.craigslistFurniture && catagory == "furniture"){ return true; }
+	if(!buySettings.craigslistGarageSales && catagory == "garage sales"){ return true; }
+	if(!buySettings.craigslistGeneral && catagory == "general"){ return true; }
+	if(!buySettings.craigslistHeavyEquipment && catagory == "heavy equipment"){ return true; }
+	if(!buySettings.craigslistHousehold && catagory == "household"){ return true; }
+	if(!buySettings.craigslistJewelry && catagory == "jewelry"){ return true; }
+	if(!buySettings.craigslistMaterials && catagory == "materials"){ return true; }
+	if(!buySettings.craigslistMotorcycleParts && catagory == "motorcycle parts"){ return true; }
+	if(!buySettings.craigslistMotorcycles && catagory == "motorcycles"){ return true; }
+	if(!buySettings.craigslistMusicInstr && catagory == "music instr"){ return true; }
+	if(!buySettings.craigslistPhotoVideo && catagory == "photo+video"){ return true; }
+	if(!buySettings.craigslistRVs && catagory == "RVs"){ return true; }
+	if(!buySettings.craigslistSporting && catagory == "sporting"){ return true; }
+	if(!buySettings.craigslistTickets && catagory == "tickets"){ return true; }
+	if(!buySettings.craigslistTools && catagory == "tools"){ return true; }
+	if(!buySettings.craigslistToysGames && catagory == "toys+games"){ return true; }
+	if(!buySettings.craigslistTrailers && catagory == "trailers"){ return true; }
+	if(!buySettings.craigslistVideoGames && catagory == "video games"){ return true; }
+	if(!buySettings.craigslistWanted && catagory == "wanted"){ return true; }
+}
