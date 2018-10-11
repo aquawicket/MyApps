@@ -12,7 +12,7 @@ function Find_End()
 {
 	DKLog("Find_End()", DKDEBUG);
 	DKRemoveEvents(Find_OnEvent);
-	DKCef_Find("DKBrowser_cef", ""); //FIXME: not working
+	DKCef_Find("DKBrowser_cef", 0, ""); //FIXME: not working
 	DKClose("DKBrowser/Find.html");
 }
 
