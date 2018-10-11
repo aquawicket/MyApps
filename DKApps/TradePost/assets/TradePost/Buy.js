@@ -471,6 +471,8 @@ function Buy_CraigslistToArry(url, callback)
 			buyItem.title = items[i].getElementsByClassName("result-title hdrlnk")[0].innerHTML;  //title
 			if(items[i].getElementsByClassName("result-hood")[0]){
 				buyItem.loc = items[i].getElementsByClassName("result-hood")[0].innerHTML; //location
+				buyItem.loc = buyItem.loc.replace("(","");
+				buyItem.loc = buyItem.loc.replace(")","");
 			}
 			var img = items[i].getElementsByClassName("result-image gallery")[0].getAttribute("data-ids");
 			if(img){

@@ -114,7 +114,7 @@ function TradePost_Test()
 	//DKCreate("TradePost/Helper.js", function(){});
 	
 	
-	Helper_GetDistance();
+	//Helper_GetDistance();
 	
 	/*
 	Helper_Queue( function(){ TestFunction(1, function(rval){ DKLog("1 * 2 = "+rval+"\n"); } ); } );
@@ -128,13 +128,12 @@ function TradePost_Test()
 	Helper_Queue( function(){ TestFunction(9, function(rval){ DKLog("9 * 2 = "+rval+"\n"); } ); } );
 	*/
 	
-	/*
+	
 	function error(){
 		var foo = {};
 		return foo.bar();
 	}
 	error();
-	*/
 
 	//var source = DKCef_GetPageSource("", 0);
 	//DKLog("source = "+source+"\n");
