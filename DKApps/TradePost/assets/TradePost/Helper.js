@@ -59,14 +59,14 @@ function Helper_LoadGoogleMapsApi(callback)
 	return true;
 }
 
-/////////////////////////////
-function Helper_GetDistance()
+///////////////////////////////////////////////
+function Helper_GetDistance(addressA, addressB)
 {
 	var directionsService = new google.maps.DirectionsService();
 
 	var request = {
-		origin      : '26705 Patterson St. Perris CA 92570', // a city, full address, landmark etc
-		destination : 'Lake Elsinore, CA',
+		origin      : addressA, // a city, full address, landmark etc
+		destination : addressB,
 		travelMode  : google.maps.DirectionsTravelMode.DRIVING
 	};
 

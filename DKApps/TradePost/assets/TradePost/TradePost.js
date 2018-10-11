@@ -113,8 +113,9 @@ function TradePost_Test()
 	
 	//DKCreate("TradePost/Helper.js", function(){});
 	
-	
-	//Helper_GetDistance();
+	var addressA = "26705 Patterson St. Perris CA 92570";
+	var addressB = "EASTVALE/NORCO/CORONA";
+	Helper_GetDistance(addressA, addressB);
 	
 	/*
 	Helper_Queue( function(){ TestFunction(1, function(rval){ DKLog("1 * 2 = "+rval+"\n"); } ); } );
@@ -128,12 +129,13 @@ function TradePost_Test()
 	Helper_Queue( function(){ TestFunction(9, function(rval){ DKLog("9 * 2 = "+rval+"\n"); } ); } );
 	*/
 	
-	
+	/*
 	function error(){
 		var foo = {};
 		return foo.bar();
 	}
 	error();
+	*/
 
 	//var source = DKCef_GetPageSource("", 0);
 	//DKLog("source = "+source+"\n");
