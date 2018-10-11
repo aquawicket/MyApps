@@ -1,6 +1,7 @@
 var buyItems = []; //items stored here, for use with json
 var buySettings = {}; //new object
 var queueSize = 0;
+var itemsPerPage = 200;
 
  
 ///////////////////
@@ -860,7 +861,7 @@ function Buy_Update()
 	DKWidget_SetInnerHtml("Buy_ItemCount", "Items: "+buyItems.length);
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
-	for(var i=0; i<buyItems.length; i++){
+	for(var i=0; (i<buyItems.length && i<itemsPerPage); i++){
 		if(buySettings.hideNoImage && !buyItems[i].img){
 			continue;
 		}
