@@ -20,6 +20,7 @@ function Craigslist_OnEvent(event)
 ////////////////////////////
 function Craigslist_Scrape()
 {
+	DKLog("Craigslist_Scrape()\n", DKDEBUG);
 	/*
 	Helper_Queue( function(){
 		Craigslist_ToArry("https://inlandempire.craigslist.org/search/sss?", function(){ Buy_Update(); })
@@ -131,11 +132,10 @@ function Craigslist_Scrape()
 	})
 }
 
-////////////////////////////////////////////
+/////////////////////////////////////////
 function Craigslist_ToArry(url, callback)
 {
 	DKLog("Craigslist_ToArry("+url+", callback)\n", DKDEBUG);
-	
 	if(!buySettings.craigslistAntiques && url == "https://inlandempire.craigslist.org/search/ata"){ callback(); return; }	//antiques
 	if(!buySettings.craigslistAppliances && url == "https://inlandempire.craigslist.org/search/ppa"){ callback(); return; }	//appliances
 	if(!buySettings.craigslistArtsCrafts && url == "https://inlandempire.craigslist.org/search/ara"){ callback(); return; }	//arts+crafts

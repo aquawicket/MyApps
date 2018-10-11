@@ -11,6 +11,8 @@ function Buy_Init()
 	DKCreate("TradePost/Buy.html");
 	DKCreate("TradePost/Helper.js", function(){});
 	DKCreate("TradePost/Craigslist.js", function(){});
+	DKCreate("TradePost/Letgo.js", function(){});
+	DKCreate("TradePost/Offerup.js", function(){});
 	
 	DKAddEvent("Buy_ScrapCraigslist", "click", Buy_OnEvent);
 	DKAddEvent("Buy_ScrapLetGo", "click", Buy_OnEvent);
@@ -44,118 +46,11 @@ function Buy_OnEvent(event)
 	}
 	if(DK_Id(event, "Buy_ScrapLetGo")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
-		Buy_LetGoToArry("https://us.letgo.com/en/category/cars", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/housing", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/electronics", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/cars-motors", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/sports-leisure-games", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/home-garden", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/movies-books-music", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/fashion-accessories", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/baby-child", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/other", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/services", function(){
-		Buy_LetGoToArry("https://us.letgo.com/en/category/free-stuff", function(){
-			Buy_Update();
-			return;
-		})
-
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
+		Letgo_Scrape();
 	}
 	if(DK_Id(event, "Buy_ScrapOfferUp")){
-		document.getElementById("Buy_Container").scrollTo(0,0);	
-		Buy_OfferUpToArry("https://offerup.com/explore/k/antiques", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/appliances", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/arts-crafts", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/audio-equipment", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/auto-parts", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/baby-kids", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/beauty-health", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/bicycles", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/boats-marine", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/books-magazines", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/business-equipment", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/campers-rvs", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/cars-trucks", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/cds-dvds", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/cell-phones", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/clothing-shoes", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/collectibles", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/computer-equipment", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/electronics", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/exercise", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/free", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/furniture", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/games-toys", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/general", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/home-garden", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/household", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/jewelry-accessories", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/motorcycles", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/musical-instruments", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/pet-supplies", function(){	
-		Buy_OfferUpToArry("https://offerup.com/explore/k/photography", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/software", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/sports-outdoors", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/tickets", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/tools-machinery", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/tvs", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/video-equipment", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/video-games", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/wedding", function(){
-		Buy_OfferUpToArry("https://offerup.com/explore/k/free", function(){
-			Buy_Update();
-			return;
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
+		document.getElementById("Buy_Container").scrollTo(0,0);
+		Offerup_Scrape();
 	}
 	if(DK_Id(event, "Buy_ScrapFacebook")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
@@ -233,158 +128,6 @@ function Buy_GetFirstAvailableId()
 	return id;
 }
 
-///////////////////////////////////////
-function Buy_LetGoToArry(url, callback)
-{
-	Buy_GetUrlString(url, function(rstring){
-		if(!rstring){ 
-			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN);
-			return;
-		}
-		
-		var div = document.createElement('div');
-		div.innerHTML = rstring;
-				
-		var items = div.querySelectorAll('div[class*="feed-item"]');
-		for(var i=0; i<items.length; i++){
-			//DKLog(items[i].innerHTML+"\n");
-			var div1 = items[i].firstChild.firstChild.firstChild; // <div class="sc-...">
-			if(!div1){ DKLog("div1 invalid\n"); continue; }
-			var div2 = div1.firstChild; // <div>
-			if(!div2){ DKLog("div2 invalid\n"); continue; }
-			var inner = div2.firstChild; //<div class="inner">
-			if(!inner){ DKLog("inner invalid\n"); continue; }
-			var img = inner.firstChild.firstChild; //<img>
-			if(!img){ DKLog("img invalid\n"); continue; }
-			var footer = div2.childNodes[1]; //<div class="footer">
-			if(!footer){ DKLog("div3 invalid\n"); continue; }
-			var div4 = footer.firstChild; // <div class="sc-...">
-			if(!div4){ DKLog("div4 invalid\n"); continue; }
-			var p = div4.firstChild; //<p class="sc-..."> //url, title
-			if(!p){ DKLog("p invalid\n"); continue; }
-			var p2 = div4.childNodes[1]; //<p class="sc-..."> //location
-			if(!p2){ DKLog("p2 invalid\n"); continue; }
-			var a = p.firstChild; //< a href="url">
-			if(!a){ DKLog("a invalid\n"); continue; }
-			
-			var link = a.href; //url
-			if(!link){ DKLog("link invalid\n"); continue; }
-			link = link.replace("file:///C:", "https://us.letgo.com");
-			var title = a.title; //title
-			if(!title){ DKLog("title invalid\n"); continue; }
-			var loc = p2.innerHTML; //location
-			if(!loc){ DKLog("loc invalid\n"); continue; }
-			var img = img.src;
-			if(!img){ DKLog("img invalid\n"); continue; }
-			
-			if(Buy_CheckForDuplicate(link)){ continue; }
-			
-			/*
-			DKLog("##########################\n");
-			DKLog("url = "+link+"\n");
-			DKLog("title = "+title+"\n");
-			DKLog("img = "+img+"\n");
-			DKLog("loc = "+loc+"\n");
-			DKLog("price = "+price+"\n");
-			*/
-			
-			buyItems.push({}); //new object
-			var buyItem = buyItems[buyItems.length-1];
-			buyItem.id = Buy_GetFirstAvailableId(); //id	
-			buyItem.date = new Date().toJSON();
-			buyItem.providerImg = "TradePost/letgo.png"; //host banner
-			buyItem.title = title;
-			buyItem.loc = loc;
-			buyItem.img = img;
-			buyItem.link = link;
-			if(url == "https://us.letgo.com/en/category/cars"){ buyItem.catagory = "cars"; }
-			if(url == "https://us.letgo.com/en/category/housing"){ buyItem.catagory = "housing"; }
-			if(url == "https://us.letgo.com/en/category/electronics"){ buyItem.catagory = "electronics"; }
-			if(url == "https://us.letgo.com/en/category/cars-motors"){ buyItem.catagory = "cars-motors"; }
-			if(url == "https://us.letgo.com/en/category/sports-leisure-games"){ buyItem.catagory = "sports-leisure-games"; }
-			if(url == "https://us.letgo.com/en/category/home-garden"){ buyItem.catagory = "home-garden"; }
-			if(url == "https://us.letgo.com/en/category/movies-books-music"){ buyItem.catagory = "movies-books-music"; }
-			if(url == "https://us.letgo.com/en/category/fashion-accessories"){ buyItem.catagory = "fashion-accessories"; }
-			if(url == "https://us.letgo.com/en/category/baby-child"){ buyItem.catagory = "baby-child"; }
-			if(url == "https://us.letgo.com/en/category/other"){ buyItem.catagory = "other"; }
-			if(url == "https://us.letgo.com/en/category/services"){ buyItem.catagory = "services"; }
-			if(url == "https://us.letgo.com/en/category/free-stuff"){ buyItem.catagory = "free"; }
-		}				
-		callback();
-	});
-}
-
-
-
-/////////////////////////////////////
-function Buy_LetGoGetPriceTrigger(id)
-{
-	DKLog("Buy_LetGoGetPriceTrigger("+id+")\n", DKDEBUG);
-	
-	queueSize++;
-	
-	setTimeout(function(){
-		Buy_LetGoGetPrice(id, function(rval){ 
-			queueSize--;
-			if(rval){
-				Buy_SaveData();
-			}
-		});
-	}, 5000*queueSize);
-}
-
-////////////////////////////////////////
-function Buy_LetGoGetPrice(id, callback)
-{
-	DKLog("Buy_LetGoGetPrice("+id+",callback)\n", DKDEBUG);
-	
-	//get item number
-	var num = -1;
-	for(var i=0; i<buyItems.length; i++){
-		if(id == buyItems[i].id){
-			num = i;
-		}
-	}
-	if(num == -1){ 
-		DKLog("Buy_LetGoGetPrice("+id+", "+callback+"): could not find item with matching id\n", DKERROR);
-		return false; 
-	}
-	
-	if(buyItems[num].price){
-		DKLog("Buy_LetGoGetPrice("+id+"): already has a price\n", DKWARN);
-		callback(false);
-		return; 
-	}
-	var url = buyItems[num].link;
-	Buy_GetUrlString(url, function(rstring){
-		if(!rstring){ 
-			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
-			callback(false);
-			return;
-		}
-		var div = document.createElement('div');
-		div.innerHTML = rstring;
-		
-		var element = div.querySelector('div[class="price"][data-test="price"]');
-		if(!element){ DKLog("element invalid\n"); }
-	
-		var price = element.innerHTML;
-		price = price.replace("<span>", "");
-		price = price.replace("</span>", "");
-		
-		for(var i=0; i<buyItems.length; i++){
-			if(buyItems[i].link == url){
-				buyItems[i].price = price.replace("$","");
-				var ele = document.getElementById("itemprice"+i);
-				if(!ele){ DKLog("can't find itemprice"+i+"\n"); continue; }
-				ele.innerHTML = "$"+buyItems[i].price;
-			}
-		}
-		
-		callback(true);
-	});
-}
-
 /////////////////////////////////////////
 function Buy_OfferUpToArry(url, callback)
 {
@@ -392,7 +135,7 @@ function Buy_OfferUpToArry(url, callback)
 	
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
-			DKLog("Buy_LetGoToArry(): rstring invalid\n", DKWARN); 
+			DKLog("Buy_OfferUpToArry(): rstring invalid\n", DKWARN); 
 			return;
 		}
 	
@@ -725,7 +468,7 @@ function Buy_Update()
 		
 		if(buyItems[i].providerImg == "TradePost/letgo.png"){
 			if(!buyItems[i].price){
-				//Buy_LetGoGetPriceTrigger(buyItems[i].id);
+				//Letgo_TriggerGetPrice(buyItems[i].id);
 			}
 		}
 		
