@@ -54,10 +54,7 @@ function Buy_OnEvent(event)
 	}
 	if(DK_Id(event, "Buy_ScrapFacebook")){
 		document.getElementById("Buy_Container").scrollTo(0,0);
-		Buy_FacebookToArry("https://www.facebook.com/marketplace", function(){ 
-			Buy_Update(); 
-			return;
-		})
+		Facebook_Scrape();
 	}
 	if(DK_Id(event, "Buy_Settings")){
 		DKCreate("TradePost/BuySettings.js", function(){
@@ -73,7 +70,6 @@ function Buy_OnEvent(event)
 		Buy_SaveData();
 		return;
 	}
-	
 	if(DK_IdLike(event, "itemurl")){
 		var num = DK_GetId(event).replace("itemurl","");
 		window.open(buyItems[num].link, "_blank", "top=0,left=0,width=900,height=700");
@@ -126,37 +122,6 @@ function Buy_GetFirstAvailableId()
 		}
 	}
 	return id;
-}
-
-//////////////////////////////////////////
-function Buy_FacebookToArry(url, callback)
-{
-	DKLog("Buy_FacebookToArry("+url+",callback)\n");
-	
-	Buy_GetUrlString(url, function(rstring){
-		if(!rstring){ 
-			DKLog("Buy_FacebookToArry(): rstring invalid\n", DKWARN); 
-			return;
-		}
-		//DKLog(rstring+"\n");
-		//var div = document.createElement('div');
-		//div.innerHTML = rstring;
-		
-		//We have to extract the items through raw text
-		//TODO
-		DKFile_StringToFile(rstring, "facebookMarket.html", true);
-		
-		var first_link = rstring.indexOf("share_uri");
-		DKLog("first_link found at "+first_link+"\n");
-		/*
-		for(var i=0; i<items.length; i++){
-			DKLog("Item Found\n");
-			//TODO
-		}
-		*/
-		
-		callback();
-	});
 }
 
 ////////////////////////////////////////
