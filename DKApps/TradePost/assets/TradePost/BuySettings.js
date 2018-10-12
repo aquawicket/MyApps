@@ -7,7 +7,7 @@ function BuySettings_Init()
 		DKAddEvent("BuySettings_lowPrice", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_highPrice", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_sortBy", "click", BuySettings_OnEvent);
-		
+		DKAddEvent("BuySettings_craigslistLocation", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistAntiques", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistAppliances", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistArtsCrafts", "change", BuySettings_OnEvent);
@@ -90,6 +90,11 @@ function BuySettings_OnEvent(event)
 		Buy_Update();
 	}
 	
+	if(DK_Id(event, "BuySettings_craigslistLocation")){
+		buySettings.craigslistLocation = DKWidget_GetValue(DK_GetId(event));
+		Buy_SaveSettings();
+		//Buy_Update();
+	}
 	if(DK_Id(event, "BuySettings_craigslistAntiques")){
 		buySettings.craigslistAntiques = DKWidget_GetValue(DK_GetId(event));
 		Buy_SaveSettings();
@@ -325,6 +330,7 @@ function BuySettings_Update()
 	DKWidget_SetValue("BuySettings_highPrice", buySettings.highPrice);
 	DKWidget_SetValue("BuySettings_sortBy", buySettings.sortBy);
 	
+	buySettings.craigslistLocation && DKWidget_SetValue("BuySettings_craigslistLocation", buySettings.craigslistLocation);
 	DKWidget_SetValue("BuySettings_craigslistAntiques", buySettings.craigslistAntiques);
 	DKWidget_SetValue("BuySettings_craigslistAppliances", buySettings.craigslistAppliances);
 	DKWidget_SetValue("BuySettings_craigslistArtsCrafts", buySettings.craigslistArtsCrafts);
