@@ -105,7 +105,7 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "craigslistLink")){
 		currentItem = DK_GetId(event).replace("craigslistLink","");
-		window.open("https://inlandempire.craigslist.org/d/for-sale/search/sss", "_blank", "width=800,height=600");
+		window.open("https://craigslist.org/d/for-sale/search/sss", "_blank", "width=800,height=600");
 		return;
 	}
 	if(DK_IdLike(event, "craigslistPost")){

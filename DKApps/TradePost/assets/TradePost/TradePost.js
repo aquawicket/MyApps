@@ -57,7 +57,7 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://inlandempire.craigslist.org/d/for-sale/search/sss');");
+		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://craigslist.org/d/for-sale/search/sss');");
 	}
 	if(DK_Id(event, "Letgo")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
