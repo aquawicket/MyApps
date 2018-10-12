@@ -2,8 +2,8 @@
 function DKBrowserMenu_Init()
 {
 	DKCreate("DKBrowser/DKBrowserMenu.html");
-	DKWidget_SetProperty("DKBrowserMenu.html","top",DKWindow_GetMouseY()+"px");
-	DKWidget_SetProperty("DKBrowserMenu.html","left",DKWindow_GetMouseX()+"px");
+	DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","top",DKWindow_GetMouseY()+"px");
+	DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","left",DKWindow_GetMouseX()+"px");
 	DKAddEvent("GLOBAL", "mousedown", DKBrowserMenu_OnEvent);
 	DKAddEvent("DKBrowserMenu_Cut", "click", DKBrowserMenu_OnEvent);
 	DKAddEvent("DKBrowserMenu_Copy", "click", DKBrowserMenu_OnEvent);
@@ -92,7 +92,7 @@ function DKBrowserMenu_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "GLOBAL")){
-		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "DKBrowserMenu.html")){
+		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "DKBrowser/DKBrowserMenu.html")){
 			return;
 		}
 	}
@@ -150,7 +150,8 @@ function DKBrowserMenu_OpenImageInNewTab()
 {
 	DKLog("DKBrowserMenu_OpenImageInNewTab()\n", DKDEBUG);
 	if(source_url){
-		//window.open(source_url, "_blank", "width=900,height=700");
+		DKBrowser_NewTab();
+		DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), source_url);
 	}
 }
 
@@ -182,6 +183,10 @@ function DKBrowserMenu_CopyImageAddress()
 function DKBrowserMenu_OpenLinkInNewTab()
 {
 	DKLog("DKBrowserMenu_OpenLinkInNewTab()\n", DKDEBUG);
+	if(link_url){
+		DKBrowser_NewTab();
+		DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), link_url);
+	}
 }
 
 ////////////////////////////////////////////

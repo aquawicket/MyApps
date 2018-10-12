@@ -153,7 +153,11 @@ function DKBrowser_OnEvent(event)
 		DKCef_RemoveFocus("DKBrowser_cef");
 		//TODO: select all text
 		if(DK_Type(event, "contextmenu")){
-			DKCreate("DKBrowser/DKBrowserMenu.js");
+			DKCreate("DKBrowser/DKBrowserMenu.js", function(){
+				DKCreate("DKGui/DKMenu.js", function(){
+					DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html");
+				});
+			});
 		}
 	}
 	if(DK_Id(event, "GoButton")){
@@ -193,7 +197,11 @@ function DKBrowser_OnEvent(event)
 		selection = arry[0];
 		source_url = arry[1];
 		link_url = arry[2];
-		DKCreate("DKBrowser/DKBrowserMenu.js");
+		DKCreate("DKBrowser/DKBrowserMenu.js", function(){
+			DKCreate("DKGui/DKMenu.js", function(){
+				DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html");
+			});
+		});
 	}
 	if(DK_Type(event, "DKCef_OnFullscreen")){
 		DKLog("DKCef_OnFullscreen");
