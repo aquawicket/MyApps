@@ -53,7 +53,6 @@ function BuySettings_Init()
 		DKAddEvent("BuySettings_craigslistTrailers", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistVideoGames", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistWanted", "change", BuySettings_OnEvent);
-		
 		BuySettings_Update();
 	});
 }

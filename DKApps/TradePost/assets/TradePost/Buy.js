@@ -425,16 +425,14 @@ function Buy_LoadSettings()
 	DKLog("Buy_LoadSettings()\n");//
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buySettings.json")){
 		DKLog("Buy_LoadData(): buySettings.json does not exist\n", DKERROR);
+		if(!buySettings.sortBy){ buySettings.sortBy = "Date"; }
 		return;
 	}
 	var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/buySettings.json");
 	if(json){
 		buySettings = JSON.parse(json);
 	}
-	
-	if(!buySettings.sortBy){
-		buySettings.sortBy = "Date";
-	}
+	if(!buySettings.sortBy){ buySettings.sortBy = "Date"; }
 }
 
 ///////////////////////////
