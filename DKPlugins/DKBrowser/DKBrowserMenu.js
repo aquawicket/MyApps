@@ -109,7 +109,7 @@ function DKBrowserMenu_Cut()
 			DK_SetClipboard(selection);
 		}
 		*/
-		DKCef_Cut("DKBrowser_cef");
+		DKCef_Cut("DKBrowser_cef"); //This will not copy images to the clipboard
 	}
 	else{
 		DKWidget_Cut("Textbox");
@@ -126,7 +126,7 @@ function DKBrowserMenu_Copy()
 			DK_SetClipboard(selection);
 		}
 		*/
-		DKCef_Copy("DKBrowser_cef");
+		DKCef_Copy("DKBrowser_cef"); //This will not copy images to the clipboard
 	}
 	else{
 		DKWidget_Copy("Textbox");
