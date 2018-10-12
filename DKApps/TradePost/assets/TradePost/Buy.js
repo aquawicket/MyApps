@@ -200,7 +200,7 @@ function Buy_Update()
 {
 	DKLog("Buy_Update()\n", DKDEBUG);
 	if(buySettings.sortBy == "Date"){
-		Buy_SortItems('date', false); //newest to oldest
+		Buy_SortItems('id', true);
 	}
 	if(buySettings.sortBy == "Price: Low to High"){
 		Buy_SortItems('price', true);
