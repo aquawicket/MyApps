@@ -109,22 +109,13 @@ function TradePost_Test()
 	
 	//DKCreate("TradePost/Helper.js", function(){});
 	
-	var shown = 0;
-	var max = 12;
-	var arry = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-	for(var i=0; (i<arry.length && shown<max); i++){
-		console.log("i="+i);
-		console.log("arry["+i+"]="+arry[i]);
-		
-		shown++
-	}
-	/*
+	//// Driving Distance Test
 	var addressA = "26705 Patterson St. Perris CA 92570";
 	var addressB = "EASTVALE/NORCO/CORONA";
 	Helper_GetDistance(addressA, addressB);
-	*/
-	
+		
 	/*
+	//// Run Functions in order with a set delay between each execution
 	Helper_Queue( function(){ TestFunction(1, function(rval){ DKLog("1 * 2 = "+rval+"\n"); } ); } );
 	Helper_Queue( function(){ TestFunction(2, function(rval){ DKLog("2 * 2 = "+rval+"\n"); } ); } );
 	Helper_Queue( function(){ TestFunction(3, function(rval){ DKLog("3 * 2 = "+rval+"\n"); } ); } );
@@ -137,6 +128,7 @@ function TradePost_Test()
 	*/
 	
 	/*
+	//// Create an unhandled exception
 	function error(){
 		var foo = {};
 		return foo.bar();
@@ -144,10 +136,13 @@ function TradePost_Test()
 	error();
 	*/
 
-	//var source = DKCef_GetPageSource("", 0);
-	//DKLog("source = "+source+"\n");
+	/*
+	//// Get the Cef browser's source code
+	var source = DKCef_GetPageSource("", 0);
+	DKLog("source = "+source+"\n");
+	*/
 	
-	DKLog("######### ITEMS ##########\n");
+	//DKLog("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
 		/*
 		DKLog("\n");
