@@ -2,8 +2,8 @@
 function DKBrowserMenu_Init()
 {
 	DKCreate("DKBrowser/DKBrowserMenu.html");
-	DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","top",DKWindow_GetMouseY()+"px");
-	DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","left",DKWindow_GetMouseX()+"px");
+	//DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","top",DKWindow_GetMouseY()+"px");
+	//DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","left",DKWindow_GetMouseX()+"px");
 	DKAddEvent("GLOBAL", "mousedown", DKBrowserMenu_OnEvent);
 	DKAddEvent("DKBrowserMenu_Cut", "click", DKBrowserMenu_OnEvent);
 	DKAddEvent("DKBrowserMenu_Copy", "click", DKBrowserMenu_OnEvent);
