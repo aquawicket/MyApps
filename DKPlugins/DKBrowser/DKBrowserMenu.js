@@ -104,9 +104,12 @@ function DKBrowserMenu_Cut()
 {
 	DKLog("DKBrowserMenu_Cut()\n");
 	if(DKCef_Focused("DKBrowser_cef")){
+		/*
 		if(selection){
 			DK_SetClipboard(selection);
 		}
+		*/
+		DKCef_Cut("DKBrowser_cef");
 	}
 	else{
 		DKWidget_Cut("Textbox");
@@ -118,9 +121,12 @@ function DKBrowserMenu_Copy()
 {
 	DKLog("DKBrowserMenu_Copy()\n");
 	if(DKCef_Focused("DKBrowser_cef")){
+		/*
 		if(selection){
 			DK_SetClipboard(selection);
 		}
+		*/
+		DKCef_Copy("DKBrowser_cef");
 	}
 	else{
 		DKWidget_Copy("Textbox");
