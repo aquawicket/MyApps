@@ -104,11 +104,6 @@ function DKBrowserMenu_Cut()
 {
 	DKLog("DKBrowserMenu_Cut()\n");
 	if(DKCef_Focused("DKBrowser_cef")){
-		/*
-		if(selection){
-			DK_SetClipboard(selection);
-		}
-		*/
 		DKCef_Cut("DKBrowser_cef"); //This will not copy images to the clipboard
 	}
 	else{
@@ -121,11 +116,6 @@ function DKBrowserMenu_Copy()
 {
 	DKLog("DKBrowserMenu_Copy()\n");
 	if(DKCef_Focused("DKBrowser_cef")){
-		/*
-		if(selection){
-			DK_SetClipboard(selection);
-		}
-		*/
 		DKCef_Copy("DKBrowser_cef"); //This will not copy images to the clipboard
 	}
 	else{
@@ -168,6 +158,9 @@ function DKBrowserMenu_SaveImageAs()
 function DKBrowserMenu_CopyImage()
 {
 	DKLog("DKBrowserMenu_CopyImage()\n", DKDEBUG);
+	if(source_url){
+		DKCef_CopyImage("DKBrowser_cef", source_url);
+	}
 }
 
 /////////////////////////////////////////
