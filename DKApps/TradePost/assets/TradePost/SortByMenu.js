@@ -27,7 +27,7 @@ function SortByMenu_OnEvent(event)
 		buySettings.sortBy = "Date";
 		DKWidget_SetValue("BuySettings_sortBy", buySettings.sortBy);
 		Buy_SaveSettings();
-		Buy_Update()
+		Buy_Update();
 	}
 	if(DK_Id(event,"SortByMenu_PriceAsc")){
 		buySettings.sortBy = "Price: Low to High";
