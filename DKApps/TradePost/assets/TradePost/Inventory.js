@@ -18,10 +18,6 @@ function Inventory_Init()
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_ContextMenu", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnContextCreated", Inventory_OnEvent);
-	//DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", Inventory_OnEvent);
-	
-	//DKAddEvent("GLOBAL", "mousemove", Inventory_OnEvent);
-	DKAddEvent("GLOBAL", "keydown", Inventory_OnEvent);
 	
 	DKAddEvent("Inventory_AddItem", "click", Inventory_OnEvent);
 	
@@ -51,14 +47,6 @@ function Inventory_OnEvent(event)
 		Inventory_PageLoaded(DK_GetValue(event));
 		return;
 	}
-	//if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
-	//	Inventory_UploadImage(DK_GetValue(event));
-	//	return;
-	//}
-	if(DK_Type(event, "keydown")){
-		DKLog("key: "+DK_GetValue(event)+"\n");
-	}
-	
 	if(DK_IdLike(event, "imageCell")){
 		currentItem = DK_GetId(event).replace("imageCell","");
 		DKCreate("TradePost/ItemImages.js", function(){
