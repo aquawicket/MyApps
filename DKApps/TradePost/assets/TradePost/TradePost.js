@@ -3,10 +3,10 @@ function TradePost_Init()
 {
 	DKLog("TradePost_Init()\n", DKDEBUG);
 	DKCreate("TradePost/TradePost.html");
-	DKCreate("TradePost/Buy.js", function(){
-		DKWidget_Hide("TradePost/Buy.html");
+	DKCreate("TradePost/Inventory.js", function(){
+		DKWidget_Hide("TradePost/Inventory.html");
 	});
-	DKCreate("TradePost/Inventory.js", function(){});
+	DKCreate("TradePost/Buy.js", function(){});
 	DKCreate("DKAdmin/DKAdmin.js", function(){});
 	DKCreate("DKGui/DKMenu.js", function(){});
 	
