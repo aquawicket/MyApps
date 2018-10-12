@@ -191,7 +191,6 @@ function Buy_GetUrlString(url, callback)
 function Buy_Update()
 {
 	DKLog("Buy_Update()\n", DKDEBUG);
-	DKLog("startItem = "+startItem+"\n");
 	if(buySettings.sortBy == "Date"){
 		Buy_SortItems('date', false); //newest to oldest
 	}
@@ -209,6 +208,9 @@ function Buy_Update()
 
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
+	DKLog("startItem = "+startItem+"\n");
+	DKLog("buyItems.length = "+buyItems.length+"\n");
+	DKLog("itemsPerPage= "+itemsPerPage+"\n");
 	for(var i=startItem; (i<buyItems.length && shown<itemsPerPage); i++){
 		
 		//TODO - fix the pages so next and prev work correctly with filters and skiped items
@@ -216,6 +218,7 @@ function Buy_Update()
 		if(nextPage > buyItems.length - itemsPerPage){
 			nextPage = buyItems.length - itemsPerPage;
 		}
+		if(nextPage < 0){ nextPage = 0; }
 		prevPage = startItem-itemsPerPage;
 		if(prevPage < 0){ prevPage = 0; }
 		
@@ -389,8 +392,8 @@ function Buy_Update()
 		DKAddEvent(searchEbay.id, "click", Buy_OnEvent);
 	}
 	
-	DKLog("prevPage = "+prevPage+"\n");
-	DKLog("nextPage = "+nextPage+"\n");
+	DKLog("prevPage = "+Number(prevPage)+"\n");
+	DKLog("nextPage = "+Number(nextPage)+"\n");
 	
 	DKWidget_SetInnerHtml("Buy_ItemsShown", "Shown: "+shown);
 	Buy_SaveData();
