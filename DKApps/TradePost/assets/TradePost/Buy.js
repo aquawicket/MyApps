@@ -431,6 +431,10 @@ function Buy_LoadSettings()
 	if(json){
 		buySettings = JSON.parse(json);
 	}
+	
+	if(!buySettings.sortBy){
+		buySettings.sortBy = "Date";
+	}
 }
 
 ///////////////////////////
