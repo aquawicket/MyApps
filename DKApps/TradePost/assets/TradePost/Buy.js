@@ -1,7 +1,7 @@
 var buyItems = []; //items stored here, for use with json
 var buySettings = {}; //new object
 var queueSize = 0;
-var itemsPerPage = 19;
+var itemsPerPage = 500;
 var startItem = 0;
 var nextPage = 0;
 var prevPage = 0;
