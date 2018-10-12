@@ -54,10 +54,7 @@ function BuySettings_Init()
 		DKAddEvent("BuySettings_craigslistVideoGames", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_craigslistWanted", "change", BuySettings_OnEvent);
 		
-		buySettings.sortBy = "Date";
-		DKWidget_SetValue("BuySettings_sortBy", buySettings.sortBy);
-		Buy_SaveSettings();
-		Buy_Update();
+		BuySettings_Update();
 	});
 }
 

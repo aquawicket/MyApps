@@ -402,11 +402,11 @@ function Buy_Update()
 ///////////////////////
 function Buy_LoadData()
 {
-	if(!DKFile_Exists(DKAssets_LocalAssets()+"buyItems.json")){
+	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buyItems.json")){
 		DKLog("Buy_LoadData(): buyItems.json does not exist\n");
 		return;
 	}
-	var json = DKFile_FileToString(DKAssets_LocalAssets()+"buyItems.json");
+	var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/buyItems.json");
 	if(json){
 		buyItems = JSON.parse(json);
 	}
@@ -416,18 +416,18 @@ function Buy_LoadData()
 function Buy_SaveData()
 {
 	var json = JSON.stringify(buyItems);//, null, "\t");
-	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buyItems.json");
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buyItems.json");
 }
 
 ///////////////////////////
 function Buy_LoadSettings()
 {
-	DKLog("Buy_LoadSettings()\n", DKDEBUG);
-	if(!DKFile_Exists(DKAssets_LocalAssets()+"buySettings.json")){
-		DKLog("Buy_LoadData(): buySettings.json does not exist\n");
+	DKLog("Buy_LoadSettings()\n");//
+	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buySettings.json")){
+		DKLog("Buy_LoadData(): buySettings.json does not exist\n", DKERROR);
 		return;
 	}
-	var json = DKFile_FileToString(DKAssets_LocalAssets()+"buySettings.json");
+	var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/buySettings.json");
 	if(json){
 		buySettings = JSON.parse(json);
 	}
@@ -442,7 +442,7 @@ function Buy_SaveSettings()
 {
 	DKLog("Buy_SaveSettings()\n", DKDEBUG);
 	var json = JSON.stringify(buySettings);//, null, "\t");
-	DKFile_StringToFile(json, DKAssets_LocalAssets()+"buySettings.json");
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buySettings.json");
 }
 
 //////////////////////////////////////////

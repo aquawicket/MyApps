@@ -22,8 +22,8 @@ function Inventory_Init()
 	DKAddEvent("Inventory_AddItem", "click", Inventory_OnEvent);
 	
 	//Create Items folder if it does not exist.
-	if(!DKFile_Exists(DKAssets_LocalAssets()+"Items")){
-		DKFile_MkDir(DKAssets_LocalAssets()+"Items");
+	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/Items")){
+		DKFile_MkDir(DKAssets_LocalAssets()+"USER/Items");
 	}
 	
 	Inventory_UpdateHeader();
@@ -197,10 +197,10 @@ function Inventory_AddItem()
 {
 	DKLog("Inventory_AddItem\n", DKDEBUG);
 	var i = 0;
-	while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+i)){
+	while(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+i)){
 		i++;
 	}
-	DKFile_MkDir(DKAssets_LocalAssets()+"Items/Item"+i);
+	DKFile_MkDir(DKAssets_LocalAssets()+"USER/Items/Item"+i);
 	items.push({});
 	items[items.length-1].id = Inventory_GetFirstAvailableId();
 	
@@ -222,7 +222,7 @@ function Inventory_AddItem()
 function Inventory_SaveItem(row)
 {
 	var json = JSON.stringify(items[row]);//, null, "\t");
-	DKFile_StringToFile(json, DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/data.json");
+	DKFile_StringToFile(json, DKAssets_LocalAssets()+"/USER/Items/Item"+items[row].id+"/data.json");
 }
 
 ///////////////////////////////////
@@ -320,14 +320,14 @@ function Inventory_LoadItems()
 {
 	items = []; //clear items
 	for(var row = 0; row < 1000; row++){
-		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row)){
-			if(!DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json")){
-				//DKFile_StringToFile("", DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
+		if(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+row)){
+			if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+row+"/data.json")){
+				//DKFile_StringToFile("", DKAssets_LocalAssets()+"USER/Items/Item"+row+"/data.json");
 				items.push({});
 				items[items.length-1].id = Inventory_GetFirstAvailableId();
 			}
 			else{
-				var json = DKFile_FileToString(DKAssets_LocalAssets()+"Items/Item"+row+"/data.json");
+				var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/Items/Item"+row+"/data.json");
 				if(json){
 					var item = JSON.parse(json);
 					items.push(item); //add item to items
@@ -523,8 +523,8 @@ function Inventory_UpdateList()
 		DKWidget_SetProperty(img, "display", "block");
 		DKWidget_SetProperty(img, "width", "100%");
 		DKWidget_SetProperty(img, "margin", "auto");
-		if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/Img0.jpg")){
-			DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+items[row].id+"/Img0.jpg?"+new Date().getTime());
+		if(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+items[row].id+"/Img0.jpg")){
+			DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"USER/Items/Item"+items[row].id+"/Img0.jpg?"+new Date().getTime());
 		}
 			
 		
@@ -908,8 +908,8 @@ function Inventory_UploadImage(file)
 {
 	DKLog("Inventory_UploadImage("+file+")\n", DKDEBUG);
 	if(!file){ return; }
-	DKFile_Copy(file, DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg", true);
-	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
+	DKFile_Copy(file, DKAssets_LocalAssets()+"USER/Items/Item"+currentItem+"/Img0.jpg", true);
+	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"USER/Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
 }
 */
 
@@ -974,7 +974,7 @@ function Inventory_Test()
 	DK_SetMousePos(left+10,top+10);
 	DK_LeftClick();
 	//We need the correct images path of the current item
-	var path = "C:/digitalknob/MyApps/DKApps/TradePost/assets/Items/Item6";
+	var path = "C:/digitalknob/MyApps/DKApps/TradePost/assets/USER/Items/Item6";
 	DK_SetClipboard(path);
 	DK_PressKey(17); DK_Sleep(100); // ctrl down
 	DK_StrokeKey(86); DK_Sleep(100); // v
@@ -1028,7 +1028,7 @@ function Inventory_PageLoaded(value)
 		var phone = "7146316285";
 		var name = "Paul";
 		var street = "Patterson St.";
-		var images = DKAssets_LocalAssets()+"Items/Item"+items[currentItem].id;
+		var images = DKAssets_LocalAssets()+"USER/Items/Item"+items[currentItem].id;
 		
 		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 
@@ -1049,7 +1049,7 @@ function Inventory_PageLoaded(value)
 		var phone = "7146316285";
 		var name = "Paul";
 		var street = "Patterson St.";
-		var images = DKAssets_LocalAssets()+"Items/Item"+items[currentItem].id;
+		var images = DKAssets_LocalAssets()+"USER/Items/Item"+items[currentItem].id;
 		
 		var code = PostToLetGo.toString() + "PostToLetGo('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 		
