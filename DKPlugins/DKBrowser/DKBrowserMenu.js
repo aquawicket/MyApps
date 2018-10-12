@@ -194,7 +194,7 @@ function DKBrowserMenu_OpenLinkInNewWindow()
 {
 	DKLog("DKBrowserMenu_OpenLinkInNewWindow()\n", DKDEBUG);
 	if(link_url){
-		//window.open(link_url, "_blank", "width=900,height=700");
+		DKCef_Popup('DKBrowser_cef', link_url);
 	}
 }
 
