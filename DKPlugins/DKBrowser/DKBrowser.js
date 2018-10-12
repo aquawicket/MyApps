@@ -351,9 +351,9 @@ function DKBrowser_CloseTab(num)
 	DKLog("DKBrowser_CloseTab("+num+")\n", DKDEBUG);
 	
 	if(DKCef_GetBrowsers("DKBrowser_cef") == 1){
-		DKFrame_Close("DKBrowser.html");
-		DKClose("DKBrowser.html");
-		DKClose("DKBrowser.js");
+		DKFrame_Close("DKBrowser/DKBrowser.html");
+		DKClose("DKBrowser/DKBrowser.html");
+		DKClose("DKBrowser/DKBrowser.js");
 		//DK_Exit(); 
 		return;
 	}
