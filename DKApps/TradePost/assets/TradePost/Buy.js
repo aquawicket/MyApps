@@ -97,6 +97,14 @@ function Buy_OnEvent(event)
 		Buy_Update();
 		return;
 	}
+	if(DK_IdLike(event, "heart")){
+		DK_StopPropagation(event);
+		var num = DK_GetId(event).replace("heart","");
+		if(buyItems[num].liked){ buyItems[num].liked = false; }
+		else{ buyItems[num].liked = true; }
+		Buy_Update();
+		return;
+	}
 	if(DK_IdLike(event, "searchEbay")){
 		DK_StopPropagation(event);
 		var num = DK_GetId(event).replace("searchEbay","");
@@ -322,6 +330,19 @@ function Buy_Update()
 		hide.style.width = "40rem";
 		itemurl.appendChild(hide);
 		
+		var heart = document.createElement('img');
+		heart.id = "heart"+i;
+		if(buyItems[i].liked){ heart.src = "TradePost/heart2.png"; }
+		else{ heart.src = "TradePost/heart.png"; }
+		heart.style.position = "absolute";
+		heart.style.top = "270px";
+		heart.style.top = "270rem";
+		heart.style.left = "100px";
+		heart.style.left = "100rem";
+		heart.style.width = "30px";
+		heart.style.width = "30rem";
+		itemurl.appendChild(heart);
+		
 		var searchEbay = document.createElement('img');
 		searchEbay.id = "searchEbay"+i;
 		searchEbay.src = "TradePost/searchEbay.png";
@@ -389,6 +410,7 @@ function Buy_Update()
 		
 		DKAddEvent(itemurl.id, "click", Buy_OnEvent);
 		DKAddEvent(hide.id, "click", Buy_OnEvent);
+		DKAddEvent(heart.id, "click", Buy_OnEvent);
 		DKAddEvent(searchEbay.id, "click", Buy_OnEvent);
 	}
 	
