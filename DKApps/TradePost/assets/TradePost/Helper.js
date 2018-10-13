@@ -100,8 +100,6 @@ function Helper_Queue(func)
 	}
 }
 
-
-
 ////////////////////////////////////
 function TestFunction(num, callback)
 {
