@@ -131,7 +131,6 @@ function Pinger_ping(ip, callback)
 function OpenWebSocket()
 {
 	url = "ws://localhost:3000";
-	
 	w = new WebSocket(url);
 	
 	w.onopen = function(){
@@ -148,11 +147,8 @@ function OpenWebSocket()
 		console.log("error");
 	}
 	
-	/*
-	window.onload = function(){
-		document.getElementById("sendButton").onclick = function(){
-			w.send(document.detElementById("inputMessage").value);
-		}
-	}
-	*/
+	setTimeout( function(){
+		//w.onclose = function () {}; // disable onclose handler first
+		w.close();
+	}, 5000);
 }
