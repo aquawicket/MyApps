@@ -107,12 +107,17 @@ function TradePost_Test()
 {
 	DKLog("TradePost_Test\n", DKDEBUG);
 	
-	//DKCreate("TradePost/Helper.js", function(){});
+	DKCreate("TradePost/Helper.js", function(){});
 	
+	//// Test WebSockets
+	OpenWebSocket();
+	
+	/*
 	//// Driving Distance Test
 	var addressA = "26705 Patterson St. Perris CA 92570";
 	var addressB = "EASTVALE/NORCO/CORONA";
 	Helper_GetDistance(addressA, addressB);
+	*/
 		
 	/*
 	//// Run Functions in order with a set delay between each execution
