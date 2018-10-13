@@ -130,7 +130,7 @@ function Pinger_ping(ip, callback)
 ////////////////////////
 function OpenWebSocket()
 {
-	url = "ws://loaclhost:8080/echo";
+	url = "ws://localhost:7681";
 	
 	w = new WebSocket(url);
 	
