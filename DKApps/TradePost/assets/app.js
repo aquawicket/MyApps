@@ -9,7 +9,7 @@ DKWidget_SetProperty("body", "background-color", "rgb:(245,245,245)");
 
 DKCreate("DKSDLText"); //This currently fixed cef redraw issues.
 
-//DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DKAssets_LocalAssets()+"TradePost.html");
+DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DKAssets_LocalAssets()+"TradePost.html");
 
 //DK_SetFramerate(120);
 //DKCreate("DKUpdate");
