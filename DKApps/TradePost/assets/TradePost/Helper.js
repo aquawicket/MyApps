@@ -139,7 +139,7 @@ function OpenWebSocket()
 		w.send("thank you for accepting this Web Socket request");
 	}
 	w.onmessage = function(e){
-		console.log(e.data.toString());
+		console.log("OpenWebSocket(): Message received: "+e.data.toString());
 	}
 	w.onclose = function(e){
 		console.log("closed");
