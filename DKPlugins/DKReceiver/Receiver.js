@@ -3,7 +3,7 @@ function Receiver_Init()
 {
 	DKCreate("DKReceiver/Receiver.html");	
 	//DKCreate("DKServer");
-	DKCreate("DKWebsockets");
+	DKCreate("DKWebSockets");
 	DKWebSockets_CreateServer("127.0.0.1", 80);
 	var IP = DK_GetLocalIP();
 	DKWidget_SetInnerHtml("IPAddress", IP);
@@ -35,7 +35,7 @@ function Receiver_OnEvent(event)
 			DK_SetVolume(volume+5000);
 		}
 		else{
-			DK_SetVolume(volume+0.1);
+			DK_SetVolume(volume+2); // 1 doesn't work.   debug me
 		}
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
@@ -45,7 +45,7 @@ function Receiver_OnEvent(event)
 			DK_SetVolume(volume-5000);
 		}
 		else{
-			DK_SetVolume(volume-0.1);
+			DK_SetVolume(volume-2);
 		}
 	}
 	
@@ -89,7 +89,7 @@ function Receiver_OnEvent(event)
 			DKLog("Client: VolumeUp\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
-				DK_SetVolume(volume+0.1);
+				DK_SetVolume(volume+2);
 				DKTray_ShowBalloon("Volume Up");
 			}
 			else{
@@ -100,7 +100,7 @@ function Receiver_OnEvent(event)
 			DKLog("Client: VolumeDown\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
-				DK_SetVolume(volume-0.1);
+				DK_SetVolume(volume-2);
 				DKTray_ShowBalloon("Volume Down");
 			}
 			else{
