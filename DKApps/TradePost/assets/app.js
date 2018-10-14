@@ -13,3 +13,4 @@ DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DKAssets
 
 //DK_SetFramerate(120);
 DKCreate("DKUpdate");
+DKCreate("DKCurl");
