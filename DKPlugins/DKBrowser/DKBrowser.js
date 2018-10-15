@@ -49,7 +49,7 @@ function DKBrowser_Init()
 	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
 	
-	//DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "https://post.craigslist.org/c/inl");
+	//DKCef_SetUrl(DKCef_GetCurrentBrowser(), "https://post.craigslist.org/c/inl");
 }
 
 ////////////////////////
@@ -59,13 +59,13 @@ function DKBrowser_End()
 	
 	//close all browsers
 	/*
-	while(DKCef_GetBrowsers("DKBrowser_cef") > 1){
-		DKLog("DKBrowserEnd(): closing browser "+(DKCef_GetBrowsers("DKBrowser_cef")-1)+"\n");
-		DKCef_CloseDevTools("DKBrowser_cef", DKCef_GetBrowsers("DKBrowser_cef")-1);
-		DKCef_CloseBrowser("DKBrowser_cef", DKCef_GetBrowsers("DKBrowser_cef")-1);
+	while(DKCef_GetBrowsers() > 1){
+		DKLog("DKBrowserEnd(): closing browser "+(DKCef_GetBrowsers()-1)+"\n");
+		DKCef_CloseDevTools(DKCef_GetBrowsers()-1);
+		DKCef_CloseBrowser(DKCef_GetBrowsers()-1);
 	}
-	DKCef_CloseDevTools("DKBrowser_cef", 0);
-	DKCef_CloseBrowser("DKBrowser_cef", 0); //close first browser
+	DKCef_CloseDevTools(0);
+	DKCef_CloseBrowser(0); //close first browser
 	*/
 	
 	DKRemoveEvents(DKBrowser_OnEvent);
@@ -132,25 +132,25 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Id(event, "NewTab")){
 		DKBrowser_NewTab();
-		DKCef_SetFocus("DKBrowser_cef");
+		DKCef_SetFocus();
 	}
 	if(DK_Id(event, "BackButton")){
-		DKCef_GoBack("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_GoBack(DKCef_GetCurrentBrowser());
 	}
 	if(DK_Id(event, "ForwardButton")){
-		DKCef_GoForward("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_GoForward(DKCef_GetCurrentBrowser());
 	}
 	if(DK_Id(event, "StopButton")){
-		DKCef_Stop("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_Stop(DKCef_GetCurrentBrowser());
 	}
 	if(DK_Id(event, "RefreshButton")){
-		DKCef_Reload("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		DKCef_Reload(DKCef_GetCurrentBrowser());
 	}
 	if(DK_Id(event, "HomeButton")){
-		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "http://google.com");
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), "http://google.com");
 	}
 	if(DK_Id(event, "Textbox")){
-		DKCef_RemoveFocus("DKBrowser_cef");
+		DKCef_RemoveFocus();
 		//TODO: select all text
 		if(DK_Type(event, "contextmenu")){
 			DKCreate("DKBrowser/DKBrowserMenu.js", function(){
@@ -162,13 +162,13 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Id(event, "GoButton")){
 		var url = DKWidget_GetValue("Textbox");
-		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), url);
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), url);
 	}
 	if(DK_Type(event, "DKCef_OnLoadingStateChange")){
 		var num = parseInt(DK_GetValue(event));
 		//DKLog("DKCef_OnLoadingStateChange, "+num+"\n");
-		//DKLog(DKCef_GetUrl("DKBrowser_cef", num)+"\n");
-		var url = DKCef_GetUrl("DKBrowser_cef", num);
+		//DKLog(DKCef_GetUrl(num)+"\n");
+		var url = DKCef_GetUrl(num);
 		if(url){
 			DKBrowser_SetUrlBar(url, num);
 		}
@@ -176,7 +176,7 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Type(event, "DKCef_OnLoadEnd")){
 		var num = parseInt(DK_GetValue(event));
-		var url = DKCef_GetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"));
+		var url = DKCef_GetUrl(DKCef_GetCurrentBrowser());
 		//TODO
 		return;
 	}
@@ -186,8 +186,8 @@ function DKBrowser_OnEvent(event)
 	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
 		DKLog("DKCef_OnQueueNewBrowser \n");
 		DKBrowser_NewTab();
-		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), DK_GetValue(event));
-		DKBrowser_SetUrlBar(DK_GetValue(event), DKCef_GetCurrentBrowser("DKBrowser_cef"))
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), DK_GetValue(event));
+		DKBrowser_SetUrlBar(DK_GetValue(event), DKCef_GetCurrentBrowser())
 		return;
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
@@ -244,7 +244,7 @@ function DKBrowser_OnLoadError(error)
 		var url = DKWidget_GetValue("Textbox");
 		url = url.replace(" ", "%20");
 		var search = "https://www.google.com/?gws_rd=ssl#q=" + url;
-		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), search);
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), search);
 	}
 }
 
@@ -270,14 +270,14 @@ function DKBrowser_ProcessKey(key)
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
 		//DKLog("Homepage\n");
-		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "http://google.com");
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), "http://google.com");
 	}
 	
 	var focused = DKWidget_GetFocusElement();
 	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(key == 13 && (focused == "Textbox")){
 		var url = DKWidget_GetValue("Textbox");
-		DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), url);
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), url);
 	}
 }
 
@@ -285,8 +285,8 @@ function DKBrowser_ProcessKey(key)
 function DKBrowser_NewTab()
 {
 	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
-	DKCef_NewBrowser("DKBrowser_cef");
-	var num = DKCef_GetBrowsers("DKBrowser_cef");
+	DKCef_NewBrowser();
+	var num = DKCef_GetBrowsers();
 	DKBrowser_SelectTab(num-1);
 }
 
@@ -295,12 +295,12 @@ function DKBrowser_UpdateTabs()
 {
 	DKLog("DKBrowser_UpdateTabs()\n", DKDEBUG);
 	
-	var num = DKCef_GetBrowsers("DKBrowser_cef");
-	var current = DKCef_GetCurrentBrowser("DKBrowser_cef");
+	var num = DKCef_GetBrowsers();
+	var current = DKCef_GetCurrentBrowser();
 	for(var i=0; i<6; i++){
 		if(i < num){
 			DKWidget_SetProperty("Tab"+String(i),"display","inline-block");
-			var url = DKCef_GetUrl("DKBrowser_cef", i);
+			var url = DKCef_GetUrl(i);
 			if(typeof url === 'string'){
 				DKWidget_SetInnerHtml("Tab"+String(i)+"Text", url);
 			}
@@ -327,13 +327,13 @@ function DKBrowser_SetUrlBar(url, num)
 	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKDEBUG);
 	
 	DKWidget_SetInnerHtml("Tab"+num+"Text", url);
-	if(DKCef_GetCurrentBrowser("DKBrowser_cef") != num){ return; }
+	if(DKCef_GetCurrentBrowser() != num){ return; }
 	var focused = DKWidget_GetFocusElement();
 	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(focused != "Textbox"){
 		DKWidget_SetValue("Textbox", url);
 	}
-	DKCef_SelectBrowser("DKBrowser_cef", num);
+	DKCef_SelectBrowser(num);
 }
 
 /////////////////////////////////
@@ -341,7 +341,7 @@ function DKBrowser_SelectTab(num)
 {
 	DKLog("DKBrowser_SelectTab("+num+")\n", DKDEBUG);
 	
-	DKCef_SelectBrowser("DKBrowser_cef", num);
+	DKCef_SelectBrowser(num);
 	DKBrowser_UpdateTabs();
 }
 
@@ -350,13 +350,13 @@ function DKBrowser_CloseTab(num)
 {
 	DKLog("DKBrowser_CloseTab("+num+")\n", DKDEBUG);
 	
-	if(DKCef_GetBrowsers("DKBrowser_cef") == 1){
+	if(DKCef_GetBrowsers() == 1){
 		DKFrame_Close("DKBrowser/DKBrowser.html");
 		DKClose("DKBrowser/DKBrowser.html");
 		DKClose("DKBrowser/DKBrowser.js");
 		//DK_Exit(); 
 		return;
 	}
-	DKCef_CloseBrowser("DKBrowser_cef", num);
+	DKCef_CloseBrowser(num);
 	DKBrowser_SelectTab(0);
 }

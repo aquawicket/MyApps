@@ -999,7 +999,7 @@ function Inventory_PostItem(itemNum)
 	DKLog("Inventory_PostItem("+itemNum+")\n", DKDEBUG);
 	//action = "PostToCraigslist";
 	//DK_QueueDuktape("DKBrowser_NewTab();");
-	//DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
+	//DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
 }
 
 ////////////////////////////////////
@@ -1008,7 +1008,7 @@ function Inventory_PageLoaded(value)
 	DKLog("Inventory_PageLoaded("+value+")\n", DKDEBUG);
 	
 	if(DKCef_GetBrowsers() < 2){ return; }
-	var url = DKCef_GetUrl("", 1);
+	var url = DKCef_GetUrl(1);
 	//DKLog("url = "+url);
 	if(action == ""){
 		DKLog("Inventory_PageLoaded(): action is off\n");
@@ -1032,7 +1032,7 @@ function Inventory_PageLoaded(value)
 		
 		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 
-		DKCef_RunJavascript(0, 1, code);
+		DKCef_RunJavascript(1, code);
 	}
 	
 	if(action == "PostToLetGo"){
@@ -1053,7 +1053,7 @@ function Inventory_PageLoaded(value)
 		
 		var code = PostToLetGo.toString() + "PostToLetGo('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 		
-		DKCef_RunJavascript(0, 1, code);
+		DKCef_RunJavascript(1, code);
 		action = "";
 	}
 }
@@ -1252,7 +1252,7 @@ function Inventory_CraigslistPost(currentItem)
 	DKLog("Inventory_CraigslistPost("+currentItem+")");
 	action = "PostToCraigslist";
 	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://post.craigslist.org/c/inl');");
+	DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
 }
 
 /////////////////////////////////////////
@@ -1261,7 +1261,7 @@ function Inventory_LetGoPost(currentItem)
 	DKLog("Inventory_LetGoPost("+currentItem+")");
 	action = "PostToLetGo";
 	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
+	DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://us.letgo.com/en');");
 }
 
 ///////////////////////

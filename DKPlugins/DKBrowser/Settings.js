@@ -53,7 +53,7 @@ function Settings_Version()
 {
 	DKLog("Settings_Version()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
-	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://version");
+	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://version");
 }
 
 ///////////////////////
@@ -61,7 +61,7 @@ function Settings_Gpu()
 {
 	DKLog("Settings_Gpu()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
-	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://gpu");
+	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://gpu");
 }
 
 //////////////////////////
@@ -69,7 +69,7 @@ function Settings_System()
 {
 	DKLog("Settings_System()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
-	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://system");
+	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://system");
 }
 
 ////////////////////////////////
@@ -77,5 +77,5 @@ function Settings_NetInternals()
 {
 	DKLog("Settings_NetInternals()\n", DKDEBUG);
 	DKBrowser_NewTab(0);
-	DKCef_SetUrl("DKBrowser_cef", DKCef_GetCurrentBrowser("DKBrowser_cef"), "chrome://net-internals");
+	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://net-internals");
 }

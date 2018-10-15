@@ -95,8 +95,8 @@ function DKGoogleAd_CreateAd(parent, width, height)
 		DKWidget_SetProperty(iframe, "border", "0");
 		//DKWidget_SetProperty(iframe, "width", String(px_width)+"rem");
 		//DKWidget_SetProperty(iframe, "height", String(px_width)+"rem");
-		var currentBrowser2 = DKCef_GetCurrentBrowser(iframe);
-		DKCef_SetUrl(iframe, currentBrowser2, url);
+		var currentBrowser2 = DKCef_GetCurrentBrowser();
+		DKCef_SetUrl(currentBrowser2, url);
 		return id;
 	}
 	*/

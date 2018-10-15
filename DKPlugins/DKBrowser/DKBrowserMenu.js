@@ -103,8 +103,8 @@ function DKBrowserMenu_OnEvent(event)
 function DKBrowserMenu_Cut()
 {
 	DKLog("DKBrowserMenu_Cut()\n");
-	if(DKCef_Focused("DKBrowser_cef")){
-		DKCef_Cut("DKBrowser_cef"); //This will not copy images to the clipboard
+	if(DKCef_Focused()){
+		DKCef_Cut(); //This will not copy images to the clipboard
 	}
 	else{
 		DKWidget_Cut("Textbox");
@@ -115,8 +115,8 @@ function DKBrowserMenu_Cut()
 function DKBrowserMenu_Copy()
 {
 	DKLog("DKBrowserMenu_Copy()\n");
-	if(DKCef_Focused("DKBrowser_cef")){
-		DKCef_Copy("DKBrowser_cef"); //This will not copy images to the clipboard
+	if(DKCef_Focused()){
+		DKCef_Copy(); //This will not copy images to the clipboard
 	}
 	else{
 		DKWidget_Copy("Textbox");
@@ -127,8 +127,8 @@ function DKBrowserMenu_Copy()
 function DKBrowserMenu_Paste()
 {
 	DKLog("DKBrowserMenu_Paste()\n");
-	if(DKCef_Focused("DKBrowser_cef")){
-		DKCef_Paste("DKBrowser_cef");
+	if(DKCef_Focused()){
+		DKCef_Paste();
 	}
 	else{
 		DKWidget_Paste("Textbox");
@@ -141,7 +141,7 @@ function DKBrowserMenu_OpenImageInNewTab()
 	DKLog("DKBrowserMenu_OpenImageInNewTab()\n", DKDEBUG);
 	if(source_url){
 		DKBrowser_NewTab();
-		DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), source_url);
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), source_url);
 	}
 }
 
@@ -150,7 +150,7 @@ function DKBrowserMenu_SaveImageAs()
 {
 	DKLog("DKBrowserMenu_SaveImageAs()\n", DKDEBUG);
 	if(source_url){
-		DKCef_DownloadUrl("",source_url);
+		DKCef_DownloadUrl(source_url);
 	}
 }
 
@@ -159,7 +159,7 @@ function DKBrowserMenu_CopyImage()
 {
 	DKLog("DKBrowserMenu_CopyImage()\n", DKDEBUG);
 	if(source_url){
-		DKCef_CopyImage("DKBrowser_cef", source_url);
+		DKCef_CopyImage(source_url);
 	}
 }
 
@@ -178,7 +178,7 @@ function DKBrowserMenu_OpenLinkInNewTab()
 	DKLog("DKBrowserMenu_OpenLinkInNewTab()\n", DKDEBUG);
 	if(link_url){
 		DKBrowser_NewTab();
-		DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), link_url);
+		DKCef_SetUrl(DKCef_GetCurrentBrowser(), link_url);
 	}
 }
 
@@ -187,7 +187,7 @@ function DKBrowserMenu_OpenLinkInNewWindow()
 {
 	DKLog("DKBrowserMenu_OpenLinkInNewWindow()\n", DKDEBUG);
 	if(link_url){
-		DKCef_Popup('DKBrowser_cef', link_url);
+		DKCef_Popup(link_url);
 	}
 }
 
@@ -196,7 +196,7 @@ function DKBrowserMenu_SaveLinkAs()
 {
 	DKLog("DKBrowserMenu_SaveLinkAs()\n", DKDEBUG);
 	if(link_url){
-		DKCef_DownloadUrl("",link_url);
+		DKCef_DownloadUrl(link_url);
 	}
 }
 

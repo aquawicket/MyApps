@@ -15,7 +15,6 @@ function Digitalknob_Init()
 //////////////////////////
 function Digitalknob_End()
 {
-	DKRemoveEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Digitalknob_OnEvent);
 	DKRemoveEvents(Digitalknob_OnEvent);
 	DKClose("Digitalknob/OsInfo.js");
 	DKClose("Digitalknob/Home.js");

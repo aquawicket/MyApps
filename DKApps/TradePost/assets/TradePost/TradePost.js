@@ -57,23 +57,23 @@ function TradePost_OnEvent(event)
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://craigslist.org');");
+		DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://craigslist.org');");
 	}
 	if(DK_Id(event, "Letgo")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://us.letgo.com/en');");
+		DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://us.letgo.com/en');");
 	}
 	if(DK_Id(event, "OfferUp")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://offerup.com');");
+		DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://offerup.com');");
 	}
 	if(DK_Id(event, "Facebook")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.facebook.com/marketplace');");
+		DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://www.facebook.com/marketplace');");
 	}
 	if(DK_Id(event, "Ebay")){
 		DK_QueueDuktape("DKBrowser_NewTab();");
-		DK_QueueDuktape("DKCef_SetUrl('DKBrowser_cef', DKCef_GetCurrentBrowser('DKBrowser_cef'), 'https://www.ebay.com');");
+		DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://www.ebay.com');");
 	}
 	DK_Id(event, "Test") && TradePost_Test();
 	DK_Id(event, "Refresh") && DK_Refresh();
@@ -143,7 +143,7 @@ function TradePost_Test()
 
 	/*
 	//// Get the Cef browser's source code
-	var source = DKCef_GetPageSource("", 0);
+	var source = DKCef_GetPageSource(0);
 	DKLog("source = "+source+"\n");
 	*/
 	
