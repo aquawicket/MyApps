@@ -9,9 +9,9 @@ function Receiver_Init()
 	DKWidget_SetInnerHtml("IPAddress", IP);
 	
 	//DKAddEvent("GLOBAL", "server", Receiver_OnEvent);
-	DKAddEvent("GLOBAL", "DKWebSockets_OnMessage", Receiver_OnEvent);
 	DKAddEvent("VolumeUp_Button", "click", Receiver_OnEvent);
 	DKAddEvent("VolumeDown_Button", "click", Receiver_OnEvent);
+	DKAddEvent("GLOBAL", "DKWebSockets_OnMessageFromClient", Receiver_OnEvent);
 
 }
 
@@ -80,7 +80,7 @@ function Receiver_OnEvent(event)
 	}
 	*/
 	
-	if(DK_Type(event, "DKWebSockets_OnMessage")){
+	if(DK_Type(event, "DKWebSockets_OnMessageFromClient")){
 		DKLog("server: "+DK_GetValue(event)+"\n");
 		if(DK_GetValue(event) == "Power"){
 			DKLog("Client: Power\n");
