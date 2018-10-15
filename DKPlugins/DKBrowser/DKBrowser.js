@@ -132,7 +132,7 @@ function DKBrowser_OnEvent(event)
 	}
 	if(DK_Id(event, "NewTab")){
 		DKBrowser_NewTab();
-		DKCef_SetFocus();
+		DKCef_SetFocus(DKCef_GetBrowsers()-1);
 	}
 	if(DK_Id(event, "BackButton")){
 		DKCef_GoBack(DKCef_GetCurrentBrowser());
@@ -150,7 +150,10 @@ function DKBrowser_OnEvent(event)
 		DKCef_SetUrl(DKCef_GetCurrentBrowser(), "http://google.com");
 	}
 	if(DK_Id(event, "Textbox")){
-		DKCef_RemoveFocus();
+		var num = DKCef_GetBrowsers();
+		for(var i = 0; i<num; i++){
+			DKCef_RemoveFocus(i);
+		}
 		//TODO: select all text
 		if(DK_Type(event, "contextmenu")){
 			DKCreate("DKBrowser/DKBrowserMenu.js", function(){
@@ -285,7 +288,7 @@ function DKBrowser_ProcessKey(key)
 function DKBrowser_NewTab()
 {
 	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
-	DKCef_NewBrowser();
+	DKCef_NewBrowser("Test",0,0,0,0,"http://google.com");
 	var num = DKCef_GetBrowsers();
 	DKBrowser_SelectTab(num-1);
 }
