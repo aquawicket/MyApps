@@ -141,9 +141,8 @@ function DKBrowser_OnEvent(event)
 		DKBrowser_CloseTab(5);
 	}
 	if(DK_Id(event, "NewTab")){
-		DKLog("############################################# NEW TAB\n");
 		DKBrowser_NewTab();
-		DKCef_SetFocus(DKCef_GetCurrentBrowser());
+		//DKCef_SetFocus(DKCef_GetCurrentBrowser());
 	}
 	if(DK_Id(event, "BackButton")){
 		DKCef_GoBack(DKCef_GetCurrentBrowser());
@@ -299,10 +298,8 @@ function DKBrowser_ProcessKey(key)
 function DKBrowser_NewTab()
 {
 	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
-	//DKCef_NewBrowser("Test",0,0,100,100,"http://google.com");
 	
-	//Create the browser frame
-	var url = "https://youtube.com";
+	var url = "https://google.com";
 	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab2");
 	DKWidget_SetAttribute(iframe, "src", url);
 	DKWidget_SetProperty(iframe, "position", "absolute");
@@ -314,10 +311,7 @@ function DKBrowser_NewTab()
 	var num = DKCef_GetBrowsers();
 	DKBrowser_SelectTab(num-1);
 	
-	
-	DKCef_SetUrl(num-1, url);
 	DKCef_SetFocus(num-1);
-	
 }
 
 ///////////////////////////////
@@ -369,8 +363,18 @@ function DKBrowser_SetUrlBar(url, num)
 /////////////////////////////////
 function DKBrowser_SelectTab(num)
 {
-	DKLog("DKBrowser_SelectTab("+num+")\n", DKDEBUG);
+	DKLog("DKBrowser_SelectTab("+num+")\n", DKINFO);
 	
+	for(var i=0; i<DKCef_GetBrowsers(); i++){
+		if(num != i){
+			DKLog("DKWidget_Hide(iframe_CefBrowserTab"+Number(i+1)+");\n");
+			DKWidget_Hide("iframe_CefBrowserTab"+Number(i+1));
+		}
+		else{
+			DKLog("DKWidget_Show(iframe_CefBrowserTab"+Number(i+1)+");\n");
+			DKWidget_Show("iframe_CefBrowserTab"+Number(i+1));
+		}
+	}
 	DKCef_SelectBrowser(num);
 	DKBrowser_UpdateTabs();
 }
