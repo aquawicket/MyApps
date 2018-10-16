@@ -49,7 +49,17 @@ function DKBrowser_Init()
 	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
 	
-	//DKCef_SetUrl(DKCef_GetCurrentBrowser(), "https://post.craigslist.org/c/inl");
+	//Create the browser frame
+	var url = "https://google.com";
+	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab1");
+	DKWidget_SetAttribute(iframe, "src", url);
+	DKWidget_SetProperty(iframe, "position", "absolute");
+	DKWidget_SetProperty(iframe, "top", "44rem");
+	DKWidget_SetProperty(iframe, "left", "0rem");
+	DKWidget_SetProperty(iframe, "width", "100%");
+	DKWidget_SetProperty(iframe, "bottom", "0rem");
+	DKCef_SetUrl(DKCef_GetCurrentBrowser(), url);
+	DKCef_SetFocus(DKCef_GetCurrentBrowser());
 }
 
 ////////////////////////
@@ -131,8 +141,9 @@ function DKBrowser_OnEvent(event)
 		DKBrowser_CloseTab(5);
 	}
 	if(DK_Id(event, "NewTab")){
+		DKLog("############################################# NEW TAB\n");
 		DKBrowser_NewTab();
-		DKCef_SetFocus(DKCef_GetBrowsers()-1);
+		DKCef_SetFocus(DKCef_GetCurrentBrowser());
 	}
 	if(DK_Id(event, "BackButton")){
 		DKCef_GoBack(DKCef_GetCurrentBrowser());
@@ -288,9 +299,25 @@ function DKBrowser_ProcessKey(key)
 function DKBrowser_NewTab()
 {
 	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
-	DKCef_NewBrowser("Test",0,0,0,0,"http://google.com");
+	//DKCef_NewBrowser("Test",0,0,100,100,"http://google.com");
+	
+	//Create the browser frame
+	var url = "https://youtube.com";
+	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab2");
+	DKWidget_SetAttribute(iframe, "src", url);
+	DKWidget_SetProperty(iframe, "position", "absolute");
+	DKWidget_SetProperty(iframe, "top", "44rem");
+	DKWidget_SetProperty(iframe, "left", "0rem");
+	DKWidget_SetProperty(iframe, "width", "100%");
+	DKWidget_SetProperty(iframe, "bottom", "0rem");
+	
 	var num = DKCef_GetBrowsers();
 	DKBrowser_SelectTab(num-1);
+	
+	
+	DKCef_SetUrl(num-1, url);
+	DKCef_SetFocus(num-1);
+	
 }
 
 ///////////////////////////////
