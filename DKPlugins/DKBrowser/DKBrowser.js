@@ -51,14 +51,13 @@ function DKBrowser_Init()
 	
 	//Create the browser frame
 	var url = "https://google.com";
-	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab1");
+	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab0");
 	DKWidget_SetAttribute(iframe, "src", url);
 	DKWidget_SetProperty(iframe, "position", "absolute");
 	DKWidget_SetProperty(iframe, "top", "44rem");
 	DKWidget_SetProperty(iframe, "left", "0rem");
 	DKWidget_SetProperty(iframe, "width", "100%");
 	DKWidget_SetProperty(iframe, "bottom", "0rem");
-	DKCef_SetUrl(DKCef_GetCurrentBrowser(), url);
 	DKCef_SetFocus(DKCef_GetCurrentBrowser());
 }
 
@@ -300,7 +299,9 @@ function DKBrowser_NewTab()
 	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
 	
 	var url = "https://google.com";
-	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab2");
+	var dummy = DKWidget_CreateElement("body", "div", "CefBrowserTab");
+	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab");
+	DKWidget_RemoveElement(dummy);
 	DKWidget_SetAttribute(iframe, "src", url);
 	DKWidget_SetProperty(iframe, "position", "absolute");
 	DKWidget_SetProperty(iframe, "top", "44rem");
@@ -367,12 +368,12 @@ function DKBrowser_SelectTab(num)
 	
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
 		if(num != i){
-			DKLog("DKWidget_Hide(iframe_CefBrowserTab"+Number(i+1)+");\n");
-			DKWidget_Hide("iframe_CefBrowserTab"+Number(i+1));
+			DKLog("DKWidget_Hide(iframe_CefBrowserTab"+Number(i)+");\n");
+			DKWidget_Hide("iframe_CefBrowserTab"+Number(i));
 		}
 		else{
-			DKLog("DKWidget_Show(iframe_CefBrowserTab"+Number(i+1)+");\n");
-			DKWidget_Show("iframe_CefBrowserTab"+Number(i+1));
+			DKLog("DKWidget_Show(iframe_CefBrowserTab"+Number(i)+");\n");
+			DKWidget_Show("iframe_CefBrowserTab"+Number(i));
 		}
 	}
 	DKCef_SelectBrowser(num);
