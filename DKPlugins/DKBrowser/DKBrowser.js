@@ -77,16 +77,7 @@ function DKBrowser_End()
 	DKCef_CloseBrowser(0); //close first browser
 	*/
 	
-	DKRemoveEvents(DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "DKCef_OnBeforePopup", DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "DKCef_OnQueueNewBrowser", DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
-	//DKRemoveEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
-	
+	DKRemoveEvents(DKBrowser_OnEvent);	
 	DKClose("DKBrowser/DKBrowser.html");
 }
 
@@ -311,7 +302,6 @@ function DKBrowser_NewTab()
 	
 	var num = DKCef_GetBrowsers();
 	DKBrowser_SelectTab(num-1);
-	
 	DKCef_SetFocus(num-1);
 }
 
@@ -379,6 +369,7 @@ function DKBrowser_SelectTab(num)
 		}
 	}
 	DKCef_SelectBrowser(num);
+	DKCef_SetFocus(num);
 	DKBrowser_UpdateTabs();
 }
 
