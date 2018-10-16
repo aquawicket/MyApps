@@ -368,12 +368,14 @@ function DKBrowser_SelectTab(num)
 	
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
 		if(num != i){
-			DKLog("DKWidget_Hide(iframe_CefBrowserTab"+Number(i)+");\n");
-			DKWidget_Hide("iframe_CefBrowserTab"+Number(i));
+			DKLog("DKWidget_Hide(CefBrowserTab"+Number(i)+");\n");
+			DKWidget_Hide("CefBrowserTab"+Number(i));
+			//DKWidget_SetProperty("CefBrowserTab"+Number(i), "visibility", "hidden");
 		}
 		else{
-			DKLog("DKWidget_Show(iframe_CefBrowserTab"+Number(i)+");\n");
-			DKWidget_Show("iframe_CefBrowserTab"+Number(i));
+			DKLog("DKWidget_Show(CefBrowserTab"+Number(i)+");\n");
+			DKWidget_Show("CefBrowserTab"+Number(i));
+			//DKWidget_SetProperty("CefBrowserTab"+Number(i), "visibility", "visible");
 		}
 	}
 	DKCef_SelectBrowser(num);
