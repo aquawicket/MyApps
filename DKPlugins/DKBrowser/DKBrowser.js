@@ -324,7 +324,7 @@ function DKBrowser_NewTab()
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
-	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n");
+	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKDEBUG);
 
 	var tabCount = 0;
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
@@ -348,7 +348,7 @@ function DKBrowser_SetUrlBar(url, num)
 /////////////////////////////////
 function DKBrowser_SelectTab(num)
 {
-	DKLog("DKBrowser_SelectTab("+num+")\n");
+	DKLog("DKBrowser_SelectTab("+num+")\n", DKDEBUG);
 	var tabCount = 0;
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
 		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -375,7 +375,7 @@ function DKBrowser_SelectTab(num)
 ///////////////////////////////
 function DKBrowser_UpdateTabs()
 {
-	DKLog("DKBrowser_UpdateTabs()\n");
+	DKLog("DKBrowser_UpdateTabs()\n", DKDEBUG);
 	
 	var num = DKCef_GetBrowsers();
 	var current = DKCef_GetCurrentBrowser();
