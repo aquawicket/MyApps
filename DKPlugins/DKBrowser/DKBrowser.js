@@ -180,7 +180,7 @@ function DKBrowser_OnEvent(event)
 		DKBrowser_OnLoadError(DK_GetValue(event));
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
-		DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+		DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 		var data = DK_GetValue(event);
 		var arry = data.split(";");
 		selection = arry[0];
@@ -193,7 +193,7 @@ function DKBrowser_OnEvent(event)
 		});
 	}
 	if(DK_Type(event, "DKCef_OnFullscreen")){
-		DKLog("DKCef_OnFullscreen");
+		DKLog("DKCef_OnFullscreen", DKDEBUG);
 		var value = DK_GetValue(event);
 		if(value == "true"){
 			DKWidget_Hide("Tabs");
@@ -252,10 +252,10 @@ function DKBrowser_ProcessKey(key)
 		DKBrowser_NewTab();
 	}
 	if(key == 9 && DK_KeyIsDown(17) && !DK_KeyIsDown(16)){
-		DKLog("Next Tab\n");
+		//DKLog("Next Tab\n");
 	}
 	if(key == 9 && DK_KeyIsDown(17) && DK_KeyIsDown(16)){
-		DKLog("Prev Tab\n");
+		//DKLog("Prev Tab\n");
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
 		//DKLog("Homepage\n");
