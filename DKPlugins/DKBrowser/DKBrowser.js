@@ -145,6 +145,7 @@ function DKBrowser_OnEvent(event)
 		for(var i = 0; i<num; i++){
 			DKCef_RemoveFocus(i);
 		}
+		DKCef_SetKeyboardFocus(-1);
 		//TODO: select all text
 		if(DK_Type(event, "contextmenu")){
 			DKCreate("DKBrowser/DKBrowserMenu.js", function(){
