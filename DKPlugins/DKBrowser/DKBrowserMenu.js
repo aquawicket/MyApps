@@ -55,7 +55,7 @@ function DKBrowserMenu_End()
 /////////////////////////////////////
 function DKBrowserMenu_OnEvent(event)
 {
-	DKLog("DKBrowserMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKLog("DKBrowserMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event,"DKBrowserMenu_Cut")){
 		DKBrowserMenu_Cut();
@@ -103,7 +103,7 @@ function DKBrowserMenu_OnEvent(event)
 function DKBrowserMenu_Cut()
 {
 	DKLog("DKBrowserMenu_Cut()\n");
-	if(DKCef_Focused()){
+	if(DKCef_GetCurrentBrowser() > -1){
 		DKCef_Cut(); //This will not copy images to the clipboard
 	}
 	else{
@@ -115,7 +115,7 @@ function DKBrowserMenu_Cut()
 function DKBrowserMenu_Copy()
 {
 	DKLog("DKBrowserMenu_Copy()\n");
-	if(DKCef_Focused()){
+	if(DKCef_GetCurrentBrowser() > -1){
 		DKCef_Copy(); //This will not copy images to the clipboard
 	}
 	else{
@@ -127,7 +127,7 @@ function DKBrowserMenu_Copy()
 function DKBrowserMenu_Paste()
 {
 	DKLog("DKBrowserMenu_Paste()\n");
-	if(DKCef_Focused()){
+	if(DKCef_GetCurrentBrowser() > -1){
 		DKCef_Paste();
 	}
 	else{
