@@ -355,6 +355,9 @@ function DKBrowser_SelectTab(num)
 				if(isNaN(DKCef_GetUrl(i))){
 					DKWidget_SetValue("Textbox", DKCef_GetUrl(i));
 				}
+				else{
+					DKWidget_SetValue("Textbox", "");
+				}
 			}
 			else{
 				DKWidget_Hide(DKCef_GetBrowserId(i));
