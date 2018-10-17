@@ -16,7 +16,6 @@ function DKBrowser_Init()
 	DKAddEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", DKBrowser_OnEvent);
-	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnLoadEnd", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnLoadError", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
@@ -81,11 +80,6 @@ function DKBrowser_OnEvent(event)
 	if(DK_Type(event, "keydown")){
 		DKBrowser_ProcessKey(DK_GetValue(event));
 	}
-	//if(DK_Type(event, "mousedown")){
-	//	if(DK_GetId(event) != "DKCefFrame"){
-			//DKCef_RemoveFocus();
-	//	}
-	//}
 	if(DK_Id(event, "Tab1")){
 		DKBrowser_SelectTab(1);
 	}
@@ -185,13 +179,6 @@ function DKBrowser_OnEvent(event)
 	if(DK_Type(event, "DKCef_OnLoadError")){
 		DKBrowser_OnLoadError(DK_GetValue(event));
 	}
-	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
-		DKLog("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DKCef_OnQueueNewBrowser \n", DKERROR);
-		DKBrowser_NewTab();
-		DKCef_SetUrl(DKCef_GetCurrentBrowser(), DK_GetValue(event));
-		DKBrowser_SetUrlBar(DK_GetValue(event), DKCef_GetCurrentBrowser())
-		return;
-	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
 		DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 		var data = DK_GetValue(event);
@@ -211,17 +198,17 @@ function DKBrowser_OnEvent(event)
 		if(value == "true"){
 			DKWidget_Hide("Tabs");
 			DKWidget_Hide("Menu");
-			DKWidget_SetProperty("DKBrowser_cef","top","0rem");
-			DKWidget_SetProperty("DKBrowser_cef","z-index","100");
-			DKWidget_AppendChild("body", "DKBrowser_cef");
+			DKWidget_SetProperty(DKCef_GetBrowserId(DKCef_GetCurrentBrowser()),"top","0rem");
+			DKWidget_SetProperty(DKCef_GetBrowserId(DKCef_GetCurrentBrowser()),"z-index","100");
+			DKWidget_AppendChild("body", DKCef_GetBrowserId(DKCef_GetCurrentBrowser()));
 			DKWindow_Fullscreen();
 		}
 		else{
 			DKWidget_Show("Tabs");
 			DKWidget_Show("Menu");
-			DKWidget_SetProperty("DKBrowser_cef","top","44rem");
-			DKWidget_RemoveProperty("DKBrowser_cef","z-index","100");
-			DKWidget_AppendChild("body", "DKBrowser_cef");
+			DKWidget_SetProperty(DKCef_GetBrowserId(DKCef_GetCurrentBrowser()),"top","44rem");
+			DKWidget_RemoveProperty(DKCef_GetBrowserId(DKCef_GetCurrentBrowser()),"z-index","100");
+			DKWidget_AppendChild("body", DKCef_GetBrowserId(DKCef_GetCurrentBrowser()));
 			DKWindow_Windowed();
 		}
 	}
@@ -415,8 +402,4 @@ function DKBrowser_UpdateTabs()
 	for(var i=tabCount+1; i<7; i++){
 		DKWidget_SetProperty("Tab"+String(i),"display","none");
 	}
-	
-	//Set url 
-	//var url = DKWidget_GetInnerHtml("Tab"+current+"Text");
-	//DKWidget_SetValue("Textbox", url);
 }
