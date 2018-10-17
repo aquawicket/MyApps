@@ -2,6 +2,7 @@ var selection = "";
 var source_url = "";
 var link_url = "";
 var parent = "";
+var activeTab = 0;
 	
 /////////////////////////
 function DKBrowser_Init()
@@ -153,14 +154,21 @@ function DKBrowser_OnEvent(event)
 			});
 		}
 	}
-	if(DK_Id(event, "GoButton")){
-		var url = DKWidget_GetValue("Textbox");
-		DKCef_SetUrl(DKCef_GetCurrentBrowser(), url);
+	if(DK_Id(event, "GoButton")){		
+		var tabCount = 0;
+		for(var i=0; i<DKCef_GetBrowsers(); i++){
+			if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
+				tabCount++;
+				if(tabCount == activeTab){
+					DKCef_SetUrl(i, DKWidget_GetValue("Textbox"));
+					return;
+				}
+			}
+		}
 	}
+
 	if(DK_Type(event, "DKCef_OnLoadingStateChange")){
 		var num = parseInt(DK_GetValue(event));
-		//DKLog("DKCef_OnLoadingStateChange, "+num+"\n");
-		//DKLog(DKCef_GetUrl(num)+"\n");
 		var url = DKCef_GetUrl(num);
 		if(url){
 			DKBrowser_SetUrlBar(url, num);
@@ -269,8 +277,16 @@ function DKBrowser_ProcessKey(key)
 	var focused = DKWidget_GetFocusElement();
 	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(key == 13 && (focused == "Textbox")){
-		var url = DKWidget_GetValue("Textbox");
-		DKCef_SetUrl(DKCef_GetCurrentBrowser(), url);
+		var tabCount = 0;
+		for(var i=0; i<DKCef_GetBrowsers(); i++){
+			if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
+				tabCount++;
+				if(tabCount == activeTab){
+					DKCef_SetUrl(i, DKWidget_GetValue("Textbox"));
+					return;
+				}
+			}
+		}
 	}
 }
 
@@ -350,6 +366,7 @@ function DKBrowser_SelectTab(num)
 		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
 			tabCount++;
 			if(num == tabCount){
+				activeTab = tabCount;
 				DKWidget_Show(DKCef_GetBrowserId(i));
 				DKCef_SetFocus(i);
 				if(isNaN(DKCef_GetUrl(i))){
