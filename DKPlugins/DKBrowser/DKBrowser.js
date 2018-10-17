@@ -21,18 +21,18 @@ function DKBrowser_Init()
 	DKAddEvent("GLOBAL", "DKCef_OnFullscreen", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_ContextMenu", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", DKBrowser_OnEvent);
-	DKAddEvent("Tab0", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab1", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab2", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab3", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab4", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab5", "click", DKBrowser_OnEvent);
-	DKAddEvent("Tab0Close", "click", DKBrowser_OnEvent);
+	DKAddEvent("Tab6", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab1Close", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab2Close", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab3Close", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab4Close", "click", DKBrowser_OnEvent);
 	DKAddEvent("Tab5Close", "click", DKBrowser_OnEvent);
+	DKAddEvent("Tab6Close", "click", DKBrowser_OnEvent);
 	DKAddEvent("NewTab", "click", DKBrowser_OnEvent);
 	DKAddEvent("BackButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("ForwardButton", "click", DKBrowser_OnEvent);
@@ -49,16 +49,7 @@ function DKBrowser_Init()
 	DKAddEvent("FindButton", "click", DKBrowser_OnEvent);
 	DKAddEvent("Settings", "click", DKBrowser_OnEvent);
 	
-	//Create the browser frame
-	var url = "https://google.com";
-	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab0");
-	DKWidget_SetAttribute(iframe, "src", url);
-	DKWidget_SetProperty(iframe, "position", "absolute");
-	DKWidget_SetProperty(iframe, "top", "44rem");
-	DKWidget_SetProperty(iframe, "left", "0rem");
-	DKWidget_SetProperty(iframe, "width", "100%");
-	DKWidget_SetProperty(iframe, "bottom", "0rem");
-	DKCef_SetFocus(DKCef_GetCurrentBrowser());
+	DKBrowser_NewTab();
 }
 
 ////////////////////////
@@ -94,9 +85,6 @@ function DKBrowser_OnEvent(event)
 			//DKCef_RemoveFocus();
 	//	}
 	//}
-	if(DK_Id(event, "Tab0")){
-		DKBrowser_SelectTab(0);
-	}
 	if(DK_Id(event, "Tab1")){
 		DKBrowser_SelectTab(1);
 	}
@@ -112,8 +100,8 @@ function DKBrowser_OnEvent(event)
 	if(DK_Id(event, "Tab5")){
 		DKBrowser_SelectTab(5);
 	}
-	if(DK_Id(event, "Tab0Close")){
-		DKBrowser_CloseTab(0);
+	if(DK_Id(event, "Tab6")){
+		DKBrowser_SelectTab(6);
 	}
 	if(DK_Id(event, "Tab1Close")){
 		DKBrowser_CloseTab(1);
@@ -130,9 +118,11 @@ function DKBrowser_OnEvent(event)
 	if(DK_Id(event, "Tab5Close")){
 		DKBrowser_CloseTab(5);
 	}
+	if(DK_Id(event, "Tab6Close")){
+		DKBrowser_CloseTab(6);
+	}
 	if(DK_Id(event, "NewTab")){
 		DKBrowser_NewTab();
-		//DKCef_SetFocus(DKCef_GetCurrentBrowser());
 	}
 	if(DK_Id(event, "BackButton")){
 		DKCef_GoBack(DKCef_GetCurrentBrowser());
@@ -290,8 +280,22 @@ function DKBrowser_ProcessKey(key)
 ////////////////////////////////
 function DKBrowser_CloseTab(num)
 {
-	DKLog("DKBrowser_CloseTab("+num+")\n", DKDEBUG);
+	DKLog("DKBrowser_CloseTab("+num+")\n");
 	
+	var tabCount = 0;
+	for(var i=0; i<DKCef_GetBrowsers(); i++){
+		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
+			tabCount++;
+			if(num == tabCount){
+				DKWidget_RemoveElement(DKCef_GetBrowserId(i));
+				DKCef_CloseBrowser(i);
+				DKBrowser_SelectTab(Number(num-1));
+				return;
+			}
+		}
+	}
+	
+	/*
 	if(DKCef_GetBrowsers() == 1){
 		DKFrame_Close("DKBrowser/DKBrowser.html");
 		DKClose("DKBrowser/DKBrowser.html");
@@ -299,8 +303,7 @@ function DKBrowser_CloseTab(num)
 		//DK_Exit(); 
 		return;
 	}
-	DKCef_CloseBrowser(num);
-	DKBrowser_SelectTab(0);
+	*/
 }
 
 ///////////////////////////
@@ -319,14 +322,21 @@ function DKBrowser_NewTab()
 	DKWidget_SetProperty(iframe, "width", "100%");
 	DKWidget_SetProperty(iframe, "bottom", "0rem");
 	
-	var num = DKCef_GetBrowsers();
-	DKBrowser_SelectTab(num-1);
+	var tabCount = 0;
+	for(var i=0; i<DKCef_GetBrowsers(); i++){
+		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
+			tabCount++;
+		}
+	}
+	DKBrowser_SelectTab(tabCount);
 }
 
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
+	//TODO
 	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKDEBUG);
+	return; 
 	
 	DKWidget_SetInnerHtml("Tab"+num+"Text", url);
 	if(DKCef_GetCurrentBrowser() != num){ return; }
@@ -341,50 +351,55 @@ function DKBrowser_SetUrlBar(url, num)
 /////////////////////////////////
 function DKBrowser_SelectTab(num)
 {
-	DKLog("DKBrowser_SelectTab("+num+")\n", DKINFO);
-	
+	DKLog("DKBrowser_SelectTab("+num+")\n");
+	var tabCount = 0;
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
-		if(num != i){
-			DKLog("DKWidget_Hide(CefBrowserTab"+Number(i)+");\n");
-			DKWidget_Hide("CefBrowserTab"+Number(i));
-		}
-		else{
-			DKLog("DKWidget_Show(CefBrowserTab"+Number(i)+");\n");
-			DKWidget_Show("CefBrowserTab"+Number(i));
+		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
+			tabCount++;
+			if(num == tabCount){
+				DKWidget_Show(DKCef_GetBrowserId(i));
+				DKCef_SetFocus(i);
+			}
+			else{
+				DKWidget_Hide(DKCef_GetBrowserId(i));
+			}
 		}
 	}
-	
-	DKCef_SetFocus(num);
 	DKBrowser_UpdateTabs();
 }
 
 ///////////////////////////////
 function DKBrowser_UpdateTabs()
 {
-	DKLog("DKBrowser_UpdateTabs()\n", DKINFO);
+	DKLog("DKBrowser_UpdateTabs()\n");
 	
 	var num = DKCef_GetBrowsers();
 	var current = DKCef_GetCurrentBrowser();
-	for(var i=0; i<6; i++){
-		if(i < num){
-			DKWidget_SetProperty("Tab"+String(i),"display","inline-block");
+	
+	var tabCount = 0;
+	for(var i=0; i<DKCef_GetBrowsers(); i++){
+		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
+			tabCount++;
+			DKWidget_SetProperty("Tab"+String(tabCount),"display","inline-block");
 			var url = DKCef_GetUrl(i);
 			if(typeof url === 'string'){
-				DKWidget_SetInnerHtml("Tab"+String(i)+"Text", url);
+				DKWidget_SetInnerHtml("Tab"+String(tabCount)+"Text", url);
 			}
 			if(i == current){
-				DKWidget_SetProperty("Tab"+String(i),"background-color","rgb(230,230,230)");
+				DKWidget_SetProperty("Tab"+String(tabCount),"background-color","rgb(230,230,230)");
 			}
 			else{
-				DKWidget_SetProperty("Tab"+String(i),"background-color","rgb(180,180,180)");
+				DKWidget_SetProperty("Tab"+String(tabCount),"background-color","rgb(180,180,180)");
 			}
-		}
-		else{
-			DKWidget_SetProperty("Tab"+String(i),"display","none");
 		}
 	}
 	
+	//hide the rest of the tabs
+	for(var i=tabCount+1; i<7; i++){
+		DKWidget_SetProperty("Tab"+String(i),"display","none");
+	}
+	
 	//Set url 
-	var url = DKWidget_GetInnerHtml("Tab"+current+"Text");
-	DKWidget_SetValue("Textbox", url);
+	//var url = DKWidget_GetInnerHtml("Tab"+current+"Text");
+	//DKWidget_SetValue("Textbox", url);
 }
