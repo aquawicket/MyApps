@@ -152,7 +152,7 @@ function DKBrowser_OnEvent(event)
 	if(DK_Id(event, "Textbox")){
 		var num = DKCef_GetBrowsers();
 		for(var i = 0; i<num; i++){
-			//DKCef_RemoveFocus(i);
+			DKCef_RemoveFocus(i);
 		}
 		//TODO: select all text
 		if(DK_Type(event, "contextmenu")){
@@ -284,6 +284,25 @@ function DKBrowser_ProcessKey(key)
 	}
 }
 
+
+
+
+////////////////////////////////
+function DKBrowser_CloseTab(num)
+{
+	DKLog("DKBrowser_CloseTab("+num+")\n", DKDEBUG);
+	
+	if(DKCef_GetBrowsers() == 1){
+		DKFrame_Close("DKBrowser/DKBrowser.html");
+		DKClose("DKBrowser/DKBrowser.html");
+		DKClose("DKBrowser/DKBrowser.js");
+		//DK_Exit(); 
+		return;
+	}
+	DKCef_CloseBrowser(num);
+	DKBrowser_SelectTab(0);
+}
+
 ///////////////////////////
 function DKBrowser_NewTab()
 {
@@ -302,37 +321,6 @@ function DKBrowser_NewTab()
 	
 	var num = DKCef_GetBrowsers();
 	DKBrowser_SelectTab(num-1);
-}
-
-///////////////////////////////
-function DKBrowser_UpdateTabs()
-{
-	DKLog("DKBrowser_UpdateTabs()\n", DKINFO);
-	
-	var num = DKCef_GetBrowsers();
-	var current = DKCef_GetCurrentBrowser();
-	for(var i=0; i<6; i++){
-		if(i < num){
-			DKWidget_SetProperty("Tab"+String(i),"display","inline-block");
-			var url = DKCef_GetUrl(i);
-			if(typeof url === 'string'){
-				DKWidget_SetInnerHtml("Tab"+String(i)+"Text", url);
-			}
-			if(i == current){
-				DKWidget_SetProperty("Tab"+String(i),"background-color","rgb(230,230,230)");
-			}
-			else{
-				DKWidget_SetProperty("Tab"+String(i),"background-color","rgb(180,180,180)");
-			}
-		}
-		else{
-			DKWidget_SetProperty("Tab"+String(i),"display","none");
-		}
-	}
-	
-	//Set url 
-	var url = DKWidget_GetInnerHtml("Tab"+current+"Text");
-	DKWidget_SetValue("Textbox", url);
 }
 
 //////////////////////////////////////
@@ -370,18 +358,33 @@ function DKBrowser_SelectTab(num)
 	DKBrowser_UpdateTabs();
 }
 
-////////////////////////////////
-function DKBrowser_CloseTab(num)
+///////////////////////////////
+function DKBrowser_UpdateTabs()
 {
-	DKLog("DKBrowser_CloseTab("+num+")\n", DKDEBUG);
+	DKLog("DKBrowser_UpdateTabs()\n", DKINFO);
 	
-	if(DKCef_GetBrowsers() == 1){
-		DKFrame_Close("DKBrowser/DKBrowser.html");
-		DKClose("DKBrowser/DKBrowser.html");
-		DKClose("DKBrowser/DKBrowser.js");
-		//DK_Exit(); 
-		return;
+	var num = DKCef_GetBrowsers();
+	var current = DKCef_GetCurrentBrowser();
+	for(var i=0; i<6; i++){
+		if(i < num){
+			DKWidget_SetProperty("Tab"+String(i),"display","inline-block");
+			var url = DKCef_GetUrl(i);
+			if(typeof url === 'string'){
+				DKWidget_SetInnerHtml("Tab"+String(i)+"Text", url);
+			}
+			if(i == current){
+				DKWidget_SetProperty("Tab"+String(i),"background-color","rgb(230,230,230)");
+			}
+			else{
+				DKWidget_SetProperty("Tab"+String(i),"background-color","rgb(180,180,180)");
+			}
+		}
+		else{
+			DKWidget_SetProperty("Tab"+String(i),"display","none");
+		}
 	}
-	DKCef_CloseBrowser(num);
-	DKBrowser_SelectTab(0);
+	
+	//Set url 
+	var url = DKWidget_GetInnerHtml("Tab"+current+"Text");
+	DKWidget_SetValue("Textbox", url);
 }
