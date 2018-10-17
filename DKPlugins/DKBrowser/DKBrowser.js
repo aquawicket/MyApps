@@ -274,14 +274,10 @@ function DKBrowser_ProcessKey(key)
 	}
 }
 
-
-
-
 ////////////////////////////////
 function DKBrowser_CloseTab(num)
 {
 	DKLog("DKBrowser_CloseTab("+num+")\n");
-	
 	var tabCount = 0;
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
 		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -294,16 +290,6 @@ function DKBrowser_CloseTab(num)
 			}
 		}
 	}
-	
-	/*
-	if(DKCef_GetBrowsers() == 1){
-		DKFrame_Close("DKBrowser/DKBrowser.html");
-		DKClose("DKBrowser/DKBrowser.html");
-		DKClose("DKBrowser/DKBrowser.js");
-		//DK_Exit(); 
-		return;
-	}
-	*/
 }
 
 ///////////////////////////
