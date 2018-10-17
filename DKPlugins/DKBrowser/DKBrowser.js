@@ -177,7 +177,7 @@ function DKBrowser_OnEvent(event)
 		DKBrowser_OnLoadError(DK_GetValue(event));
 	}
 	if(DK_Type(event, "DKCef_OnQueueNewBrowser")){
-		DKLog("DKCef_OnQueueNewBrowser \n");
+		DKLog("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DKCef_OnQueueNewBrowser \n", DKERROR);
 		DKBrowser_NewTab();
 		DKCef_SetUrl(DKCef_GetCurrentBrowser(), DK_GetValue(event));
 		DKBrowser_SetUrlBar(DK_GetValue(event), DKCef_GetCurrentBrowser())
@@ -320,18 +320,25 @@ function DKBrowser_NewTab()
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
-	//TODO
-	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKDEBUG);
-	return; 
-	
-	DKWidget_SetInnerHtml("Tab"+num+"Text", url);
+	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n");
+
+	var tabCount = 0;
+	for(var i=0; i<DKCef_GetBrowsers(); i++){
+		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
+			tabCount++;
+			if(num == i){
+				DKWidget_SetInnerHtml("Tab"+tabCount+"Text", url);
+			}
+		}
+	}
+
 	if(DKCef_GetCurrentBrowser() != num){ return; }
 	var focused = DKWidget_GetFocusElement();
 	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(focused != "Textbox"){
 		DKWidget_SetValue("Textbox", url);
 	}
-	//DKCef_SelectBrowser(num);
+	DKBrowser_UpdateTabs();
 }
 
 /////////////////////////////////
@@ -345,6 +352,9 @@ function DKBrowser_SelectTab(num)
 			if(num == tabCount){
 				DKWidget_Show(DKCef_GetBrowserId(i));
 				DKCef_SetFocus(i);
+				if(isNaN(DKCef_GetUrl(i))){
+					DKWidget_SetValue("Textbox", DKCef_GetUrl(i));
+				}
 			}
 			else{
 				DKWidget_Hide(DKCef_GetBrowserId(i));
