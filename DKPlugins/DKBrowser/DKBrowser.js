@@ -152,7 +152,7 @@ function DKBrowser_OnEvent(event)
 	if(DK_Id(event, "Textbox")){
 		var num = DKCef_GetBrowsers();
 		for(var i = 0; i<num; i++){
-			DKCef_RemoveFocus(i);
+			//DKCef_RemoveFocus(i);
 		}
 		//TODO: select all text
 		if(DK_Type(event, "contextmenu")){
@@ -302,13 +302,12 @@ function DKBrowser_NewTab()
 	
 	var num = DKCef_GetBrowsers();
 	DKBrowser_SelectTab(num-1);
-	DKCef_SetFocus(num-1);
 }
 
 ///////////////////////////////
 function DKBrowser_UpdateTabs()
 {
-	DKLog("DKBrowser_UpdateTabs()\n", DKDEBUG);
+	DKLog("DKBrowser_UpdateTabs()\n", DKINFO);
 	
 	var num = DKCef_GetBrowsers();
 	var current = DKCef_GetCurrentBrowser();
@@ -348,7 +347,7 @@ function DKBrowser_SetUrlBar(url, num)
 	if(focused != "Textbox"){
 		DKWidget_SetValue("Textbox", url);
 	}
-	DKCef_SelectBrowser(num);
+	//DKCef_SelectBrowser(num);
 }
 
 /////////////////////////////////
@@ -360,15 +359,13 @@ function DKBrowser_SelectTab(num)
 		if(num != i){
 			DKLog("DKWidget_Hide(CefBrowserTab"+Number(i)+");\n");
 			DKWidget_Hide("CefBrowserTab"+Number(i));
-			//DKWidget_SetProperty("CefBrowserTab"+Number(i), "visibility", "hidden");
 		}
 		else{
 			DKLog("DKWidget_Show(CefBrowserTab"+Number(i)+");\n");
 			DKWidget_Show("CefBrowserTab"+Number(i));
-			//DKWidget_SetProperty("CefBrowserTab"+Number(i), "visibility", "visible");
 		}
 	}
-	DKCef_SelectBrowser(num);
+	
 	DKCef_SetFocus(num);
 	DKBrowser_UpdateTabs();
 }
