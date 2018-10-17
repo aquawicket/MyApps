@@ -302,8 +302,8 @@ function DKBrowser_NewTab()
 	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
 	
 	var url = "https://google.com";
-	var dummy = DKWidget_CreateElement("body", "div", "CefBrowserTab");
-	var iframe = DKWidget_CreateElement("body", "iframe", "CefBrowserTab");
+	var dummy = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "div", "CefBrowserTab");
+	var iframe = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "iframe", "CefBrowserTab");
 	DKWidget_RemoveElement(dummy);
 	DKWidget_SetAttribute(iframe, "src", url);
 	DKWidget_SetProperty(iframe, "position", "absolute");
