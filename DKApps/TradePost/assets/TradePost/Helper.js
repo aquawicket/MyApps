@@ -150,3 +150,7 @@ function OpenWebSocket()
 		w.close();
 	}, 5000);
 }
+
+function getParameters(func) {
+  return new RegExp(func.name+'\\s*\\((.*?)\\)').exec(func.toString().replace(/\n/g, ''))[1].replace(/\/\*.*?\*\//g, '').replace(/ /g, '');
+}

@@ -109,8 +109,11 @@ function TradePost_Test()
 	
 	DKCreate("TradePost/Helper.js", function(){});
 	
+
+	DKLog(getParameters(Pinger_ping));
+	
 	//// Test WebSockets
-	OpenWebSocket();
+	//OpenWebSocket();
 	
 	/*
 	//// Driving Distance Test
