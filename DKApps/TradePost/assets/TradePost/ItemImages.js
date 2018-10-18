@@ -39,7 +39,7 @@ function ItemImages_OnEvent(event)
 		return;
 	}
 	if(DK_Id(event, "ItemImages_delete")){
-		ItemImages_Delete(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg");
+		ItemImages_Delete(DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg");
 	}
 }
 
@@ -60,8 +60,8 @@ function ItemImages_Update()
 	var img = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_img");
 	DKWidget_SetProperty(img, "width", "100%");
 	DKWidget_SetProperty(img, "position", "absolute");
-	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg")){
-		DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg?"+new Date().getTime());
+	if(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg")){
+		DKWidget_SetAttribute(img, "src", DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+ItemImages_imageNum+".jpg?"+new Date().getTime());
 		
 		var trash = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_delete");
 		DKWidget_SetAttribute(trash, "src", "TradePost/trash.png");
@@ -71,7 +71,7 @@ function ItemImages_Update()
 		DKAddEvent(trash, "click", ItemImages_OnEvent);
 	}
 	
-	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum-1)+".jpg")){
+	if(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum-1)+".jpg")){
 		var leftArrow = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_left");
 		DKWidget_SetAttribute(leftArrow, "src", "TradePost/imageLeft.png");
 		DKWidget_SetProperty(leftArrow, "position", "absolute");
@@ -79,7 +79,7 @@ function ItemImages_Update()
 		DKWidget_SetProperty(leftArrow, "height", "20%");
 		DKAddEvent(leftArrow, "click", ItemImages_OnEvent);
 	}
-	if(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum+1)+".jpg")){
+	if(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+Number(ItemImages_imageNum+1)+".jpg")){
 		var rightArrow = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_right");
 		DKWidget_SetAttribute(rightArrow, "src", "TradePost/imageRight.png");
 		DKWidget_SetProperty(rightArrow, "position", "absolute");
@@ -100,15 +100,15 @@ function ItemImages_UploadImages(files)
 	for(var i=0; i<arry.length; i++){
 		DKLog(arry[i]+"\n");
 		
-		var i=0;
-		while(DKFile_Exists(DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg")){
-			i++;
+		var b=0;
+		while(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+b+".jpg")){
+			b++;
 		}
-		DKFile_Copy(arry[i], DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img"+i+".jpg", true);
-		ItemImages_imageNum = i;
+		DKFile_Copy(arry[i], DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+b+".jpg", true);
+		ItemImages_imageNum = b;
 		ItemImages_Update();
 	}
-	DKWidget_SetAttribute("img"+ItemImages_itemNum, "src", DKAssets_LocalAssets()+"Items/Item"+ItemImages_itemNum+"/Img0.jpg?"+new Date().getTime());
+	DKWidget_SetAttribute("img"+ItemImages_itemNum, "src", DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img0.jpg?"+new Date().getTime());
 }
 
 ////////////////////////////////
