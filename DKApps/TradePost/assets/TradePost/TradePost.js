@@ -46,12 +46,12 @@ function TradePost_OnEvent(event)
 	*/
 	
 	if(DK_Id(event, "Buy")){
-		DKLog("Buy\n");
+		//DKLog("Buy\n");
 		DKWidget_Hide("TradePost/Inventory.html");
 		DKWidget_Show("TradePost/Buy.html");
 	}
 	if(DK_Id(event, "Inventory")){
-		DKLog("Inventory\n");
+		//DKLog("Inventory\n");
 		DKWidget_Hide("TradePost/Buy.html");
 		DKWidget_Show("TradePost/Inventory.html");
 	}

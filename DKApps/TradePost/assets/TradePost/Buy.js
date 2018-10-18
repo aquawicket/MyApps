@@ -124,6 +124,7 @@ function Buy_OnEvent(event)
 ///////////////////////////////////////
 function Buy_CheckForDuplicate(itemUrl)
 {
+	DKLog("Buy_CheckForDuplicate("+itemUrl+")\n", DKDEBUG);
 	for(var i=0; i<buyItems.length; i++){
 		if(itemUrl == buyItems[i].link){
 			//DKLog("Buy_CheckForDuplicate(): found duplicate\n");
@@ -425,7 +426,7 @@ function Buy_Update()
 function Buy_LoadData()
 {
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buyItems.json")){
-		DKLog("Buy_LoadData(): buyItems.json does not exist\n");
+		DKLog("Buy_LoadData(): buyItems.json does not exist\n", DKWARN);
 		return;
 	}
 	var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/buyItems.json");
@@ -444,7 +445,7 @@ function Buy_SaveData()
 ///////////////////////////
 function Buy_LoadSettings()
 {
-	DKLog("Buy_LoadSettings()\n");//
+	DKLog("Buy_LoadSettings()\n", DKDEBUG);
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buySettings.json")){
 		DKLog("Buy_LoadData(): buySettings.json does not exist\n", DKERROR);
 		if(!buySettings.sortBy){ buySettings.sortBy = "Date"; }
