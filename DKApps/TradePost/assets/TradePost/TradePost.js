@@ -25,6 +25,7 @@ function TradePost_Init()
 	DKAddEvent("Test", "click", TradePost_OnEvent);
 	DKAddEvent("Refresh", "click", TradePost_OnEvent);
 	
+	TradePost_UpdateConnectionStatus();
 	var connectionStatusTimer = setInterval(function(){ TradePost_UpdateConnectionStatus() }, 10000);
 }
 
