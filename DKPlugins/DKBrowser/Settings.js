@@ -8,7 +8,6 @@ function Settings_Init()
 		DKAddEvent("GpuButton", "click", Settings_OnEvent);
 		DKAddEvent("SystemButton", "click", Settings_OnEvent);
 		DKAddEvent("NetInternalsButton", "click", Settings_OnEvent);
-		DKAddEvent("ClearCache", "click", Settings_OnEvent);
 	});
 }
 
@@ -37,30 +36,6 @@ function Settings_OnEvent(event)
 	}
 	if(DK_Id(event, "NetInternalsButton")){
 		Settings_NetInternals();
-	}
-	if(DK_Id(event, "ClearCache")){
-		Settings_ClearCache();
-	}
-}
-
-//////////////////////////////
-function Settings_ClearCache()
-{
-	var assets = DKAssets_LocalAssets();
-	var cachePath = assets+"USER/Cache";
-	if(!DKFile_Exists(cachePath)){
-		DKLog("Settings_ClearCache(): cachePath+ invalid\n");
-		return false;
-	}
-	
-	var files = DKFile_DirectoryContents(cachePath);
-	var arry = files.split(",");
-	
-	for(var i=0; i<arry.length; i++){
-		if(arry[i].indexOf("f_") == 0){
-			//DKLog("cachePath+/+arry["+i+"] = "+cachePath+"/"+arry[i]+"\n");
-			DKFile_Delete(cachePath+"/"+arry[i]);
-		}
 	}
 }
 
