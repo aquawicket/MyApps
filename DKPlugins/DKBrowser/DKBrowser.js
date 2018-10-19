@@ -186,6 +186,7 @@ function DKBrowser_OnEvent(event)
 		selection = arry[0];
 		source_url = arry[1];
 		link_url = arry[2];
+		if(!selection && !source_url && !link_url){ return; }
 		DKCreate("DKBrowser/DKBrowserMenu.js", function(){
 			DKCreate("DKGui/DKMenu.js", function(){
 				DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html");
