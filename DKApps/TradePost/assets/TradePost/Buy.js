@@ -447,7 +447,7 @@ function Buy_LoadSettings()
 {
 	DKLog("Buy_LoadSettings()\n", DKDEBUG);
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buySettings.json")){
-		DKLog("Buy_LoadData(): buySettings.json does not exist\n", DKERROR);
+		DKLog("Buy_LoadSettings(): buySettings.json does not exist\n", DKWARN);
 		if(!buySettings.sortBy){ buySettings.sortBy = "Date"; }
 		return;
 	}
