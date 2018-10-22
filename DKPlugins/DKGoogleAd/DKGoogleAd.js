@@ -40,6 +40,9 @@ function DKGoogleAd_CreateAdForRocket(parent, width, height)
 	DKWidget_SetProperty(iframe, "width", "100%");
 	DKWidget_SetProperty(iframe, "height", "100px");
 	DKWidget_RemoveProperty(iframe, "top");
+	DKWidget_RemoveProperty(iframe, "bottom");
+	DKWidget_RemoveProperty(iframe, "left");
+	DKWidget_RemoveProperty(iframe, "right");
 	DKWidget_SetProperty("iframe_"+iframe, "position", "absolute");
 	DKWidget_SetProperty("iframe_"+iframe, "bottom", "0rem");
 	DKWidget_RemoveProperty("iframe_"+iframe, "top");

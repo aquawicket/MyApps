@@ -14,7 +14,7 @@ function app_LoadPlugins()
 
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-		DKWidget_SetProperty(id, "bottom", "0px");
+		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
 	});
 }
 
@@ -33,10 +33,8 @@ function app_LoadPage()
 		});
 	});
 
-	if(DK_GetBrowser() != "CEF"){
-		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-			var id = DKGoogleAd_CreateAd("appPage.html", "100%", "100rem");
-			DKWidget_SetProperty(id, "bottom", "0px");
-		});
-	}
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("appPage.html", "100%", "100rem");
+		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
+	});
 }
