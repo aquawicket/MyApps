@@ -1,131 +1,83 @@
 //////////////////////////
 function DKGoogleAd_Init()
 {
-	DKLog("DKGoogleAd_Init()\n", DKDEBUG);
+	//DKDebug();
 }
 
 /////////////////////////
 function DKGoogleAd_End()
 {
-	DKLog("DKGoogleAd_End()\n", DKDEBUG);
+	//DKDebug();
 }
 
 //////////////////////////////////
 function DKGoogleAd_OnEvent(event)
 {
-	DKLog("DKGoogleAd_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	//DKDebug(DK_GetId(event), DK_GetType(event), DK_GetValue(event));
 }
 
 ///////////////////////////////////////////////////
 function DKGoogleAd_CreateAd(parent, width, height)
 {
-	DKLog("DKGoogleAd_CreateAd("+parent+","+width+","+height+")\n", DKDEBUG);
-	DKLog("Browser = "+DK_GetBrowser()+"\n");
-	//DKLog("protocol = "+DKAssets_Protocol()+"\n");
-	
-	//if(DKAssets_Protocol() != "file:"){
-		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
-		DKWidget_SetProperty(id, "position", "absolute");
-		DKWidget_SetProperty(id, "width", width);
-		DKWidget_SetProperty(id, "height", height);
-		DKWidget_SetProperty(id, "text-align", "center");
-	
-		var px_width = document.getElementById(id).clientWidth;
-		var px_height = document.getElementById(id).clientHeight;
-	
-		//don't let size go over 1200px
-		px_width = Math.min(px_width, 1200);
-		px_height = Math.min(px_height, 1200);
-		window.google_ad_client = "ca-pub-4839505278360003";
-		window.google_ad_slot = "8269654670";
-		window.google_ad_width = px_width;
-		window.google_ad_height = px_height;
-		//window.google_adtest = "on";
-
-		var container = document.getElementById(id);
-		var w = document.write;
-		document.write = function(content){
-			container.innerHTML = content;
-			document.write = w;	
-		};
-
-		var script = document.createElement('script');
-		script.type = 'text/javascript';
-		script.src = 'https://pagead2.googlesyndication.com/pagead/show_ads.js';
-		document.body.appendChild(script);
-	
-		return id;
-	/*
+	//DKDebug(parent, width, height);
+	if(DK_GetBrowser() == "Rocket"){
+		return DKGoogleAd_CreateAdForRocket(parent, width, height);
 	}
-	//else if(DK_GetOS() == "Win32" || DK_GetOS() == "Win64"){
 	else{
-		//return; //TODO
-		var id = DKWidget_CreateElement(parent, "div", "DKAdd");
-		DKWidget_SetProperty(id, "position", "absolute");
-		DKWidget_SetProperty(id, "width", width);
-		DKWidget_SetProperty(id, "height", height);
-		DKWidget_SetProperty(id, "bottom", "0px");
-		//DKWidget_SetProperty(id, "text-align", "center");
-		
-		//Don't let size go over 1200px
-		var px_width = DKWidget_GetClientWidth(id);
-		var px_height = DKWidget_GetClientHeight(id);
-		px_width = Math.min(parseInt(px_width), 1200);
-		px_height = Math.min(parseInt(px_height), 1200);
-		DKLog("px_width = "+String(px_width)+"\n");
-		DKLog("px_height = "+String(px_height)+"\n");
-		
-		DKWidget_SetProperty(id, "width", String(px_width)+":rem");
-		//DKWidget_SetProperty(id, "width", "100%");
-		DKWidget_SetProperty(id, "height", String(px_height)+":rem");
-		
-		//var iframe = "<iframe id=\"DKBrowser_cef\" style=\"position:absolute;width:"+String(px_width)+":rem;"+String(px_height)+":rem;\" width=\""+String(px_width)+"\" height=\""+String(px_height)+"\" src=\"http://digitalknob.com/Digitalknob/AdTest.html\"></iframe>";
-		
-		//DKWidget_SetInnerHtml(id, iframe);
-		
-
-		var url = "http://digitalknob.com/Digitalknob/AdTest2.html";
-		var iframe = DKWidget_CreateElement(id, "iframe", "DKCef_frame");
-		DKWidget_SetAttribute(iframe, "src", url);
-		//DKWidget_SetAttribute(iframe, "width", String(px_width));
-		DKWidget_SetAttribute(iframe, "width", "100%");
-		//DKWidget_SetAttribute(iframe, "height", String(px_height));
-		DKWidget_SetAttribute(iframe, "height", "100%");
-		DKWidget_SetProperty(iframe, "position", "absolute");
-		DKWidget_SetProperty(iframe, "border", "0");
-		//DKWidget_SetProperty(iframe, "width", String(px_width)+"rem");
-		//DKWidget_SetProperty(iframe, "height", String(px_width)+"rem");
-		var currentBrowser2 = DKCef_GetCurrentBrowser();
-		DKCef_SetUrl(currentBrowser2, url);
-		return id;
+		if(DK_GetBrowser() != "CEF"){
+			return DKGoogleAd_CreateAdForBrowser(parent, width, height);
+		}
 	}
-	*/
 }
 
-////////////////////////////////////////////////////////
-function DKGoogleAd_CreateAdFrame(parent, width, height)
+////////////////////////////////////////////////////////////
+function DKGoogleAd_CreateAdForRocket(parent, width, height)
 {
-	DKLog("DKGoogleAd_CreateAdFrame("+parent+", "+width+", "+height+")\n", DKDEBUG);
+	//DKDebug(parent, width, height);
+	var iframe = DKWidget_CreateElement(parent, "iframe", "DKAdd");
+	DKWidget_SetAttribute(iframe, "src", "https://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
+	DKWidget_SetProperty(iframe, "position", "absolute");
+	DKWidget_SetProperty(iframe, "width", "100%");
+	DKWidget_SetProperty(iframe, "height", "100px");
+	DKWidget_RemoveProperty(iframe, "top");
+	DKWidget_SetProperty("iframe_"+iframe, "position", "absolute");
+	DKWidget_SetProperty("iframe_"+iframe, "bottom", "0rem");
+	DKWidget_RemoveProperty("iframe_"+iframe, "top");
+	return iframe;
+}
+
+/////////////////////////////////////////////////////////////
+function DKGoogleAd_CreateAdForBrowser(parent, width, height)
+{
+	//DKDebug(parent, width, height);
 	var id = DKWidget_CreateElement(parent, "div", "DKAdd");
 	DKWidget_SetProperty(id, "position", "absolute");
 	DKWidget_SetProperty(id, "width", width);
 	DKWidget_SetProperty(id, "height", height);
 	DKWidget_SetProperty(id, "text-align", "center");
-	DKWidget_SetProperty(id, "overflow", "hidden");
-		
-	var iframe = DKWidget_CreateElement(id, "iframe", "AdFrame");
-	DKWidget_SetAttribute(iframe, "src", "https://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
-	DKWidget_SetAttribute(iframe, "width", "100%");
-	DKWidget_SetAttribute(iframe, "height", "100%");
-	DKWidget_SetProperty(iframe, "border-width", "0rem");
-	DKWidget_SetProperty(iframe, "position", "absolute");
-	DKWidget_SetProperty(iframe, "overflow", "hidden");
-	DKWidget_SetProperty(iframe, "top", "0rem");
-	DKWidget_SetProperty(iframe, "left", "0rem");
-	DKWidget_RemoveProperty(iframe, "width");
-	DKWidget_RemoveProperty(iframe, "height");
-	DKWidget_RemoveProperty(iframe, "right");
-	DKWidget_RemoveProperty(iframe, "bottom");
 	
+	var px_width = document.getElementById(id).clientWidth;
+	var px_height = document.getElementById(id).clientHeight;
+	
+	//don't let size go over 1200px
+	px_width = Math.min(px_width, 1200);
+	px_height = Math.min(px_height, 1200);
+	window.google_ad_client = "ca-pub-4839505278360003";
+	window.google_ad_slot = "8269654670";
+	window.google_ad_width = px_width;
+	window.google_ad_height = px_height;
+	//window.google_adtest = "on";
+
+	var container = document.getElementById(id);
+	var w = document.write;
+	document.write = function(content){
+		container.innerHTML = content;
+		document.write = w;	
+	};
+
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://pagead2.googlesyndication.com/pagead/show_ads.js';
+	document.body.appendChild(script);
 	return id;
 }

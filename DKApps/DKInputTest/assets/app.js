@@ -12,14 +12,10 @@ function app_LoadPlugins()
 {
 	DKCreate("DKDebug/DKDebug.js", function(){});
 
-	var iframe = DKWidget_CreateElement("DKCef_frame", "iframe", "GoogleAd_iframe");
-	DKWidget_SetAttribute(iframe, "src", "https://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
-	DKWidget_SetProperty(iframe, "position", "absolute");
-	DKWidget_SetProperty(iframe, "left", "0px");
-	DKWidget_SetProperty(iframe, "width", "100%");
-	DKWidget_SetProperty(iframe, "height", "100rem");
-	DKWidget_SetProperty(iframe, "bottom", "0px");
-	DKWidget_RemoveProperty(iframe, "top");
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		DKWidget_SetProperty(id, "bottom", "0px");
+	});
 }
 
 ///////////////////////
