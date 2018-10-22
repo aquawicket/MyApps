@@ -1,7 +1,7 @@
 ///////////////////////////
 function Digitalknob_Init()
 {
-	DKCreate("DKFrame/DKFrame.js", function(){});
+	DKCreate("DKGui/DKFrame.js", function(){});
 	DKCreate("Digitalknob/Digitalknob.html");
 	DKCreate("Digitalknob/Home.js", function(){});
 	DKCreate("Digitalknob/OsInfo.js", function(){});
