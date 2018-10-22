@@ -11,6 +11,15 @@ DKCreate("DK/init.js", function(){});
 function app_LoadPlugins()
 {
 	DKCreate("DKDebug/DKDebug.js", function(){});
+
+	var iframe = DKWidget_CreateElement("DKCef_frame", "iframe", "GoogleAd_iframe");
+	DKWidget_SetAttribute(iframe, "src", "https://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
+	DKWidget_SetProperty(iframe, "position", "absolute");
+	DKWidget_SetProperty(iframe, "left", "0px");
+	DKWidget_SetProperty(iframe, "width", "100%");
+	DKWidget_SetProperty(iframe, "height", "100rem");
+	DKWidget_SetProperty(iframe, "bottom", "0px");
+	DKWidget_RemoveProperty(iframe, "top");
 }
 
 ///////////////////////
@@ -23,10 +32,12 @@ function app_LoadPage()
 	DKCreate("appPage.html", function(){
 		DKCreate("DKInputTest/DKInput.js", function(){
 			DKWidget_AppendChild("dkapp_container", "DKInputTest/DKInput.html");
+	
+			
 		});
 	});
 
-	if(DK_GetBrowser() != "CEF"){ 
+	if(DK_GetBrowser() != "CEF"){
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 			var id = DKGoogleAd_CreateAd("appPage.html", "100%", "100rem");
 			DKWidget_SetProperty(id, "bottom", "0px");
