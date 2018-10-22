@@ -16,7 +16,6 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	//DKLog("Loading page... \n");
 	DKWidget_SetProperty("body","background-color","grey");
 	DKCreate("DKWindow/DKWindow.js", function(){});
 	DKCreate("DKScale/DKScale.js", function(){});
@@ -28,8 +27,8 @@ function app_LoadPage()
 	//});
 	
 	//if(DK_GetBrowser() != "CEF"){ 
-	//	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-	//		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-	//	});
+		//DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		//	var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		//});
 	//}
 }
