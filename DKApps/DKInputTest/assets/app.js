@@ -1,7 +1,7 @@
 var USE_CEF     = 1; //Desktop
 var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
-var USE_ROCKET  = 0; //Use with caution
+var USE_ROCKET  = 1; //Use with caution
 var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
 //var DKApp_url = "http://digitalknob.com/DKInputTest/index.html";
 
@@ -26,9 +26,10 @@ function app_LoadPage()
 	//	DKFileMenu_Widget("body");
 	//});
 	
-	//if(DK_GetBrowser() != "CEF"){ 
-		//DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-		//	var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-		//});
-	//}
+	if(DK_GetBrowser() != "CEF"){ 
+		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+			DKWidget_SetProperty(id, "bottom", "0px");
+		});
+	}
 }
