@@ -24,16 +24,14 @@ function app_LoadPage()
 	DKWidget_SetProperty("body","background-color","grey");
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKScale/DKScale.js", function(){
-	DKCreate("DKDebug/DKDebug.js", function(){
-		DKCreate("DKSearch/DKSearch.js", function(){
-			DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-				var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-				if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
-			});
-		});	
+	DKCreate("DKDebug/DKDebug.js", function(){	
+	DKCreate("DKSearch/DKSearch.js", function(){
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
 	});
 	});
+	});	
 	});
-
-	
+	});
 }

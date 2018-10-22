@@ -22,19 +22,19 @@ function app_LoadPlugins()
 function app_LoadPage()
 {
 	DKWidget_SetProperty("body","background-color","grey");
-	DKCreate("DKWindow/DKWindow.js", function(){});
-	DKCreate("DKScale/DKScale.js", function(){});
-	DKCreate("DKDebug/DKDebug.js", function(){});
+	DKCreate("DKWindow/DKWindow.js", function(){
+	DKCreate("DKScale/DKScale.js", function(){
+	DKCreate("DKDebug/DKDebug.js", function(){
 	DKCreate("appPage.html", function(){
-		DKCreate("DKInputTest/DKInput.js", function(){
-			DKWidget_AppendChild("dkapp_container", "DKInputTest/DKInput.html");
-	
-			DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-				var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
-				if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
-			});
-		});
+	DKCreate("DKInputTest/DKInput.js", function(){
+		DKWidget_AppendChild("dkapp_container", "DKInputTest/DKInput.html");
+	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
 	});
-
-	
+	});
+	});
+	});
+	});
+	});
 }
