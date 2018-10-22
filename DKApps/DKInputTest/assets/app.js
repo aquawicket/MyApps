@@ -18,6 +18,7 @@ function app_LoadPage()
 {
 	//DKLog("Loading page... \n");
 	DKWidget_SetProperty("body","background-color","grey");
+	DKCreate("DKWindow/DKWindow.js", function(){});
 	DKCreate("DKScale/DKScale.js", function(){});
 	DKCreate("DKInputTest/DKInput.js", function(){});
 	DKCreate("DKDebug/DKDebug.js", function(){});
