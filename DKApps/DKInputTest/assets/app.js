@@ -19,16 +19,16 @@ function app_LoadPage()
 	DKWidget_SetProperty("body","background-color","grey");
 	DKCreate("DKWindow/DKWindow.js", function(){});
 	DKCreate("DKScale/DKScale.js", function(){});
-	DKCreate("DKInputTest/DKInput.js", function(){});
 	DKCreate("DKDebug/DKDebug.js", function(){});
-	
-	//DKCreate("DKFileMenu/DKFileMenu.js", function(){
-	//	DKFileMenu_Widget("body");
-	//});
-	
+	DKCreate("appPage.html", function(){
+		DKCreate("DKInputTest/DKInput.js", function(){
+			DKWidget_AppendChild("dkapp_container", "DKInputTest/DKInput.html");
+		});
+	});
+
 	if(DK_GetBrowser() != "CEF"){ 
 		DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-			var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+			var id = DKGoogleAd_CreateAd("appPage.html", "100%", "100rem");
 			DKWidget_SetProperty(id, "bottom", "0px");
 		});
 	}
