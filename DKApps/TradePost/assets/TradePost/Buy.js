@@ -10,7 +10,7 @@ var prevPage = 0;
 ///////////////////
 function Buy_Init()
 {
-	DKLog("Buy_Init()\n", DKDEBUG);
+	DKDebug();
 	DKCreate("TradePost/Buy.html");
 	DKCreate("TradePost/Helper.js", function(){
 	DKCreate("TradePost/Craigslist.js", function(){
@@ -37,7 +37,7 @@ function Buy_Init()
 //////////////////
 function Buy_End()
 {
-	DKLog("Buy_End()\n", DKDEBUG);
+	DKDebug();
 	DKRemoveEvents(Buy_OnEvent);
 	DKClose("TradePost/Buy.html");
 }
@@ -45,6 +45,7 @@ function Buy_End()
 ///////////////////////////
 function Buy_OnEvent(event)
 {
+	DKDebug(event);
 	DKLog("Buy_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	
 	if(DK_Id(event, "Buy_Prev")){
@@ -124,7 +125,7 @@ function Buy_OnEvent(event)
 ///////////////////////////////////////
 function Buy_CheckForDuplicate(itemUrl)
 {
-	DKLog("Buy_CheckForDuplicate("+itemUrl+")\n", DKDEBUG);
+	DKDebug(itemUrl);
 	for(var i=0; i<buyItems.length; i++){
 		if(itemUrl == buyItems[i].link){
 			//DKLog("Buy_CheckForDuplicate(): found duplicate\n");
@@ -137,7 +138,7 @@ function Buy_CheckForDuplicate(itemUrl)
 //////////////////////////////////
 function Buy_GetFirstAvailableId()
 {
-	DKLog("Inventory_GetFirstAvailableId()\n", DKDEBUG);
+	DKDebug();
 	if(!buyItems){ return false; }
 	var id = 0;
 	for(var i = 0; i<buyItems.length; i++){
@@ -151,7 +152,7 @@ function Buy_GetFirstAvailableId()
 ////////////////////////////////////////
 function Buy_GetUrlString(url, callback)
 {
-	DKLog("Buy_GetUrlString("+url+", callback)\n", DKDEBUG);
+	DKDebug(url, callback);
 	try {
         request = new XDomainRequest();
     }catch(e){}
@@ -199,7 +200,7 @@ function Buy_GetUrlString(url, callback)
 /////////////////////
 function Buy_Update()
 {
-	DKLog("Buy_Update()\n", DKDEBUG);
+	DKDebug();
 	if(buySettings.sortBy == "Date"){
 		Buy_SortItems('id', true);
 	}
@@ -425,6 +426,7 @@ function Buy_Update()
 ///////////////////////
 function Buy_LoadData()
 {
+	DKDebug();
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buyItems.json")){
 		DKLog("Buy_LoadData(): buyItems.json does not exist\n", DKWARN);
 		return;
@@ -438,6 +440,7 @@ function Buy_LoadData()
 ///////////////////////
 function Buy_SaveData()
 {
+	DKDebug();
 	var json = JSON.stringify(buyItems);//, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buyItems.json");
 }
@@ -445,7 +448,7 @@ function Buy_SaveData()
 ///////////////////////////
 function Buy_LoadSettings()
 {
-	DKLog("Buy_LoadSettings()\n", DKDEBUG);
+	DKDebug();
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buySettings.json")){
 		DKLog("Buy_LoadSettings(): buySettings.json does not exist\n", DKWARN);
 		if(!buySettings.sortBy){ buySettings.sortBy = "Date"; }
@@ -461,7 +464,7 @@ function Buy_LoadSettings()
 ///////////////////////////
 function Buy_SaveSettings()
 {
-	DKLog("Buy_SaveSettings()\n", DKDEBUG);
+	DKDebug();
 	var json = JSON.stringify(buySettings);//, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buySettings.json");
 }
@@ -469,6 +472,7 @@ function Buy_SaveSettings()
 //////////////////////////////////////////
 function Buy_SortItems(property, acending)
 {
+	DKDebug(property, acending);
 	buyItems = buyItems.sort(function(a, b){
         if(acending){
             return (a[property] > b[property]) ? 1 : ((a[property] < b[property]) ? -1 : 0);
