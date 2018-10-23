@@ -21,7 +21,7 @@ function Settings_End()
 
 ////////////////////////////////
 function Settings_OnEvent(event)
-{
+{	
 	DKLog("Settings_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
 	if(DK_Id(event, "UpdateButton")){
 		Settings_Update();
