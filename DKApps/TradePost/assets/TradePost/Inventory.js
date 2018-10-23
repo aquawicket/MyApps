@@ -319,31 +319,27 @@ function Inventory_ChangeText(id, text)
 function Inventory_LoadItems()
 {
 	items = []; //clear items
-	
 	var string = DKFile_DirectoryContents(DKAssets_LocalAssets()+"USER/Items/");
+	if(!string){ return; }
 	var arry = string.split(",");
 	
 	for(var row = 0; row < arry.length; row++){
 		if(!DKFile_IsDirectory(DKAssets_LocalAssets()+"USER/Items/"+arry[row])){ continue; }
-		
-		//if(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+row)){
-			if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/"+arry[row]+"/data.json")){
-				//DKFile_StringToFile("", DKAssets_LocalAssets()+"USER/Items/"+arry[row]+"/data.json");
+		if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/"+arry[row]+"/data.json")){
+			items.push({});
+			items[items.length-1].id = Inventory_GetFirstAvailableId();
+		}
+		else{
+			var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/Items/"+arry[row]+"/data.json");
+			if(json){
+				var item = JSON.parse(json);
+				items.push(item); //add item to items
+			}
+			else{
 				items.push({});
 				items[items.length-1].id = Inventory_GetFirstAvailableId();
 			}
-			else{
-				var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/Items/"+arry[row]+"/data.json");
-				if(json){
-					var item = JSON.parse(json);
-					items.push(item); //add item to items
-				}
-				else{
-					items.push({});
-					items[items.length-1].id = Inventory_GetFirstAvailableId();
-				}
-			}
-		//}
+		}
 	}
 }
 
