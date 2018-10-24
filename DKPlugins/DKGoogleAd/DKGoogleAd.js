@@ -34,11 +34,12 @@ function DKGoogleAd_CreateAd(parent, width, height)
 function DKGoogleAd_CreateAdForRocket(parent, width, height)
 {
 	//DKDebug(parent, width, height);
+	var online_assets = DKAssets_OnlineAssets();
 	var iframe = DKWidget_CreateElement(parent, "iframe", "DKAdd");
-	DKWidget_SetAttribute(iframe, "src", "https://digitalknob.com/DKEnvelope/DKGoogleAd/AddFrame.html");
+	DKWidget_SetAttribute(iframe, "src", online_assets+"/DKGoogleAd/AddFrame.html");
 	DKWidget_SetProperty(iframe, "position", "absolute");
-	DKWidget_SetProperty(iframe, "width", "100%");
-	DKWidget_SetProperty(iframe, "height", "100px");
+	DKWidget_SetProperty(iframe, "width", width);
+	DKWidget_SetProperty(iframe, "height", height);
 	DKWidget_RemoveProperty(iframe, "top");
 	DKWidget_RemoveProperty(iframe, "bottom");
 	DKWidget_RemoveProperty(iframe, "left");

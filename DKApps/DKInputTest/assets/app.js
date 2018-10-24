@@ -13,7 +13,7 @@ function app_LoadPlugins()
 	DKCreate("DKDebug/DKDebug.js", function(){});
 
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
 		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
 	});
 }
@@ -29,7 +29,7 @@ function app_LoadPage()
 	DKCreate("DKInputTest/DKInput.js", function(){
 		DKWidget_AppendChild("dkapp_container", "DKInputTest/DKInput.html");
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-		var id = DKGoogleAd_CreateAd("body", "100%", "100rem");
+		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
 		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
 	});
 	});
