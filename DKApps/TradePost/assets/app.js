@@ -1,5 +1,8 @@
 DKCreate("DKWindow");
 DKCreate("DKRocket");
+DKRocket_LoadGui("index.html");
+DKCreate("DKDom/DKDom.js");
+//var html_root = document.getElementsByTagName("html")[0];
 DKCreate("DKGui/DKFrame.js");
 DKCreate("DKBrowser/DKBrowser.js");
 DKCreate("DKTray/DKTray.js");
