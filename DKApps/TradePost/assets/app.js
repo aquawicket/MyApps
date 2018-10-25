@@ -1,3 +1,4 @@
+DKCreate("DKWidget");
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKRocket_LoadGui("index.html");
