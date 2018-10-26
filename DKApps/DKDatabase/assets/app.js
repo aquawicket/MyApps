@@ -10,8 +10,8 @@ DKCreate("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKDebug/DKDebug.js", function(){});
-
 	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
 		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
@@ -21,6 +21,7 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
+	DKDEBUGFUNC();
 	DKWidget_SetProperty("body","background-color","grey");
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKScale/DKScale.js", function(){
