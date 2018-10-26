@@ -1,19 +1,19 @@
-
 ///////////////////////
 function DKBlog_Init()
 {
-	//DKLog("DKBlog_Init() \n");
+	DKDEBUGFUNC();
 	DKCreate("DKBlog/DKBlog.html");
 }
 
 /////////////////////
 function DKBlog_End()
 {
+	DKDEBUGFUNC();
 	DKClose("DKBlog/DKBlog.html");
 }
 
 //////////////////////////////
 function DKBlog_OnEvent(event)
 {
-	DKLog("DKBlog_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKDEBUGFUNC(event);
 }

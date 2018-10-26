@@ -1,6 +1,7 @@
 //////////////////////////
 function DKEnvelope_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKEnvelope/DKEnvelope.html", function(){
 		DKAddEvent("printEnvelope", "click", DKEnvelope_OnEvent);
 		DKAddEvent("returnAddress", "keyup", DKEnvelope_OnEvent);
@@ -12,14 +13,14 @@ function DKEnvelope_Init()
 /////////////////////////
 function DKEnvelope_End()
 {
+	DKDEBUGFUNC();
 	DKClose("DKEnvelope/DKEnvelope.html");
 }
 
 //////////////////////////////////
 function DKEnvelope_OnEvent(event)
 {	
-	//DKLog("DKEnvelope_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "printEnvelope")){
 		DKEnvelope_SaveAddresses();
 		DKEnvelope_PrintEnvelope();
@@ -41,6 +42,7 @@ function DKEnvelope_OnEvent(event)
 /////////////////////////////////////////////
 function DKEnvelope_SetDefaultReturnAddress()
 {
+	DKDEBUGFUNC();
 	var str = DKFile_FileToString("returnAddresses.txt");
 	if(!str){ return; }
 	var returnAddresses = str.split(";");
@@ -50,14 +52,13 @@ function DKEnvelope_SetDefaultReturnAddress()
 ///////////////////////////////////////////
 function DKEnvelope_ReturnAddressAutofill()
 {
-	//DKLog("DKEnvelope_ReturnAddressAutofill()\n", DKINFO);
-	//TODO
+	DKDEBUGFUNC();
 }
 
 /////////////////////////////////////////
 function DKEnvelope_SendAddressAutofill()
 {
-	//DKLog("DKEnvelope_SendAddressAutofill()\n", DKINFO);
+	DKDEBUGFUNC();
 	
 	//Polyfill
 	if(!String.prototype.includes){
@@ -98,8 +99,7 @@ function DKEnvelope_SendAddressAutofill()
 ///////////////////////////////////////////////
 function DKEnvelope_CreateSendAutofill(address)
 {
-	//DKLog(address+"\n", DKINFO);
-	
+	DKDEBUGFUNC(address);
 	DKWidget_RemoveElement("autofill");
 	
 	var autofill = DKWidget_CreateElement("envelope", "div", "autofill");
@@ -133,6 +133,7 @@ Object.prototype.rotate = function(d)
 ///////////////////////////////
 function DoPrint(ele, callback)
 {
+	DKDEBUGFUNC(ele, callback);
 	var str = DKWidget_GetElements("body");
 	var elems = str.split(",");
 	for(var i=0; i<elems.length; i++){
@@ -153,8 +154,8 @@ function DoPrint(ele, callback)
 ///////////////////////////////////
 function DKEnvelope_SaveAddresses()
 {
-	//DKLog("DKEnvelope_SaveAddresses()\n", DKINFO);
-	//DKLog("absolutepath = "+absolutepath+"\n", DKINFO);
+	DKDEBUGFUNC();
+	//DKINFO("absolutepath = "+absolutepath+"\n");
 	
 	//Polyfill for Internet Explorer
 	if(!Array.prototype.includes){
@@ -207,6 +208,7 @@ function DKEnvelope_SaveAddresses()
 ///////////////////////////////////
 function DKEnvelope_Rotate(elem, d)
 {
+	DKDEBUGFUNC(elem, d);
 	var ele = document.getElementById(elem);
 	var s = "rotate(" + d + "deg)";
 	if(ele.style){ // regular DOM Object
@@ -239,8 +241,7 @@ function DKEnvelope_Rotate(elem, d)
 ///////////////////////////////////
 function DKEnvelope_PrintEnvelope()
 {
-	//DKLog("DKEnvelope_PrintEnvelope()");
-	
+	DKDEBUGFUNC();	
 	//Create the blank background
 	var envelope_bg = DKWidget_CreateElement("body", "div", "envelope_background");
 	DKWidget_SetProperty(envelope_bg, "position", "absolute");
