@@ -6,8 +6,9 @@ var SHUFFLE;
 //////////////////////
 function Panel0_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKMySql/DKMySql.js");
-DKCreate("Panel0.html");
+	DKCreate("Panel0.html");
 	//Hide("DKConsole.html");
 	DKAddEvent("GoButton", "click", Panel0_OnEvent);
 	DKAddEvent("AddButton", "click", Panel0_OnEvent);
@@ -47,7 +48,7 @@ DKCreate("Panel0.html");
 //////////////////////////////
 function Panel0_OnEvent(event)
 {
-	DKLog("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKDEBUGFUNC(event);
 	
 	if(DK_GetOS() == "Browser"){
 		DKVideo_RegisterEndVideo("DKVideo", Panel0_NextVideo);
@@ -130,12 +131,12 @@ function Panel0_OnEvent(event)
 		if(!SHUFFLE){
 			SHUFFLE = 1;
 			DKWidget_SetAttribute("ShuffleButton","src","shuffle_on.png");
-			DKLog("Shuffle On");
+			DKINFO("Shuffle On\n");
 		}
 		else{
 			SHUFFLE = 0;
 			DKWidget_SetAttribute("ShuffleButton","src","shuffle_off.png");
-			DKLog("Shuffle Off");
+			DKINFO("Shuffle Off\n");
 		}
 	}
 }
@@ -143,6 +144,7 @@ function Panel0_OnEvent(event)
 ////////////////////////////////
 function Panel0_FBconnect(value)
 {
+	DKDEBUGFUNC(value);
 	if(value.status === 'connected'){
 		DKFacebook_Query('/me', "name", Panel0_FBresponse);
 		DKFacebook_Query('/me', "id", Panel0_FBresponse);
@@ -152,6 +154,7 @@ function Panel0_FBconnect(value)
 ////////////////////////////////////////
 function Panel0_FBresponse(param, value)
 {
+	DKDEBUGFUNC(param, value);
 	if(param == "name"){
 		DKWidget_SetInnerHtml("LoginText", value);
 	}
@@ -173,8 +176,8 @@ function Panel0_FBresponse(param, value)
 /////////////////////////////////////
 function Panel0_AddPlaylist(playlist)
 {
+	DKDEBUGFUNC(playlist);
 	Panel0_GetPLAYLIST_ID(playlist);
-	
 	Panel0_Update_PlaylistDrop();
 	//var x = document.getElementById("PlaylistDrop");
 	//x.options[0].selected = 'selected';
@@ -187,6 +190,7 @@ function Panel0_AddPlaylist(playlist)
 ///////////////////////////
 function Panel0_AddUrl(url)
 {
+	DKDEBUGFUNC(url);
 	if(!PLAYLIST_ID){ return; }
 	if(!url){ return; }
 	var i = 0;
@@ -197,13 +201,14 @@ function Panel0_AddUrl(url)
 	//add to mysql
 	var query = "INSERT INTO PLAYLIST_URLS (PLAYLIST_ID, URL) VALUES ('"+PLAYLIST_ID+"','"+url+"')";
 	var result = DKMySql_Query(query);
-	DKLog(result);
+	DKINFO(result+"\n");
 }
 
 ///////////////////////////
 function Panel0_NextVideo()
 {
-	DKLog("Loading next video...");
+	DKDEBUGFUNC();
+	DKINFO("Loading next video...\n");
 	//var x = document.getElementById("Playlist");
 	
 	if(!SHUFFLE){
@@ -228,6 +233,7 @@ function Panel0_NextVideo()
 /////////////////////////
 function Panel0_Connect()
 {
+	DKDEBUGFUNC();
 	DKMySql_Connect("10.6.171.92", "DKData", "DigitalKnob123!", "");
 	DKMySql_Database("DKData");
 }
@@ -235,6 +241,7 @@ function Panel0_Connect()
 //////////////////////////////
 function Panel0_PrepDatabase()
 {
+	DKDEBUGFUNC();
 	//Create USER table
 	var query = "CREATE TABLE USERS (ID INT(10) NOT NULL AUTO_INCREMENT, PRIMARY KEY (ID))";
 	DKMySql_Query(query);
@@ -264,10 +271,10 @@ function Panel0_PrepDatabase()
 	DKMySql_Query(query);	
 }
 
-
 ////////////////////////////
 function Panel0_GetUSER_ID()
 {
+	DKDEBUGFUNC();
 	if(!FACEBOOK_ID){ return; }
 
 	//Create USER from FACEBOOK_ID
@@ -285,7 +292,7 @@ function Panel0_GetUSER_ID()
 		var query = "SELECT ID FROM USERS WHERE FACEBOOK_ID='"+FACEBOOK_ID+"'";
 		var result = DKMySql_Query(query);
 		if(result == "1,"){ //not found
-			DKLog("Cannot locate the USER_ID for "+FACEBOOK_ID, DKWARN);
+			DKWARN("Cannot locate the USER_ID for "+FACEBOOK_ID+"\n");
 			return;
 		}
 		else{
@@ -301,6 +308,7 @@ function Panel0_GetUSER_ID()
 ////////////////////////////////////
 function Panel0_GetPLAYLIST_ID(name)
 {
+	DKDEBUGFUNC(name);
 	if(!USER_ID){ userid = ""; }
 	else{ userid = USER_ID; }
 	
@@ -328,6 +336,7 @@ function Panel0_GetPLAYLIST_ID(name)
 /////////////////////////////////////
 function Panel0_Update_PlaylistDrop()
 {
+	DKDEBUGFUNC();
 	if(!USER_ID){ userid = ""; }
 	else{ userid = USER_ID; }
 	
@@ -350,7 +359,7 @@ function Panel0_Update_PlaylistDrop()
 	
 	var result = DKMySql_Query(query);
 	if(result == "1,"){ //not found
-		DKLog("No Playlists found for USER_ID:"+userid, DKWARN);
+		DKWARN("No Playlists found for USER_ID:"+userid+"\n");
 		return;
 	}
 
@@ -374,6 +383,7 @@ function Panel0_Update_PlaylistDrop()
 /////////////////////////////////
 function Panel0_Update_Playlist()
 {
+	DKDEBUGFUNC();
 	if(!PLAYLIST_ID){ return; }
 	
 	//clear all options
@@ -388,7 +398,7 @@ function Panel0_Update_Playlist()
 	var query = "SELECT URL FROM PLAYLIST_URLS WHERE PLAYLIST_ID='"+PLAYLIST_ID+"'";
 	var result = DKMySql_Query(query);
 	if(result == "1,"){ //not found
-		DKLog("Playlist ("+PLAYLIST_ID+") empty", DKWARN);
+		DKWARN("Playlist ("+PLAYLIST_ID+") empty\n");
 		return;
 	}
 	
