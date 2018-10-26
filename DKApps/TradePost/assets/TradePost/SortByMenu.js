@@ -1,7 +1,7 @@
 //////////////////////////
 function SortByMenu_Init()
 {
-	DKLog("SortByMenu_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("TradePost/SortByMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", SortByMenu_OnEvent);
 	DKAddEvent("SortByMenu_DateAsc", "mousedown", SortByMenu_OnEvent);
@@ -13,7 +13,7 @@ function SortByMenu_Init()
 /////////////////////////
 function SortByMenu_End()
 {
-	DKLog("SortByMenu_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(SortByMenu_OnEvent);
 	DKClose("TradePost/SortByMenu.html");
 }
@@ -21,8 +21,7 @@ function SortByMenu_End()
 //////////////////////////////////
 function SortByMenu_OnEvent(event)
 {
-	DKLog("SortByMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");//, DKDEBUG);
-
+	DKDEBUGFUNC(event);
 	if(DK_Id(event,"SortByMenu_DateAsc")){
 		buySettings.sortBy = "Date";
 		DKWidget_SetValue("BuySettings_sortBy", buySettings.sortBy);

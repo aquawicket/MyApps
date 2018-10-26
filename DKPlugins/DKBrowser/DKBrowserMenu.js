@@ -1,6 +1,7 @@
 /////////////////////////////
 function DKBrowserMenu_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKBrowser/DKBrowserMenu.html");
 	//DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","top",DKWindow_GetMouseY()+"px");
 	//DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","left",DKWindow_GetMouseX()+"px");
@@ -48,6 +49,7 @@ function DKBrowserMenu_Init()
 ////////////////////////////
 function DKBrowserMenu_End()
 {
+	DKDEBUGFUNC();
 	DKRemoveEvent("GLOBAL", "mousedown", DKBrowserMenu_OnEvent);
 	DKClose("DKBrowser/DKBrowserMenu.html");
 }
@@ -55,8 +57,7 @@ function DKBrowserMenu_End()
 /////////////////////////////////////
 function DKBrowserMenu_OnEvent(event)
 {
-	DKLog("DKBrowserMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(event);	
 	if(DK_Id(event,"DKBrowserMenu_Cut")){
 		DKBrowserMenu_Cut();
 	}
@@ -102,7 +103,7 @@ function DKBrowserMenu_OnEvent(event)
 ////////////////////////////
 function DKBrowserMenu_Cut()
 {
-	DKLog("DKBrowserMenu_Cut()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(DKCef_GetCurrentBrowser() > -1){
 		DKCef_Cut(); //This will not copy images to the clipboard
 	}
@@ -114,7 +115,7 @@ function DKBrowserMenu_Cut()
 /////////////////////////////
 function DKBrowserMenu_Copy()
 {
-	DKLog("DKBrowserMenu_Copy()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(DKCef_GetCurrentBrowser() > -1){
 		DKCef_Copy(); //This will not copy images to the clipboard
 	}
@@ -126,7 +127,7 @@ function DKBrowserMenu_Copy()
 //////////////////////////////
 function DKBrowserMenu_Paste()
 {
-	DKLog("DKBrowserMenu_Paste()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(DKCef_GetCurrentBrowser() > -1){
 		DKCef_Paste();
 	}
@@ -138,7 +139,7 @@ function DKBrowserMenu_Paste()
 //////////////////////////////////////////
 function DKBrowserMenu_OpenImageInNewTab()
 {
-	DKLog("DKBrowserMenu_OpenImageInNewTab()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(source_url){
 		DKBrowser_NewTab();
 		DKCef_SetUrl(DKCef_GetCurrentBrowser(), source_url);
@@ -148,7 +149,7 @@ function DKBrowserMenu_OpenImageInNewTab()
 ////////////////////////////////////
 function DKBrowserMenu_SaveImageAs()
 {
-	DKLog("DKBrowserMenu_SaveImageAs()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(source_url){
 		DKCef_DownloadUrl(source_url);
 	}
@@ -157,7 +158,7 @@ function DKBrowserMenu_SaveImageAs()
 //////////////////////////////////
 function DKBrowserMenu_CopyImage()
 {
-	DKLog("DKBrowserMenu_CopyImage()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(source_url){
 		DKCef_CopyImage(source_url);
 	}
@@ -166,7 +167,7 @@ function DKBrowserMenu_CopyImage()
 /////////////////////////////////////////
 function DKBrowserMenu_CopyImageAddress()
 {
-	DKLog("DKBrowserMenu_CopyImageAddress()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(source_url){
 		DK_SetClipboard(source_url);
 	}
@@ -175,7 +176,7 @@ function DKBrowserMenu_CopyImageAddress()
 /////////////////////////////////////////
 function DKBrowserMenu_OpenLinkInNewTab()
 {
-	DKLog("DKBrowserMenu_OpenLinkInNewTab()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(link_url){
 		DKBrowser_NewTab();
 		DKCef_SetUrl(DKCef_GetCurrentBrowser(), link_url);
@@ -185,7 +186,7 @@ function DKBrowserMenu_OpenLinkInNewTab()
 ////////////////////////////////////////////
 function DKBrowserMenu_OpenLinkInNewWindow()
 {
-	DKLog("DKBrowserMenu_OpenLinkInNewWindow()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(link_url){
 		DKCef_Popup(link_url);
 	}
@@ -194,7 +195,7 @@ function DKBrowserMenu_OpenLinkInNewWindow()
 ///////////////////////////////////
 function DKBrowserMenu_SaveLinkAs()
 {
-	DKLog("DKBrowserMenu_SaveLinkAs()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(link_url){
 		DKCef_DownloadUrl(link_url);
 	}
@@ -203,7 +204,7 @@ function DKBrowserMenu_SaveLinkAs()
 ////////////////////////////////////////
 function DKBrowserMenu_CopyLinkAddress()
 {
-	DKLog("DKBrowserMenu_CopyLinkAddress()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(link_url){
 		DK_SetClipboard(link_url);
 	}

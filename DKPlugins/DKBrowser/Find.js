@@ -1,7 +1,7 @@
 ////////////////////
 function Find_Init()
 {
-	DKLog("Find_Init()", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("DKBrowser/Find.html");
 	DKAddEvent("FindNext", "click", Find_OnEvent);
 	DKAddEvent("FindCancel", "click", Find_OnEvent);
@@ -10,7 +10,7 @@ function Find_Init()
 ///////////////////
 function Find_End()
 {
-	DKLog("Find_End()", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(Find_OnEvent);
 	DKCef_Find(0, ""); //FIXME: not working
 	DKClose("DKBrowser/Find.html");
@@ -19,7 +19,7 @@ function Find_End()
 ////////////////////////////
 function Find_OnEvent(event)
 {
-	DKLog("Find_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "FindNext")){
 		DKCef_Find(0, DKWidget_GetValue("FindInput"));
 	}

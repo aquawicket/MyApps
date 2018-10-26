@@ -1,7 +1,7 @@
 ////////////////////////
 function Settings_Init()
 {
-	DKLog("Settings_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("DKBrowser/Settings.html", function(){
 		DKAddEvent("UpdateButton", "click", Settings_OnEvent);
 		DKAddEvent("VersionButton", "click", Settings_OnEvent);
@@ -15,14 +15,14 @@ function Settings_Init()
 ///////////////////////
 function Settings_End()
 {
-	DKLog("Settings_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKClose("DKBrowser/Settings.html");
 }
 
 ////////////////////////////////
 function Settings_OnEvent(event)
 {	
-	DKLog("Settings_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "UpdateButton")){
 		Settings_Update();
 	}
@@ -46,10 +46,11 @@ function Settings_OnEvent(event)
 //////////////////////////////
 function Settings_ClearCache()
 {
+	DKDEBUGFUNC();
 	var assets = DKAssets_LocalAssets();
 	var cachePath = assets+"USER/Cache";
 	if(!DKFile_Exists(cachePath)){
-		DKLog("Settings_ClearCache(): cachePath+ invalid\n");
+		DKWARN("Settings_ClearCache(): cachePath+ invalid\n");
 		return false;
 	}
 	
@@ -58,7 +59,7 @@ function Settings_ClearCache()
 	
 	for(var i=0; i<arry.length; i++){
 		if(arry[i].indexOf("f_") == 0){
-			//DKLog("cachePath+/+arry["+i+"] = "+cachePath+"/"+arry[i]+"\n");
+			//DKINFO("cachePath+/+arry["+i+"] = "+cachePath+"/"+arry[i]+"\n");
 			DKFile_Delete(cachePath+"/"+arry[i]);
 		}
 	}
@@ -67,7 +68,7 @@ function Settings_ClearCache()
 //////////////////////////
 function Settings_Update()
 {
-	DKLog("Settings_Update()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
@@ -76,7 +77,7 @@ function Settings_Update()
 ///////////////////////////
 function Settings_Version()
 {
-	DKLog("Settings_Version()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://version");
 }
@@ -84,7 +85,7 @@ function Settings_Version()
 ///////////////////////
 function Settings_Gpu()
 {
-	DKLog("Settings_Gpu()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://gpu");
 }
@@ -92,7 +93,7 @@ function Settings_Gpu()
 //////////////////////////
 function Settings_System()
 {
-	DKLog("Settings_System()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://system");
 }
@@ -100,7 +101,7 @@ function Settings_System()
 ////////////////////////////////
 function Settings_NetInternals()
 {
-	DKLog("Settings_NetInternals()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKBrowser_NewTab(0);
 	DKCef_SetUrl(DKCef_GetCurrentBrowser(), "chrome://net-internals");
 }

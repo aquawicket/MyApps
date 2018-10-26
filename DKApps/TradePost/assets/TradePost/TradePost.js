@@ -1,7 +1,7 @@
 /////////////////////////
 function TradePost_Init()
 {
-	DKLog("TradePost_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("TradePost/TradePost.html");
 	DKCreate("TradePost/Inventory.js", function(){
 		DKWidget_AppendChild("TradePost/TradePost.html", "TradePost/Inventory.html");
@@ -32,7 +32,7 @@ function TradePost_Init()
 ////////////////////////
 function TradePost_End()
 {
-	DKLog("TradePost_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(TradePost_OnEvent);
 	DKClose("TradePost/TradePost.html");
 }
@@ -40,22 +40,22 @@ function TradePost_End()
 /////////////////////////////////
 function TradePost_OnEvent(event)
 {	
-	DKLog("TradePost_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 
 	/*
 	if(DK_Type(event, "DKCef_SourceReceived")){
 		var source = DK_GetValue(event);
-		DKLog("DKCef_SourceReceived() = "+DK_GetValue(event)+"\n");
+		DKINFO("DKCef_SourceReceived() = "+DK_GetValue(event)+"\n");
 	}
 	*/
 	
 	if(DK_Id(event, "Buy")){
-		//DKLog("Buy\n");
+		//DKINFO("Buy\n");
 		DKWidget_Hide("TradePost/Inventory.html");
 		DKWidget_Show("TradePost/Buy.html");
 	}
 	if(DK_Id(event, "Inventory")){
-		//DKLog("Inventory\n");
+		//DKINFO("Inventory\n");
 		DKWidget_Hide("TradePost/Buy.html");
 		DKWidget_Show("TradePost/Inventory.html");
 	}
@@ -86,7 +86,7 @@ function TradePost_OnEvent(event)
 ///////////////////////////////////////////
 function TradePost_UpdateConnectionStatus()
 {
-	DKLog("TradePost_UpdateConnectionStatus()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(!DKWidget_ElementExists("Status")){
 		var status = DKWidget_CreateElement("TradePost/TradePost.html", "div", "Status");
 		DKWidget_SetProperty(status, "position", "absolute");
@@ -95,12 +95,12 @@ function TradePost_UpdateConnectionStatus()
 		DKWidget_SetProperty(status, "right", "10rem");
 	}
 	if(navigator.onLine){
-		//DKLog("TradePost_UpdateConnectionStatus(): online\n");
+		//DKINFO("TradePost_UpdateConnectionStatus(): online\n");
 		DKWidget_SetInnerHtml("Status", "online");
 		DKWidget_SetProperty("Status", "color", "black");
 		return;
 	}
-	//DKLog("TradePost_UpdateConnectionStatus(): OFFLINE!\n");
+	//DKINFO("TradePost_UpdateConnectionStatus(): OFFLINE!\n");
 	DKWidget_SetInnerHtml("Status", "OFFLINE!");
 	DKWidget_SetProperty("Status", "color", "red");
 }
@@ -109,12 +109,10 @@ function TradePost_UpdateConnectionStatus()
 /////////////////////////
 function TradePost_Test()
 {
-	DKLog("TradePost_Test\n", DKDEBUG);
-	
+	DKDEBUGFUNC();	
 	DKCreate("TradePost/Helper.js", function(){});
 	
-
-	DKLog(getParameters(Pinger_ping));
+	DKINFO(getParameters(Pinger_ping)+"\n");
 	
 	//// Test WebSockets
 	//OpenWebSocket();
@@ -128,15 +126,15 @@ function TradePost_Test()
 		
 	/*
 	//// Run Functions in order with a set delay between each execution
-	Helper_Queue( function(){ TestFunction(1, function(rval){ DKLog("1 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(2, function(rval){ DKLog("2 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(3, function(rval){ DKLog("3 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(4, function(rval){ DKLog("4 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(5, function(rval){ DKLog("5 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(6, function(rval){ DKLog("6 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(7, function(rval){ DKLog("7 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(8, function(rval){ DKLog("8 * 2 = "+rval+"\n"); } ); } );
-	Helper_Queue( function(){ TestFunction(9, function(rval){ DKLog("9 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(1, function(rval){ DKINFO("1 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(2, function(rval){ DKINFO("2 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(3, function(rval){ DKINFO("3 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(4, function(rval){ DKINFO("4 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(5, function(rval){ DKINFO("5 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(6, function(rval){ DKINFO("6 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(7, function(rval){ DKINFO("7 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(8, function(rval){ DKINFO("8 * 2 = "+rval+"\n"); } ); } );
+	Helper_Queue( function(){ TestFunction(9, function(rval){ DKINFO("9 * 2 = "+rval+"\n"); } ); } );
 	*/
 	
 	/*
@@ -151,30 +149,30 @@ function TradePost_Test()
 	/*
 	//// Get the Cef browser's source code
 	var source = DKCef_GetPageSource(0);
-	DKLog("source = "+source+"\n");
+	DKINFO("source = "+source+"\n");
 	*/
 	
-	//DKLog("######### ITEMS ##########\n");
+	//DKINFO("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
 		/*
-		DKLog("\n");
-		DKLog("items["+i+"]id: "+items[i].id+"\n");
-		DKLog("items["+i+"]title: "+items[i].title+"\n");
-		DKLog("items["+i+"]description: "+items[i].description+"\n");
-		DKLog("items["+i+"]catagory: "+items[i].catagory+"\n");
-		DKLog("items["+i+"]price: "+items[i].price+"\n");
+		DKINFO("\n");
+		DKINFO("items["+i+"]id: "+items[i].id+"\n");
+		DKINFO("items["+i+"]title: "+items[i].title+"\n");
+		DKINFO("items["+i+"]description: "+items[i].description+"\n");
+		DKINFO("items["+i+"]catagory: "+items[i].catagory+"\n");
+		DKINFO("items["+i+"]price: "+items[i].price+"\n");
 		*/
 		
 		//var json_string = JSON.stringify(items[i]);
-		//DKLog(json_string+"\n");
+		//DKINFO(json_string+"\n");
 		
 		/*
 		var item_object = JSON.parse(json_string);
-		DKLog("item_object.id: "+item_object.id+"\n");
-		DKLog("item_object.title: "+item_object.title+"\n");
-		DKLog("item_object.description: "+item_object.description+"\n");
-		DKLog("item_object.catagory: "+item_object.catagory+"\n");
-		DKLog("item_object.price: "+item_object.price+"\n");
+		DKINFO("item_object.id: "+item_object.id+"\n");
+		DKINFO("item_object.title: "+item_object.title+"\n");
+		DKINFO("item_object.description: "+item_object.description+"\n");
+		DKINFO("item_object.catagory: "+item_object.catagory+"\n");
+		DKINFO("item_object.price: "+item_object.price+"\n");
 		*/
 	}
 	
@@ -183,28 +181,28 @@ function TradePost_Test()
 	//Wait for a Open Files window to appear, set the path, select all files, open
 	DKCreate("DKHandles");
 	if(!DKHandles_WaitForWindow("Open Files", 5)){
-		DKLog("Open Files never showed up\n", DKERROR);
+		DKERROR("Open Files never showed up\n");
 		return;
 	}
 	if(!DKHandles_WaitForWindow("Address", 1)){
-		DKLog("address bar never showed up\n", DKERROR);
+		DKERROR("address bar never showed up\n");
 		return;
 	}
 	
 	var currentHandle = DKHandles_CurrentHandle();
 	
 	if(!DKHandles_SetWindowHandle("Address", 3)){
-		DKLog("DKHandles_SetWindowHandle(\"Address\"): failed\n");
+		DKERROR("DKHandles_SetWindowHandle(\"Address\"): failed\n");
 	}
 	var currentHandle = DKHandles_CurrentHandle();
 	var top = DKHandles_GetTop(currentHandle);
 	var left = DKHandles_GetLeft(currentHandle);
 	var right = DKHandles_GetRight(currentHandle);
 	var bottom = DKHandles_GetBottom(currentHandle);
-	DKLog("top = "+top+"\n");
-	DKLog("left = "+left+"\n");
-	DKLog("right = "+right+"\n");
-	DKLog("bottom = "+bottom+"\n");
+	DKINFO("top = "+top+"\n");
+	DKINFO("left = "+left+"\n");
+	DKINFO("right = "+right+"\n");
+	DKINFO("bottom = "+bottom+"\n");
 	
 	//Process url bar
 	DK_SetMousePos(left+10,top+10);

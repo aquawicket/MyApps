@@ -1,116 +1,117 @@
 ///////////////////////
 function Offerup_Init()
 {
-	DKLog("Offerup_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 }
 
 //////////////////////
 function Offerup_End()
 {
-	DKLog("Offerup_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(Offerup_OnEvent);
 }
 
 ///////////////////////////////
 function Offerup_OnEvent(event)
 {
-	DKLog("Offerup_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 }
 
-//////////////////////////
-function Offerup_Scrape(){
-		DKLog("Offerup_Scrape()\n", DKDEBUG);
-		Offerup_ToArry("https://offerup.com/explore/k/antiques", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/appliances", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/arts-crafts", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/audio-equipment", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/auto-parts", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/baby-kids", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/beauty-health", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/bicycles", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/boats-marine", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/books-magazines", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/business-equipment", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/campers-rvs", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/cars-trucks", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/cds-dvds", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/cell-phones", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/clothing-shoes", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/collectibles", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/computer-equipment", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/electronics", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/exercise", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/free", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/furniture", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/games-toys", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/general", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/home-garden", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/household", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/jewelry-accessories", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/motorcycles", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/musical-instruments", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/pet-supplies", function(){	
-		Offerup_ToArry("https://offerup.com/explore/k/photography", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/software", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/sports-outdoors", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/tickets", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/tools-machinery", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/tvs", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/video-equipment", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/video-games", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/wedding", function(){
-		Offerup_ToArry("https://offerup.com/explore/k/free", function(){
-			Buy_Update();
-			return;
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
-		})
+/////////////////////////
+function Offerup_Scrape()
+{
+	DKDEBUGFUNC();
+	Offerup_ToArry("https://offerup.com/explore/k/antiques", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/appliances", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/arts-crafts", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/audio-equipment", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/auto-parts", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/baby-kids", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/beauty-health", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/bicycles", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/boats-marine", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/books-magazines", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/business-equipment", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/campers-rvs", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/cars-trucks", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/cds-dvds", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/cell-phones", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/clothing-shoes", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/collectibles", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/computer-equipment", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/electronics", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/exercise", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/free", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/furniture", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/games-toys", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/general", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/home-garden", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/household", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/jewelry-accessories", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/motorcycles", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/musical-instruments", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/pet-supplies", function(){	
+	Offerup_ToArry("https://offerup.com/explore/k/photography", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/software", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/sports-outdoors", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/tickets", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/tools-machinery", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/tvs", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/video-equipment", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/video-games", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/wedding", function(){
+	Offerup_ToArry("https://offerup.com/explore/k/free", function(){
+		Buy_Update();
+		return;
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
+	})
 }
 
 //////////////////////////////////////
 function Offerup_ToArry(url, callback)
 {
-	DKLog("Offerup_ToArry("+url+",callback)\n");
+	DKDEBUGFUNC(url, callback);
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
-			DKLog("Offerup_ToArry(): rstring invalid\n", DKWARN); 
+			DKWARN("Offerup_ToArry(): rstring invalid\n"); 
 			return;
 		}
 	
@@ -119,23 +120,23 @@ function Offerup_ToArry(url, callback)
 		
 		var items = div.querySelectorAll('a[class*="db-item-tile"]');
 		for(var i=0; i<items.length; i++){
-			//DKLog(items[i].innerHTML+"\n");
+			//DKINFO(items[i].innerHTML+"\n");
 			var div1 = items[i].firstChild; //<div class="_b31be13">
-			if(!div1){ DKLog("div1 invalid\n"); continue; }
+			if(!div1){ DKERROR("div1 invalid\n"); continue; }
 			var div2 = div1.firstChild; //<div class="_178faes">
-			if(!div2){ DKLog("div2 invalid\n"); continue; }
+			if(!div2){ DKERROR("div2 invalid\n"); continue; }
 			var sub_div1 = div1.childNodes[1]; //<div class="_1g9xn5a">
-			if(!sub_div1){ DKLog("sub_div1 invalid\n"); continue; }
+			if(!sub_div1){ DKERROR("sub_div1 invalid\n"); continue; }
 			var price_div_par = sub_div1.childNodes[1]; //
-			if(!price_div_par){ DKLog("price_div_par invalid\n"); continue; }
+			if(!price_div_par){ DKERROR("price_div_par invalid\n"); continue; }
 			var price_div = price_div_par.firstChild; //<span class="_1hwuc5f4">
-			if(!price_div){ DKLog("price_div invalid\n"); continue; }
+			if(!price_div){ DKERROR("price_div invalid\n"); continue; }
 			var loc_div = sub_div1.childNodes[2].firstChild; //<span class="_19rx43s2">
-			if(!loc_div){ DKLog("loc_div invalid\n"); continue; }
+			if(!loc_div){ DKERROR("loc_div invalid\n"); continue; }
 			var div3 = div2.firstChild; //<div class="_1pq2fo4">
-			if(!div3){ DKLog("div3 invalid\n"); continue; }
+			if(!div3){ DKERROR("div3 invalid\n"); continue; }
 			var img1 = div3.firstChild; //<img>
-			if(!img1){ DKLog("img1 invalid\n"); continue; }
+			if(!img1){ DKERROR("img1 invalid\n"); continue; }
 			
 			var link = items[i].href;
 			link = link.replace("file:///C:", "https://offerup.com");
@@ -147,12 +148,12 @@ function Offerup_ToArry(url, callback)
 			
 			if(Buy_CheckForDuplicate(link)){ continue; }
 			
-			DKLog("##########################\n");
-			DKLog("url = "+link+"\n");
-			DKLog("title = "+title+"\n");
-			DKLog("loc = "+loc+"\n");
-			DKLog("img = "+img+"\n");
-			DKLog("price = "+price+"\n");
+			DKINFO("##########################\n");
+			DKINFO("url = "+link+"\n");
+			DKINFO("title = "+title+"\n");
+			DKINFO("loc = "+loc+"\n");
+			DKINFO("img = "+img+"\n");
+			DKINFO("price = "+price+"\n");
 
 			buyItems.push({}); //new object
 			var buyItem = buyItems[buyItems.length-1];

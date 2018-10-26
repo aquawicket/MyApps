@@ -7,8 +7,7 @@ var activeTab = 0;
 /////////////////////////
 function DKBrowser_Init()
 {
-	DKLog("DKBrowser_Init()\n", DKDEBUG);
-	
+	DKDEBUGFUNC();
 	//DKCreate("DKCef");
 	DKCreate("DKBrowser/DKBrowser.html");
 
@@ -55,12 +54,12 @@ function DKBrowser_Init()
 ////////////////////////
 function DKBrowser_End()
 {
-	DKLog("DKBrowser_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	
 	//close all browsers
 	/*
 	while(DKCef_GetBrowsers() > 1){
-		DKLog("DKBrowserEnd(): closing browser "+(DKCef_GetBrowsers()-1)+"\n");
+		DKINFO("DKBrowserEnd(): closing browser "+(DKCef_GetBrowsers()-1)+"\n");
 		DKCef_CloseDevTools(DKCef_GetBrowsers()-1);
 		DKCef_CloseBrowser(DKCef_GetBrowsers()-1);
 	}
@@ -75,8 +74,7 @@ function DKBrowser_End()
 /////////////////////////////////
 function DKBrowser_OnEvent(event)
 {
-	DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(event);
 	if(DK_Type(event, "keydown")){
 		DKBrowser_ProcessKey(DK_GetValue(event));
 	}
@@ -180,7 +178,7 @@ function DKBrowser_OnEvent(event)
 		DKBrowser_OnLoadError(DK_GetValue(event));
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
-		DKLog("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+		DKINFO("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 		var data = DK_GetValue(event);
 		var arry = data.split(";");
 		selection = arry[0];
@@ -194,7 +192,7 @@ function DKBrowser_OnEvent(event)
 		});
 	}
 	if(DK_Type(event, "DKCef_OnFullscreen")){
-		DKLog("DKCef_OnFullscreen", DKDEBUG);
+		DKINFO("DKCef_OnFullscreen\n");
 		var value = DK_GetValue(event);
 		if(value == "true"){
 			DKWidget_Hide("Tabs");
@@ -228,8 +226,7 @@ function DKBrowser_OnEvent(event)
 /////////////////////////////////////
 function DKBrowser_OnLoadError(error)
 {
-	DKLog("DKBrowser_OnLoadError("+error+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(error);
 	if(error == "-105"){
 		var url = DKWidget_GetValue("Textbox");
 		url = url.replace(" ", "%20");
@@ -241,30 +238,29 @@ function DKBrowser_OnLoadError(error)
 //////////////////////////////////
 function DKBrowser_ProcessKey(key)
 {
-	DKLog("DKBrowser_ProcessKey("+key+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(key);
 	if(key == 78 && DK_KeyIsDown(17)){
-		//DKLog("New Window\n");
+		//DKINFO("New Window\n");
 		var app = DKFile_GetFullExeName();
 		DK_Run(app);
 	}
 	if(key == 84 && DK_KeyIsDown(17)){
-		//DKLog("New Tab\n");
+		//DKINFO("New Tab\n");
 		DKBrowser_NewTab();
 	}
 	if(key == 9 && DK_KeyIsDown(17) && !DK_KeyIsDown(16)){
-		//DKLog("Next Tab\n");
+		//DKINFO("Next Tab\n");
 	}
 	if(key == 9 && DK_KeyIsDown(17) && DK_KeyIsDown(16)){
-		//DKLog("Prev Tab\n");
+		//DKINFO("Prev Tab\n");
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
-		//DKLog("Homepage\n");
+		//DKINFO("Homepage\n");
 		DKCef_SetUrl(DKCef_GetCurrentBrowser(), "http://google.com");
 	}
 	
 	var focused = DKWidget_GetFocusElement();
-	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
+	//DKINFO("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(key == 13 && (focused == "Textbox")){
 		var tabCount = 0;
 		for(var i=0; i<DKCef_GetBrowsers(); i++){
@@ -282,7 +278,7 @@ function DKBrowser_ProcessKey(key)
 ////////////////////////////////
 function DKBrowser_CloseTab(num)
 {
-	DKLog("DKBrowser_CloseTab("+num+")\n", DKDEBUG);
+	DKDEBUGFUNC(num);
 	var tabCount = 0;
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
 		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -300,8 +296,7 @@ function DKBrowser_CloseTab(num)
 ///////////////////////////
 function DKBrowser_NewTab()
 {
-	DKLog("DKBrowser_NewTab()\n", DKDEBUG);
-	
+	DKDEBUGFUNC();
 	var url = "https://google.com";
 	var dummy = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "div", "CefBrowserTab");
 	var iframe = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "iframe", "CefBrowserTab");
@@ -325,8 +320,7 @@ function DKBrowser_NewTab()
 //////////////////////////////////////
 function DKBrowser_SetUrlBar(url, num)
 {
-	DKLog("DKBrowser_SetUrlBar("+url+","+num+")\n", DKDEBUG);
-
+	DKDEBUGFUNC(url, num);
 	var tabCount = 0;
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
 		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -339,7 +333,7 @@ function DKBrowser_SetUrlBar(url, num)
 
 	if(DKCef_GetCurrentBrowser() != num){ return; }
 	var focused = DKWidget_GetFocusElement();
-	//DKLog("DKWidget_GetFocusElement(): focused="+focused+"\n");
+	//DKINFO("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(focused != "Textbox"){
 		DKWidget_SetValue("Textbox", url);
 	}
@@ -349,7 +343,7 @@ function DKBrowser_SetUrlBar(url, num)
 /////////////////////////////////
 function DKBrowser_SelectTab(num)
 {
-	DKLog("DKBrowser_SelectTab("+num+")\n", DKDEBUG);
+	DKDEBUGFUNC(num);
 	var tabCount = 0;
 	for(var i=0; i<DKCef_GetBrowsers(); i++){
 		if(DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -376,8 +370,7 @@ function DKBrowser_SelectTab(num)
 ///////////////////////////////
 function DKBrowser_UpdateTabs()
 {
-	DKLog("DKBrowser_UpdateTabs()\n", DKDEBUG);
-	
+	DKDEBUGFUNC();	
 	var num = DKCef_GetBrowsers();
 	var current = DKCef_GetCurrentBrowser();
 	
