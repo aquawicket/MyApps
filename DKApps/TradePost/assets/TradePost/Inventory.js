@@ -6,7 +6,7 @@ var rowHeight = "150rem";
 /////////////////////////
 function Inventory_Init()
 {
-	DKLog("Inventory_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("TradePost/Inventory.html");
 	DKCreate("DKAdmin/DKAdmin.js", function(){});
 	DKCreate("DKGui/DKMenu.js", function(){});
@@ -34,7 +34,7 @@ function Inventory_Init()
 ////////////////////////
 function Inventory_End()
 {
-	DKLog("Inventory_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(Inventory_OnEvent);
 	DKClose("TradePost/Inventory.html");
 }
@@ -42,7 +42,7 @@ function Inventory_End()
 /////////////////////////////////
 function Inventory_OnEvent(event)
 {	
-	DKLog("Inventory_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 	if(DK_Type(event, "DKCef_OnLoadEnd")){
 		Inventory_PageLoaded(DK_GetValue(event));
 		return;
@@ -88,7 +88,7 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "offerupPost")){
 		currentItem = DK_GetId(event).replace("offerupPost","");
-		DKLog("offerupPost \n");
+		DKINFO("offerupPost\n");
 		return;
 	}
 	if(DK_IdLike(event, "craigslistLink")){
@@ -108,7 +108,7 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "facebookPost")){
 		currentItem = DK_GetId(event).replace("facebookPost","");
-		DKLog("facebookPost \n");
+		DKINFO("facebookPost\n");
 		return;
 	}
 	if(DK_IdLike(event, "ebayLink")){
@@ -118,12 +118,12 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "ebayPost")){
 		currentItem = DK_GetId(event).replace("ebayPost","");
-		DKLog("ebayPost \n");
+		DKINFO("ebayPost\n");
 		return;
 	}
 	if(DK_IdLike(event, "postAll")){
 		currentItem = DK_GetId(event).replace("postAll","");
-		DKLog("postAll \n");
+		DKINFO("postAll\n");
 		//TODO - post to all selected locations
 		//Inventory_PostItem(currentItem);
 		return;
@@ -144,44 +144,44 @@ function Inventory_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "header_id")){
-		DKLog("header_id\n");
+		DKINFO("header_id\n");
 	}
 	if(DK_Id(event, "header_image")){
-		DKLog("header_image\n");
+		DKINFO("header_image\n");
 	}
 	if(DK_Id(event, "header_title")){
-		DKLog("header_title\n");
+		DKINFO("header_title\n");
 	}
 	if(DK_Id(event, "header_description")){
-		DKLog("header_description\n");
+		DKINFO("header_description\n");
 	}
 	if(DK_Id(event, "header_make")){
-		DKLog("header_make\n");
+		DKINFO("header_make\n");
 	}
 	if(DK_Id(event, "header_model")){
-		DKLog("header_model\n");
+		DKINFO("header_model\n");
 	}
 	if(DK_Id(event, "header_condition")){
-		DKLog("header_condition\n");
+		DKINFO("header_condition\n");
 	}
 	if(DK_Id(event, "header_catagory")){
-		DKLog("header_catagory\n");
+		DKINFO("header_catagory\n");
 	}
 	if(DK_Id(event, "header_price")){
-		DKLog("header_price\n");
+		DKINFO("header_price\n");
 	}
 	if(DK_Id(event, "header_date")){
-		DKLog("header_date\n");
+		DKINFO("header_date\n");
 	}
 	if(DK_Id(event, "header_post")){
-		DKLog("header_post\n");
+		DKINFO("header_post\n");
 	}
 }
 
 ////////////////////////////////////////
 function Inventory_GetFirstAvailableId()
 {
-	DKLog("Inventory_GetFirstAvailableId()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(!items){ return false; }
 	var id = 0;
 	for(var i = 0; i<items.length; i++){
@@ -195,7 +195,7 @@ function Inventory_GetFirstAvailableId()
 ////////////////////////////
 function Inventory_AddItem()
 {
-	DKLog("Inventory_AddItem\n", DKDEBUG);
+	DKDEBUGFUNC();
 	var i = 0;
 	while(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+i)){
 		i++;
@@ -221,6 +221,7 @@ function Inventory_AddItem()
 ////////////////////////////////
 function Inventory_SaveItem(row)
 {
+	DKDEBUGFUNC(row);
 	var json = JSON.stringify(items[row]);//, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"/USER/Items/Item"+items[row].id+"/data.json");
 }
@@ -228,6 +229,7 @@ function Inventory_SaveItem(row)
 ///////////////////////////////////
 function Inventory_GetRowFromId(id)
 {
+	DKDEBUGFUNC(id);
 	var row;
 	for(var i=0; i<items.length; i++){
 		if(items[i].id == id){
@@ -240,7 +242,7 @@ function Inventory_GetRowFromId(id)
 ///////////////////////////////////////
 function Inventory_ChangeText(id, text)
 {
-	DKLog("Inventory_ChangeText("+id+", "+text+")\n", DKDEBUG);
+	DKDEBUGFUNC(id, text);
 	if(id.includes("title")){
 		var id = id.replace("title","");
 		var row = Inventory_GetRowFromId(id);
@@ -318,6 +320,7 @@ function Inventory_ChangeText(id, text)
 //////////////////////////////
 function Inventory_LoadItems()
 {
+	DKDEBUGFUNC();
 	items = []; //clear items
 	var string = DKFile_DirectoryContents(DKAssets_LocalAssets()+"USER/Items/");
 	if(!string){ return; }
@@ -346,6 +349,7 @@ function Inventory_LoadItems()
 /////////////////////////////////
 function Inventory_UpdateHeader()
 {
+	DKDEBUGFUNC();
 	//id		
 	var header_id = DKWidget_CreateElement("Header", "div", "header_id");
 	DKWidget_SetProperty(header_id, "display", "inline-block");
@@ -484,7 +488,7 @@ function Inventory_UpdateHeader()
 ///////////////////////////////
 function Inventory_UpdateList()
 {
-	DKLog("Inventory_UpdateList\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKWidget_SetInnerHtml("ItemList", ""); //clear	
 	
 	for(var row=0; row<items.length; row++){
@@ -908,7 +912,7 @@ function Inventory_UpdateList()
 ////////////////////////////////////
 function Inventory_UploadImage(file)
 {
-	DKLog("Inventory_UploadImage("+file+")\n", DKDEBUG);
+	DKDEBUGFUNC(file);
 	if(!file){ return; }
 	DKFile_Copy(file, DKAssets_LocalAssets()+"USER/Items/Item"+currentItem+"/Img0.jpg", true);
 	DKWidget_SetAttribute("img"+currentItem, "src", DKAssets_LocalAssets()+"USER/Items/Item"+currentItem+"/Img0.jpg?"+new Date().getTime());
@@ -919,29 +923,28 @@ function Inventory_UploadImage(file)
 /////////////////////////
 function Inventory_Test()
 {
-	DKLog("Inventory_Test\n", DKDEBUG);
-	
-	DKLog("######### ITEMS ##########\n");
+	DKDEBUGFUNC();	
+	DKINFO("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
 		/*
-		DKLog("\n");
-		DKLog("items["+i+"]id: "+items[i].id+"\n");
-		DKLog("items["+i+"]title: "+items[i].title+"\n");
-		DKLog("items["+i+"]description: "+items[i].description+"\n");
-		DKLog("items["+i+"]catagory: "+items[i].catagory+"\n");
-		DKLog("items["+i+"]price: "+items[i].price+"\n");
+		DKINFO("\n");
+		DKINFO("items["+i+"]id: "+items[i].id+"\n");
+		DKINFO("items["+i+"]title: "+items[i].title+"\n");
+		DKINFO("items["+i+"]description: "+items[i].description+"\n");
+		DKINFO("items["+i+"]catagory: "+items[i].catagory+"\n");
+		DKINFO("items["+i+"]price: "+items[i].price+"\n");
 		*/
 		
 		//var json_string = JSON.stringify(items[i]);//, null, "\t");
-		//DKLog(json_string+"\n");
+		//DKINFO(json_string+"\n");
 		
 		/*
 		var item_object = JSON.parse(json_string);
-		DKLog("item_object.id: "+item_object.id+"\n");
-		DKLog("item_object.title: "+item_object.title+"\n");
-		DKLog("item_object.description: "+item_object.description+"\n");
-		DKLog("item_object.catagory: "+item_object.catagory+"\n");
-		DKLog("item_object.price: "+item_object.price+"\n");
+		DKINFO("item_object.id: "+item_object.id+"\n");
+		DKINFO("item_object.title: "+item_object.title+"\n");
+		DKINFO("item_object.description: "+item_object.description+"\n");
+		DKINFO("item_object.catagory: "+item_object.catagory+"\n");
+		DKINFO("item_object.price: "+item_object.price+"\n");
 		*/
 	}
 	
@@ -949,28 +952,28 @@ function Inventory_Test()
 	//Wait for a Open Files window to appear, set the path, select all files, open
 	DKCreate("DKHandles");
 	if(!DKHandles_WaitForWindow("Open Files", 5)){
-		DKLog("Open Files never showed up\n", DKERROR);
+		DKERROR("Open Files never showed up\n");
 		return;
 	}
 	if(!DKHandles_WaitForWindow("Address", 1)){
-		DKLog("address bar never showed up\n", DKERROR);
+		DKERROR("address bar never showed up\n");
 		return;
 	}
 	
 	var currentHandle = DKHandles_CurrentHandle();
 	
 	if(!DKHandles_SetWindowHandle("Address", 3)){
-		DKLog("DKHandles_SetWindowHandle(\"Address\"): failed\n");
+		DKINFO("DKHandles_SetWindowHandle(\"Address\"): failed\n");
 	}
 	var currentHandle = DKHandles_CurrentHandle();
 	var top = DKHandles_GetTop(currentHandle);
 	var left = DKHandles_GetLeft(currentHandle);
 	var right = DKHandles_GetRight(currentHandle);
 	var bottom = DKHandles_GetBottom(currentHandle);
-	DKLog("top = "+top+"\n");
-	DKLog("left = "+left+"\n");
-	DKLog("right = "+right+"\n");
-	DKLog("bottom = "+bottom+"\n");
+	DKINFO("top = "+top+"\n");
+	DKINFO("left = "+left+"\n");
+	DKINFO("right = "+right+"\n");
+	DKINFO("bottom = "+bottom+"\n");
 	
 	//Process url bar
 	DK_SetMousePos(left+10,top+10);
@@ -998,7 +1001,7 @@ function Inventory_Test()
 ////////////////////////////////////
 function Inventory_PostItem(itemNum)
 {
-	DKLog("Inventory_PostItem("+itemNum+")\n", DKDEBUG);
+	DKDEBUGFUNC(itemNum);
 	//action = "PostToCraigslist";
 	//DK_QueueDuktape("DKBrowser_NewTab();");
 	//DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
@@ -1007,13 +1010,12 @@ function Inventory_PostItem(itemNum)
 ////////////////////////////////////
 function Inventory_PageLoaded(value)
 {
-	DKLog("Inventory_PageLoaded("+value+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(value);	
 	if(DKCef_GetBrowsers() < 2){ return; }
 	var url = DKCef_GetUrl(1);
-	//DKLog("url = "+url);
+	//DKINFO("url = "+url+"\n");
 	if(action == ""){
-		DKLog("Inventory_PageLoaded(): action is off\n");
+		DKINFO("Inventory_PageLoaded(): action is off\n");
 	}
 	if(action == "PostToCraigslist"){
 		if(url.indexOf("s=preview") != -1){ action = ""; return;} //End posting in on the preview screen
@@ -1022,7 +1024,7 @@ function Inventory_PageLoaded(value)
 		var city = "Lake Elsinore";
 		var zip = "92570";
 		var description = escape(document.getElementById("description"+currentItem).value);
-		DKLog(description);
+		DKINFO(description+"\n");
 		var make = " ";
 		var model = " ";
 		var condition = "new";
@@ -1043,7 +1045,7 @@ function Inventory_PageLoaded(value)
 		var city = "Lake Elsinore";
 		var zip = "92570";
 		var description = escape(document.getElementById("description"+currentItem).value);
-		DKLog(description);
+		DKINFO(description+"\n");
 		var make = " ";
 		var model = " ";
 		var condition = "new";
@@ -1064,7 +1066,6 @@ function Inventory_PageLoaded(value)
 function PostToCraigslist(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
 	console.log("PostToCraigslist()\n");
-	
 	function WaitForElement(selector, time, callback){
 		if(document.querySelector(selector) != null){
 			callback && callback(true);
@@ -1158,7 +1159,6 @@ function PostToCraigslist(title, price, city, zip, description, make, model, con
 function PostToLetGo(title, price, city, zip, description, make, model, condition, email, phone, name, street, images)
 {
 	console.log("PostToLetGo())\n");
-	
 	function WaitForElement(selector, time, callback){
 		if(document.querySelector(selector) != null){
 			callback && callback(true);
@@ -1251,7 +1251,7 @@ function PostToLetGo(title, price, city, zip, description, make, model, conditio
 //////////////////////////////////////////////
 function Inventory_CraigslistPost(currentItem)
 {
-	DKLog("Inventory_CraigslistPost("+currentItem+")");
+	DKDEBUGFUNC(currentItem);
 	action = "PostToCraigslist";
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
@@ -1260,7 +1260,7 @@ function Inventory_CraigslistPost(currentItem)
 /////////////////////////////////////////
 function Inventory_LetGoPost(currentItem)
 {
-	DKLog("Inventory_LetGoPost("+currentItem+")");
+	DKDEBUGFUNC(currentItem);
 	action = "PostToLetGo";
 	DK_QueueDuktape("DKBrowser_NewTab();");
 	DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://us.letgo.com/en');");

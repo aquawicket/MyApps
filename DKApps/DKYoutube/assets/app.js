@@ -10,8 +10,7 @@ DKCreate("DK/init.js", function(){});
 ///////////////////////////
 function app_OnEvent(event)
 {
-	DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);
 	if(DK_Type(event, "keydown") && DK_GetValue(event) == 122){ //F11
 		if(DKWindow_IsFullscreen()){
 			DKWindow_Windowed();
@@ -29,11 +28,11 @@ function app_OnEvent(event)
 	
 	//FIXME
 	if(DK_Type(event, "1004")){ //Toggle youtube.com and youtube.com/TV
-		DKLog("DKCef_GetUrl(): DK_Type == 1004\n", DKINFO);
+		DKINFO("DKCef_GetUrl(): DK_Type == 1004\n");
 		
 		//TODO
 		var url = DKCef_GetUrl();
-		DKLog("DKCef_GetUrl(): = "+url+"\n", DKINFO);
+		DKINFO("DKCef_GetUrl(): = "+url+"\n");
 	}
 }
 
@@ -41,6 +40,7 @@ function app_OnEvent(event)
 //////////////////////////
 function app_LoadPlugins()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Fullscreen", 1003);
 		DKAddEvent("DKTray", "1003", app_OnEvent);
@@ -59,8 +59,7 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKLog("app_LoadPage()\n");
-	
+	DKDEBUGFUNC();
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){
 		//DKAddEvent("GLOBAL", "keydown", app_OnEvent);

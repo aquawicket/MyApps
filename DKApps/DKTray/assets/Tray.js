@@ -1,6 +1,7 @@
 /////////////////////
 function Tray_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKTray");
 	DKAddEvent("DKTray", "1000", Tray_OnEvent);
 	DKAddEvent("DKTray", "1001", Tray_OnEvent);
@@ -22,8 +23,7 @@ function Tray_Init()
 ////////////////////////////
 function Tray_OnEvent(event)
 {
-	DKLog("Tray_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);
 	if(DK_Type(event, "1000") || DK_Type(event, "doubleclick")){
 		DKCreate("DKWindowJS");
 		DKWindow_Show();
@@ -47,9 +47,10 @@ function Tray_OnEvent(event)
 //////////////////////////
 function Tray_ToggleIcon()
 {
+	DKDEBUGFUNC();
 	var icon = DKTray_GetIcon();
 	var file = DKFile_GetFilename(icon);
-	DKLog("current icon = "+file+"\n");
+	DKINFO("current icon = "+file+"\n");
 	
 	if(file == "touchON.ico"){
 		Tray_Off();
@@ -62,7 +63,7 @@ function Tray_ToggleIcon()
 //////////////////
 function Tray_On()
 {
-	DKLog("Tray_On()\n");
+	DKDEBUGFUNC();
 	var assets = DKAssets_LocalAssets();
 	DKTray_SetIcon(assets+"touchON.ico");
 }
@@ -70,7 +71,7 @@ function Tray_On()
 ///////////////////
 function Tray_Off()
 {
-	DKLog("Tray_Off()\n");
+	DKDEBUGFUNC();
 	var assets = DKAssets_LocalAssets();
 	DKTray_SetIcon(assets+"touchOFF.ico");
 }

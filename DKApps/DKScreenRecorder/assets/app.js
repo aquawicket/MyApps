@@ -9,14 +9,13 @@ DKCreate("DK/init.js", function(){});
 ///////////////////////////
 function app_OnEvent(event)
 {
-	DKLog("app_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);
 	if(DK_Type(event, "1003")){ //Tray, Fullscreen
-		DKLog("Clicked Tray -> Record\n", DKINFO);
+		DKINFO("Clicked Tray -> Record\n");
 		DKScreenRecorder_Record("video.avi"); //Record the screen to a file.
 	}
 	if(DK_Type(event, "1004")){ //Tray, Fullscreen
-		DKLog("Clicked Tray -> Stop\n", DKINFO);
+		DKINFO("Clicked Tray -> Stop\n");
 		DKScreenRecorder_Stop();
 	}
 }
@@ -24,6 +23,7 @@ function app_OnEvent(event)
 //////////////////////////
 function app_LoadPlugins()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKScreenRecorder");
 	DKCreate("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Record", 1003);
@@ -36,5 +36,5 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKLog("app_LoadPage()\n");
+	DKDEBUGFUNC();
 }

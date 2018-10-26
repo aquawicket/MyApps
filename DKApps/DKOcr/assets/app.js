@@ -9,14 +9,13 @@ DKCreate("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-
+	DKDEBUGFUNC();
 }
 
 ///////////////////////
 function app_LoadPage()
 {
-	DKLog("app_LoadPage()\n");
-	
+	DKDEBUGFUNC();
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKGui/DKFrame.js", function(){
 	DKCreate("DKDebug/DKDebug.js", function(){

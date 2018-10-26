@@ -9,6 +9,7 @@ DKCreate("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKDebug/DKDebug.js", function(){});
 	DK_SetFramerate(120);
 	DKCreate("DKUpdate");
@@ -18,8 +19,7 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKLog("app_LoadPage()\n");
-	
+	DKDEBUGFUNC();
 	DKCreate("DKWindow/DKWindow.js", function(){
 	DKCreate("DKTray/DKTray.js", function(){
 

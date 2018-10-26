@@ -1,7 +1,7 @@
 ///////////////////////////
 function BuySettings_Init()
 {
-	DKLog("BuySettings_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("TradePost/BuySettings.html", function(){
 		DKAddEvent("BuySettings_hideNoImage", "click", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_lowPrice", "change", BuySettings_OnEvent);
@@ -60,15 +60,14 @@ function BuySettings_Init()
 //////////////////////////
 function BuySettings_End()
 {
-	DKLog("BuySettings_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKClose("TradePost/BuySettings.html");
 }
 
 ///////////////////////////////////
 function BuySettings_OnEvent(event)
 {
-	DKLog("BuySettings_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");//, DKDEBUG);
-	
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "BuySettings_sortBy")){
 		DKCreate("TradePost/SortByMenu.js", function(){
 			DKMenu_ValidatePosition("TradePost/SortByMenu.html");
@@ -325,6 +324,7 @@ function BuySettings_OnEvent(event)
 /////////////////////////////
 function BuySettings_Update()
 {
+	DKDEBUGFUNC();
 	DKWidget_SetValue("BuySettings_hideNoImage", buySettings.hideNoImage);
 	DKWidget_SetValue("BuySettings_lowPrice", buySettings.lowPrice);
 	DKWidget_SetValue("BuySettings_highPrice", buySettings.highPrice);

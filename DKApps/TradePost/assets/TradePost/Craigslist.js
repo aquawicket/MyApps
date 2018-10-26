@@ -1,26 +1,26 @@
 //////////////////////////
 function Craigslist_Init()
 {
-	DKLog("Craigslist_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 }
 
 /////////////////////////
 function Craigslist_End()
 {
-	DKLog("Craigslist_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(Craigslist_OnEvent);
 }
 
 //////////////////////////////////
 function Craigslist_OnEvent(event)
 {
-	DKLog("Craigslist_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 }
 
 ////////////////////////////
 function Craigslist_Scrape()
 {
-	DKLog("Craigslist_Scrape()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	/*
 	Helper_Queue( function(){
 		Craigslist_ToArry("https://"+buySettings.craigslistLocation+".craigslist.org/search/sss?", function(){ Buy_Update(); })
@@ -135,7 +135,7 @@ function Craigslist_Scrape()
 /////////////////////////////////////////
 function Craigslist_ToArry(url, callback)
 {
-	DKLog("Craigslist_ToArry("+url+", callback)\n", DKDEBUG);
+	DKDEBUGFUNC(url, callback);
 	if(!buySettings.craigslistAntiques && url == "https://"+buySettings.craigslistLocation+".craigslist.org/search/ata"){ callback(); return; }	//antiques
 	if(!buySettings.craigslistAppliances && url == "https://"+buySettings.craigslistLocation+".craigslist.org/search/ppa"){ callback(); return; }	//appliances
 	if(!buySettings.craigslistArtsCrafts && url == "https://"+buySettings.craigslistLocation+".craigslist.org/search/ara"){ callback(); return; }	//arts+crafts
@@ -184,7 +184,7 @@ function Craigslist_ToArry(url, callback)
 
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
-			DKLog("Craigslist_ToArry(): rstring invalid\n", DKWARN); 
+			DKWARN("Craigslist_ToArry(): rstring invalid\n"); 
 			return;
 		}
 				
@@ -193,7 +193,7 @@ function Craigslist_ToArry(url, callback)
 			
 		var items = div.getElementsByClassName("result-row");
 		for(var i=0; i<items.length; i++){
-			//DKLog(items[i].innerHTML+"\n");
+			//DKINFO(items[i].innerHTML+"\n");
 			
 			//check for duplicate
 			if(items[i].getElementsByClassName("result-image gallery")[0].href.indexOf("https://") == -1){
@@ -297,6 +297,7 @@ function Craigslist_ToArry(url, callback)
 ////////////////////////////////////////
 function Craigslist_IsFiltered(catagory)
 {
+	DKDEBUGFUNC(catagory);
 	if(!buySettings.craigslistAntiques && catagory == "antiques"){ return true; }
 	if(!buySettings.craigslistAppliances && catagory == "appliances"){ return true; }
 	if(!buySettings.craigslistArtsCrafts && catagory == "arts+crafts"){ return true; }

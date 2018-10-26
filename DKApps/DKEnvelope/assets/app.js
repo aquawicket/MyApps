@@ -11,14 +11,13 @@ DKCreate("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-	
+	DKDEBUGFUNC();
 }
 
 ///////////////////////
 function app_LoadPage()
 {
-	DKLog("app_LoadPage()\n");
-	
+	DKDEBUGFUNC();
 	DKWidget_SetProperty("body","background-color","grey");
 	DKCreate("DKWindow/DKWindow.js", function(){
 		DKCreate("DKScale/DKScale.js", function(){

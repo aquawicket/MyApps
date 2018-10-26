@@ -1,25 +1,26 @@
 ////////////////////////
 function Facebook_Init()
 {
-	DKLog("Facebook_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 }
 
 ///////////////////////
 function Facebook_End()
 {
-	DKLog("Facebook_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(Facebook_OnEvent);
 }
 
 ////////////////////////////////
 function Facebook_OnEvent(event)
 {
-	DKLog("Facebook_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 }
 
 //////////////////////////
 function Facebook_Scrape()
 {
+	DKDEBUGFUNC();
 	Facebook_ToArry("https://www.facebook.com/marketplace", function(){ 
 		Buy_Update(); 
 		return;
@@ -29,14 +30,13 @@ function Facebook_Scrape()
 ///////////////////////////////////////
 function Facebook_ToArry(url, callback)
 {
-	DKLog("Facebook_ToArry("+url+",callback)\n");
-	
+	DKDEBUGFUNC(url, callback);	
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
-			DKLog("Facebook_ToArry(): rstring invalid\n", DKWARN); 
+			DKWARN("Facebook_ToArry(): rstring invalid\n"); 
 			return;
 		}
-		//DKLog(rstring+"\n");
+		//DKINFO(rstring+"\n");
 		//var div = document.createElement('div');
 		//div.innerHTML = rstring;
 		
@@ -45,10 +45,10 @@ function Facebook_ToArry(url, callback)
 		DKFile_StringToFile(rstring, "facebookMarket.html", true);
 		
 		var first_link = rstring.indexOf("share_uri");
-		DKLog("first_link found at "+first_link+"\n");
+		DKINFO("first_link found at "+first_link+"\n");
 		/*
 		for(var i=0; i<items.length; i++){
-			DKLog("Item Found\n");
+			DKINFO("Item Found\n");
 			//TODO
 		}
 		*/

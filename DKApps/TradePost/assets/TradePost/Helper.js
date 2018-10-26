@@ -4,28 +4,28 @@ var globalTimer;
 //////////////////////
 function Helper_Init()
 {
-	DKLog("Helper_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 }
 
 /////////////////////
 function Helper_End()
 {
-	DKLog("Helper_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 }
 
 //////////////////////////////
 function Helper_OnEvent(event)
 {
-	DKLog("Helper_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 }
 
 ///////////////////////////////////////////
 function Helper_LoadGoogleMapsApi(callback)
 {
-	DKLog("Helper_LoadGoogleMapsApi(callback)\n", DKDEBUG);
+	DKDEBUGFUNC(callback);
 	url = "https://maps.googleapis.com/maps/api/js?v=3.exp";
 	if(!url){ 
-		DKLog("LoadJs("+url+"): url invalid\n", DKERROR);
+		DKERROR("LoadJs("+url+"): url invalid\n");
 		return false; 
 	}
 	// Adding the script tag to the head as suggested before
@@ -36,7 +36,7 @@ function Helper_LoadGoogleMapsApi(callback)
 	script.src = url;
 	script.async = true; // optionally
 	if(typeof script == "undefined"){ 
-		DKLog("Cannot load "+url+" \n", DKERROR);
+		DKERROR("Cannot load "+url+"\n");
 		return false; 
 	}
 	head.appendChild(script);
@@ -53,8 +53,9 @@ function Helper_LoadGoogleMapsApi(callback)
 ///////////////////////////////////////////////
 function Helper_GetDistance(addressA, addressB)
 {
+	DKDEBUGFUNC(addressA, addressB);
 	Helper_LoadGoogleMapsApi(function(rval){
-		DKLog("Helper_LoadGoogleMapsApi() returned "+rval+"\n");
+		DKINFO("Helper_LoadGoogleMapsApi() returned "+rval+"\n");
 		var directionsService = new google.maps.DirectionsService();
 
 		var request = {
@@ -70,7 +71,7 @@ function Helper_GetDistance(addressA, addressB)
 				alert( miles ); 
 			}
 			else{
-				DKLog("Helper_GetDistance(): Could not get distance. Please check addresses.\n", DKWARN);
+				DKWARN("Helper_GetDistance(): Could not get distance. Please check addresses\n");
 				// ensure your address is formatted properly
 			}
 		});
@@ -80,6 +81,7 @@ function Helper_GetDistance(addressA, addressB)
 /////////////////////////////////
 function CallQueuedFunction(func)
 {
+	DKDEBUGFUNC(func);
 	func();
 	funcQueue.shift();
 	if(funcQueue.length < 1){
@@ -91,8 +93,8 @@ function CallQueuedFunction(func)
 ///////////////////////////
 function Helper_Queue(func)
 {
+	DKDEBUGFUNC(func);
 	funcQueue.push(func);
-	
 	if(!globalTimer){
 		globalTimer = setInterval(function(){
 			CallQueuedFunction(funcQueue[0]);
@@ -103,14 +105,16 @@ function Helper_Queue(func)
 ////////////////////////////////////
 function TestFunction(num, callback)
 {
+	DKDEBUGFUNC(num, callback);
 	var result = num * 2;
-	DKLog("####### TimesTwo("+num+") #######\n");
+	DKINFO("####### TimesTwo("+num+") #######\n");
 	callback(result);
 }
 
 //////////////////////////////////
 function Pinger_ping(ip, callback)
 {
+	DKDEBUGFUNC(ip, callback);
 	if(!this.inUse){
 		this.inUse = true;
 		this.callback = callback
@@ -128,6 +132,7 @@ function Pinger_ping(ip, callback)
 ////////////////////////
 function OpenWebSocket()
 {
+	DKDEBUGFUNC();
 	url = "ws://localhost:3000";
 	w = new WebSocket(url);
 	
@@ -151,6 +156,9 @@ function OpenWebSocket()
 	}, 5000);
 }
 
-function getParameters(func) {
-  return new RegExp(func.name+'\\s*\\((.*?)\\)').exec(func.toString().replace(/\n/g, ''))[1].replace(/\/\*.*?\*\//g, '').replace(/ /g, '');
+////////////////////////////
+function getParameters(func)
+{
+	DKDEBUGFUNC(func);
+	return new RegExp(func.name+'\\s*\\((.*?)\\)').exec(func.toString().replace(/\n/g, ''))[1].replace(/\/\*.*?\*\//g, '').replace(/ /g, '');
 }

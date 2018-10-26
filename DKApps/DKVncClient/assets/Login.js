@@ -1,6 +1,7 @@
 /////////////////////
 function Login_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("Login.html");
 	DKAddEvent("LoginConnect", "click", Login_OnEvent);
 }
@@ -8,6 +9,7 @@ function Login_Init()
 ////////////////////
 function Login_End()
 {
+	DKDEBUGFUNC();
 	DKRemoveEvents(Login_OnEvent);
 	DKClose("Login.html");
 }
@@ -15,7 +17,7 @@ function Login_End()
 /////////////////////////////
 function Login_OnEvent(event)
 {
-	DKLog("Login_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	DKDEBUGFUNC(event);
 	DKClose("Login.html");
 	//DKClose("DKWidget");
 	//DKClose("DKRocket");

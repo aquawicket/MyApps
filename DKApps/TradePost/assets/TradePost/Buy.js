@@ -10,7 +10,7 @@ var prevPage = 0;
 ///////////////////
 function Buy_Init()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	DKCreate("TradePost/Buy.html");
 	DKCreate("TradePost/Helper.js", function(){
 	DKCreate("TradePost/Craigslist.js", function(){
@@ -37,7 +37,7 @@ function Buy_Init()
 //////////////////
 function Buy_End()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	DKRemoveEvents(Buy_OnEvent);
 	DKClose("TradePost/Buy.html");
 }
@@ -45,9 +45,7 @@ function Buy_End()
 ///////////////////////////
 function Buy_OnEvent(event)
 {
-	DKDebug(event);
-	DKLog("Buy_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "Buy_Prev")){
 		startItem = prevPage;
 		Buy_Update();
@@ -125,10 +123,10 @@ function Buy_OnEvent(event)
 ///////////////////////////////////////
 function Buy_CheckForDuplicate(itemUrl)
 {
-	DKDebug(itemUrl);
+	DKDEBUGFUNC(itemUrl);
 	for(var i=0; i<buyItems.length; i++){
 		if(itemUrl == buyItems[i].link){
-			//DKLog("Buy_CheckForDuplicate(): found duplicate\n");
+			//DKINFO("Buy_CheckForDuplicate(): found duplicate\n");
 			return true;
 		}
 	}
@@ -138,7 +136,7 @@ function Buy_CheckForDuplicate(itemUrl)
 //////////////////////////////////
 function Buy_GetFirstAvailableId()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	if(!buyItems){ return false; }
 	var id = 0;
 	for(var i = 0; i<buyItems.length; i++){
@@ -152,7 +150,7 @@ function Buy_GetFirstAvailableId()
 ////////////////////////////////////////
 function Buy_GetUrlString(url, callback)
 {
-	DKDebug(url, callback);
+	DKDEBUGFUNC(url, callback);
 	try {
         request = new XDomainRequest();
     }catch(e){}
@@ -176,7 +174,7 @@ function Buy_GetUrlString(url, callback)
     }catch(e){}
 
 	if(!request){
-		DKLog("AJAX ERROR: Error creating request object", DKERROR);
+		DKERROR("AJAX ERROR: Error creating request object");
 		return false;
 	}
 	
@@ -184,15 +182,15 @@ function Buy_GetUrlString(url, callback)
 	request.send(); 
 
 	request.onload=function(){
-		DKLog("SUCCESS: "+url+"\n", DKINFO);
+		DKINFO("SUCCESS: "+url+"\n");
 		callback(request.responseText);
 	}
 	request.ontimeout=function(){
-		DKLog("TIMEOUT: "+url+"\n", DKWARN);
+		DKWARN("TIMEOUT: "+url+"\n");
 		callback();
 	}
 	request.onerror=function(){
-		DKLog("ERROR: "+url+"\n", DKWARN);
+		DKWARN("ERROR: "+url+"\n");
 		callback();
 	}
 }
@@ -200,7 +198,7 @@ function Buy_GetUrlString(url, callback)
 /////////////////////
 function Buy_Update()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	if(buySettings.sortBy == "Date"){
 		Buy_SortItems('id', true);
 	}
@@ -218,9 +216,9 @@ function Buy_Update()
 
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
-	//DKLog("startItem = "+startItem+"\n");
-	//DKLog("buyItems.length = "+buyItems.length+"\n");
-	//DKLog("itemsPerPage= "+itemsPerPage+"\n");
+	//DKINFO("startItem = "+startItem+"\n");
+	//DKINFO("buyItems.length = "+buyItems.length+"\n");
+	//DKINFO("itemsPerPage= "+itemsPerPage+"\n");
 	for(var i=startItem; (i<buyItems.length && shown<itemsPerPage); i++){
 		
 		//TODO - fix the pages so next and prev work correctly with filters and skiped items
@@ -416,8 +414,8 @@ function Buy_Update()
 		DKAddEvent(searchEbay.id, "click", Buy_OnEvent);
 	}
 	
-	//DKLog("prevPage = "+Number(prevPage)+"\n");
-	//DKLog("nextPage = "+Number(nextPage)+"\n");
+	//DKINFO("prevPage = "+Number(prevPage)+"\n");
+	//DKINFO("nextPage = "+Number(nextPage)+"\n");
 	
 	DKWidget_SetInnerHtml("Buy_ItemsShown", "Shown: "+shown);
 	Buy_SaveData();
@@ -426,9 +424,9 @@ function Buy_Update()
 ///////////////////////
 function Buy_LoadData()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buyItems.json")){
-		DKLog("Buy_LoadData(): buyItems.json does not exist\n", DKWARN);
+		DKWARN("Buy_LoadData(): buyItems.json does not exist\n");
 		return;
 	}
 	var json = DKFile_FileToString(DKAssets_LocalAssets()+"USER/buyItems.json");
@@ -440,7 +438,7 @@ function Buy_LoadData()
 ///////////////////////
 function Buy_SaveData()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	var json = JSON.stringify(buyItems);//, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buyItems.json");
 }
@@ -448,9 +446,9 @@ function Buy_SaveData()
 ///////////////////////////
 function Buy_LoadSettings()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buySettings.json")){
-		DKLog("Buy_LoadSettings(): buySettings.json does not exist\n", DKWARN);
+		DKWARN("Buy_LoadSettings(): buySettings.json does not exist\n");
 		if(!buySettings.sortBy){ buySettings.sortBy = "Date"; }
 		return;
 	}
@@ -464,7 +462,7 @@ function Buy_LoadSettings()
 ///////////////////////////
 function Buy_SaveSettings()
 {
-	DKDebug();
+	DKDEBUGFUNC();
 	var json = JSON.stringify(buySettings);//, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buySettings.json");
 }
@@ -472,7 +470,7 @@ function Buy_SaveSettings()
 //////////////////////////////////////////
 function Buy_SortItems(property, acending)
 {
-	DKDebug(property, acending);
+	DKDEBUGFUNC(property, acending);
 	buyItems = buyItems.sort(function(a, b){
         if(acending){
             return (a[property] > b[property]) ? 1 : ((a[property] < b[property]) ? -1 : 0);
