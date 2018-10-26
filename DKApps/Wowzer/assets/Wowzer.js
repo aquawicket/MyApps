@@ -29,15 +29,15 @@ if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(Wowzer_SetLocation);    
 }
 else{ 
-    DKLog("Geolocation is not supported by this browser.\n");
+    DKWARN("Geolocation is not supported by this browser\n");
 }
 function Wowzer_SetLocation(position)
 {
-	DKLog("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n");
+	DKINFO("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n");
 }
 */
 window.onhashchange = function(){
-	DKLog("onhashchange: "+window.location.hash+"\n");
+	DKINFO("onhashchange: "+window.location.hash+"\n");
 	sessionStorage.scrollPos = 0; //reset scroll on back button
 
 	if(search != getUrlParameter(window.location.hash, "s")){
@@ -52,7 +52,7 @@ window.onhashchange = function(){
 /////////////////////////
 function Wowzer_Init()
 {
-	//DKLog("Wowzer_Init()\n");
+	DKDEBUGFUNC();
 	DKCreate("Wowzer.html", function(){});
 	DKAddEvent("Wowzer_search", "click", Wowzer_OnEvent);
 	DKAddEvent("Wowzer_options", "click", Wowzer_OnEvent);
@@ -77,7 +77,7 @@ function Wowzer_Init()
 ///////////////////////
 function Wowzer_End()
 {
-	//DKLog("Wowzer_End()\n");
+	DKDEBUGFUNC();
 	DKClose("Wowzer.html");
 	DKRemoveEvent("Wowzer_search", "click", Wowzer_OnEvent);
 	DKRemoveEvent("Wowzer_options", "click", Wowzer_OnEvent);
@@ -89,8 +89,7 @@ function Wowzer_End()
 /////////////////////////////////
 function Wowzer_OnEvent(event)
 {
-	//DKLog("Wowzer_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);
 	//set scroll position in session storage
 	var ele = document.getElementById("Wowzer_items");
 	if(!DK_IE()){
@@ -143,9 +142,10 @@ function Wowzer_OnEvent(event)
 	}
 }
 
-////////////////////////////
+/////////////////////////
 function Wowzer_Loading()
 {
+	DKDEBUGFUNC();
 	var loading = document.createElement('img');
 	loading.id = "loading";
 	loading.src = "loading.gif";
@@ -155,11 +155,10 @@ function Wowzer_Loading()
 	}
 }
 
-/////////////////////////////////////////////
+//////////////////////////////////////////
 function Wowzer_DoSearch(string, callback)
 {
-	//DKLog("Wowzer_DoSearch("+string+")\n");
-	
+	DKDEBUGFUNC(string, callback);
 	item_arry = new Array();
 	Wowzer_Loading(); 
 	
@@ -197,9 +196,10 @@ function Wowzer_DoSearch(string, callback)
 	}
 }
 
-/////////////////////////////////////////////
+//////////////////////////////////////////
 function Wowzer_LetGoToArry(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	if(!letgo){
 		callback();
 		return;
@@ -212,7 +212,7 @@ function Wowzer_LetGoToArry(url, callback)
 			
 			var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n");
+				//DKINFO(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -244,9 +244,10 @@ function Wowzer_LetGoToArry(url, callback)
 	});
 }
 
-//////////////////////////////////////////////////
+///////////////////////////////////////////////
 function Wowzer_CraigslistToArry(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	if(!craigslist){
 		callback();
 		return;
@@ -259,7 +260,7 @@ function Wowzer_CraigslistToArry(url, callback)
 			
 			var items = div.getElementsByClassName("result-row");
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n");
+				//DKINFO(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -300,9 +301,10 @@ function Wowzer_CraigslistToArry(url, callback)
 	});
 }
 
-/////////////////////////////////////////////////
+//////////////////////////////////////////////
 function Wowzer_CloseFiveToArry(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	if(!close5){
 		callback();
 		return;
@@ -320,7 +322,7 @@ function Wowzer_CloseFiveToArry(url, callback)
 			
 			var items = div.getElementsByClassName("four wide large screen four wide widescreen four wide computer four wide tablet eight wide mobile column");
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n");
+				//DKINFO(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -348,9 +350,10 @@ function Wowzer_CloseFiveToArry(url, callback)
 	});
 }
 
-////////////////////////////////////////////////
+////////////////////////////////////////////
 function Wowzer_OfferUpToArry(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	if(!offerup){
 		callback();
 		return;
@@ -360,11 +363,11 @@ function Wowzer_OfferUpToArry(url, callback)
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
-			//DKLog(rstring+"\n");
+			//DKINFO(rstring+"\n");
 			
 			var items = div.getElementsByClassName("item-pic");
 			for(var i=0; i<items.length; i++){
-				//DKLog(items[i].parentNode.innerHTML+"\n");
+				//DKINFO(items[i].parentNode.innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -384,15 +387,16 @@ function Wowzer_OfferUpToArry(url, callback)
 	});
 }
 
-/////////////////////////////////////////////////
+//////////////////////////////////////////////
 function Wowzer_FiveMilesToArry(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	if(!fivemiles){
 		callback();
 		return;
 	}
 	
-	//DKLog("Wowzer_FiveMilesToArry()\n");
+	//DKINFO("Wowzer_FiveMilesToArry()\n");
 	if(DK_GetBrowser() != "CEF"){
 		callback();
 		return; //Only available with CEF, so return.
@@ -405,7 +409,7 @@ function Wowzer_FiveMilesToArry(url, callback)
 			
 			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
 			for(var i=1; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n");
+				//DKINFO(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -428,9 +432,10 @@ function Wowzer_FiveMilesToArry(url, callback)
 	});
 }
 
-/////////////////////////////////////////////////
+//////////////////////////////////////////////
 function Wowzer_CarousellToArry(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	if(!carousell){
 		callback();
 		return;
@@ -446,7 +451,7 @@ function Wowzer_CarousellToArry(url, callback)
 			
 			var items = div.getElementsByClassName("card pdt-card");
 			for(var i=1; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n");
+				//DKINFO(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -477,25 +482,26 @@ function Wowzer_CarousellToArry(url, callback)
 	});
 }
 
-////////////////////////////////////////////
+/////////////////////////////////////////
 function Wowzer_EbayToArry(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	if(!ebay){
 		callback();
 		return;
 	}
-	//DKLog("Wowzer_EbayToArry()\n");
+	//DKINFO("Wowzer_EbayToArry()\n");
 	
 	url = url.replace(" ","+");	
 	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
-			DKLog(rstring+"\n");
+			DKINFO(rstring+"\n");
 			
 			var items = div.getElementsByClassName("sresult lvresult clearfix li shic");
 			for(var i=1; i<items.length; i++){
-				//DKLog(items[i].innerHTML+"\n");
+				//DKINFO(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -517,9 +523,10 @@ function Wowzer_EbayToArry(url, callback)
 	});
 }
 
-///////////////////////////
+////////////////////////
 function Wowzer_Filter()
 {
+	DKDEBUGFUNC();
 	item_arry2 = item_arry.slice(0);
 	
 	//sort by price
@@ -619,6 +626,7 @@ function Wowzer_Filter()
 //////////////////////////////
 function Wowzer_ShowItems()
 {
+	DKDEBUGFUNC();
 	//sort by price
 	Wowzer_Filter();
 
@@ -736,6 +744,7 @@ function Wowzer_ShowItems()
 //////////////////////////////////////////////
 function Wowzer_GetUrlString(url, callback)
 {
+	DKDEBUGFUNC(url, callback);
 	try {
         request = new XDomainRequest();
     }catch(e){}
@@ -759,11 +768,11 @@ function Wowzer_GetUrlString(url, callback)
     }catch(e){}
 
 	if(!request){
-		DKLog("AJAX ERROR: Error creating request object", DKERROR);
+		DKERROR("AJAX ERROR: Error creating request object\n");
 		return false;
 	}
 	
-	//DKLog("request.open(\"GET\","+url+",true)");
+	//DKINFO("request.open(\"GET\","+url+",true)\n");
 	request.open("GET",url,true);
 	request.send(); 
 
@@ -771,11 +780,11 @@ function Wowzer_GetUrlString(url, callback)
 		callback(request.responseText);
 	}
 	request.ontimeout=function(){
-		DKLog("TIMEOUT: "+url+"\n", DKWARN);
+		DKWARN("TIMEOUT: "+url+"\n");
 		callback();
 	}
 	request.onerror=function(){
-		DKLog("ERROR: "+url+"\n", DKWARN);
+		DKWARN("ERROR: "+url+"\n");
 		callback();
 	}
 	
@@ -786,8 +795,8 @@ function Wowzer_GetUrlString(url, callback)
 				callback(request.responseText);
 			}
 			else{
-				DKLog("AJAX ERROR: "+request.statusText, DKWARN); //report error
-				DKLog("status: "+request.status, DKWARN);
+				DKWARN("AJAX ERROR: "+request.statusText+"\n"); //report error
+				DKWARN("status: "+request.status+"\n");
 				callback();
 				return false;
 			}
@@ -799,6 +808,7 @@ function Wowzer_GetUrlString(url, callback)
 //////////////////////////////////
 function getUrlParameter(url, key) 
 {
+	DKDEBUGFUNC(url, key);
     if (!url) url = window.location.href;
     key = key.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + key + "(=([^&#]*)|&|#|$)"),
@@ -811,19 +821,21 @@ function getUrlParameter(url, key)
 /////////////////////////////////////////
 function setUrlParameter(url, key, value)
 {
-  var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-  var separator = url.indexOf('?') !== -1 ? "&" : "?";
-  if (url.match(re)) {
-    return url.replace(re, '$1' + key + "=" + value + '$2');
-  }
-  else {
-    return url + separator + key + "=" + value;
-  }
+	DKDEBUGFUNC(url, key, value);
+	var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+	var separator = url.indexOf('?') !== -1 ? "&" : "?";
+	if (url.match(re)) {
+		return url.replace(re, '$1' + key + "=" + value + '$2');
+	}
+	else{
+		return url + separator + key + "=" + value;
+	}
 }
 
 /////////////////////////////////////
 function removeUrlParameter(url, key)
 {
+	DKDEBUGFUNC(url, key);
     //prefer to use l.search if you have a location/link object
     var urlparts= url.split('?');   
 		if (urlparts.length>=2) {
@@ -850,6 +862,7 @@ function removeUrlParameter(url, key)
 //////////////////////////////////////////////////////////
 function Test()
 {
+	DKDEBUGFUNC();
 	var script = document.createElement('script');
 	script.src = "https://www.google.com";
 	script.id = "test_script";
@@ -858,20 +871,20 @@ function Test()
 	//script.type = "text/plain";
 	
     script.onerror = function(){
-		DKLog("script.onerror\n");
+		DKINFO("script.onerror\n");
 	};
 	script.onload = function(){
-		DKLog("script.onload\n");
-		DKLog(script.text+"\n");
+		DKINFO("script.onload\n");
+		DKINFO(script.text+"\n");
 	};
 
 	/*
 	script.onreadystatechange = function(){
-		DKLog("script.onreadystatechange\n");
+		DKINFO("script.onreadystatechange\n");
 		if(script.readyState == 'loaded'){
 			// Our script has download, but hasn't executed.
 			// It won't execute until we do:
-			DKLog("script.readystate = loaded\n");
+			DKINFO("script.readystate = loaded\n");
 		}
 	};
 	*/

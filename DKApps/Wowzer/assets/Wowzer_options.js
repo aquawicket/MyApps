@@ -1,6 +1,7 @@
-/////////////////////////////////
+//////////////////////////////
 function Wowzer_options_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("Wowzer_options.html", function(){});
 	DKAddEvent("Wowzer_options_price", "click", Wowzer_options_OnEvent);
 	DKAddEvent("Wowzer_options_close5", "click", Wowzer_options_OnEvent);
@@ -24,17 +25,17 @@ function Wowzer_options_Init()
 	DKWidget_SetValue("Wowzer_options_high", high);
 }
 
-////////////////////////////////
+/////////////////////////////
 function Wowzer_options_End()
 {
+	DKDEBUGFUNC();
 	DKClose("Wowzer_options.html");
 }
 
-/////////////////////////////////////////
+//////////////////////////////////////
 function Wowzer_options_OnEvent(event)
 {
-	//DKLog("Wowzer_options_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "Wowzer_options_price")){
 		sortbyprice = DKWidget_GetValue("Wowzer_options_price");
 	}
