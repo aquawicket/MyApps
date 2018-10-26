@@ -1,26 +1,26 @@
 /////////////////////
 function Letgo_Init()
 {
-	DKLog("Letgo_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 }
 
 ////////////////////
 function Letgo_End()
 {
-	DKLog("Letgo_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(Letgo_OnEvent);
 }
 
 /////////////////////////////
 function Letgo_OnEvent(event)
 {
-	DKLog("Letgo_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 }
 
 ///////////////////////
 function Letgo_Scrape()
 {
-	DKLog("Letgo_Scrape()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	Letgo_ToArry("https://us.letgo.com/en/category/cars", function(){
 		Letgo_ToArry("https://us.letgo.com/en/category/housing", function(){
 		Letgo_ToArry("https://us.letgo.com/en/category/electronics", function(){
@@ -53,10 +53,10 @@ function Letgo_Scrape()
 ////////////////////////////////////
 function Letgo_ToArry(url, callback)
 {
-	DKLog("Letgo_ToArry("+url+", callback)\n", DKDEBUG);
+	DKDEBUGFUNC(url, callback);
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
-			DKLog("Letgo_ToArry(): rstring invalid\n", DKWARN);
+			DKWARN("Letgo_ToArry(): rstring invalid\n");
 			return;
 		}
 		
@@ -65,45 +65,45 @@ function Letgo_ToArry(url, callback)
 				
 		var items = div.querySelectorAll('div[class*="feed-item"]');
 		for(var i=0; i<items.length; i++){
-			//DKLog(items[i].innerHTML+"\n");
+			//DKINFO(items[i].innerHTML+"\n");
 			var div1 = items[i].firstChild.firstChild.firstChild; // <div class="sc-...">
-			if(!div1){ DKLog("div1 invalid\n"); continue; }
+			if(!div1){ DKERROR("div1 invalid\n"); continue; }
 			var div2 = div1.firstChild; // <div>
-			if(!div2){ DKLog("div2 invalid\n"); continue; }
+			if(!div2){ DKERROR("div2 invalid\n"); continue; }
 			var inner = div2.firstChild; //<div class="inner">
-			if(!inner){ DKLog("inner invalid\n"); continue; }
+			if(!inner){ DKERROR("inner invalid\n"); continue; }
 			var img = inner.firstChild.firstChild; //<img>
-			if(!img){ DKLog("img invalid\n"); continue; }
+			if(!img){ DKERROR("img invalid\n"); continue; }
 			var footer = div2.childNodes[1]; //<div class="footer">
-			if(!footer){ DKLog("div3 invalid\n"); continue; }
+			if(!footer){ DKERROR("div3 invalid\n"); continue; }
 			var div4 = footer.firstChild; // <div class="sc-...">
-			if(!div4){ DKLog("div4 invalid\n"); continue; }
+			if(!div4){ DKERROR("div4 invalid\n"); continue; }
 			var p = div4.firstChild; //<p class="sc-..."> //url, title
-			if(!p){ DKLog("p invalid\n"); continue; }
+			if(!p){ DKERROR("p invalid\n"); continue; }
 			var p2 = div4.childNodes[1]; //<p class="sc-..."> //location
-			if(!p2){ DKLog("p2 invalid\n"); continue; }
+			if(!p2){ DKERROR("p2 invalid\n"); continue; }
 			var a = p.firstChild; //< a href="url">
-			if(!a){ DKLog("a invalid\n"); continue; }
+			if(!a){ DKERROR("a invalid\n"); continue; }
 			
 			var link = a.href; //url
-			if(!link){ DKLog("link invalid\n"); continue; }
+			if(!link){ DKERROR("link invalid\n"); continue; }
 			link = link.replace("file:///C:", "https://us.letgo.com");
 			var title = a.title; //title
-			if(!title){ DKLog("title invalid\n"); continue; }
+			if(!title){ DKERROR("title invalid\n"); continue; }
 			var loc = p2.innerHTML; //location
-			if(!loc){ DKLog("loc invalid\n"); continue; }
+			if(!loc){ DKERROR("loc invalid\n"); continue; }
 			var img = img.src;
-			if(!img){ DKLog("img invalid\n"); continue; }
+			if(!img){ DKERROR("img invalid\n"); continue; }
 			
 			if(Buy_CheckForDuplicate(link)){ continue; }
 			
 			/*
-			DKLog("##########################\n");
-			DKLog("url = "+link+"\n");
-			DKLog("title = "+title+"\n");
-			DKLog("img = "+img+"\n");
-			DKLog("loc = "+loc+"\n");
-			DKLog("price = "+price+"\n");
+			DKINFO("##########################\n");
+			DKINFO("url = "+link+"\n");
+			DKINFO("title = "+title+"\n");
+			DKINFO("img = "+img+"\n");
+			DKINFO("loc = "+loc+"\n");
+			DKINFO("price = "+price+"\n");
 			*/
 			
 			buyItems.push({}); //new object
@@ -135,7 +135,7 @@ function Letgo_ToArry(url, callback)
 //////////////////////////////////
 function Letgo_TriggerGetPrice(id)
 {
-	DKLog("Letgo_TriggerGetPrice("+id+")\n", DKDEBUG);
+	DKDEBUGFUNC(id);
 	queueSize++;
 	setTimeout(function(){
 		Letgo_UpdatePrice(id, function(rval){ 
@@ -150,7 +150,7 @@ function Letgo_TriggerGetPrice(id)
 ////////////////////////////////////////
 function Letgo_UpdatePrice(id, callback)
 {
-	DKLog("Letgo_UpdatePrice("+id+",callback)\n", DKDEBUG);
+	DKDEBUGFUNC(id, callback);
 	//get item number
 	var num = -1;
 	for(var i=0; i<buyItems.length; i++){
@@ -159,19 +159,19 @@ function Letgo_UpdatePrice(id, callback)
 		}
 	}
 	if(num == -1){ 
-		DKLog("Letgo_UpdatePrice("+id+", "+callback+"): could not find item with matching id\n", DKERROR);
+		DKERROR("Letgo_UpdatePrice("+id+", "+callback+"): could not find item with matching id\n");
 		return false; 
 	}
 	
 	if(buyItems[num].price){
-		DKLog("Letgo_UpdatePrice("+id+"): already has a price\n", DKWARN);
+		DKWARN("Letgo_UpdatePrice("+id+"): already has a price\n");
 		callback(false);
 		return; 
 	}
 	var url = buyItems[num].link;
 	Buy_GetUrlString(url, function(rstring){
 		if(!rstring){ 
-			DKLog("Letgo_UpdatePrice(): rstring invalid\n", DKWARN); 
+			DKWARN("Letgo_UpdatePrice(): rstring invalid\n"); 
 			callback(false);
 			return;
 		}
@@ -179,7 +179,7 @@ function Letgo_UpdatePrice(id, callback)
 		div.innerHTML = rstring;
 		
 		var element = div.querySelector('div[class="price"][data-test="price"]');
-		if(!element){ DKLog("element invalid\n"); }
+		if(!element){ DKERROR("element invalid\n"); }
 	
 		var price = element.innerHTML;
 		price = price.replace("<span>", "");
@@ -189,7 +189,7 @@ function Letgo_UpdatePrice(id, callback)
 			if(buyItems[i].link == url){
 				buyItems[i].price = price.replace("$","");
 				var ele = document.getElementById("itemprice"+i);
-				if(!ele){ DKLog("can't find itemprice"+i+"\n"); continue; }
+				if(!ele){ DKERROR("can't find itemprice"+i+"\n"); continue; }
 				ele.innerHTML = "$"+buyItems[i].price;
 			}
 		}

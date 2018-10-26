@@ -4,7 +4,7 @@ var ItemImages_imageNum = 0;
 //////////////////////////
 function ItemImages_Init()
 {
-	DKLog("ItemImages_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("TradePost/ItemImages.html");
 	DKAddEvent("ItemImages_upload", "click", ItemImages_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", ItemImages_OnEvent);
@@ -13,7 +13,7 @@ function ItemImages_Init()
 /////////////////////////
 function ItemImages_End()
 {
-	DKLog("ItemImages_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKRemoveEvents(ItemImages_OnEvent);
 	DKClose("TradePost/ItemImages.html");
 }
@@ -21,7 +21,7 @@ function ItemImages_End()
 //////////////////////////////////
 function ItemImages_OnEvent(event)
 {
-	DKLog("ItemImages_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "ItemImages_left")){
 		ItemImages_imageNum--;
 		ItemImages_Update();
@@ -46,7 +46,7 @@ function ItemImages_OnEvent(event)
 ////////////////////////////////////
 function ItemImages_SetItem(itemNum)
 {
-	DKLog("ItemImages_SetItem("+itemNum+")\n", DKDEBUG);
+	DKDEBUGFUNC(itemNum);
 	ItemImages_itemNum = itemNum;
 	ItemImages_Update();
 }
@@ -54,7 +54,7 @@ function ItemImages_SetItem(itemNum)
 ////////////////////////////
 function ItemImages_Update()
 {
-	DKLog("ItemImages_Update()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKWidget_SetInnerHtml("ItemImages_div", ""); //clear
 	
 	var img = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_img");
@@ -93,12 +93,12 @@ function ItemImages_Update()
 ///////////////////////////////////////
 function ItemImages_UploadImages(files)
 {
-	DKLog("ItemImages_UploadImages("+files+")\n", DKDEBUG);
+	DKDEBUGFUNC(files);
 	if(!files){ return; }
 	
 	var arry = files.split(";");
 	for(var i=0; i<arry.length; i++){
-		DKLog(arry[i]+"\n");
+		DKINFO(arry[i]+"\n");
 		
 		var b=0;
 		while(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+b+".jpg")){
@@ -114,11 +114,11 @@ function ItemImages_UploadImages(files)
 ////////////////////////////////
 function ItemImages_Delete(file)
 {
-	DKLog("ItemImages_Delete("+file+")\n", DKDEBUG);
+	DKDEBUGFUNC(file);
 	DKCreate("DKMessage/DKMessage.js", function(){
 		DKFrame_Widget("DKMessage/DKMessage.html");
 		DKMessage_Confirm("delete this file?", function(rval){
-			//DKLog("DKMessage_Confirm(): rval = "+rval+"\n");
+			//DKINFO("DKMessage_Confirm(): rval = "+rval+"\n");
 			if(rval == true){
 				DKFile_Delete(file);
 				ItemImages_imageNum = 0;
