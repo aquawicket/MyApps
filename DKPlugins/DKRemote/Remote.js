@@ -1,8 +1,7 @@
 //////////////////////
 function Remote_Init()
 {
-	DKLog("Remote_Init()\n", DKDEBUG);
-	
+	DKDEBUGFUNC();
 	DKCreate("DKRemote/Remote.html");
 	DKCreate("DKWebSockets");
 	
@@ -19,25 +18,33 @@ function Remote_Init()
 	DKAddEvent("GLOBAL", "DKWebSockets_OnMessageFromServer", Remote_OnEvent);
 }
 
+/////////////////////
+function Remote_End()
+{
+	DKDEBUGFUNC();
+	DKClose("DKRemote/Remote.html");
+	DKClose("DKWebSockets");
+	DKRemoveEvents(Remote_OnEvent);
+}
+
 //////////////////////////////
 function Remote_OnEvent(event)
 {
-	DKLog("Remote_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "Power")){
 		DKClient_Send("Power");
-		DKLog("Server: Power\n");
+		DKINFO("Server: Power\n");
 	}
 	if(DK_Id(event, "VolumeUp_Button")){
-		DKLog("Button: VolumeUp \n");
+		DKINFO("Button: VolumeUp\n");
 		Remote_MessageToServer("VolumeUp");
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
-		DKLog("Button: Volume Down\n");
+		DKINFO("Button: Volume Down\n");
 		Remote_MessageToServer("VolumeDown");
 	}
 	if(DK_Id(event, "Wifi")){
-		DKLog("Button: Wifi\n");
+		DKINFO("Button: Wifi\n");
 		DKWidget_Toggle("address");
 		if(!DKWidget_Visible("address")){
 			Remote_Connect();
@@ -54,22 +61,21 @@ function Remote_OnEvent(event)
 /////////////////////////
 function Remote_Connect()
 {
-	DKLog("Remote_Connect()\n", DKDEBUG);
-	
+	DKDEBUGFUNC();	
 	if(!DKWidget_GetValue("address")){
-		DKLog("Remote_Connect(): please enter an address\n", DKWARN);
+		DKWARN("Remote_Connect(): please enter an address\n");
 		return;
 	}
 	url = DKWidget_GetValue("address");  //  ws://localhost
 	
 	if(DK_GetBrowser() == "Rocket"){
-		DKLog("Connecting to WebSocket via C++...\n");
+		DKINFO("Connecting to WebSocket via C++...\n");
 		DKWebSockets_CreateClient(url);
 		return;
 	}
 	
 	//else
-	DKLog("Connecting to WebSocket via javascript...\n");
+	DKINFO("Connecting to WebSocket via javascript...\n");
 	websocket = new WebSocket(url);
 	websocket.onopen = function(){
 		console.log("websocket.onopen");
@@ -89,7 +95,7 @@ function Remote_Connect()
 /////////////////////////////
 function Remote_CloseClient()
 {
-	DKLog("Remote_CloseClient()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	if(DK_GetBrowser() == "Rocket"){
 		DKWebSockets_CloseClient();
 		return;
@@ -102,8 +108,7 @@ function Remote_CloseClient()
 ////////////////////////////////////////
 function Remote_MessageToServer(message)
 {
-	DKLog("Remote_MessageToServer()\n", DKDEBUG);
-	
+	DKDEBUGFUNC(message);	
 	if(DK_GetBrowser() == "Rocket"){
 		DKWebSockets_MessageToServer(message);
 		return;
@@ -131,5 +136,5 @@ function Remote_MessageToServer(message)
 ////////////////////////////////////////////
 function Remote_OnMessageFromServer(message)
 {
-	DKLog("Remote_OnMessageFromServer("+message+")\n", DKDEBUG);
+	DKDEBUGFUNC(message);
 }

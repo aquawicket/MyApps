@@ -1,7 +1,7 @@
 ////////////////////////
 function Receiver_Init()
 {
-	DKLog("Receiver_Init()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKCreate("DKReceiver/Receiver.html");	
 	DKCreate("DKWebSockets");
 	DKWebSockets_CreateServer("127.0.0.1", 80);
@@ -16,7 +16,7 @@ function Receiver_Init()
 ///////////////////////
 function Receiver_End()
 {
-	DKLog("Receiver_End()\n", DKDEBUG);
+	DKDEBUGFUNC();
 	DKWebSockets_CloseServer();
 	DKRemoveEvents(Receiver_OnEvent);
 	DKClose("DKReceiver/Receiver.html");
@@ -25,10 +25,9 @@ function Receiver_End()
 ////////////////////////////////
 function Receiver_OnEvent(event)
 {
-	DKLog("Receiver_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n", DKDEBUG);
-	
+	DKDEBUGFUNC(event);	
 	if(DK_Id(event, "VolumeUp_Button")){
-		DKLog("Button: VolumeUp \n");
+		DKINFO("Button: VolumeUp\n");
 		var volume = DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
 			DK_SetVolume(volume+5000);
@@ -38,7 +37,7 @@ function Receiver_OnEvent(event)
 		}
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
-		DKLog("Button: Volume Down\n");
+		DKINFO("Button: Volume Down\n");
 		var volume = DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
 			DK_SetVolume(volume-5000);
@@ -49,12 +48,12 @@ function Receiver_OnEvent(event)
 	}
 	
 	if(DK_Type(event, "DKWebSockets_OnMessageFromClient")){
-		DKLog("server: "+DK_GetValue(event)+"\n");
+		DKINFO("server: "+DK_GetValue(event)+"\n");
 		if(DK_GetValue(event) == "Power"){
-			DKLog("Client: Power\n");
+			DKINFO("Client: Power\n");
 		}
 		if(DK_GetValue(event) == "VolumeUp"){
-			DKLog("Client: VolumeUp\n");
+			DKINFO("Client: VolumeUp\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
 				DK_SetVolume(volume+2);
@@ -65,7 +64,7 @@ function Receiver_OnEvent(event)
 			}
 		}
 		if(DK_GetValue(event) == "VolumeDown"){
-			DKLog("Client: VolumeDown\n");
+			DKINFO("Client: VolumeDown\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
 				DK_SetVolume(volume-2);
