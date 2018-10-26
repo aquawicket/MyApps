@@ -1,6 +1,7 @@
 ////////////////////////
 function AppsMenu_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("Digitalknob/AppsMenu.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
 	
@@ -10,7 +11,7 @@ function AppsMenu_Init()
 ///////////////////////
 function AppsMenu_End()
 {
-	//DKLog("AppsMenu_End():\n");
+	DKDEBUGFUNC();
 	DKRemoveEvents(AppsMenu_OnEvent);
 	DKClose("Digitalknob/AppsMenu.html");
 }
@@ -18,6 +19,7 @@ function AppsMenu_End()
 ///////////////////////////
 function AppsMenu_GetApps()
 {
+	DKDEBUGFUNC();
 	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKInputTest", "DKOS", "DKReceiver", "DKRemote", "DKYoutube", "DKBuilder", "DKIDE"];
 	for(var i=0; i<AppList.length; i++){
 		AppsMenu_AddApp(AppList[i]);
@@ -27,6 +29,7 @@ function AppsMenu_GetApps()
 //////////////////////////////////////
 function AppsMenu_GetDescription(name)
 {
+	DKDEBUGFUNC(name);
 	if(name == "DKDatabase"){
 		return "A simple MySql database client. <br />";
 	}
@@ -83,6 +86,7 @@ Don't you just hate how youtube music stops playing when you turn off your scree
 //////////////////////////////
 function AppsMenu_AddApp(name)
 {
+	DKDEBUGFUNC(name);
 	var id = DKWidget_CreateElement("Digitalknob/AppsMenu.html", "div", name)
 	DKWidget_SetAttribute(id, "class", "option");
 	DKWidget_SetProperty(id, "height", "40px");  //IE fix: This does not work. 
@@ -96,8 +100,7 @@ function AppsMenu_AddApp(name)
 ////////////////////////////////
 function AppsMenu_OnEvent(event)
 {
-	DKLog("AppsMenu_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);	
 	if(DK_Type(event, "click")){
 		DKWidget_SetInnerHtml("Digitalknob_content",""); //clear the content
 		var id = DK_GetId(event);

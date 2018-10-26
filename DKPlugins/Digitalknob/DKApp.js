@@ -15,6 +15,7 @@ var download_link = "";
 /////////////////////
 function DKApp_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("Digitalknob/DKApp.html,Digitalknob_content");
 	DKAddEvent("DKApp_webapp", "click", DKApp_OnEvent);
 	DKAddEvent("DKApp_download", "click", DKApp_OnEvent);
@@ -31,6 +32,7 @@ function DKApp_Init()
 ////////////////////
 function DKApp_End()
 {
+	DKDEBUGFUNC();
 	DKRemoveEvents(DKApp_OnEvent);
 	DKClose("Digitalknob/DKApp.html");
 }
@@ -38,8 +40,7 @@ function DKApp_End()
 /////////////////////////////
 function DKApp_OnEvent(event)
 {
-	DKLog("DKApp_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);
 	if(DK_Id(event, "DKApp_webapp")){
 		DKWidget_OpenLink(web_app);
 	}
@@ -53,7 +54,7 @@ function DKApp_OnEvent(event)
 ////////////////////////////////
 function DKFile_Exists(path, fn)
 {
-	DKLog("DKFile_Exists("+path+") \n");
+	DKDEBUGFUNC(path, fn);
 	if(!path){ return false; }
 	UrlExists(path, function(rval){
 		fn && fn(rval);
@@ -66,7 +67,7 @@ function DKFile_Exists(path, fn)
 //////////////////////////////
 function DKApp_UpdateApp(name)
 {
-	DKLog("DKApp_UpdateApp("+name+") \n");
+	DKDEBUGFUNC(name);
 	app = name;
 	icon = "Digitalknob/"+app+"_icon.png";
 	//os = DK_GetOS();
@@ -141,12 +142,14 @@ function DKApp_UpdateApp(name)
 /////////////////////////////
 function DKApp_EnableWebApp()
 {
+	DKDEBUGFUNC();
 	DKWidget_SetProperty("DKApp_webapp", "visibility", "visible");
 }
 
 ////////////////////////////////
 function DKApp_SetDownload(name)
 {
+	DKDEBUGFUNC(name);
 	if(name.indexOf("Win32") != -1){
 		DKWidget_SetInnerHtml("DKApp_download", "Download for Windows 32");
 		download_link = win32_download;
@@ -199,13 +202,14 @@ function DKApp_SetDownload(name)
 ////////////////////////////////////////
 function DKApp_UpdateDescription(string)
 {
-	//DKLog(string);
+	DKDEBUGFUNC(string);
 	DKWidget_SetInnerHtml("DKApp_description", string);
 }
 
 //////////////////////////////////
 function DKApp_UpdateScreenshots()
 {
+	DKDEBUGFUNC();
 	for(var i=0; i<6 || function(){}(); i++){
 		DKApp_AddImage(i);
 	}
@@ -214,7 +218,7 @@ function DKApp_UpdateScreenshots()
 //////////////////////////
 function DKApp_AddImage(i)
 {
-	//DKLog("DKApp_AddImage("+i+")\n");
+	DKDEBUGFUNC(i);
 	//DKFile_Exists("Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
 	//DKFile_Exists("file:///C:/digitalknob/USER/DKApps/DigitalKnob/assets/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
 	DKFile_Exists("http://digitalknob.com/Digitalknob/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){	

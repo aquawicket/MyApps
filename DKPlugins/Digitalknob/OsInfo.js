@@ -1,15 +1,16 @@
 //////////////////////
 function OsInfo_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("Digitalknob/OsInfo.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "resize", OsInfo_OnEvent);
-	
 	OsInfo_Resize();
 }
 
 /////////////////////
 function OsInfo_End()
 {
+	DKDEBUGFUNC();
 	DKRemoveEvents(OsInfo_OnEvent);
 	DKClose("Digitalknob/OsInfo.html");
 }
@@ -17,8 +18,7 @@ function OsInfo_End()
 //////////////////////////////
 function OsInfo_OnEvent(event)
 {
-	DKLog("OsInfo_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-	
+	DKDEBUGFUNC(event);	
 	if(DK_Type(event, "resize")){
 		OsInfo_Resize();
 	}
@@ -27,6 +27,7 @@ function OsInfo_OnEvent(event)
 ////////////////////////
 function OsInfo_Resize()
 {
+	DKDEBUGFUNC();
 	DKWidget_SetInnerHtml("OsInfo_OS", "OS: "+DK_GetOS());
 	DKWidget_SetInnerHtml("OsInfo_Browser", "Browser: "+DK_GetBrowser()+" ,"+DK_GetJavascript());
 	DKWidget_SetInnerHtml("OsInfo_width", "width: "+DKWindow_GetWidth());
