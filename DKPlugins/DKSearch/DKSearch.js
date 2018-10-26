@@ -1,17 +1,18 @@
 ////////////////////////
 function DKSearch_Init()
 {
+	DKDEBUGFUNC();
 	DKCreate("DKSearch/DKSearch.html");
 }
 
 ///////////////////////
 function DKSearch_End()
 {
-	DKClose("DKSearch.html");
+	DKDEBUGFUNC();
 }
 
 ////////////////////////////////
 function DKSearch_OnEvent(event)
-{	DKLog("DKSearch_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
-
+{
+	DKDEBUGFUNC(event);
 }
