@@ -1,5 +1,6 @@
 DKCreate("DKWindow");
 DKCreate("DKRocket");
+DKRocket_LoadGui("index.html");
 DKCreate("DKWidget");
 DKCreate("DKScale/DKScale.js", function(){});
 DKCreate("DKRemote/Remote.js", function(){});
