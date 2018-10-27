@@ -1,5 +1,6 @@
 DKCreate("DKWindow");
 DKCreate("DKRocket");
+DKRocket_LoadGui("index.html");
 DKCreate("DKScale/DKScale.js", function(){});
 DKCreate("DKReceiver/Receiver.js", function(){});
 DKCreate("DKTray/DKTray.js", function(){});
