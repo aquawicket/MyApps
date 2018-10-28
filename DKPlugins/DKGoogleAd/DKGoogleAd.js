@@ -19,7 +19,8 @@ function DKGoogleAd_OnEvent(event)
 ///////////////////////////////////////////////////
 function DKGoogleAd_CreateAd(parent, width, height)
 {
-	//DKDebug(parent, width, height);
+	DKINFO("DKGoogleAd_CreateAd("+parent+","+width+","+height+")\n");
+	DKINFO("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
 	if(DK_GetBrowser() == "Rocket"){
 		return DKGoogleAd_CreateAdForRocket(parent, width, height);
 	}
@@ -33,20 +34,24 @@ function DKGoogleAd_CreateAd(parent, width, height)
 ////////////////////////////////////////////////////////////
 function DKGoogleAd_CreateAdForRocket(parent, width, height)
 {
-	//DKDebug(parent, width, height);
+	DKINFO("DKGoogleAd_CreateAdForRocket\n");
+	DKCreate("DKAssets/DKAssets.js", function(){
 	var online_assets = DKAssets_OnlineAssets();
 	var iframe = DKWidget_CreateElement(parent, "iframe", "DKAdd");
 	DKWidget_SetProperty(iframe, "position", "absolute");
+	
 	DKWidget_SetProperty(iframe, "width", width);
 	DKWidget_SetProperty(iframe, "height", height);
 	DKWidget_RemoveProperty(iframe, "top");
 	DKWidget_RemoveProperty(iframe, "bottom");
 	DKWidget_RemoveProperty(iframe, "left");
 	DKWidget_RemoveProperty(iframe, "right");
+	
 	DKWidget_SetProperty("iframe_"+iframe, "position", "absolute");
 	DKWidget_SetProperty("iframe_"+iframe, "bottom", "0rem");
 	DKWidget_RemoveProperty("iframe_"+iframe, "top");
 	DKWidget_SetAttribute(iframe, "src", online_assets+"/DKGoogleAd/AddFrame.html");
+	});
 	return iframe;
 }
 
