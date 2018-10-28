@@ -36,7 +36,6 @@ function DKGoogleAd_CreateAdForRocket(parent, width, height)
 	//DKDebug(parent, width, height);
 	var online_assets = DKAssets_OnlineAssets();
 	var iframe = DKWidget_CreateElement(parent, "iframe", "DKAdd");
-	DKWidget_SetAttribute(iframe, "src", online_assets+"/DKGoogleAd/AddFrame.html");
 	DKWidget_SetProperty(iframe, "position", "absolute");
 	DKWidget_SetProperty(iframe, "width", width);
 	DKWidget_SetProperty(iframe, "height", height);
@@ -47,6 +46,7 @@ function DKGoogleAd_CreateAdForRocket(parent, width, height)
 	DKWidget_SetProperty("iframe_"+iframe, "position", "absolute");
 	DKWidget_SetProperty("iframe_"+iframe, "bottom", "0rem");
 	DKWidget_RemoveProperty("iframe_"+iframe, "top");
+	DKWidget_SetAttribute(iframe, "src", online_assets+"/DKGoogleAd/AddFrame.html");
 	return iframe;
 }
 

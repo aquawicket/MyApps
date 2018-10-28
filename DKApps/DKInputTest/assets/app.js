@@ -11,9 +11,9 @@ DKCreate("DK/init.js", function(){});
 function app_LoadPlugins()
 {
 	DKCreate("DKDebug/DKDebug.js", function(){});
-	DKCreate("DKWidget");
-	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
-		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
-		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
-	});
+	//DKCreate("DKWidget");
+	//DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+	//	var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
+	//	if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
+	//});
 }
