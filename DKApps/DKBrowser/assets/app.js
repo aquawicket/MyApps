@@ -1,6 +1,7 @@
 DKCreate("DKWindow");
 DKCreate("DKRocket");
 DKRocket_LoadGui("index.html");
+DKCreate("DK/DK.css");	
 DKCreate("DKGui/DKFrame.js");
 DKCreate("DKBrowser/DKBrowser.js");
 DKWidget_SetProperty("DKBrowser.html", "width", "100%");
