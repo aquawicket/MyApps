@@ -1,2 +1,2 @@
 [CONSOLE] ON
-[LOG_SHOW] DKDuktape::LoadJSString
+[LOG_SHOW]
