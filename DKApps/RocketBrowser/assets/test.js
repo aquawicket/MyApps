@@ -13,11 +13,15 @@ document.body.style["border-color"] = "black";
 console.warn("window.innerWidth = "+window.innerWidth);
 console.warn("window.innerHeight = "+window.innerHeight);
 
+var nodes = document.getElementsByClassName("test")
+console.log(nodes);
+console.log(nodes.length);
 
-
+/*
 console.trace();
 console.assert(document.getElementById("Thor"), "this assert is Thor");
 console.assert(document.getElementById("body"), "this assert is body");
+*/
 
 
 /*
