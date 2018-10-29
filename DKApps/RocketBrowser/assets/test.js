@@ -17,6 +17,7 @@ var nodes = document.getElementsByClassName("test")
 console.log(nodes);
 console.log(nodes.length);
 
+
 /*
 console.trace();
 console.assert(document.getElementById("Thor"), "this assert is Thor");
