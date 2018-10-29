@@ -8,5 +8,5 @@ DKCreate("DKRocket");
 DKRocket_LoadUrl(url);
 
 DKCreate("DKCef");
-DKCef_NewBrowser("CefPopup", 0, 0, 415, 638, url);
-//DKCef_SetFocus(DKCef_GetCurrentBrowser());
+DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
+//DKCef_SetFocus(0);
