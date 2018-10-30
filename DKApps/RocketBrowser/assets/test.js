@@ -1,5 +1,17 @@
 console.warn("Loaded test.js");
 
+
+var myDiv = document.createElement("div");
+myDiv.style.position = "absolute";
+myDiv.style.top = "100px";
+myDiv.style.left = "10px";
+myDiv.style.width = "100px";
+myDiv.style.height = "100px";
+myDiv.style.backgroundColor = "blue";
+document.body.appendChild(myDiv);
+myDiv.addEventListener("click", function(){ console.warn("DIV CLICKED"); });
+
+
 /*
 //test duktape object
 if(typeof Duktape === "object"){
