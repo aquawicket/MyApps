@@ -21,13 +21,11 @@ document.body.style["border-width"] = "1px";
 document.body.style["border-style"] = "solid";
 document.body.style["border-color"] = "black";
 
-
-
-/*
 //console tests
 //console.log(console.clear());
 console.log(console.assert(false, "console.assert() false"));
 console.log(console.assert(true, "console.assert() true"));
+/*
 console.log(console.debug("console.debug()"));
 console.log(console.error("console.error()"));
 console.log(console.info("console.info()"));
@@ -56,10 +54,10 @@ console.log("window.noFunc: "+window.noFunc);
 //TODO
 */
 
-/*
+
 //document object tests
-console.log("document.createElement('div'): "+document.createElement('div'));
-*/
+//console.log("document.createElement('div'): "+document.createElement('div'));
+
 
 /*
 //script object tests
