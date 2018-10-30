@@ -1,9 +1,5 @@
 console.warn("Loaded test.js");
 
-navigator.appCodeName = "changed";
-console.warn("navigator.appCodeName = "+navigator.appCodeName+"\n");
-
-
 /*
 //test duktape object
 if(typeof Duktape === "object"){
@@ -44,15 +40,11 @@ console.log("window['innerHeight']: "+window['innerHeight']);
 console.log("window['name']: "+window['name']);
 console.log("window.noFunc: "+window.noFunc);
 
-
 //location object tests
 //TODO
 
-
 //screen object tests
 //TODO
-
-
 
 //document object tests
 var new_div = document.createElement('div');
@@ -71,5 +63,4 @@ console.log("script: "+script+"\n");
 script.id = "test_script";
 console.log("script.id: "+script.id+"\n");
 document.body.appendChild(script);
-
 */
