@@ -50,16 +50,21 @@ console.log("window.noFunc: "+window.noFunc);
 //TODO
 */
 
+
 //document object tests
-console.log("document.createElement('div'): "+document.createElement('div'));
+var new_div = document.createElement('div');
+new_div.id = "new_div";
+new_div.style.position = "absolute";
+new_div.style.backgroundColor = "blue";
+new_div.style.top = "100px";
+new_div.style.left = "10px";
+new_div.style.width = "100px";
+new_div.style.height = "100px";
+document.body.appendChild(new_div);
 
-
-/*
 //script object tests
-//console.log("document.createElement('script'): "+document.createElement("script"));
 var script = document.createElement("script");
 console.log("script: "+script+"\n");
 script.id = "test_script";
 console.log("script.id: "+script.id+"\n");
 document.body.appendChild(script);
-*/
