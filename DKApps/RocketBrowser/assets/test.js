@@ -1,6 +1,9 @@
 console.warn("Loaded test.js");
 
 
+
+
+/*
 //test duktape object
 if(typeof Duktape === "object"){
    console.warn("Duktape.version: "+Duktape.version);
@@ -40,15 +43,14 @@ console.log("window['innerHeight']: "+window['innerHeight']);
 console.log("window['name']: "+window['name']);
 console.log("window.noFunc: "+window.noFunc);
 
-/*
+
 //location object tests
 //TODO
-*/
 
-/*
+
 //screen object tests
 //TODO
-*/
+
 
 
 //document object tests
@@ -68,3 +70,5 @@ console.log("script: "+script+"\n");
 script.id = "test_script";
 console.log("script.id: "+script.id+"\n");
 document.body.appendChild(script);
+
+*/
