@@ -1,5 +1,11 @@
 console.warn("Loaded test.js");
 
+//test duktape object
+if(typeof Duktape === "object"){
+   console.warn("Duktape.version: "+Duktape.version);
+   console.warn("Duktape.env: "+Duktape.env);
+}
+
 /*
 //page setup
 document.getElementsByTagName("html")[0].style.height = "100%";
@@ -27,7 +33,7 @@ console.log(console.warn("console.warn()"));
 */
 
 /*
-//window tests
+//window object tests
 //console.log(window.alert("window.alert()"));
 console.log("window.innerWidth: "+window.innerWidth);
 console.log("window.innerHeight: "+window.innerHeight);
@@ -38,70 +44,11 @@ console.log("window['name']: "+window['name']);
 console.log("window.noFunc: "+window.noFunc);
 */
 
-//window.location tests
+//location object tests
 //TODO
 
-//window.screen tests
+//screen object tests
 //TODO
 
-//window.document tests
-var ele = document.createElement('div');
-console.log(ele+"\n");
+//document object tests
 //console.log("document.createElement('div'): "+document.createElement('div'));
-
-//var obj = [];
-//console.log(obj+"\n");
-
-
-/*
-function MyConsole()
-{
-	MyConsole.prototype.log = function(str){
-		//send the str to c++ or something
-		//alert(str);
-		console.log(str);
-	}
-}
-
-function MyObject(val)
-{
-	this.val = val;
-	MyObject.prototype.appendChild = function(){
-		return this;
-	}
-		
-	return new Proxy(this, {
-		has: function (targ, key){
-			return key in targ;
-		},
-		get: function(targ, key, recv){
-			return targ[key];
-		},
-		set: function (targ, key, val, recv){
-			targ[key] = val;
-			return true;
-		},
-		deleteProperty: function (targ, key){
-			delete targ[key];
-			return true;
-		}
-	});
-}
-
-myconsole = new MyConsole();
-
-var val = 42;
-var myobject = new MyObject(val);
-myconsole.log(myobject+"\n");
-*/
-
-
-
-
-
-
-
-
-
-
-
