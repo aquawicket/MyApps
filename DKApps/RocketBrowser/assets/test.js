@@ -1,6 +1,7 @@
 console.warn("Loaded test.js");
 
-
+navigator.appCodeName = "changed";
+console.warn("navigator.appCodeName = "+navigator.appCodeName+"\n");
 
 
 /*
