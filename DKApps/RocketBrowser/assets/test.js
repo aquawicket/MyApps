@@ -6,9 +6,12 @@ if(typeof Duktape === "object"){
    console.warn("Duktape.version: "+Duktape.version);
    console.warn("Duktape.env: "+Duktape.env);
 }
+*/
+
 
 //page setup
 document.getElementsByTagName("html")[0].style.height = "100%";
+console.log(document.getElementsByTagName("html")[0].style.height);
 document.body.id = "body";
 document.body.style["margin"] = "0px";
 document.body.style["overflow"] = "hidden";
@@ -17,8 +20,10 @@ document.body.style["backgroundColor"] = "grey";
 document.body.style["border-width"] = "1px";
 document.body.style["border-style"] = "solid";
 document.body.style["border-color"] = "black";
-document.body.TEST();
 
+
+
+/*
 //console tests
 //console.log(console.clear());
 console.log(console.assert(false, "console.assert() false"));
@@ -29,6 +34,7 @@ console.log(console.info("console.info()"));
 console.log(console.log("console.log()"));
 console.log(console.trace("console.trace()"));
 console.log(console.warn("console.warn()"));
+*/
 
 //window object tests
 //console.log(window.alert("window.alert()"));
@@ -40,12 +46,17 @@ console.log("window['innerHeight']: "+window['innerHeight']);
 console.log("window['name']: "+window['name']);
 console.log("window.noFunc: "+window.noFunc);
 
+/*
 //location object tests
 //TODO
+*/
 
+/*
 //screen object tests
 //TODO
+*/
 
+/*
 //document object tests
 console.log("document.createElement('div'): "+document.createElement('div'));
 */
@@ -55,29 +66,27 @@ console.log("document.createElement('div'): "+document.createElement('div'));
 //console.log("document.createElement('script'): "+document.createElement("script"));
 var script = document.createElement("script");
 console.log("script: "+script+"\n");
-script.TEST();
 script.id = "test_script";
 console.log("script.id: "+script.id+"\n");
 document.body.appendChild(script);
 */
 
-
-
-function Element(id)
+/*
+function Element2(id)
 {
 	this.id = id;
 
-	Element.prototype.TEST = function(){
-		console.log("TEST!");
+	Element2.prototype.ElementTest = function(){
+		console.warn("Element2.prototype.ElementTest()");
 	}
 
 	return new Proxy(this, {
 		get: function (targ, key, recv){
-			alert("Element proxy get: called");
+			console.warn("Element2 proxy get: called");
 			return targ[key];
 		},
 		set: function (targ, key, val, recv){
-			alert("Element proxy set: called");
+			console.warn("Element2 proxy set: called");
 			return val;
 		},
 	});
@@ -85,11 +94,16 @@ function Element(id)
 
 function HTMLElement(id)
 {
-	Element.call(this, id);
+	HTMLElement.prototype.HTMLElementTest = function(){
+		console.warn("HTMLElement2.prototype.HTMLElementTest()");
+	}
+	return Element2.call(this, id);
 }
-HTMLElement.prototype = Element.prototype;
-
+HTMLElement.prototype = Element2.prototype;
 
 var htmlElement = new HTMLElement("test_id");
-htmlElement.TEST();
-console.log("htmlElement.id = "+htmlElement.id+"\n");
+htmlElement.ElementTest();
+htmlElement.HTMLElementTest();
+htmlElement.id = "test2";
+console.warn("htmlElement.id = "+htmlElement.id+"\n");
+*/
