@@ -45,10 +45,15 @@ myDiv2.addEventListener("mouseover", function(){ console.warn("myDiv2: mouseover
 myDiv2.addEventListener("mouseout", function(){ console.warn("myDiv2: mouseout"); });
 
 
+//objectMap.print();
+
 var divs = document.getElementsByTagName("div");
 DKWARN(String(divs.length));
-DKWARN(typeof divs[0].id);
+DKWARN(divs[0].id);
 
+//objectMap.print();
+//var ele = document.getElementById("myDiv");
+//DKWARN("ele = "+ele+"\n");
 
 /*
 //test duktape object
