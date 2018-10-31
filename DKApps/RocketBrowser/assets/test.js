@@ -1,6 +1,16 @@
 console.warn("Loaded test.js");
 
 
+window.addEventListener("error", function(err){
+	var errorText = [
+        err.message,
+        'URL: ' + err.filename,
+        'Line: ' + err.lineno + ', Column: ' + err.colno,
+        'Stack: ' + (err.error && err.error.stack || '(no stack trace)')
+    ].join('\n');
+	console.error(errorText);
+});
+
 
 var myDiv = document.createElement("div");
 myDiv.style.position = "absolute";

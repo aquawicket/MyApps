@@ -7,8 +7,7 @@ var url = DKAssets_LocalAssets()+"test.html";
 DKCreate("DKRocket");
 DKRocket_LoadUrl(url);
 
-/*
+
 DKCreate("DKCef");
 DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
 //DKCef_SetFocus(0);
-*/
