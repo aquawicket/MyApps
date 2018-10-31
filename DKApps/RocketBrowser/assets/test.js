@@ -1,8 +1,23 @@
 window.console.warn("Loaded test.js");
 
-CheckFileSupport();
+//page setup
+document.getElementsByTagName("html")[0].style.height = "100%";
+document.body.id = "body";
+document.body.style.margin = "0px";
+document.body.style.overflow = "hidden";
+document.body.style.height = "100%";
+document.body.style.backgroundColor = "grey";
+document.body.style.borderWidth = "1px";
+document.body.style.borderStyle = "solid";
+document.body.style.borderColor = "black";
+
+
+
+
+
 
 var myDiv = document.createElement("div");
+myDiv.id = "myDiv";
 myDiv.style.position = "absolute";
 myDiv.style.top = "100px";
 myDiv.style.left = "10px";
@@ -14,6 +29,28 @@ myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
 myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
 myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
 
+
+
+var myDiv2 = document.createElement("div");
+myDiv2.id = "myDiv2";
+myDiv2.style.position = "absolute";
+myDiv2.style.top = "200px";
+myDiv2.style.left = "210px";
+myDiv2.style.width = "100px";
+myDiv2.style.height = "100px";
+myDiv2.style.backgroundColor = "red";
+document.body.appendChild(myDiv2);
+myDiv2.addEventListener("click", function(){ console.warn("myDiv2 click"); });
+myDiv2.addEventListener("mouseover", function(){ console.warn("myDiv2: mouseover"); });
+myDiv2.addEventListener("mouseout", function(){ console.warn("myDiv2: mouseout"); });
+
+
+var divs = document.getElementsByTagName("div");
+DKWARN(String(divs.length));
+DKWARN(typeof divs[0].id);
+
+
+/*
 //test duktape object
 if(typeof Duktape === "object"){
    console.warn("Duktape.version: "+Duktape.version);
@@ -21,16 +58,7 @@ if(typeof Duktape === "object"){
 }
 
 
-//page setup
-document.getElementsByTagName("html")[0].style.height = "100%";
-document.body.id = "body";
-document.body.style.margin = "0px";
-document.body.style.overflow = "hidden";
-document.body.style.height = "100%";
-document.body.style.backgroundColor = "grey";
-document.body.style.borderWidth = "1px";
-document.body.style.borderStyle = "solid";
-document.body.style.borderColor = "black";
+//CheckFileSupport();
 
 //console tests
 //console.log(console.clear());
@@ -76,3 +104,6 @@ console.log("script: "+script+"\n");
 script.id = "test_script";
 console.log("script.id: "+script.id+"\n");
 document.body.appendChild(script);
+*/
+
+
