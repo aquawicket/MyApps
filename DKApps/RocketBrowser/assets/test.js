@@ -9,7 +9,9 @@ myDiv.style.width = "100px";
 myDiv.style.height = "100px";
 myDiv.style.backgroundColor = "blue";
 document.body.appendChild(myDiv);
-myDiv.addEventListener("click", function(){ console.warn("DIV CLICKED"); });
+myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
+myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
+myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
 
 
 /*
