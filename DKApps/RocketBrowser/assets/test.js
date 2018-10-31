@@ -1,6 +1,5 @@
 console.warn("Loaded test.js");
 
-
 window.addEventListener("error", function(err){
 	var errorText = [
         err.message,
@@ -10,6 +9,7 @@ window.addEventListener("error", function(err){
     ].join('\n');
 	console.error(errorText);
 });
+
 
 
 var myDiv = document.createElement("div");
@@ -24,18 +24,9 @@ myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
 myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
 myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
 
-allert("test error");
 
-/*
-try{
-	allert("test error");
-}
-catch(err){
-	var err_error = {stack:err.stack};
-	var err_event = {type:'error', name:err.name, message:err.message, filename:err.fileName, lineno:err.lineNumber, colno:'0', error:err_error};
-	EventFromRocket("window", err);
-}
-*/
+
+//allert("test error");
 
 
 
