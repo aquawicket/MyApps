@@ -1,5 +1,15 @@
 console.warn("Loaded test.js");
 
+window.addEventListener("error", function(err){
+	var errorText = [
+        err.message,
+        'URL: ' + err.filename,
+        'Line: ' + err.lineno + ', Column: ' + err.colno,
+        'Stack: ' + (err.error && err.error.stack || '(no stack trace)')
+    ].join('\n');
+	console.error(errorText);
+	
+});
 
 var myDiv = document.createElement("div");
 myDiv.style.position = "absolute";
@@ -12,6 +22,16 @@ document.body.appendChild(myDiv);
 myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
 myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
 myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
+
+
+//Trigger an error
+var err_message = "This is the error message";
+var err_filename = "dummy.js";
+var err_lineno = "46";
+var err_colno = "16";
+var err_error = {stack:"error.stack"};
+var err_event = {type:'error', message:err_message, filename:err_filename, lineno:err_lineno, colno:err_colno, error:err_error};
+EventFromRocket("window", err_event);
 
 
 /*
