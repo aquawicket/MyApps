@@ -13,9 +13,6 @@ document.body.style.borderColor = "black";
 
 
 
-
-
-
 var myDiv = document.createElement("div");
 myDiv.id = "myDiv";
 myDiv.myVal = "myVal";
@@ -26,9 +23,9 @@ myDiv.style.width = "100px";
 myDiv.style.height = "100px";
 myDiv.style.backgroundColor = "blue";
 document.body.appendChild(myDiv);
-myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
-myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
-myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
+//myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
+//myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
+//myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
 
 
 
@@ -53,6 +50,18 @@ DKWARN(String(divs.length));
 DKWARN(divs[0].id);
 DKWARN(divs[0].myVal);
 
+function myDivClicked(){
+	DKWARN("myDiv clicked");
+}
+
+myDiv.onclick = myDivClicked;
+
+myDiv.onclick();
+
+
+	  
+	  
+	  
 //objectMap.print();
 //var ele = document.getElementById("myDiv");
 //DKWARN("ele = "+ele+"\n");
