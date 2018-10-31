@@ -1,6 +1,6 @@
 console.warn("Loaded test.js");
 
-//CheckFileSupport();
+CheckFileSupport();
 
 var myDiv = document.createElement("div");
 myDiv.style.position = "absolute";
@@ -14,19 +14,15 @@ myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
 myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
 myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
 
-DKINFO(myDiv.style.backgroundColor);
-/*
 //test duktape object
 if(typeof Duktape === "object"){
    console.warn("Duktape.version: "+Duktape.version);
    console.warn("Duktape.env: "+Duktape.env);
 }
-*/
 
 
 //page setup
 document.getElementsByTagName("html")[0].style.height = "100%";
-console.log(document.getElementsByTagName("html")[0].style.height);
 document.body.id = "body";
 document.body.style.margin = "0px";
 document.body.style.overflow = "hidden";
@@ -36,8 +32,6 @@ document.body.style.borderWidth = "1px";
 document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
-
-/*
 //console tests
 //console.log(console.clear());
 console.log(console.assert(false, "console.assert() false"));
@@ -82,4 +76,3 @@ console.log("script: "+script+"\n");
 script.id = "test_script";
 console.log("script.id: "+script.id+"\n");
 document.body.appendChild(script);
-*/
