@@ -51,15 +51,17 @@ DKWARN(divs[0].id);
 DKWARN(divs[0].myVal);
 
 function myDivClicked(){
-	DKWARN("myDiv clicked");
+	DKWARN("myDiv clicked!!!!!!!!!!!");
 }
 
 myDiv.onclick = myDivClicked;
 
 myDiv.onclick();
 
+document.body.onclick = function(){ DKWARN("body clicked !!!!") }
 
-	  
+
+//allert("this will error");  
 	  
 	  
 //objectMap.print();
