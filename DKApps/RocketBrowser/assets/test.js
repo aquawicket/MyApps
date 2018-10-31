@@ -18,6 +18,7 @@ document.body.style.borderColor = "black";
 
 var myDiv = document.createElement("div");
 myDiv.id = "myDiv";
+myDiv.myVal = "myVal";
 myDiv.style.position = "absolute";
 myDiv.style.top = "100px";
 myDiv.style.left = "10px";
@@ -50,6 +51,7 @@ myDiv2.addEventListener("mouseout", function(){ console.warn("myDiv2: mouseout")
 var divs = document.getElementsByTagName("div");
 DKWARN(String(divs.length));
 DKWARN(divs[0].id);
+DKWARN(divs[0].myVal);
 
 //objectMap.print();
 //var ele = document.getElementById("myDiv");
