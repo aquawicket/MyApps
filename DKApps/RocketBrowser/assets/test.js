@@ -16,18 +16,14 @@ myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); 
 
 
 
-
-DKWARN(String(WindowWidth()));
-DKWARN(String(myDiv.clientWidth));
-
-
-
 /*
 //test duktape object
 if(typeof Duktape === "object"){
    console.warn("Duktape.version: "+Duktape.version);
    console.warn("Duktape.env: "+Duktape.env);
 }
+*/
+
 
 //page setup
 document.getElementsByTagName("html")[0].style.height = "100%";
@@ -36,11 +32,13 @@ document.body.id = "body";
 document.body.style["margin"] = "0px";
 document.body.style["overflow"] = "hidden";
 document.body.style["height"] = "100%";
-document.body.style["backgroundColor"] = "grey";
+document.body.style["background-color"] = "grey";
 document.body.style["border-width"] = "1px";
 document.body.style["border-style"] = "solid";
 document.body.style["border-color"] = "black";
 
+
+/*
 //console tests
 //console.log(console.clear());
 console.log(console.assert(false, "console.assert() false"));
