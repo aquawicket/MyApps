@@ -14,8 +14,7 @@ myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
 myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
 myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
 
-
-
+DKINFO(myDiv.style.backgroundColor);
 /*
 //test duktape object
 if(typeof Duktape === "object"){
