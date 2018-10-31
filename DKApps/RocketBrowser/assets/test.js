@@ -1,4 +1,4 @@
-console.warn("Loaded test.js");
+window.console.warn("Loaded test.js");
 
 CheckFileSupport();
 
