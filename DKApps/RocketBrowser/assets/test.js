@@ -1,16 +1,6 @@
 console.warn("Loaded test.js");
 
-window.addEventListener("error", function(err){
-	var errorText = [
-        err.message,
-        'URL: ' + err.filename,
-        'Line: ' + err.lineno + ', Column: ' + err.colno,
-        'Stack: ' + (err.error && err.error.stack || '(no stack trace)')
-    ].join('\n');
-	console.error(errorText);
-});
-
-
+//CheckFileSupport();
 
 var myDiv = document.createElement("div");
 myDiv.style.position = "absolute";
@@ -26,7 +16,9 @@ myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); 
 
 
 
-//allert("test error");
+
+DKWARN(String(WindowWidth()));
+DKWARN(String(myDiv.clientWidth));
 
 
 
