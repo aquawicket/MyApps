@@ -2,7 +2,7 @@ DKCreate("DKDebug/DKDebug.js");
 
 DKCreate("DKAssets");
 var url = DKAssets_LocalAssets()+"test.html";
-//var url = "http://digitalknob.com/test.html";
+var url = "http://blank.org";
 
 DKCreate("DKRocket");
 DKRocket_LoadUrl(url);
