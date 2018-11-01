@@ -1,3 +1,4 @@
+/*
 window.console.warn("Loaded test.js");
 
 //page setup
@@ -56,7 +57,7 @@ function myDivClicked(){
 
 //myDiv.onclick = myDivClicked;
 //myDiv.onclick();
-
+*/
 
 // Test custom event
 /*
@@ -72,6 +73,7 @@ window.addEventListener('printerstatechanged', function(){
 OnPrinterStateChanged();
 */
 
+/*
 var element = myDiv;
 
 element.onabort = function(){ DKWARN("onabort"); };
@@ -160,7 +162,7 @@ element.ontouchstart = function(){ DKWARN("ontouchstart"); };
 element.ontransitioncancel = function(){ DKWARN("ontransitioncancel"); };
 element.ontransitionend = function(){ DKWARN("ontransitionend"); };
 element.onwaiting = function(){ DKWARN("onwaiting"); };
-
+*/
 
 
 
