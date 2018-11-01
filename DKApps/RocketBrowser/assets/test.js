@@ -38,9 +38,9 @@ myDiv2.style.width = "100px";
 myDiv2.style.height = "100px";
 myDiv2.style.backgroundColor = "red";
 document.body.appendChild(myDiv2);
-myDiv2.addEventListener("click", function(){ console.warn("myDiv2 click"); });
-myDiv2.addEventListener("mouseover", function(){ console.warn("myDiv2: mouseover"); });
-myDiv2.addEventListener("mouseout", function(){ console.warn("myDiv2: mouseout"); });
+//myDiv2.addEventListener("click", function(){ console.warn("myDiv2 click"); });
+//myDiv2.addEventListener("mouseover", function(){ console.warn("myDiv2: mouseover"); });
+//myDiv2.addEventListener("mouseout", function(){ console.warn("myDiv2: mouseout"); });
 
 
 //objectMap.print();
@@ -55,10 +55,9 @@ function myDivClicked(){
 }
 
 myDiv.onclick = myDivClicked;
-
 myDiv.onclick();
 
-document.body.onclick = function(){ DKWARN("body clicked !!!!") }
+//document.body.onclick = function(){ DKWARN("body clicked !!!!") }
 
 
 //allert("this will error");  
