@@ -57,6 +57,21 @@ function myDivClicked(){
 myDiv.onclick = myDivClicked;
 myDiv.onclick();
 
+
+// Test custom event
+function OnPrinterStateChanged(){
+    var evt = {};
+	evt.type = 'printerstatechanged';
+    window.dispatchEvent(evt);
+}
+
+window.addEventListener('printerstatechanged', function(){
+	DKWARN("printerstatechanged")
+});
+OnPrinterStateChanged();
+
+
+
 //document.body.onclick = function(){ DKWARN("body clicked !!!!") }
 
 
