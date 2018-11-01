@@ -54,11 +54,12 @@ function myDivClicked(){
 	DKWARN("myDiv clicked!!!!!!!!!!!");
 }
 
-myDiv.onclick = myDivClicked;
-myDiv.onclick();
+//myDiv.onclick = myDivClicked;
+//myDiv.onclick();
 
 
 // Test custom event
+/*
 function OnPrinterStateChanged(){
     var evt = {};
 	evt.type = 'printerstatechanged';
@@ -69,6 +70,97 @@ window.addEventListener('printerstatechanged', function(){
 	DKWARN("printerstatechanged")
 });
 OnPrinterStateChanged();
+*/
+
+var element = myDiv;
+
+element.onabort = function(){ DKWARN("onabort"); };
+element.onanimationcancel = function(){ DKWARN("onanimationcancel"); };
+element.onanimationend = function(){ DKWARN("onanimationend"); };
+element.onanimationiteration = function(){ DKWARN("onanimationiteration"); };
+element.onanimationstart = function(){ DKWARN("onanimationstart"); };
+element.onauxclick = function(){ DKWARN("onauxclick"); };
+element.onblur = function(){ DKWARN("onblur"); };
+element.onerror = function(){ DKWARN("onerror"); };
+element.onfocus = function(){ DKWARN("onfocus"); };
+element.oncanplay = function(){ DKWARN("oncanplay"); };
+element.oncanplaythrough = function(){ DKWARN("oncanplaythrough"); };
+element.onchange = function(){ DKWARN("onchange"); };
+element.onclick = function(){ DKWARN("onclick"); };
+element.onclose = function(){ DKWARN("onclose"); };
+element.oncontextmenu = function(){ DKWARN("oncontextmenu"); };
+element.oncuechange = function(){ DKWARN("oncuechange"); };
+element.ondblclick = function(){ DKWARN("ondblclick"); };
+element.ondrag = function(){ DKWARN("ondrag"); };
+element.ondragend = function(){ DKWARN("ondragend"); };
+element.ondragenter = function(){ DKWARN("ondragenter"); };
+element.ondragexit = function(){ DKWARN("ondragexit"); };
+element.ondragleave = function(){ DKWARN("ondragleave"); };
+element.ondragover = function(){ DKWARN("ondragover"); };
+element.ondragstart = function(){ DKWARN("ondragstart"); };
+element.ondrop = function(){ DKWARN("ondrop"); };
+element.ondurationchange = function(){ DKWARN("ondurationchange"); };
+element.onemptied = function(){ DKWARN("onemptied"); };
+element.onended = function(){ DKWARN("onended"); };
+element.ongotpointercapture = function(){ DKWARN("ongotpointercapture"); };
+element.oninput = function(){ DKWARN("oninput"); };
+element.oninvalid = function(){ DKWARN("oninvalid"); };
+element.onkeydown = function(){ DKWARN("onkeydown"); };
+element.onkeypress = function(){ DKWARN("onkeypress"); };
+element.onkeyup = function(){ DKWARN("onkeyup"); };
+element.onload = function(){ DKWARN("onload"); };
+element.onloadeddata = function(){ DKWARN("onloadeddata"); };
+element.onloadedmetadata = function(){ DKWARN("onloadedmetadata"); };
+element.onloadend = function(){ DKWARN("onloadend"); };
+element.onloadstart = function(){ DKWARN("onloadstart"); };
+element.onlostpointercapture = function(){ DKWARN("onlostpointercapture"); };
+element.onmousedown = function(){ DKWARN("onmousedown"); };
+element.onmouseenter = function(){ DKWARN("onmouseenter"); };
+element.onmouseleave = function(){ DKWARN("onmouseleave"); };
+element.onmousemove = function(){ DKWARN("onmousemove"); };
+element.onmouseout = function(){ DKWARN("onmouseout"); };
+element.onmouseover = function(){ DKWARN("onmouseover"); };
+element.onmouseup = function(){ DKWARN("onmouseup"); };
+element.onmousewheel = function(){ DKWARN("onmousewheel"); };
+element.onwheel = function(){ DKWARN("onwheel"); };
+element.onpause = function(){ DKWARN("onpause"); };
+element.onplay = function(){ DKWARN("onplay"); };
+element.onplaying = function(){ DKWARN("onplaying"); };
+element.onpointerdown = function(){ DKWARN("onpointerdown"); };
+element.onpointermove = function(){ DKWARN("onpointermove"); };
+element.onpointerup = function(){ DKWARN("onpointerup"); };
+element.onpointercancel = function(){ DKWARN("onpointercancel"); };
+element.onpointerover = function(){ DKWARN("onpointerover"); };
+element.onpointerout = function(){ DKWARN("onpointerout"); };
+element.onpointerenter = function(){ DKWARN("onpointerenter"); };
+element.onpointerleave = function(){ DKWARN("onpointerleave"); };
+element.onpointerlockchange = function(){ DKWARN("onpointerlockchange"); };
+element.onpointerlockerror = function(){ DKWARN("onpointerlockerror"); };
+element.onprogress = function(){ DKWARN("onprogress"); };
+element.onratechange = function(){ DKWARN("onratechange"); };
+element.onreset = function(){ DKWARN("onreset"); };
+element.onresize = function(){ DKWARN("onresize"); };
+element.onscroll = function(){ DKWARN("onscroll"); };
+element.onseeked = function(){ DKWARN("onseeked"); };
+element.onseeking = function(){ DKWARN("onseeking"); };
+element.onselect = function(){ DKWARN("onselect"); };
+element.onselectstart = function(){ DKWARN("onselectstart"); };
+element.onselectionchange = function(){ DKWARN("onselectionchange"); };
+element.onshow = function(){ DKWARN("onshow"); };
+element.onsort = function(){ DKWARN("onsort "); };
+element.onstalled = function(){ DKWARN("onstalled"); };
+element.onsubmit = function(){ DKWARN("onsubmit"); };
+element.onsuspend = function(){ DKWARN("onsuspend"); };
+element.ontimeupdate = function(){ DKWARN("ontimeupdate"); };
+element.onvolumechange = function(){ DKWARN("onvolumechange"); };
+element.ontouchcancel = function(){ DKWARN("ontouchcancel"); };
+element.ontouchend = function(){ DKWARN("ontouchend"); };
+element.ontouchmove = function(){ DKWARN("ontouchmove"); };
+element.ontouchstart = function(){ DKWARN("ontouchstart"); };
+element.ontransitioncancel = function(){ DKWARN("ontransitioncancel"); };
+element.ontransitionend = function(){ DKWARN("ontransitionend"); };
+element.onwaiting = function(){ DKWARN("onwaiting"); };
+
 
 
 
