@@ -1,4 +1,3 @@
-/*
 window.console.warn("Loaded test.js");
 
 //page setup
@@ -47,14 +46,15 @@ document.body.appendChild(myDiv2);
 //objectMap.print();
 
 var divs = document.getElementsByTagName("div");
-DKWARN(String(divs.length));
-DKWARN(divs[0].id);
-DKWARN(divs[0].myVal);
+console.warn(String(divs.length));
+console.warn(divs[0].id);
+console.warn(divs[0].myVal);
 
 function myDivClicked(){
-	DKWARN("myDiv clicked!!!!!!!!!!!");
+	console.warn("myDiv clicked!!!!!!!!!!!");
 }
 
+/*
 //myDiv.onclick = myDivClicked;
 //myDiv.onclick();
 */
@@ -68,7 +68,7 @@ function OnPrinterStateChanged(){
 }
 
 window.addEventListener('printerstatechanged', function(){
-	DKWARN("printerstatechanged")
+	console.warn("printerstatechanged")
 });
 OnPrinterStateChanged();
 */
@@ -76,97 +76,97 @@ OnPrinterStateChanged();
 /*
 var element = myDiv;
 
-element.onabort = function(){ DKWARN("onabort"); };
-element.onanimationcancel = function(){ DKWARN("onanimationcancel"); };
-element.onanimationend = function(){ DKWARN("onanimationend"); };
-element.onanimationiteration = function(){ DKWARN("onanimationiteration"); };
-element.onanimationstart = function(){ DKWARN("onanimationstart"); };
-element.onauxclick = function(){ DKWARN("onauxclick"); };
-element.onblur = function(){ DKWARN("onblur"); };
-element.onerror = function(){ DKWARN("onerror"); };
-element.onfocus = function(){ DKWARN("onfocus"); };
-element.oncanplay = function(){ DKWARN("oncanplay"); };
-element.oncanplaythrough = function(){ DKWARN("oncanplaythrough"); };
-element.onchange = function(){ DKWARN("onchange"); };
-element.onclick = function(){ DKWARN("onclick"); };
-element.onclose = function(){ DKWARN("onclose"); };
-element.oncontextmenu = function(){ DKWARN("oncontextmenu"); };
-element.oncuechange = function(){ DKWARN("oncuechange"); };
-element.ondblclick = function(){ DKWARN("ondblclick"); };
-element.ondrag = function(){ DKWARN("ondrag"); };
-element.ondragend = function(){ DKWARN("ondragend"); };
-element.ondragenter = function(){ DKWARN("ondragenter"); };
-element.ondragexit = function(){ DKWARN("ondragexit"); };
-element.ondragleave = function(){ DKWARN("ondragleave"); };
-element.ondragover = function(){ DKWARN("ondragover"); };
-element.ondragstart = function(){ DKWARN("ondragstart"); };
-element.ondrop = function(){ DKWARN("ondrop"); };
-element.ondurationchange = function(){ DKWARN("ondurationchange"); };
-element.onemptied = function(){ DKWARN("onemptied"); };
-element.onended = function(){ DKWARN("onended"); };
-element.ongotpointercapture = function(){ DKWARN("ongotpointercapture"); };
-element.oninput = function(){ DKWARN("oninput"); };
-element.oninvalid = function(){ DKWARN("oninvalid"); };
-element.onkeydown = function(){ DKWARN("onkeydown"); };
-element.onkeypress = function(){ DKWARN("onkeypress"); };
-element.onkeyup = function(){ DKWARN("onkeyup"); };
-element.onload = function(){ DKWARN("onload"); };
-element.onloadeddata = function(){ DKWARN("onloadeddata"); };
-element.onloadedmetadata = function(){ DKWARN("onloadedmetadata"); };
-element.onloadend = function(){ DKWARN("onloadend"); };
-element.onloadstart = function(){ DKWARN("onloadstart"); };
-element.onlostpointercapture = function(){ DKWARN("onlostpointercapture"); };
-element.onmousedown = function(){ DKWARN("onmousedown"); };
-element.onmouseenter = function(){ DKWARN("onmouseenter"); };
-element.onmouseleave = function(){ DKWARN("onmouseleave"); };
-element.onmousemove = function(){ DKWARN("onmousemove"); };
-element.onmouseout = function(){ DKWARN("onmouseout"); };
-element.onmouseover = function(){ DKWARN("onmouseover"); };
-element.onmouseup = function(){ DKWARN("onmouseup"); };
-element.onmousewheel = function(){ DKWARN("onmousewheel"); };
-element.onwheel = function(){ DKWARN("onwheel"); };
-element.onpause = function(){ DKWARN("onpause"); };
-element.onplay = function(){ DKWARN("onplay"); };
-element.onplaying = function(){ DKWARN("onplaying"); };
-element.onpointerdown = function(){ DKWARN("onpointerdown"); };
-element.onpointermove = function(){ DKWARN("onpointermove"); };
-element.onpointerup = function(){ DKWARN("onpointerup"); };
-element.onpointercancel = function(){ DKWARN("onpointercancel"); };
-element.onpointerover = function(){ DKWARN("onpointerover"); };
-element.onpointerout = function(){ DKWARN("onpointerout"); };
-element.onpointerenter = function(){ DKWARN("onpointerenter"); };
-element.onpointerleave = function(){ DKWARN("onpointerleave"); };
-element.onpointerlockchange = function(){ DKWARN("onpointerlockchange"); };
-element.onpointerlockerror = function(){ DKWARN("onpointerlockerror"); };
-element.onprogress = function(){ DKWARN("onprogress"); };
-element.onratechange = function(){ DKWARN("onratechange"); };
-element.onreset = function(){ DKWARN("onreset"); };
-element.onresize = function(){ DKWARN("onresize"); };
-element.onscroll = function(){ DKWARN("onscroll"); };
-element.onseeked = function(){ DKWARN("onseeked"); };
-element.onseeking = function(){ DKWARN("onseeking"); };
-element.onselect = function(){ DKWARN("onselect"); };
-element.onselectstart = function(){ DKWARN("onselectstart"); };
-element.onselectionchange = function(){ DKWARN("onselectionchange"); };
-element.onshow = function(){ DKWARN("onshow"); };
-element.onsort = function(){ DKWARN("onsort "); };
-element.onstalled = function(){ DKWARN("onstalled"); };
-element.onsubmit = function(){ DKWARN("onsubmit"); };
-element.onsuspend = function(){ DKWARN("onsuspend"); };
-element.ontimeupdate = function(){ DKWARN("ontimeupdate"); };
-element.onvolumechange = function(){ DKWARN("onvolumechange"); };
-element.ontouchcancel = function(){ DKWARN("ontouchcancel"); };
-element.ontouchend = function(){ DKWARN("ontouchend"); };
-element.ontouchmove = function(){ DKWARN("ontouchmove"); };
-element.ontouchstart = function(){ DKWARN("ontouchstart"); };
-element.ontransitioncancel = function(){ DKWARN("ontransitioncancel"); };
-element.ontransitionend = function(){ DKWARN("ontransitionend"); };
-element.onwaiting = function(){ DKWARN("onwaiting"); };
+element.onabort = function(){ console.warn("onabort"); };
+element.onanimationcancel = function(){ console.warn("onanimationcancel"); };
+element.onanimationend = function(){ console.warn("onanimationend"); };
+element.onanimationiteration = function(){ console.warn("onanimationiteration"); };
+element.onanimationstart = function(){ console.warn("onanimationstart"); };
+element.onauxclick = function(){ console.warn("onauxclick"); };
+element.onblur = function(){ console.warn("onblur"); };
+element.onerror = function(){ console.warn("onerror"); };
+element.onfocus = function(){ console.warn("onfocus"); };
+element.oncanplay = function(){ console.warn("oncanplay"); };
+element.oncanplaythrough = function(){ console.warn("oncanplaythrough"); };
+element.onchange = function(){ console.warn("onchange"); };
+element.onclick = function(){ console.warn("onclick"); };
+element.onclose = function(){ console.warn("onclose"); };
+element.oncontextmenu = function(){ console.warn("oncontextmenu"); };
+element.oncuechange = function(){ console.warn("oncuechange"); };
+element.ondblclick = function(){ console.warn("ondblclick"); };
+element.ondrag = function(){ console.warn("ondrag"); };
+element.ondragend = function(){ console.warn("ondragend"); };
+element.ondragenter = function(){ console.warn("ondragenter"); };
+element.ondragexit = function(){ console.warn("ondragexit"); };
+element.ondragleave = function(){ console.warn("ondragleave"); };
+element.ondragover = function(){ console.warn("ondragover"); };
+element.ondragstart = function(){ console.warn("ondragstart"); };
+element.ondrop = function(){ console.warn("ondrop"); };
+element.ondurationchange = function(){ console.warn("ondurationchange"); };
+element.onemptied = function(){ console.warn("onemptied"); };
+element.onended = function(){ console.warn("onended"); };
+element.ongotpointercapture = function(){ console.warn("ongotpointercapture"); };
+element.oninput = function(){ console.warn("oninput"); };
+element.oninvalid = function(){ console.warn("oninvalid"); };
+element.onkeydown = function(){ console.warn("onkeydown"); };
+element.onkeypress = function(){ console.warn("onkeypress"); };
+element.onkeyup = function(){ console.warn("onkeyup"); };
+element.onload = function(){ console.warn("onload"); };
+element.onloadeddata = function(){ console.warn("onloadeddata"); };
+element.onloadedmetadata = function(){ console.warn("onloadedmetadata"); };
+element.onloadend = function(){ console.warn("onloadend"); };
+element.onloadstart = function(){ console.warn("onloadstart"); };
+element.onlostpointercapture = function(){ console.warn("onlostpointercapture"); };
+element.onmousedown = function(){ console.warn("onmousedown"); };
+element.onmouseenter = function(){ console.warn("onmouseenter"); };
+element.onmouseleave = function(){ console.warn("onmouseleave"); };
+element.onmousemove = function(){ console.warn("onmousemove"); };
+element.onmouseout = function(){ console.warn("onmouseout"); };
+element.onmouseover = function(){ console.warn("onmouseover"); };
+element.onmouseup = function(){ console.warn("onmouseup"); };
+element.onmousewheel = function(){ console.warn("onmousewheel"); };
+element.onwheel = function(){ console.warn("onwheel"); };
+element.onpause = function(){ console.warn("onpause"); };
+element.onplay = function(){ console.warn("onplay"); };
+element.onplaying = function(){ console.warn("onplaying"); };
+element.onpointerdown = function(){ console.warn("onpointerdown"); };
+element.onpointermove = function(){ console.warn("onpointermove"); };
+element.onpointerup = function(){ console.warn("onpointerup"); };
+element.onpointercancel = function(){ console.warn("onpointercancel"); };
+element.onpointerover = function(){ console.warn("onpointerover"); };
+element.onpointerout = function(){ console.warn("onpointerout"); };
+element.onpointerenter = function(){ console.warn("onpointerenter"); };
+element.onpointerleave = function(){ console.warn("onpointerleave"); };
+element.onpointerlockchange = function(){ console.warn("onpointerlockchange"); };
+element.onpointerlockerror = function(){ console.warn("onpointerlockerror"); };
+element.onprogress = function(){ console.warn("onprogress"); };
+element.onratechange = function(){ console.warn("onratechange"); };
+element.onreset = function(){ console.warn("onreset"); };
+element.onresize = function(){ console.warn("onresize"); };
+element.onscroll = function(){ console.warn("onscroll"); };
+element.onseeked = function(){ console.warn("onseeked"); };
+element.onseeking = function(){ console.warn("onseeking"); };
+element.onselect = function(){ console.warn("onselect"); };
+element.onselectstart = function(){ console.warn("onselectstart"); };
+element.onselectionchange = function(){ console.warn("onselectionchange"); };
+element.onshow = function(){ console.warn("onshow"); };
+element.onsort = function(){ console.warn("onsort "); };
+element.onstalled = function(){ console.warn("onstalled"); };
+element.onsubmit = function(){ console.warn("onsubmit"); };
+element.onsuspend = function(){ console.warn("onsuspend"); };
+element.ontimeupdate = function(){ console.warn("ontimeupdate"); };
+element.onvolumechange = function(){ console.warn("onvolumechange"); };
+element.ontouchcancel = function(){ console.warn("ontouchcancel"); };
+element.ontouchend = function(){ console.warn("ontouchend"); };
+element.ontouchmove = function(){ console.warn("ontouchmove"); };
+element.ontouchstart = function(){ console.warn("ontouchstart"); };
+element.ontransitioncancel = function(){ console.warn("ontransitioncancel"); };
+element.ontransitionend = function(){ console.warn("ontransitionend"); };
+element.onwaiting = function(){ console.warn("onwaiting"); };
 */
 
 
 
-//document.body.onclick = function(){ DKWARN("body clicked !!!!") }
+//document.body.onclick = function(){ console.warn("body clicked !!!!") }
 
 
 //allert("this will error");  
@@ -174,7 +174,7 @@ element.onwaiting = function(){ DKWARN("onwaiting"); };
 	  
 //objectMap.print();
 //var ele = document.getElementById("myDiv");
-//DKWARN("ele = "+ele+"\n");
+//console.warn("ele = "+ele+"\n");
 
 /*
 //test duktape object
