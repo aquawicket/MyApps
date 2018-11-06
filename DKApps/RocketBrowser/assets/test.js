@@ -54,6 +54,16 @@ function myDivClicked(){
 	console.warn("myDiv clicked!!!!!!!!!!!");
 }
 
+var myImg = document.createElement("img");
+myImg.id = "myImg";
+myImg.style.position = "absolute";
+myImg.style.top = "300px";
+myImg.style.left = "110px";
+myImg.style.width = "100px";
+myImg.style.height = "100px";
+myImg.src = "image.gif";
+document.body.appendChild(myImg);
+
 /*
 //myDiv.onclick = myDivClicked;
 //myDiv.onclick();
