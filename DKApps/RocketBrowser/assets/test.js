@@ -1,4 +1,4 @@
-DKCreate("DKFile/DKFile.js", function(){});
+//DKCreate("DKFile/DKFile.js", function(){});
 DKCreate("DKWindow/DKWindow.js", function(){});
 DKCreate("DKWidget/DKWidget.js", function(){});
 
@@ -16,81 +16,101 @@ document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
 
+var container1 = document.createElement("div");
+container1.id = "container1";
+container1.style.position = "absolute";
+container1.style.top = "10px";
+container1.style.left = "10px";
+container1.style.width = "200rem";
+container1.style.height = "200rem";
+container1.style.backgroundColor = "white";
+document.body.appendChild(container1);
 
-var myDiv = document.createElement("div");
-myDiv.id = "myDiv";
-myDiv.myVal = "myVal";
-myDiv.style.position = "absolute";
-myDiv.style.top = "100px";
-myDiv.style.left = "10px";
-myDiv.style.width = "100rem";
-myDiv.style.height = "100rem";
-myDiv.style.backgroundColor = "blue";
-document.body.appendChild(myDiv);
-//myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
-//myDiv.addEventListener("mouseover", function(){ console.warn("myDiv: mouseover"); });
-//myDiv.addEventListener("mouseout", function(){ console.warn("myDiv: mouseout"); });
+var container2 = document.createElement("div");
+container2.id = "container2";
+container2.style.position = "absolute";
+//container2.style.top = "10px";
+//container2.style.left = "10px";
+container2.style.width = "100rem";
+container2.style.height = "100rem";
+container2.style.backgroundColor = "blue";
+container1.appendChild(container2);
 
+var container3 = document.createElement("div");
+container3.id = "container3";
+container3.style.position = "absolute";
+container3.style.top = "20px";
+container3.style.left = "20px";
+container3.style.width = "200rem";
+container3.style.height = "200rem";
+container3.style.backgroundColor = "yellow";
+container1.appendChild(container3);
+
+
+
+var myDiv1 = document.createElement("div");
+myDiv1.id = "myDiv1";
+myDiv1.style.position = "absolute";
+myDiv1.style.top = "100px";
+myDiv1.style.left = "10px";
+myDiv1.style.width = "50rem";
+myDiv1.style.height = "20rem";
+myDiv1.style.backgroundColor = "blue";
+myDiv1.innerHTML = "absolute";
+container3.appendChild(myDiv1);
 
 
 var myDiv2 = document.createElement("div");
 myDiv2.id = "myDiv2";
-myDiv2.style.position = "absolute";
-myDiv2.style.top = "200px";
-myDiv2.style.left = "210px";
-myDiv2.style.width = "100rem";
-myDiv2.style.height = "100rem";
+myDiv2.style.position = "relative";
+myDiv2.style.top = "105px";
+myDiv2.style.left = "40px";
+myDiv2.style.width = "50rem";
+myDiv2.style.height = "20rem";
 myDiv2.style.backgroundColor = "red";
-document.body.appendChild(myDiv2);
-//myDiv2.addEventListener("click", function(){ console.warn("myDiv2 click"); });
-//myDiv2.addEventListener("mouseover", function(){ console.warn("myDiv2: mouseover"); });
-//myDiv2.addEventListener("mouseout", function(){ console.warn("myDiv2: mouseout"); });
+myDiv2.innerHTML = "relative";
+container3.appendChild(myDiv2);
+
+var myDiv3 = document.createElement("div");
+myDiv3.id = "myDiv3";
+myDiv3.style.position = "fixed";
+myDiv3.style.top = "100px";
+myDiv3.style.left = "20px";
+myDiv3.style.width = "50rem";
+myDiv3.style.height = "20rem";
+myDiv3.style.backgroundColor = "green";
+myDiv3.innerHTML = "fixed";
+container3.appendChild(myDiv3);
+
+var myDiv4 = document.createElement("div");
+myDiv4.id = "myDiv4";
+myDiv4.style.position = "static";
+myDiv4.style.top = "10px";
+myDiv4.style.left = "10px";
+myDiv4.style.width = "50rem";
+myDiv4.style.height = "20rem";
+myDiv4.style.backgroundColor = "orange";
+myDiv4.innerHTML = "static";
+container3.appendChild(myDiv4);
 
 
-//objectMap.print();
-
-var divs = document.getElementsByTagName("div");
-console.warn(String(divs.length));
-console.warn(divs[0].id);
-console.warn(divs[0].myVal);
-
-function myDivClicked(){
-	console.warn("myDiv clicked!!!!!!!!!!!");
-}
-
-//allert("test error");
-
-var myImg = document.createElement("img");
-myImg.id = "myImg";
-myImg.style.position = "absolute";
-myImg.style.top = "300px";
-myImg.style.left = "110px";
-myImg.style.width = "100rem";
-myImg.style.height = "100rem";
-myImg.src = "image.gif";
-document.body.appendChild(myImg);
 
 
-DKAddEvent("myImg", "click", Test_OnEvent);
-////////////////////////////
-function Test_OnEvent(event)
-{
-	console.warn("Test_OnEvent fired");
-}
-//DKRemoveEvent("myImg", "click", Test_OnEvent);
 
 
-DKCreate("myapp.js", function(){});
-
-var test_attrib = myImg.dummy;
-console.warn(test_attrib);
 
 
-DKCreate("DKNotepad/DKNotepad.js", function(){
+
+
+
+
+
+
+//DKCreate("DKNotepad/DKNotepad.js", function(){
 	//DKCreate("DKGui/DKFrame.js", function(){
 		//DKFrame_Widget("DKNotepad/DKNotepad.html");
 	//})
-});
+//});
 
 /*
 //myDiv.onclick = myDivClicked;
