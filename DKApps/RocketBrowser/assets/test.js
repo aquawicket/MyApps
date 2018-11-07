@@ -18,9 +18,9 @@ document.body.style.borderColor = "black";
 
 var container1 = document.createElement("div");
 container1.id = "container1";
-container1.style.position = "static";
-container1.style.top = "10px";
-container1.style.left = "10px";
+container1.style.position = "relative";
+container1.style.top = "20px";
+container1.style.left = "20px";
 container1.style.width = "200rem";
 container1.style.height = "200rem";
 container1.style.backgroundColor = "white";
@@ -40,7 +40,7 @@ container1.appendChild(container2);
 
 var container3 = document.createElement("div");
 container3.id = "container3";
-container3.style.position = "absolute";
+container3.style.position = "fixed";
 container3.style.top = "20px";
 container3.style.left = "20px";
 container3.style.width = "200rem";
