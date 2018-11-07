@@ -78,6 +78,9 @@ function Test_OnEvent(event)
 
 DKCreate("myapp.js");
 
+var test_attrib = myImg.dummy;
+console.warn(test_attrib);
+
 /*
 //myDiv.onclick = myDivClicked;
 //myDiv.onclick();
