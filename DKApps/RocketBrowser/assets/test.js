@@ -54,6 +54,8 @@ function myDivClicked(){
 	console.warn("myDiv clicked!!!!!!!!!!!");
 }
 
+//allert("test error");
+
 var myImg = document.createElement("img");
 myImg.id = "myImg";
 myImg.style.position = "absolute";
