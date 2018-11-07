@@ -1,4 +1,4 @@
-//DKCreate("DKFile/DKFile.js", function(){});
+DKCreate("DKFile/DKFile.js", function(){});
 DKCreate("DKWindow/DKWindow.js", function(){});
 DKCreate("DKWidget/DKWidget.js", function(){});
 
@@ -23,8 +23,8 @@ myDiv.myVal = "myVal";
 myDiv.style.position = "absolute";
 myDiv.style.top = "100px";
 myDiv.style.left = "10px";
-myDiv.style.width = "100px";
-myDiv.style.height = "100px";
+myDiv.style.width = "100rem";
+myDiv.style.height = "100rem";
 myDiv.style.backgroundColor = "blue";
 document.body.appendChild(myDiv);
 //myDiv.addEventListener("click", function(){ console.warn("myDiv: click"); });
@@ -38,8 +38,8 @@ myDiv2.id = "myDiv2";
 myDiv2.style.position = "absolute";
 myDiv2.style.top = "200px";
 myDiv2.style.left = "210px";
-myDiv2.style.width = "100px";
-myDiv2.style.height = "100px";
+myDiv2.style.width = "100rem";
+myDiv2.style.height = "100rem";
 myDiv2.style.backgroundColor = "red";
 document.body.appendChild(myDiv2);
 //myDiv2.addEventListener("click", function(){ console.warn("myDiv2 click"); });
@@ -65,8 +65,8 @@ myImg.id = "myImg";
 myImg.style.position = "absolute";
 myImg.style.top = "300px";
 myImg.style.left = "110px";
-myImg.style.width = "100px";
-myImg.style.height = "100px";
+myImg.style.width = "100rem";
+myImg.style.height = "100rem";
 myImg.src = "image.gif";
 document.body.appendChild(myImg);
 
@@ -87,9 +87,9 @@ console.warn(test_attrib);
 
 
 DKCreate("DKNotepad/DKNotepad.js", function(){
-	DKCreate("DKGui/DKFrame.js", function(){
-		DKFrame_Widget("DKNotepad/DKNotepad.html");
-	})
+	//DKCreate("DKGui/DKFrame.js", function(){
+		//DKFrame_Widget("DKNotepad/DKNotepad.html");
+	//})
 });
 
 /*
