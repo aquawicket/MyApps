@@ -4,8 +4,9 @@ DKCreate("DKAssets");
 //var url = DKAssets_LocalAssets()+"test.html";
 //var url = "http://digitalknob.com/test.html";
 //var url = "http://this-page-intentionally-left-blank.org";
-//var url = "http://web.ics.purdue.edu/~gchopra/class/public/pages/webdesign/05_simple.html";
-var url = "https://www.google.com";
+var url = "http://web.ics.purdue.edu/~gchopra/class/public/pages/webdesign/05_simple.html";
+//var url = "https://www.google.com/";
+//var url = "https://curl.haxx.se/libcurl/c/https.html"
 
 DKCreate("DKRocket");
 DKRocket_LoadUrl(url);
