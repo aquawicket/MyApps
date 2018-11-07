@@ -66,6 +66,15 @@ myImg.style.height = "100px";
 myImg.src = "image.gif";
 document.body.appendChild(myImg);
 
+
+DKAddEvent("myImg", "click", Test_OnEvent);
+////////////////////////////
+function Test_OnEvent(event)
+{
+	console.warn("Test_OnEvent fired");
+}
+//DKRemoveEvent("myImg", "click", Test_OnEvent);
+
 /*
 //myDiv.onclick = myDivClicked;
 //myDiv.onclick();
@@ -243,5 +252,4 @@ script.id = "test_script";
 console.log("script.id: "+script.id+"\n");
 document.body.appendChild(script);
 */
-
 
