@@ -18,22 +18,24 @@ document.body.style.borderColor = "black";
 
 var container1 = document.createElement("div");
 container1.id = "container1";
-container1.style.position = "absolute";
+container1.style.position = "static";
 container1.style.top = "10px";
 container1.style.left = "10px";
 container1.style.width = "200rem";
 container1.style.height = "200rem";
 container1.style.backgroundColor = "white";
+container1.innerHTML = container1.style.position;
 document.body.appendChild(container1);
 
 var container2 = document.createElement("div");
 container2.id = "container2";
-container2.style.position = "absolute";
-//container2.style.top = "10px";
-//container2.style.left = "10px";
+container2.style.position = "relative";
+container2.style.top = "10px";
+container2.style.left = "10px";
 container2.style.width = "100rem";
 container2.style.height = "100rem";
 container2.style.backgroundColor = "blue";
+container2.innerHTML = container2.style.position;
 container1.appendChild(container2);
 
 var container3 = document.createElement("div");
@@ -44,6 +46,7 @@ container3.style.left = "20px";
 container3.style.width = "200rem";
 container3.style.height = "200rem";
 container3.style.backgroundColor = "yellow";
+container3.innerHTML = container3.style.position;
 container1.appendChild(container3);
 
 
@@ -56,7 +59,7 @@ myDiv1.style.left = "10px";
 myDiv1.style.width = "50rem";
 myDiv1.style.height = "20rem";
 myDiv1.style.backgroundColor = "blue";
-myDiv1.innerHTML = "absolute";
+myDiv1.innerHTML = myDiv1.style.position;
 container3.appendChild(myDiv1);
 
 
@@ -68,7 +71,7 @@ myDiv2.style.left = "40px";
 myDiv2.style.width = "50rem";
 myDiv2.style.height = "20rem";
 myDiv2.style.backgroundColor = "red";
-myDiv2.innerHTML = "relative";
+myDiv2.innerHTML = myDiv2.style.position;
 container3.appendChild(myDiv2);
 
 var myDiv3 = document.createElement("div");
@@ -79,7 +82,7 @@ myDiv3.style.left = "20px";
 myDiv3.style.width = "50rem";
 myDiv3.style.height = "20rem";
 myDiv3.style.backgroundColor = "green";
-myDiv3.innerHTML = "fixed";
+myDiv3.innerHTML = myDiv3.style.position;
 container3.appendChild(myDiv3);
 
 var myDiv4 = document.createElement("div");
@@ -90,7 +93,7 @@ myDiv4.style.left = "10px";
 myDiv4.style.width = "50rem";
 myDiv4.style.height = "20rem";
 myDiv4.style.backgroundColor = "orange";
-myDiv4.innerHTML = "static";
+myDiv4.innerHTML = myDiv4.style.position;
 container3.appendChild(myDiv4);
 
 
