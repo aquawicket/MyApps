@@ -1,3 +1,7 @@
+DKCreate("DKFile/DKFile.js", function(){});
+DKCreate("DKWindow/DKWindow.js", function(){});
+DKCreate("DKWidget/DKWidget.js", function(){});
+
 window.console.warn("Loaded test.js");
 
 //page setup
@@ -76,10 +80,17 @@ function Test_OnEvent(event)
 //DKRemoveEvent("myImg", "click", Test_OnEvent);
 
 
-DKCreate("myapp.js");
+DKCreate("myapp.js", function(){});
 
 var test_attrib = myImg.dummy;
 console.warn(test_attrib);
+
+
+DKCreate("DKNotepad/DKNotepad.js", function(){
+	DKCreate("DKGui/DKFrame.js", function(){
+		DKFrame_Widget("DKNotepad/DKNotepad.html");
+	})
+});
 
 /*
 //myDiv.onclick = myDivClicked;
