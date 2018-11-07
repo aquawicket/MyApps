@@ -15,7 +15,7 @@ document.body.style.borderWidth = "1px";
 document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
-
+/*
 var container1 = document.createElement("div");
 container1.id = "container1";
 container1.style.position = "relative";
@@ -95,6 +95,7 @@ myDiv4.style.height = "20rem";
 myDiv4.style.backgroundColor = "orange";
 myDiv4.innerHTML = myDiv4.style.position;
 container3.appendChild(myDiv4);
+*/
 
 
 
@@ -102,18 +103,11 @@ container3.appendChild(myDiv4);
 
 
 
-
-
-
-
-
-
-
-//DKCreate("DKNotepad/DKNotepad.js", function(){
-	//DKCreate("DKGui/DKFrame.js", function(){
-		//DKFrame_Widget("DKNotepad/DKNotepad.html");
-	//})
-//});
+DKCreate("DKNotepad/DKNotepad.js", function(){
+	DKCreate("DKGui/DKFrame.js", function(){
+		DKFrame_Widget("DKNotepad/DKNotepad.html");
+	})
+});
 
 /*
 //myDiv.onclick = myDivClicked;
