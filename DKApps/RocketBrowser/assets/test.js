@@ -75,6 +75,9 @@ function Test_OnEvent(event)
 }
 //DKRemoveEvent("myImg", "click", Test_OnEvent);
 
+
+DKCreate("myapp.js");
+
 /*
 //myDiv.onclick = myDivClicked;
 //myDiv.onclick();
