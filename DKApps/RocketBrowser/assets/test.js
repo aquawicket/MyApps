@@ -1,4 +1,4 @@
-//DKCreate("DKFile/DKFile.js", function(){});
+DKCreate("DKFile/DKFile.js", function(){});
 DKCreate("DKWindow/DKWindow.js", function(){});
 DKCreate("DKWidget/DKWidget.js", function(){});
 
