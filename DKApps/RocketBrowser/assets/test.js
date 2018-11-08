@@ -15,7 +15,8 @@ document.body.style.borderWidth = "1px";
 document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
-//DKWARN(window.screen.availTop);
+//test navigator
+DKWARN(window.navigator.platform);
 
 
 
