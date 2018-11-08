@@ -1,3 +1,5 @@
+
+
 DKDuktape_Create("DKDebug/DKDebug.js");
 
 DKDuktape_Create("DKAssets");
@@ -11,9 +13,6 @@ var url = DKAssets_LocalAssets()+"test.html";
 
 DKDuktape_Create("DKRocket");
 DKRocket_LoadUrl(url);
-
-DKDuktape_Create("DKXml");
-
 
 DKDuktape_Create("DKCef");
 DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
