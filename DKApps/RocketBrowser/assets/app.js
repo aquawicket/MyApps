@@ -1,5 +1,3 @@
-
-
 DKDuktape_Create("DKDebug/DKDebug.js");
 
 DKDuktape_Create("DKAssets");
