@@ -1,6 +1,6 @@
 //DKCreate("DKFile/DKFile.js", function(){});
 //DKCreate("DKWindow/DKWindow.js", function(){});
-DKCreate("DKWidget/DKWidget.js", function(){});
+//DKCreate("DKWidget/DKWidget.js", function(){});
 
 window.console.warn("Loaded test.js");
 
@@ -15,20 +15,19 @@ document.body.style.borderWidth = "1px";
 document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
+DKWARN(window.screen.availTop);
 
+
+
+
+
+/*
 DKCreate("DKNotepad/DKNotepad.js", function(){
 	DKCreate("DKGui/DKFrame.js", function(){
 		//DKFrame_Widget("DKNotepad/DKNotepad.html");
 	})
 });
-
-
-
-
-
-
-
-
+*/
 
 
 /*
