@@ -17,9 +17,9 @@ document.body.style.borderColor = "black";
 
 
 DKCreate("DKNotepad/DKNotepad.js", function(){
-	//DKCreate("DKGui/DKFrame.js", function(){
+	DKCreate("DKGui/DKFrame.js", function(){
 		//DKFrame_Widget("DKNotepad/DKNotepad.html");
-	//})
+	})
 });
 
 
