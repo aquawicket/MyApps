@@ -17,11 +17,11 @@ document.body.style.borderColor = "black";
 
 
 DKCreate("DKNotepad/DKNotepad.js", function(){
-	DKWARN("DKNotepad/DKNotepad.js CALLBACK was called");
 	DKCreate("DKGui/DKFrame.js", function(){
-		DKFrame_Widget("DKNotepad/DKNotepad.html");
+		//DKFrame_Widget("DKNotepad/DKNotepad.html");
 	})
 });
+
 
 
 /*
