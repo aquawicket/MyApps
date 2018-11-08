@@ -15,6 +15,15 @@ document.body.style.borderWidth = "1px";
 document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
+
+DKCreate("DKNotepad/DKNotepad.js", function(){
+	DKWARN("DKNotepad/DKNotepad.js CALLBACK was called");
+	DKCreate("DKGui/DKFrame.js", function(){
+		DKFrame_Widget("DKNotepad/DKNotepad.html");
+	})
+});
+
+
 /*
 var container1 = document.createElement("div");
 container1.id = "container1";
@@ -98,16 +107,6 @@ container3.appendChild(myDiv4);
 */
 
 
-
-
-
-
-
-DKCreate("DKNotepad/DKNotepad.js", function(){
-	DKCreate("DKGui/DKFrame.js", function(){
-		DKFrame_Widget("DKNotepad/DKNotepad.html");
-	})
-});
 
 /*
 //myDiv.onclick = myDivClicked;
