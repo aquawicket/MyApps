@@ -16,17 +16,17 @@ document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
 //test location
-console.warn(window.location.hash);
-console.warn(window.location.host);
-console.warn(window.location.hostname);
-console.warn(window.location.href);
-console.warn(window.location.origin);
-console.warn(window.location.password);
-console.warn(window.location.pathname);
-console.warn(window.location.port);
-console.warn(window.location.protocol);
-console.warn(window.location.search);
-console.warn(window.location.username);
+console.warn("hash: "+window.location.hash);
+console.warn("host: "+window.location.host);
+console.warn("hostname: "+window.location.hostname);
+console.warn("href: "+window.location.href);
+console.warn("origin: "+window.location.origin);
+console.warn("password: "+window.location.password);
+console.warn("pathname: "+window.location.pathname);
+console.warn("port: "+window.location.port);
+console.warn("protocol: "+window.location.protocol);
+console.warn("search: "+window.location.search);
+console.warn("username: "+window.location.username);
 
 
 
