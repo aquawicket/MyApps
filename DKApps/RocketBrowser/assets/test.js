@@ -16,19 +16,27 @@ document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
 //test location
+console.warn(window.location.hash);
+console.warn(window.location.host);
+console.warn(window.location.hostname);
 console.warn(window.location.href);
-//window.location.href = "http://web.ics.purdue.edu/~gchopra/class/public/pages/webdesign/05_simple.html";
+console.warn(window.location.origin);
+console.warn(window.location.password);
+console.warn(window.location.pathname);
+console.warn(window.location.port);
+console.warn(window.location.protocol);
+console.warn(window.location.search);
+console.warn(window.location.username);
 
 
 
-
-
-
+/*
 DKCreate("DKNotepad/DKNotepad.js", function(){
 	//DKCreate("DKGui/DKFrame.js", function(){
 		//DKFrame_Widget("DKNotepad/DKNotepad.html");
 	//})
 });
+*/
 
 
 
