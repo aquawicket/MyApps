@@ -1,3 +1,5 @@
+DKDuktape_Create("DK/DK.js");
+DKDuktape_Create("DK/DKEvents.js");
 DKDuktape_Create("DKDebug/DKDebug.js");
 
 DKDuktape_Create("DKAssets");
@@ -27,6 +29,11 @@ console.warn("port: "+window.location.port);
 console.warn("protocol: "+window.location.protocol);
 console.warn("search: "+window.location.search);
 console.warn("username: "+window.location.username);
+
+
+DKDuktape_Create("DKTest/DKTest.js", function(){
+	console.warn("DKCreate(DKTest/DKTest.js) callback called");
+});
 
 
 DKDuktape_Create("DKCef");
