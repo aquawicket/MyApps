@@ -10,7 +10,7 @@ var url = DKAssets_LocalAssets()+"test.html";
 //var url = "https://www.w3schools.com/"
 
 DKDuktape_Create("DKRocket");
-DKRocket_LoadUrl(url);
+window.location.href = url;
 
 DKDuktape_Create("DKCef");
 DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
