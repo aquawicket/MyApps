@@ -16,7 +16,7 @@ document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
 //test navigator
-DKWARN(window.navigator.platform);
+console.warn(window.navigator.platform);
 
 
 
