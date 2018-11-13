@@ -40,7 +40,7 @@ DKCreate("DKNotepad/DKNotepad.js", function(){
 
 
 
-/*
+
 var container1 = document.createElement("div");
 container1.id = "container1";
 container1.style.position = "relative";
@@ -51,7 +51,9 @@ container1.style.height = "200rem";
 container1.style.backgroundColor = "white";
 container1.innerHTML = container1.style.position;
 document.body.appendChild(container1);
+container1.onclick = function(){ console.warn("container1.onclick()"); }
 
+/*
 var container2 = document.createElement("div");
 container2.id = "container2";
 container2.style.position = "relative";

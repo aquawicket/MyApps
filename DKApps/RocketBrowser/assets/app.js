@@ -30,7 +30,6 @@ console.warn("protocol: "+window.location.protocol);
 console.warn("search: "+window.location.search);
 console.warn("username: "+window.location.username);
 
-
 DKDuktape_Create("DKTest/DKTest.js", function(){
 	console.warn("DKCreate(DKTest/DKTest.js) callback called");
 });
