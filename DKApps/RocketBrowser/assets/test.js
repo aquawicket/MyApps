@@ -49,7 +49,7 @@ window.addEventListener('error', function(e){
 	console.error(errorText);
 });
 
-//allert("throw error");
+allert("throw error");
 
 
 var container1 = document.createElement("div");
