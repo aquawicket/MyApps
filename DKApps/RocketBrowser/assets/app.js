@@ -1,8 +1,8 @@
-//DKDuktape_Create("DK/DK.js");
-DKDuktape_Create("DK/DKEvents.js");
-DKDuktape_Create("DKDebug/DKDebug.js");
+//DKCreate("DK/DK.js");
+DKCreate("DK/DKEvents.js");
+DKCreate("DKDebug/DKDebug.js");
 
-DKDuktape_Create("DKAssets");
+DKCreate("DKAssets");
 var url = DKAssets_LocalAssets()+"test.html";
 //var url = "http://digitalknob.com/test.html";
 //var url = "http://this-page-intentionally-left-blank.org";
@@ -14,7 +14,7 @@ var url = DKAssets_LocalAssets()+"test.html";
 //var url = "https://inlandempire.craigslist.org/d/for-sale/search/sss/";
 //var url = "http://pricewatch.com/";
 
-DKDuktape_Create("DKRocket");
+DKCreate("DKRocket");
 window.location.href = url;
 
 /*
@@ -31,11 +31,11 @@ console.warn("protocol: "+window.location.protocol);
 console.warn("search: "+window.location.search);
 console.warn("username: "+window.location.username);
 
-DKDuktape_Create("DKTest/DKTest.js", function(){
+DKCreate("DKTest/DKTest.js", function(){
 	console.warn("DKCreate(DKTest/DKTest.js) callback called");
 });
 */
 
-//DKDuktape_Create("DKCef");
+//DKCreate("DKCef");
 //DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
 //DKCef_SetFocus(0);
