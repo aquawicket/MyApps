@@ -1,4 +1,4 @@
-DKDuktape_Create("DK/DK.js");
+//DKDuktape_Create("DK/DK.js");
 DKDuktape_Create("DK/DKEvents.js");
 DKDuktape_Create("DKDebug/DKDebug.js");
 
@@ -17,6 +17,7 @@ var url = DKAssets_LocalAssets()+"test.html";
 DKDuktape_Create("DKRocket");
 window.location.href = url;
 
+/*
 //test location
 console.warn("hash: "+window.location.hash);
 console.warn("host: "+window.location.host);
@@ -33,8 +34,8 @@ console.warn("username: "+window.location.username);
 DKDuktape_Create("DKTest/DKTest.js", function(){
 	console.warn("DKCreate(DKTest/DKTest.js) callback called");
 });
+*/
 
-
-DKDuktape_Create("DKCef");
-DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
+//DKDuktape_Create("DKCef");
+//DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
 //DKCef_SetFocus(0);

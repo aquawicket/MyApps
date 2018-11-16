@@ -1,6 +1,6 @@
 //DKCreate("DKFile/DKFile.js", function(){});
 //DKCreate("DKWindow/DKWindow.js", function(){});
-DKCreate("DKWidget/DKWidget.js", function(){});
+//DKCreate("DKWidget/DKWidget.js", function(){});
 
 window.console.warn("Loaded test.js");
 
@@ -15,6 +15,7 @@ document.body.style.borderWidth = "1px";
 document.body.style.borderStyle = "solid";
 document.body.style.borderColor = "black";
 
+/*
 //test location
 console.warn("hash: "+window.location.hash);
 console.warn("host: "+window.location.host);
@@ -27,7 +28,7 @@ console.warn("port: "+window.location.port);
 console.warn("protocol: "+window.location.protocol);
 console.warn("search: "+window.location.search);
 console.warn("username: "+window.location.username);
-
+*/
 
 
 /*
@@ -38,7 +39,17 @@ DKCreate("DKNotepad/DKNotepad.js", function(){
 });
 */
 
+window.addEventListener('error', function(e){
+    var errorText = [
+        e.message + '\n',
+        'URL: ' + e.filename,
+        'Line: ' + e.lineno + ', Column: ' + e.colno,
+        'Stack: ' + (e.error && e.error.stack || '(no stack trace)')
+    ].join('\n');
+	console.error(errorText);
+});
 
+//allert("throw error");
 
 
 var container1 = document.createElement("div");
@@ -51,7 +62,9 @@ container1.style.height = "200px";
 container1.style.backgroundColor = "white";
 container1.innerHTML = container1.style.position;
 document.body.appendChild(container1);
-container1.onclick = function(){ console.warn("container1.onclick()"); }
+console.warn("ADDING ONCLICK TO CONTAINER1");
+container1.onclick = function(){ console.warn("onclick"); };
+container1.onclick();
 
 /*
 var container2 = document.createElement("div");
