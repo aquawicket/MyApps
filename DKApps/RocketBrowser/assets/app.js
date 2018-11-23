@@ -36,6 +36,6 @@ DKCreate("DKTest/DKTest.js", function(){
 });
 */
 
-//DKCreate("DKCef");
-//DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
+DKCreate("DKCef");
+DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
 //DKCef_SetFocus(0);
