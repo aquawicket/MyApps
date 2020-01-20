@@ -29,7 +29,7 @@ function OsInfo_Resize()
 {
 	DKDEBUGFUNC();
 	DKWidget_SetInnerHtml("OsInfo_OS", "OS: "+DK_GetOS());
-	DKWidget_SetInnerHtml("OsInfo_Browser", "Browser: "+DK_GetBrowser()+" ,"+DK_GetJavascript());
+	DKWidget_SetInnerHtml("OsInfo_Browser", "Browser: "+DK_GetBrowser()+" ,"+DK_GetJSEngine());
 	DKWidget_SetInnerHtml("OsInfo_width", "width: "+DKWindow_GetWidth());
 	DKWidget_SetInnerHtml("OsInfo_height", "height: "+DKWindow_GetHeight());
 	DKWidget_SetInnerHtml("OsInfo_pixelratio", "pixel_ratio: "+DKWindow_GetPixelRatio());
