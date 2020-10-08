@@ -1,5 +1,5 @@
 // executable app startup script
 
-DKCreate("DKWindow");
-DKCreate("DKRocket");
-DKRocket_LoadGui("index.html");
+CPP_DKDuktape_Create("DKWindow");
+CPP_DKDuktape_Create("DKRml");
+window.location.href = "index.html";
