@@ -1,3 +1,3 @@
-DKDEPEND(DKRocket)
-DKASSETS(DKMessage)
+DKDEPEND(DKRml)
+#DKASSETS(DKMessage)
 DKASSETS(DKDatabase)

@@ -25,9 +25,9 @@ DKDEPEND(DKLoading)
 DKDEPEND(DKLogin)
 DKDEPEND(DKMySql)
 DKDEPEND(DKNotepad)
-DKDEPEND(DKRocket)   ##Look back into this before rocket is gone for good
-DKDEPEND(DKRocketIframe)
-DKDEPEND(DKRocketVideo)
+DKDEPEND(DKRml)   ##Look back into this before rocket is gone for good
+DKDEPEND(DKRmlIframe)
+DKDEPEND(DKRmlVideo)
 DKDEPEND(DKScale)
 DKDEPEND(DKSDLAudio)
 DKDEPEND(DKSDLCef)

@@ -1,2 +1,2 @@
-DKASSETS(DKMessage)
+#DKASSETS(DKMessage)
 DKASSETS(DKFtp)
