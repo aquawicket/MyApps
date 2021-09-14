@@ -1,0 +1,3 @@
+DKDEPEND(DKHook)
+DKDEPEND(DKTriggers)
+DKASSETS(DKTriggerTest)
