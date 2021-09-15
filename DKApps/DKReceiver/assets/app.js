@@ -1,6 +1,6 @@
 CPP_DK_Create("DKWindow");
 CPP_DK_Create("DKRocket");
-DKRocket_LoadGui("index.html");
+CPP_DKRml_LoadGui("index.html");
 CPP_DK_Create("DKScale/DKScale.js", function(){});
 CPP_DK_Create("DKReceiver/Receiver.js", function(){});
 CPP_DK_Create("DKTray/DKTray.js", function(){});
