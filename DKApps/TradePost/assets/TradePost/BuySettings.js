@@ -2,7 +2,7 @@
 function BuySettings_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("TradePost/BuySettings.html", function(){
+	CPP_DK_Create("TradePost/BuySettings.html", function(){
 		DKAddEvent("BuySettings_hideNoImage", "click", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_lowPrice", "change", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_highPrice", "change", BuySettings_OnEvent);
@@ -69,7 +69,7 @@ function BuySettings_OnEvent(event)
 {
 	DKDEBUGFUNC(event);
 	if(DK_Id(event, "BuySettings_sortBy")){
-		DKCreate("TradePost/SortByMenu.js", function(){
+		CPP_DK_Create("TradePost/SortByMenu.js", function(){
 			DKMenu_ValidatePosition("TradePost/SortByMenu.html");
 		});
 	}

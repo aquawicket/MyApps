@@ -2,7 +2,7 @@
 function Wowzer_options_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("Wowzer_options.html", function(){});
+	CPP_DK_Create("Wowzer_options.html", function(){});
 	DKAddEvent("Wowzer_options_price", "click", Wowzer_options_OnEvent);
 	DKAddEvent("Wowzer_options_close5", "click", Wowzer_options_OnEvent);
 	DKAddEvent("Wowzer_options_offerup", "click", Wowzer_options_OnEvent);
@@ -77,7 +77,7 @@ function Wowzer_options_OnEvent(event)
 		return;
 		
 		//TODO
-		DKCreate("DKDebug/SendBugReport.js", function(){
+		CPP_DK_Create("DKDebug/SendBugReport.js", function(){
 			DKFrame_Widget("SendBugReport.html");
 		});
 	}

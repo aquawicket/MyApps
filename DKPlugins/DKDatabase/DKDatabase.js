@@ -2,9 +2,9 @@
 function DKDatabase_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKMySql");
-	DKCreate("DKMySql/DKMySql.js", function(){
-		DKCreate("DKDatabase/DKDatabase.html");
+	CPP_DK_Create("DKMySql");
+	CPP_DK_Create("DKMySql/DKMySql.js", function(){
+		CPP_DK_Create("DKDatabase/DKDatabase.html");
 		DKAddEvent("DKDatabase.html", "AddDatabase", DKDatabase_OnEvent);
 		DKAddEvent("DKDatabase.html", "AddTable", DKDatabase_OnEvent);
 		DKAddEvent("DKDatabase.html", "AddColumn", DKDatabase_OnEvent);
@@ -49,8 +49,8 @@ function DKDatabase_OnEvent(event)
 		DKDatabase_UpdateDatabases();
 	}
 	if(DK_Id(event, "AddDatabase")){
-		DKCreate("DKMessage/DKMessage.js", function(){
-			DKCreate("DKFrame/DKFrame.js", function(){
+		CPP_DK_Create("DKMessage/DKMessage.js", function(){
+			CPP_DK_Create("DKFrame/DKFrame.js", function(){
 				DKFrame_Widget("DKMessage.html");
 				//var params = [];
 				//params.push("AddDatabase"); //event_type
@@ -60,8 +60,8 @@ function DKDatabase_OnEvent(event)
 		});
 	}
 	if(DK_Id(event, "AddTable")){
-		DKCreate("DKMessage/DKMessage.js", function(){
-			DKCreate("DKFrame/DKFrame.js", function(){
+		CPP_DK_Create("DKMessage/DKMessage.js", function(){
+			CPP_DK_Create("DKFrame/DKFrame.js", function(){
 				DKFrame_Widget("DKMessage.html");
 				//var params = [];
 				//params.push("AddTable"); //event_type
@@ -71,8 +71,8 @@ function DKDatabase_OnEvent(event)
 		});
 	}
 	if(DK_Id(event, "AddColumn")){
-		DKCreate("DKMessage/DKMessage.js", function(){
-			DKCreate("DKFrame/DKFrame.js", function(){
+		CPP_DK_Create("DKMessage/DKMessage.js", function(){
+			CPP_DK_Create("DKFrame/DKFrame.js", function(){
 				DKFrame_Widget("DKMessage.html");
 				//var params = [];
 				//params.push("AddColumn"); //event_type

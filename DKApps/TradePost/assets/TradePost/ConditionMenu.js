@@ -2,7 +2,7 @@
 function ConditionMenu_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("TradePost/ConditionMenu.html");
+	CPP_DK_Create("TradePost/ConditionMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", ConditionMenu_OnEvent);
 	
 	var elements = DKWidget_GetElements("TradePost/ConditionMenu.html");

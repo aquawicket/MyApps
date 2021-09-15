@@ -8,8 +8,8 @@ var activeTab = 0;
 function DKBrowser_Init()
 {
 	DKDEBUGFUNC();
-	//DKCreate("DKCef");
-	DKCreate("DKBrowser/DKBrowser.html");
+	//CPP_DK_Create("DKCef");
+	CPP_DK_Create("DKBrowser/DKBrowser.html");
 
 	DKAddEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
@@ -140,8 +140,8 @@ function DKBrowser_OnEvent(event)
 		DKCef_SetKeyboardFocus(-1);
 		//TODO: select all text
 		if(DK_Type(event, "contextmenu")){
-			DKCreate("DKBrowser/DKBrowserMenu.js", function(){
-				DKCreate("DKGui/DKMenu.js", function(){
+			CPP_DK_Create("DKBrowser/DKBrowserMenu.js", function(){
+				CPP_DK_Create("DKGui/DKMenu.js", function(){
 					DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html");
 				});
 			});
@@ -185,8 +185,8 @@ function DKBrowser_OnEvent(event)
 		source_url = arry[1];
 		link_url = arry[2];
 		if(!selection && !source_url && !link_url){ return; }
-		DKCreate("DKBrowser/DKBrowserMenu.js", function(){
-			DKCreate("DKGui/DKMenu.js", function(){
+		CPP_DK_Create("DKBrowser/DKBrowserMenu.js", function(){
+			CPP_DK_Create("DKGui/DKMenu.js", function(){
 				DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html");
 			});
 		});
@@ -212,12 +212,12 @@ function DKBrowser_OnEvent(event)
 		}
 	}
 	if(DK_Id(event,"Settings")){
-		DKCreate("DKBrowser/Settings.js", function(){
+		CPP_DK_Create("DKBrowser/Settings.js", function(){
 			DKFrame_Widget("DKBrowser/Settings.html");
 		});
 	}
 	if(DK_Id(event,"FindButton")){
-		DKCreate("DKBrowser/Find.js", function(){
+		CPP_DK_Create("DKBrowser/Find.js", function(){
 			DKFrame_Widget("DKBrowser/Find.html");
 		});
 	}

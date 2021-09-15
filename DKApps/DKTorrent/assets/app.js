@@ -1,1 +1,1 @@
-DKCreate("DKTorrent", function(){});
+CPP_DK_Create("DKTorrent", function(){});

@@ -41,7 +41,7 @@ PatternY[6]=new Array(0,0,0,1);
 function DKTetris_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKTetris/DKTetris.html");
+	CPP_DK_Create("DKTetris/DKTetris.html");
 	//DKFrame_Widget("DKTetris.html");
 	DKAddEvent("GLOBAL", "keydown", DKTetris_OnEvent);
 	Init(true);

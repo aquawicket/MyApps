@@ -35,7 +35,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 function DKGoogleAd_CreateAdForRocket(parent, width, height)
 {
 	DKINFO("DKGoogleAd_CreateAdForRocket\n");
-	DKCreate("DKAssets/DKAssets.js", function(){
+	CPP_DK_Create("DKAssets/DKAssets.js", function(){
 	var online_assets = DKAssets_OnlineAssets();
 	var iframe = DKWidget_CreateElement(parent, "iframe", "DKAdd");
 	DKWidget_SetProperty(iframe, "position", "absolute");

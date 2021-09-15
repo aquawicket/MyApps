@@ -1,4 +1,4 @@
-DKCreate("Templates.html");
+CPP_DK_Create("Templates.html");
 var stored_templates = "";
 
 /////////////////////

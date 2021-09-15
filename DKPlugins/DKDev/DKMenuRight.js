@@ -1,7 +1,7 @@
 ///////////////////////////
 function DKMenuRight_Init()
 {
-	DKCreate("DKDev/DKMenuRight.html", function(){
+	CPP_DK_Create("DKDev/DKMenuRight.html", function(){
 	DKAddEvent("GLOBAL", "keydown", DKMenuRight_OnEvent);
 	DKAddEvent("DevModeButton", "click", DKMenuRight_OnEvent);
 	//DKAddEvent("AppImage", "click", DKMenuRight_OnEvent);
@@ -12,8 +12,8 @@ function DKMenuRight_Init()
 	DKAddEvent("HookImage", "click", DKMenuRight_OnEvent);
 	DKAddEvent("DKDev/DKMenuRight.html", "SetPanel", DKMenuRight_OnEvent);
 
-	DKCreate("DKDev/DKMenuRightWeb.js", function(){});
-	DKCreate("DKDev/DKMenuRightEdit.js", function(){});
+	CPP_DK_Create("DKDev/DKMenuRightWeb.js", function(){});
+	CPP_DK_Create("DKDev/DKMenuRightEdit.js", function(){});
 	});
 }
 
@@ -46,12 +46,12 @@ function DKMenuRight_OnEvent(event)
 		DKMenuRight_SetPanel("Web");
 	}
 	if(DK_Id(event, "TriggerImage")){
-		DKCreate("DKTriggers/DKAutomate.js", function(){
+		CPP_DK_Create("DKTriggers/DKAutomate.js", function(){
 			DKFrame_Widget("DKTriggers/DKAutomate.html");
 		});
 	}
 	if(DK_Id(event, "HookImage")){
-		DKCreate("DKHook/DKHook.js", function(){
+		CPP_DK_Create("DKHook/DKHook.js", function(){
 			DKFrame_Widget("DKHook/DKHook.html");
 		});
 	}
@@ -113,7 +113,7 @@ function DKMenuRight_EditModeOn()
 {
 	DKLog("DKMenuRight_EditModeOn() \n");
 	DKWidget_SetAttribute("DevModeButton", "src", "DKDev/redbutton.png");
-	DKCreate("DKDev/DKDev.js", function(){
+	CPP_DK_Create("DKDev/DKDev.js", function(){
 		DKDev_On();
 		DKSendEvent("GLOBAL", "ToggleTriggers", "OFF");
 	});
@@ -124,7 +124,7 @@ function DKMenuRight_EditModeOff()
 {
 	DKLog("DKMenuRight_EditModeOff() \n");
 	DKWidget_SetAttribute("DevModeButton", "src", "DKDev/greenbutton.png");
-	DKCreate("DKDev/DKDev.js", function(){
+	CPP_DK_Create("DKDev/DKDev.js", function(){
 		DKDev_Off();
 		DKSendEvent("GLOBAL", "ToggleTriggers", "ON");
 	});

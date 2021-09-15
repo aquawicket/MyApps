@@ -1,4 +1,4 @@
-DKCreate("DKCurl");
+CPP_DK_Create("DKCurl");
 
 //TODO
 var str = DK_GetArgs(); //Get arguments

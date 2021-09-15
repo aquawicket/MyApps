@@ -2,8 +2,8 @@
 function Remote_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKRemote/Remote.html");
-	DKCreate("DKWebSockets");
+	CPP_DK_Create("DKRemote/Remote.html");
+	CPP_DK_Create("DKWebSockets");
 	
 	var assets = DKAssets_LocalAssets();
 	var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");

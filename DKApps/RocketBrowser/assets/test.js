@@ -1,6 +1,6 @@
-//DKCreate("DKFile/DKFile.js", function(){});
-//DKCreate("DKWindow/DKWindow.js", function(){});
-//DKCreate("DKWidget/DKWidget.js", function(){});
+//CPP_DK_Create("DKFile/DKFile.js", function(){});
+//CPP_DK_Create("DKWindow/DKWindow.js", function(){});
+//CPP_DK_Create("DKWidget/DKWidget.js", function(){});
 
 window.console.warn("Loaded test.js");
 
@@ -32,8 +32,8 @@ console.warn("username: "+window.location.username);
 
 
 /*
-DKCreate("DKNotepad/DKNotepad.js", function(){
-	//DKCreate("DKGui/DKFrame.js", function(){
+CPP_DK_Create("DKNotepad/DKNotepad.js", function(){
+	//CPP_DK_Create("DKGui/DKFrame.js", function(){
 		//DKFrame_Widget("DKNotepad/DKNotepad.html");
 	//})
 });

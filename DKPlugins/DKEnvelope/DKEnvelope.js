@@ -2,7 +2,7 @@
 function DKEnvelope_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKEnvelope/DKEnvelope.html", function(){
+	CPP_DK_Create("DKEnvelope/DKEnvelope.html", function(){
 		DKAddEvent("printEnvelope", "click", DKEnvelope_OnEvent);
 		DKAddEvent("returnAddress", "keyup", DKEnvelope_OnEvent);
 		DKAddEvent("sendAddress", "keyup", DKEnvelope_OnEvent);

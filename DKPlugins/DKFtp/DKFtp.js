@@ -2,7 +2,7 @@
 function DKFtp_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKFtp/DKFtp.html");
+	CPP_DK_Create("DKFtp/DKFtp.html");
 	//DKAddEvent("DKFtp.html", "blah", DKFtp_OnEvent);
 }
 

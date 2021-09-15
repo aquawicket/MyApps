@@ -2,7 +2,7 @@
 function AppsMenu_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("Digitalknob/AppsMenu.html,Digitalknob/Digitalknob.html");
+	CPP_DK_Create("Digitalknob/AppsMenu.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
 	
 	AppsMenu_GetApps();
@@ -105,7 +105,7 @@ function AppsMenu_OnEvent(event)
 		DKWidget_SetInnerHtml("Digitalknob_content",""); //clear the content
 		var id = DK_GetId(event);
 		DKClose("Digitalknob/DKApp.js");
-		DKCreate("Digitalknob/DKApp.js", function(){
+		CPP_DK_Create("Digitalknob/DKApp.js", function(){
 			DKApp_UpdateApp(id);
 			DKApp_UpdateDescription(AppsMenu_GetDescription(id));
 		});		

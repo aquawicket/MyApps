@@ -2,7 +2,7 @@
 function CatagoryMenu_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("TradePost/CatagoryMenu.html");
+	CPP_DK_Create("TradePost/CatagoryMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", CatagoryMenu_OnEvent);
 	
 	var elements = DKWidget_GetElements("TradePost/CatagoryMenu.html");

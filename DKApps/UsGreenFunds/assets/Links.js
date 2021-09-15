@@ -1,4 +1,4 @@
-DKCreate("Links.html");
+CPP_DK_Create("Links.html");
 var stored_links = "";
 
 /////////////////////

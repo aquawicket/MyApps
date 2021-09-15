@@ -2,7 +2,7 @@
 function Find_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKBrowser/Find.html");
+	CPP_DK_Create("DKBrowser/Find.html");
 	DKAddEvent("FindNext", "click", Find_OnEvent);
 	DKAddEvent("FindCancel", "click", Find_OnEvent);
 }

@@ -2,7 +2,7 @@
 function DKForum_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKForum/DKForum.html");
+	CPP_DK_Create("DKForum/DKForum.html");
 }
 
 //////////////////////

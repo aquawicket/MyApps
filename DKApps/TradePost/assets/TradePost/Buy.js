@@ -11,11 +11,11 @@ var prevPage = 0;
 function Buy_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("TradePost/Buy.html");
-	DKCreate("TradePost/Helper.js", function(){
-	DKCreate("TradePost/Craigslist.js", function(){
-	DKCreate("TradePost/Letgo.js", function(){
-	DKCreate("TradePost/Offerup.js", function(){
+	CPP_DK_Create("TradePost/Buy.html");
+	CPP_DK_Create("TradePost/Helper.js", function(){
+	CPP_DK_Create("TradePost/Craigslist.js", function(){
+	CPP_DK_Create("TradePost/Letgo.js", function(){
+	CPP_DK_Create("TradePost/Offerup.js", function(){
 		DKAddEvent("Buy_ScrapCraigslist", "click", Buy_OnEvent);
 		DKAddEvent("Buy_ScrapLetGo", "click", Buy_OnEvent);
 		DKAddEvent("Buy_ScrapOfferUp", "click", Buy_OnEvent);
@@ -71,8 +71,8 @@ function Buy_OnEvent(event)
 		Facebook_Scrape();
 	}
 	if(DK_Id(event, "Buy_Settings")){
-		DKCreate("TradePost/BuySettings.js", function(){
-			DKCreate("DKGui/DKFrame.js", function(){
+		CPP_DK_Create("TradePost/BuySettings.js", function(){
+			CPP_DK_Create("DKGui/DKFrame.js", function(){
 				DKFrame_Widget("TradePost/BuySettings.html");
 				return;
 			});

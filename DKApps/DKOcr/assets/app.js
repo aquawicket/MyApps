@@ -4,7 +4,7 @@ var USE_SDL     = 0; //Use with caution
 var USE_ROCKET  = 0; //Use with caution
 var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"index.html";
 
-DKCreate("DK/init.js", function(){});
+CPP_DK_Create("DK/init.js", function(){});
 
 //////////////////////////
 function app_LoadPlugins()
@@ -16,10 +16,10 @@ function app_LoadPlugins()
 function app_LoadPage()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKWindow/DKWindow.js", function(){
-	DKCreate("DKGui/DKFrame.js", function(){
-	DKCreate("DKDebug/DKDebug.js", function(){
-	DKCreate("DKOcr/DKOcr.js", function(){
+	CPP_DK_Create("DKWindow/DKWindow.js", function(){
+	CPP_DK_Create("DKGui/DKFrame.js", function(){
+	CPP_DK_Create("DKDebug/DKDebug.js", function(){
+	CPP_DK_Create("DKOcr/DKOcr.js", function(){
 
 	});
 	});

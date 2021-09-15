@@ -2,7 +2,7 @@
 function Login_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("Login.html");
+	CPP_DK_Create("Login.html");
 	DKAddEvent("LoginConnect", "click", Login_OnEvent);
 }
 

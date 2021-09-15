@@ -1,12 +1,12 @@
 var current_record = 0;
 
-DKCreate("SchultzEvolution/Panel0.html");
+CPP_DK_Create("SchultzEvolution/Panel0.html");
 
 //////////////////////
 function Panel0_Init()
 {
-	DKCreate("SchultzEvolution/Panel1.js");
-	DKCreate("SchultzEvolution/Panel2.js");
+	CPP_DK_Create("SchultzEvolution/Panel1.js");
+	CPP_DK_Create("SchultzEvolution/Panel2.js");
 			
 	DKMySql_SetPhp("http://schultzevolution.com/");
 	DKMySql_Connect("mysql.schultzevolution.com", "aquawicket", "8BallBreak", "");

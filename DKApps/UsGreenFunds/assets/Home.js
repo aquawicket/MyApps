@@ -1,4 +1,4 @@
-DKCreate("Home.html");
+CPP_DK_Create("Home.html");
 
 ////////////////////
 function Home_Init()
@@ -48,6 +48,6 @@ function Home_Login()
 function Home_OpenAdmin()
 {
 	DKWidget_Hide("Home.html");
-	DKCreate("Admin.js");
+	CPP_DK_Create("Admin.js");
 	DKFile_SetSetting("", "loggedin", "true");
 }

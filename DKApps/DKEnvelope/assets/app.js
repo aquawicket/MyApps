@@ -6,14 +6,14 @@ var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
 //var DKApp_url = "http://digitalknob.com/DKEnvelope"
 
 
-DKCreate("DK/init.js", function(){});
+CPP_DK_Create("DK/init.js", function(){});
 
 //////////////////////////
 function app_LoadPlugins()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKDebug/DKDebug.js", function(){});
-	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+	CPP_DK_Create("DKDebug/DKDebug.js", function(){});
+	CPP_DK_Create("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
 		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
 	});
@@ -24,11 +24,11 @@ function app_LoadPage()
 {
 	DKDEBUGFUNC();
 	DKWidget_SetProperty("body","background-color","grey");
-	DKCreate("DKWindow/DKWindow.js", function(){
-	DKCreate("DKScale/DKScale.js", function(){
-	DKCreate("DKDebug/DKDebug.js", function(){
-	DKCreate("DKEnvelope/DKEnvelope.js", function(){
-	DKCreate("DKGoogleAd/DKGoogleAd.js", function(){
+	CPP_DK_Create("DKWindow/DKWindow.js", function(){
+	CPP_DK_Create("DKScale/DKScale.js", function(){
+	CPP_DK_Create("DKDebug/DKDebug.js", function(){
+	CPP_DK_Create("DKEnvelope/DKEnvelope.js", function(){
+	CPP_DK_Create("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
 		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
 	});

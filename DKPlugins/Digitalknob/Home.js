@@ -2,7 +2,7 @@
 function Home_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("Digitalknob/Home.html,Digitalknob_content");
+	CPP_DK_Create("Digitalknob/Home.html,Digitalknob_content");
 }
 
 ///////////////////

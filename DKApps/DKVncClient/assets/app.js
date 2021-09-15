@@ -1,12 +1,12 @@
-DKCreate("DKWindow");
+CPP_DK_Create("DKWindow");
 DKWindow_Create();
-//DKCreate("DKRocket");
-//DKCreate("DKWidget");
+//CPP_DK_Create("DKRocket");
+//CPP_DK_Create("DKWidget");
 
-//DKCreate("Login.js", function(){
-DKCreate("DKDebug/DKDebug.js", function(){
-DKCreate("DKVncClient", function(){
-DKCreate("DKSDLText", function(){
+//CPP_DK_Create("Login.js", function(){
+CPP_DK_Create("DKDebug/DKDebug.js", function(){
+CPP_DK_Create("DKVncClient", function(){
+CPP_DK_Create("DKSDLText", function(){
 	
 });
 });

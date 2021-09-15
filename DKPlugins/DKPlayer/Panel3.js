@@ -1,4 +1,4 @@
-DKCreate("Panel3.html,Panel0.html");
+CPP_DK_Create("Panel3.html,Panel0.html");
 
 //////////////////////
 function Panel3_Init()

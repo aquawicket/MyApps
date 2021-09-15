@@ -1,10 +1,10 @@
-DKCreate("DKWindow");
-DKCreate("DKRocket");
+CPP_DK_Create("DKWindow");
+CPP_DK_Create("DKRocket");
 DKRocket_LoadGui("index.html");
-DKCreate("DKScale/DKScale.js", function(){});
-DKCreate("DKReceiver/Receiver.js", function(){});
-DKCreate("DKTray/DKTray.js", function(){});
-DKCreate("DKDebug/DKDebug.js", function(){});
+CPP_DK_Create("DKScale/DKScale.js", function(){});
+CPP_DK_Create("DKReceiver/Receiver.js", function(){});
+CPP_DK_Create("DKTray/DKTray.js", function(){});
+CPP_DK_Create("DKDebug/DKDebug.js", function(){});
 
 DKAddEvent("GLOBAL", "minimize", app_OnEvent);
 
@@ -12,6 +12,6 @@ DKAddEvent("GLOBAL", "minimize", app_OnEvent);
 function app_OnEvent(event)
 {
 	DKDEBUGFUNC(event);
-	DKCreate("DKWindowJS");
+	CPP_DK_Create("DKWindowJS");
 	DKWindow_Hide();
 }

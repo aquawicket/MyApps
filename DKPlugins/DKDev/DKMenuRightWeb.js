@@ -1,7 +1,7 @@
 //////////////////////////////
 function DKMenuRightWeb_Init()
 {
-	DKCreate("DKDev/DKMenuRightWeb.html,DKDev/DKMenuRight.html");
+	CPP_DK_Create("DKDev/DKMenuRightWeb.html,DKDev/DKMenuRight.html");
 	DKAddEvent("ConnectButton", "click", DKMenuRightWeb_OnEvent);
 	DKAddEvent("UploadButton", "click", DKMenuRightWeb_OnEvent);
 	DKMenuRightWeb_Update();

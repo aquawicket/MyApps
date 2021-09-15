@@ -2,16 +2,16 @@
 function TradePost_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("TradePost/TradePost.html");
-	DKCreate("TradePost/Inventory.js", function(){
+	CPP_DK_Create("TradePost/TradePost.html");
+	CPP_DK_Create("TradePost/Inventory.js", function(){
 		DKWidget_AppendChild("TradePost/TradePost.html", "TradePost/Inventory.html");
 		DKWidget_Hide("TradePost/Inventory.html");
 	});
-	DKCreate("TradePost/Buy.js", function(){
+	CPP_DK_Create("TradePost/Buy.js", function(){
 		DKWidget_AppendChild("TradePost/TradePost.html", "TradePost/Buy.html");
 	});
-	DKCreate("DKAdmin/DKAdmin.js", function(){});
-	DKCreate("DKGui/DKMenu.js", function(){});
+	CPP_DK_Create("DKAdmin/DKAdmin.js", function(){});
+	CPP_DK_Create("DKGui/DKMenu.js", function(){});
 	
 	//DKAddEvent("GLOBAL", "DKCef_SourceReceived", TradePost_OnEvent);
 	DKAddEvent("Buy", "click", TradePost_OnEvent);
@@ -110,7 +110,7 @@ function TradePost_UpdateConnectionStatus()
 function TradePost_Test()
 {
 	DKDEBUGFUNC();	
-	DKCreate("TradePost/Helper.js", function(){});
+	CPP_DK_Create("TradePost/Helper.js", function(){});
 	
 	DKINFO(getParameters(Pinger_ping)+"\n");
 	
@@ -179,7 +179,7 @@ function TradePost_Test()
 	
 	/*
 	//Wait for a Open Files window to appear, set the path, select all files, open
-	DKCreate("DKHandles");
+	CPP_DK_Create("DKHandles");
 	if(!DKHandles_WaitForWindow("Open Files", 5)){
 		DKERROR("Open Files never showed up\n");
 		return;

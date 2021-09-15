@@ -1,4 +1,4 @@
-DKCreate("SchultzEvolution/Panel.html");
+CPP_DK_Create("SchultzEvolution/Panel.html");
 
 /////////////////////
 function Panel_Init()
@@ -19,13 +19,13 @@ function Panel_OnEvent(event)
 		if(name == "vince" && pass == "123"){
 			DKLog("Succesfully logged in.\n");
 			DKWidget_Hide("Panel.html");
-			DKCreate("SchultzEvolution/Panel0.js");
+			CPP_DK_Create("SchultzEvolution/Panel0.js");
 		}
 	}
 	
 	if(DK_Id(event, "FileNum_Button")){
 		var filenum = DKWidget_GetValue("FileNum_Textbox");
 		DKWidget_Hide("Panel.html");
-		DKCreate("SchultzEvolution/Panel3.js");
+		CPP_DK_Create("SchultzEvolution/Panel3.js");
 	}
 }

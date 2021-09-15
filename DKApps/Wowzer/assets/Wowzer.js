@@ -53,7 +53,7 @@ window.onhashchange = function(){
 function Wowzer_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("Wowzer.html", function(){});
+	CPP_DK_Create("Wowzer.html", function(){});
 	DKAddEvent("Wowzer_search", "click", Wowzer_OnEvent);
 	DKAddEvent("Wowzer_options", "click", Wowzer_OnEvent);
 	DKAddEvent("Wowzer_input", "keydown", Wowzer_OnEvent);
@@ -134,7 +134,7 @@ function Wowzer_OnEvent(event)
 	
 	if(DK_Id(event, "Wowzer_options")){
 		if(!DKWidget_ElementExists("Wowzer_options.html")){
-			DKCreate("Wowzer_options.js", function(){});
+			CPP_DK_Create("Wowzer_options.js", function(){});
 		}
 		else{
 			DKClose("Wowzer_options.js");

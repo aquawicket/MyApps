@@ -1,4 +1,4 @@
-DKCreate("SchultzEvolution/Panel2.html,Panel0.html");
+CPP_DK_Create("SchultzEvolution/Panel2.html,Panel0.html");
 
 //////////////////////
 function Panel2_Init()

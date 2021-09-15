@@ -2,7 +2,7 @@
 function DKBrowserMenu_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKBrowser/DKBrowserMenu.html");
+	CPP_DK_Create("DKBrowser/DKBrowserMenu.html");
 	//DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","top",DKWindow_GetMouseY()+"px");
 	//DKWidget_SetProperty("DKBrowser/DKBrowserMenu.html","left",DKWindow_GetMouseX()+"px");
 	DKAddEvent("GLOBAL", "mousedown", DKBrowserMenu_OnEvent);

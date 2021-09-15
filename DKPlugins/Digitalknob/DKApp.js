@@ -16,7 +16,7 @@ var download_link = "";
 function DKApp_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("Digitalknob/DKApp.html,Digitalknob_content");
+	CPP_DK_Create("Digitalknob/DKApp.html,Digitalknob_content");
 	DKAddEvent("DKApp_webapp", "click", DKApp_OnEvent);
 	DKAddEvent("DKApp_download", "click", DKApp_OnEvent);
 	

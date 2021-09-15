@@ -2,7 +2,7 @@
 function DKBlog_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKBlog/DKBlog.html");
+	CPP_DK_Create("DKBlog/DKBlog.html");
 }
 
 /////////////////////

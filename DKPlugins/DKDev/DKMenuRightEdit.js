@@ -3,7 +3,7 @@ var MenuRight_element = "";
 ///////////////////////////////
 function DKMenuRightEdit_Init()
 {
-	DKCreate("DKDev/DKMenuRightEdit.html,DKDev/DKMenuRight.html", function(){});
+	CPP_DK_Create("DKDev/DKMenuRightEdit.html,DKDev/DKMenuRight.html", function(){});
 	DKAddEvent("DKDev/DKMenuRightEdit.html", "SetElement", DKMenuRightEdit_OnEvent);
 	DKAddEvent("DKDev/DKMenuRightEdit.html", "background_color", DKMenuRightEdit_OnEvent);
 	DKAddEvent("DKDev/DKMenuRightEdit.html", "foreground_color", DKMenuRightEdit_OnEvent);
@@ -125,13 +125,13 @@ function DKMenuRightEdit_OnEvent(event)
 		DKMenuRightEdit_SetOverflow("auto");
 	}
 	if(DK_Id(event,"DKBGColor")){
-		DKCreate("DKColorPicker/DKColorPicker.js", function(){
+		CPP_DK_Create("DKColorPicker/DKColorPicker.js", function(){
 			DKFrame_Widget("DKColorPicker/DKColorPicker.html");
 			DKSendEvent("DKColorPicker/DKColorPicker.html", "GetColor", "DKDev/DKMenuRightEdit.html,background_color");
 		});
 	}
 	if(DK_Id(event,"DKFGColor")){
-		DKCreate("DKColorPicker/DKColorPicker.js", function(){
+		CPP_DK_Create("DKColorPicker/DKColorPicker.js", function(){
 			DKFrame_Widget("DKColorPicker/DKColorPicker.html");
 			DKSendEvent("DKColorPicker/DKColorPicker.html", "GetColor", "DKDev/DKMenuRightEdit.html,foreground_color");
 		});

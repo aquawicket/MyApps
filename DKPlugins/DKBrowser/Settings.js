@@ -2,7 +2,7 @@
 function Settings_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKBrowser/Settings.html", function(){
+	CPP_DK_Create("DKBrowser/Settings.html", function(){
 		DKAddEvent("UpdateButton", "click", Settings_OnEvent);
 		DKAddEvent("VersionButton", "click", Settings_OnEvent);
 		DKAddEvent("GpuButton", "click", Settings_OnEvent);
@@ -69,7 +69,7 @@ function Settings_ClearCache()
 function Settings_Update()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKUpdate");
+	CPP_DK_Create("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
 }

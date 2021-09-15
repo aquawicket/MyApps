@@ -2,7 +2,7 @@
 function Tray_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKTray");
+	CPP_DK_Create("DKTray");
 	DKAddEvent("DKTray", "click", Tray_OnEvent);
 	DKAddEvent("DKTray", "Restore", Tray_OnEvent);
 	DKAddEvent("DKTray", "Minimize", Tray_OnEvent);

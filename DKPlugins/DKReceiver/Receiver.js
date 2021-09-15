@@ -2,8 +2,8 @@
 function Receiver_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKReceiver/Receiver.html");	
-	DKCreate("DKWebSockets");
+	CPP_DK_Create("DKReceiver/Receiver.html");	
+	CPP_DK_Create("DKWebSockets");
 	DKWebSockets_CreateServer("127.0.0.1", 80);
 	var IP = DK_GetLocalIP();
 	DKWidget_SetInnerHtml("IPAddress", IP);

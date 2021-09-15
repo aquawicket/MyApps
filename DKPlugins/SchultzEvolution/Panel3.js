@@ -3,8 +3,8 @@ var current_record = 0;
 //////////////////////
 function Panel3_Init()
 {
-	DKCreate("DKMySql.js");
-	DKCreate("SchultzEvolution/Panel3.html");
+	CPP_DK_Create("DKMySql.js");
+	CPP_DK_Create("SchultzEvolution/Panel3.html");
 
 	DKMySql_SetPhp("http://digitalknob.com/digitalknob.com");
 	DKMySql_Connect("mysql.schultzevolution.com", "aquawicket", "8BallBreak", "");

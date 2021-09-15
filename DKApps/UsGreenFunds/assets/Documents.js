@@ -1,5 +1,5 @@
-DKCreate("Documents.html");
-DKCreate(" DKNotepad/DKNotepad.js");
+CPP_DK_Create("Documents.html");
+CPP_DK_Create(" DKNotepad/DKNotepad.js");
 
 ////////////////////////
 function Documents_Init()
@@ -87,7 +87,7 @@ function Documents_Delete(file)
 function Documents_Edit(file)
 {
     //DKLog("Edit: "+file+"\n");
-	DKCreate("DKNotepad/DKNotepad.js");
+	CPP_DK_Create("DKNotepad/DKNotepad.js");
 	DKWidget_Show("DKNotepad.html");
 	var assets = DKAssets_GetDataPath();
 	DKNotepad_LoadFile("Documents/"+file);

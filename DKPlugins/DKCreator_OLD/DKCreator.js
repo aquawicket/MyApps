@@ -1,5 +1,5 @@
-DKCreate("DKCreator/DKCreator.html");
-DKCreate("DKFile/DKFile.js");
+CPP_DK_Create("DKCreator/DKCreator.html");
+CPP_DK_Create("DKFile/DKFile.js");
 
 /////////////////////////
 function DKCreator_Init()
@@ -102,14 +102,14 @@ function DKCreator_OnEvent(event)
 	}
 	if(DK_Id(event,"toggleNotepad")){
 		//DKWidget_Toggle("DKNotepad.html");
-		DKCreate("DKNotepad/DKNotepad.js");
+		CPP_DK_Create("DKNotepad/DKNotepad.js");
 		//var assets = DKAssets_LocalAssets();
 		var dkpath = "/../../../Docs/TODO.txt";
 		DKNotepad_LoadFile(dkpath);
 	}
 	if(DK_Id(event,"LoginText")){
 		DKWidget_Toggle("DKLogin.html");
-		DKCreate("DKLogin/DKLogin.js");
+		CPP_DK_Create("DKLogin/DKLogin.js");
 	}
 	
 	if(DK_Id(event, "BuildLibraries")){
@@ -149,7 +149,7 @@ function DKCreator_OnEvent(event)
 		DKSendEvent("MenuRight.html", "SetPanel", "App");
 
 		//var apppath = DK_CallFunc("DKCreator::GetAppPath", DKWidget_GetValue("AppList"));
-		//DKCreate("AppExplorer.js");
+		//CPP_DK_Create("AppExplorer.js");
 		//DKSendEvent("AppExplorer.html", "UpdateAppExplorer", apppath);
 	}
 	
@@ -181,7 +181,7 @@ function DKCreator_AppSelect()
 {
 	// We can send events to classes that are not of DKWidget as well.
 	if(DKWidget_GetValue("AppList") == "NEW APP"){
-		DKCreate("DKMessage/DKMessage.js");
+		CPP_DK_Create("DKMessage/DKMessage.js");
 		DKSendEvent("DKMessage.html", "GetInput", "NewApp,DKCreator.html"); // To -> DKMessageBox
 		return;
 	}

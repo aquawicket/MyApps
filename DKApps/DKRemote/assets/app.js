@@ -1,10 +1,10 @@
-DKCreate("DKWindow");
-DKCreate("DKRocket");
+CPP_DK_Create("DKWindow");
+CPP_DK_Create("DKRocket");
 DKRocket_LoadGui("index.html");
-DKCreate("DKWidget");
-DKCreate("DKScale/DKScale.js", function(){});
-DKCreate("DKRemote/Remote.js", function(){});
-DKCreate("DKDebug/DKDebug.js", function(){});
+CPP_DK_Create("DKWidget");
+CPP_DK_Create("DKScale/DKScale.js", function(){});
+CPP_DK_Create("DKRemote/Remote.js", function(){});
+CPP_DK_Create("DKDebug/DKDebug.js", function(){});
 
 DKAddEvent("GLOBAL", "keydown", app_OnEvent);
 

@@ -1,1 +1,1 @@
-DKCreate("DKOS/DKOS.js");
+CPP_DK_Create("DKOS/DKOS.js");

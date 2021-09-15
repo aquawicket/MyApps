@@ -7,7 +7,7 @@ var storedMouseY;
 /////////////////////
 function DKDev_Init()
 {
-	DKCreate("DKDev/DKDev.html");
+	CPP_DK_Create("DKDev/DKDev.html");
 
 	DKAddEvent("body", "contextmenu", DKDev_OnEvent);
 	DKAddEvent("body", "click", DKDev_OnEvent);
@@ -99,11 +99,11 @@ function DKDev_OnEvent(event)
 		//FIXME
 		//DKLog("target = "+target+"\n")
 		//if(target == "body"){  //target is always "body" in cef Mac and Linux
-		//	DKCreate("DKDev/DKDev_RootMenu.js", function(){});
+		//	CPP_DK_Create("DKDev/DKDev_RootMenu.js", function(){});
 		//	return;
 		//}
 
-		DKCreate("DKDev/DKDev_Menu.js", function(){});
+		CPP_DK_Create("DKDev/DKDev_Menu.js", function(){});
 		if(DK_GetBrowser() != "Rocket"){
 			DK_StopPropagation(event);
 		}
@@ -454,7 +454,7 @@ function DKDev_NewPage()
 	DKLog("DKDev_NewPage("+stored_element+") \n");
 	
 	//var id = DKWidget_GetAvailableId("NewWidget.html");
-	DKCreate(".html,"+stored_element, function(){
+	CPP_DK_Create(".html,"+stored_element, function(){
 		DKFrame_Widget("New.html");
 		DKDev_AddDragHandles("New.html");
 		//DKDev_SelectElement("New.html");

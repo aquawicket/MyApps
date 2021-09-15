@@ -7,9 +7,9 @@ var rowHeight = "150rem";
 function Inventory_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("TradePost/Inventory.html");
-	DKCreate("DKAdmin/DKAdmin.js", function(){});
-	DKCreate("DKGui/DKMenu.js", function(){});
+	CPP_DK_Create("TradePost/Inventory.html");
+	CPP_DK_Create("DKAdmin/DKAdmin.js", function(){});
+	CPP_DK_Create("DKGui/DKMenu.js", function(){});
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnBeforePopup", Inventory_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnQueueNewBrowser", Inventory_OnEvent);
@@ -49,9 +49,9 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "imageCell")){
 		currentItem = DK_GetId(event).replace("imageCell","");
-		DKCreate("TradePost/ItemImages.js", function(){
+		CPP_DK_Create("TradePost/ItemImages.js", function(){
 			ItemImages_SetItem(currentItem);
-			DKCreate("DKGui/DKFrame.js", function(){
+			CPP_DK_Create("DKGui/DKFrame.js", function(){
 				DKFrame_Widget("TradePost/ItemImages.html");
 			});
 		});
@@ -59,14 +59,14 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "condition")){
 		currentItem = DK_GetId(event).replace("condition","");
-		DKCreate("TradePost/ConditionMenu.js", function(){
+		CPP_DK_Create("TradePost/ConditionMenu.js", function(){
 			DKMenu_ValidatePosition("TradePost/ConditionMenu.html");
 		});
 		return;
 	}
 	if(DK_IdLike(event, "catagory")){
 		currentItem = DK_GetId(event).replace("catagory","");
-		DKCreate("TradePost/CatagoryMenu.js", function(){
+		CPP_DK_Create("TradePost/CatagoryMenu.js", function(){
 			DKMenu_ValidatePosition("TradePost/CatagoryMenu.html");
 		});
 		return;
@@ -950,7 +950,7 @@ function Inventory_Test()
 	
 	
 	//Wait for a Open Files window to appear, set the path, select all files, open
-	DKCreate("DKHandles");
+	CPP_DK_Create("DKHandles");
 	if(!DKHandles_WaitForWindow("Open Files", 5)){
 		DKERROR("Open Files never showed up\n");
 		return;

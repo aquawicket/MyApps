@@ -4,7 +4,7 @@ var USE_SDL     = 0; //Use with caution
 var USE_ROCKET  = 0; //Use with caution
 var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"index.html";
 
-DKCreate("DK/init.js", function(){});
+CPP_DK_Create("DK/init.js", function(){});
 
 ///////////////////////////
 function app_OnEvent(event)
@@ -24,8 +24,8 @@ function app_OnEvent(event)
 function app_LoadPlugins()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKScreenRecorder");
-	DKCreate("DKTray/DKTray.js", function(){
+	CPP_DK_Create("DKScreenRecorder");
+	CPP_DK_Create("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Record", 1003);
 		DKAddEvent("DKTray", "1003", app_OnEvent);
 		DKTray_AddItem("Stop", 1004);

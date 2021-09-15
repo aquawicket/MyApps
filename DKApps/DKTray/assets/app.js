@@ -1,1 +1,1 @@
-DKCreate("Tray.js");
+CPP_DK_Create("Tray.js");

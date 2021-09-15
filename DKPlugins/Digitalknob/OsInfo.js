@@ -2,7 +2,7 @@
 function OsInfo_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("Digitalknob/OsInfo.html,Digitalknob/Digitalknob.html");
+	CPP_DK_Create("Digitalknob/OsInfo.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "resize", OsInfo_OnEvent);
 	OsInfo_Resize();
 }

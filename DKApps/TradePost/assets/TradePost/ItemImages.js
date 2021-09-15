@@ -5,7 +5,7 @@ var ItemImages_imageNum = 0;
 function ItemImages_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("TradePost/ItemImages.html");
+	CPP_DK_Create("TradePost/ItemImages.html");
 	DKAddEvent("ItemImages_upload", "click", ItemImages_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", ItemImages_OnEvent);
 }
@@ -115,7 +115,7 @@ function ItemImages_UploadImages(files)
 function ItemImages_Delete(file)
 {
 	DKDEBUGFUNC(file);
-	DKCreate("DKMessage/DKMessage.js", function(){
+	CPP_DK_Create("DKMessage/DKMessage.js", function(){
 		DKFrame_Widget("DKMessage/DKMessage.html");
 		DKMessage_Confirm("delete this file?", function(rval){
 			//DKINFO("DKMessage_Confirm(): rval = "+rval+"\n");

@@ -7,8 +7,8 @@ var SHUFFLE;
 function Panel0_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKMySql/DKMySql.js");
-	DKCreate("Panel0.html");
+	CPP_DK_Create("DKMySql/DKMySql.js");
+	CPP_DK_Create("Panel0.html");
 	//Hide("DKConsole.html");
 	DKAddEvent("GoButton", "click", Panel0_OnEvent);
 	DKAddEvent("AddButton", "click", Panel0_OnEvent);

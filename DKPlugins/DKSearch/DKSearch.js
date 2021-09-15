@@ -2,7 +2,7 @@
 function DKSearch_Init()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKSearch/DKSearch.html");
+	CPP_DK_Create("DKSearch/DKSearch.html");
 }
 
 ///////////////////////

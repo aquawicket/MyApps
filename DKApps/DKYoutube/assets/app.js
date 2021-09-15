@@ -5,7 +5,7 @@ var USE_ROCKET  = 0; //Use with caution
 var DKApp_url   = "http://www.youtube.com";
 //var DKApp_url   = "http://www.youtube.com/tv";
 
-DKCreate("DK/init.js", function(){});
+CPP_DK_Create("DK/init.js", function(){});
 
 ///////////////////////////
 function app_OnEvent(event)
@@ -41,7 +41,7 @@ function app_OnEvent(event)
 function app_LoadPlugins()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKTray/DKTray.js", function(){
+	CPP_DK_Create("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Fullscreen", 1003);
 		DKAddEvent("DKTray", "1003", app_OnEvent);
 		
@@ -49,9 +49,9 @@ function app_LoadPlugins()
 		DKTray_AddItem("Toggle YoutubeTV", 1004);
 		DKAddEvent("DKTray", "1004", app_OnEvent);
 	});
-	DKCreate("DKDebug/DKDebug.js", function(){});
+	CPP_DK_Create("DKDebug/DKDebug.js", function(){});
 	DK_SetFramerate(240);
-	DKCreate("DKUpdate");
+	CPP_DK_Create("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKAddEvent("GLOBAL", "keydown", app_OnEvent);
 }
@@ -60,8 +60,8 @@ function app_LoadPlugins()
 function app_LoadPage()
 {
 	DKDEBUGFUNC();
-	DKCreate("DKWindow/DKWindow.js", function(){
-	DKCreate("DKDebug/DKDebug.js", function(){
+	CPP_DK_Create("DKWindow/DKWindow.js", function(){
+	CPP_DK_Create("DKDebug/DKDebug.js", function(){
 		//DKAddEvent("GLOBAL", "keydown", app_OnEvent);
 	});
 	});
