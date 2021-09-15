@@ -13,5 +13,5 @@ function app_OnEvent(event)
 {
 	DKDEBUGFUNC(event);
 	CPP_DK_Create("DKWindowJS");
-	DKWindow_Hide();
+	CPP_DKWindow_Hide();
 }

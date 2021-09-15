@@ -26,12 +26,12 @@ function Tray_OnEvent(event)
 	DKDEBUGFUNC(event);
 	if(DK_Type(event, "1000") || DK_Type(event, "doubleclick")){
 		CPP_DK_Create("DKWindowJS");
-		DKWindow_Show();
+		CPP_DKWindow_Show();
 		DKTray_ShowBalloon("DKTray restored");
 	}
 	if(DK_Type(event, "1001")){
 		CPP_DK_Create("DKWindowJS");
-		DKWindow_Hide();
+		CPP_DKWindow_Hide();
 		DKTray_ShowBalloon("DKTray minimized");
 	}
 	if(DK_Type(event, "1002")){

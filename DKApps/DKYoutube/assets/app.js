@@ -12,18 +12,18 @@ function app_OnEvent(event)
 {
 	DKDEBUGFUNC(event);
 	if(DK_Type(event, "keydown") && DK_GetValue(event) == 122){ //F11
-		if(DKWindow_IsFullscreen()){
-			DKWindow_Windowed();
+		if(CPP_DKWindow_IsFullscreen()){
+			CPP_DKWindow_Windowed();
 		}
 		else{
-			DKWindow_Fullscreen();
+			CPP_DKWindow_Fullscreen();
 		}
 	}
 	
 	if(DK_Type(event, "1003")){ //Tray, Fullscreen
-		DKWindow_Show();
-		DKWindow_Restore();
-		DKWindow_Fullscreen();
+		CPP_DKWindow_Show();
+		CPP_DKWindow_Restore();
+		CPP_DKWindow_Fullscreen();
 	}
 	
 	//FIXME

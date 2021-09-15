@@ -1,5 +1,5 @@
 CPP_DK_Create("DKWindow");
-DKWindow_Create();
+CPP_DKWindow_Create();
 //CPP_DK_Create("DKRocket");
 //CPP_DK_Create("DKWidget");
 
