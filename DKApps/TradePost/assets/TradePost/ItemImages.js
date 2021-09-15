@@ -31,8 +31,8 @@ function ItemImages_OnEvent(event)
 		ItemImages_Update();
 	}
 	if(DK_Id(event, "ItemImages_upload")){
-		//DKCef_FileDialog("FILE_DIALOG_OPEN", "Open Image");
-		DKCef_FileDialog("FILE_DIALOG_OPEN_MULTIPLE", "Open Image");
+		//CPP_DKCef_FileDialog("FILE_DIALOG_OPEN", "Open Image");
+		CPP_DKCef_FileDialog("FILE_DIALOG_OPEN_MULTIPLE", "Open Image");
 	}
 	if(DK_Type(event, "DKCef_OnFileDialogDismissed")){
 		ItemImages_UploadImages(DK_GetValue(event));

@@ -37,5 +37,5 @@ CPP_DK_Create("DKTest/DKTest.js", function(){
 */
 
 CPP_DK_Create("DKCef");
-DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
-//DKCef_SetFocus(0);
+CPP_DKCef_NewBrowser("CefPopup", 0, 0, 416, 638, url);
+//CPP_DKCef_SetFocus(0);

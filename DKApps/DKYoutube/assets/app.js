@@ -1,7 +1,7 @@
 var USE_CEF     = 1; //Desktop
 var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
-var USE_ROCKET  = 0; //Use with caution
+var USE_RML  = 0; //Use with caution
 var DKApp_url   = "http://www.youtube.com";
 //var DKApp_url   = "http://www.youtube.com/tv";
 
@@ -31,7 +31,7 @@ function app_OnEvent(event)
 		DKINFO("DKCef_GetUrl(): DK_Type == 1004\n");
 		
 		//TODO
-		var url = DKCef_GetUrl();
+		var url = CPP_DKCef_GetUrl();
 		DKINFO("DKCef_GetUrl(): = "+url+"\n");
 	}
 }

@@ -1004,15 +1004,15 @@ function Inventory_PostItem(itemNum)
 	DKDEBUGFUNC(itemNum);
 	//action = "PostToCraigslist";
 	//DK_QueueDuktape("DKBrowser_NewTab();");
-	//DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
+	//DK_QueueDuktape("DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
 }
 
 ////////////////////////////////////
 function Inventory_PageLoaded(value)
 {
 	DKDEBUGFUNC(value);	
-	if(DKCef_GetBrowsers() < 2){ return; }
-	var url = DKCef_GetUrl(1);
+	if(CPP_DKCef_GetBrowsers() < 2){ return; }
+	var url = CPP_DKCef_GetUrl(1);
 	//DKINFO("url = "+url+"\n");
 	if(action == ""){
 		DKINFO("Inventory_PageLoaded(): action is off\n");
@@ -1036,7 +1036,7 @@ function Inventory_PageLoaded(value)
 		
 		var code = PostToCraigslist.toString() + "PostToCraigslist('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 
-		DKCef_RunJavascript(1, code);
+		CPP_DKCef_RunJavascript(1, code);
 	}
 	
 	if(action == "PostToLetGo"){
@@ -1057,7 +1057,7 @@ function Inventory_PageLoaded(value)
 		
 		var code = PostToLetGo.toString() + "PostToLetGo('"+title+"','"+price+"','"+city+"','"+zip+"','"+description+"','"+make+"','"+model+"','"+condition+"','"+email+"','"+phone+"','"+name+"','"+street+"','"+images+"')";
 		
-		DKCef_RunJavascript(1, code);
+		CPP_DKCef_RunJavascript(1, code);
 		action = "";
 	}
 }
@@ -1254,7 +1254,7 @@ function Inventory_CraigslistPost(currentItem)
 	DKDEBUGFUNC(currentItem);
 	action = "PostToCraigslist";
 	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
+	DK_QueueDuktape("DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), 'https://post.craigslist.org/c/inl');");
 }
 
 /////////////////////////////////////////
@@ -1263,7 +1263,7 @@ function Inventory_LetGoPost(currentItem)
 	DKDEBUGFUNC(currentItem);
 	action = "PostToLetGo";
 	DK_QueueDuktape("DKBrowser_NewTab();");
-	DK_QueueDuktape("DKCef_SetUrl(DKCef_GetCurrentBrowser(), 'https://us.letgo.com/en');");
+	DK_QueueDuktape("DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), 'https://us.letgo.com/en');");
 }
 
 ///////////////////////

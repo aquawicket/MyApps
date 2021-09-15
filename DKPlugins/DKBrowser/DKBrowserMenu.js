@@ -104,8 +104,8 @@ function DKBrowserMenu_OnEvent(event)
 function DKBrowserMenu_Cut()
 {
 	DKDEBUGFUNC();
-	if(DKCef_GetCurrentBrowser() > -1){
-		DKCef_Cut(); //This will not copy images to the clipboard
+	if(CPP_CPP_DKCef_GetCurrentBrowser() > -1){
+		CPP_DKCef_Cut(); //This will not copy images to the clipboard
 	}
 	else{
 		DKWidget_Cut("Textbox");
@@ -116,8 +116,8 @@ function DKBrowserMenu_Cut()
 function DKBrowserMenu_Copy()
 {
 	DKDEBUGFUNC();
-	if(DKCef_GetCurrentBrowser() > -1){
-		DKCef_Copy(); //This will not copy images to the clipboard
+	if(CPP_DKCef_GetCurrentBrowser() > -1){
+		CPP_DKCef_Copy(); //This will not copy images to the clipboard
 	}
 	else{
 		DKWidget_Copy("Textbox");
@@ -128,8 +128,8 @@ function DKBrowserMenu_Copy()
 function DKBrowserMenu_Paste()
 {
 	DKDEBUGFUNC();
-	if(DKCef_GetCurrentBrowser() > -1){
-		DKCef_Paste();
+	if(CPP_DKCef_GetCurrentBrowser() > -1){
+		CPP_DKCef_Paste();
 	}
 	else{
 		DKWidget_Paste("Textbox");
@@ -142,7 +142,7 @@ function DKBrowserMenu_OpenImageInNewTab()
 	DKDEBUGFUNC();
 	if(source_url){
 		DKBrowser_NewTab();
-		DKCef_SetUrl(DKCef_GetCurrentBrowser(), source_url);
+		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), source_url);
 	}
 }
 
@@ -151,7 +151,7 @@ function DKBrowserMenu_SaveImageAs()
 {
 	DKDEBUGFUNC();
 	if(source_url){
-		DKCef_DownloadUrl(source_url);
+		CPP_DKCef_DownloadUrl(source_url);
 	}
 }
 
@@ -160,7 +160,7 @@ function DKBrowserMenu_CopyImage()
 {
 	DKDEBUGFUNC();
 	if(source_url){
-		DKCef_CopyImage(source_url);
+		CPP_DKCef_CopyImage(source_url);
 	}
 }
 
@@ -179,7 +179,7 @@ function DKBrowserMenu_OpenLinkInNewTab()
 	DKDEBUGFUNC();
 	if(link_url){
 		DKBrowser_NewTab();
-		DKCef_SetUrl(DKCef_GetCurrentBrowser(), link_url);
+		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), link_url);
 	}
 }
 
@@ -188,7 +188,7 @@ function DKBrowserMenu_OpenLinkInNewWindow()
 {
 	DKDEBUGFUNC();
 	if(link_url){
-		DKCef_Popup(link_url);
+		CPP_DKCef_Popup(link_url);
 	}
 }
 
@@ -197,7 +197,7 @@ function DKBrowserMenu_SaveLinkAs()
 {
 	DKDEBUGFUNC();
 	if(link_url){
-		DKCef_DownloadUrl(link_url);
+		CPP_DKCef_DownloadUrl(link_url);
 	}
 }
 
