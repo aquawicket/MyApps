@@ -1,16 +1,23 @@
+//"use strict";
+
+function DKBrowser(){
+	 console.log("DKBrowser constructor")
+}
+
 var selection = "";
 var source_url = "";
 var link_url = "";
 var parent = "";
 var activeTab = 0;
-	
-/////////////////////////
-function DKBrowser_Init()
-{
-	DKDEBUGFUNC();
-	//CPP_DK_Create("DKCef");
-	CPP_DK_Create("DKBrowser/DKBrowser.html");
 
+DKBrowser.prototype.init = function init(init_callback){	
+	console.log("DKBrowser_init()")
+	//DKDEBUGFUNC();
+	//CPP_DK_Create("DKCef");
+	//DKPlugin("DKBrowser/DKBrowser.html");
+	dk.create("DKBrowser/DKBrowser.html");
+    init_callback && init_callback(this);
+	
 	DKAddEvent("GLOBAL", "keydown", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "mousedown", DKBrowser_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnLoadingStateChange", DKBrowser_OnEvent);
@@ -200,7 +207,7 @@ function DKBrowser_OnEvent(event)
 			DKWidget_SetProperty(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()),"top","0rem");
 			DKWidget_SetProperty(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()),"z-index","100");
 			DKWidget_AppendChild("body", CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()));
-			DKWindow_Fullscreen();
+			CPP_DKWindow_Fullscreen();
 		}
 		else{
 			DKWidget_Show("Tabs");
@@ -208,7 +215,7 @@ function DKBrowser_OnEvent(event)
 			DKWidget_SetProperty(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()),"top","44rem");
 			DKWidget_RemoveProperty(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()),"z-index","100");
 			DKWidget_AppendChild("body", CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()));
-			DKWindow_Windowed();
+			CPP_DKWindow_Windowed();
 		}
 	}
 	if(DK_Id(event,"Settings")){
@@ -397,3 +404,6 @@ function DKBrowser_UpdateTabs()
 		DKWidget_SetProperty("Tab"+String(i),"display","none");
 	}
 }
+
+
+dk.browser = DKPlugin(DKBrowser)
