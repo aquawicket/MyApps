@@ -50,7 +50,7 @@ function Tray_ToggleIcon()
 	DKDEBUGFUNC();
 	var icon = DKTray_GetIcon();
 	var file = DKFile_GetFilename(icon);
-	DKINFO("current icon = "+file+"\n");
+	console.log("current icon = "+file+"\n");
 	
 	if(file == "touchON.ico"){
 		Tray_Off();

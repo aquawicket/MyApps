@@ -126,7 +126,7 @@ function Buy_CheckForDuplicate(itemUrl)
 	DKDEBUGFUNC(itemUrl);
 	for(var i=0; i<buyItems.length; i++){
 		if(itemUrl == buyItems[i].link){
-			//DKINFO("Buy_CheckForDuplicate(): found duplicate\n");
+			//console.log("Buy_CheckForDuplicate(): found duplicate\n");
 			return true;
 		}
 	}
@@ -182,7 +182,7 @@ function Buy_GetUrlString(url, callback)
 	request.send(); 
 
 	request.onload=function(){
-		DKINFO("SUCCESS: "+url+"\n");
+		console.log("SUCCESS: "+url+"\n");
 		callback(request.responseText);
 	}
 	request.ontimeout=function(){
@@ -216,9 +216,9 @@ function Buy_Update()
 
 	var shown = 0;
 	DKWidget_SetInnerHtml("Buy_Container", "");
-	//DKINFO("startItem = "+startItem+"\n");
-	//DKINFO("buyItems.length = "+buyItems.length+"\n");
-	//DKINFO("itemsPerPage= "+itemsPerPage+"\n");
+	//console.log("startItem = "+startItem+"\n");
+	//console.log("buyItems.length = "+buyItems.length+"\n");
+	//console.log("itemsPerPage= "+itemsPerPage+"\n");
 	for(var i=startItem; (i<buyItems.length && shown<itemsPerPage); i++){
 		
 		//TODO - fix the pages so next and prev work correctly with filters and skiped items
@@ -414,8 +414,8 @@ function Buy_Update()
 		DKAddEvent(searchEbay.id, "click", Buy_OnEvent);
 	}
 	
-	//DKINFO("prevPage = "+Number(prevPage)+"\n");
-	//DKINFO("nextPage = "+Number(nextPage)+"\n");
+	//console.log("prevPage = "+Number(prevPage)+"\n");
+	//console.log("nextPage = "+Number(nextPage)+"\n");
 	
 	DKWidget_SetInnerHtml("Buy_ItemsShown", "Shown: "+shown);
 	Buy_SaveData();

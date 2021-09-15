@@ -88,7 +88,7 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "offerupPost")){
 		currentItem = DK_GetId(event).replace("offerupPost","");
-		DKINFO("offerupPost\n");
+		console.log("offerupPost\n");
 		return;
 	}
 	if(DK_IdLike(event, "craigslistLink")){
@@ -108,7 +108,7 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "facebookPost")){
 		currentItem = DK_GetId(event).replace("facebookPost","");
-		DKINFO("facebookPost\n");
+		console.log("facebookPost\n");
 		return;
 	}
 	if(DK_IdLike(event, "ebayLink")){
@@ -118,12 +118,12 @@ function Inventory_OnEvent(event)
 	}
 	if(DK_IdLike(event, "ebayPost")){
 		currentItem = DK_GetId(event).replace("ebayPost","");
-		DKINFO("ebayPost\n");
+		console.log("ebayPost\n");
 		return;
 	}
 	if(DK_IdLike(event, "postAll")){
 		currentItem = DK_GetId(event).replace("postAll","");
-		DKINFO("postAll\n");
+		console.log("postAll\n");
 		//TODO - post to all selected locations
 		//Inventory_PostItem(currentItem);
 		return;
@@ -144,37 +144,37 @@ function Inventory_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "header_id")){
-		DKINFO("header_id\n");
+		console.log("header_id\n");
 	}
 	if(DK_Id(event, "header_image")){
-		DKINFO("header_image\n");
+		console.log("header_image\n");
 	}
 	if(DK_Id(event, "header_title")){
-		DKINFO("header_title\n");
+		console.log("header_title\n");
 	}
 	if(DK_Id(event, "header_description")){
-		DKINFO("header_description\n");
+		console.log("header_description\n");
 	}
 	if(DK_Id(event, "header_make")){
-		DKINFO("header_make\n");
+		console.log("header_make\n");
 	}
 	if(DK_Id(event, "header_model")){
-		DKINFO("header_model\n");
+		console.log("header_model\n");
 	}
 	if(DK_Id(event, "header_condition")){
-		DKINFO("header_condition\n");
+		console.log("header_condition\n");
 	}
 	if(DK_Id(event, "header_catagory")){
-		DKINFO("header_catagory\n");
+		console.log("header_catagory\n");
 	}
 	if(DK_Id(event, "header_price")){
-		DKINFO("header_price\n");
+		console.log("header_price\n");
 	}
 	if(DK_Id(event, "header_date")){
-		DKINFO("header_date\n");
+		console.log("header_date\n");
 	}
 	if(DK_Id(event, "header_post")){
-		DKINFO("header_post\n");
+		console.log("header_post\n");
 	}
 }
 
@@ -924,27 +924,27 @@ function Inventory_UploadImage(file)
 function Inventory_Test()
 {
 	DKDEBUGFUNC();	
-	DKINFO("######### ITEMS ##########\n");
+	console.log("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
 		/*
-		DKINFO("\n");
-		DKINFO("items["+i+"]id: "+items[i].id+"\n");
-		DKINFO("items["+i+"]title: "+items[i].title+"\n");
-		DKINFO("items["+i+"]description: "+items[i].description+"\n");
-		DKINFO("items["+i+"]catagory: "+items[i].catagory+"\n");
-		DKINFO("items["+i+"]price: "+items[i].price+"\n");
+		console.log("\n");
+		console.log("items["+i+"]id: "+items[i].id+"\n");
+		console.log("items["+i+"]title: "+items[i].title+"\n");
+		console.log("items["+i+"]description: "+items[i].description+"\n");
+		console.log("items["+i+"]catagory: "+items[i].catagory+"\n");
+		console.log("items["+i+"]price: "+items[i].price+"\n");
 		*/
 		
 		//var json_string = JSON.stringify(items[i]);//, null, "\t");
-		//DKINFO(json_string+"\n");
+		//console.log(json_string+"\n");
 		
 		/*
 		var item_object = JSON.parse(json_string);
-		DKINFO("item_object.id: "+item_object.id+"\n");
-		DKINFO("item_object.title: "+item_object.title+"\n");
-		DKINFO("item_object.description: "+item_object.description+"\n");
-		DKINFO("item_object.catagory: "+item_object.catagory+"\n");
-		DKINFO("item_object.price: "+item_object.price+"\n");
+		console.log("item_object.id: "+item_object.id+"\n");
+		console.log("item_object.title: "+item_object.title+"\n");
+		console.log("item_object.description: "+item_object.description+"\n");
+		console.log("item_object.catagory: "+item_object.catagory+"\n");
+		console.log("item_object.price: "+item_object.price+"\n");
 		*/
 	}
 	
@@ -963,17 +963,17 @@ function Inventory_Test()
 	var currentHandle = DKHandles_CurrentHandle();
 	
 	if(!DKHandles_SetWindowHandle("Address", 3)){
-		DKINFO("DKHandles_SetWindowHandle(\"Address\"): failed\n");
+		console.log("DKHandles_SetWindowHandle(\"Address\"): failed\n");
 	}
 	var currentHandle = DKHandles_CurrentHandle();
 	var top = DKHandles_GetTop(currentHandle);
 	var left = DKHandles_GetLeft(currentHandle);
 	var right = DKHandles_GetRight(currentHandle);
 	var bottom = DKHandles_GetBottom(currentHandle);
-	DKINFO("top = "+top+"\n");
-	DKINFO("left = "+left+"\n");
-	DKINFO("right = "+right+"\n");
-	DKINFO("bottom = "+bottom+"\n");
+	console.log("top = "+top+"\n");
+	console.log("left = "+left+"\n");
+	console.log("right = "+right+"\n");
+	console.log("bottom = "+bottom+"\n");
 	
 	//Process url bar
 	DK_SetMousePos(left+10,top+10);
@@ -1013,9 +1013,9 @@ function Inventory_PageLoaded(value)
 	DKDEBUGFUNC(value);	
 	if(CPP_DKCef_GetBrowsers() < 2){ return; }
 	var url = CPP_DKCef_GetUrl(1);
-	//DKINFO("url = "+url+"\n");
+	//console.log("url = "+url+"\n");
 	if(action == ""){
-		DKINFO("Inventory_PageLoaded(): action is off\n");
+		console.log("Inventory_PageLoaded(): action is off\n");
 	}
 	if(action == "PostToCraigslist"){
 		if(url.indexOf("s=preview") != -1){ action = ""; return;} //End posting in on the preview screen
@@ -1024,7 +1024,7 @@ function Inventory_PageLoaded(value)
 		var city = "Lake Elsinore";
 		var zip = "92570";
 		var description = escape(document.getElementById("description"+currentItem).value);
-		DKINFO(description+"\n");
+		console.log(description+"\n");
 		var make = " ";
 		var model = " ";
 		var condition = "new";
@@ -1045,7 +1045,7 @@ function Inventory_PageLoaded(value)
 		var city = "Lake Elsinore";
 		var zip = "92570";
 		var description = escape(document.getElementById("description"+currentItem).value);
-		DKINFO(description+"\n");
+		console.log(description+"\n");
 		var make = " ";
 		var model = " ";
 		var condition = "new";

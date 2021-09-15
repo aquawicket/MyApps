@@ -120,7 +120,7 @@ function Offerup_ToArry(url, callback)
 		
 		var items = div.querySelectorAll('a[class*="db-item-tile"]');
 		for(var i=0; i<items.length; i++){
-			//DKINFO(items[i].innerHTML+"\n");
+			//console.log(items[i].innerHTML+"\n");
 			var div1 = items[i].firstChild; //<div class="_b31be13">
 			if(!div1){ DKERROR("div1 invalid\n"); continue; }
 			var div2 = div1.firstChild; //<div class="_178faes">
@@ -148,12 +148,12 @@ function Offerup_ToArry(url, callback)
 			
 			if(Buy_CheckForDuplicate(link)){ continue; }
 			
-			DKINFO("##########################\n");
-			DKINFO("url = "+link+"\n");
-			DKINFO("title = "+title+"\n");
-			DKINFO("loc = "+loc+"\n");
-			DKINFO("img = "+img+"\n");
-			DKINFO("price = "+price+"\n");
+			console.log("##########################\n");
+			console.log("url = "+link+"\n");
+			console.log("title = "+title+"\n");
+			console.log("loc = "+loc+"\n");
+			console.log("img = "+img+"\n");
+			console.log("price = "+price+"\n");
 
 			buyItems.push({}); //new object
 			var buyItem = buyItems[buyItems.length-1];

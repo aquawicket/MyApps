@@ -98,7 +98,7 @@ function ItemImages_UploadImages(files)
 	
 	var arry = files.split(";");
 	for(var i=0; i<arry.length; i++){
-		DKINFO(arry[i]+"\n");
+		console.log(arry[i]+"\n");
 		
 		var b=0;
 		while(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+ItemImages_itemNum+"/Img"+b+".jpg")){
@@ -118,7 +118,7 @@ function ItemImages_Delete(file)
 	CPP_DK_Create("DKMessage/DKMessage.js", function(){
 		DKFrame_Widget("DKMessage/DKMessage.html");
 		DKMessage_Confirm("delete this file?", function(rval){
-			//DKINFO("DKMessage_Confirm(): rval = "+rval+"\n");
+			//console.log("DKMessage_Confirm(): rval = "+rval+"\n");
 			if(rval == true){
 				DKFile_Delete(file);
 				ItemImages_imageNum = 0;

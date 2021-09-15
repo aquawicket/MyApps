@@ -36,7 +36,7 @@ function Facebook_ToArry(url, callback)
 			DKWARN("Facebook_ToArry(): rstring invalid\n"); 
 			return;
 		}
-		//DKINFO(rstring+"\n");
+		//console.log(rstring+"\n");
 		//var div = document.createElement('div');
 		//div.innerHTML = rstring;
 		
@@ -45,10 +45,10 @@ function Facebook_ToArry(url, callback)
 		DKFile_StringToFile(rstring, "facebookMarket.html", true);
 		
 		var first_link = rstring.indexOf("share_uri");
-		DKINFO("first_link found at "+first_link+"\n");
+		console.log("first_link found at "+first_link+"\n");
 		/*
 		for(var i=0; i<items.length; i++){
-			DKINFO("Item Found\n");
+			console.log("Item Found\n");
 			//TODO
 		}
 		*/

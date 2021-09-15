@@ -59,7 +59,7 @@ function Settings_ClearCache()
 	
 	for(var i=0; i<arry.length; i++){
 		if(arry[i].indexOf("f_") == 0){
-			//DKINFO("cachePath+/+arry["+i+"] = "+cachePath+"/"+arry[i]+"\n");
+			//console.log("cachePath+/+arry["+i+"] = "+cachePath+"/"+arry[i]+"\n");
 			DKFile_Delete(cachePath+"/"+arry[i]);
 		}
 	}

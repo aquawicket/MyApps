@@ -28,11 +28,11 @@ function app_OnEvent(event)
 	
 	//FIXME
 	if(DK_Type(event, "1004")){ //Toggle youtube.com and youtube.com/TV
-		DKINFO("DKCef_GetUrl(): DK_Type == 1004\n");
+		console.log("DKCef_GetUrl(): DK_Type == 1004\n");
 		
 		//TODO
 		var url = CPP_DKCef_GetUrl();
-		DKINFO("DKCef_GetUrl(): = "+url+"\n");
+		console.log("DKCef_GetUrl(): = "+url+"\n");
 	}
 }
 

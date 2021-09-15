@@ -28,7 +28,7 @@ function Digitalknob_OnEvent(event)
 {
 	DKDEBUGFUNC(event);
 	//if(DK_Id(event, "GLOBAL")){
-	//	DKINFO("Digitalknob_OnEvent(GLOBAL)\n");
+	//	console.log("Digitalknob_OnEvent(GLOBAL)\n");
 	//}
 	
 	if(DK_Id(event, "Image")){
@@ -40,7 +40,7 @@ function Digitalknob_OnEvent(event)
 		CPP_DK_Create("Digitalknob/AppsMenu.js", function(){});
 	}
 	if(DK_Id(event, "Blog")){
-		DKINFO("clicked Blog\n");
+		console.log("clicked Blog\n");
 		//CPP_DK_Create("Digitalknob/Blog.js", function(){});
 	}
 	if(DK_Id(event, "Digitalknob_login")){

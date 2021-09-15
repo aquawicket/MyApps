@@ -33,11 +33,11 @@ else{
 }
 function Wowzer_SetLocation(position)
 {
-	DKINFO("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n");
+	console.log("Latitude:"+position.coords.latitude+" Longitude"+position.coords.longitude+"\n");
 }
 */
 window.onhashchange = function(){
-	DKINFO("onhashchange: "+window.location.hash+"\n");
+	console.log("onhashchange: "+window.location.hash+"\n");
 	sessionStorage.scrollPos = 0; //reset scroll on back button
 
 	if(search != getUrlParameter(window.location.hash, "s")){
@@ -212,7 +212,7 @@ function Wowzer_LetGoToArry(url, callback)
 			
 			var items = div.querySelectorAll('[itemtype="http://schema.org/Product"]');
 			for(var i=0; i<items.length; i++){
-				//DKINFO(items[i].innerHTML+"\n");
+				//console.log(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -260,7 +260,7 @@ function Wowzer_CraigslistToArry(url, callback)
 			
 			var items = div.getElementsByClassName("result-row");
 			for(var i=0; i<items.length; i++){
-				//DKINFO(items[i].innerHTML+"\n");
+				//console.log(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -322,7 +322,7 @@ function Wowzer_CloseFiveToArry(url, callback)
 			
 			var items = div.getElementsByClassName("four wide large screen four wide widescreen four wide computer four wide tablet eight wide mobile column");
 			for(var i=0; i<items.length; i++){
-				//DKINFO(items[i].innerHTML+"\n");
+				//console.log(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -363,11 +363,11 @@ function Wowzer_OfferUpToArry(url, callback)
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
-			//DKINFO(rstring+"\n");
+			//console.log(rstring+"\n");
 			
 			var items = div.getElementsByClassName("item-pic");
 			for(var i=0; i<items.length; i++){
-				//DKINFO(items[i].parentNode.innerHTML+"\n");
+				//console.log(items[i].parentNode.innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -396,7 +396,7 @@ function Wowzer_FiveMilesToArry(url, callback)
 		return;
 	}
 	
-	//DKINFO("Wowzer_FiveMilesToArry()\n");
+	//console.log("Wowzer_FiveMilesToArry()\n");
 	if(DK_GetBrowser() != "CEF"){
 		callback();
 		return; //Only available with CEF, so return.
@@ -409,7 +409,7 @@ function Wowzer_FiveMilesToArry(url, callback)
 			
 			var items = div.getElementsByClassName("waterItem waterItemInit waterItemInvisible");
 			for(var i=1; i<items.length; i++){
-				//DKINFO(items[i].innerHTML+"\n");
+				//console.log(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -451,7 +451,7 @@ function Wowzer_CarousellToArry(url, callback)
 			
 			var items = div.getElementsByClassName("card pdt-card");
 			for(var i=1; i<items.length; i++){
-				//DKINFO(items[i].innerHTML+"\n");
+				//console.log(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -490,18 +490,18 @@ function Wowzer_EbayToArry(url, callback)
 		callback();
 		return;
 	}
-	//DKINFO("Wowzer_EbayToArry()\n");
+	//console.log("Wowzer_EbayToArry()\n");
 	
 	url = url.replace(" ","+");	
 	Wowzer_GetUrlString(url, function(rstring){
 		if(rstring){	
 			var div = document.createElement('div');
 			div.innerHTML = rstring;
-			DKINFO(rstring+"\n");
+			console.log(rstring+"\n");
 			
 			var items = div.getElementsByClassName("sresult lvresult clearfix li shic");
 			for(var i=1; i<items.length; i++){
-				//DKINFO(items[i].innerHTML+"\n");
+				//console.log(items[i].innerHTML+"\n");
 				
 				var item_data = new Array();
 				item_data[0] = "id";
@@ -772,7 +772,7 @@ function Wowzer_GetUrlString(url, callback)
 		return false;
 	}
 	
-	//DKINFO("request.open(\"GET\","+url+",true)\n");
+	//console.log("request.open(\"GET\","+url+",true)\n");
 	request.open("GET",url,true);
 	request.send(); 
 
@@ -871,20 +871,20 @@ function Test()
 	//script.type = "text/plain";
 	
     script.onerror = function(){
-		DKINFO("script.onerror\n");
+		console.log("script.onerror\n");
 	};
 	script.onload = function(){
-		DKINFO("script.onload\n");
-		DKINFO(script.text+"\n");
+		console.log("script.onload\n");
+		console.log(script.text+"\n");
 	};
 
 	/*
 	script.onreadystatechange = function(){
-		DKINFO("script.onreadystatechange\n");
+		console.log("script.onreadystatechange\n");
 		if(script.readyState == 'loaded'){
 			// Our script has download, but hasn't executed.
 			// It won't execute until we do:
-			DKINFO("script.readystate = loaded\n");
+			console.log("script.readystate = loaded\n");
 		}
 	};
 	*/

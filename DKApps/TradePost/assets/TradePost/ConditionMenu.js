@@ -9,7 +9,7 @@ function ConditionMenu_Init()
 	var arry = elements .split(",");
 	for(var i=0; i<arry.length-1; i++){
 		DKAddEvent(arry[i], "mousedown", ConditionMenu_OnEvent);
-		DKINFO("added "+arry[i]+"\n")
+		console.log("added "+arry[i]+"\n")
 	}
 }
 

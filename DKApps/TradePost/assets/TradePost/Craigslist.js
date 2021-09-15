@@ -193,7 +193,7 @@ function Craigslist_ToArry(url, callback)
 			
 		var items = div.getElementsByClassName("result-row");
 		for(var i=0; i<items.length; i++){
-			//DKINFO(items[i].innerHTML+"\n");
+			//console.log(items[i].innerHTML+"\n");
 			
 			//check for duplicate
 			if(items[i].getElementsByClassName("result-image gallery")[0].href.indexOf("https://") == -1){

@@ -13,7 +13,7 @@ function app_OnEvent(event)  //Duktape
 {
 	DKDEBUGFUNC(event);
 	if(DK_Type(event, "keydown")){
-		//DKINFO("keydown ="+DK_GetValue(event)+"\n");
+		//console.log("keydown ="+DK_GetValue(event)+"\n");
 		if(DK_GetValue(event) == "4"){ //Exit for ANDROID
 		    DK_Exit();
 		}

@@ -131,12 +131,12 @@ function Panel0_OnEvent(event)
 		if(!SHUFFLE){
 			SHUFFLE = 1;
 			DKWidget_SetAttribute("ShuffleButton","src","shuffle_on.png");
-			DKINFO("Shuffle On\n");
+			console.log("Shuffle On\n");
 		}
 		else{
 			SHUFFLE = 0;
 			DKWidget_SetAttribute("ShuffleButton","src","shuffle_off.png");
-			DKINFO("Shuffle Off\n");
+			console.log("Shuffle Off\n");
 		}
 	}
 }
@@ -201,14 +201,14 @@ function Panel0_AddUrl(url)
 	//add to mysql
 	var query = "INSERT INTO PLAYLIST_URLS (PLAYLIST_ID, URL) VALUES ('"+PLAYLIST_ID+"','"+url+"')";
 	var result = DKMySql_Query(query);
-	DKINFO(result+"\n");
+	console.log(result+"\n");
 }
 
 ///////////////////////////
 function Panel0_NextVideo()
 {
 	DKDEBUGFUNC();
-	DKINFO("Loading next video...\n");
+	console.log("Loading next video...\n");
 	//var x = document.getElementById("Playlist");
 	
 	if(!SHUFFLE){

@@ -66,7 +66,7 @@ function DKBrowser_End()
 	//close all browsers
 	/*
 	while(CPP_DKCef_GetBrowsers() > 1){
-		DKINFO("DKBrowserEnd(): closing browser "+(CPP_DKCef_GetBrowsers()-1)+"\n");
+		console.log("DKBrowserEnd(): closing browser "+(CPP_DKCef_GetBrowsers()-1)+"\n");
 		CPP_DKCef_CloseDevTools(CPP_DKCef_GetBrowsers()-1);
 		CPP_DKCef_CloseBrowser(CPP_DKCef_GetBrowsers()-1);
 	}
@@ -185,7 +185,7 @@ function DKBrowser_OnEvent(event)
 		DKBrowser_OnLoadError(DK_GetValue(event));
 	}
 	if(DK_Type(event, "DKCef_ContextMenu")){
-		DKINFO("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+		console.log("DKBrowser_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 		var data = DK_GetValue(event);
 		var arry = data.split(";");
 		selection = arry[0];
@@ -199,7 +199,7 @@ function DKBrowser_OnEvent(event)
 		});
 	}
 	if(DK_Type(event, "DKCef_OnFullscreen")){
-		DKINFO("DKCef_OnFullscreen\n");
+		console.log("DKCef_OnFullscreen\n");
 		var value = DK_GetValue(event);
 		if(value == "true"){
 			DKWidget_Hide("Tabs");
@@ -247,27 +247,27 @@ function DKBrowser_ProcessKey(key)
 {
 	DKDEBUGFUNC(key);
 	if(key == 78 && DK_KeyIsDown(17)){
-		//DKINFO("New Window\n");
+		//console.log("New Window\n");
 		var app = DKFile_GetFullExeName();
 		DK_Run(app);
 	}
 	if(key == 84 && DK_KeyIsDown(17)){
-		//DKINFO("New Tab\n");
+		//console.log("New Tab\n");
 		DKBrowser_NewTab();
 	}
 	if(key == 9 && DK_KeyIsDown(17) && !DK_KeyIsDown(16)){
-		//DKINFO("Next Tab\n");
+		//console.log("Next Tab\n");
 	}
 	if(key == 9 && DK_KeyIsDown(17) && DK_KeyIsDown(16)){
-		//DKINFO("Prev Tab\n");
+		//console.log("Prev Tab\n");
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
-		//DKINFO("Homepage\n");
+		//console.log("Homepage\n");
 		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "http://google.com");
 	}
 	
 	var focused = DKWidget_GetFocusElement();
-	//DKINFO("DKWidget_GetFocusElement(): focused="+focused+"\n");
+	//console.log("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(key == 13 && (focused == "Textbox")){
 		var tabCount = 0;
 		for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
@@ -340,7 +340,7 @@ function DKBrowser_SetUrlBar(url, num)
 
 	if(CPP_DKCef_GetCurrentBrowser() != num){ return; }
 	var focused = DKWidget_GetFocusElement();
-	//DKINFO("DKWidget_GetFocusElement(): focused="+focused+"\n");
+	//console.log("DKWidget_GetFocusElement(): focused="+focused+"\n");
 	if(focused != "Textbox"){
 		DKWidget_SetValue("Textbox", url);
 	}

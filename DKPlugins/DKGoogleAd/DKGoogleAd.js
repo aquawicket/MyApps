@@ -19,8 +19,8 @@ function DKGoogleAd_OnEvent(event)
 ///////////////////////////////////////////////////
 function DKGoogleAd_CreateAd(parent, width, height)
 {
-	DKINFO("DKGoogleAd_CreateAd("+parent+","+width+","+height+")\n");
-	DKINFO("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
+	console.log("DKGoogleAd_CreateAd("+parent+","+width+","+height+")\n");
+	console.log("DK_GetBrowser() = "+DK_GetBrowser()+"\n");
 	if(DK_GetBrowser() == "Rocket"){
 		return DKGoogleAd_CreateAdForRocket(parent, width, height);
 	}
@@ -34,7 +34,7 @@ function DKGoogleAd_CreateAd(parent, width, height)
 ////////////////////////////////////////////////////////////
 function DKGoogleAd_CreateAdForRocket(parent, width, height)
 {
-	DKINFO("DKGoogleAd_CreateAdForRocket\n");
+	console.log("DKGoogleAd_CreateAdForRocket\n");
 	CPP_DK_Create("DKAssets/DKAssets.js", function(){
 	var online_assets = DKAssets_OnlineAssets();
 	var iframe = DKWidget_CreateElement(parent, "iframe", "DKAdd");

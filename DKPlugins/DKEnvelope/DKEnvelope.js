@@ -155,7 +155,7 @@ function DoPrint(ele, callback)
 function DKEnvelope_SaveAddresses()
 {
 	DKDEBUGFUNC();
-	//DKINFO("absolutepath = "+absolutepath+"\n");
+	//console.log("absolutepath = "+absolutepath+"\n");
 	
 	//Polyfill for Internet Explorer
 	if(!Array.prototype.includes){

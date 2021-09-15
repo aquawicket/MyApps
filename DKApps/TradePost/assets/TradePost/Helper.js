@@ -55,7 +55,7 @@ function Helper_GetDistance(addressA, addressB)
 {
 	DKDEBUGFUNC(addressA, addressB);
 	Helper_LoadGoogleMapsApi(function(rval){
-		DKINFO("Helper_LoadGoogleMapsApi() returned "+rval+"\n");
+		console.log("Helper_LoadGoogleMapsApi() returned "+rval+"\n");
 		var directionsService = new google.maps.DirectionsService();
 
 		var request = {
@@ -107,7 +107,7 @@ function TestFunction(num, callback)
 {
 	DKDEBUGFUNC(num, callback);
 	var result = num * 2;
-	DKINFO("####### TimesTwo("+num+") #######\n");
+	console.log("####### TimesTwo("+num+") #######\n");
 	callback(result);
 }
 

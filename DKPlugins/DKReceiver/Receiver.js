@@ -27,7 +27,7 @@ function Receiver_OnEvent(event)
 {
 	DKDEBUGFUNC(event);	
 	if(DK_Id(event, "VolumeUp_Button")){
-		DKINFO("Button: VolumeUp\n");
+		console.log("Button: VolumeUp\n");
 		var volume = DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
 			DK_SetVolume(volume+5000);
@@ -37,7 +37,7 @@ function Receiver_OnEvent(event)
 		}
 	}
 	if(DK_Id(event, "VolumeDown_Button")){
-		DKINFO("Button: Volume Down\n");
+		console.log("Button: Volume Down\n");
 		var volume = DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
 			DK_SetVolume(volume-5000);
@@ -48,12 +48,12 @@ function Receiver_OnEvent(event)
 	}
 	
 	if(DK_Type(event, "DKWebSockets_OnMessageFromClient")){
-		DKINFO("server: "+DK_GetValue(event)+"\n");
+		console.log("server: "+DK_GetValue(event)+"\n");
 		if(DK_GetValue(event) == "Power"){
-			DKINFO("Client: Power\n");
+			console.log("Client: Power\n");
 		}
 		if(DK_GetValue(event) == "VolumeUp"){
-			DKINFO("Client: VolumeUp\n");
+			console.log("Client: VolumeUp\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
 				DK_SetVolume(volume+2);
@@ -64,7 +64,7 @@ function Receiver_OnEvent(event)
 			}
 		}
 		if(DK_GetValue(event) == "VolumeDown"){
-			DKINFO("Client: VolumeDown\n");
+			console.log("Client: VolumeDown\n");
 			var volume = DK_GetVolume();
 			if(DK_GetOS() != "Linux"){
 				DK_SetVolume(volume-2);

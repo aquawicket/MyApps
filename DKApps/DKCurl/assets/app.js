@@ -2,7 +2,7 @@ CPP_DK_Create("DKCurl");
 
 //TODO
 var str = DK_GetArgs(); //Get arguments
-//DKINFO("args = "+str+"\n");
+//console.log("args = "+str+"\n");
 var args = str.split(";");
 if(args.length < 2){
 	DKERROR("Incorrect number of arguments\n");
