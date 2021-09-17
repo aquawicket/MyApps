@@ -1,6 +1,6 @@
 ##TODO - create simple DKDEPEND_ALL() to all all plugins.
 
-DKSET(USE_DKCef ON)
+DKENABLE(DKCef)
 
 ##DKDEPEND(doxygen-1.8.11)
 DKDEPEND(DK)
