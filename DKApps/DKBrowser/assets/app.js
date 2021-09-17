@@ -1,8 +1,7 @@
-const assets = CPP_DKAssets_LocalAssets();
 //const url = "http://www.google.com/";
 //const url = "chrome://gpu";
 //const url = "http://127.0.0.1:2393"
-const url = assets+"index.html"
+const url = CPP_DKAssets_LocalAssets()+"index.html"
 
 const USE_CEF = 1
 const width = 800
