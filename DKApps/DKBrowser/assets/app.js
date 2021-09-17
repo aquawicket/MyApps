@@ -11,7 +11,7 @@ const height = 600
 ////// RmlUi
 CPP_DK_Create("DKWindow");
 CPP_DK_Create("DKRml");
-CPP_DK_Create("DKSDLText");
+//CPP_DK_Create("DKSDLText");
 
 location.href = url;
 //location.href = CPP_DKAssets_LocalAssets()+"index.html";
