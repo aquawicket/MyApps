@@ -1,24 +1,17 @@
-////////////////////////
-function AppsMenu_Init()
-{
+function AppsMenu_Init(){
 	DKDEBUGFUNC();
 	CPP_DK_Create("Digitalknob/AppsMenu.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
-	
 	AppsMenu_GetApps();
 }
 
-///////////////////////
-function AppsMenu_End()
-{
+function AppsMenu_End(){
 	DKDEBUGFUNC();
 	DKRemoveEvents(AppsMenu_OnEvent);
 	DKClose("Digitalknob/AppsMenu.html");
 }
 
-///////////////////////////
-function AppsMenu_GetApps()
-{
+function AppsMenu_GetApps(){
 	DKDEBUGFUNC();
 	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKInputTest", "DKOS", "DKReceiver", "DKRemote", "DKYoutube", "DKBuilder", "DKIDE"];
 	for(var i=0; i<AppList.length; i++){
@@ -26,18 +19,12 @@ function AppsMenu_GetApps()
 	}
 }
 
-//////////////////////////////////////
-function AppsMenu_GetDescription(name)
-{
+function AppsMenu_GetDescription(name){
 	DKDEBUGFUNC(name);
-	if(name == "DKDatabase"){
+	if(name == "DKDatabase")
 		return "A simple MySql database client. <br />";
-	}
-	
-	if(name == "DKBrowser"){
+	if(name == "DKBrowser")
 		return "A simple altenative browser. <br />";
-	}
-	
 	if(name == "DKFacebook"){
 		return "If you want to use facebook on your phone, but don't want all of the extra stuff that comes with it, give this a try. It fast, free and simple. <br /> \
 * Super fast <br /> \
@@ -47,23 +34,14 @@ function AppsMenu_GetDescription(name)
 * No running processes <br /> \
 * Small, Fast, simple and free <br /><br />";
 	}
-	
-	if(name == "DKInputTest"){
-		return "Test Keyboard and Mouse input.";
-	}
-	
-	if(name == "DKOS"){
-		return "Experimental OS";
-	}
-	
-	if(name == "DKReceiver"){
-		return "Experimental Remote control Reciever for windows";
-	}
-	
-	if(name == "DKRemote"){
-		return "Experimental Remote control";
-	}
-	
+	if(name == "DKInputTest")
+		return "Test Keyboard and Mouse input.";	
+	if(name == "DKOS")
+		return "Experimental OS";	
+	if(name == "DKReceiver")
+		return "Experimental Remote control Reciever for windows";	
+	if(name == "DKRemote")
+		return "Experimental Remote control";	
 	if(name == "DKYoutube"){
 		return "Introducing, DKYoutube for Android. <br /> \
 Don't you just hate how youtube music stops playing when you turn off your screen. You want to listen to music on youtube, but you want to turn my screen off to save battery!. Try DKYoutube. <br /> \
@@ -73,19 +51,13 @@ Don't you just hate how youtube music stops playing when you turn off your scree
 * Turn off your screen, and the music keeps playing <br /> \
 * Small, Fast, simple and free <br /><br />";
 	}
-	
-	if(name == "DKBuilder"){
-		return "The most important app. With this app, you can build eveything from scratch.";
-	}
-	
-	if(name == "DKIDE"){
+	if(name == "DKBuilder")
+		return "The most important app. With this app, you can build eveything from scratch.";	
+	if(name == "DKIDE")
 		return "Integrated development environment.";
-	}
 }
 
-//////////////////////////////
-function AppsMenu_AddApp(name)
-{
+function AppsMenu_AddApp(name){
 	DKDEBUGFUNC(name);
 	var id = DKWidget_CreateElement("Digitalknob/AppsMenu.html", "div", name)
 	DKWidget_SetAttribute(id, "class", "option");
@@ -97,9 +69,7 @@ function AppsMenu_AddApp(name)
 	DKAddEvent(name, "click", AppsMenu_OnEvent);
 }
 
-////////////////////////////////
-function AppsMenu_OnEvent(event)
-{
+function AppsMenu_OnEvent(event){
 	DKDEBUGFUNC(event);	
 	if(DK_Type(event, "click")){
 		DKWidget_SetInnerHtml("Digitalknob_content",""); //clear the content
@@ -112,9 +82,9 @@ function AppsMenu_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "GLOBAL")){
-		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "Digitalknob/AppsMenu.html")){
+		if(DKWidget_IsChildOf(DKWidget_GetHoverElement(), "Digitalknob/AppsMenu.html"))
 			return;
-		}
+
 	}
 	DKClose("Digitalknob/AppsMenu.js");
 }

@@ -1,4 +1,3 @@
-///////////////////////////
 function Digitalknob_Init()
 {
 	DKDEBUGFUNC();
@@ -13,7 +12,6 @@ function Digitalknob_Init()
 	DKAddEvent("Digitalknob_login", "click", Digitalknob_OnEvent);
 }
 
-//////////////////////////
 function Digitalknob_End()
 {
 	DKDEBUGFUNC();
@@ -23,14 +21,12 @@ function Digitalknob_End()
 	DKClose("Digitalknob/Digitalknob.html");
 }
 
-///////////////////////////////////
 function Digitalknob_OnEvent(event)
 {
 	DKDEBUGFUNC(event);
 	//if(DK_Id(event, "GLOBAL")){
 	//	console.log("Digitalknob_OnEvent(GLOBAL)\n");
 	//}
-	
 	if(DK_Id(event, "Image")){
 		DKWidget_SetInnerHtml("Digitalknob_content","");
 		DKClose("Digitalknob/Home.js");

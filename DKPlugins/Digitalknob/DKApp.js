@@ -8,11 +8,8 @@ var linux_download = "";
 var ios_download = "";
 var android_download = "";
 var web_app = "";
-
 var download_link = "";
 
-
-/////////////////////
 function DKApp_Init()
 {
 	DKDEBUGFUNC();
@@ -29,7 +26,6 @@ function DKApp_Init()
 	DKWidget_SetInnerHtml(id, "Loading...");
 }
 
-////////////////////
 function DKApp_End()
 {
 	DKDEBUGFUNC();
@@ -37,7 +33,6 @@ function DKApp_End()
 	DKClose("Digitalknob/DKApp.html");
 }
 
-/////////////////////////////
 function DKApp_OnEvent(event)
 {
 	DKDEBUGFUNC(event);
@@ -51,9 +46,8 @@ function DKApp_OnEvent(event)
 
 
 //if(DK_GetBrowser() == "CEF"){
-////////////////////////////////
 function DKFile_Exists(path, fn)
-{
+
 	DKDEBUGFUNC(path, fn);
 	if(!path){ return false; }
 	UrlExists(path, function(rval){
@@ -64,15 +58,14 @@ function DKFile_Exists(path, fn)
 
 
 	
-//////////////////////////////
 function DKApp_UpdateApp(name)
 {
-	DKDEBUGFUNC(name);
-	app = name;
+	DKDEBUGFUNC(name)
+	app = name
 	icon = "Digitalknob/"+app+"_icon.png";
 	//os = DK_GetOS();
-	win32_download = "http://digitalknob.com/Download/"+app+".exe";
-	win64_download = "http://digitalknob.com/Download/"+app+"_64.exe";
+	win32_download = "http://digitalknob.com/Download/"+app+".exe"
+	win64_download = "http://digitalknob.com/Download/"+app+"_64.exe"
 	mac_download = "http://digitalknob.com/Download/"+app+"_mac64.zip";
 	linux_download = "http://digitalknob.com/Download/"+app+"_linux64.zip";
 	ios_download = "http://digitalknob.com/Download/"+app+"_ios.zip";
