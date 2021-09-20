@@ -78,7 +78,7 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 	*/
 	
 	DKRemoveEvents(this.OnEvent)	
-	DKClose("DKBrowser/DKBrowser.html")
+	dk.close("DKBrowser/DKBrowser.html")
 }
 
 DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
