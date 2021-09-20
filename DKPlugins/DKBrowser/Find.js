@@ -1,30 +1,23 @@
-////////////////////
-function Find_Init()
-{
-	DKDEBUGFUNC();
-	CPP_DK_Create("DKBrowser/Find.html");
-	DKAddEvent("FindNext", "click", Find_OnEvent);
-	DKAddEvent("FindCancel", "click", Find_OnEvent);
+
+function DKBrowserFind(){}
+
+DKBrowserFind.init = function DKBrowserFind_init(){
+	//DKDEBUGFUNC()
+	dk.create("DKBrowser/Find.html", function(obj){
+		dk.browserfind.htmlObj = obj
+		obj.getElementById("FindNext").onclick = function(){
+			CPP_DKCef_Find(0, document.getElementById("FindInput").value))
+		}
+		obj.getElementById("FindCancel").onclick = function(){
+			dk.frame.close("DKBrowser/Find.html")
+		}
+	})
 }
 
-///////////////////
-function Find_End()
-{
-	DKDEBUGFUNC();
-	DKRemoveEvents(Find_OnEvent);
-	CPP_DKCef_Find(0, ""); //FIXME: not working
-	DKClose("DKBrowser/Find.html");
+DKBrowserFind.end = function DKBrowserFind_End(){
+	//DKDEBUGFUNC()
+	CPP_DKCef_Find(0, "") //FIXME: not working
+	dk.close("DKBrowser/Find.html")
 }
 
-////////////////////////////
-function Find_OnEvent(event)
-{
-	DKDEBUGFUNC(event);
-	if(DK_Id(event, "FindNext")){
-		CPP_DKCef_Find(0, DKWidget_GetValue("FindInput"));
-	}
-	if(DK_Id(event, "FindCancel")){
-		DKFrame_Close("DKBrowser/Find.html"); //FIXME: not working
-		return;
-	}
-}
+dk.browserfind = DKPlugin(DKBrowserFind, "singleton")

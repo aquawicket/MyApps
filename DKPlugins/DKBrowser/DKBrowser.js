@@ -1,12 +1,12 @@
-//"use strict";
+//"use strict"
 
 function DKBrowser(){}
 
-var selection = "";
-var source_url = "";
-var link_url = "";
-var parent = "";
-var activeTab = 0;
+var selection = ""
+var source_url = ""
+var link_url = ""
+var parent = ""
+var activeTab = 0
 
 DKBrowser.prototype.init = function DKBrowser_init(create_callback){	
 	//DKDEBUGFUNC()
@@ -55,9 +55,9 @@ DKBrowser.prototype.init = function DKBrowser_init(create_callback){
 		*/
 		
 		dk.browser.NewTab()
-		create_callback && create_callback(dk.browser);
-		return dk.browser;
-    });
+		create_callback && create_callback(dk.browser)
+		return dk.browser
+    })
 }
 
 DKBrowser.prototype.end = function DKBrowser_End(){
@@ -132,13 +132,13 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		}
 	}
 	if(event.currentElement.id = "GoButton"){		
-		var tabCount = 0;
+		var tabCount = 0
 		for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 			if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
-				tabCount++;
+				tabCount++
 				if(tabCount == activeTab){
 					CPP_DKCef_SetUrl(i, document.getElementById("Textbox"))
-					return;
+					return
 				}
 			}
 		}
@@ -149,26 +149,26 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		var url = CPP_DKCef_GetUrl(num)
 		if(url)
 			dk.browser.SetUrlBar(url, num)
-		return;
+		return
 	}
 	if(event.type = "DKCef_OnLoadEnd"){
 		var num = parseInt(event.value)
 		var url = CPP_DKCef_GetUrl(CPP_DKCef_GetCurrentBrowser())
 		//TODO
-		return;
+		return
 	}
 	if(event.type = "DKCef_OnLoadError"){
 		dk.browser.OnLoadError(DK_GetValue(event))
 	}
 	if(event.type = "DKCef_ContextMenu"){
-		console.log("dk.browser.OnEvent("+event+")");
+		console.log("dk.browser.OnEvent("+event+")")
 		var data = event.value
 		var arry = data.split(";")
-		selection = arry[0];
-		source_url = arry[1];
-		link_url = arry[2];
+		selection = arry[0]
+		source_url = arry[1]
+		link_url = arry[2]
 		if(!selection && !source_url && !link_url)
-			return;
+			return
 		CPP_DK_Create("DKBrowser/DKBrowserMenu.js", function(){
 			CPP_DK_Create("DKGui/DKMenu.js", function(){
 				DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html")
@@ -179,16 +179,16 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		console.log("DKCef_OnFullscreen\n")
 		var value = event.value
 		if(value == "true"){
-			document.getElementById("Tabs").style["visibility"] = "hidden";
-			document.getElementById("Menu").style["visibility"] = "hidden";
+			document.getElementById("Tabs").style["visibility"] = "hidden"
+			document.getElementById("Menu").style["visibility"] = "hidden"
 			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["top"] = "0rem"
 			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["z-index"] = "100"
 			document.body.appendChild(document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())))
 			CPP_DKWindow_Fullscreen()
 		}
 		else{
-			document.getElementById("Tabs").style["visibility"] = "visible";
-			document.getElementById("Menu").style["visibility"] = "visible";
+			document.getElementById("Tabs").style["visibility"] = "visible"
+			document.getElementById("Menu").style["visibility"] = "visible"
 			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["top"] = "44rem"
 			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["z-index"] = "100"
 			document.body.appendChild(document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())))
@@ -212,7 +212,7 @@ DKBrowser.prototype.OnLoadError = function DKBrowser_OnLoadError(error){
 	if(error == "-105"){
 		var url = document.getElementById("Textbox").value
 		url = url.replace(" ", "%20")
-		var search = "https://www.google.com/?gws_rd=ssl#q=" + url;
+		var search = "https://www.google.com/?gws_rd=ssl#q=" + url
 		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), search)
 	}
 }
@@ -242,13 +242,13 @@ DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 	var focused = DKWidget_GetFocusElement() //FIXME
 	//console.log("DKWidget_GetFocusElement(): focused="+focused+"\n")
 	if(key == 13 && (focused == "Textbox")){
-		var tabCount = 0;
+		var tabCount = 0
 		for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 			if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
-				tabCount++;
+				tabCount++
 				if(tabCount == activeTab){
 					CPP_DKCef_SetUrl(i, document.getElementById("Textbox").value)
-					return;
+					return
 				}
 			}
 		}
@@ -257,17 +257,17 @@ DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 
 DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 	//DKDEBUGFUNC(num)
-	var tabCount = 0;
+	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
-			tabCount++;
+			tabCount++
 			if(num == tabCount){
 				//DKWidget_RemoveElement(CPP_DKCef_GetBrowserId(i)) //FIXME
 				const ele = document.getElementById(CPP_DKCef_GetBrowserId(i))
-				ele.parentNode.removeChild(ele);
+				ele.parentNode.removeChild(ele)
 				CPP_DKCef_CloseBrowser(i)
 				dk.browser.SelectTab(Number(num-1))
-				return;
+				return
 			}
 		}
 	}
@@ -277,25 +277,31 @@ DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 	console.log("DKBrowser.prototype.NewTab")
 	//DKDEBUGFUNC()
 	var url = "https://google.com"
+	
+	/*
 	var iframediv = document.createElement("div")
 	iframediv.id = dk.getAvailableId("CefBrowserTabDiv")
 	iframediv.style["position"] = "absolute"
 	iframediv.style["top"] = "44rem"
-	iframediv.style["left"] = "0rem";
-	iframediv.style["width"] = "100%";
-	iframediv.style["bottom"] = "0rem";
-	iframediv.style["background-color"] = "blue";
+	iframediv.style["left"] = "0rem"
+	iframediv.style["width"] = "100%"
+	iframediv.style["bottom"] = "0rem"
+	iframediv.style["background-color"] = "blue"
 	dk.browser.htmlObj.appendChild(iframediv)
+	*/
 	
 	var iframe = document.createElement("iframe")
 	iframe.id = dk.getAvailableId("CefBrowserTab")
 	iframe.setAttribute("src", url)
 	iframe.style["position"] = "absolute"
-	iframe.style["width"] = "100%";
-	iframe.style["height"] = "100%";
-	iframediv.appendChild(iframe)
+	iframe.style["top"] = "44rem"
+	iframe.style["left"] = "0rem"
+	iframe.style["width"] = "100%"
+	iframe.style["bottom"] = "0rem"
+	iframe.style["background-color"] = "white"
+	dk.browser.htmlObj.appendChild(iframe)
 	CPP_DKRml_PostProcess()
-	var tabCount = 0;
+	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1)
 			tabCount++
@@ -305,32 +311,32 @@ DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 
 DKBrowser.prototype.SetUrlBar = function DKBrowser_SetUrlBar(url, num){
 	//DKDEBUGFUNC(url, num)
-	var tabCount = 0;
+	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
-			tabCount++;
+			tabCount++
 			if(num == i)
-				document.getElementById("Tab"+tabCount+"Text").innerHTML = url;
+				document.getElementById("Tab"+tabCount+"Text").innerHTML = url
 		}
 	}
 
 	if(CPP_DKCef_GetCurrentBrowser() != num)
-		return;
+		return
 	var focused = DKWidget_GetFocusElement() //FIXME
 	//console.log("Focused Element: focused="+focused+"\n")
 	if(focused != "Textbox")
-		document.getELementById("Textbox").value = url;
+		document.getELementById("Textbox").value = url
 	dk.browser.UpdateTabs()
 }
 
 DKBrowser.prototype.SelectTab = function DKBrowser_SelectTab(num){
 	//DKDEBUGFUNC(num)
-	var tabCount = 0;
+	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
-			tabCount++;
+			tabCount++
 			if(num == tabCount){
-				activeTab = tabCount;
+				activeTab = tabCount
 				document.getElementById(CPP_DKCef_GetBrowserId(i)).style["visibility"] = "visible"
 				CPP_DKCef_SetFocus(i)
 				if(isNaN(CPP_DKCef_GetUrl(i))){
@@ -353,10 +359,10 @@ DKBrowser.prototype.UpdateTabs = function DKBrowser_UpdateTabs(){
 	var num = CPP_DKCef_GetBrowsers()
 	var current = CPP_DKCef_GetCurrentBrowser()
 	
-	var tabCount = 0;
+	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
-			tabCount++;
+			tabCount++
 			document.getElementById("Tab"+String(tabCount)).style["display"] = "inline-block"
 			var url = CPP_DKCef_GetUrl(i)
 			if(typeof url === 'string')

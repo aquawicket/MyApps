@@ -114,7 +114,7 @@ DKBrowserMenu.prototype.CopyImageAddress = function DKBrowserMenu_CopyImageAddre
 	//DKDEBUGFUNC()
 	if(source_url){
 		//DK_SetClipboard(source_url)
-		dk.clipboard.copyToClipboard(source_url);
+		dk.clipboard.copyToClipboard(source_url)
 	}
 }
 

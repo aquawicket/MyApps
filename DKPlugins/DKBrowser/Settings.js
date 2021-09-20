@@ -1,62 +1,31 @@
-////////////////////////
-function Settings_Init()
-{
-	DKDEBUGFUNC();
-	CPP_DK_Create("DKBrowser/Settings.html", function(){
-		DKAddEvent("UpdateButton", "click", Settings_OnEvent);
-		DKAddEvent("VersionButton", "click", Settings_OnEvent);
-		DKAddEvent("GpuButton", "click", Settings_OnEvent);
-		DKAddEvent("SystemButton", "click", Settings_OnEvent);
-		DKAddEvent("NetInternalsButton", "click", Settings_OnEvent);
-		DKAddEvent("ClearCache", "click", Settings_OnEvent);
+function DKBrowserSettings(){}
+
+dk.browsersettings.init = function DKBrowserSettings_init(){
+	//DKDEBUGFUNC();
+	dk.create("DKBrowser/Settings.html", function(element){
+		dk.browsersettings.element = element
+		element.getElementById("UpdateButton").onclick = dk.browsersettings.Update
+		element.getElementById("VersionButton").onclick = dk.browsersettings.Version
+		element.getElementById("GpuButton").onclick = dk.browsersettings.Gpu
+		element.getElementById("SystemButton").onclick = dk.browsersettings.System
+		element.getElementById("NetInternalsButton").onclick = dk.browsersettings.NetInternals
+		element.getElementById("ClearCache").onclick = dk.browsersettings.ClearCache
 	});
 }
 
-///////////////////////
-function Settings_End()
-{
-	DKDEBUGFUNC();
-	DKClose("DKBrowser/Settings.html");
+dk.browsersettings.end = function DKBrowserSettings_end(){
+	//DKDEBUGFUNC();
+	dk.close("DKBrowser/Settings.html");
 }
 
-////////////////////////////////
-function Settings_OnEvent(event)
-{	
-	DKDEBUGFUNC(event);
-	if(DK_Id(event, "UpdateButton")){
-		Settings_Update();
-	}
-	if(DK_Id(event, "VersionButton")){
-		Settings_Version();
-	}
-	if(DK_Id(event, "GpuButton")){
-		Settings_Gpu();
-	}
-	if(DK_Id(event, "SystemButton")){
-		Settings_System();
-	}
-	if(DK_Id(event, "NetInternalsButton")){
-		Settings_NetInternals();
-	}
-	if(DK_Id(event, "ClearCache")){
-		Settings_ClearCache();
-	}
-}
-
-//////////////////////////////
-function Settings_ClearCache()
-{
-	DKDEBUGFUNC();
-	var assets = DKAssets_LocalAssets();
+dk.browsersettings.ClearCache = function DKBrowserSettings_ClearCache(){
+	//DKDEBUGFUNC();
+	var assets = CPP_DKAssets_LocalAssets();
 	var cachePath = assets+"USER/Cache";
-	if(!DKFile_Exists(cachePath)){
-		DKWARN("Settings_ClearCache(): cachePath+ invalid\n");
-		return false;
-	}
-	
+	if(!DKFile_Exists(cachePath))
+		return error("Settings_ClearCache(): cachePath+ invalid\n");
 	var files = DKFile_DirectoryContents(cachePath);
 	var arry = files.split(",");
-	
 	for(var i=0; i<arry.length; i++){
 		if(arry[i].indexOf("f_") == 0){
 			//console.log("cachePath+/+arry["+i+"] = "+cachePath+"/"+arry[i]+"\n");
@@ -65,43 +34,35 @@ function Settings_ClearCache()
 	}
 }
 
-//////////////////////////
-function Settings_Update()
-{
-	DKDEBUGFUNC();
+dk.browsersettings.Update = function DKBrowserSettings_Update(){
+	//DKDEBUGFUNC();
 	CPP_DK_Create("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
 }
 
-///////////////////////////
-function Settings_Version()
-{
-	DKDEBUGFUNC();
-	DKBrowser_NewTab(0);
+dk.browsersettings.Version = function DKBrowserSettings_Version(){
+	//DKDEBUGFUNC();
+	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://version");
 }
 
-///////////////////////
-function Settings_Gpu()
-{
-	DKDEBUGFUNC();
-	DKBrowser_NewTab(0);
+dk.browsersettings.Gpu = function DKBrowserSettings_Gpu(){
+	//DKDEBUGFUNC();
+	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://gpu");
 }
 
-//////////////////////////
-function Settings_System()
-{
-	DKDEBUGFUNC();
-	DKBrowser_NewTab(0);
+dk.browsersettings.System = function DKBrowserSettings_System(){
+	//DKDEBUGFUNC();
+	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://system");
 }
 
-////////////////////////////////
-function Settings_NetInternals()
-{
-	DKDEBUGFUNC();
-	DKBrowser_NewTab(0);
+dk.browsersettings.NetInternals = function DKBrowserSettings_NetInternals(){
+	//DKDEBUGFUNC();
+	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://net-internals");
 }
+
+dk.browsersettings = DKPlugin(DKBrowserSettings, "singleton")
