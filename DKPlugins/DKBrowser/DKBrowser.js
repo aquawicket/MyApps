@@ -1,5 +1,4 @@
 //"use strict";
-console.log("DKBrowser.js loading")
 
 function DKBrowser(){}
 
@@ -11,56 +10,53 @@ var activeTab = 0;
 
 DKBrowser.prototype.init = function DKBrowser_init(create_callback){	
 	//DKDEBUGFUNC()
-	console.log("dk.browser.init()")
-	
 	dk.create("DKBrowser/DKBrowser.html", function dkcreate_callback(htmlObj) {
 		console.log("dkcreate_callback(html)")
         if (!htmlObj)
             return error("htmlObj invalid")
-		dk.browser.instance = this
-		dk.browser.instance.htmlObj = htmlObj
-		window.addEventListener("keydown", this.OnEvent)
-		window.addEventListener("mousedown", this.OnEvent)
-		window.addEventListener("DKCef_OnLoadingStateChange", this.OnEvent)
-		window.addEventListener("DKCef_OnBeforePopup", this.OnEvent)
-		window.addEventListener("DKCef_OnLoadEnd", this.OnEvent)
-		window.addEventListener("DKCef_OnLoadError", this.OnEvent)
-		window.addEventListener("DKCef_OnFullscreen", this.OnEvent)
-		window.addEventListener("DKCef_ContextMenu", this.OnEvent)
-		window.addEventListener("DKCef_OnFileDialogDismissed", this.OnEvent)
-		htmlObj.getElementById("Tab1").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab2").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab3").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab4").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab5").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab6").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab1Close").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab2Close").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab3Close").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab4Close").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab5Close").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Tab6Close").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("NewTab").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("BackButton").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("ForwardButton").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("StopButton").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("RefreshButton").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("HomeButton").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Textbox").addEventListener("focus", this.OnEvent)
-		htmlObj.getElementById("Textbox").addEventListener("contextmenu", this.OnEvent)
-		htmlObj.getElementById("GoButton").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("FindButton").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Settings").addEventListener("click", this.OnEvent)
+		dk.browser.htmlObj = htmlObj
+		window.addEventListener("keydown", dk.browser.OnEvent)
+		window.addEventListener("mousedown", dk.browser.OnEvent)
+		window.addEventListener("DKCef_OnLoadingStateChange", dk.browser.OnEvent)
+		window.addEventListener("DKCef_OnBeforePopup", dk.browser.OnEvent)
+		window.addEventListener("DKCef_OnLoadEnd", dk.browser.OnEvent)
+		window.addEventListener("DKCef_OnLoadError", dk.browser.OnEvent)
+		window.addEventListener("DKCef_OnFullscreen", dk.browser.OnEvent)
+		window.addEventListener("DKCef_ContextMenu", dk.browser.OnEvent)
+		window.addEventListener("DKCef_OnFileDialogDismissed", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab1").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab2").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab3").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab4").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab5").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab6").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab1Close").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab2Close").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab3Close").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab4Close").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab5Close").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Tab6Close").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("NewTab").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("BackButton").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("ForwardButton").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("StopButton").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("RefreshButton").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("HomeButton").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Textbox").addEventListener("focus", dk.browser.OnEvent)
+		htmlObj.getElementById("Textbox").addEventListener("contextmenu", dk.browser.OnEvent)
+		htmlObj.getElementById("GoButton").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("FindButton").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Settings").addEventListener("click", dk.browser.OnEvent)
 		/*
-		htmlObj.getElementById("Copy").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("Paste").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("SaveImage").addEventListener("click", this.OnEvent)
-		htmlObj.getElementById("CopyLink").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Copy").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("Paste").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("SaveImage").addEventListener("click", dk.browser.OnEvent)
+		htmlObj.getElementById("CopyLink").addEventListener("click", dk.browser.OnEvent)
 		*/
 		
-		//dk.browser.NewTab()
-		//create_callback && create_callback(dk.browser.instance);
-		return dk.browser.instance;
+		dk.browser.NewTab()
+		create_callback && create_callback(dk.browser);
+		return dk.browser;
     });
 }
 
@@ -77,7 +73,7 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 	CPP_DKCef_CloseBrowser(0) //close first browser
 	*/
 	
-	DKRemoveEvents(this.OnEvent)	
+	DKRemoveEvents(dk.browser.OnEvent)	
 	dk.close("DKBrowser/DKBrowser.html")
 }
 
@@ -278,22 +274,27 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 }
 
 DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
+	console.log("DKBrowser.prototype.NewTab")
 	//DKDEBUGFUNC()
 	var url = "https://google.com"
-	var dummy = document.createElement("div")
-	dummy.id = dk.getAvailableId("CefBrowserTab")
-	dk.browser.instance.htmlObj.appendChild(dummy)
+	var iframediv = document.createElement("div")
+	iframediv.id = dk.getAvailableId("CefBrowserTabDiv")
+	iframediv.style["position"] = "absolute"
+	iframediv.style["top"] = "44rem"
+	iframediv.style["left"] = "0rem";
+	iframediv.style["width"] = "100%";
+	iframediv.style["bottom"] = "0rem";
+	iframediv.style["background-color"] = "blue";
+	dk.browser.htmlObj.appendChild(iframediv)
+	
 	var iframe = document.createElement("iframe")
 	iframe.id = dk.getAvailableId("CefBrowserTab")
-	dk.browser.instance.htmlObj.appendChild(iframe)
-	dummy.parentNode.removeChild(dummy)
 	iframe.setAttribute("src", url)
-	CPP_DKRml_PostProcess()
 	iframe.style["position"] = "absolute"
-	iframe.style["top"] = "44rem"
-	iframe.style["left"] = "0rem";
 	iframe.style["width"] = "100%";
-	iframe.style["bottom"] = "0rem";
+	iframe.style["height"] = "100%";
+	iframediv.appendChild(iframe)
+	CPP_DKRml_PostProcess()
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1)
@@ -374,5 +375,5 @@ DKBrowser.prototype.UpdateTabs = function DKBrowser_UpdateTabs(){
 		document.getElementById("Tab"+String(i)).style["display"] = "none"
 }
 
-dk.browser = DKPlugin(DKBrowser)
+dk.browser = DKPlugin(DKBrowser, "singleton")
 
