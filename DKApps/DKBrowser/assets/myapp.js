@@ -1,6 +1,6 @@
-//dk.init()
-const MyApp = function() {};
-const myapp = new MyApp;
+dk.init()
+const MyApp = function() {}
+const myapp = new MyApp
 
 //DKPlugin("DK/DKTrace.js", "singleton")
 //DKPlugin("DK/DKErrorHandler.js", "singleton")
@@ -11,18 +11,18 @@ dk.file.init()
 DKPlugin("DK/DKValidate.js", "singleton")
 //DKPlugin("DK/DKTime.js", "singleton")
 //DKPlugin("DK/DKMqtt.js")
-//DKPlugin("DK/DKNotifications.js");
+//DKPlugin("DK/DKNotifications.js")
 DKPlugin("DKDebug/DKDebug.js", "singleton")
-dk.debug.init();
+dk.debug.init()
 //DKPlugin("DKAudio/DKAudio.js")
 //DKPlugin("DKGui/DKConsole.js", "singleton")
 DKPlugin("DKGui/DKGui.js", "singleton")
 DKPlugin("DKGui/DKFrame.js")
 DKFrame.prototype.init()
 DKPlugin("DKGui/DKMenu.js")
-DKMenu.prototype.init();
+DKMenu.prototype.init()
 DKPlugin("DKGui/DKMessageBox.js")
-DKMessageBox.prototype.init();
+DKMessageBox.prototype.init()
 DKPlugin("DKGui/DKDrag.js")
 DKPlugin("DKGui/DKResize.js")
 DKPlugin("DKGui/DKClipboard.js", "singleton")
@@ -35,13 +35,12 @@ DKPlugin("DKGui/DKTable.js")
 
 DKPlugin("DKBrowser/DKBrowser.js", "singleton")
 dk.browser.init(function(){
-	document.getElementById("DKBrowser/DKBrowser.html").style["width"] = "100%";
-	//DKWidget_SetProperty("DKBrowser.html", "height", "100%")
-	//document.getElementById("DKBrowser.html").style.height = 100%
+	document.getElementById("DKBrowser/DKBrowser.html").style["width"] = "100%"
+	document.getElementById("DKBrowser/DKBrowser.html").style["height"] = "100%"
 	//DKPlugin("DKTray/DKTray.js")
 	//DKPlugin("DKDebug/DKDebug.js")
 	//DKPlugin("DKSDLText")
-	//CPP_DK_SetFramerate(120)
+	CPP_DK_SetFramerate(120)
 	//DKPlugin("DKUpdate")
-	//document.body.style.backgroundColor = "rgb:(245,245,245)";
+	document.body.style["background-color"] = "rgb:(245,245,245)"
 })
