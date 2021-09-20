@@ -7,21 +7,25 @@ const myapp = new MyApp;
 //DKPlugin("DK/DKJson.js", "singleton")
 DKPlugin("DKFile/DKFile.js", "singleton")
 dk.file.init()
-//DKPlugin("DK/DKValidate.js", "singleton")
+DKPlugin("DK/DKValidate.js", "singleton")
 //DKPlugin("DK/DKTime.js", "singleton")
 //DKPlugin("DK/DKMqtt.js")
 //DKPlugin("DK/DKNotifications.js");
-//DKPlugin("DKDebug/DKDebug.js", "singleton")
+DKPlugin("DKDebug/DKDebug.js", "singleton")
+dk.debug.init();
 //DKPlugin("DKAudio/DKAudio.js")
 //DKPlugin("DKGui/DKConsole.js", "singleton")
-//DKPlugin("DKGui/DKGui.js", "singleton")
-//DKPlugin("DKGui/DKFrame.js")
-//DKPlugin("DKGui/DKMenu.js")
-//DKPlugin("DKGui/DKMessageBox.js")
-//DKPlugin("DKGui/DKDrag.js")
-//DKPlugin("DKGui/DKResize.js")
-//DKPlugin("DKGui/DKClipboard.js", "singleton")
-//DKPlugin("DKGui/DKTable.js")
+DKPlugin("DKGui/DKGui.js", "singleton")
+DKPlugin("DKGui/DKFrame.js")
+DKFrame.prototype.init()
+DKPlugin("DKGui/DKMenu.js")
+DKMenu.prototype.init();
+DKPlugin("DKGui/DKMessageBox.js")
+DKMessageBox.prototype.init();
+DKPlugin("DKGui/DKDrag.js")
+DKPlugin("DKGui/DKResize.js")
+DKPlugin("DKGui/DKClipboard.js", "singleton")
+DKPlugin("DKGui/DKTable.js")
 //DKPlugin("DKDevTools/DKDevToolsButton.js", "singleton")
 //DKPlugin("DKChart/DKChart.js")
 //DKPlugin("DKCodeMirror/DKCodeMirror.js")
@@ -31,12 +35,12 @@ dk.file.init()
 DKPlugin("DKBrowser/DKBrowser.js", "singleton")
 dk.browser.init(function(){
 	document.getElementById("DKBrowser/DKBrowser.html").style["width"] = "100%";
-//DKWidget_SetProperty("DKBrowser.html", "height", "100%")
-//document.getElementById("DKBrowser.html").style.height = 100%
-//DKPlugin("DKTray/DKTray.js")
-//DKPlugin("DKDebug/DKDebug.js")
-//DKPlugin("DKSDLText")
-//CPP_DK_SetFramerate(120)
-//DKPlugin("DKUpdate")
-//document.body.style.backgroundColor = "rgb:(245,245,245)";
+	//DKWidget_SetProperty("DKBrowser.html", "height", "100%")
+	//document.getElementById("DKBrowser.html").style.height = 100%
+	//DKPlugin("DKTray/DKTray.js")
+	//DKPlugin("DKDebug/DKDebug.js")
+	//DKPlugin("DKSDLText")
+	//CPP_DK_SetFramerate(120)
+	//DKPlugin("DKUpdate")
+	//document.body.style.backgroundColor = "rgb:(245,245,245)";
 })

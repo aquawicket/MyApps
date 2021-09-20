@@ -13,49 +13,54 @@ DKBrowser.prototype.init = function DKBrowser_init(create_callback){
 	//DKDEBUGFUNC()
 	console.log("dk.browser.init()")
 	
-	dk.create("DKBrowser/DKBrowser.html", function dkcreate_callback(html) {
-        if (!html)
-            return error("invalid html");
-		window.addEventListner("keydown", DKBrowser_OnEvent)
-		window.addEventListner("mousedown", DKBrowser_OnEvent)
-		window.addEventListner("DKCef_OnLoadingStateChange", DKBrowser_OnEvent)
-		window.addEventListner("DKCef_OnBeforePopup", DKBrowser_OnEvent)
-		window.addEventListner("DKCef_OnLoadEnd", DKBrowser_OnEvent)
-		window.addEventListner("DKCef_OnLoadError", DKBrowser_OnEvent)
-		window.addEventListner("DKCef_OnFullscreen", DKBrowser_OnEvent)
-		window.addEventListner("DKCef_ContextMenu", DKBrowser_OnEvent)
-		window.addEventListner("DKCef_OnFileDialogDismissed", DKBrowser_OnEvent)
-		document.getElementById("Tab1").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab2").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab3").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab4").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab5").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab6").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab1Close").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab2Close").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab3Close").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab4Close").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab5Close").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Tab6Close").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("NewTab").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("BackButton").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("ForwardButton").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("StopButton").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("RefreshButton").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("HomeButton").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Textbox").addEventListner("focus", DKBrowser_OnEvent)
-		document.getElementById("Textbox").addEventListner("contextmenu", DKBrowser_OnEvent)
-		document.getElementById("GoButton").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Copy").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Paste").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("SaveImage").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("CopyLink").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("FindButton").addEventListner("click", DKBrowser_OnEvent)
-		document.getElementById("Settings").addEventListner("click", DKBrowser_OnEvent)
-		dk.browser.NewTab()
+	dk.create("DKBrowser/DKBrowser.html", function dkcreate_callback(htmlObj) {
+		console.log("dkcreate_callback(html)")
+        if (!htmlObj)
+            return error("htmlObj invalid")
+		dk.browser.instance = this
+		dk.browser.instance.htmlObj = htmlObj
+		window.addEventListener("keydown", this.OnEvent)
+		window.addEventListener("mousedown", this.OnEvent)
+		window.addEventListener("DKCef_OnLoadingStateChange", this.OnEvent)
+		window.addEventListener("DKCef_OnBeforePopup", this.OnEvent)
+		window.addEventListener("DKCef_OnLoadEnd", this.OnEvent)
+		window.addEventListener("DKCef_OnLoadError", this.OnEvent)
+		window.addEventListener("DKCef_OnFullscreen", this.OnEvent)
+		window.addEventListener("DKCef_ContextMenu", this.OnEvent)
+		window.addEventListener("DKCef_OnFileDialogDismissed", this.OnEvent)
+		htmlObj.getElementById("Tab1").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab2").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab3").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab4").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab5").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab6").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab1Close").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab2Close").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab3Close").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab4Close").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab5Close").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Tab6Close").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("NewTab").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("BackButton").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("ForwardButton").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("StopButton").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("RefreshButton").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("HomeButton").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Textbox").addEventListener("focus", this.OnEvent)
+		htmlObj.getElementById("Textbox").addEventListener("contextmenu", this.OnEvent)
+		htmlObj.getElementById("GoButton").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("FindButton").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Settings").addEventListener("click", this.OnEvent)
+		/*
+		htmlObj.getElementById("Copy").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("Paste").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("SaveImage").addEventListener("click", this.OnEvent)
+		htmlObj.getElementById("CopyLink").addEventListener("click", this.OnEvent)
+		*/
 		
-		create_callback && create_callback(instance);
-		return instance;
+		//dk.browser.NewTab()
+		//create_callback && create_callback(dk.browser.instance);
+		return dk.browser.instance;
     });
 }
 
@@ -72,40 +77,40 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 	CPP_DKCef_CloseBrowser(0) //close first browser
 	*/
 	
-	DKRemoveEvents(DKBrowser_OnEvent)	
+	DKRemoveEvents(this.OnEvent)	
 	DKClose("DKBrowser/DKBrowser.html")
 }
 
 DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	//DKDEBUGFUNC(event)
 	if(event.type = "keydown")
-		DKBrowser_ProcessKey(DK_GetValue(event))
+		dk.browser.ProcessKey(DK_GetValue(event))
 	if(event.currentElement.id = "Tab1")
-		DKBrowser_SelectTab(1)
+		dk.browser.SelectTab(1)
 	if(event.currentElement.id = "Tab2")
-		DKBrowser_SelectTab(2)
+		dk.browser.SelectTab(2)
 	if(event.currentElement.id = "Tab3")
-		DKBrowser_SelectTab(3)
+		dk.browser.SelectTab(3)
 	if(event.currentElement.id = "Tab4")
-		DKBrowser_SelectTab(4)
+		dk.browser.SelectTab(4)
 	if(event.currentElement.id = "Tab5")
-		DKBrowser_SelectTab(5)
+		dk.browser.SelectTab(5)
 	if(event.currentElement.id = "Tab6")
-		DKBrowser_SelectTab(6)
+		dk.browser.SelectTab(6)
 	if(event.currentElement.id = "Tab1Close")
-		DKBrowser_CloseTab(1)
+		dk.browser.CloseTab(1)
 	if(event.currentElement.id = "Tab2Close")
-		DKBrowser_CloseTab(2)
+		dk.browser.CloseTab(2)
 	if(event.currentElement.id = "Tab3Close")
-		DKBrowser_CloseTab(3)
+		dk.browser.CloseTab(3)
 	if(event.currentElement.id = "Tab4Close")
-		DKBrowser_CloseTab(4)
+		dk.browser.CloseTab(4)
 	if(event.currentElement.id = "Tab5Close")
-		DKBrowser_CloseTab(5)
+		dk.browser.CloseTab(5)
 	if(event.currentElement.id = "Tab6Close")
-		DKBrowser_CloseTab(6)
+		dk.browser.CloseTab(6)
 	if(event.currentElement.id = "NewTab")
-		DKBrowser_NewTab()
+		dk.browser.NewTab()
 	if(event.currentElement.id = "BackButton")
 		CPP_DKCef_GoBack(CPP_DKCef_GetCurrentBrowser())
 	if(event.currentElement.id = "ForwardButton")
@@ -147,7 +152,7 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		var num = parseInt(DK_GetValue(event))
 		var url = CPP_DKCef_GetUrl(num)
 		if(url)
-			DKBrowser_SetUrlBar(url, num)
+			dk.browser.SetUrlBar(url, num)
 		return;
 	}
 	if(event.type = "DKCef_OnLoadEnd"){
@@ -157,10 +162,10 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		return;
 	}
 	if(event.type = "DKCef_OnLoadError"){
-		DKBrowser_OnLoadError(DK_GetValue(event))
+		dk.browser.OnLoadError(DK_GetValue(event))
 	}
 	if(event.type = "DKCef_ContextMenu"){
-		console.log("DKBrowser_OnEvent("+event+")");
+		console.log("dk.browser.OnEvent("+event+")");
 		var data = event.value
 		var arry = data.split(";")
 		selection = arry[0];
@@ -225,7 +230,7 @@ DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 	}
 	if(key == 84 && DK_KeyIsDown(17)){
 		//console.log("New Tab\n")
-		DKBrowser_NewTab()
+		dk.browser.NewTab()
 	}
 	if(key == 9 && DK_KeyIsDown(17) && !DK_KeyIsDown(16)){
 		//console.log("Next Tab\n")
@@ -261,9 +266,11 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
 			tabCount++;
 			if(num == tabCount){
-				DKWidget_RemoveElement(CPP_DKCef_GetBrowserId(i)) //FIXME
+				//DKWidget_RemoveElement(CPP_DKCef_GetBrowserId(i)) //FIXME
+				const ele = document.getElementById(CPP_DKCef_GetBrowserId(i))
+				ele.parentNode.removeChild(ele);
 				CPP_DKCef_CloseBrowser(i)
-				DKBrowser_SelectTab(Number(num-1))
+				dk.browser.SelectTab(Number(num-1))
 				return;
 			}
 		}
@@ -272,23 +279,27 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 
 DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 	//DKDEBUGFUNC()
-	var url = "https://google.com";
-	var dummy = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "div", "CefBrowserTab") //FIXME
-	var iframe = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "iframe", "CefBrowserTab") //FIXME
-	DKWidget_RemoveElement(dummy) //FIXME
-	DKWidget_SetAttribute(iframe, "src", url) //FIXME
-	DKWidget_SetProperty(iframe, "position", "absolute") //FIXME
-	DKWidget_SetProperty(iframe, "top", "44rem") //FIXME
-	DKWidget_SetProperty(iframe, "left", "0rem") //FIXME
-	DKWidget_SetProperty(iframe, "width", "100%") //FIXME
-	DKWidget_SetProperty(iframe, "bottom", "0rem") //FIXME
-	
+	var url = "https://google.com"
+	var dummy = document.createElement("div")
+	dummy.id = dk.getAvailableId("CefBrowserTab")
+	dk.browser.instance.htmlObj.appendChild(dummy)
+	var iframe = document.createElement("iframe")
+	iframe.id = dk.getAvailableId("CefBrowserTab")
+	dk.browser.instance.htmlObj.appendChild(iframe)
+	dummy.parentNode.removeChild(dummy)
+	iframe.setAttribute("src", url)
+	CPP_DKRml_PostProcess()
+	iframe.style["position"] = "absolute"
+	iframe.style["top"] = "44rem"
+	iframe.style["left"] = "0rem";
+	iframe.style["width"] = "100%";
+	iframe.style["bottom"] = "0rem";
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1)
-			tabCount++;
+			tabCount++
 	}
-	DKBrowser_SelectTab(tabCount)
+	dk.browser.SelectTab(tabCount)
 }
 
 DKBrowser.prototype.SetUrlBar = function DKBrowser_SetUrlBar(url, num){
@@ -308,7 +319,7 @@ DKBrowser.prototype.SetUrlBar = function DKBrowser_SetUrlBar(url, num){
 	//console.log("Focused Element: focused="+focused+"\n")
 	if(focused != "Textbox")
 		document.getELementById("Textbox").value = url;
-	DKBrowser_UpdateTabs()
+	dk.browser.UpdateTabs()
 }
 
 DKBrowser.prototype.SelectTab = function DKBrowser_SelectTab(num){
@@ -333,7 +344,7 @@ DKBrowser.prototype.SelectTab = function DKBrowser_SelectTab(num){
 			}
 		}
 	}
-	DKBrowser_UpdateTabs()
+	dk.browser.UpdateTabs()
 }
 
 DKBrowser.prototype.UpdateTabs = function DKBrowser_UpdateTabs(){
