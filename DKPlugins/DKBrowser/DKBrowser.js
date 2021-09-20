@@ -9,53 +9,58 @@ var link_url = "";
 var parent = "";
 var activeTab = 0;
 
-DKBrowser.prototype.init = function DKBrowser_init(){	
+DKBrowser.prototype.init = function DKBrowser_init(create_callback){	
 	//DKDEBUGFUNC()
-	console.log("!!dk.browser.init()!!")
-	DKPlugin("DKBrowser/DKBrowser.html")
-    //init_callback && init_callback(this)
+	console.log("dk.browser.init()")
 	
-	window.addEventListner("keydown", DKBrowser_OnEvent)
-	window.addEventListner("mousedown", DKBrowser_OnEvent)
-	window.addEventListner("DKCef_OnLoadingStateChange", DKBrowser_OnEvent)
-	window.addEventListner("DKCef_OnBeforePopup", DKBrowser_OnEvent)
-	window.addEventListner("DKCef_OnLoadEnd", DKBrowser_OnEvent)
-	window.addEventListner("DKCef_OnLoadError", DKBrowser_OnEvent)
-	window.addEventListner("DKCef_OnFullscreen", DKBrowser_OnEvent)
-	window.addEventListner("DKCef_ContextMenu", DKBrowser_OnEvent)
-	window.addEventListner("DKCef_OnFileDialogDismissed", DKBrowser_OnEvent)
-	document.getElementById("Tab1").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab2").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab3").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab4").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab5").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab6").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab1Close").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab2Close").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab3Close").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab4Close").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab5Close").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Tab6Close").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("NewTab").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("BackButton").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("ForwardButton").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("StopButton").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("RefreshButton").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("HomeButton").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Textbox").addEventListner("focus", DKBrowser_OnEvent)
-	document.getElementById("Textbox").addEventListner("contextmenu", DKBrowser_OnEvent)
-	document.getElementById("GoButton").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Copy").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Paste").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("SaveImage").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("CopyLink").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("FindButton").addEventListner("click", DKBrowser_OnEvent)
-	document.getElementById("Settings").addEventListner("click", DKBrowser_OnEvent)
-	dk.browser.NewTab()
+	dk.create("DKBrowser/DKBrowser.html", function dkcreate_callback(html) {
+        if (!html)
+            return error("invalid html");
+		window.addEventListner("keydown", DKBrowser_OnEvent)
+		window.addEventListner("mousedown", DKBrowser_OnEvent)
+		window.addEventListner("DKCef_OnLoadingStateChange", DKBrowser_OnEvent)
+		window.addEventListner("DKCef_OnBeforePopup", DKBrowser_OnEvent)
+		window.addEventListner("DKCef_OnLoadEnd", DKBrowser_OnEvent)
+		window.addEventListner("DKCef_OnLoadError", DKBrowser_OnEvent)
+		window.addEventListner("DKCef_OnFullscreen", DKBrowser_OnEvent)
+		window.addEventListner("DKCef_ContextMenu", DKBrowser_OnEvent)
+		window.addEventListner("DKCef_OnFileDialogDismissed", DKBrowser_OnEvent)
+		document.getElementById("Tab1").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab2").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab3").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab4").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab5").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab6").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab1Close").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab2Close").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab3Close").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab4Close").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab5Close").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Tab6Close").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("NewTab").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("BackButton").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("ForwardButton").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("StopButton").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("RefreshButton").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("HomeButton").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Textbox").addEventListner("focus", DKBrowser_OnEvent)
+		document.getElementById("Textbox").addEventListner("contextmenu", DKBrowser_OnEvent)
+		document.getElementById("GoButton").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Copy").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Paste").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("SaveImage").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("CopyLink").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("FindButton").addEventListner("click", DKBrowser_OnEvent)
+		document.getElementById("Settings").addEventListner("click", DKBrowser_OnEvent)
+		dk.browser.NewTab()
+		
+		create_callback && create_callback(instance);
+		return instance;
+    });
 }
 
 DKBrowser.prototype.end = function DKBrowser_End(){
-	DKDEBUGFUNC()
+	//DKDEBUGFUNC()
 	//close all browsers
 	/*
 	while(CPP_DKCef_GetBrowsers() > 1){
@@ -72,7 +77,7 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 }
 
 DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
-	DKDEBUGFUNC(event)
+	//DKDEBUGFUNC(event)
 	if(event.type = "keydown")
 		DKBrowser_ProcessKey(DK_GetValue(event))
 	if(event.currentElement.id = "Tab1")
@@ -202,7 +207,7 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 }
 
 DKBrowser.prototype.OnLoadError = function DKBrowser_OnLoadError(error){
-	DKDEBUGFUNC(error)
+	//DKDEBUGFUNC(error)
 	if(error == "-105"){
 		var url = document.getElementById("Textbox").value
 		url = url.replace(" ", "%20")
@@ -212,7 +217,7 @@ DKBrowser.prototype.OnLoadError = function DKBrowser_OnLoadError(error){
 }
 
 DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
-	DKDEBUGFUNC(key)
+	//DKDEBUGFUNC(key)
 	if(key == 78 && DK_KeyIsDown(17)){
 		//console.log("New Window\n")
 		var app = DKFile_GetFullExeName()
@@ -250,7 +255,7 @@ DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 }
 
 DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
-	DKDEBUGFUNC(num)
+	//DKDEBUGFUNC(num)
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -266,7 +271,7 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 }
 
 DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
-	DKDEBUGFUNC()
+	//DKDEBUGFUNC()
 	var url = "https://google.com";
 	var dummy = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "div", "CefBrowserTab") //FIXME
 	var iframe = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "iframe", "CefBrowserTab") //FIXME
@@ -287,7 +292,7 @@ DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 }
 
 DKBrowser.prototype.SetUrlBar = function DKBrowser_SetUrlBar(url, num){
-	DKDEBUGFUNC(url, num)
+	//DKDEBUGFUNC(url, num)
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -307,7 +312,7 @@ DKBrowser.prototype.SetUrlBar = function DKBrowser_SetUrlBar(url, num){
 }
 
 DKBrowser.prototype.SelectTab = function DKBrowser_SelectTab(num){
-	DKDEBUGFUNC(num)
+	//DKDEBUGFUNC(num)
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -332,7 +337,7 @@ DKBrowser.prototype.SelectTab = function DKBrowser_SelectTab(num){
 }
 
 DKBrowser.prototype.UpdateTabs = function DKBrowser_UpdateTabs(){
-	DKDEBUGFUNC()	
+	//DKDEBUGFUNC()	
 	var num = CPP_DKCef_GetBrowsers()
 	var current = CPP_DKCef_GetCurrentBrowser()
 	
