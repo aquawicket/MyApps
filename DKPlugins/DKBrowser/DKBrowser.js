@@ -80,7 +80,7 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	//DKDEBUGFUNC(event)
 	if(event.type = "keydown")
-		dk.browser.ProcessKey(DK_GetValue(event))
+		dk.browser.ProcessKey(event.key)
 	if(event.currentElement.id = "Tab1")
 		dk.browser.SelectTab(1)
 	if(event.currentElement.id = "Tab2")
@@ -116,7 +116,7 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	if(event.currentElement.id = "RefreshButton")
 		CPP_DKCef_Reload(CPP_DKCef_GetCurrentBrowser())
 	if(event.currentElement.id = "HomeButton")
-		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "http://google.com")
+		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "http://duckduckgo.com")
 	if(event.currentElement.id = "Textbox")
 		var num = CPP_DKCef_GetBrowsers()
 		for(var i = 0; i<num; i++){
@@ -145,7 +145,7 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	}
 
 	if(event.type = "DKCef_OnLoadingStateChange"){
-		var num = parseInt(DK_GetValue(event))
+		var num = parseInt(event.value)
 		var url = CPP_DKCef_GetUrl(num)
 		if(url)
 			dk.browser.SetUrlBar(url, num)
@@ -158,7 +158,7 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		return
 	}
 	if(event.type = "DKCef_OnLoadError"){
-		dk.browser.OnLoadError(DK_GetValue(event))
+		dk.browser.OnLoadError(event.value)
 	}
 	if(event.type = "DKCef_ContextMenu"){
 		console.log("dk.browser.OnEvent("+event+")")
@@ -212,7 +212,7 @@ DKBrowser.prototype.OnLoadError = function DKBrowser_OnLoadError(error){
 	if(error == "-105"){
 		var url = document.getElementById("Textbox").value
 		url = url.replace(" ", "%20")
-		var search = "https://www.google.com/?gws_rd=ssl#q=" + url
+		var search = "https://www.duckduckgo.com/?gws_rd=ssl#q=" + url
 		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), search)
 	}
 }
@@ -236,10 +236,9 @@ DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 	}
 	if(key == 36 && DK_KeyIsDown(18)){
 		//console.log("Homepage\n")
-		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "http://google.com")
+		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "http://duckduckgo.com")
 	}
-	
-	var focused = DKWidget_GetFocusElement() //FIXME
+	//var focused = DKWidget_GetFocusElement() //FIXME
 	//console.log("DKWidget_GetFocusElement(): focused="+focused+"\n")
 	if(key == 13 && (focused == "Textbox")){
 		var tabCount = 0
@@ -262,7 +261,6 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
 			tabCount++
 			if(num == tabCount){
-				//DKWidget_RemoveElement(CPP_DKCef_GetBrowserId(i)) //FIXME
 				const ele = document.getElementById(CPP_DKCef_GetBrowserId(i))
 				ele.parentNode.removeChild(ele)
 				CPP_DKCef_CloseBrowser(i)
@@ -276,7 +274,7 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 	console.log("DKBrowser.prototype.NewTab")
 	//DKDEBUGFUNC()
-	var url = "https://google.com"
+	var url = "https://duckduckgo.com"
 	
 	/*
 	var iframediv = document.createElement("div")
@@ -319,10 +317,9 @@ DKBrowser.prototype.SetUrlBar = function DKBrowser_SetUrlBar(url, num){
 				document.getElementById("Tab"+tabCount+"Text").innerHTML = url
 		}
 	}
-
 	if(CPP_DKCef_GetCurrentBrowser() != num)
 		return
-	var focused = DKWidget_GetFocusElement() //FIXME
+	//var focused = DKWidget_GetFocusElement() //FIXME
 	//console.log("Focused Element: focused="+focused+"\n")
 	if(focused != "Textbox")
 		document.getELementById("Textbox").value = url
