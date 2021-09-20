@@ -1,3 +1,4 @@
+//dk.init()
 const MyApp = function() {};
 const myapp = new MyApp;
 
