@@ -1,8 +1,7 @@
 //"use strict";
+console.log("DKBrowser.js loading")
 
-function DKBrowser(){
-	 console.log("DKBrowser constructor")
-}
+function DKBrowser(){}
 
 var selection = "";
 var source_url = "";
@@ -10,13 +9,11 @@ var link_url = "";
 var parent = "";
 var activeTab = 0;
 
-DKBrowser.prototype.init = function init(init_callback){	
-	console.log("DKBrowser_init()")
+DKBrowser.prototype.init = function DKBrowser_init(){	
 	//DKDEBUGFUNC()
-	//CPP_DK_Create("DKCef")
-	//DKPlugin("DKBrowser/DKBrowser.html")
-	CPP_DK_Create("DKBrowser/DKBrowser.html")
-    init_callback && init_callback(this)
+	console.log("!!dk.browser.init()!!")
+	DKPlugin("DKBrowser/DKBrowser.html")
+    //init_callback && init_callback(this)
 	
 	window.addEventListner("keydown", DKBrowser_OnEvent)
 	window.addEventListner("mousedown", DKBrowser_OnEvent)
@@ -54,10 +51,10 @@ DKBrowser.prototype.init = function init(init_callback){
 	document.getElementById("CopyLink").addEventListner("click", DKBrowser_OnEvent)
 	document.getElementById("FindButton").addEventListner("click", DKBrowser_OnEvent)
 	document.getElementById("Settings").addEventListner("click", DKBrowser_OnEvent)
-	DKBrowser_NewTab()
+	dk.browser.NewTab()
 }
 
-function DKBrowser_End(){
+DKBrowser.prototype.end = function DKBrowser_End(){
 	DKDEBUGFUNC()
 	//close all browsers
 	/*
@@ -74,7 +71,7 @@ function DKBrowser_End(){
 	DKClose("DKBrowser/DKBrowser.html")
 }
 
-function DKBrowser_OnEvent(event){
+DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	DKDEBUGFUNC(event)
 	if(event.type = "keydown")
 		DKBrowser_ProcessKey(DK_GetValue(event))
@@ -178,16 +175,16 @@ function DKBrowser_OnEvent(event){
 		if(value == "true"){
 			document.getElementById("Tabs").style["visibility"] = "hidden";
 			document.getElementById("Menu").style["visibility"] = "hidden";
-			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()).style["top"] = "0rem"
-			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()).style["z-index"] = "100"
+			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["top"] = "0rem"
+			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["z-index"] = "100"
 			document.body.appendChild(document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())))
 			CPP_DKWindow_Fullscreen()
 		}
 		else{
 			document.getElementById("Tabs").style["visibility"] = "visible";
 			document.getElementById("Menu").style["visibility"] = "visible";
-			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()).style["top"] = "44rem"
-			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser()).style["z-index"] = "100"
+			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["top"] = "44rem"
+			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["z-index"] = "100"
 			document.body.appendChild(document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())))
 			CPP_DKWindow_Windowed()
 		}
@@ -204,7 +201,7 @@ function DKBrowser_OnEvent(event){
 	}
 }
 
-function DKBrowser_OnLoadError(error){
+DKBrowser.prototype.OnLoadError = function DKBrowser_OnLoadError(error){
 	DKDEBUGFUNC(error)
 	if(error == "-105"){
 		var url = document.getElementById("Textbox").value
@@ -214,7 +211,7 @@ function DKBrowser_OnLoadError(error){
 	}
 }
 
-function DKBrowser_ProcessKey(key){
+DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 	DKDEBUGFUNC(key)
 	if(key == 78 && DK_KeyIsDown(17)){
 		//console.log("New Window\n")
@@ -252,7 +249,7 @@ function DKBrowser_ProcessKey(key){
 	}
 }
 
-function DKBrowser_CloseTab(num){
+DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 	DKDEBUGFUNC(num)
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
@@ -268,7 +265,7 @@ function DKBrowser_CloseTab(num){
 	}
 }
 
-function DKBrowser_NewTab(){
+DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 	DKDEBUGFUNC()
 	var url = "https://google.com";
 	var dummy = DKWidget_CreateElement("DKBrowser/DKBrowser.html", "div", "CefBrowserTab") //FIXME
@@ -289,7 +286,7 @@ function DKBrowser_NewTab(){
 	DKBrowser_SelectTab(tabCount)
 }
 
-function DKBrowser_SetUrlBar(url, num){
+DKBrowser.prototype.SetUrlBar = function DKBrowser_SetUrlBar(url, num){
 	DKDEBUGFUNC(url, num)
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
@@ -309,7 +306,7 @@ function DKBrowser_SetUrlBar(url, num){
 	DKBrowser_UpdateTabs()
 }
 
-function DKBrowser_SelectTab(num){
+DKBrowser.prototype.SelectTab = function DKBrowser_SelectTab(num){
 	DKDEBUGFUNC(num)
 	var tabCount = 0;
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
@@ -319,10 +316,12 @@ function DKBrowser_SelectTab(num){
 				activeTab = tabCount;
 				document.getElementById(CPP_DKCef_GetBrowserId(i)).style["visibility"] = "visible"
 				CPP_DKCef_SetFocus(i)
-				if(isNaN(CPP_DKCef_GetUrl(i)))
+				if(isNaN(CPP_DKCef_GetUrl(i))){
 					document.getElementById("Textbox").value = CPP_DKCef_GetUrl(i)
-				else
-					document.getElementById(("Textbox").value = ""
+				}
+				else{
+					document.getElementById("Textbox").value = ""
+				}
 			}
 			else{
 				document.getElementById(CPP_DKCef_GetBrowserId(i)).style["visibility"] = "hidden"
@@ -332,23 +331,25 @@ function DKBrowser_SelectTab(num){
 	DKBrowser_UpdateTabs()
 }
 
-function DKBrowser_UpdateTabs(){
+DKBrowser.prototype.UpdateTabs = function DKBrowser_UpdateTabs(){
 	DKDEBUGFUNC()	
 	var num = CPP_DKCef_GetBrowsers()
 	var current = CPP_DKCef_GetCurrentBrowser()
 	
 	var tabCount = 0;
-	for(var i=0; i<CPP_DKCef_GetBrowsers() i++){
+	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
 			tabCount++;
 			document.getElementById("Tab"+String(tabCount)).style["display"] = "inline-block"
 			var url = CPP_DKCef_GetUrl(i)
 			if(typeof url === 'string')
 				document.getElementById("Tab"+String(tabCount)+"Text").innerHTML = url
-			if(i == current)
-				document.getElementById("Tab"+String(tabCount).style["background-color"] = "rgb(230,230,230)"
-			else
+			if(i == current){
+				document.getElementById("Tab"+String(tabCount)).style["background-color"] = "rgb(230,230,230)"
+			}
+			else{
 				document.getElementById("Tab"+String(tabCount)).style["background-color"] = "rgb(180,180,180)"
+			}
 		}
 	}
 	
