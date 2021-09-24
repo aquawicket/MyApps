@@ -161,7 +161,7 @@ function Panel0_FBresponse(param, value)
 	if(param == "id"){
 		FACEBOOK_ID = value;
 		DKWidget_SetAttribute("ProfilePic", "src", "http://graph.facebook.com/"+FACEBOOK_ID+"/picture");
-		DKWidget_Show("ProfilePic");
+		dk.show("ProfilePic");
 		Panel0_GetUSER_ID();
 		Panel0_Update_PlaylistDrop();
 		//var x = document.getElementById("PlaylistDrop");

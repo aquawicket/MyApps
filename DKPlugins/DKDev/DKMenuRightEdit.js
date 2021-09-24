@@ -69,21 +69,21 @@ function DKMenuRightEdit_OnEvent(event)
 		DKMenuRightEdit_SetElement(DK_GetValue(event));
 	}
 	if(DK_Id(event,"InfoTab")){
-		DKWidget_Toggle("InfoSection");
+		dk.toggle("InfoSection");
 	}
 	if(DK_Id(event,"PositionTab")){
-		DKWidget_Toggle("PositionSection");
-		DKWidget_Toggle("PositionSection2");
-		DKWidget_Toggle("MarginSection");
+		dk.toggle("PositionSection");
+		dk.toggle("PositionSection2");
+		dk.toggle("MarginSection");
 	}
 	if(DK_Id(event,"ColorTab")){
-		DKWidget_Toggle("ColorSection");
+		dk.toggle("ColorSection");
 	}
 	if(DK_Id(event,"TextTab")){
-		DKWidget_Toggle("TextSection");
+		dk.toggle("TextSection");
 	}
 	if(DK_Id(event,"InnerHtmlTab")){
-		DKWidget_Toggle("InnerHtmlSection");
+		dk.toggle("InnerHtmlSection");
 	}
 	if(DK_Id(event,"DKParent")){
 		DKMenuRightEdit_SetElement(DKWidget_GetInnerHtml("DKParent"));
@@ -264,7 +264,7 @@ function DKMenuRightEdit_SetElement(id)
 	
 	MenuRight_element = id;
 
-	var file = DKWidget_GetFile(id);
+	var file = id
 	DKWidget_SetValue("InfoFile", file);
 
 	DKWidget_SetValue("InfoId", id);

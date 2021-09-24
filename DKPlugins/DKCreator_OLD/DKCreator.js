@@ -74,10 +74,10 @@ function DKCreator_OnEvent(event)
 		}
 	}
 	if(DK_Id(event,"settings")){
-		DKWidget_Show("update");
+		dk.show("update");
 	}
 	else{
-		DKWidget_Hide("update");
+		dk.hide("update");
 	}
 	if(DK_Id(event,"Svn Update")){
 		DKLog("Svn Update \n");
@@ -89,26 +89,26 @@ function DKCreator_OnEvent(event)
 	}
 	if(DK_Id(event,"libraries")){
 		DKCreator_UpdateLibs();
-		DKWidget_Show("LibList");
+		dk.show("LibList");
 	}
 	else{
-		DKWidget_Hide("LibList");
+		dk.hide("LibList");
 	}
 	if(DK_Id(event,"build")){
-		DKWidget_Show("BuildList");
+		dk.show("BuildList");
 	}
 	else{
-		DKWidget_Hide("BuildList");
+		dk.hide("BuildList");
 	}
 	if(DK_Id(event,"toggleNotepad")){
-		//DKWidget_Toggle("DKNotepad.html");
+		//dk.toggle("DKNotepad.html");
 		CPP_DK_Create("DKNotepad/DKNotepad.js");
 		//var assets = DKAssets_LocalAssets();
 		var dkpath = "/../../../Docs/TODO.txt";
 		DKNotepad_LoadFile(dkpath);
 	}
 	if(DK_Id(event,"LoginText")){
-		DKWidget_Toggle("DKLogin.html");
+		dk.toggle("DKLogin.html");
 		CPP_DK_Create("DKLogin/DKLogin.js");
 	}
 	

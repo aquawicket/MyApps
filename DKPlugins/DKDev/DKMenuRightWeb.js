@@ -44,7 +44,7 @@ function DKMenuRightWeb_Connect()
 	var url = DKWidget_GetValue("ServerBox") + DKWidget_GetValue("PathBox");
 	if(DKCurl_FtpConnect(url, DKWidget_GetValue("NameBox"), DKWidget_GetValue("PassBox"), "81")){
 		DKLog("FTP: successfully connected. \n");
-		DKWidget_Show("ftpcheck");
+		dk.show("ftpcheck");
 		
 		// Save FTP setting to project file for app
 		var assets = DKAssets_LocalAssets();
@@ -55,7 +55,7 @@ function DKMenuRightWeb_Connect()
 		DKFile_SetSetting(assets+"USER/Ftp.txt", "[FTP_PORT]", ""); //TODO
 		return;
 	}
-	DKWidget_Hide("ftpcheck");
+	dk.hide("ftpcheck");
 	DKLog("FTP: connection failed. \n");
 }
 

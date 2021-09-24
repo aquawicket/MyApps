@@ -67,10 +67,10 @@ function DKMenuRight_OnEvent(event)
 /////////////////////////////////////
 function DKMenuRight_SetPanel(string)
 {
-	DKWidget_Hide("DKDev/DKMenuRightApp.html");
-	DKWidget_Hide("DKDev/DKMenuRightEdit.html");
-	DKWidget_Hide("DKDev/DKMenuRightTree.html");
-	DKWidget_Hide("DKDev/DKMenuRightWeb.html");
+	dk.hide("DKDev/DKMenuRightApp.html");
+	dk.hide("DKDev/DKMenuRightEdit.html");
+	dk.hide("DKDev/DKMenuRightTree.html");
+	dk.hide("DKDev/DKMenuRightWeb.html");
 	DKWidget_SetAttribute("AppImage", "src", "DKDev/app.png");
 	DKWidget_SetAttribute("Image19", "src", "DKDev/pencil.png");
 	DKWidget_SetAttribute("Image20", "src", "DKDev/tree.png");
@@ -78,19 +78,19 @@ function DKMenuRight_SetPanel(string)
 
 	if(string == "App"){
 		DKWidget_SetAttribute("AppImage", "src", "DKDev/app-select.png");
-		DKWidget_Show("DKDev/DKMenuRightApp.html");
+		dk.show("DKDev/DKMenuRightApp.html");
 	}
 	if(string == "Edit"){
 		DKWidget_SetAttribute("Image19", "src", "DKDev/pencil-select.png");
-		DKWidget_Show("DKDev/DKMenuRightEdit.html");
+		dk.show("DKDev/DKMenuRightEdit.html");
 	}
 	if(string == "Tree"){
 		DKWidget_SetAttribute("Image20", "src", "DKDev/tree-select.png");
-		DKWidget_Show("DKDev/DKMenuRightTree.html");
+		dk.show("DKDev/DKMenuRightTree.html");
 	}
 	if(string == "Web"){
 		DKWidget_SetAttribute("WebImage", "src", "DKDev/web-select.png");
-		DKWidget_Show("DKDev/DKMenuRightWeb.html");
+		dk.show("DKDev/DKMenuRightWeb.html");
 	}
 }
 

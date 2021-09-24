@@ -138,14 +138,14 @@ function DoPrint(ele, callback)
 	var elems = str.split(",");
 	for(var i=0; i<elems.length; i++){
 		if(ele != elems[i]){
-			DKWidget_Hide(elems[i]);
+			dk.hide(elems[i]);
 		}
 	}
 	
     window.print();
     setTimeout(function(){ 
 		for(var i=0; i<elems.length; i++){
-			DKWidget_Show(elems[i]);
+			dk.show(elems[i]);
 		}
 		callback(); 
 	}, 100);

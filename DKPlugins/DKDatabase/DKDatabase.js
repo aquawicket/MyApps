@@ -127,7 +127,7 @@ function DKDatabase_OnEvent(event)
 function DKDatabase_Connect()
 {
 	DKDEBUGFUNC();
-	DKWidget_Hide("Success");
+	dk.hide("Success");
 	var server = DKWidget_GetValue("ServerBox");
 	var port = DKWidget_GetValue("PortBox");
 	var username = DKWidget_GetValue("NameBox");
@@ -139,7 +139,7 @@ function DKDatabase_Connect()
 	if(!DKMySql_Connect(server, username, password, "")){ return false; }
 	//DKMySql_Database("DKData");
 
-	DKWidget_Show("Success");
+	dk.show("Success");
 	var assets = DKAssets_LocalAssets();
 	var file = assets+"USER/database.txt";
 	var protocol = DKAssets_Protocol();

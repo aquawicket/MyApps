@@ -334,7 +334,7 @@ function DKDev_RemoveDragHandles(id)
 		if(DKDev_Ignore(list[i])){ continue; }		
 		
 		//C++ (rocket)
-		var tag = DKWidget_GetTagName(list[i]);
+		var tag = byId(list[i]).tag
 		if(tag == "handle"){
 			DKWidget_RemoveElement(list[i]);
 		}
@@ -421,7 +421,7 @@ function DKDev_Paste()
 	while(n != -1){
 		place = string.indexOf("\"",n+4);
 		var res = string.substring(n+4, place);
-		var new_id = DKWidget_GetAvailableId(res);
+		var new_id = dk.getAvailableId(res);
 		string = string.replace("id=\""+res+"\"", "id=\""+new_id+"\"");
 		DKLog("Paste: renamed "+res+" to "+new_id+"\n");
 		n = string.indexOf("id=", place);
@@ -453,7 +453,7 @@ function DKDev_NewPage()
 {
 	DKLog("DKDev_NewPage("+stored_element+") \n");
 	
-	//var id = DKWidget_GetAvailableId("NewWidget.html");
+	//var id = dk.getAvailableId("NewWidget.html");
 	CPP_DK_Create(".html,"+stored_element, function(){
 		DKFrame_Widget("New.html");
 		DKDev_AddDragHandles("New.html");
@@ -632,7 +632,7 @@ function DKDev_NewHSlider()
 function DKDev_SaveHtmlFile(id)
 {
 	DKLog("DKDev_SaveHtmlFile("+id+") \n");
-	var file = DKWidget_GetFile(id);
+	var file = id;
 	if(file.indexOf(".html") == -1){
 		DKLog("DKDev_SaveHtmlFile("+id+") Invalid .html file\n", DKERROR);
 		return false; 
@@ -671,7 +671,7 @@ function DKDev_SaveHtmlFile(id)
 	var data = DKWidget_GetOuterHtml(file);
 	if(data){
 		var assets = DKAssets_LocalAssets();
-		DKFile_StringToFile(data, assets+DKWidget_GetFile(file));
+		DKFile_StringToFile(data, assets+file);
 	}
 	
 	DKDev_AddDragHandles(file);

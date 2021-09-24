@@ -45,7 +45,7 @@ function Remote_OnEvent(event)
 	}
 	if(DK_Id(event, "Wifi")){
 		console.log("Button: Wifi\n");
-		DKWidget_Toggle("address");
+		dk.toggle("address");
 		if(!DKWidget_Visible("address")){
 			Remote_Connect();
 		}
@@ -119,7 +119,7 @@ function Remote_MessageToServer(message)
 
 	/*
 	if(DK_GetValue(event) == "connected"){
-		DKWidget_Hide("address");
+		dk.hide("address");
 		DKWidget_SetAttribute("Wifi", "src", "DKRemote/wifiGreen.png");
 		//DK_CallFunc("DKOSGRocket::DirtyRefresh","");
 		var assets = DKAssets_LocalAssets();
@@ -127,7 +127,7 @@ function Remote_MessageToServer(message)
 		DKFile_SetSetting(assets+"remote.txt", "[SERVER]", address); //provide full path in case file does not exist
 	}
 	if(DK_GetValue(event) == "disconnected"){
-		DKWidget_Show("address");
+		dk.show("address");
 		DKWidget_SetAttribute("Wifi", "src", "DKRemote/wifiRed.png");
 	}
 	*/

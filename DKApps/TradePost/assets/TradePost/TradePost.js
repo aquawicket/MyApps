@@ -5,7 +5,7 @@ function TradePost_Init()
 	CPP_DK_Create("TradePost/TradePost.html");
 	CPP_DK_Create("TradePost/Inventory.js", function(){
 		DKWidget_AppendChild("TradePost/TradePost.html", "TradePost/Inventory.html");
-		DKWidget_Hide("TradePost/Inventory.html");
+		dk.hide("TradePost/Inventory.html");
 	});
 	CPP_DK_Create("TradePost/Buy.js", function(){
 		DKWidget_AppendChild("TradePost/TradePost.html", "TradePost/Buy.html");
@@ -51,13 +51,13 @@ function TradePost_OnEvent(event)
 	
 	if(DK_Id(event, "Buy")){
 		//console.log("Buy\n");
-		DKWidget_Hide("TradePost/Inventory.html");
-		DKWidget_Show("TradePost/Buy.html");
+		dk.hide("TradePost/Inventory.html");
+		dk.show("TradePost/Buy.html");
 	}
 	if(DK_Id(event, "Inventory")){
 		//console.log("Inventory\n");
-		DKWidget_Hide("TradePost/Buy.html");
-		DKWidget_Show("TradePost/Inventory.html");
+		dk.hide("TradePost/Buy.html");
+		dk.show("TradePost/Inventory.html");
 	}
 	if(DK_Id(event, "Craigslist")){
 		DK_QueueDuktape("DKBrowser_NewTab();");

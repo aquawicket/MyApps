@@ -1,18 +1,14 @@
 CPP_DK_Create("SchultzEvolution/Panel1.html,Panel0.html");
 
-//////////////////////
-function Panel1_Init()
-{
-	//DKWidget_Hide("Panel1.html");
+function Panel1_Init(){
+	//dk.hide("Panel1.html");
 	//DKMySql_Prep("Panel1.html");  //only need to do this when we update the gui with new databases, tables and fields
 	
 	current_record = DKMySql_GetFirstRecordNum("Panel1.html");
 	DKMySql_LoadRecord("Panel1.html", current_record);
 }
 
-//////////////////////////////
-function Panel1_OnEvent(event)
-{
+function Panel1_OnEvent(event){
 	DKLog("Panel1_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 }
 
