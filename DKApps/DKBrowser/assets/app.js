@@ -1,3 +1,4 @@
+//const url = "http://duckduckgo.com"
 //const url = "http://www.google.com/"
 //const url = "chrome://gpu"
 //const url = "http://127.0.0.1:2393"
