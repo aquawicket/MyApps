@@ -3,7 +3,7 @@ var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
 var USE_RML  = 1; //Use with caution
 var DKApp_url   = "file:///"+CPP_DKAssets_LocalAssets()+"/index.html";
-//var DKApp_url = "http://digitalknob.com/Digitalknob/";
+//var DKApp_url = "http://TODO.com/Digitalknob/";
 
 CPP_DK_Create("DK/init.js", function(){});
 

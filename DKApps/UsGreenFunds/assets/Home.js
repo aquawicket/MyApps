@@ -20,7 +20,7 @@ function Home_Init()
 ////////////////////////////
 function Home_OnEvent(event)
 {
-	DKLog("Home_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("Home_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "login")){
 		Home_Login();

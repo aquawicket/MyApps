@@ -63,7 +63,7 @@ function DKMenuRightEdit_End()
 ///////////////////////////////////////
 function DKMenuRightEdit_OnEvent(event)
 {
-	DKLog("DKMenuRightEdit_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("DKMenuRightEdit_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Type(event, "SetElement")){
 		DKMenuRightEdit_SetElement(DK_GetValue(event));
@@ -139,7 +139,7 @@ function DKMenuRightEdit_OnEvent(event)
 	if(DK_Type(event,"background_color")){
 		var color = DK_GetValue(event);
 		color = DKWidget_ValidateColor(color);
-		//DKLog("\n\n"+color+"\n")
+		//console.log("\n\n"+color+"\n")
 		DKWidget_SetProperty("DKBGColor", "background-color", color);
 		DKWidget_SetProperty(MenuRight_element, "background-color", color);
 	}
@@ -150,7 +150,7 @@ function DKMenuRightEdit_OnEvent(event)
 		DKWidget_SetProperty(MenuRight_element, "color", color);
 	}
 	if(DK_Id(event, "InfoFile")){
-		//DKLog(DK_GetValue(event)+"\n");
+		//console.log(DK_GetValue(event)+"\n");
 		DKWidget_SetFile(MenuRight_element, DK_GetValue(event));
 	}
 	if(DK_Id(event, "InfoId")){
@@ -260,7 +260,7 @@ function DKMenuRightEdit_OnEvent(event)
 ///////////////////////////////////////
 function DKMenuRightEdit_SetElement(id)
 {
-	DKLog("DKMenuRightEdit_SetElement("+id+") \n");
+	console.log("DKMenuRightEdit_SetElement("+id+") \n");
 	
 	MenuRight_element = id;
 

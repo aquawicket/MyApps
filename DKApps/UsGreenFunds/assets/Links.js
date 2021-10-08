@@ -11,7 +11,7 @@ function Links_Init()
 /////////////////////////////
 function Links_OnEvent(event)
 {
-	DKLog("Links_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("Links_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "add_link")){
 		Links_AddLink(DKWidget_GetValue("link_text"));
@@ -29,7 +29,7 @@ function Links_Update()
 	var assets = DKAssets_GetDataPath();
 	stored_links = DKFile_FileToString("links.txt");
 	if(!stored_links){
-		DKLog("cannot get links.txt");
+		console.log("cannot get links.txt");
 	}
 	
 	var links = stored_links.split(",");
@@ -56,14 +56,14 @@ function Links_Update()
 ////////////////////////////
 function Links_AddLink(link)
 {
-	DKLog("Links_AddLink: "+link+"\n");
+	console.log("Links_AddLink: "+link+"\n");
 	if(!DKFile_PathExists(link)){
-		DKLog("link does not exists");
+		console.log("link does not exists");
 		return;
 	}
-	//DKLog("link exists");
+	//console.log("link exists");
 	stored_links = stored_links+link+",";
-	//DKLog(stored_links+"\n");
+	//console.log(stored_links+"\n");
 	DKFile_SaveFile("links.txt", stored_links);
 	Links_Update();
 }
@@ -71,7 +71,7 @@ function Links_AddLink(link)
 //////////////////////////
 function Links_Delete(url)
 {
-	DKLog("Delete: "+url);
+	console.log("Delete: "+url);
 
 	if(DK_GetBrowser() != "Rocket"){
 		if(confirm("Delete this link?") == true){

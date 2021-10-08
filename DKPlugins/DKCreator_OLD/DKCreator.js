@@ -54,13 +54,13 @@ function DKCreator_Init()
 ///////////////////////////////
 function DKCreator_OnEvent(event)
 {
-	DKLog("DKCreator_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("DKCreator_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event,"spin")){
 		DK_Crash();
 	}
 	if(DK_Id(event,"logo") && DK_Type(event,"mouseover")){
-		DKLog("hover logo \n");
+		console.log("hover logo \n");
 	}
 	if(DK_Id(event,"logo") && DK_Type(event,"click")){
 		DKSendEvent("DKMessage.html", "ShowMessage", "logo clicked");
@@ -80,11 +80,11 @@ function DKCreator_OnEvent(event)
 		dk.hide("update");
 	}
 	if(DK_Id(event,"Svn Update")){
-		DKLog("Svn Update \n");
+		console.log("Svn Update \n");
 		DKSendEvent("DKCreator", "SvnUpdate", "");
 	}
 	if(DK_Id(event,"Svn Commit")){
-		DKLog("Svn Commit \n");
+		console.log("Svn Commit \n");
 		DKSendEvent("DKCreator", "SvnCommit", "");
 	}
 	if(DK_Id(event,"libraries")){
@@ -104,8 +104,8 @@ function DKCreator_OnEvent(event)
 		//dk.toggle("DKNotepad.html");
 		CPP_DK_Create("DKNotepad/DKNotepad.js");
 		//var assets = DKAssets_LocalAssets();
-		var dkpath = "/../../../Docs/TODO.txt";
-		DKNotepad_LoadFile(dkpath);
+		var path = "/../../../Docs/TODO.txt";
+		DKNotepad_LoadFile(path);
 	}
 	if(DK_Id(event,"LoginText")){
 		dk.toggle("DKLogin.html");
@@ -113,7 +113,7 @@ function DKCreator_OnEvent(event)
 	}
 	
 	if(DK_Id(event, "BuildLibraries")){
-		DKLog("********** BuildLibraries **************");
+		console.log("********** BuildLibraries **************");
 		DKSendEvent("DKCreator", "BuildLibraries", DKWidget_GetValue("OSList")+","+DKWidget_GetValue("BuildType"));
 	}
 	if(DK_Id(event, "Build App")){
@@ -123,11 +123,11 @@ function DKCreator_OnEvent(event)
 		DKSendEvent("DKCreator", "RebuildApp", DKWidget_GetValue("AppList")+","+DKWidget_GetValue("OSList")+","+DKWidget_GetValue("BuildType"));
 	}
 	if(DK_Id(event, "Build All")){
-		DKLog("DKCreator::Build All: TODO", DKWARN);
+		console.log("DKCreator::Build All: TODO")
 		//DKSendEvent("DKCreator", "BuildApp", //DKWidget_GetValue("AppList")+","+DKWidget_GetValue("OSList")+","+DKWidget_GetValue("BuildType"));
 	}
 	if(DK_Id(event, "Rebuild All")){
-		DKLog("DKCreator::Rebuild All: TODO", DKWARN);
+		console.log("DKCreator::Rebuild All: TODO")
 		//DKSendEvent("DKCreator", "RebuildApp", //DKWidget_GetValue("AppList")+","+DKWidget_GetValue("OSList")+","+DKWidget_GetValue("BuildType"));
 	}
 	if(DK_Id(event, "Copy Assets")){
@@ -138,7 +138,7 @@ function DKCreator_OnEvent(event)
 	}
 	
 	if(DK_IdLike(event,"LIBRARY")){
-		DKLog("LIB Clicked");
+		console.log("LIB Clicked");
 		var value = DKWidget_GetInnerHtml(DK_GetId(event));
 		DKSendEvent("DKCreator", "BuildLib", value+","+DKWidget_GetValue("OSList")+","+DKWidget_GetValue("BuildType"));
 	}
@@ -209,7 +209,7 @@ function DKCreator_UpdateLibs()
 	DKWidget_SetInnerHtml("LibList", ""); //clear
 
 	var result = DK_CallFunc("DKCreator::GetLibList", "");
-	DKLog("Result:"+result);
+	console.log("Result:"+result);
 	
 	var libs = result.split(",");
 	

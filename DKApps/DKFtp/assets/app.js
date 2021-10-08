@@ -3,7 +3,7 @@ var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
 var USE_RML  = 0; //Use with caution
 var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
-//var DKApp_url = "http://digitalknob.com/DKIDE/index.html";
+//var DKApp_url = "http://TODO.com/DKIDE/index.html";
 //var DKApp_url = "http://google.com";
 //var DKApp_url = "chrome://gpu";
 

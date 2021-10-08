@@ -64,13 +64,13 @@ function DKApp_UpdateApp(name)
 	app = name
 	icon = "Digitalknob/"+app+"_icon.png";
 	//os = DK_GetOS();
-	win32_download = "http://digitalknob.com/Download/"+app+".exe"
-	win64_download = "http://digitalknob.com/Download/"+app+"_64.exe"
-	mac_download = "http://digitalknob.com/Download/"+app+"_mac64.zip";
-	linux_download = "http://digitalknob.com/Download/"+app+"_linux64.zip";
-	ios_download = "http://digitalknob.com/Download/"+app+"_ios.zip";
-	android_download = "http://digitalknob.com/Download/"+app+".apk";
-	web_app = "http://digitalknob.com/"+app;
+	win32_download = "http://TODO.com/Download/"+app+".exe"
+	win64_download = "http://TODO.com/Download/"+app+"_64.exe"
+	mac_download = "http://TODO.com/Download/"+app+"_mac64.zip";
+	linux_download = "http://TODO.com/Download/"+app+"_linux64.zip";
+	ios_download = "http://TODO.com/Download/"+app+"_ios.zip";
+	android_download = "http://TODO.com/Download/"+app+".apk";
+	web_app = "http://TODO.com/"+app;
 	
 	//Adjust icon
 	DKWidget_SetAttribute("DKApp_icon", "src", icon);
@@ -214,7 +214,7 @@ function DKApp_AddImage(i)
 	DKDEBUGFUNC(i);
 	//DKFile_Exists("Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
 	//DKFile_Exists("file:///C:/digitalknob/USER/DKApps/DigitalKnob/assets/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){
-	DKFile_Exists("http://digitalknob.com/Digitalknob/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){	
+	DKFile_Exists("http://TODO.com/Digitalknob/Digitalknob/"+app+"_screenshot0"+i+".png", function(rval){	
 		if(rval){
 			var id = DKWidget_CreateElement("DKApp_screenshots","img","screenshot");
 			DKWidget_SetAttribute(id, "src", "Digitalknob/"+app+"_screenshot0"+i+".png");

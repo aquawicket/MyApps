@@ -282,7 +282,7 @@ function Craigslist_ToArry(url, callback)
 				buyItem.link = items[i].getElementsByClassName("result-image gallery")[0].href;  //url
 			}
 			buyItem.link = buyItem.link.replace("file:///C:",""); //url fix
-			buyItem.link = buyItem.link.replace("http://digitalknob.com",""); //url fix
+			buyItem.link = buyItem.link.replace("http://TODO.com",""); //url fix
 			if(items[i].getElementsByClassName("result-price")[0]){
 				buyItem.price = Number(items[i].getElementsByClassName("result-price")[0].innerHTML.replace("$","")); //price
 			}

@@ -10,7 +10,7 @@ function Documents_Init()
 /////////////////////////////////
 function Documents_OnEvent(event)
 {
-	DKLog("Documents_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("Documents_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_GetId(event).indexOf("delete_") > -1){
 		var file = DK_GetId(event).replace("delete_", "");
@@ -32,7 +32,7 @@ function Documents_Update()
 		var htmldocs = DKFile_DirectoryContents(realpath+"Documents/");
 		docs = docs.concat(htmldocs);
 	}
-	//DKLog("FILE DOCS: "+docs+"\n");
+	//console.log("FILE DOCS: "+docs+"\n");
 	
 	var files = docs.split(",");
 	for(i=0; i<files.length; i++){
@@ -73,7 +73,7 @@ function Documents_Delete(file)
  	if(DK_GetBrowser() != "Rocket" && realpath){
 		if(confirm("Delete this file?") == true){
 			var result = DKFile_Delete(realpath+"Documents/"+file);
-			DKLog(result+"\n");
+			console.log(result+"\n");
 		}
 	}
 	else{
@@ -86,7 +86,7 @@ function Documents_Delete(file)
 /////////////////////////////
 function Documents_Edit(file)
 {
-    //DKLog("Edit: "+file+"\n");
+    //console.log("Edit: "+file+"\n");
 	CPP_DK_Create("DKNotepad/DKNotepad.js");
 	dk.show("DKNotepad.html");
 	var assets = DKAssets_GetDataPath();

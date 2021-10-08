@@ -8,5 +8,5 @@ function Panel2_Init(){
 }
 
 function Panel2_OnEvent(event){
-	DKLog("Panel2_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("Panel2_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 }

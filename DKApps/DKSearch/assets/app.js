@@ -3,7 +3,7 @@ var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
 var USE_RML  = 1; //Use with caution
 var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
-//var DKApp_url = "http://digitalknob.com/DKSearch
+//var DKApp_url = "http://TODO.com/DKSearch
 
 CPP_DK_Create("DK/init.js", function(){});
 

@@ -17,14 +17,14 @@ function DKMenuRightWeb_End()
 ////////////////////////////////////
 function DKMenuRightWeb_OnEvent(event)
 {
-	DKLog("DKMenuRightWeb_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("DKMenuRightWeb_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "ConnectButton")){
 		DKMenuRightWeb_Connect();
 	}
 	if(DK_Id(event, "UploadButton")){
 		DKMenuRightWeb_Upload("");
-		DKLog("*** Done Uploading WebApp \n");
+		console.log("*** Done Uploading WebApp \n");
 	}
 }
 
@@ -43,7 +43,7 @@ function DKMenuRightWeb_Connect()
 {
 	var url = DKWidget_GetValue("ServerBox") + DKWidget_GetValue("PathBox");
 	if(DKCurl_FtpConnect(url, DKWidget_GetValue("NameBox"), DKWidget_GetValue("PassBox"), "81")){
-		DKLog("FTP: successfully connected. \n");
+		console.log("FTP: successfully connected. \n");
 		dk.show("ftpcheck");
 		
 		// Save FTP setting to project file for app
@@ -56,20 +56,20 @@ function DKMenuRightWeb_Connect()
 		return;
 	}
 	dk.hide("ftpcheck");
-	DKLog("FTP: connection failed. \n");
+	console.log("FTP: connection failed. \n");
 }
 
 //////////////////////////////////////
 function DKMenuRightWeb_Upload(folder)
 {
-	DKLog("Uploading Web App ..... \n");
+	console.log("Uploading Web App ..... \n");
 	var assets = DKAssets_LocalAssets()+"/";
 	var files = DKFile_DirectoryContents(assets+folder);
 	var arry = files.split(",");
 	for(var i=0; i<arry.length; i++){
 		if(DKFile_IsDirectory(assets+folder+arry[i])){
-			//DKLog("Uploading folders not supported yet \n");
-			//DKLog("Folder: "+arry[i]+"\n")
+			//console.log("Uploading folders not supported yet \n");
+			//console.log("Folder: "+arry[i]+"\n")
 			DKMenuRightWeb_Upload(folder+arry[i]+"/");
 			continue;
 		}
@@ -77,8 +77,8 @@ function DKMenuRightWeb_Upload(folder)
 		var mtime = DKFile_GetLocalModifiedDate(assets+folder+arry[i]);
 		var htmlurl = DKWidget_GetValue("ServerBox")+DKWidget_GetValue("PathBox")+folder+arry[i];
 		var rtime = DKCurl_FileDate(htmlurl);
-		//DKLog(arry[i]+": ctime:"+String(ctime)+" mtime:"+String(mtime)+"\n");
-		//DKLog(htmlurl+": "+String(rtime)+"\n");
+		//console.log(arry[i]+": ctime:"+String(ctime)+" mtime:"+String(mtime)+"\n");
+		//console.log(htmlurl+": "+String(rtime)+"\n");
 		if(!rtime){
 			DKCurl_FtpUpload(assets+folder+arry[i], htmlurl);
 			continue;
@@ -87,13 +87,13 @@ function DKMenuRightWeb_Upload(folder)
 		var time;
 		if(ctime > mtime){ time = ctime; }
 		else{ time = mtime; }
-		//DKLog("local_time:"+String(time)+" server_time:"+String(rtime)+"\n"); 
+		//console.log("local_time:"+String(time)+" server_time:"+String(rtime)+"\n"); 
 
 		if(ctime > rtime || mtime > rtime){
 			DKCurl_FtpUpload(assets+folder+arry[i], htmlurl);
 			continue;
 		}
 		
-		DKLog("Skipping: "+arry[i]+"\n");
+		console.log("Skipping: "+arry[i]+"\n");
 	}
 }

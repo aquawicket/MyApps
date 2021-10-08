@@ -99,7 +99,7 @@ function Panel0_OnEvent(event)
 		DKFacebook_Login(Panel0_FBconnect);
 	}
 	if(DK_Id(event, "Text0")){
-		window.open("http://digitalknob.com/DKPlayer", "_blank", "toolbar=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
+		window.open("http://TODO.com/DKPlayer", "_blank", "toolbar=no, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400");
 		close();
 	}
 	if(DK_Id(event, "FullWindow")){

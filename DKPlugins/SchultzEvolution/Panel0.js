@@ -23,7 +23,7 @@ function Panel0_Init(){
 }
 
 function Panel0_OnEvent(event){
-	DKLog("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("Panel0_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "Sync_Button")){
 		dk.hide("Panel2.html");
@@ -62,10 +62,10 @@ function Panel0_NextRecord(){
 }
 
 function Panel0_NewRecord(){
-	DKLog("Creating new record. \n");
+	console.log("Creating new record. \n");
 	var query = "INSERT INTO SyncRequest () VALUES ()";
 	var result = DKMySql_Query(query);
-	DKLog(result);
+	console.log(result);
 	current_record = DKMySql_GetLastRecordNum("Panel1.html");
 	DKMySql_LoadRecord("Panel1.html", current_record);
 	DKMySql_LoadRecord("Panel2.html", current_record);

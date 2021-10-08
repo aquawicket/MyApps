@@ -11,7 +11,7 @@ function Templates_Init()
 /////////////////////////////
 function Templates_OnEvent(event)
 {
-	DKLog("Templates_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("Templates_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "add_template_link")){
 		Templates_AddLink(DKWidget_GetValue("template_text"));
@@ -29,7 +29,7 @@ function Templates_Update()
 	var assets = DKAssets_GetDataPath();
 	stored_templates = DKFile_FileToString("templates.txt");
 	if(!stored_templates){
-		DKLog("cannot get templates.txt");
+		console.log("cannot get templates.txt");
 	}
 	
 	var templates = stored_templates.split(",");
@@ -56,14 +56,14 @@ function Templates_Update()
 ////////////////////////////
 function Templates_AddLink(link)
 {
-	DKLog("Templates_AddLink: "+link+"\n");
+	console.log("Templates_AddLink: "+link+"\n");
 	if(!DKFile_PathExists(link)){
-		DKLog("link does not exists");
+		console.log("link does not exists");
 		return;
 	}
-	//DKLog("link exists");
+	//console.log("link exists");
 	stored_templates = stored_templates+link+",";
-	//DKLog(stored_templates+"\n");
+	//console.log(stored_templates+"\n");
 	DKFile_SaveFile("templates.txt", stored_templates);
 	Templates_Update();
 }
@@ -71,7 +71,7 @@ function Templates_AddLink(link)
 //////////////////////////
 function Templates_Delete(url)
 {
-	DKLog("Delete: "+url);
+	console.log("Delete: "+url);
 
 	if(DK_GetBrowser() != "Rocket"){
 		if(confirm("Delete this link?") == true){

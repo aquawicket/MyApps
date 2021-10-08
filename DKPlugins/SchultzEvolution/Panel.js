@@ -8,14 +8,14 @@ function Panel_Init()
 
 function Panel_OnEvent(event)
 {
-	DKLog("Panel_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
+	console.log("Panel_OnEvent("+DK_GetId(event)+","+DK_GetType(event)+","+DK_GetValue(event)+")\n");
 	
 	if(DK_Id(event, "login_Button")){
-		//DKLog("login_Button \n");
+		//console.log("login_Button \n");
 		var name = DKWidget_GetValue("name_Textbox");
 		var pass = DKWidget_GetValue("pass_Textbox");
 		if(name == "vince" && pass == "123"){
-			DKLog("Succesfully logged in.\n");
+			console.log("Succesfully logged in.\n");
 			dk.hide("Panel.html");
 			CPP_DK_Create("SchultzEvolution/Panel0.js");
 		}
