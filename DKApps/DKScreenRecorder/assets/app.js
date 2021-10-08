@@ -20,7 +20,7 @@ function app_OnEvent(event){
 
 function app_LoadPlugins()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKScreenRecorder");
 	CPP_DK_Create("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Record", 1003);
@@ -33,5 +33,5 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKDEBUGFUNC();
+	
 }

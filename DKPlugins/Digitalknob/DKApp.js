@@ -12,7 +12,7 @@ var download_link = "";
 
 function DKApp_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("Digitalknob/DKApp.html,Digitalknob_content");
 	DKAddEvent("DKApp_webapp", "click", DKApp_OnEvent);
 	DKAddEvent("DKApp_download", "click", DKApp_OnEvent);
@@ -28,7 +28,7 @@ function DKApp_Init()
 
 function DKApp_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(DKApp_OnEvent);
 	DKClose("Digitalknob/DKApp.html");
 }
@@ -135,7 +135,7 @@ function DKApp_UpdateApp(name)
 /////////////////////////////
 function DKApp_EnableWebApp()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetProperty("DKApp_webapp", "visibility", "visible");
 }
 
@@ -202,7 +202,7 @@ function DKApp_UpdateDescription(string)
 //////////////////////////////////
 function DKApp_UpdateScreenshots()
 {
-	DKDEBUGFUNC();
+	
 	for(var i=0; i<6 || function(){}(); i++){
 		DKApp_AddImage(i);
 	}

@@ -1,7 +1,7 @@
 ////////////////////////
 function Receiver_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKReceiver/Receiver.html");	
 	CPP_DK_Create("DKWebSockets");
 	DKWebSockets_CreateServer("127.0.0.1", 80);
@@ -16,7 +16,7 @@ function Receiver_Init()
 ///////////////////////
 function Receiver_End()
 {
-	DKDEBUGFUNC();
+	
 	DKWebSockets_CloseServer();
 	DKRemoveEvents(Receiver_OnEvent);
 	DKClose("DKReceiver/Receiver.html");

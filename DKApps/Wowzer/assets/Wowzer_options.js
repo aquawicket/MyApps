@@ -1,7 +1,7 @@
 //////////////////////////////
 function Wowzer_options_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("Wowzer_options.html", function(){});
 	DKAddEvent("Wowzer_options_price", "click", Wowzer_options_OnEvent);
 	DKAddEvent("Wowzer_options_close5", "click", Wowzer_options_OnEvent);
@@ -28,7 +28,7 @@ function Wowzer_options_Init()
 /////////////////////////////
 function Wowzer_options_End()
 {
-	DKDEBUGFUNC();
+	
 	DKClose("Wowzer_options.html");
 }
 

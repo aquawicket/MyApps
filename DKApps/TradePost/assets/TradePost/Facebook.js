@@ -1,13 +1,13 @@
 ////////////////////////
 function Facebook_Init()
 {
-	DKDEBUGFUNC();
+	
 }
 
 ///////////////////////
 function Facebook_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(Facebook_OnEvent);
 }
 
@@ -20,7 +20,7 @@ function Facebook_OnEvent(event)
 //////////////////////////
 function Facebook_Scrape()
 {
-	DKDEBUGFUNC();
+	
 	Facebook_ToArry("https://www.facebook.com/marketplace", function(){ 
 		Buy_Update(); 
 		return;

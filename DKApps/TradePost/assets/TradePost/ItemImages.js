@@ -4,7 +4,7 @@ var ItemImages_imageNum = 0;
 //////////////////////////
 function ItemImages_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/ItemImages.html");
 	DKAddEvent("ItemImages_upload", "click", ItemImages_OnEvent);
 	DKAddEvent("GLOBAL", "DKCef_OnFileDialogDismissed", ItemImages_OnEvent);
@@ -13,7 +13,7 @@ function ItemImages_Init()
 /////////////////////////
 function ItemImages_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(ItemImages_OnEvent);
 	DKClose("TradePost/ItemImages.html");
 }
@@ -54,7 +54,7 @@ function ItemImages_SetItem(itemNum)
 ////////////////////////////
 function ItemImages_Update()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetInnerHtml("ItemImages_div", ""); //clear
 	
 	var img = DKWidget_CreateElement("ItemImages_div", "img", "ItemImages_img");

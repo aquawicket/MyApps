@@ -52,7 +52,7 @@ window.onhashchange = function(){
 /////////////////////////
 function Wowzer_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("Wowzer.html", function(){});
 	DKAddEvent("Wowzer_search", "click", Wowzer_OnEvent);
 	DKAddEvent("Wowzer_options", "click", Wowzer_OnEvent);
@@ -77,7 +77,7 @@ function Wowzer_Init()
 ///////////////////////
 function Wowzer_End()
 {
-	DKDEBUGFUNC();
+	
 	DKClose("Wowzer.html");
 	DKRemoveEvent("Wowzer_search", "click", Wowzer_OnEvent);
 	DKRemoveEvent("Wowzer_options", "click", Wowzer_OnEvent);
@@ -145,7 +145,7 @@ function Wowzer_OnEvent(event)
 /////////////////////////
 function Wowzer_Loading()
 {
-	DKDEBUGFUNC();
+	
 	var loading = document.createElement('img');
 	loading.id = "loading";
 	loading.src = "loading.gif";
@@ -526,7 +526,7 @@ function Wowzer_EbayToArry(url, callback)
 ////////////////////////
 function Wowzer_Filter()
 {
-	DKDEBUGFUNC();
+	
 	item_arry2 = item_arry.slice(0);
 	
 	//sort by price
@@ -626,7 +626,7 @@ function Wowzer_Filter()
 //////////////////////////////
 function Wowzer_ShowItems()
 {
-	DKDEBUGFUNC();
+	
 	//sort by price
 	Wowzer_Filter();
 
@@ -862,7 +862,7 @@ function removeUrlParameter(url, key)
 //////////////////////////////////////////////////////////
 function Test()
 {
-	DKDEBUGFUNC();
+	
 	var script = document.createElement('script');
 	script.src = "https://www.google.com";
 	script.id = "test_script";

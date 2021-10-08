@@ -1,7 +1,7 @@
 //////////////////////
 function OsInfo_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("Digitalknob/OsInfo.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "resize", OsInfo_OnEvent);
 	OsInfo_Resize();
@@ -10,7 +10,7 @@ function OsInfo_Init()
 /////////////////////
 function OsInfo_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(OsInfo_OnEvent);
 	DKClose("Digitalknob/OsInfo.html");
 }
@@ -27,7 +27,7 @@ function OsInfo_OnEvent(event)
 ////////////////////////
 function OsInfo_Resize()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetInnerHtml("OsInfo_OS", "OS: "+DK_GetOS());
 	DKWidget_SetInnerHtml("OsInfo_Browser", "Browser: "+DK_GetBrowser()+" ,"+DK_GetJSEngine());
 	DKWidget_SetInnerHtml("OsInfo_width", "width: "+DKWindow_GetWidth());

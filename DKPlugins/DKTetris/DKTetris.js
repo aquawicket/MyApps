@@ -37,35 +37,27 @@ PatternY[6]=new Array(0,0,0,1);
 //var images = [];
 	
 
-////////////////////////
-function DKTetris_Init()
-{
-	DKDEBUGFUNC();
+function DKTetris_Init(){
+	
 	CPP_DK_Create("DKTetris/DKTetris.html");
 	//DKFrame_Widget("DKTetris.html");
 	DKAddEvent("GLOBAL", "keydown", DKTetris_OnEvent);
 	Init(true);
 }
 
-////////////////////////
-function DKTetris_End()
-{
-	DKDEBUGFUNC();
+function DKTetris_End(){
+	
 	DKClose("DKTetris/DKTetris.html");
 }
 
-///////////////////////////////
-function DKTetris_OnEvent(event)
-{
+function DKTetris_OnEvent(event){
 	DKDEBUGFUNC(event);
 	if(DK_Type(event, "keydown")){
 		KeyDown(DKWidget_GetValue(evemt));
 	}
 }
 
-//////////////////////////
-function KeyDown(whichkey)
-{ 
+function KeyDown(whichkey){ 
 	DKDEBUGFUNC(whichkey);
 	if (IsOver) return;
 	if (PosY < 0) return;
@@ -87,26 +79,20 @@ function KeyDown(whichkey)
 	if (whichkey == 65464) Rotate();
 }
 
-////////////////
-function Pause()
-{
-	DKDEBUGFUNC();
+function Pause(){
+	
 	IsOver=true;
 	alert("Click OK to continue!");
 	setTimeout("Init(false)", 540);
 }
 
-//////////////
-function New()
-{
-	DKDEBUGFUNC();
+function New(){
+	
 	IsOver=true;
 	setTimeout("Init(true)", 540);
 }
 
-/////////////////
-function Init(nn)
-{ 
+function Init(nn){ 
 	DKDEBUGFUNC(nn);
 	IsOver=false;
 	if(nn){
@@ -129,10 +115,8 @@ function Init(nn)
 	HideFocus();
 }
 
-/////////////
-function Go()
-{ 
-	DKDEBUGFUNC();
+function Go(){ 
+	
 	if (IsOver) return;
 	var nn;
 	if(PosY[0]<0){
@@ -184,9 +168,7 @@ function Go()
 	setTimeout("Go()",Delay[Level]);
 }
 
-/////////////////////////
-function CanShift(xx, yy)
-{
+function CanShift(xx, yy){
 	DKDEBUGFUNC(xx, yy);
 	var nn, cc=true;
 	for (nn=0; nn<4; nn++){
@@ -198,9 +180,7 @@ function CanShift(xx, yy)
   return(true); 
 }
 
-///////////////////////
-function GetFld(xx, yy)
-{
+function GetFld(xx, yy){
 	DKDEBUGFUNC(xx, yy);
 	if (xx<0) return(-1);
 	if (xx>=MaxX) return(-1);
@@ -209,10 +189,8 @@ function GetFld(xx, yy)
 	return(Fld[xx][yy]);
 }
 
-/////////////////
-function Rotate()
-{
-	DKDEBUGFUNC();
+function Rotate(){
+	
 	if (IsOver) return;
 	if (PosY[0]<0) return;
 	var nn, ii, jj;
@@ -264,10 +242,8 @@ function Rotate()
 		document.images[PosX[nn]+MaxX*PosY[nn]].src = Pic[Col+1].src;
 }
 
-////////////////////
-function CanRotate()
-{
-	DKDEBUGFUNC();
+function CanRotate(){
+	
 	var ii, jj, iim, jjm, dd=3;
 	if (Col==3) return(false);
 	if (Col==0){
@@ -287,10 +263,8 @@ function CanRotate()
 	return(true);
 }
 
-///////////////
-function Left()
-{
-	DKDEBUGFUNC();
+function Left(){
+	
 	if (IsOver) return;
 	if (PosY[0]<0) return;
 	for (nn=0; nn<4; nn++)
@@ -306,10 +280,8 @@ function Left()
 	}
 }
 
-////////////////
-function Right()
-{
-	DKDEBUGFUNC();
+function Right(){
+	
 	if (IsOver) return;
 	if (PosY[0]<0) return;
 	for (nn=0; nn<4; nn++)
@@ -325,10 +297,8 @@ function Right()
 	}
 }
 
-///////////////
-function Down()
-{
-	DKDEBUGFUNC();
+function Down(){
+	
 	if (IsOver) return;
 	if (PosY[0]<0) return;
 	var dd=0;
@@ -340,9 +310,7 @@ function Down()
 	if (dd>0) Shift(0, dd);
 }
 
-//////////////////////
-function Shift(dx, dy)
-{
+function Shift(dx, dy){
 	DKDEBUGFUNC(dx, dy);
 	var nn;
 	for (nn=0; nn<4; nn++){
@@ -357,10 +325,8 @@ function Shift(dx, dy)
 	}
 }
 
-/////////////////
-function Remove()
-{
-	DKDEBUGFUNC();
+function Remove(){
+	
 	var xx, yy, nn=0;
 	Score+=20;
 	for (yy=0; yy<MaxY; yy++) RFld[yy]=1;
@@ -390,10 +356,8 @@ function Remove()
 	if (nn>0) RefreshScreen();
 }
 
-////////////////////////
-function RefreshScreen()
-{
-	DKDEBUGFUNC();
+function RefreshScreen(){
+	
 	for (var i=0; i < MaxX; i++){ 
 		for (j=0; j < MaxY; j++){
 			document.images[i+MaxX*j].src = Pic[Fld[i][j]].src; 
@@ -401,10 +365,8 @@ function RefreshScreen()
 	}
 }
 
-////////////////////
-function HideFocus()
-{
-	DKDEBUGFUNC();
+function HideFocus(){
+	
 	if (IsHideFocus){
 		document.getElementByName("Score").focus();
 		document.getElementByName("Score").blur();

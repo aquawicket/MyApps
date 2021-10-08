@@ -1,7 +1,7 @@
 //////////////////////
 function Remote_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKRemote/Remote.html");
 	CPP_DK_Create("DKWebSockets");
 	
@@ -21,7 +21,7 @@ function Remote_Init()
 /////////////////////
 function Remote_End()
 {
-	DKDEBUGFUNC();
+	
 	DKClose("DKRemote/Remote.html");
 	DKClose("DKWebSockets");
 	DKRemoveEvents(Remote_OnEvent);
@@ -61,7 +61,7 @@ function Remote_OnEvent(event)
 /////////////////////////
 function Remote_Connect()
 {
-	DKDEBUGFUNC();	
+		
 	if(!DKWidget_GetValue("address")){
 		DKWARN("Remote_Connect(): please enter an address\n");
 		return;
@@ -95,7 +95,7 @@ function Remote_Connect()
 /////////////////////////////
 function Remote_CloseClient()
 {
-	DKDEBUGFUNC();
+	
 	if(DK_GetBrowser() == "Rocket"){
 		DKWebSockets_CloseClient();
 		return;

@@ -1,13 +1,13 @@
 /////////////////////
 function Letgo_Init()
 {
-	DKDEBUGFUNC();
+	
 }
 
 ////////////////////
 function Letgo_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(Letgo_OnEvent);
 }
 
@@ -20,7 +20,7 @@ function Letgo_OnEvent(event)
 ///////////////////////
 function Letgo_Scrape()
 {
-	DKDEBUGFUNC();
+	
 	Letgo_ToArry("https://us.letgo.com/en/category/cars", function(){
 		Letgo_ToArry("https://us.letgo.com/en/category/housing", function(){
 		Letgo_ToArry("https://us.letgo.com/en/category/electronics", function(){

@@ -1,7 +1,7 @@
 function DKBrowserSettings(){}
 
 dk.browsersettings.init = function DKBrowserSettings_init(){
-	//DKDEBUGFUNC();
+	//
 	dk.create("DKBrowser/Settings.html", function(element){
 		dk.browsersettings.element = element
 		element.getElementById("UpdateButton").onclick = dk.browsersettings.Update
@@ -14,12 +14,12 @@ dk.browsersettings.init = function DKBrowserSettings_init(){
 }
 
 dk.browsersettings.end = function DKBrowserSettings_end(){
-	//DKDEBUGFUNC();
+	//
 	dk.close("DKBrowser/Settings.html");
 }
 
 dk.browsersettings.ClearCache = function DKBrowserSettings_ClearCache(){
-	//DKDEBUGFUNC();
+	//
 	var assets = CPP_DKAssets_LocalAssets();
 	var cachePath = assets+"USER/Cache";
 	if(!DKFile_Exists(cachePath))
@@ -35,32 +35,32 @@ dk.browsersettings.ClearCache = function DKBrowserSettings_ClearCache(){
 }
 
 dk.browsersettings.Update = function DKBrowserSettings_Update(){
-	//DKDEBUGFUNC();
+	//
 	CPP_DK_Create("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
 }
 
 dk.browsersettings.Version = function DKBrowserSettings_Version(){
-	//DKDEBUGFUNC();
+	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://version");
 }
 
 dk.browsersettings.Gpu = function DKBrowserSettings_Gpu(){
-	//DKDEBUGFUNC();
+	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://gpu");
 }
 
 dk.browsersettings.System = function DKBrowserSettings_System(){
-	//DKDEBUGFUNC();
+	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://system");
 }
 
 dk.browsersettings.NetInternals = function DKBrowserSettings_NetInternals(){
-	//DKDEBUGFUNC();
+	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://net-internals");
 }

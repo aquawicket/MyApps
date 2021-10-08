@@ -9,7 +9,7 @@ CPP_DK_Create("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKDebug/DKDebug.js", function(){});
 	DK_SetFramerate(120);
 	CPP_DK_Create("DKUpdate");
@@ -19,7 +19,7 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKWindow/DKWindow.js", function(){
 	CPP_DK_Create("DKTray/DKTray.js", function(){
 

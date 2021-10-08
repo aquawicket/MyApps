@@ -1,7 +1,7 @@
 //////////////////////////
 function SortByMenu_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/SortByMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", SortByMenu_OnEvent);
 	DKAddEvent("SortByMenu_DateAsc", "mousedown", SortByMenu_OnEvent);
@@ -13,7 +13,7 @@ function SortByMenu_Init()
 /////////////////////////
 function SortByMenu_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(SortByMenu_OnEvent);
 	DKClose("TradePost/SortByMenu.html");
 }

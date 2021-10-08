@@ -40,7 +40,7 @@ function app_OnEvent(event)
 //////////////////////////
 function app_LoadPlugins()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Fullscreen", 1003);
 		DKAddEvent("DKTray", "1003", app_OnEvent);
@@ -59,7 +59,7 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKWindow/DKWindow.js", function(){
 	CPP_DK_Create("DKDebug/DKDebug.js", function(){
 		//DKAddEvent("GLOBAL", "keydown", app_OnEvent);

@@ -1,6 +1,6 @@
 function Digitalknob_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKGui/DKFrame.js", function(){});
 	CPP_DK_Create("Digitalknob/Digitalknob.html");
 	CPP_DK_Create("Digitalknob/Home.js", function(){});
@@ -14,7 +14,7 @@ function Digitalknob_Init()
 
 function Digitalknob_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(Digitalknob_OnEvent);
 	DKClose("Digitalknob/OsInfo.js");
 	DKClose("Digitalknob/Home.js");

@@ -1,13 +1,13 @@
 ///////////////////////
 function Offerup_Init()
 {
-	DKDEBUGFUNC();
+	
 }
 
 //////////////////////
 function Offerup_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(Offerup_OnEvent);
 }
 
@@ -20,7 +20,7 @@ function Offerup_OnEvent(event)
 /////////////////////////
 function Offerup_Scrape()
 {
-	DKDEBUGFUNC();
+	
 	Offerup_ToArry("https://offerup.com/explore/k/antiques", function(){
 	Offerup_ToArry("https://offerup.com/explore/k/appliances", function(){
 	Offerup_ToArry("https://offerup.com/explore/k/arts-crafts", function(){

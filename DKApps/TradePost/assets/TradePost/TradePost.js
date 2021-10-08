@@ -1,7 +1,7 @@
 /////////////////////////
 function TradePost_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/TradePost.html");
 	CPP_DK_Create("TradePost/Inventory.js", function(){
 		DKWidget_AppendChild("TradePost/TradePost.html", "TradePost/Inventory.html");
@@ -32,7 +32,7 @@ function TradePost_Init()
 ////////////////////////
 function TradePost_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(TradePost_OnEvent);
 	DKClose("TradePost/TradePost.html");
 }
@@ -86,7 +86,7 @@ function TradePost_OnEvent(event)
 ///////////////////////////////////////////
 function TradePost_UpdateConnectionStatus()
 {
-	DKDEBUGFUNC();
+	
 	if(!DKWidget_ElementExists("Status")){
 		var status = DKWidget_CreateElement("TradePost/TradePost.html", "div", "Status");
 		DKWidget_SetProperty(status, "position", "absolute");
@@ -109,7 +109,7 @@ function TradePost_UpdateConnectionStatus()
 /////////////////////////
 function TradePost_Test()
 {
-	DKDEBUGFUNC();	
+		
 	CPP_DK_Create("TradePost/Helper.js", function(){});
 	
 	console.log(getParameters(Pinger_ping)+"\n");

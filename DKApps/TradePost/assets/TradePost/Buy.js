@@ -10,7 +10,7 @@ var prevPage = 0;
 ///////////////////
 function Buy_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/Buy.html");
 	CPP_DK_Create("TradePost/Helper.js", function(){
 	CPP_DK_Create("TradePost/Craigslist.js", function(){
@@ -37,7 +37,7 @@ function Buy_Init()
 //////////////////
 function Buy_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(Buy_OnEvent);
 	DKClose("TradePost/Buy.html");
 }
@@ -136,7 +136,7 @@ function Buy_CheckForDuplicate(itemUrl)
 //////////////////////////////////
 function Buy_GetFirstAvailableId()
 {
-	DKDEBUGFUNC();
+	
 	if(!buyItems){ return false; }
 	var id = 0;
 	for(var i = 0; i<buyItems.length; i++){
@@ -198,7 +198,7 @@ function Buy_GetUrlString(url, callback)
 /////////////////////
 function Buy_Update()
 {
-	DKDEBUGFUNC();
+	
 	if(buySettings.sortBy == "Date"){
 		Buy_SortItems('id', true);
 	}
@@ -424,7 +424,7 @@ function Buy_Update()
 ///////////////////////
 function Buy_LoadData()
 {
-	DKDEBUGFUNC();
+	
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buyItems.json")){
 		DKWARN("Buy_LoadData(): buyItems.json does not exist\n");
 		return;
@@ -438,7 +438,7 @@ function Buy_LoadData()
 ///////////////////////
 function Buy_SaveData()
 {
-	DKDEBUGFUNC();
+	
 	var json = JSON.stringify(buyItems);//, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buyItems.json");
 }
@@ -446,7 +446,7 @@ function Buy_SaveData()
 ///////////////////////////
 function Buy_LoadSettings()
 {
-	DKDEBUGFUNC();
+	
 	if(!DKFile_Exists(DKAssets_LocalAssets()+"USER/buySettings.json")){
 		DKWARN("Buy_LoadSettings(): buySettings.json does not exist\n");
 		if(!buySettings.sortBy){ buySettings.sortBy = "Date"; }
@@ -462,7 +462,7 @@ function Buy_LoadSettings()
 ///////////////////////////
 function Buy_SaveSettings()
 {
-	DKDEBUGFUNC();
+	
 	var json = JSON.stringify(buySettings);//, null, "\t");
 	DKFile_StringToFile(json, DKAssets_LocalAssets()+"USER/buySettings.json");
 }

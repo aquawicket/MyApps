@@ -11,7 +11,7 @@ CPP_DK_Create("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKDebug/DKDebug.js", function(){});
 	CPP_DK_Create("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
@@ -22,7 +22,7 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetProperty("body","background-color","grey");
 	CPP_DK_Create("DKWindow/DKWindow.js", function(){
 	CPP_DK_Create("DKScale/DKScale.js", function(){

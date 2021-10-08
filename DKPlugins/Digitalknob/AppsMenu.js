@@ -1,18 +1,18 @@
 function AppsMenu_Init(){
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("Digitalknob/AppsMenu.html,Digitalknob/Digitalknob.html");
 	DKAddEvent("GLOBAL", "mousedown", AppsMenu_OnEvent);
 	AppsMenu_GetApps();
 }
 
 function AppsMenu_End(){
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(AppsMenu_OnEvent);
 	DKClose("Digitalknob/AppsMenu.html");
 }
 
 function AppsMenu_GetApps(){
-	DKDEBUGFUNC();
+	
 	var AppList = ["DKDatabase", "DKBrowser", "DKFacebook", "DKInputTest", "DKOS", "DKReceiver", "DKRemote", "DKYoutube", "DKBuilder", "DKIDE"];
 	for(var i=0; i<AppList.length; i++){
 		AppsMenu_AddApp(AppList[i]);

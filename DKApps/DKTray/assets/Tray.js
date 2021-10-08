@@ -1,7 +1,7 @@
 /////////////////////
 function Tray_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKTray");
 	DKAddEvent("DKTray", "1000", Tray_OnEvent);
 	DKAddEvent("DKTray", "1001", Tray_OnEvent);
@@ -47,7 +47,7 @@ function Tray_OnEvent(event)
 //////////////////////////
 function Tray_ToggleIcon()
 {
-	DKDEBUGFUNC();
+	
 	var icon = DKTray_GetIcon();
 	var file = DKFile_GetFilename(icon);
 	console.log("current icon = "+file+"\n");
@@ -63,7 +63,7 @@ function Tray_ToggleIcon()
 //////////////////
 function Tray_On()
 {
-	DKDEBUGFUNC();
+	
 	var assets = DKAssets_LocalAssets();
 	DKTray_SetIcon(assets+"touchON.ico");
 }
@@ -71,7 +71,7 @@ function Tray_On()
 ///////////////////
 function Tray_Off()
 {
-	DKDEBUGFUNC();
+	
 	var assets = DKAssets_LocalAssets();
 	DKTray_SetIcon(assets+"touchOFF.ico");
 }

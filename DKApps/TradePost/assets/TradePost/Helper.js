@@ -4,13 +4,13 @@ var globalTimer;
 //////////////////////
 function Helper_Init()
 {
-	DKDEBUGFUNC();
+	
 }
 
 /////////////////////
 function Helper_End()
 {
-	DKDEBUGFUNC();
+	
 }
 
 //////////////////////////////
@@ -132,7 +132,7 @@ function Pinger_ping(ip, callback)
 ////////////////////////
 function OpenWebSocket()
 {
-	DKDEBUGFUNC();
+	
 	url = "ws://localhost:3000";
 	w = new WebSocket(url);
 	

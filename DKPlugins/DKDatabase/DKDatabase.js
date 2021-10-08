@@ -1,7 +1,7 @@
 //////////////////////////
 function DKDatabase_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKMySql");
 	CPP_DK_Create("DKMySql/DKMySql.js", function(){
 		CPP_DK_Create("DKDatabase/DKDatabase.html");
@@ -35,7 +35,7 @@ function DKDatabase_Init()
 /////////////////////////
 function DKDatabase_End()
 {
-	DKDEBUGFUNC();
+	
 	DKClose("DKDatabase/DKDatabase.html");
 }
 
@@ -126,7 +126,7 @@ function DKDatabase_OnEvent(event)
 /////////////////////////////
 function DKDatabase_Connect()
 {
-	DKDEBUGFUNC();
+	
 	dk.hide("Success");
 	var server = DKWidget_GetValue("ServerBox");
 	var port = DKWidget_GetValue("PortBox");
@@ -154,7 +154,7 @@ function DKDatabase_Connect()
 /////////////////////////////////////
 function DKDatabase_UpdateDatabases()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetValue("DatabaseDrop", "");
 	DKWidget_SetInnerHtml("DatabaseDrop", ""); //clear
 
@@ -176,7 +176,7 @@ function DKDatabase_UpdateDatabases()
 //////////////////////////////////
 function DKDatabase_UpdateTables()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetValue("TableDrop", "");
 	DKWidget_SetInnerHtml("TableDrop", ""); //clear
 
@@ -301,7 +301,7 @@ function DKDatabase_UpdateRecords(table)
 ////////////////////////////
 function DKDatabase_Cancel()
 {
-	DKDEBUGFUNC();
+	
 	DKDatabase_UpdateRecords(DKWidget_GetValue("TableDrop"));
 	return true;
 }
@@ -309,7 +309,7 @@ function DKDatabase_Cancel()
 //////////////////////////
 function DKDatabase_Save()
 {
-	DKDEBUGFUNC();
+	
 	var query = "SELECT * FROM ";
 	query += DKWidget_GetValue("TableDrop");
 	query += " ORDER BY ID ASC";
@@ -352,7 +352,7 @@ function DKDatabase_Save()
 ///////////////////////////////
 function DKDatabase_AddRecord()
 {
-	DKDEBUGFUNC();
+	
 	var query = "INSERT INTO "+DKWidget_GetValue("TableDrop")+" () VALUES ()";
 	DKMySql_Query(query);
 	DKDatabase_UpdateRecords(DKWidget_GetValue("TableDrop"));

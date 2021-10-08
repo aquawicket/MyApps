@@ -6,7 +6,7 @@ var SHUFFLE;
 //////////////////////
 function Panel0_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKMySql/DKMySql.js");
 	CPP_DK_Create("Panel0.html");
 	//Hide("DKConsole.html");
@@ -207,7 +207,7 @@ function Panel0_AddUrl(url)
 ///////////////////////////
 function Panel0_NextVideo()
 {
-	DKDEBUGFUNC();
+	
 	console.log("Loading next video...\n");
 	//var x = document.getElementById("Playlist");
 	
@@ -233,7 +233,7 @@ function Panel0_NextVideo()
 /////////////////////////
 function Panel0_Connect()
 {
-	DKDEBUGFUNC();
+	
 	DKMySql_Connect("10.6.171.92", "DKData", "DigitalKnob123!", "");
 	DKMySql_Database("DKData");
 }
@@ -241,7 +241,7 @@ function Panel0_Connect()
 //////////////////////////////
 function Panel0_PrepDatabase()
 {
-	DKDEBUGFUNC();
+	
 	//Create USER table
 	var query = "CREATE TABLE USERS (ID INT(10) NOT NULL AUTO_INCREMENT, PRIMARY KEY (ID))";
 	DKMySql_Query(query);
@@ -274,7 +274,7 @@ function Panel0_PrepDatabase()
 ////////////////////////////
 function Panel0_GetUSER_ID()
 {
-	DKDEBUGFUNC();
+	
 	if(!FACEBOOK_ID){ return; }
 
 	//Create USER from FACEBOOK_ID
@@ -336,7 +336,7 @@ function Panel0_GetPLAYLIST_ID(name)
 /////////////////////////////////////
 function Panel0_Update_PlaylistDrop()
 {
-	DKDEBUGFUNC();
+	
 	if(!USER_ID){ userid = ""; }
 	else{ userid = USER_ID; }
 	
@@ -383,7 +383,7 @@ function Panel0_Update_PlaylistDrop()
 /////////////////////////////////
 function Panel0_Update_Playlist()
 {
-	DKDEBUGFUNC();
+	
 	if(!PLAYLIST_ID){ return; }
 	
 	//clear all options

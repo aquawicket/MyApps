@@ -6,7 +6,7 @@ var rowHeight = "150rem";
 /////////////////////////
 function Inventory_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/Inventory.html");
 	CPP_DK_Create("DKAdmin/DKAdmin.js", function(){});
 	CPP_DK_Create("DKGui/DKMenu.js", function(){});
@@ -34,7 +34,7 @@ function Inventory_Init()
 ////////////////////////
 function Inventory_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(Inventory_OnEvent);
 	DKClose("TradePost/Inventory.html");
 }
@@ -181,7 +181,7 @@ function Inventory_OnEvent(event)
 ////////////////////////////////////////
 function Inventory_GetFirstAvailableId()
 {
-	DKDEBUGFUNC();
+	
 	if(!items){ return false; }
 	var id = 0;
 	for(var i = 0; i<items.length; i++){
@@ -195,7 +195,7 @@ function Inventory_GetFirstAvailableId()
 ////////////////////////////
 function Inventory_AddItem()
 {
-	DKDEBUGFUNC();
+	
 	var i = 0;
 	while(DKFile_Exists(DKAssets_LocalAssets()+"USER/Items/Item"+i)){
 		i++;
@@ -320,7 +320,7 @@ function Inventory_ChangeText(id, text)
 //////////////////////////////
 function Inventory_LoadItems()
 {
-	DKDEBUGFUNC();
+	
 	items = []; //clear items
 	var string = DKFile_DirectoryContents(DKAssets_LocalAssets()+"USER/Items/");
 	if(!string){ return; }
@@ -349,7 +349,7 @@ function Inventory_LoadItems()
 /////////////////////////////////
 function Inventory_UpdateHeader()
 {
-	DKDEBUGFUNC();
+	
 	//id		
 	var header_id = DKWidget_CreateElement("Header", "div", "header_id");
 	DKWidget_SetProperty(header_id, "display", "inline-block");
@@ -488,7 +488,7 @@ function Inventory_UpdateHeader()
 ///////////////////////////////
 function Inventory_UpdateList()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetInnerHtml("ItemList", ""); //clear	
 	
 	for(var row=0; row<items.length; row++){
@@ -923,7 +923,7 @@ function Inventory_UploadImage(file)
 /////////////////////////
 function Inventory_Test()
 {
-	DKDEBUGFUNC();	
+		
 	console.log("######### ITEMS ##########\n");
 	for(var i=0; i<items.length; i++){
 		/*

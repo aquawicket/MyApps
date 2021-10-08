@@ -1,7 +1,7 @@
 /////////////////////////////
 function ConditionMenu_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/ConditionMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", ConditionMenu_OnEvent);
 	
@@ -16,7 +16,7 @@ function ConditionMenu_Init()
 ////////////////////////////
 function ConditionMenu_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(ConditionMenu_OnEvent);
 	DKClose("TradePost/ConditionMenu.html");
 }

@@ -1,7 +1,7 @@
 /////////////////////////////
 function CatagoryMenu_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/CatagoryMenu.html");
 	DKAddEvent("GLOBAL", "mousedown", CatagoryMenu_OnEvent);
 	
@@ -16,7 +16,7 @@ function CatagoryMenu_Init()
 ////////////////////////////
 function CatagoryMenu_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(CatagoryMenu_OnEvent);
 	DKClose("TradePost/CatagoryMenu.html");
 }

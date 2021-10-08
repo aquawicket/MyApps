@@ -9,13 +9,13 @@ CPP_DK_Create("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-	DKDEBUGFUNC();
+	
 }
 
 ///////////////////////
 function app_LoadPage()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("DKWindow/DKWindow.js", function(){
 	CPP_DK_Create("DKGui/DKFrame.js", function(){
 	CPP_DK_Create("DKDebug/DKDebug.js", function(){

@@ -1,7 +1,7 @@
 ///////////////////////////
 function BuySettings_Init()
 {
-	DKDEBUGFUNC();
+	
 	CPP_DK_Create("TradePost/BuySettings.html", function(){
 		DKAddEvent("BuySettings_hideNoImage", "click", BuySettings_OnEvent);
 		DKAddEvent("BuySettings_lowPrice", "change", BuySettings_OnEvent);
@@ -60,7 +60,7 @@ function BuySettings_Init()
 //////////////////////////
 function BuySettings_End()
 {
-	DKDEBUGFUNC();
+	
 	DKClose("TradePost/BuySettings.html");
 }
 
@@ -324,7 +324,7 @@ function BuySettings_OnEvent(event)
 /////////////////////////////
 function BuySettings_Update()
 {
-	DKDEBUGFUNC();
+	
 	DKWidget_SetValue("BuySettings_hideNoImage", buySettings.hideNoImage);
 	DKWidget_SetValue("BuySettings_lowPrice", buySettings.lowPrice);
 	DKWidget_SetValue("BuySettings_highPrice", buySettings.highPrice);

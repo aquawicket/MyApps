@@ -1,13 +1,13 @@
 //////////////////////////
 function Craigslist_Init()
 {
-	DKDEBUGFUNC();
+	
 }
 
 /////////////////////////
 function Craigslist_End()
 {
-	DKDEBUGFUNC();
+	
 	DKRemoveEvents(Craigslist_OnEvent);
 }
 
@@ -20,7 +20,7 @@ function Craigslist_OnEvent(event)
 ////////////////////////////
 function Craigslist_Scrape()
 {
-	DKDEBUGFUNC();
+	
 	/*
 	Helper_Queue( function(){
 		Craigslist_ToArry("https://"+buySettings.craigslistLocation+".craigslist.org/search/sss?", function(){ Buy_Update(); })
