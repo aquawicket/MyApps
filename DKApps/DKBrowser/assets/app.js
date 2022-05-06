@@ -9,7 +9,7 @@ const url = "chrome://gpu"
 
 
 ////// RmlUi
-CPP_DK_Create("DKWindow")
+CPP_DK_Create("DKSDLWindow")
 CPP_DK_Create("DKRml")
 //CPP_DK_Create("DKCef")
 //CPP_DK_Create("DKSDLText")

@@ -1,7 +1,6 @@
 //CPP_DK_Create("DK/DK.js");
 CPP_DK_Create("DK/DKEvents.js");
 CPP_DK_Create("DKDebug/DKDebug.js");
-
 CPP_DK_Create("DKAssets");
 var url = DKAssets_LocalAssets()+"test.html";
 //var url = "http://TODO.com/test.html";
@@ -14,7 +13,7 @@ var url = DKAssets_LocalAssets()+"test.html";
 //var url = "https://inlandempire.craigslist.org/d/for-sale/search/sss/";
 //var url = "http://pricewatch.com/";
 
-CPP_DK_Create("DKRocket");
+CPP_DK_Create("DKRml");
 window.location.href = url;
 
 /*

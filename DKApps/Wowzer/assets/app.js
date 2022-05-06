@@ -10,7 +10,6 @@ CPP_DK_Create("DK/init.js", function(){});
 //////////////////////////
 function app_LoadPlugins()
 {
-	
 	CPP_DK_Create("DKTray/DKTray.js", function(){});
 	CPP_DK_Create("DKDebug/DKDebug.js", function(){});
 }
