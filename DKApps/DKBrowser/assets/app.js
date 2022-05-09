@@ -12,12 +12,13 @@ const url = "chrome://gpu"
 CPP_DK_Create("DKSDLWindow")
 CPP_DK_Create("DKRml")
 //CPP_DK_Create("DKCef")
-//CPP_DK_Create("DKSDLText")
+CPP_DK_Create("DKSDLText")
 location.href = CPP_DKAssets_LocalAssets()+"index.html"
 
 
 
-///// CEF 
+/*
+// This is taken care of in DKBrowser.js 
 CPP_DK_Create("DKCef,Cef,0,0,"+width+","+height+","+url)
 CPP_DKCef_NewBrowser("Cef",0,0,width,height,url)
 //CPP_DKCef_ShowDevTools(0)
@@ -26,3 +27,4 @@ window.addEventListener("keydown", function mykeydown(event){
 	if(event.key === "F12")
 		CPP_DKCef_ShowDevTools(0)	
 })
+*/
