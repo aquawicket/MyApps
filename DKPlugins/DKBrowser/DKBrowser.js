@@ -274,7 +274,7 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 	console.log("DKBrowser.prototype.NewTab")
 	//DKDEBUGFUNC()
-	var url = "https://duckduckgo.com"
+	var url = "chrome://gpu";
 	
 	/*
 	var iframediv = document.createElement("div")
