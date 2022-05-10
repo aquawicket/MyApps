@@ -79,6 +79,12 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 
 DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	//DKDEBUGFUNC(event)
+	event && console.log("DKBrowser_OnEvent(event): "+event+")") || console.log("DKBrowser_OnEvent(event): undefined")
+	event.currentTarget && console.log("DKBrowser_OnEvent(event.currentTarget): "+event.currentTarget+")") || console.log("DKBrowser_OnEvent(event.currentTarget): undefined")
+	event.currentTarget.id && console.log("DKBrowser_OnEvent(event.currentTarget.id): "+event.currentTarget.id+")") || console.log("DKBrowser_OnEvent(event.currentTarget.id): undefined")
+	event.type && console.log("DKBrowser_OnEvent(event.type): "+event.type+")") || console.log("DKBrowser_OnEvent(event.type): undefined")
+	event.value && console.log("DKBrowser_OnEvent(event.value): "+event.value+")") || console.log("DKBrowser_OnEvent(event.value): undefined")
+	
 	if(event.type = "keydown")
 		dk.browser.ProcessKey(event.key)
 	if(event.currentElement.id = "Tab1")
