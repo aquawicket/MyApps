@@ -79,57 +79,63 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 
 DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	//DKDEBUGFUNC(event)
-	event && console.log("DKBrowser_OnEvent(event): "+event+")") || console.log("DKBrowser_OnEvent(event): undefined")
-	event.currentTarget && console.log("DKBrowser_OnEvent(event.currentTarget): "+event.currentTarget+")") || console.log("DKBrowser_OnEvent(event.currentTarget): undefined")
-	event.currentTarget.id && console.log("DKBrowser_OnEvent(event.currentTarget.id): "+event.currentTarget.id+")") || console.log("DKBrowser_OnEvent(event.currentTarget.id): undefined")
-	event.type && console.log("DKBrowser_OnEvent(event.type): "+event.type+")") || console.log("DKBrowser_OnEvent(event.type): undefined")
-	event.value && console.log("DKBrowser_OnEvent(event.value): "+event.value+")") || console.log("DKBrowser_OnEvent(event.value): undefined")
+	var event_string = "EVENT: ";
+	//event && console.log("DKBrowser_OnEvent(event): "+event+")") || console.log("DKBrowser_OnEvent(event): undefined")
+	//event.currentTarget && console.log("DKBrowser_OnEvent(event.currentTarget): "+event.currentTarget+")") || console.log("DKBrowser_OnEvent(event.currentTarget): undefined")
+	event.currentTarget.id && (event_string = event_string + event.currentTarget.id+", ")
+	event.type && (event_string = event_string + event.type+", ")
+	event.value && (event_string = event_string + event.value)
+	console.log(event_string)
+	
+	
+	if(!event.currentTarget.id)
+		return false;
 	
 	if(event.type = "keydown")
 		dk.browser.ProcessKey(event.key)
-	if(event.currentElement.id = "Tab1")
+	if(event.currentTarget.id == "Tab1")
 		dk.browser.SelectTab(1)
-	if(event.currentElement.id = "Tab2")
+	if(event.currentTarget.id == "Tab2")
 		dk.browser.SelectTab(2)
-	if(event.currentElement.id = "Tab3")
+	if(event.currentTarget.id == "Tab3")
 		dk.browser.SelectTab(3)
-	if(event.currentElement.id = "Tab4")
+	if(event.currentTarget.id == "Tab4")
 		dk.browser.SelectTab(4)
-	if(event.currentElement.id = "Tab5")
+	if(event.currentTarget.id == "Tab5")
 		dk.browser.SelectTab(5)
-	if(event.currentElement.id = "Tab6")
+	if(event.currentTarget.id == "Tab6")
 		dk.browser.SelectTab(6)
-	if(event.currentElement.id = "Tab1Close")
+	if(event.currentTarget.id == "Tab1Close")
 		dk.browser.CloseTab(1)
-	if(event.currentElement.id = "Tab2Close")
+	if(event.currentTarget.id == "Tab2Close")
 		dk.browser.CloseTab(2)
-	if(event.currentElement.id = "Tab3Close")
+	if(event.currentTarget.id == "Tab3Close")
 		dk.browser.CloseTab(3)
-	if(event.currentElement.id = "Tab4Close")
+	if(event.currentTarget.id == "Tab4Close")
 		dk.browser.CloseTab(4)
-	if(event.currentElement.id = "Tab5Close")
+	if(event.currentTarget.id == "Tab5Close")
 		dk.browser.CloseTab(5)
-	if(event.currentElement.id = "Tab6Close")
+	if(event.currentTarget.id == "Tab6Close")
 		dk.browser.CloseTab(6)
-	if(event.currentElement.id = "NewTab")
+	if(event.currentTarget.id == "NewTab")
 		dk.browser.NewTab()
-	if(event.currentElement.id = "BackButton")
+	if(event.currentTarget.id == "BackButton")
 		CPP_DKCef_GoBack(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "ForwardButton")
+	if(event.currentTarget.id == "ForwardButton")
 		CPP_DKCef_GoForward(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "StopButton")
+	if(event.currentTarget.id == "StopButton")
 		CPP_DKCef_Stop(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "RefreshButton")
+	if(event.currentTarget.id == "RefreshButton")
 		CPP_DKCef_Reload(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "HomeButton")
+	if(event.currentTarget.id == "HomeButton")
 		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "http://duckduckgo.com")
-	if(event.currentElement.id = "Textbox")
+	if(event.currentTarget.id == "Textbox")
 		var num = CPP_DKCef_GetBrowsers()
 		for(var i = 0; i<num; i++){
 			CPP_DKCef_RemoveFocus(i)
 		CPP_DKCef_SetKeyboardFocus(-1)
 		//TODO: select all text
-		if(event.type = "contextmenu"){
+		if(event.type == "contextmenu"){
 			CPP_DK_Create("DKBrowser/DKBrowserMenu.js", function(){
 				CPP_DK_Create("DKGui/DKMenu.js", function(){
 					DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html")
@@ -137,7 +143,7 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 			})
 		}
 	}
-	if(event.currentElement.id = "GoButton"){		
+	if(event.currentTarget.id == "GoButton"){		
 		var tabCount = 0
 		for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 			if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -150,23 +156,23 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		}
 	}
 
-	if(event.type = "DKCef_OnLoadingStateChange"){
+	if(event.type == "DKCef_OnLoadingStateChange"){
 		var num = parseInt(event.value)
 		var url = CPP_DKCef_GetUrl(num)
 		if(url)
 			dk.browser.SetUrlBar(url, num)
 		return
 	}
-	if(event.type = "DKCef_OnLoadEnd"){
+	if(event.type == "DKCef_OnLoadEnd"){
 		var num = parseInt(event.value)
 		var url = CPP_DKCef_GetUrl(CPP_DKCef_GetCurrentBrowser())
 		//TODO
 		return
 	}
-	if(event.type = "DKCef_OnLoadError"){
+	if(event.type == "DKCef_OnLoadError"){
 		dk.browser.OnLoadError(event.value)
 	}
-	if(event.type = "DKCef_ContextMenu"){
+	if(event.type == "DKCef_ContextMenu"){
 		console.log("dk.browser.OnEvent("+event+")")
 		var data = event.value
 		var arry = data.split(";")
@@ -181,10 +187,9 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 			})
 		})
 	}
-	if(event.type = "DKCef_OnFullscreen"){
+	if(event.type == "DKCef_OnFullscreen"){
 		console.log("DKCef_OnFullscreen\n")
-		var value = event.value
-		if(value == "true"){
+		if(event.value == "true"){
 			document.getElementById("Tabs").style["visibility"] = "hidden"
 			document.getElementById("Menu").style["visibility"] = "hidden"
 			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["top"] = "0rem"
@@ -201,12 +206,12 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 			CPP_DKWindow_Windowed()
 		}
 	}
-	if(event.currentElement.id = "Settings"){
+	if(event.currentTarget.id == "Settings"){
 		CPP_DK_Create("DKBrowser/Settings.js", function(){
 			DKFrame_Widget("DKBrowser/Settings.html") //FIXME
 		})
 	}
-	if(event.currentElement.id = "FindButton"){
+	if(event.currentTarget.id == "FindButton"){
 		CPP_DK_Create("DKBrowser/Find.js", function(){
 			DKFrame_Widget("DKBrowser/Find.html") //FIXME
 		})
@@ -262,6 +267,7 @@ DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 
 DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 	//DKDEBUGFUNC(num)
+	console.log("DKBrowser_CloseTab("+num+")")
 	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
