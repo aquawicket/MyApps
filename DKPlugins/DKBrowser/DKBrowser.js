@@ -143,13 +143,13 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 			})
 		}
 	}
-	if(event.currentTarget.id == "GoButton"){		
+	if(event.currentTarget.id == "GoButton"){
 		var tabCount = 0
 		for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 			if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
 				tabCount++
 				if(tabCount == activeTab){
-					CPP_DKCef_SetUrl(i, document.getElementById("Textbox"))
+					CPP_DKCef_SetUrl(i, document.getElementById("Textbox").value)
 					return
 				}
 			}
