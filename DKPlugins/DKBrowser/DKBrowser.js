@@ -164,9 +164,11 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		return
 	}
 	if(event.type == "DKCef_OnLoadEnd"){
+		//TODO
+		/*
 		var num = parseInt(event.value)
 		var url = CPP_DKCef_GetUrl(CPP_DKCef_GetCurrentBrowser())
-		//TODO
+		*/
 		return
 	}
 	if(event.type == "DKCef_OnLoadError"){
@@ -284,8 +286,8 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 }
 
 DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
-	console.log("DKBrowser.prototype.NewTab")
 	//DKDEBUGFUNC()
+	console.log("DKBrowser.prototype.NewTab")
 	var url = "chrome://gpu";
 	
 	/*
