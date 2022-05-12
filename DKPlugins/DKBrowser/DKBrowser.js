@@ -307,8 +307,8 @@ DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 	iframe.style["right"] = "100px"
 	iframe.style["bottom"] = "100px"
 	
-	//iframe.style["background-color"] = "blue"
-	//dk.browser.htmlObj.appendChild(iframe)
+	iframe.style["background-color"] = "white"
+	dk.browser.htmlObj.appendChild(iframe)
 	
 	CPP_DKRml_PostProcess()
 	var tabCount = 0
