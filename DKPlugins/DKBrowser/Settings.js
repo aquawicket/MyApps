@@ -1,6 +1,6 @@
 function DKBrowserSettings(){}
 
-dk.browsersettings.init = function DKBrowserSettings_init(){
+DKBrowserSettings.prototype.init = function DKBrowserSettings_init(){
 	//
 	dk.create("DKBrowser/Settings.html", function(element){
 		dk.browsersettings.element = element
@@ -13,12 +13,12 @@ dk.browsersettings.init = function DKBrowserSettings_init(){
 	});
 }
 
-dk.browsersettings.end = function DKBrowserSettings_end(){
+DKBrowserSettings.prototype.end = function DKBrowserSettings_end(){
 	//
 	dk.close("DKBrowser/Settings.html");
 }
 
-dk.browsersettings.ClearCache = function DKBrowserSettings_ClearCache(){
+DKBrowserSettings.prototype.ClearCache = function DKBrowserSettings_ClearCache(){
 	//
 	var assets = CPP_DKAssets_LocalAssets();
 	var cachePath = assets+"USER/Cache";
@@ -34,32 +34,32 @@ dk.browsersettings.ClearCache = function DKBrowserSettings_ClearCache(){
 	}
 }
 
-dk.browsersettings.Update = function DKBrowserSettings_Update(){
+DKBrowserSettings.prototype.Update = function DKBrowserSettings_Update(){
 	//
 	CPP_DK_Create("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
 }
 
-dk.browsersettings.Version = function DKBrowserSettings_Version(){
+DKBrowserSettings.prototype.Version = function DKBrowserSettings_Version(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://version");
 }
 
-dk.browsersettings.Gpu = function DKBrowserSettings_Gpu(){
+DKBrowserSettings.prototype.Gpu = function DKBrowserSettings_Gpu(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://gpu");
 }
 
-dk.browsersettings.System = function DKBrowserSettings_System(){
+DKBrowserSettings.prototype.System = function DKBrowserSettings_System(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://system");
 }
 
-dk.browsersettings.NetInternals = function DKBrowserSettings_NetInternals(){
+DKBrowserSettings.prototype.NetInternals = function DKBrowserSettings_NetInternals(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://net-internals");
