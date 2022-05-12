@@ -42,5 +42,5 @@ dk.browser.init(function(){
 	//DKPlugin("DKSDLText")
 	CPP_DK_SetFramerate(120)
 	//DKPlugin("DKUpdate")
-	document.body.style["background-color"] = "rgb:(245,245,245)"
+	document.body.style["background-color"] = "rgb:(255,255,255)"
 })

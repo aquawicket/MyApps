@@ -11,7 +11,7 @@ var activeTab = 0
 DKBrowser.prototype.init = function DKBrowser_init(create_callback){	
 	//DKDEBUGFUNC()
 	dk.create("DKBrowser/DKBrowser.html", function dkcreate_callback(htmlObj) {
-		console.log("dkcreate_callback(html)")
+		console.log("dkcreate_callback(htmlObj)")
         if (!htmlObj)
             return error("htmlObj invalid")
 		dk.browser.htmlObj = htmlObj
@@ -290,28 +290,26 @@ DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
 	console.log("DKBrowser.prototype.NewTab")
 	var url = "chrome://gpu";
 	
-	/*
-	var iframediv = document.createElement("div")
-	iframediv.id = dk.getAvailableId("CefBrowserTabDiv")
-	iframediv.style["position"] = "absolute"
-	iframediv.style["top"] = "44rem"
-	iframediv.style["left"] = "0rem"
-	iframediv.style["width"] = "100%"
-	iframediv.style["bottom"] = "0rem"
-	iframediv.style["background-color"] = "blue"
-	dk.browser.htmlObj.appendChild(iframediv)
-	*/
-	
 	var iframe = document.createElement("iframe")
 	iframe.id = dk.getAvailableId("CefBrowserTab")
 	iframe.setAttribute("src", url)
 	iframe.style["position"] = "absolute"
+	
+	/*
 	iframe.style["top"] = "44rem"
 	iframe.style["left"] = "0rem"
 	iframe.style["width"] = "100%"
 	iframe.style["bottom"] = "0rem"
-	iframe.style["background-color"] = "white"
-	dk.browser.htmlObj.appendChild(iframe)
+	*/
+	
+	iframe.style["top"] = "100px"
+	iframe.style["left"] = "100px"
+	iframe.style["right"] = "100px"
+	iframe.style["bottom"] = "100px"
+	
+	//iframe.style["background-color"] = "blue"
+	//dk.browser.htmlObj.appendChild(iframe)
+	
 	CPP_DKRml_PostProcess()
 	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
