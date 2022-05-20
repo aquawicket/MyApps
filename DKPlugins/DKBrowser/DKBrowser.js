@@ -209,12 +209,9 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 		}
 	}
 	if(event.currentTarget.id == "Settings"){
-		DKPlugin("DKBrowser/Settings.js", "singleton")
-		
-		//CPP_DK_Create("DKBrowser/Settings.js", function(){
-		//	DKFrame_Widget("DKBrowser/Settings.html") //FIXME
-		//})
-	}
+		DKPlugin("DKBrowser/Settings.js")
+		dk.browsersettings.create(DKBrowserSettings)
+	}	
 	if(event.currentTarget.id == "FindButton"){
 		CPP_DK_Create("DKBrowser/Find.js", function(){
 			DKFrame_Widget("DKBrowser/Find.html") //FIXME
