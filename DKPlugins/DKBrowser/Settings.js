@@ -17,7 +17,7 @@ DKBrowserSettings.prototype.end = function DKBrowserSettings_end(){
 DKBrowserSettings.prototype.create = function DKBrowser_settings(DKBrowser_settings_callback) {
 	dk.create("DKBrowser/Settings.html", function dkcreate_callback(html) {
 		if (!html)
-            return error("invalid html", dkcreate_callback);
+            return error("invalid html", DKBrowser_settings_callback);
 		dk.browsersettings.html = html
 		html.getElementById("UpdateButton").onclick = dk.browsersettings.Update
 		html.getElementById("VersionButton").onclick = dk.browsersettings.Version
