@@ -210,12 +210,13 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	}
 	if(event.currentTarget.id == "Settings"){
 		DKPlugin("DKBrowser/Settings.js")
-		dk.browsersettings.create(DKBrowserSettings)
+		const settings = dk.browsersettings.create(DKBrowserSettings)
+		DKFrame.prototype.create(settings);
 	}	
 	if(event.currentTarget.id == "FindButton"){
-		CPP_DK_Create("DKBrowser/Find.js", function(){
-			DKFrame_Widget("DKBrowser/Find.html") //FIXME
-		})
+		DKPlugin("DKBrowser/Find.js")
+		const find = dk.browserfind.create(DKBrowserFind)
+		DKFrame.prototype.create(find);
 	}
 }
 

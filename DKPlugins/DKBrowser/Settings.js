@@ -6,7 +6,7 @@ DKBrowserSettings.prototype.init = function DKBrowserSettings_init(callback){
 	console.log("DKBrowserSettings.prototype.init")
 	//dk.create("DKBrowser/Settings.html");
 	//dk.create("DKBrowser/Settings.css");
-	//callback && callback(this)
+	//callback && callback(true)
 }
 
 DKBrowserSettings.prototype.end = function DKBrowserSettings_end(){
@@ -26,7 +26,7 @@ DKBrowserSettings.prototype.create = function DKBrowser_settings(DKBrowser_setti
 		html.getElementById("NetInternalsButton").onclick = dk.browsersettings.NetInternals
 		html.getElementById("ClearCache").onclick = dk.browsersettings.ClearCache
 		
-		dk.browsersettings.dkframe = DKFrame.prototype.create(dk.browsersettings);
+		//dk.browsersettings.dkframe = DKFrame.prototype.create(dk.browsersettings);
 		DKBrowser_settings_callback && DKBrowser_settings_callback(dk.browsersettings);
         return dk.browsersettings;
 	});
