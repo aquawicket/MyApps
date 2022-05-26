@@ -34,6 +34,7 @@ DKPlugin("DKGui/DKTable.js")
 
 
 DKPlugin("DKBrowser/DKBrowser.js", "singleton")
+/*
 dk.browser.init(function(){
 	document.getElementById("DKBrowser/DKBrowser.html").style["width"] = "100%"
 	document.getElementById("DKBrowser/DKBrowser.html").style["height"] = "100%"
@@ -44,3 +45,4 @@ dk.browser.init(function(){
 	//DKPlugin("DKUpdate")
 	document.body.style["background-color"] = "rgb:(255,255,255)"
 })
+*/
