@@ -1,24 +1,39 @@
+//"use strict";
+
 function DKBrowserSettings(){}
 
-dk.browsersettings.init = function DKBrowserSettings_init(){
-	//
-	dk.create("DKBrowser/Settings.html", function(element){
-		dk.browsersettings.element = element
-		element.getElementById("UpdateButton").onclick = dk.browsersettings.Update
-		element.getElementById("VersionButton").onclick = dk.browsersettings.Version
-		element.getElementById("GpuButton").onclick = dk.browsersettings.Gpu
-		element.getElementById("SystemButton").onclick = dk.browsersettings.System
-		element.getElementById("NetInternalsButton").onclick = dk.browsersettings.NetInternals
-		element.getElementById("ClearCache").onclick = dk.browsersettings.ClearCache
+DKBrowserSettings.prototype.init = function DKBrowserSettings_init(callback){
+	console.log("DKBrowserSettings.prototype.init")
+	//dk.create("DKBrowser/Settings.html");
+	//dk.create("DKBrowser/Settings.css");
+	//callback && callback(true)
+}
+
+DKBrowserSettings.prototype.end = function DKBrowserSettings_end(){
+	dk.close("DKBrowser/Settings.html");
+	//dk.close("DKBrowser/Settings.css");
+}
+
+DKBrowserSettings.prototype.create = function DKBrowser_settings(DKBrowser_settings_callback) {
+	dk.create("DKBrowser/Settings.html", function dkcreate_callback(html) {
+		if (!html)
+            return error("invalid html", DKBrowser_settings_callback);
+		dk.browsersettings.html = html
+		html.getElementById("UpdateButton").onclick = dk.browsersettings.Update
+		html.getElementById("VersionButton").onclick = dk.browsersettings.Version
+		html.getElementById("GpuButton").onclick = dk.browsersettings.Gpu
+		html.getElementById("SystemButton").onclick = dk.browsersettings.System
+		html.getElementById("NetInternalsButton").onclick = dk.browsersettings.NetInternals
+		html.getElementById("ClearCache").onclick = dk.browsersettings.ClearCache
+		
+		//dk.browsersettings.dkframe = DKFrame.prototype.create(dk.browsersettings);
+		DKBrowser_settings_callback && DKBrowser_settings_callback(dk.browsersettings);
+        return dk.browsersettings;
 	});
 }
 
-dk.browsersettings.end = function DKBrowserSettings_end(){
-	//
-	dk.close("DKBrowser/Settings.html");
-}
 
-dk.browsersettings.ClearCache = function DKBrowserSettings_ClearCache(){
+DKBrowserSettings.prototype.ClearCache = function DKBrowserSettings_ClearCache(){
 	//
 	var assets = CPP_DKAssets_LocalAssets();
 	var cachePath = assets+"USER/Cache";
@@ -34,32 +49,32 @@ dk.browsersettings.ClearCache = function DKBrowserSettings_ClearCache(){
 	}
 }
 
-dk.browsersettings.Update = function DKBrowserSettings_Update(){
+DKBrowserSettings.prototype.Update = function DKBrowserSettings_Update(){
 	//
 	CPP_DK_Create("DKUpdate");
 	DKUpdate_CheckForUpdate();
 	DKUpdate_DoUpdate();
 }
 
-dk.browsersettings.Version = function DKBrowserSettings_Version(){
+DKBrowserSettings.prototype.Version = function DKBrowserSettings_Version(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://version");
 }
 
-dk.browsersettings.Gpu = function DKBrowserSettings_Gpu(){
+DKBrowserSettings.prototype.Gpu = function DKBrowserSettings_Gpu(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://gpu");
 }
 
-dk.browsersettings.System = function DKBrowserSettings_System(){
+DKBrowserSettings.prototype.System = function DKBrowserSettings_System(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://system");
 }
 
-dk.browsersettings.NetInternals = function DKBrowserSettings_NetInternals(){
+DKBrowserSettings.prototype.NetInternals = function DKBrowserSettings_NetInternals(){
 	//
 	dk.browser.NewTab(0);
 	CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "chrome://net-internals");

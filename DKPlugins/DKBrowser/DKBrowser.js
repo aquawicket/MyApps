@@ -11,7 +11,7 @@ var activeTab = 0
 DKBrowser.prototype.init = function DKBrowser_init(create_callback){	
 	//DKDEBUGFUNC()
 	dk.create("DKBrowser/DKBrowser.html", function dkcreate_callback(htmlObj) {
-		console.log("dkcreate_callback(html)")
+		console.log("dkcreate_callback(htmlObj)")
         if (!htmlObj)
             return error("htmlObj invalid")
 		dk.browser.htmlObj = htmlObj
@@ -79,51 +79,63 @@ DKBrowser.prototype.end = function DKBrowser_End(){
 
 DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 	//DKDEBUGFUNC(event)
+	var event_string = "EVENT: ";
+	//event && console.log("DKBrowser_OnEvent(event): "+event+")") || console.log("DKBrowser_OnEvent(event): undefined")
+	//event.currentTarget && console.log("DKBrowser_OnEvent(event.currentTarget): "+event.currentTarget+")") || console.log("DKBrowser_OnEvent(event.currentTarget): undefined")
+	event.currentTarget.id && (event_string = event_string + event.currentTarget.id+", ")
+	event.type && (event_string = event_string + event.type+", ")
+	event.value && (event_string = event_string + event.value)
+	console.log(event_string)
+	
+	
+	if(!event.currentTarget.id)
+		return false;
+	
 	if(event.type = "keydown")
 		dk.browser.ProcessKey(event.key)
-	if(event.currentElement.id = "Tab1")
+	if(event.currentTarget.id == "Tab1")
 		dk.browser.SelectTab(1)
-	if(event.currentElement.id = "Tab2")
+	if(event.currentTarget.id == "Tab2")
 		dk.browser.SelectTab(2)
-	if(event.currentElement.id = "Tab3")
+	if(event.currentTarget.id == "Tab3")
 		dk.browser.SelectTab(3)
-	if(event.currentElement.id = "Tab4")
+	if(event.currentTarget.id == "Tab4")
 		dk.browser.SelectTab(4)
-	if(event.currentElement.id = "Tab5")
+	if(event.currentTarget.id == "Tab5")
 		dk.browser.SelectTab(5)
-	if(event.currentElement.id = "Tab6")
+	if(event.currentTarget.id == "Tab6")
 		dk.browser.SelectTab(6)
-	if(event.currentElement.id = "Tab1Close")
+	if(event.currentTarget.id == "Tab1Close")
 		dk.browser.CloseTab(1)
-	if(event.currentElement.id = "Tab2Close")
+	if(event.currentTarget.id == "Tab2Close")
 		dk.browser.CloseTab(2)
-	if(event.currentElement.id = "Tab3Close")
+	if(event.currentTarget.id == "Tab3Close")
 		dk.browser.CloseTab(3)
-	if(event.currentElement.id = "Tab4Close")
+	if(event.currentTarget.id == "Tab4Close")
 		dk.browser.CloseTab(4)
-	if(event.currentElement.id = "Tab5Close")
+	if(event.currentTarget.id == "Tab5Close")
 		dk.browser.CloseTab(5)
-	if(event.currentElement.id = "Tab6Close")
+	if(event.currentTarget.id == "Tab6Close")
 		dk.browser.CloseTab(6)
-	if(event.currentElement.id = "NewTab")
+	if(event.currentTarget.id == "NewTab")
 		dk.browser.NewTab()
-	if(event.currentElement.id = "BackButton")
+	if(event.currentTarget.id == "BackButton")
 		CPP_DKCef_GoBack(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "ForwardButton")
+	if(event.currentTarget.id == "ForwardButton")
 		CPP_DKCef_GoForward(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "StopButton")
+	if(event.currentTarget.id == "StopButton")
 		CPP_DKCef_Stop(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "RefreshButton")
+	if(event.currentTarget.id == "RefreshButton")
 		CPP_DKCef_Reload(CPP_DKCef_GetCurrentBrowser())
-	if(event.currentElement.id = "HomeButton")
+	if(event.currentTarget.id == "HomeButton")
 		CPP_DKCef_SetUrl(CPP_DKCef_GetCurrentBrowser(), "http://duckduckgo.com")
-	if(event.currentElement.id = "Textbox")
+	if(event.currentTarget.id == "Textbox")
 		var num = CPP_DKCef_GetBrowsers()
 		for(var i = 0; i<num; i++){
 			CPP_DKCef_RemoveFocus(i)
 		CPP_DKCef_SetKeyboardFocus(-1)
 		//TODO: select all text
-		if(event.type = "contextmenu"){
+		if(event.type == "contextmenu"){
 			CPP_DK_Create("DKBrowser/DKBrowserMenu.js", function(){
 				CPP_DK_Create("DKGui/DKMenu.js", function(){
 					DKMenu_ValidatePosition("DKBrowser/DKBrowserMenu.html")
@@ -131,36 +143,38 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 			})
 		}
 	}
-	if(event.currentElement.id = "GoButton"){		
+	if(event.currentTarget.id == "GoButton"){
 		var tabCount = 0
 		for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 			if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
 				tabCount++
 				if(tabCount == activeTab){
-					CPP_DKCef_SetUrl(i, document.getElementById("Textbox"))
+					CPP_DKCef_SetUrl(i, document.getElementById("Textbox").value)
 					return
 				}
 			}
 		}
 	}
 
-	if(event.type = "DKCef_OnLoadingStateChange"){
+	if(event.type == "DKCef_OnLoadingStateChange"){
 		var num = parseInt(event.value)
 		var url = CPP_DKCef_GetUrl(num)
 		if(url)
 			dk.browser.SetUrlBar(url, num)
 		return
 	}
-	if(event.type = "DKCef_OnLoadEnd"){
+	if(event.type == "DKCef_OnLoadEnd"){
+		//TODO
+		/*
 		var num = parseInt(event.value)
 		var url = CPP_DKCef_GetUrl(CPP_DKCef_GetCurrentBrowser())
-		//TODO
+		*/
 		return
 	}
-	if(event.type = "DKCef_OnLoadError"){
+	if(event.type == "DKCef_OnLoadError"){
 		dk.browser.OnLoadError(event.value)
 	}
-	if(event.type = "DKCef_ContextMenu"){
+	if(event.type == "DKCef_ContextMenu"){
 		console.log("dk.browser.OnEvent("+event+")")
 		var data = event.value
 		var arry = data.split(";")
@@ -175,10 +189,9 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 			})
 		})
 	}
-	if(event.type = "DKCef_OnFullscreen"){
+	if(event.type == "DKCef_OnFullscreen"){
 		console.log("DKCef_OnFullscreen\n")
-		var value = event.value
-		if(value == "true"){
+		if(event.value == "true"){
 			document.getElementById("Tabs").style["visibility"] = "hidden"
 			document.getElementById("Menu").style["visibility"] = "hidden"
 			document.getElementById(CPP_DKCef_GetBrowserId(CPP_DKCef_GetCurrentBrowser())).style["top"] = "0rem"
@@ -195,15 +208,15 @@ DKBrowser.prototype.OnEvent = function DKBrowser_OnEvent(event){
 			CPP_DKWindow_Windowed()
 		}
 	}
-	if(event.currentElement.id = "Settings"){
-		CPP_DK_Create("DKBrowser/Settings.js", function(){
-			DKFrame_Widget("DKBrowser/Settings.html") //FIXME
-		})
-	}
-	if(event.currentElement.id = "FindButton"){
-		CPP_DK_Create("DKBrowser/Find.js", function(){
-			DKFrame_Widget("DKBrowser/Find.html") //FIXME
-		})
+	if(event.currentTarget.id == "Settings"){
+		DKPlugin("DKBrowser/Settings.js")
+		const settings = dk.browsersettings.create(DKBrowserSettings)
+		DKFrame.prototype.create(settings);
+	}	
+	if(event.currentTarget.id == "FindButton"){
+		DKPlugin("DKBrowser/Find.js")
+		const find = dk.browserfind.create(DKBrowserFind)
+		DKFrame.prototype.create(find);
 	}
 }
 
@@ -256,6 +269,7 @@ DKBrowser.prototype.ProcessKey = function DKBrowser_ProcessKey(key){
 
 DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 	//DKDEBUGFUNC(num)
+	console.log("DKBrowser_CloseTab("+num+")")
 	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
 		if(CPP_DKCef_GetBrowserId(i).indexOf("CefBrowserTab") > -1){
@@ -272,32 +286,30 @@ DKBrowser.prototype.CloseTab = function DKBrowser_CloseTab(num){
 }
 
 DKBrowser.prototype.NewTab = function DKBrowser_NewTab(){
-	console.log("DKBrowser.prototype.NewTab")
 	//DKDEBUGFUNC()
-	var url = "https://duckduckgo.com"
-	
-	/*
-	var iframediv = document.createElement("div")
-	iframediv.id = dk.getAvailableId("CefBrowserTabDiv")
-	iframediv.style["position"] = "absolute"
-	iframediv.style["top"] = "44rem"
-	iframediv.style["left"] = "0rem"
-	iframediv.style["width"] = "100%"
-	iframediv.style["bottom"] = "0rem"
-	iframediv.style["background-color"] = "blue"
-	dk.browser.htmlObj.appendChild(iframediv)
-	*/
+	console.log("DKBrowser.prototype.NewTab")
+	var url = "chrome://gpu";
 	
 	var iframe = document.createElement("iframe")
 	iframe.id = dk.getAvailableId("CefBrowserTab")
 	iframe.setAttribute("src", url)
 	iframe.style["position"] = "absolute"
+	
+	/*
 	iframe.style["top"] = "44rem"
 	iframe.style["left"] = "0rem"
 	iframe.style["width"] = "100%"
 	iframe.style["bottom"] = "0rem"
+	*/
+	
+	iframe.style["top"] = "100px"
+	iframe.style["left"] = "100px"
+	iframe.style["right"] = "100px"
+	iframe.style["bottom"] = "100px"
+	
 	iframe.style["background-color"] = "white"
 	dk.browser.htmlObj.appendChild(iframe)
+	
 	CPP_DKRml_PostProcess()
 	var tabCount = 0
 	for(var i=0; i<CPP_DKCef_GetBrowsers(); i++){
