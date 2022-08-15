@@ -1,1 +1,1 @@
-DKASSETS(DKReceiver)
+dk_assets(DKReceiver)

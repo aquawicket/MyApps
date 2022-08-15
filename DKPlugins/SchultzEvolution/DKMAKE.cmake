@@ -1,1 +1,1 @@
-DKASSETS(SchultzEvolution)
+dk_assets(SchultzEvolution)

@@ -1,2 +1,2 @@
-DKDEPEND(DK)
-DKDEPEND(DKHandles)
+dk_depend(DK)
+dk_depend(DKHandles)

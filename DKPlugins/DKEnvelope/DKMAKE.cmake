@@ -1,1 +1,1 @@
-DKASSETS(DKEnvelope)
+dk_assets(DKEnvelope)

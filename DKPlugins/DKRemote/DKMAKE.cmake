@@ -1,1 +1,1 @@
-DKASSETS(DKRemote)
+dk_assets(DKRemote)

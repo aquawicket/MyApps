@@ -1,1 +1,1 @@
-DKASSETS(DKPlayer)
+dk_assets(DKPlayer)

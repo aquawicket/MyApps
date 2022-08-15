@@ -1,1 +1,1 @@
-DKASSETS(DKBlog)
+dk_assets(DKBlog)

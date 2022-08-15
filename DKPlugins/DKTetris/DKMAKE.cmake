@@ -1,1 +1,1 @@
-DKASSETS(DKTetris)
+dk_assets(DKTetris)

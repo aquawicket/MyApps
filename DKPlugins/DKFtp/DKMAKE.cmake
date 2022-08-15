@@ -1,2 +1,2 @@
-#DKASSETS(DKMessage)
-DKASSETS(DKFtp)
+#dk_assets(DKMessage)
+dk_assets(DKFtp)

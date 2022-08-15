@@ -1,1 +1,1 @@
-DKASSETS(Digitalknob)
+dk_assets(Digitalknob)

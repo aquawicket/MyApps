@@ -1,10 +1,10 @@
 ### This Plugin is no longer used
 ### We keep it for reference 
 
-RETURN()  
+return()  
 
-DKDEPEND(DKArchive)
-DKDEPEND(DKWidget)
+dk_depend(DKArchive)
+dk_depend(DKWidget)
 
-DKPLUGIN(DKCreator)
-DKASSETS(DKCreator)
+dk_generateCmake(DKCreator)
+dk_assets(DKCreator)

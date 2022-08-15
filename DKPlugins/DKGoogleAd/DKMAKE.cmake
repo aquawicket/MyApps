@@ -1,1 +1,1 @@
-DKASSETS(DKGoogleAd)
+dk_assets(DKGoogleAd)

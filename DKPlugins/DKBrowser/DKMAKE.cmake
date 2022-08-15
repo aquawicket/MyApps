@@ -1,1 +1,1 @@
-DKASSETS(DKBrowser)
+dk_assets(DKBrowser)

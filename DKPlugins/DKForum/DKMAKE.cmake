@@ -1,1 +1,1 @@
-DKASSETS(DKForum)
+dk_assets(DKForum)

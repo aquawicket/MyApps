@@ -1,1 +1,1 @@
-DKASSETS(DKSearch)
+dk_assets(DKSearch)

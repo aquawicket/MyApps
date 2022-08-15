@@ -1,3 +1,3 @@
-DKDEPEND(DKHook)
-DKDEPEND(DKTriggers)
-DKASSETS(DKTriggerTest)
+dk_depend(DKHook)
+dk_depend(DKTriggers)
+dk_assets(DKTriggerTest)
