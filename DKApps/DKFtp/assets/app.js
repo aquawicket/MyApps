@@ -7,7 +7,7 @@ var DKApp_url   = "file:///"+CPP_DKAssets_LocalAssets()+"/index.html";
 //var DKApp_url = "http://google.com";
 //var DKApp_url = "chrome://gpu";
 
-CPP_DK_Create("DK/init.js", function(){});
+//CPP_DK_Create("DK/init.js", function(){});
 
 //////////////////////////
 function app_LoadPlugins()
@@ -18,7 +18,7 @@ function app_LoadPlugins()
 ///////////////////////
 function app_LoadPage()
 {
-	DKWidget_SetProperty("body","background-color","grey");
+	//DKWidget_SetProperty("body","background-color","grey");
 	CPP_DK_Create("DKScale/DKScale.js", function(){});
 	CPP_DK_Create("DKFtp/DKFtp.js", function(){});
 	CPP_DK_Create("DKDebug/DKDebug.js", function(){});
