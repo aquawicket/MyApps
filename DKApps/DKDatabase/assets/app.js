@@ -2,10 +2,10 @@ var USE_CEF     = 0; //Desktop
 var USE_WEBVIEW = 0; //TODO: Android, iOS
 var USE_SDL     = 0; //Use with caution
 var USE_RML  = 1; //Use with caution
-var DKApp_url   = "file:///"+DKAssets_LocalAssets()+"/index.html";
+var DKApp_url   = "file:///"+CPP_DKAssets_LocalAssets()+"/index.html";
 //var DKApp_url = "http://TODO.com/DKDatabase";
 
-CPP_DK_Create("DK/init.js", function(){});
+//CPP_DK_Create("DK/init.js", function(){});
 
 function app_LoadPlugins(){
 	
