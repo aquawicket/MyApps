@@ -1,7 +1,11 @@
-CPP_DK_Create("DKWindow");
-CPP_DK_Create("DKRocket");
-CPP_DKRml_LoadGui("index.html");
-CPP_DK_Create("DKWidget");
+CPP_DK_Create("DKSDLWindow");
+CPP_DK_Create("DKRml");
+
+var url   = "file:///"+CPP_DKAssets_LocalAssets()+"/index.html";
+//CPP_DKRml_LoadGui("index.html");
+CPP_DKRml_LoadGui(url);
+
+//CPP_DK_Create("DKWidget");
 CPP_DK_Create("DKScale/DKScale.js", function(){});
 CPP_DK_Create("DKRemote/Remote.js", function(){});
 CPP_DK_Create("DKDebug/DKDebug.js", function(){});
