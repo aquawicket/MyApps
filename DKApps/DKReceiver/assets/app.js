@@ -1,9 +1,8 @@
 CPP_DK_Create("DKSDLWindow");
 CPP_DK_Create("DKRml");
 
-var url   = "file:///"+CPP_DKAssets_LocalAssets()+"/index.html";
-//CPP_DKRml_LoadGui("index.html");
-CPP_DKRml_LoadGui(url);
+var url = CPP_DKAssets_LocalAssets()+"/index.html";
+location.href = url
 
 CPP_DK_Create("DKScale/DKScale.js", function(){});
 CPP_DK_Create("DKReceiver/Receiver.js", function(){});
