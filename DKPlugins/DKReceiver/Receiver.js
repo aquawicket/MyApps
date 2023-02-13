@@ -1,53 +1,83 @@
-////////////////////////
-function Receiver_Init()
-{
+var server
+
+function Receiver_init(){
+	dk.create("DKUWebSocketsServer");
+	dk.create("DKReceiver/Receiver.html", function(){
+		var local_ip = CPP_DK_GetLocalIP()
+		var server = new WebSocketServer("ws://"+local_ip+":80");
+		
+		//server.onclose = function onclose(event){
+		server.addEventListener("close", function onclose(event){
+			console.log("server.onclose("+event+")");
+			console.log("event.value = "+event.value);
+		})
+
+		//server.onerror = function onerror(event){
+		server.addEventListener("error", function onerror(event){
+			console.log("server.onerror("+event+")");
+			console.log("event.value = "+event.value);
+		})
+
+		//server.oninit = function oninit(event){
+		server.addEventListener("init", function oninit(event){
+			console.log("server.oninit("+event+")");
+			console.log("event.value = "+event.value);
+		})
+
+		//server.onmessage = function onmessage(event){
+		server.addEventListener("message", function onmessage(event){
+			console.log("server.onmessage("+event+")");
+			console.log("event.value = "+event.value);
+			//byId("DKUWebSocketsServer_receive").value = event.value;
+		})
+
+		//server.onopen = function onopen(event){
+		server.addEventListener("open", function onopen(event){
+			console.log("server.onopen("+event+")");
+			console.log("event.value = "+event.value);
+		})
+			
+		server.start(local_ip, "80");
 	
-	CPP_DK_Create("DKReceiver/Receiver.html");	
-	CPP_DK_Create("DKWebSockets");
-	DKWebSockets_CreateServer("127.0.0.1", 80);
-	var IP = DK_GetLocalIP();
-	DKWidget_SetInnerHtml("IPAddress", IP);
-	
-	DKAddEvent("VolumeUp_Button", "click", Receiver_OnEvent);
-	DKAddEvent("VolumeDown_Button", "click", Receiver_OnEvent);
-	DKAddEvent("GLOBAL", "DKWebSockets_OnMessageFromClient", Receiver_OnEvent);
+		byId("IPAddress").innerHTML = local_ip
+		byId("VolumeUp_Button").addEventListener("click", Receiver_onevent);
+		byId("VolumeDown_Button").addEventListener("click", Receiver_onevent);
+	});
 }
 
-///////////////////////
-function Receiver_End()
-{
-	
-	DKWebSockets_CloseServer();
+function Receiver_End(){
+	server.close() //TODO
 	DKRemoveEvents(Receiver_OnEvent);
 	DKClose("DKReceiver/Receiver.html");
 }
 
-////////////////////////////////
-function Receiver_OnEvent(event)
-{
-	DKDEBUGFUNC(event);	
-	if(DK_Id(event, "VolumeUp_Button")){
+function Receiver_onevent(event){
+	//DKDEBUGFUNC(event);	
+	console.log("Receiver_onevent("+event+")")
+	/*
+	if(event.currentTarget.id === "VolumeUp_Button"){
 		console.log("Button: VolumeUp\n");
-		var volume = DK_GetVolume();
+		var volume = CPP_DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
-			DK_SetVolume(volume+5000);
+			CPP_DK_SetVolume(volume+5000);
 		}
 		else{
-			DK_SetVolume(volume+2); // 1 doesn't work.   debug me
+			CPP_DK_SetVolume(volume+2); // 1 doesn't work.   debug me
 		}
 	}
-	if(DK_Id(event, "VolumeDown_Button")){
+	if(event.currentTarget.id === "VolumeDown_Button"){
 		console.log("Button: Volume Down\n");
-		var volume = DK_GetVolume();
+		var volume = CPP_DK_GetVolume();
 		if(DK_GetOS() == "Linux"){
-			DK_SetVolume(volume-5000);
+			CPP_DK_SetVolume(volume-5000);
 		}
 		else{
-			DK_SetVolume(volume-2);
+			CPP_DK_SetVolume(volume-2);
 		}
 	}
-	
-	if(DK_Type(event, "DKWebSockets_OnMessageFromClient")){
+	*/
+	/*
+	if(event.type === "DKWebSockets_OnMessageFromClient"){
 		console.log("server: "+DK_GetValue(event)+"\n");
 		if(DK_GetValue(event) == "Power"){
 			console.log("Client: Power\n");
@@ -75,4 +105,5 @@ function Receiver_OnEvent(event)
 			}
 		}
 	}
+	*/
 }
