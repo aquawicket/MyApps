@@ -5,11 +5,13 @@ function Remote_init(){
 	dk.create("DKUWebSocketsClient");
 	dk.create("DKRemote/Remote.html", function(){
 		var assets = CPP_DKAssets_LocalAssets();
-		var address = dk.file.getSetting(assets+"settings.txt", "[SERVER]");
-		if(address){
-			byId("address").value = address
-			//Remote_Connect();  FIXME: crashes android 
-		}
+		var address = dk.file.getSetting(assets+"settings.txt", "[SERVER]")
+		byId("address").value = address
+		/*
+		var address = dk.file.getSetting(assets+"settings.txt", "[SERVER]", function(str){
+			byId("address").value = str
+		});
+		*/
 
 		byId("VolumeUp_Button").addEventListener("click", Remote_OnEvent);
 		byId("VolumeDown_Button").addEventListener("click", Remote_OnEvent);
