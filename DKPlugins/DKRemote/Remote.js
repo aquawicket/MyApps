@@ -28,7 +28,7 @@ function Remote_End(){
 }
 
 function Remote_OnEvent(event){
-	DKDEBUGFUNC(event);
+	//DKDEBUGFUNC(event);
 	if(event.currentTarget.id === "Power"){
 		DKClient_Send("Power");
 		console.log("Server: Power\n");
@@ -103,7 +103,7 @@ function Remote_CloseClient(){
 }
 
 function Remote_MessageToServer(message){
-	DKDEBUGFUNC(message);	
+	//DKDEBUGFUNC(message);	
 	
 	client.send(message);
 
