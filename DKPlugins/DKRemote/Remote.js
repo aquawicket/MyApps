@@ -1,121 +1,108 @@
-//////////////////////
-function Remote_Init()
-{
+var client;
+
+function Remote_Init(){
+	dk.create("DKRemote/Remote.html");
+	dk.create("DKUWebSocketsClient");
 	
-	CPP_DK_Create("DKRemote/Remote.html");
-	CPP_DK_Create("DKWebSockets");
-	
-	var assets = DKAssets_LocalAssets();
+	var assets = CPP_DKAssets_LocalAssets();
 	var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");
 	if(address){
-		DKWidget_SetValue("address", address);
+		byId("address").value = address
 		//Remote_Connect();  FIXME: crashes android 
 	}
-	DKAddEvent("VolumeUp_Button", "click", Remote_OnEvent);
-	DKAddEvent("VolumeDown_Button", "click", Remote_OnEvent);
-	DKAddEvent("Wifi", "click", Remote_OnEvent);
-	DKAddEvent("address", "change", Remote_OnEvent);
-	DKAddEvent("GLOBAL", "DKWebSockets_OnMessageFromServer", Remote_OnEvent);
+
+	byId("VolumeUp_Button").addEventListener("click", Remote_OnEvent);
+	byId("VolumeDown_Button").addEventListener("click", Remote_OnEvent);
+	byId("Wifi").addEventListener("click", Remote_OnEvent);
+	byId("address").addEventListener("change", Remote_OnEvent);
+	//byId("GLOBAL"), "DKWebSockets_OnMessageFromServer", Remote_OnEvent);
 }
 
-/////////////////////
-function Remote_End()
-{
-	
+function Remote_End(){
 	DKClose("DKRemote/Remote.html");
 	DKClose("DKWebSockets");
 	DKRemoveEvents(Remote_OnEvent);
 }
 
-//////////////////////////////
-function Remote_OnEvent(event)
-{
+function Remote_OnEvent(event){
 	DKDEBUGFUNC(event);
-	if(DK_Id(event, "Power")){
+	if(event.currentTarget.id === "Power"){
 		DKClient_Send("Power");
 		console.log("Server: Power\n");
 	}
-	if(DK_Id(event, "VolumeUp_Button")){
+	if(event.currentTarget.id === "VolumeUp_Button"){
 		console.log("Button: VolumeUp\n");
 		Remote_MessageToServer("VolumeUp");
 	}
-	if(DK_Id(event, "VolumeDown_Button")){
+	if(event.currentTarget.id === "VolumeDown_Button"){
 		console.log("Button: Volume Down\n");
 		Remote_MessageToServer("VolumeDown");
 	}
-	if(DK_Id(event, "Wifi")){
+	if(event.currentTarget.id === "Wifi"){
 		console.log("Button: Wifi\n");
 		dk.toggle("address");
-		if(!DKWidget_Visible("address")){
+		if(!byId("address").isVisiable){
 			Remote_Connect();
 		}
 	}
-	if(DK_Id(event, "address")){
+	if(event.currentTarget.id === "address"){
 		//TODO
 	}
-	if(DK_Type(event, "DKWebSockets_OnMessageFromServer")){
+	if(event.type === "DKWebSockets_OnMessageFromServer"){
 		Remote_OnMessageFromServer(DK_GetValue(event));
 	}
 }
 
-/////////////////////////
-function Remote_Connect()
-{
+function Remote_Connect(){
 		
-	if(!DKWidget_GetValue("address")){
-		DKWARN("Remote_Connect(): please enter an address\n");
+	if(!byId("address").value){
+		console.warn("Remote_Connect(): please enter an address\n");
 		return;
 	}
-	url = DKWidget_GetValue("address");  //  ws://localhost
+	url = byId("address").value  //  ws://localhost
 	
-	if(DK_GetBrowser() == "Rocket"){
-		console.log("Connecting to WebSocket via C++...\n");
-		DKWebSockets_CreateClient(url);
-		return;
-	}
+	client = new WebSocket(url);
 	
-	//else
-	console.log("Connecting to WebSocket via javascript...\n");
-	websocket = new WebSocket(url);
-	websocket.onopen = function(){
-		console.log("websocket.onopen");
-	}
-	websocket.onmessage = function(e){
-		console.log("websocket.onmessage");
-		Remote_OnMessageFromServer(e.data.toString());
-	}
-	websocket.onclose = function(e){
-		console.log("websocket.onclose");
-	}
-	websocket.onerror = function(e){
-		console.log("websocket.onerror");
-	}
+	//client.onclose = function onclose(event){
+	client.addEventListener("close", function onclose(event){
+		console.log("client.onclose("+event+")");
+		console.log("event.value = "+event.value);
+	})
+	
+	//client.onerror = function onerror(event){
+	client.addEventListener("error", function onerror(event){
+		console.log("client.onerror("+event+")");
+		console.log("event.value = "+event.value);
+	})
+	
+	//client.oninit = function oninit(event){
+	client.addEventListener("init", function oninit(event){
+		console.log("client.oninit("+event+")");
+		console.log("event.value = "+event.value);
+	})
+	
+	//client.onmessage = function onmessage(event){
+	client.addEventListener("message", function onmessage(event){
+		console.log("client.onmessage("+event+")");
+		console.log("event.value = "+event.value);
+		byId("DKUWebSocketsClient_receive").value = event.value;
+	})
+	
+	//client.onopen = function onopen(event){
+	client.addEventListener("open", function onopen(event){
+		console.log("client.onopen("+event+")");
+		console.log("event.value = "+event.value);
+	})
 }
 
-/////////////////////////////
-function Remote_CloseClient()
-{
-	
-	if(DK_GetBrowser() == "Rocket"){
-		DKWebSockets_CloseClient();
-		return;
-	}
-	
-	//else
-	websocket.close();
+function Remote_CloseClient(){
+	client.close();
 }
 
-////////////////////////////////////////
-function Remote_MessageToServer(message)
-{
+function Remote_MessageToServer(message){
 	DKDEBUGFUNC(message);	
-	if(DK_GetBrowser() == "Rocket"){
-		DKWebSockets_MessageToServer(message);
-		return;
-	}
 	
-	//else
-	websocket.send(message);
+	client.send(message);
 
 	/*
 	if(DK_GetValue(event) == "connected"){
@@ -133,8 +120,6 @@ function Remote_MessageToServer(message)
 	*/
 }
 
-////////////////////////////////////////////
-function Remote_OnMessageFromServer(message)
-{
+function Remote_OnMessageFromServer(message){
 	DKDEBUGFUNC(message);
 }
