@@ -1,21 +1,22 @@
 var client;
 
-function Remote_Init(){
-	dk.create("DKRemote/Remote.html");
+function Remote_init(){
+	dk.create("DKFile/DKFile.js");
 	dk.create("DKUWebSocketsClient");
-	
-	var assets = CPP_DKAssets_LocalAssets();
-	var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");
-	if(address){
-		byId("address").value = address
-		//Remote_Connect();  FIXME: crashes android 
-	}
+	dk.create("DKRemote/Remote.html", function(){
+		var assets = CPP_DKAssets_LocalAssets();
+		var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");
+		if(address){
+			byId("address").value = address
+			//Remote_Connect();  FIXME: crashes android 
+		}
 
-	byId("VolumeUp_Button").addEventListener("click", Remote_OnEvent);
-	byId("VolumeDown_Button").addEventListener("click", Remote_OnEvent);
-	byId("Wifi").addEventListener("click", Remote_OnEvent);
-	byId("address").addEventListener("change", Remote_OnEvent);
-	//byId("GLOBAL"), "DKWebSockets_OnMessageFromServer", Remote_OnEvent);
+		byId("VolumeUp_Button").addEventListener("click", Remote_OnEvent);
+		byId("VolumeDown_Button").addEventListener("click", Remote_OnEvent);
+		byId("Wifi").addEventListener("click", Remote_OnEvent);
+		byId("address").addEventListener("change", Remote_OnEvent);
+		//byId("GLOBAL"), "DKWebSockets_OnMessageFromServer", Remote_OnEvent);
+	})
 }
 
 function Remote_End(){
