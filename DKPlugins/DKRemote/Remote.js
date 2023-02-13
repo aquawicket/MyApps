@@ -5,7 +5,7 @@ function Remote_init(){
 	dk.create("DKUWebSocketsClient");
 	dk.create("DKRemote/Remote.html", function(){
 		var assets = CPP_DKAssets_LocalAssets();
-		var address = DKFile_GetSetting(assets+"remote.txt", "[SERVER]");
+		var address = dk.file.GetSetting(assets+"remote.txt", "[SERVER]");
 		if(address){
 			byId("address").value = address
 			//Remote_Connect();  FIXME: crashes android 
@@ -21,7 +21,7 @@ function Remote_init(){
 
 function Remote_End(){
 	DKClose("DKRemote/Remote.html");
-	DKClose("DKWebSockets");
+	DKClose("DKUWebSocketsClient");
 	DKRemoveEvents(Remote_OnEvent);
 }
 
