@@ -47,7 +47,7 @@ function Receiver_init(){
 
 function Receiver_End(){
 	server.close() //TODO
-	DKRemoveEvents(Receiver_OnEvent);
+	//DKRemoveEvents(Receiver_OnEvent);
 	DKClose("DKReceiver/Receiver.html");
 }
 
