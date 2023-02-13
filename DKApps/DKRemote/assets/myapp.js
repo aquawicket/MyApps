@@ -1,7 +1,7 @@
 
 //DKPlugin("DKScale/DKScale.js");
 DKPlugin("DKRemote/Remote.js");
-Remote_Init()
+Remote_init()
 DKPlugin("DKDebug/DKDebug.js");
 
 /*
