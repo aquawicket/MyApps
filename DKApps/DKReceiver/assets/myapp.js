@@ -1,11 +1,10 @@
-//CPP_DK_Create("DKSDLWindow");
-//CPP_DK_Create("DKRml");
-
-//DKPlugin("DKScale/DKScale.js", function(){});
+//DKPlugin("DKScale/DKScale.js");
+DKPlugin("DKFile/DKFile.js");
+DKPlugin("DKDebug/DKDebug.js");
 DKPlugin("DKReceiver/Receiver.js");
 Receiver_init()
 DKPlugin("DKTray/DKTray.js");
-DKPlugin("DKDebug/DKDebug.js");
+
 
 /*
 DKAddEvent("GLOBAL", "minimize", app_OnEvent);

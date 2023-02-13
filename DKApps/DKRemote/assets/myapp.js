@@ -1,8 +1,8 @@
-
 //DKPlugin("DKScale/DKScale.js");
+DKPlugin("DKFile/DKFile.js");
+DKPlugin("DKDebug/DKDebug.js");
 DKPlugin("DKRemote/Remote.js");
 Remote_init()
-DKPlugin("DKDebug/DKDebug.js");
 
 /*
 DKAddEvent("GLOBAL", "keydown", app_OnEvent);
