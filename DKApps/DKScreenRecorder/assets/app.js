@@ -7,7 +7,7 @@ var DKApp_url   = "file:///"+CPP_DKAssets_LocalAssets()+"index.html";
 CPP_DK_Create("DK/init.js", function(){});
 
 function app_OnEvent(event){
-	DKDEBUGFUNC(event);
+	//DKDEBUGFUNC(event);
 	if(DK_Type(event, "1003")){ //Tray, Fullscreen
 		console.log("Clicked Tray -> Record\n");
 		DKScreenRecorder_Record("video.avi"); //Record the screen to a file.
@@ -18,9 +18,7 @@ function app_OnEvent(event){
 	}
 }
 
-function app_LoadPlugins()
-{
-	
+function app_LoadPlugins(){
 	CPP_DK_Create("DKScreenRecorder");
 	CPP_DK_Create("DKTray/DKTray.js", function(){
 		DKTray_AddItem("Record", 1003);
@@ -30,7 +28,6 @@ function app_LoadPlugins()
 	});
 }
 
-///////////////////////
 function app_LoadPage()
 {
 	
