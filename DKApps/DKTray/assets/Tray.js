@@ -50,11 +50,11 @@ function Tray_ToggleIcon(){
 }
 
 function Tray_On(){
-	var assets = DKAssets_LocalAssets();
-	DKTray_SetIcon(assets+"touchON.ico");
+	var assets = CPP_DKAssets_LocalAssets();
+	CPP_DKTray_SetIcon(assets+"touchON.ico");
 }
 
 function Tray_Off(){
-	var assets = DKAssets_LocalAssets();
-	DKTray_SetIcon(assets+"touchOFF.ico");
+	var assets = CPP_DKAssets_LocalAssets();
+	CPP_DKTray_SetIcon(assets+"touchOFF.ico");
 }
