@@ -1,20 +1,20 @@
-function Tray_Init(){
+function Tray_init(){
 	CPP_DK_Create("DKTray");
-	DKAddEvent("DKTray", "1000", Tray_onevent);
-	DKAddEvent("DKTray", "1001", Tray_onevent);
-	DKAddEvent("DKTray", "1002", Tray_onevent);
-	DKAddEvent("DKTray", "click", Tray_onevent);
-	DKAddEvent("DKTray", "doubleclick", Tray_onevent);
+	window.addEventListener("1000", Tray_onevent);
+	window.addEventListener("1001", Tray_onevent);
+	window.addEventListener("1002", Tray_onevent);
+	window.addEventListener("click", Tray_onevent);
+	window.addEventListener("doubleclick", Tray_onevent);
 	
-	DKTray_AddItem("Exit", 1002);
-	DKTray_AddItem("Minimize", 1001);
-	DKTray_AddItem("Restore", 1000);
+	CPP_DKTray_AddItem("Exit", 1002);
+	CPP_DKTray_AddItem("Minimize", 1001);
+	CPP_DKTray_AddItem("Restore", 1000);
 	
-	DKTray_SetTooltip("DKTray example");
+	CPP_DKTray_SetTooltip("DKTray example");
 	
 	Tray_On();
 	
-	DKTray_ShowBalloon("DKTray");
+	CPP_DKTray_ShowBalloon("DKTray");
 }
 
 function Tray_onevent(event){
