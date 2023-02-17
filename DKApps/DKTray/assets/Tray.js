@@ -35,7 +35,7 @@ function Tray_onevent(event){
 		tray.showBalloon("DKTray minimized");
 	}
 	if(event.type === "1002"){
-		DK_Exit();
+		CPP_DK_Exit();
 	}
 	
 	if(event.type === "click"){
