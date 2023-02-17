@@ -1,8 +1,16 @@
-//DKPlugin("DKScale/DKScale.js");
-DKPlugin("DKFile/DKFile.js");
-DKPlugin("DKDebug/DKDebug.js");
-DKPlugin("DKRemote/Remote.js");
-Remote_init()
+function MyApp(){}
+const myapp = DKPlugin(MyApp);
+
+myapp.loadFiles = function myapp_loadFiles() {
+	console.log("myapp.loadFiles")
+	DKPlugin("DKFile/DKFile.js")
+	DKPlugin("DKDebug/DKDebug.js")
+	DKPlugin("DKRemote/Remote.js")
+}
+
+myapp.loadApp = function myapp_loadApp() {
+	Remote_init()
+}
 
 /*
 DKAddEvent("GLOBAL", "keydown", app_OnEvent);
