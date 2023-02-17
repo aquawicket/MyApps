@@ -20,6 +20,10 @@ function Tray_init(){
 	tray.showBalloon("DKTray");
 }
 
+function Tray_end(){
+	console.log("Tray_end()")
+}
+
 function Tray_onevent(event){
 	//DKDEBUGFUNC(event);
 	console.log("event = "+event)
