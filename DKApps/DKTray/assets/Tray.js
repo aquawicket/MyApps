@@ -22,6 +22,8 @@ function Tray_init(){
 
 function Tray_onevent(event){
 	//DKDEBUGFUNC(event);
+	console.log("event = "+event)
+	console.log("event.value = "+event.value)
 	if(event.type === "1000" || event.type === "doubleclick"){
 		CPP_DK_Create("DKWindowJS");
 		CPP_DKWindow_Show();
