@@ -51,6 +51,7 @@ function Tray_onevent(event){
 function Tray_ToggleIcon(){
 	//var icon = CPP_DKTray_GetIcon();
 	var icon = tray.getIcon()
+	console.log("icon ="+icon)
 	var file = CPP_DKFile_GetFilename(icon);
 	console.log("current icon = "+file+"\n");
 	if(file == "touchON.ico")
