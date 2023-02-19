@@ -1,19 +1,15 @@
-//DKPlugin("DKScale/DKScale.js");
-DKPlugin("DKFile/DKFile.js");
-DKPlugin("DKDebug/DKDebug.js");
-DKPlugin("DKReceiver/Receiver.js");
-Receiver_init()
-DKPlugin("DKTray/DKTray.js");
+function MyApp(){}
+const myapp = DKPlugin(MyApp);
 
-
-/*
-DKAddEvent("GLOBAL", "minimize", app_OnEvent);
-
-///////////////////////////
-function app_OnEvent(event)
-{
-	DKDEBUGFUNC(event);
-	CPP_DK_Create("DKWindowJS");
-	CPP_DKWindow_Hide();
+myapp.loadFiles = function myapp_loadFiles() {
+	console.log("myapp.loadFiles")
+	//DKPlugin("DKScale/DKScale.js");
+	DKPlugin("DKFile/DKFile.js");
+	DKPlugin("DKDebug/DKDebug.js");
+	DKPlugin("DKReceiver/Receiver.js");
+	DKPlugin("DKTray/DKTray.js");
 }
-*/
+
+myapp.loadApp = function myapp_loadApp() {
+	Receiver_init()
+}
