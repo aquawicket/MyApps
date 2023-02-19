@@ -3,9 +3,11 @@ var client;
 function Remote_init(){
 	dk.create("DKUWebSocketsClient");
 	dk.create("DKRemote/Remote.html", function(){
-		var assets = "http://127.0.0.1:2393/";	
+		//console.log("location = "+location)
+		console.log("dk.file.onlineAssets = "+dk.file.onlineAssets)
+
+		var assets = dk.file.onlineAssets;//"http://127.0.0.1:2393/";
 		dk.file.getSetting(assets+"settings.txt", "[SERVER]", function(str){
-			console.log("[SERVER] = "+str)
 			byId("address").value = str
 		});
 		byId("VolumeUp_Button").addEventListener("click", Remote_OnEvent);
