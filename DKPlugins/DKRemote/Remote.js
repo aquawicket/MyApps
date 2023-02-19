@@ -1,18 +1,13 @@
 var client;
 
 function Remote_init(){
-	dk.create("DKFile/DKFile.js");
 	dk.create("DKUWebSocketsClient");
 	dk.create("DKRemote/Remote.html", function(){
-		var assets = CPP_DKAssets_LocalAssets();
-		var address = dk.file.getSetting(assets+"settings.txt", "[SERVER]")
-		byId("address").value = address
-		/*
-		var address = dk.file.getSetting(assets+"settings.txt", "[SERVER]", function(str){
+		var assets = "http://127.0.0.1:2393/";	
+		dk.file.getSetting(assets+"settings.txt", "[SERVER]", function(str){
+			console.log("[SERVER] = "+str)
 			byId("address").value = str
 		});
-		*/
-
 		byId("VolumeUp_Button").addEventListener("click", Remote_OnEvent);
 		byId("VolumeDown_Button").addEventListener("click", Remote_OnEvent);
 		byId("Wifi").addEventListener("click", Remote_OnEvent);

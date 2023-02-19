@@ -3,6 +3,7 @@ const myapp = DKPlugin(MyApp);
 
 myapp.loadFiles = function myapp_loadFiles() {
 	console.log("myapp.loadFiles")
+	DKPlugin("DK/DKPhp.js")
 	DKPlugin("DKFile/DKFile.js")
 	DKPlugin("DKDebug/DKDebug.js")
 	DKPlugin("DKRemote/Remote.js")
