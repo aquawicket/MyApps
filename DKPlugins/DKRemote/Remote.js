@@ -3,10 +3,10 @@ var client;
 function Remote_init(){
 	dk.create("DKUWebSocketsClient");
 	dk.create("DKRemote/Remote.html", function(){
-		//console.log("location = "+location)
-		console.log("dk.file.onlineAssets = "+dk.file.onlineAssets)
 
-		var assets = dk.file.onlineAssets;//"http://127.0.0.1:2393/";
+		var assets = dk.file.onlineAssets
+		console.log("assets = "+assets)
+
 		dk.file.getSetting(assets+"settings.txt", "[SERVER]", function(str){
 			byId("address").value = str
 		});
