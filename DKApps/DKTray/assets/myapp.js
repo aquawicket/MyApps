@@ -1,3 +1,3 @@
-CPP_DK_Create("DKDebug/DKDebug.js")
-CPP_DK_Create("Tray.js");
+DKPlugin("DKDebug/DKDebug.js")
+DKPlugin("Tray.js");
 Tray_init()

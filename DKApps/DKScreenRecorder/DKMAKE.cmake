@@ -2,6 +2,7 @@
 dk_depend(DKDom)
 dk_depend(DKAssets)
 dk_depend(DKFile)
+dk_depend(DKRml)
 dk_depend(DKScreenRecorder)
 dk_depend(DKSDLRml)
 dk_depend(DKTray)

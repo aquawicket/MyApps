@@ -1,27 +1,41 @@
-function app_onevent(event){
-	//DKDEBUGFUNC(event);
-	if(event.type === "1003"){ //Tray, Fullscreen
-		console.log("Clicked Tray -> Record\n");
-		DKScreenRecorder_Record("video.avi"); //Record the screen to a file.
-	}
-	if(event.type === "1004"){ //Tray, Fullscreen
-		console.log("Clicked Tray -> Stop\n");
-		DKScreenRecorder_Stop();
-	}
-}
+var tray
 
-function app_LoadPlugins(){
-	DKPlugin("DKScreenRecorder");
-	DKPlugin("DKTray/DKTray.js", function(){
-		DKTray_init()
-		DKTray_AddItem("Record", 1003);
-		DKAddEvent("DKTray", "1003", app_onevent);
-		DKTray_AddItem("Stop", 1004);
-		DKAddEvent("DKTray", "1004", app_onevent);
-	});
-}
-
-function app_LoadPage()
-{
+function Tray_init(){
+	DKPlugin("DKTray");
+	tray = new Tray();
 	
+	tray.addEventListener("1003", Tray_onevent);
+	tray.addEventListener("1004", Tray_onevent);
+		
+	tray.addItem("Record", 1003);
+	tray.addItem("Stop", 1004);
+	
+	tray.setTooltip("DKScreenRecorder");	
+	tray.showBalloon("DKScreenRecorder");
 }
+
+function Tray_onevent(event){
+	//DKDEBUGFUNC(event);
+	if(event.type === "1003"){
+		console.log("Clicked Tray -> Record\n");
+		CPP_DKScreenRecorder_Record("video.avi"); //Record the screen to a file.
+	}
+	if(event.type === "1004"){
+		console.log("Clicked Tray -> Stop\n");
+		CPP_DKScreenRecorder_Stop();
+	}
+}
+
+
+/////////////////////////////////////////////
+function MyApp(){}
+const myapp = DKPlugin(MyApp);
+
+myapp.loadFiles = function myapp_loadFiles() {
+	DKPlugin("DKScreenRecorder");	
+}
+
+myapp.loadApp = function myapp_loadApp() {
+	Tray_init()
+}
+//////////////////////////////////////////////
