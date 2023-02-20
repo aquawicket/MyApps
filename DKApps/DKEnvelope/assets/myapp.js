@@ -6,7 +6,8 @@ myapp.loadFiles = function myapp_loadFiles() {
 	DKPlugin("DKDebug/DKDebug.js")
 	DKPlugin("DKGoogleAd/DKGoogleAd.js", function(){
 		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
-		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
+		if(id)
+			byId(id).style.bottom = "0px"
 	});
 }
 
@@ -18,7 +19,8 @@ myapp.loadApp = function myapp_loadApp() {
 				DKPlugin("DKEnvelope/DKEnvelope.js", function(){
 					DKPlugin("DKGoogleAd/DKGoogleAd.js", function(){
 						var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
-						if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
+						if(id)
+							byId(id).style.bottom = "0px"
 					});
 				});
 			});
