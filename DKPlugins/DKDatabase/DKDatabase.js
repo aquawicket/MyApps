@@ -1,48 +1,48 @@
-//////////////////////////
-function DKDatabase_Init()
-{
-	
-	CPP_DK_Create("DKMySql");
-	CPP_DK_Create("DKMySql/DKMySql.js", function(){
-		CPP_DK_Create("DKDatabase/DKDatabase.html");
-		DKAddEvent("DKDatabase.html", "AddDatabase", DKDatabase_OnEvent);
-		DKAddEvent("DKDatabase.html", "AddTable", DKDatabase_OnEvent);
-		DKAddEvent("DKDatabase.html", "AddColumn", DKDatabase_OnEvent);
-		DKAddEvent("DatabaseDrop", "change",DKDatabase_OnEvent);
-		DKAddEvent("TableDrop", "change", DKDatabase_OnEvent);
-		DKAddEvent("DatabaseConnect", "click", DKDatabase_OnEvent);
-		DKAddEvent("AddDatabase", "click", DKDatabase_OnEvent);
-		DKAddEvent("AddTable", "click", DKDatabase_OnEvent);
-		DKAddEvent("AddColumn", "click", DKDatabase_OnEvent);
-		DKAddEvent("CancelButton", "click", DKDatabase_OnEvent);
-		DKAddEvent("SaveButton", "click", DKDatabase_OnEvent);
-	
-		var assets = DKAssets_LocalAssets();
-		var file = assets+"USER/database.txt";
-		var protocol = DKAssets_Protocol();
-		if(protocol == "file:"){ file = 0;}
-		var server = DKFile_GetSetting(file, "[SERVER]");
-		var name = DKFile_GetSetting(file, "[USERNAME]");
-		var pass = DKFile_GetSetting(file, "[PASSWORD]");
-		var port = DKFile_GetSetting(file, "[PORT]");
-		DKWidget_SetValue("ServerBox", server);
-		DKWidget_SetValue("NameBox", name);
-		DKWidget_SetValue("PassBox", pass);
-		DKWidget_SetValue("PortBox", port);
+function DKDatabase(){}
+dk.database = DKPlugin(DKDatabase)
+
+
+DKDatabase.prototype.init = function DKDatabase_init() {
+	DKPlugin("DKMySql");
+	DKPlugin("DKMySql/DKMySql.js", function(){
+		DKPlugin("DKDatabase/DKDatabase.html", function(){
+		
+			//FIXME
+			//DKAddEvent("DKDatabase.html", "AddDatabase", DKDatabase_onevnt);
+			//DKAddEvent("DKDatabase.html", "AddTable", DKDatabase_onevnt);
+			//DKAddEvent("DKDatabase.html", "AddColumn", DKDatabase_onevnt);
+			
+			byId("DatabaseDrop").addEventListener("change", DKDatabase_onevnt);
+			DKAddEvent("TableDrop", "change", DKDatabase_onevnt);
+			DKAddEvent("DatabaseConnect", "click", DKDatabase_onevnt);
+			DKAddEvent("AddDatabase", "click", DKDatabase_onevnt);
+			DKAddEvent("AddTable", "click", DKDatabase_onevnt);
+			DKAddEvent("AddColumn", "click", DKDatabase_onevnt);
+			DKAddEvent("CancelButton", "click", DKDatabase_onevnt);
+			DKAddEvent("SaveButton", "click", DKDatabase_onevnt);
+		
+			var assets = DKAssets_LocalAssets();
+			var file = assets+"USER/database.txt";
+			var protocol = DKAssets_Protocol();
+			if(protocol == "file:"){ file = 0;}
+			var server = DKFile_GetSetting(file, "[SERVER]");
+			var name = DKFile_GetSetting(file, "[USERNAME]");
+			var pass = DKFile_GetSetting(file, "[PASSWORD]");
+			var port = DKFile_GetSetting(file, "[PORT]");
+			DKWidget_SetValue("ServerBox", server);
+			DKWidget_SetValue("NameBox", name);
+			DKWidget_SetValue("PassBox", pass);
+			DKWidget_SetValue("PortBox", port);
+		});
 	});
 }
 
-/////////////////////////
-function DKDatabase_End()
-{
-	
+DKDatabase.prototype.end = function DKDatabase_end() {
 	DKClose("DKDatabase/DKDatabase.html");
 }
 
-//////////////////////////////////
-function DKDatabase_OnEvent(event)
-
-{	DKDEBUGFUNC(event);
+DKDatabase.prototype.onevent = function DKDatabase_onevent(event) {
+	//DKDEBUGFUNC(event);
 
 	if(DK_Id(event, "DatabaseConnect")){
 		DKDatabase_Connect();
@@ -123,10 +123,7 @@ function DKDatabase_OnEvent(event)
 	}
 }
 
-/////////////////////////////
-function DKDatabase_Connect()
-{
-	
+DKDatabase.prototype.connect = function DKDatabase_connect() {
 	dk.hide("Success");
 	var server = DKWidget_GetValue("ServerBox");
 	var port = DKWidget_GetValue("PortBox");
@@ -151,10 +148,7 @@ function DKDatabase_Connect()
 	return true;
 }
 
-/////////////////////////////////////
-function DKDatabase_UpdateDatabases()
-{
-	
+DKDatabase.prototype.updateDatabases = function DKDatabase_updateDatabases() {
 	DKWidget_SetValue("DatabaseDrop", "");
 	DKWidget_SetInnerHtml("DatabaseDrop", ""); //clear
 
@@ -173,10 +167,7 @@ function DKDatabase_UpdateDatabases()
 	}
 }
 
-//////////////////////////////////
-function DKDatabase_UpdateTables()
-{
-	
+DKDatabase.prototype.updateTables = function DKDatabase_updateTables() {
 	DKWidget_SetValue("TableDrop", "");
 	DKWidget_SetInnerHtml("TableDrop", ""); //clear
 
@@ -195,10 +186,8 @@ function DKDatabase_UpdateTables()
 	}
 }
 
-///////////////////////////////////////
-function DKDatabase_UpdateHeader(table)
-{
-	DKDEBUGFUNC(table);
+DKDatabase.prototype.updateHeader = function DKDatabase_updateHeader(table) {
+	//DKDEBUGFUNC(table);
 	DKWidget_SetInnerHtml("Records", ""); //clear
 	if(!table){ return false; }
 
@@ -232,14 +221,12 @@ function DKDatabase_UpdateHeader(table)
 	DKWidget_SetProperty(id, "height", "18rem");
 	DKWidget_SetProperty(id, "display", "inline-block");
 	DKWidget_SetInnerHtml(id, "+");
-	DKAddEvent(id, "click", DKDatabase_OnEvent);
+	DKAddEvent(id, "click", DKDatabase_onevnt);
 
 	return true;
 }
 
-////////////////////////////////////////
-function DKDatabase_UpdateRecords(table)
-{
+DKDatabase.prototype.updateRecords = function DKDatabase_updateRecords(table) {
 	DKDEBUGFUNC(table);
 	DKDatabase_UpdateHeader(table);
 	if(!table){ return false; }
@@ -285,7 +272,7 @@ function DKDatabase_UpdateRecords(table)
 		DKWidget_SetProperty(deleteRecord, "height", "18rem");
 		DKWidget_SetProperty(deleteRecord, "display", "inline-block");
 		DKWidget_SetInnerHtml(deleteRecord, "-");
-		DKAddEvent(deleteRecord, "click", DKDatabase_OnEvent);
+		DKAddEvent(deleteRecord, "click", DKDatabase_onevnt);
 	}
 
 	var addRecord = DKWidget_CreateElement("Records", "button", "AddRecord");
@@ -293,23 +280,17 @@ function DKDatabase_UpdateRecords(table)
 	DKWidget_SetProperty(addRecord, "height", "18rem");
 	DKWidget_SetProperty(addRecord, "display", "block");
 	DKWidget_SetInnerHtml(addRecord, "+");
-	DKAddEvent(addRecord, "click", DKDatabase_OnEvent);
+	DKAddEvent(addRecord, "click", DKDatabase_onevnt);
 
 	return true;
 }
 
-////////////////////////////
-function DKDatabase_Cancel()
-{
-	
+DKDatabase.prototype.cancel = function DKDatabase_cancel() {
 	DKDatabase_UpdateRecords(DKWidget_GetValue("TableDrop"));
 	return true;
 }
 
-//////////////////////////
-function DKDatabase_Save()
-{
-	
+DKDatabase.prototype.save = function DKDatabase_save() {
 	var query = "SELECT * FROM ";
 	query += DKWidget_GetValue("TableDrop");
 	query += " ORDER BY ID ASC";
@@ -349,10 +330,7 @@ function DKDatabase_Save()
 	return true;
 }
 
-///////////////////////////////
-function DKDatabase_AddRecord()
-{
-	
+DKDatabase.prototype.addRecord = function DKDatabase_addRecord() {
 	var query = "INSERT INTO "+DKWidget_GetValue("TableDrop")+" () VALUES ()";
 	DKMySql_Query(query);
 	DKDatabase_UpdateRecords(DKWidget_GetValue("TableDrop"));
