@@ -6,12 +6,12 @@ DKDatabase.prototype.init = function DKDatabase_init() {
 	DKPlugin("DKMySql");
 	DKPlugin("DKMySql/DKMySql.js", function(){
 		DKPlugin("DKDatabase/DKDatabase.html", function(){
-		
 			//FIXME
 			//DKAddEvent("DKDatabase.html", "AddDatabase", DKDatabase_onevnt);
 			//DKAddEvent("DKDatabase.html", "AddTable", DKDatabase_onevnt);
 			//DKAddEvent("DKDatabase.html", "AddColumn", DKDatabase_onevnt);
 			
+			/*
 			byId("DatabaseDrop").addEventListener("change", DKDatabase_onevnt);
 			DKAddEvent("TableDrop", "change", DKDatabase_onevnt);
 			DKAddEvent("DatabaseConnect", "click", DKDatabase_onevnt);
@@ -33,6 +33,7 @@ DKDatabase.prototype.init = function DKDatabase_init() {
 			DKWidget_SetValue("NameBox", name);
 			DKWidget_SetValue("PassBox", pass);
 			DKWidget_SetValue("PortBox", port);
+			*/
 		});
 	});
 }
