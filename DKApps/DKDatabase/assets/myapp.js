@@ -4,8 +4,9 @@ const myapp = DKPlugin(MyApp);
 myapp.loadFiles = function myapp_loadFiles() {
 	DKPlugin("DKDebug/DKDebug.js")
 	DKPlugin("DKGoogleAd/DKGoogleAd.js", function(){
-		var id = DKGoogleAd_CreateAd("body", "100%", "90rem");
-		if(id){ DKWidget_SetProperty(id, "bottom", "0px"); }
+		var id = CPP_DKGoogleAd_CreateAd("body", "100%", "90rem");
+		if(id)
+			byId(id).style.bottom = "0px"
 	});
 }
 
