@@ -3,7 +3,7 @@ dk.database = DKPlugin(DKDatabase)
 
 
 DKDatabase.prototype.init = function DKDatabase_init() {
-	DKPlugin("DKMySql");
+	//DKPlugin("DKMySql");
 	DKPlugin("DKMySql/DKMySql.js", function(){
 		DKPlugin("DKDatabase/DKDatabase.html", function(){
 			//FIXME

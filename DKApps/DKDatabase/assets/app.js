@@ -1,5 +1,6 @@
 CPP_DK_Create("DKSDLWindow")
 CPP_DK_Create("DKRml")
+CPP_DK_Create("DKMySql");
 location.href = CPP_DKAssets_LocalAssets()+"index.html"
 myapp.loadFiles()
 myapp.loadApp()

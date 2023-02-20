@@ -14,7 +14,7 @@ myapp.loadFiles = function myapp_loadFiles() {
 
 myapp.loadApp = function myapp_loadApp() {
 	document.body.style.backgroundColor = "grey"
-	DKPlugin("DKWindow/DKWindow.js")
+	//DKPlugin("DKWindow/DKWindow.js")
 	//DKPlugin("DKScale/DKScale.js")
 	DKPlugin("DKDatabase/DKDatabase.js")
 }
