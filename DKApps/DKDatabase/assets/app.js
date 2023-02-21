@@ -4,3 +4,4 @@ CPP_DK_Create("DKMySql");
 location.href = CPP_DKAssets_LocalAssets()+"index.html"
 myapp.loadFiles()
 myapp.loadApp()
+DKPlugin("DKDebug/DKDebug.js")
